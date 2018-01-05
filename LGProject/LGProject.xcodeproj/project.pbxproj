@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		759869F7201B31203EDA98E7 /* libPods-LGProjectUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C19915B872AEFD228CB74 /* libPods-LGProjectUITests.a */; };
 		88256F7B1FF4C23A0073477D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F7A1FF4C23A0073477D /* AppDelegate.m */; };
 		88256F7E1FF4C23A0073477D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F7D1FF4C23A0073477D /* ViewController.m */; };
 		88256F811FF4C23A0073477D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88256F7F1FF4C23A0073477D /* Main.storyboard */; };
@@ -15,8 +16,12 @@
 		88256F891FF4C23A0073477D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F881FF4C23A0073477D /* main.m */; };
 		88256F931FF4C23A0073477D /* LGProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F921FF4C23A0073477D /* LGProjectTests.m */; };
 		88256F9E1FF4C23A0073477D /* LGProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F9D1FF4C23A0073477D /* LGProjectUITests.m */; };
-		88256FB01FF4C2C60073477D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256FAF1FF4C2C60073477D /* UIView+Extension.m */; };
-		88256FB61FF4C5F90073477D /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256FB51FF4C5F90073477D /* UIColor+Extension.m */; };
+		88D622441FFF578E00894D96 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6223C1FFF578E00894D96 /* NSString+Extension.m */; };
+		88D622451FFF578E00894D96 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6223F1FFF578E00894D96 /* UIColor+Extension.m */; };
+		88D622461FFF578E00894D96 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D622411FFF578E00894D96 /* UIImage+Extension.m */; };
+		88D622471FFF578E00894D96 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D622431FFF578E00894D96 /* UIView+Extension.m */; };
+		CB8809842048B5E7EEC7C082 /* libPods-LGProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DEB16003DDBFF8A31A4555 /* libPods-LGProjectTests.a */; };
+		F15BEF2A9E696736455E529F /* libPods-LGProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E2C7097F894CEBBACCC3D4 /* libPods-LGProject.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08C4631F7074F62547E1406C /* Pods-LGProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGProjectTests/Pods-LGProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		3D4DFCCBBA36600211A6EB17 /* Pods-LGProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGProjectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGProjectUITests/Pods-LGProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
+		65DEB16003DDBFF8A31A4555 /* libPods-LGProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		669C19915B872AEFD228CB74 /* libPods-LGProjectUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGProjectUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F520B5DF00E2A50B9B33E02 /* Pods-LGProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGProject/Pods-LGProject.debug.xcconfig"; sourceTree = "<group>"; };
 		88256F761FF4C23A0073477D /* LGProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88256F791FF4C23A0073477D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88256F7A1FF4C23A0073477D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,10 +63,18 @@
 		88256F991FF4C23A0073477D /* LGProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88256F9D1FF4C23A0073477D /* LGProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGProjectUITests.m; sourceTree = "<group>"; };
 		88256F9F1FF4C23A0073477D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88256FAE1FF4C2C60073477D /* UIView+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		88256FAF1FF4C2C60073477D /* UIView+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
-		88256FB41FF4C5F90073477D /* UIColor+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
-		88256FB51FF4C5F90073477D /* UIColor+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		88D6223B1FFF578E00894D96 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		88D6223C1FFF578E00894D96 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		88D6223E1FFF578E00894D96 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		88D6223F1FFF578E00894D96 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		88D622401FFF578E00894D96 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		88D622411FFF578E00894D96 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		88D622421FFF578E00894D96 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		88D622431FFF578E00894D96 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		93E2C8A11B721ED31689A4F9 /* Pods-LGProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGProject/Pods-LGProject.release.xcconfig"; sourceTree = "<group>"; };
+		C6E2C7097F894CEBBACCC3D4 /* libPods-LGProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9D9F575125C47ACAA1633EA /* Pods-LGProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGProjectUITests/Pods-LGProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FC429D69D7AFFFD3C6E03B1F /* Pods-LGProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGProjectTests/Pods-LGProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F15BEF2A9E696736455E529F /* libPods-LGProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB8809842048B5E7EEC7C082 /* libPods-LGProjectTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,12 +98,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				759869F7201B31203EDA98E7 /* libPods-LGProjectUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DAFB7C391790B95EA85CE87 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6F520B5DF00E2A50B9B33E02 /* Pods-LGProject.debug.xcconfig */,
+				93E2C8A11B721ED31689A4F9 /* Pods-LGProject.release.xcconfig */,
+				FC429D69D7AFFFD3C6E03B1F /* Pods-LGProjectTests.debug.xcconfig */,
+				08C4631F7074F62547E1406C /* Pods-LGProjectTests.release.xcconfig */,
+				C9D9F575125C47ACAA1633EA /* Pods-LGProjectUITests.debug.xcconfig */,
+				3D4DFCCBBA36600211A6EB17 /* Pods-LGProjectUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		415409E4EB56B3EDBB63A07C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6E2C7097F894CEBBACCC3D4 /* libPods-LGProject.a */,
+				65DEB16003DDBFF8A31A4555 /* libPods-LGProjectTests.a */,
+				669C19915B872AEFD228CB74 /* libPods-LGProjectUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		88256F6D1FF4C23A0073477D = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +135,8 @@
 				88256F911FF4C23A0073477D /* LGProjectTests */,
 				88256F9C1FF4C23A0073477D /* LGProjectUITests */,
 				88256F771FF4C23A0073477D /* Products */,
+				2DAFB7C391790B95EA85CE87 /* Pods */,
+				415409E4EB56B3EDBB63A07C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,20 +188,40 @@
 		88256FAB1FF4C25F0073477D /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				88256FAC1FF4C26E0073477D /* Catagory */,
+				88D622391FFF578E00894D96 /* Catagory */,
 			);
 			path = Public;
 			sourceTree = "<group>";
 		};
-		88256FAC1FF4C26E0073477D /* Catagory */ = {
+		88D622391FFF578E00894D96 /* Catagory */ = {
 			isa = PBXGroup;
 			children = (
-				88256FAE1FF4C2C60073477D /* UIView+Extension.h */,
-				88256FAF1FF4C2C60073477D /* UIView+Extension.m */,
-				88256FB41FF4C5F90073477D /* UIColor+Extension.h */,
-				88256FB51FF4C5F90073477D /* UIColor+Extension.m */,
+				88D6223A1FFF578E00894D96 /* NSCatagory */,
+				88D6223D1FFF578E00894D96 /* UICatagory */,
 			);
 			path = Catagory;
+			sourceTree = "<group>";
+		};
+		88D6223A1FFF578E00894D96 /* NSCatagory */ = {
+			isa = PBXGroup;
+			children = (
+				88D6223B1FFF578E00894D96 /* NSString+Extension.h */,
+				88D6223C1FFF578E00894D96 /* NSString+Extension.m */,
+			);
+			path = NSCatagory;
+			sourceTree = "<group>";
+		};
+		88D6223D1FFF578E00894D96 /* UICatagory */ = {
+			isa = PBXGroup;
+			children = (
+				88D6223E1FFF578E00894D96 /* UIColor+Extension.h */,
+				88D6223F1FFF578E00894D96 /* UIColor+Extension.m */,
+				88D622401FFF578E00894D96 /* UIImage+Extension.h */,
+				88D622411FFF578E00894D96 /* UIImage+Extension.m */,
+				88D622421FFF578E00894D96 /* UIView+Extension.h */,
+				88D622431FFF578E00894D96 /* UIView+Extension.m */,
+			);
+			path = UICatagory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,9 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88256FA21FF4C23A0073477D /* Build configuration list for PBXNativeTarget "LGProject" */;
 			buildPhases = (
+				0AC3F2A46B9AB42AD377B54E /* [CP] Check Pods Manifest.lock */,
 				88256F721FF4C23A0073477D /* Sources */,
 				88256F731FF4C23A0073477D /* Frameworks */,
 				88256F741FF4C23A0073477D /* Resources */,
+				905A5E32DA84AF7A0E05DB5C /* [CP] Embed Pods Frameworks */,
+				9C33721A73EFAED02CB4C471 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,9 +251,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88256FA51FF4C23A0073477D /* Build configuration list for PBXNativeTarget "LGProjectTests" */;
 			buildPhases = (
+				886E7470B87A383B5BBB3FD3 /* [CP] Check Pods Manifest.lock */,
 				88256F8A1FF4C23A0073477D /* Sources */,
 				88256F8B1FF4C23A0073477D /* Frameworks */,
 				88256F8C1FF4C23A0073477D /* Resources */,
+				621166A5CE4564B03D398896 /* [CP] Embed Pods Frameworks */,
+				53372175ED7E97E5D7177FB0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,9 +272,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88256FA81FF4C23A0073477D /* Build configuration list for PBXNativeTarget "LGProjectUITests" */;
 			buildPhases = (
+				CFB2581DB96B4CCCE9B3C979 /* [CP] Check Pods Manifest.lock */,
 				88256F951FF4C23A0073477D /* Sources */,
 				88256F961FF4C23A0073477D /* Frameworks */,
 				88256F971FF4C23A0073477D /* Resources */,
+				740F38C33B61A185FF10A245 /* [CP] Embed Pods Frameworks */,
+				F5A9F0F15CC0B1A0908B591F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +361,153 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0AC3F2A46B9AB42AD377B54E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LGProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53372175ED7E97E5D7177FB0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGProjectTests/Pods-LGProjectTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		621166A5CE4564B03D398896 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGProjectTests/Pods-LGProjectTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		740F38C33B61A185FF10A245 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGProjectUITests/Pods-LGProjectUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		886E7470B87A383B5BBB3FD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LGProjectTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		905A5E32DA84AF7A0E05DB5C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGProject/Pods-LGProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C33721A73EFAED02CB4C471 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGProject/Pods-LGProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFB2581DB96B4CCCE9B3C979 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LGProjectUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5A9F0F15CC0B1A0908B591F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGProjectUITests/Pods-LGProjectUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		88256F721FF4C23A0073477D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -293,9 +515,11 @@
 			files = (
 				88256F7E1FF4C23A0073477D /* ViewController.m in Sources */,
 				88256F891FF4C23A0073477D /* main.m in Sources */,
-				88256FB61FF4C5F90073477D /* UIColor+Extension.m in Sources */,
-				88256FB01FF4C2C60073477D /* UIView+Extension.m in Sources */,
+				88D622451FFF578E00894D96 /* UIColor+Extension.m in Sources */,
+				88D622471FFF578E00894D96 /* UIView+Extension.m in Sources */,
+				88D622461FFF578E00894D96 /* UIImage+Extension.m in Sources */,
 				88256F7B1FF4C23A0073477D /* AppDelegate.m in Sources */,
+				88D622441FFF578E00894D96 /* NSString+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +680,7 @@
 		};
 		88256FA31FF4C23A0073477D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F520B5DF00E2A50B9B33E02 /* Pods-LGProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +695,7 @@
 		};
 		88256FA41FF4C23A0073477D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93E2C8A11B721ED31689A4F9 /* Pods-LGProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -484,6 +710,7 @@
 		};
 		88256FA61FF4C23A0073477D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC429D69D7AFFFD3C6E03B1F /* Pods-LGProjectTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -499,6 +726,7 @@
 		};
 		88256FA71FF4C23A0073477D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08C4631F7074F62547E1406C /* Pods-LGProjectTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -514,6 +742,7 @@
 		};
 		88256FA91FF4C23A0073477D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9D9F575125C47ACAA1633EA /* Pods-LGProjectUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EFWLEBR9Q6;
@@ -528,6 +757,7 @@
 		};
 		88256FAA1FF4C23A0073477D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D4DFCCBBA36600211A6EB17 /* Pods-LGProjectUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EFWLEBR9Q6;
