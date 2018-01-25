@@ -16,6 +16,11 @@
 		88256F891FF4C23A0073477D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F881FF4C23A0073477D /* main.m */; };
 		88256F931FF4C23A0073477D /* LGProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F921FF4C23A0073477D /* LGProjectTests.m */; };
 		88256F9E1FF4C23A0073477D /* LGProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F9D1FF4C23A0073477D /* LGProjectUITests.m */; };
+		88703CEB2016CBE300BE41A7 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE12016CBE200BE41A7 /* ioapi.c */; };
+		88703CEC2016CBE300BE41A7 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE32016CBE200BE41A7 /* mztools.c */; };
+		88703CED2016CBE300BE41A7 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE52016CBE200BE41A7 /* unzip.c */; };
+		88703CEE2016CBE300BE41A7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE72016CBE200BE41A7 /* zip.c */; };
+		88703CEF2016CBE300BE41A7 /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 88703CEA2016CBE200BE41A7 /* ZipArchive.m */; };
 		88D622441FFF578E00894D96 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6223C1FFF578E00894D96 /* NSString+Extension.m */; };
 		88D622451FFF578E00894D96 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6223F1FFF578E00894D96 /* UIColor+Extension.m */; };
 		88D622461FFF578E00894D96 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D622411FFF578E00894D96 /* UIImage+Extension.m */; };
@@ -63,6 +68,17 @@
 		88256F991FF4C23A0073477D /* LGProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88256F9D1FF4C23A0073477D /* LGProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGProjectUITests.m; sourceTree = "<group>"; };
 		88256F9F1FF4C23A0073477D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88703CE02016CBE200BE41A7 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		88703CE12016CBE200BE41A7 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		88703CE22016CBE200BE41A7 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		88703CE32016CBE200BE41A7 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		88703CE42016CBE200BE41A7 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		88703CE52016CBE200BE41A7 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		88703CE62016CBE200BE41A7 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		88703CE72016CBE200BE41A7 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		88703CE82016CBE200BE41A7 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		88703CE92016CBE200BE41A7 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		88703CEA2016CBE200BE41A7 /* ZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchive.m; sourceTree = "<group>"; };
 		88D6223B1FFF578E00894D96 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		88D6223C1FFF578E00894D96 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		88D6223E1FFF578E00894D96 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
@@ -188,9 +204,36 @@
 		88256FAB1FF4C25F0073477D /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				88703CDE2016CBC900BE41A7 /* 第三方 */,
 				88D622391FFF578E00894D96 /* Catagory */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		88703CDE2016CBC900BE41A7 /* 第三方 */ = {
+			isa = PBXGroup;
+			children = (
+				88703CDF2016CBE200BE41A7 /* zip */,
+			);
+			path = "第三方";
+			sourceTree = "<group>";
+		};
+		88703CDF2016CBE200BE41A7 /* zip */ = {
+			isa = PBXGroup;
+			children = (
+				88703CE02016CBE200BE41A7 /* crypt.h */,
+				88703CE12016CBE200BE41A7 /* ioapi.c */,
+				88703CE22016CBE200BE41A7 /* ioapi.h */,
+				88703CE32016CBE200BE41A7 /* mztools.c */,
+				88703CE42016CBE200BE41A7 /* mztools.h */,
+				88703CE52016CBE200BE41A7 /* unzip.c */,
+				88703CE62016CBE200BE41A7 /* unzip.h */,
+				88703CE72016CBE200BE41A7 /* zip.c */,
+				88703CE82016CBE200BE41A7 /* zip.h */,
+				88703CE92016CBE200BE41A7 /* ZipArchive.h */,
+				88703CEA2016CBE200BE41A7 /* ZipArchive.m */,
+			);
+			path = zip;
 			sourceTree = "<group>";
 		};
 		88D622391FFF578E00894D96 /* Catagory */ = {
@@ -513,10 +556,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88703CEE2016CBE300BE41A7 /* zip.c in Sources */,
 				88256F7E1FF4C23A0073477D /* ViewController.m in Sources */,
 				88256F891FF4C23A0073477D /* main.m in Sources */,
+				88703CEC2016CBE300BE41A7 /* mztools.c in Sources */,
+				88703CEF2016CBE300BE41A7 /* ZipArchive.m in Sources */,
+				88703CEB2016CBE300BE41A7 /* ioapi.c in Sources */,
 				88D622451FFF578E00894D96 /* UIColor+Extension.m in Sources */,
 				88D622471FFF578E00894D96 /* UIView+Extension.m in Sources */,
+				88703CED2016CBE300BE41A7 /* unzip.c in Sources */,
 				88D622461FFF578E00894D96 /* UIImage+Extension.m in Sources */,
 				88256F7B1FF4C23A0073477D /* AppDelegate.m in Sources */,
 				88D622441FFF578E00894D96 /* NSString+Extension.m in Sources */,
