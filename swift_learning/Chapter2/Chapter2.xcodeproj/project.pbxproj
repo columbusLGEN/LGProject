@@ -14,6 +14,7 @@
 		885F907320158AF400F846B2 /* Chapter2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F907220158AF400F846B2 /* Chapter2Tests.swift */; };
 		885F907E20158AF500F846B2 /* Chapter2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F907D20158AF500F846B2 /* Chapter2UITests.swift */; };
 		88703D922019C2D700BE41A7 /* closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88703D912019C2D700BE41A7 /* closures.swift */; };
+		887DA642201B20D700D0D461 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887DA641201B20D700D0D461 /* Enumerations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		885F907F20158AF500F846B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88703D8D2019C21600BE41A7 /* fucn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fucn.swift; sourceTree = "<group>"; };
 		88703D912019C2D700BE41A7 /* closures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closures.swift; sourceTree = "<group>"; };
+		887DA641201B20D700D0D461 /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				88703D8C2019C21600BE41A7 /* 01基础部分 */,
 				88703D8E2019C21600BE41A7 /* 02函数 */,
 				88703D8F2019C23B00BE41A7 /* 03闭包 */,
+				887DA640201B20AA00D0D461 /* 04枚举 */,
 			);
 			path = Chapter2;
 			sourceTree = "<group>";
@@ -157,6 +160,14 @@
 				885F906920158AF400F846B2 /* Info.plist */,
 			);
 			path = proj;
+			sourceTree = "<group>";
+		};
+		887DA640201B20AA00D0D461 /* 04枚举 */ = {
+			isa = PBXGroup;
+			children = (
+				887DA641201B20D700D0D461 /* Enumerations.swift */,
+			);
+			path = "04枚举";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +306,7 @@
 				885F906020158AF400F846B2 /* basic.swift in Sources */,
 				88703D922019C2D700BE41A7 /* closures.swift in Sources */,
 				885F905E20158AF400F846B2 /* AppDelegate.swift in Sources */,
+				887DA642201B20D700D0D461 /* Enumerations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
