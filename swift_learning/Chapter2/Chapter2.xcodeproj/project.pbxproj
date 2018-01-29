@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		882EE578201ECC570041CCD9 /* class&struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EE577201ECC570041CCD9 /* class&struct.swift */; };
+		882EE57B201EEF770041CCD9 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882EE57A201EEF770041CCD9 /* Properties.swift */; };
 		885F905E20158AF400F846B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F905D20158AF400F846B2 /* AppDelegate.swift */; };
 		885F906020158AF400F846B2 /* basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F905F20158AF400F846B2 /* basic.swift */; };
 		885F906520158AF400F846B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885F906420158AF400F846B2 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		882EE577201ECC570041CCD9 /* class&struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "class&struct.swift"; sourceTree = "<group>"; };
+		882EE57A201EEF770041CCD9 /* Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		885F905A20158AF400F846B2 /* Chapter2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chapter2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		885F905D20158AF400F846B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		885F905F20158AF400F846B2 /* basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = basic.swift; sourceTree = "<group>"; };
@@ -77,6 +81,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		882EE576201ECC140041CCD9 /* 05类和结构体 */ = {
+			isa = PBXGroup;
+			children = (
+				882EE577201ECC570041CCD9 /* class&struct.swift */,
+			);
+			path = "05类和结构体";
+			sourceTree = "<group>";
+		};
+		882EE579201EEF4D0041CCD9 /* 06属性 */ = {
+			isa = PBXGroup;
+			children = (
+				882EE57A201EEF770041CCD9 /* Properties.swift */,
+			);
+			path = "06属性";
+			sourceTree = "<group>";
+		};
 		885F905120158AF400F846B2 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +125,8 @@
 				88703D8E2019C21600BE41A7 /* 02函数 */,
 				88703D8F2019C23B00BE41A7 /* 03闭包 */,
 				887DA640201B20AA00D0D461 /* 04枚举 */,
+				882EE576201ECC140041CCD9 /* 05类和结构体 */,
+				882EE579201EEF4D0041CCD9 /* 06属性 */,
 			);
 			path = Chapter2;
 			sourceTree = "<group>";
@@ -303,7 +325,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				882EE57B201EEF770041CCD9 /* Properties.swift in Sources */,
 				885F906020158AF400F846B2 /* basic.swift in Sources */,
+				882EE578201ECC570041CCD9 /* class&struct.swift in Sources */,
 				88703D922019C2D700BE41A7 /* closures.swift in Sources */,
 				885F905E20158AF400F846B2 /* AppDelegate.swift in Sources */,
 				887DA642201B20D700D0D461 /* Enumerations.swift in Sources */,

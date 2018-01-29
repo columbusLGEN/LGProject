@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Chapter2
+//  test0129
 //
-//  Created by Peanut Lee on 2018/1/22.
+//  Created by Peanut Lee on 2018/1/29.
 //  Copyright © 2018年 LG. All rights reserved.
 //
 
@@ -15,11 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = Properties()
-        window?.makeKeyAndVisible()
-        
+        // Override point for customization after application launch.
         return true
     }
 
