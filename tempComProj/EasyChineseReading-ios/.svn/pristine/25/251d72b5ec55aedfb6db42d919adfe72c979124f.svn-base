@@ -1,0 +1,32 @@
+//
+//  UserCollectionViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/29.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserCollectionViewCell.h"
+
+@interface UserCollectionViewCell ()
+
+@property (strong, nonatomic) IBOutlet UILabel *lblTitle;
+@property (strong, nonatomic) IBOutlet UIImageView *imgIcon;
+
+@end
+
+@implementation UserCollectionViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    _lblTitle.text = [dic objectForKey:@"title"];
+    _imgIcon.image = [UIImage imageNamed:[dic objectForKey:@"image"]];
+}
+
+@end

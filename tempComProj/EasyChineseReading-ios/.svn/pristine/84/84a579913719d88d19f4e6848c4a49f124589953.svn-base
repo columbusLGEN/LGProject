@@ -1,0 +1,87 @@
+//
+//  LoginVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/8.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "LoginVC.h"
+
+#import "ZSlideSwitch.h"
+
+#import "LoginDetailVC.h"
+
+@interface LoginVC ()<ZSlideSwitchDelegate>
+
+@property (strong, nonatomic) ZSlideSwitch *slideSwitch;
+
+@property (strong, nonatomic) UIButton *btnL;
+@property (strong, nonatomic) UIButton *btnR;
+
+@end
+
+@implementation LoginVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configLoginView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(zz) name:UITextFieldTextDidEndEditingNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:UITextFieldTextDidEndEditingNotification];
+}
+
+- (void)zz
+{
+    
+}
+#pragma mark -
+#pragma mark 配置登录界面
+
+- (void)configLoginView {
+    self.title = @"用户登录";
+    //要显示的标题
+    NSArray *titles = @[@"个人用户", @"机构用户"];
+    //创建需要展示的ViewController
+    NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0 ; i<titles.count; i++) {
+        LoginDetailVC *login = [LoginDetailVC new];
+        login.loginType = i;
+        [viewControllers addObject:login];
+    }
+
+    
+    //创建滚动视图
+    _slideSwitch = [[ZSlideSwitch alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, self.view.height - cHeaderHeight_64 - cHeaderHeight_44) titles:titles viewControllers:viewControllers];
+    //设置代理
+    _slideSwitch.delegate = self;
+    //设置按钮选中和未选中状态的标题颜色
+    _slideSwitch.selectedColor = [UIColor cm_purpleColor_82056B_1];
+    _slideSwitch.normalColor = [UIColor cm_graryColor_807F7F_1];
+    //显示方法
+    [_slideSwitch showInViewController:self];
+}
+
+#pragma mark -
+#pragma mark SlideSwitchDelegate
+
+- (void)slideSwitchDidselectAtIndex:(NSInteger)index {
+    NSLog(@"切换到了第 -- %zd -- 个视图",index);
+}
+
+@end

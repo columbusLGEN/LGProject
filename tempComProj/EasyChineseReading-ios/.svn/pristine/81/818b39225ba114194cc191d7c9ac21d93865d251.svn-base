@@ -1,0 +1,75 @@
+//
+//  ECRBookClassesCollectionCell.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRBookClassesCollectionCell.h"
+#import "ECRClassSortModel.h"
+
+@interface ECRBookClassesCollectionCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (weak, nonatomic) IBOutlet UILabel *bcName;
+
+/** 图标名前缀 */
+@property (copy,nonatomic) NSString *iconNameSufix;
+
+@end
+
+@implementation ECRBookClassesCollectionCell
+
+- (NSString *)iconNameSufix{
+    if (_iconNameSufix == nil) {
+        _iconNameSufix = @"icon_bys_class_";
+    }
+    return _iconNameSufix;
+}
+//- (void)changeUI:(NSNotification *)notification{
+//    NSNumber *type = notification.userInfo[kNotificationChangeHomeUIKey];
+//    [self skinWithType:type.integerValue];
+//}
+//- (void)skinWithType:(ECRHomeUIType)type{
+//    switch (type) {
+//        case ECRHomeUITypeDefault:{
+//            self.iconNameSufix = @"icon_bys_class_";
+//        }
+//        case ECRHomeUITypeAdultTwo:{
+//            self.iconNameSufix = @"icon_bys_class_";
+//        }
+//            break;
+//        case ECRHomeUITypeKidOne:{
+//            self.iconNameSufix = @"icon_bys_class_kid_one_";
+//        }
+//            break;
+//    }
+//}
+- (void)textDependsLauguage{
+    if ([LGPChangeLanguage currentLanguageIsEnglish]) {
+        _bcName.text = _model.en_name;
+    }else{
+        _bcName.text = _model.name;
+    }
+}
+
+- (void)setModel:(ECRClassSortModel *)model{
+    _model = model;
+    [self textDependsLauguage];
+}
+
+- (void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = indexPath;
+    NSString *imgName = [NSString stringWithFormat:@"%@%ld",self.iconNameSufix,indexPath.item];
+    [_icon setImage:[UIImage imageNamed:imgName]];
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+//    self.contentView.backgroundColor = [UIColor clearColor];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUI:) name:kNotificationChangeHomeUI object:nil];
+//    [self skinWithType:[LGSkinSwitchManager getCurrentUserSkin]];
+    self.iconNameSufix = @"icon_bys_class_";
+}
+
+@end

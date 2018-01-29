@@ -1,0 +1,83 @@
+//
+//  UMessageTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/31.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UMessageTableViewCell.h"
+
+@interface UMessageTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgAvatar;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
+@property (weak, nonatomic) IBOutlet UILabel *lblContent;
+@property (weak, nonatomic) IBOutlet UILabel *lblTime;
+
+@property (weak, nonatomic) IBOutlet UIView *viewUnRead;
+@property (weak, nonatomic) IBOutlet UIView *viewBackground;
+
+@end
+
+@implementation UMessageTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configMessageCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+#pragma mark - 配置界面
+
+- (void)configMessageCell
+{
+    _imgAvatar.layer.masksToBounds = YES;
+    _imgAvatar.layer.cornerRadius = _imgAvatar.height/2;
+    
+    _imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+    _imgAvatar.layer.borderWidth = 3.f;
+    
+    _lblName.textColor    = [UIColor cm_blackColor_333333_1];
+    _lblContent.textColor = [UIColor cm_blackColor_666666_1];
+    _lblTime.textColor    = [UIColor cm_blackColor_666666_1];
+    
+    _lblName.font    = [UIFont systemFontOfSize:cFontSize_16];
+    _lblTime.font    = [UIFont systemFontOfSize:cFontSize_16];
+    _lblContent.font = [UIFont systemFontOfSize:cFontSize_16 - 2];
+    
+    _viewUnRead.layer.masksToBounds = YES;
+    _viewUnRead.layer.cornerRadius  = _viewUnRead.height/2;
+    
+    _viewBackground.layer.borderWidth = 1.f;
+    _viewBackground.layer.borderColor = [UIColor cm_lineColor_D9D7D7_1].CGColor;
+    
+//    _imgAvatar.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *tapAvatar = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeUserInfo)];
+//    [_imgAvatar addGestureRecognizer:tapAvatar];
+}
+
+#pragma mark - 获取数据
+
+- (void)dataDidChange
+{
+    MessageModel *message = self.data;
+    _lblName.text = message.source == 0 ? LOCALIZATION(@"系统消息") : message.name;
+    _lblTime.text = message.emailCreatedTime;
+    _lblContent.text = message.bookId > 0 ? (message.title.length > 0 ? message.title : [NSString stringWithFormat:@"《%@》", message.bookName]) : message.message;
+    _viewUnRead.hidden = message.type == ENUM_MessageReadTypeReaded;
+}
+
+- (void)updateReadType:(ENUM_MessageReadType)type
+{
+//    _viewUnRead.backgroundColor = type == ENUM_MessageReadTypeReaded ? [UIColor whiteColor] : [UIColor redColor];
+    _viewUnRead.hidden = YES;
+}
+
+@end

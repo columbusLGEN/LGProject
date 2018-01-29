@@ -1,0 +1,98 @@
+//
+//  UserIntegralVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserIntegralVC.h"
+
+#import "UserIntegralTableViewCell.h"
+
+@interface UserIntegralVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UIView *viewVerLine;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescribe;
+@property (strong, nonatomic) IBOutlet UILabel *lblIntegral;
+@property (strong, nonatomic) IBOutlet UIView *viewLine;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+/* 积分列表 */
+@property (strong, nonatomic) NSMutableArray *arrIntegrals;
+
+@end
+
+@implementation UserIntegralVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configView];
+    [self getDataSource];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark 配置界面
+
+- (void)configView
+{
+    _viewVerLine.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    _viewLine.backgroundColor = [UIColor cm_lineColor_C6C6C6_1];
+    _lblIntegral.textColor = [UIColor cm_purpleColor_82056B_1];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UserIntegralTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UserIntegralTableViewCell class])];
+    
+    // tableView 自适应高度
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+}
+
+#pragma mark -
+#pragma mark 获取数据
+
+- (void)getDataSource
+{
+    
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+//    return _arrIntegrals.count != 0 ? _arrIntegrals.count : 1;
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    if (_arrIntegrals.count != 0) {
+        UserIntegralTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UserIntegralTableViewCell class])];
+//        cell.data = _arrIntegrals[indexPath.row];
+        return cell;
+//    }
+//    else {
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_arrIntegrals.count != 0) {
+        NSLog(@" to indexPath %ld", (long)indexPath.row);
+    }
+}
+
+@end

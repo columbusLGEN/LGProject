@@ -1,0 +1,19 @@
+//
+//  ECRBookrackDataHandler.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/25.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRDataHandler.h"
+
+typedef void(^BookrackSuccess)(NSMutableArray *arrAll,NSMutableArray *arrBuyed);
+typedef void(^BookrackFailure)(NSError *error,NSString *msg);
+
+@interface ECRBookrackDataHandler : ECRDataHandler
+
+// MARK: 请求全部图书
++ (void)bookShelf:(BookrackSuccess)success failure:(BookrackFailure)failure;
+
+@end

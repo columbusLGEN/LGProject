@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserIntegralTableViewCell" rowHeight="108" id="KGk-i7-Jjw" customClass="UserIntegralTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="447" height="108"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="447" height="107.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NpO-Wn-pI1">
+                        <rect key="frame" x="10" y="5" width="427" height="97.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaZ-ky-O7C">
+                                <rect key="frame" x="10" y="10" width="29" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更新日期：2000-01-01 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3z-H1-vgn">
+                                <rect key="frame" x="10" y="31.5" width="199" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAY-Ke-1Xe">
+                                <rect key="frame" x="408" y="10" width="9" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HAY-Ke-1Xe" firstAttribute="baseline" secondItem="RaZ-ky-O7C" secondAttribute="baseline" id="1UO-s1-RpA"/>
+                            <constraint firstItem="RaZ-ky-O7C" firstAttribute="leading" secondItem="NpO-Wn-pI1" secondAttribute="leading" constant="10" id="5jN-0j-80v"/>
+                            <constraint firstAttribute="bottom" secondItem="h3z-H1-vgn" secondAttribute="bottom" priority="249" constant="10" id="Ex2-SD-W7F"/>
+                            <constraint firstItem="h3z-H1-vgn" firstAttribute="leading" secondItem="RaZ-ky-O7C" secondAttribute="leading" id="WBR-y9-1u7"/>
+                            <constraint firstItem="RaZ-ky-O7C" firstAttribute="top" secondItem="NpO-Wn-pI1" secondAttribute="top" constant="10" id="ons-1p-3aJ"/>
+                            <constraint firstItem="h3z-H1-vgn" firstAttribute="top" secondItem="RaZ-ky-O7C" secondAttribute="bottom" constant="5" id="uXT-6H-zaw"/>
+                            <constraint firstAttribute="trailing" secondItem="HAY-Ke-1Xe" secondAttribute="trailing" constant="10" id="ymX-oK-yUG"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NpO-Wn-pI1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Cjs-lW-71O"/>
+                    <constraint firstItem="NpO-Wn-pI1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="fIk-tQ-Zad"/>
+                    <constraint firstAttribute="trailing" secondItem="NpO-Wn-pI1" secondAttribute="trailing" constant="10" id="hOM-0M-1NJ"/>
+                    <constraint firstAttribute="bottom" secondItem="NpO-Wn-pI1" secondAttribute="bottom" constant="5" id="ib4-f6-hMQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lblDescribe" destination="RaZ-ky-O7C" id="ByG-IK-8TV"/>
+                <outlet property="lblIntegral" destination="HAY-Ke-1Xe" id="fo2-w3-7bS"/>
+                <outlet property="lblIntegralTime" destination="h3z-H1-vgn" id="acV-vi-d2g"/>
+                <outlet property="viewBackground" destination="NpO-Wn-pI1" id="Ga5-4X-od6"/>
+            </connections>
+            <point key="canvasLocation" x="20.5" y="30"/>
+        </tableViewCell>
+    </objects>
+</document>

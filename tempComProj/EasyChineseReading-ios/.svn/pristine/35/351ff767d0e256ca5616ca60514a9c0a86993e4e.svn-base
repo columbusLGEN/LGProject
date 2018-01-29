@@ -1,0 +1,136 @@
+//
+//  ECRSubjectController.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/23.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+static NSString *reuserID = @"ECRSubjectCell";
+static NSString *headerID = @"ECRSubjectHeaderView";
+
+#import "ECRSubjectController.h"
+#import "ECRSubjectView.h"
+#import "ECRSubjectRowModel.h"
+#import "ECRSubjectModel.h"
+#import "ECRSubjectCell.h"
+#import "ECRBookInfoViewController.h"
+#import "ECRThematicModel.h"
+#import "ECRSubjectHeaderView.h"
+
+@interface ECRSubjectController ()<
+UITableViewDelegate,
+UITableViewDataSource
+>
+@property (strong,nonatomic) NSArray<ECRSubjectRowModel *> *rowModels;//
+@property (strong,nonatomic) ECRSubjectView *sbv;//
+
+@property (assign,nonatomic) CGFloat headerHeight;//
+@end
+
+@implementation ECRSubjectController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+
+    
+}
+- (void)setupUI{
+    [self.view addSubview:self.sbv];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(subjectBookClickNotification:)
+     name:ECRSubjectBookClickNotification object:nil];
+}
+// MARK: 请求数据
+- (void)setModel:(ECRThematicModel *)model{
+    _model = model;
+    self.title = model.thematicName;
+    [[ECRDataHandler sharedDataHandler] subjectDataWithSpecial:nil series:nil classify:@"440" length:12 page:0 sort:0 success:^(id object) {
+        self.rowModels = object;
+        
+    } failure:^(NSString *msg) {
+        
+    } commenFailure:^(NSError *error) {
+        
+    }];
+}
+- (void)setRowModels:(NSArray<ECRSubjectRowModel *> *)rowModels{
+    _rowModels = rowModels;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.sbv.tableView reloadData];
+    }];
+}
+// MARK: 点击书籍的通知
+- (void)subjectBookClickNotification:(NSNotification *)notification{
+    NSDictionary *userInfo = notification.userInfo;
+    ECRSubjectModel *model = userInfo[@"model"];
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"BookInfo" bundle:nil];
+    ECRBookInfoViewController *bivc = [board instantiateViewControllerWithIdentifier:@"ECRBookInfoViewController"];
+    bivc.bookId = model.bookId;
+    bivc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    [self.navigationController pushViewController:bivc animated:YES];
+
+}
+#pragma mark - table view data source & delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.rowModels.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ECRSubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:reuserID];
+    ECRSubjectRowModel *rowModel = self.rowModels[indexPath.row];
+    cell.rowModel = rowModel;
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ECRSubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:reuserID];
+    return cell.cellHeight;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    ECRSubjectHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
+    header.imgURL = self.model.specialPic;
+    return header;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return self.headerHeight;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = self.headerHeight;
+    if(scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0,0);
+    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
+}
+
+- (ECRSubjectView *)sbv{
+    if (_sbv == nil) {
+        _sbv = [[ECRSubjectView alloc] initWithFrame:self.view.bounds];
+        _sbv.tableView.dataSource = self;
+        _sbv.tableView.delegate = self;
+        [_sbv.tableView registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellReuseIdentifier:reuserID];
+        [_sbv.tableView registerNib:[UINib nibWithNibName:headerID bundle:nil] forHeaderFooterViewReuseIdentifier:headerID];
+    }
+    return _sbv;
+}
+- (CGFloat)headerHeight{
+    if ([[ECRMultiObject sharedInstance] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        return 240;
+    }else{
+        return 180;
+    }
+}
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+@end
+
+
+/**
+     ECRSubjectView --> 主view
+     ECRSubjectCell --> 一个cell 有两个 或者 一个 ECRSubjectSingleView
+     ECRSubjectSingleView  --> 一本书
+ 
+ */

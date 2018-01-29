@@ -1,0 +1,157 @@
+//
+//  UCMangagerVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/2.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UClassManagerVC.h"
+
+#import "UCManagerTableViewCell.h"
+
+#import "UCManagerAddVC.h"
+
+static CGFloat kTopHeight = 44.f;
+
+@interface UClassManagerVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSArray *arrDataSource;
+
+@end
+
+@implementation UClassManagerVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configManageView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrDataSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UCManagerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UCManagerTableViewCell class])];
+    cell.data = _arrDataSource[indexPath.row];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44.f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UCManagerAddVC *addVC = [UCManagerAddVC loadFromStoryBoard:@"UserClass"];
+    addVC.classType = 1;
+    [self.navigationController pushViewController:addVC animated:YES];
+}
+
+#pragma mark -
+#pragma mark action
+
+- (void)configManageView
+{
+    [self configNavigationItem];
+    [self configHeaderView];
+    [self configTableView];
+}
+
+- (void)configTableView
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTopHeight, Screen_Width, self.view.height - kTopHeight) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UCManagerTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UCManagerTableViewCell class])];
+    
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    _tableView.tableFooterView = view;
+    
+    [self.view addSubview:_tableView];
+}
+
+- (void)configHeaderView
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, kTopHeight)];
+    headerView.backgroundColor = [UIColor colorWithHexString:@"F6F6F6"];
+    [self.view addSubview:headerView];
+    [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.top.equalTo(self.view.mas_top);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_equalTo(kTopHeight);
+    }];
+    
+    UILabel *lblName = [UILabel new];
+    lblName.text = @"班级名称";
+    [headerView addSubview:lblName];
+    [lblName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(headerView.mas_left).offset(15);
+        make.centerY.equalTo(headerView.mas_centerY);
+    }];
+    
+    UILabel *lblNumber = [UILabel new];
+    lblNumber.text = @"班级人数";
+    [headerView addSubview:lblNumber];
+    [lblNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(headerView.mas_centerX);
+        make.centerY.equalTo(headerView.mas_centerY);
+    }];
+    
+    UILabel *lblAction = [UILabel new];
+    lblAction.text = @"操作";
+    [headerView addSubview:lblAction];
+    [lblAction mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(headerView.mas_right).offset(20);
+        make.centerY.equalTo(headerView.mas_centerY);
+        make.size.mas_offset(CGSizeMake(100, 20));
+    }];
+    
+    lblName.textColor = lblNumber.textColor = lblAction.textColor = [UIColor cm_blackColor_333333_1];
+    lblName.font = lblNumber.font = lblAction.font = [UIFont systemFontOfSize:15.f];
+}
+
+- (void)configNavigationItem
+{
+    self.title = @"班级管理";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"2"] style:UIBarButtonItemStylePlain target:self action:@selector(addClass)];
+}
+
+- (void)addClass
+{
+    UCManagerAddVC *addVC = [UCManagerAddVC loadFromStoryBoard:@"UserClass"];
+    [self.navigationController pushViewController:addVC animated:YES];
+}
+
+#pragma mark -
+#pragma mark 属性
+
+- (NSArray *)arrDataSource
+{
+    if (_arrDataSource == nil) {
+        _arrDataSource = @[@{@"image": @"1", @"name": @"禁区班", @"number": @"12"},
+                           @{@"image": @"1", @"name": @"鲁班", @"number": @"2"},
+                           @{@"image": @"1", @"name": @"什么班", @"number": @"1"},];
+        
+    }
+    return _arrDataSource;
+}
+
+@end

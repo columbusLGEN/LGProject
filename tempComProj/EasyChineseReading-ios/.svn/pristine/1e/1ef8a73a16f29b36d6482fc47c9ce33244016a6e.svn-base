@@ -1,0 +1,163 @@
+//
+//  ECRHTTPSessionManager.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/31.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRHTTPSessionManager.h"
+
+//#import "DES3Util.h"// des加密类
+#import "NSString+TOPExtension.h"
+
+static CGFloat timeOutLimit = 3.0;//7.0;
+
+
+@interface ECRHTTPSessionManager ()
+@property (strong,nonatomic) AFHTTPSessionManager *afnSessionManager;//
+
+@end
+
+@implementation ECRHTTPSessionManager
+
+// 1016
+- (void)POSTWithInterface:(NSString *)interface param:(id)param success:(ECRLEHTTPSuccess)success failure:(ECRLEHTTPFailure)failure{
+    NSString *urlString = [NSString stringWithFormat:@"http://192.168.10.107:8080/UniversityPressService/%@",interface];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:urlString parameters:param error:nil];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+//            NSLog(@"Error: %@", error);
+            if (failure) {
+                failure(error);
+            }
+        } else {
+//            NSLog(@"responseObject %@", responseObject);
+//            NSLog(@"returnJSON -- %@",returnJSON);
+//            NSString *returnJSON = [responseObject objectForKey:@"returnJson"];
+            if (success) {
+                success(responseObject);
+            }
+        }
+    }];
+    [dataTask resume];
+    
+}
+
++ (instancetype)sharedManager{
+    static ECRHTTPSessionManager *instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [[ECRHTTPSessionManager alloc] init];
+    });
+    return instance;
+}
+- (AFHTTPSessionManager *)afnSessionManager{
+    if (_afnSessionManager == nil) {
+        _afnSessionManager = [AFHTTPSessionManager manager];
+        _afnSessionManager.securityPolicy.allowInvalidCertificates = YES; // not recommended for production
+        // MARK: 设置反序列化格式
+        _afnSessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"text/plain",@"charset=utf-8", nil];
+        _afnSessionManager.requestSerializer.timeoutInterval = timeOutLimit;
+    }
+    return _afnSessionManager;
+}
+// MARK:设置请求头
+//        instance.requestSerializer setValue:@"value" forHTTPHeaderField:@"key";
+// MARK: 重新登陆后需要重新设置的
+//        instance.requestSerializer setValue:@"value" forHTTPHeaderField:@"key";
+
+// 返回http method名称的函数
+NSString *methodName(ECRHTTPRequestMethod method){
+    NSString *mName;
+    switch (method) {
+        case 0:
+            mName = @"GET";
+            break;
+        case 1:
+            mName = @"POST";
+            break;
+            
+    }
+    return mName;
+}
+
+// 为什么会崩溃？
+//    [[self.afnSessionManager POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"responseObject -- %@",responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"error -- %@",error);
+//    }] resume];
+
+//    [[self.afnSessionManager GET:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"responseObject -- %@",responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"error -- %@",error);
+//    }] resume];
+
+// 废弃
+//- (void)lg_POSTWithURLString:(NSString *)URLString parameters:(NSDictionary *)param success:(ECRLEHTTPSuccess)success failure:(ECRLEHTTPFailure)failure{
+//    [[self class] lg_requestWithHTTPMethod:methodName(ECRHTTPRequestMethodPost) URLString:URLString param:param success:success failure:failure];
+//}
+//+ (void)lg_requestWithHTTPMethod:(NSString *)method URLString:(NSString *)URLString param:(NSDictionary *)param success:(ECRLEHTTPSuccess)success failure:(ECRLEHTTPFailure)failure{
+//    
+//    NSError *error;
+//    NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:param
+//                                                        options:NSJSONWritingPrettyPrinted
+//                                                          error:&error];
+//    NSString *jsonString;
+//    if (!jsonData) {
+//        NSLog(@"jsonDataerror:%@",error);
+//    }else{
+//        jsonString               = [[NSString alloc] initWithData:jsonData
+//                                                         encoding:NSUTF8StringEncoding];
+//        NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer]
+//                                    requestWithMethod:methodName(ECRHTTPRequestMethodPost)
+//                                    URLString:URLString
+//                                    parameters:nil
+//                                    error:nil];
+//        req.timeoutInterval      = timeOutLimit;
+//        
+//        //        NSLog(@"jsonstring-- %@",jsonString);
+//        
+//        [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//        [req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//        [req setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+//        
+//        [[[self sharedManager] dataTaskWithRequest:req
+//                                 completionHandler:^(NSURLResponse * _Nonnull response,
+//                                                     id              _Nullable responseObject,
+//                                                     NSError       * _Nullable error) {
+//                                     
+//                                     if (responseObject) {
+//                                         NSLog(@"lg_requestresponseObject:%@",responseObject);
+//                                         NSString *rjKey = @"returnJson";
+//                                         NSString *returnJSON;
+//                                         if ([[responseObject allKeys] containsObject:rjKey]) {
+//                                             returnJSON = [responseObject objectForKey:rjKey];
+//                                         }
+//                                         if (success) {
+//                                             NSLog(@"lg_requestresJSON:%@",returnJSON);
+//                                             success(returnJSON);
+//                                         }
+//                                     }
+//                                     
+//                                     if (error) {
+//                                         NSLog(@"lg_requesterror:%@",error);
+//                                         if (failure) {
+//                                             failure(error);
+//                                         }
+//                                     }
+//                                 }] resume];
+//        
+//    }
+//    
+//    
+//}
+
+@end

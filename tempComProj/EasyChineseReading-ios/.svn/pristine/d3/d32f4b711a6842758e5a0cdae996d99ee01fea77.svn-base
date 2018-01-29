@@ -1,0 +1,143 @@
+//
+//  ECRLocalFileManager.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/18.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRLocalFileManager.h"
+#import "ZipArchive.h"
+
+@interface ECRLocalFileManager ()
+@property (strong,nonatomic) NSFileManager *fileMgr;
+@property (strong,nonatomic) NSString *zipPath;// 压缩包目录
+
+@end
+
+@implementation ECRLocalFileManager
+
+
+// 1.拷贝压缩包
+// 将bundle 下的资源文件 拷贝到 制定目录,最好是documents/
+- (void)copyFileInBundleWithBundlePath:(NSString *)bundlePath toPath:(NSString *)path fileName:(NSString *)fileName{
+    // 先判断路径是否存在
+    BOOL isDir;
+    BOOL isDirExist = [_fileMgr fileExistsAtPath:path isDirectory:&isDir];
+    if (isDirExist && isDir) {// 如果存在且是一个路径,在判断fileName文件是否存在
+        NSString *absoPath = [NSString stringWithFormat:@"%@/%@",path,fileName];// 绝对路径(包含文件名)
+        if ([_fileMgr fileExistsAtPath:absoPath] == YES) {// 如果path路径下fileName已经存在,不执行任何操作
+            
+        }else{
+            // 执行拷贝操作
+            [self copyItemAtPath:bundlePath toPath:path ofFileName:fileName];
+        }
+    }else{
+        // 如果不存在, 则创建路径, 并将文件拷贝到path 命名为: fileName
+        // 1.创建目录
+        BOOL bCreateDir = [_fileMgr createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        if (bCreateDir) {
+            // 2.拷贝文件
+            [self copyItemAtPath:bundlePath toPath:path ofFileName:fileName];
+        }else{
+            NSLog(@"create path failure");
+        }
+    }
+}
+
+// 解压压缩包 ---> 按照文件名
+- (void)unzipFileWithPath:(NSString *)path fileName:(NSString *)fileName toPath:(NSString *) toPath toFileName:(NSString *)toFileName uzSuccess:(void(^)(NSString *absuPath))success uzFailure:(void(^)(NSString *info))failure{
+    NSString *fromPath = [NSString stringWithFormat:@"%@/%@",path,fileName];
+    NSString *absoPath = [NSString stringWithFormat:@"%@/%@",toPath,fileName];// 绝对路径(包含文件名)
+    // 如果文件存在,则解压缩
+    BOOL isDir = FALSE;
+    BOOL isDirExist = [_fileMgr fileExistsAtPath:toPath isDirectory:&isDir];
+    if (isDir && isDirExist) {// 路径存在
+        // 判断解压缩路径是否存在,如果存在,直接返回路径
+        BOOL unzipIsDir;
+        BOOL unzipExist = [_fileMgr fileExistsAtPath:absoPath isDirectory:&unzipIsDir];
+        if (unzipIsDir && unzipExist) {
+            if (success) {
+                success(absoPath);
+            }
+        }else{
+            // 直接解压缩致 路径下
+            [self unzipItemFromPath:fromPath toPath:absoPath uzSuccess:success uzFailure:failure];
+        }
+    }else{
+        // 路径不存在
+        // 1.创建路径
+        BOOL bCreateDir = [_fileMgr createDirectoryAtPath:toPath withIntermediateDirectories:YES attributes:nil error:nil];
+        if (bCreateDir) {
+            // 创建路径成功,解压缩文件
+            [self unzipItemFromPath:fromPath toPath:absoPath uzSuccess:success uzFailure:failure];
+        }else{
+            if (failure) {
+                failure(@"创建路径失败");
+            }
+        }
+    }
+}
+
+// 打开解压后的文件 --- 按照文件名
+
+// 解压文件
+- (void)unzipItemFromPath:(NSString *)fromPath toPath:(NSString *)toPath uzSuccess:(void(^)(NSString *absuPath))success uzFailure:(void(^)(NSString *info))failure{
+    
+    BOOL unzip = [SSZipArchive unzipFileAtPath:fromPath toDestination:toPath];
+    if (unzip) {
+        // 解压成功,返回所需路径
+        NSString *st = [toPath stringByAppendingString:@"/document.st"];
+        NSString *dbx = [toPath stringByAppendingString:@"/document.dbx"];
+        NSString *dbplayer = [toPath stringByAppendingString:@"/document.dbplayer"];
+        NSString *versionTxt = [toPath stringByAppendingString:@"/Version.txt"];
+        
+        if (![_fileMgr fileExistsAtPath:st] && ![_fileMgr fileExistsAtPath:dbx] && ![_fileMgr fileExistsAtPath:dbplayer] && ![_fileMgr fileExistsAtPath:versionTxt]) {
+            if (failure) {
+                failure(@"多媒体文件错误");
+            }
+        }else{
+            // 解压成功,返回路径
+            if (success) {
+                success(toPath);
+            }
+        }
+        
+    }else{
+        if (failure) {
+            failure(@"解压失败");
+        }
+    }
+}
+
+// 拷贝文件
+- (void)copyItemAtPath:(NSString *)bundlePath toPath:(NSString *)path ofFileName:(NSString *)fileName{
+    _zipPath = path;// 压缩包目录
+    __block NSError *error;
+    NSString *absoPath = [NSString stringWithFormat:@"%@/%@",path,fileName];// 绝对路径(包含文件名)
+//    NSLog(@"final path-- %@",absoPath);
+    // 异步执行
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [_fileMgr copyItemAtPath:bundlePath toPath:absoPath error:&error];
+    });
+    if (error) {NSLog(@"--error--:%@",error.description);}
+}
+
+- (instancetype)init{
+    if (self = [super init]) {
+        self.fileMgr = [NSFileManager defaultManager];
+        NSLog(@"local file manager init");
+    }
+    return self;
+}
+
++ (instancetype)sharedLocalFileManager{
+    static id instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [[self alloc] init];
+    });
+    return instance;
+}
+
+@end

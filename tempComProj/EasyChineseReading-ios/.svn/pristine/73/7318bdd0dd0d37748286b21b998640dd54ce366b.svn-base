@@ -1,0 +1,58 @@
+//
+//  UClassRecommendTC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/13.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UClassRecommendTableViewCell.h"
+
+@interface UClassRecommendTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *lblRecommendNumber;       // 推荐图书的数量
+@property (weak, nonatomic) IBOutlet UILabel *lblRecommendTime;         // 推荐图书时间
+@property (weak, nonatomic) IBOutlet UILabel *lblRecommendDescribe;     // 推荐图书描述
+@property (weak, nonatomic) IBOutlet UIView *viewBackground;            // 背景（阴影线）
+
+@end
+@implementation UClassRecommendTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configRecommendCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+#pragma mark - 配置界面
+
+- (void)configRecommendCell
+{
+    _viewBackground.layer.borderColor = [UIColor cm_lineColor_E3E3E3_1].CGColor;
+    _viewBackground.layer.borderWidth = .5f;
+    
+    _lblRecommendNumber.textColor   = [UIColor cm_blackColor_333333_1];
+    _lblRecommendTime.textColor     = [UIColor cm_blackColor_333333_1];
+    _lblRecommendDescribe.textColor = [UIColor cm_graryColor_807F7F_1];
+    
+    _lblRecommendNumber.font    = [UIFont systemFontOfSize:15.f];
+    _lblRecommendTime.font      = [UIFont systemFontOfSize:12.f];
+    _lblRecommendDescribe.font  = [UIFont systemFontOfSize:14.f];
+}
+
+#pragma mark - 更新数据
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    _lblRecommendNumber.text    = [NSString stringWithFormat:@"推荐图书：共计%@本", dic[@"number"]];
+    _lblRecommendTime.text      = [NSString stringWithFormat:@"推荐时间：%@", dic[@"time"]];
+    _lblRecommendDescribe.text  = dic[@"describe"];
+}
+
+@end

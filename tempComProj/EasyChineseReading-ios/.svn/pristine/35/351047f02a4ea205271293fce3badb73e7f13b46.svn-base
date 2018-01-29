@@ -1,0 +1,215 @@
+//
+//  ECRBookInfoTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/12.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookInfoTableViewCell.h"
+#import "ECRBookInfoModel.h"
+#import <WebKit/WebKit.h>
+#import "ECRBiRecoCollectionViewCell.h"
+
+@interface ECRBookInfoTableViewCell ()<
+WKNavigationDelegate,
+UICollectionViewDelegate,
+UICollectionViewDataSource
+>
+@property (weak, nonatomic) IBOutlet UIView *adreV;// 标题前面的rect
+@property (weak, nonatomic) IBOutlet UIView *adreV1;
+@property (weak, nonatomic) IBOutlet UIView *adreV2;
+@property (weak, nonatomic) IBOutlet UIView *adreV3;
+@property (weak, nonatomic) IBOutlet UIView *line;
+@property (weak, nonatomic) IBOutlet UIView *line1;
+@property (weak, nonatomic) IBOutlet UIView *line2;
+@property (weak, nonatomic) IBOutlet UIView *line3;
+
+
+// 1
+@property (weak, nonatomic) IBOutlet UILabel *t0;// 标题
+@property (weak, nonatomic) IBOutlet UILabel *publishCom;// 出版社
+@property (weak, nonatomic) IBOutlet UILabel *pubTime;// 出版时间
+@property (weak, nonatomic) IBOutlet UILabel *isbn;// isbn
+@property (weak, nonatomic) IBOutlet UILabel *eisbn;// eisbn
+@property (weak, nonatomic) IBOutlet UILabel *fl;// 分类
+@property (weak, nonatomic) IBOutlet UILabel *zt;// 主题
+@property (weak, nonatomic) IBOutlet UILabel *dx;// 对象
+
+
+// 2
+@property (weak, nonatomic) IBOutlet UILabel *t1;
+@property (weak, nonatomic) IBOutlet UILabel *nr;// 内容简介
+
+// 3
+@property (weak, nonatomic) IBOutlet UILabel *t2;// 目录
+@property (strong,nonatomic) WKWebView *catalogWk;
+@property (weak, nonatomic) IBOutlet UIButton *foldUnfold;
+
+// 4
+@property (weak, nonatomic) IBOutlet UILabel *t4;
+@property (weak, nonatomic) IBOutlet UICollectionView *recoView;// 推荐书籍
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *reciFlowLayout;
+@property (strong,nonatomic) NSArray *recoArr;// 推荐书籍数组
+
+
+@end
+
+@implementation ECRBookInfoTableViewCell
+
+static NSString *recoCell = @"ECRBiRecoCollectionViewCell";
+
+- (void)setRecoArr:(NSArray *)recoArr{
+    _recoArr = recoArr;
+    [self.recoView reloadData];
+}
+
+- (IBAction)foldUnfold:(UIButton *)sender {// 展开收起
+    
+}
+
+- (void)setModel:(ECRBookInfoModel *)model{
+    _model = model;
+    switch (self.indx.row) {
+        case 0:{
+            // 出版信息
+            _publishCom.text = model.press;
+            _pubTime.text = model.publicationTime;
+            _isbn.text = model.isbn;
+            _eisbn.text = model.eisbn;
+            _fl.text = model.classify;
+            _zt.text = model.theme;
+            _dx.text = model.bookObject;
+            // 马上布局,计算frame
+            [self setNeedsLayout];
+            [self layoutIfNeeded];
+            _rHeight = CGRectGetMaxY(_dx.frame) + 10;
+            _rHeight1 = _rHeight;
+        }
+            break;
+        case 1:{
+            // 内容简介
+            _nr.text = model.intro;
+            [self setNeedsLayout];
+            [self layoutIfNeeded];
+            // 计算文字内容高度
+            // 指定字号
+            NSDictionary *dict = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
+            // 计算高度(需要制定宽度)
+            CGRect textRect = [model.intro boundingRectWithSize:CGSizeMake(Screen_Width - 40, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
+//            NSLog(@"----%@",NSStringFromCGRect(textRect));
+            
+            _rHeight = textRect.size.height + 20;
+            _rHeight2 = _rHeight;
+        }
+            break;
+        case 2:{
+            // 目录
+            NSString *html = @"<html>\n<span style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\">第一单元　我和你</span><br style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\"><span style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\">　第一课　你好</span><br style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\"><span style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\">　第二课　你叫什么</span><br style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\"><span style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\">　第三课　你家在哪儿</span><br style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\"><span style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\">第二单元　我的家</span><br style=\"color: rgb(101, 101, 101); font-family: &quot;Hiragino Sans GB&quot;, Verdana, Simsun; font-size: 14px;\">\n</html>";
+            // 马上布局,计算frame
+            _catalogWk = [[WKWebView alloc] init];
+            _catalogWk.navigationDelegate = self;
+            [self.contentView addSubview:_catalogWk];
+            [_catalogWk mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(_t2.mas_bottom).offset(5);
+                make.left.equalTo(_t2.mas_left);
+                make.right.equalTo(self.contentView.mas_right).offset(-10);
+//                make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+                make.height.equalTo(@60);
+            }];
+            [_catalogWk loadHTMLString:html baseURL:nil];
+            [self setNeedsLayout];
+            [self layoutIfNeeded];
+            
+            _rHeight = CGRectGetMaxY(_catalogWk.frame) + 10;
+            _rHeight3 = _rHeight;
+        }
+            break;
+        case 3:{
+            // 推荐书籍
+            // 马上布局,计算frame
+            [self setNeedsLayout];
+            [self layoutIfNeeded];
+            
+            self.recoArr = model.recoArr;
+            
+            _rHeight = CGRectGetMaxY(_recoView.frame) + 10;
+            _rHeight4 = _rHeight;
+        }
+            break;
+    }
+    
+}
+
++ (NSString *)gainReuseID:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+        return @"ECRBookInfoTableViewCell1";
+            break;
+        case 1:
+        return @"ECRBookInfoTableViewCell2";
+            break;
+        case 2:
+        return @"ECRBookInfoTableViewCell3";
+            break;
+        case 3:
+        return @"ECRBookInfoTableViewCell4";
+            break;
+    }
+    return nil;
+}
++ (CGFloat)gainRowHeight:(ECRBookInfoModel *)model{
+    // TODO:
+    return 0;
+}
+
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    _foldUnfold.hidden = YES;
+    
+    // TODO: 屏幕适配
+    _reciFlowLayout.itemSize = CGSizeMake(60, 120);
+    _reciFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//    _reciFlowLayout.minimumInteritemSpacing = 20;
+    _reciFlowLayout.minimumLineSpacing = 25;// item 横向间距
+    
+    [_recoView registerNib:[UINib nibWithNibName:recoCell bundle:nil] forCellWithReuseIdentifier:recoCell];
+    _recoView.dataSource = self;
+    _recoView.delegate = self;
+    
+}
+
+#pragma mark - collcetion view delegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.recoArr.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    ECRBiRecoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:recoCell forIndexPath:indexPath];
+    ECRBookInfoModel *model = self.recoArr[indexPath.row];
+    cell.model = model;
+    return cell;
+}
+
+#pragma mark - wk nav delegate
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
+    [webView evaluateJavaScript:@"document.getElementById(\"content\").offsetHeight;"completionHandler:^(id _Nullable result,NSError *_Nullable error) {
+        //获取页面高度，并重置webview的frame
+        CGFloat documentHeight = [result doubleValue];
+//        NSLog(@"%.2f",documentHeight);
+    }];
+}
+
+
+
+@end
+
+
+
+
+
+
+
+
+

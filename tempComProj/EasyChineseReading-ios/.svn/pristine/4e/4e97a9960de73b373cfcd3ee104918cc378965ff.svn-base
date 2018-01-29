@@ -1,0 +1,59 @@
+//
+//  UFriendListTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UFriendListTableViewCell.h"
+
+@interface UFriendListTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgAvatar;
+@property (weak, nonatomic) IBOutlet UILabel *lblUserName;
+@property (weak, nonatomic) IBOutlet UIView *viewShadow;
+@property (weak, nonatomic) IBOutlet UIView *viewLine;
+
+@end
+
+@implementation UFriendListTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configFriendListCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configFriendListCell
+{
+    _imgAvatar.layer.masksToBounds = YES;
+    _imgAvatar.layer.cornerRadius = _imgAvatar.height/2;
+    
+    _imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+    _imgAvatar.layer.borderWidth = 3.f;
+    
+    _viewShadow.layer.shadowOffset  = CGSizeMake(0, 0);
+    _viewShadow.layer.shadowOpacity = .1f;
+    _viewShadow.layer.shadowRadius  = 1.f;
+    _viewShadow.backgroundColor = [UIColor clearColor];
+    
+    _lblUserName.textColor = [UIColor cm_blackColor_333333_1];
+    _viewLine.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+}
+
+- (void)dataDidChange
+{
+    FriendModel *friend = self.data;
+    
+    [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:friend.iconUrl] placeholderImage:[UIImage imageNamed:@"img_avatar_placeholder"]];
+    _lblUserName.text = [friend.name notEmpty] ? friend.name : LOCALIZATION(@"匿名");
+}
+
+@end

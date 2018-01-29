@@ -1,0 +1,51 @@
+//
+//  ECRHomeClassModel.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/20.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRHomeClassModel.h"
+
+@implementation ECRHomeClassModel
+
+- (NSString *)mbDataKey{
+    switch (self.id) {// 根据id 返回class type 与本地plist 文件保持对应
+        case ECRHomeClassModelClassTypeEsb:
+            return @"esb";
+            break;
+        case ECRHomeClassModelClassTypeCub:
+            return @"cub";
+            break;
+        case ECRHomeClassModelClassTypeInb:
+            return @"inb";
+            break;
+        default:
+            return @"hsb";// 热销
+            break;
+    }
+}
+
+// 根据id 映射到本地pilst 
+- (NSUInteger)classType{
+//    3 汉语读物（第一个汉语读物分类） = 425,
+//    4 文化读物 = 446,
+//    2 互动教材 = 447
+    switch (self.id) {// 根据id 返回class type 与本地plist 文件保持对应
+        case ECRHomeClassModelClassTypeEsb:
+            return 3;
+            break;
+        case ECRHomeClassModelClassTypeCub:
+            return 4;
+            break;
+        case ECRHomeClassModelClassTypeInb:
+            return 2;
+            break;
+        default:
+            return 1;
+            break;
+    }
+}
+
+@end

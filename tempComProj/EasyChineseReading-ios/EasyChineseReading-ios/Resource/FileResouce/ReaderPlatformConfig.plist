@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UseOnlyIAP</key>
+	<true/>
+	<key>AboutUs</key>
+	<dict>
+		<key>Url</key>
+		<string>www.timebooks.com.cn</string>
+		<key>CopyRight</key>
+		<string>Copyright©睿泰集团版权所有</string>
+		<key>synopsis</key>
+		<string>时光阅读是专注于移动阅读领域、一款智能手机阅读应用软件。为用户提供海量、高品质的图书内容及智能化的用户体验，采用领先行业的中文排版技术，完美支持音频，视频等图文混排，为世界各地的用户提供最好的中文阅读产品。</string>
+	</dict>
+</dict>
+</plist>

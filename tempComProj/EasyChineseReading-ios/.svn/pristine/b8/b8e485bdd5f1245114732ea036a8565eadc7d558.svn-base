@@ -1,0 +1,579 @@
+//
+//  ECRMoreBooksViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+static NSString *reuserID       = @"ECRMoreBooksCell";
+static NSString *rHeadID        = @"ECRBookClassSortHeader";// 销量，好评，价格
+static CGFloat filterHeight;// 筛选条件高度
+static CGFloat listCellH        = 150;// 图示列表cell高度
+static CGFloat sortCellH2 = 40;// MARK: 销量,价格,好评,行高
+
+#import "ECRMoreBooksViewController.h"
+#import "ECRSortTableViewController.h"
+#import "ECRMoreBooksCell.h"
+#import "ECRBookInfoModel.h"
+#import "ECRClassSortModel.h"
+#import "ECRHomeSortModel.h"
+#import "UIView+Extension.h"
+#import "ECRBookClassSortHeader.h"
+#import "ECRSearchTitleView.h"
+#import "ECRMoreBaseModel.h"
+#import "ECRMoreRowModel.h"
+#import "ECRClassSortModel.h"
+#import "ECRBookInfoViewController.h"
+
+@interface ECRMoreBooksViewController ()<
+ECRSearchTitleViewDelegate,
+ECRBookClassSortHeaderDelegate,
+ECRSortTableViewControllerDelegate
+>
+@property (strong,nonatomic) ECRSortTableViewController *stvc;
+@property (strong,nonatomic) ECRMoreBaseModel *mbModel;//
+@property (strong,nonatomic) NSArray<ECRMoreRowModel *> *esb;//
+@property (strong,nonatomic) NSArray<ECRMoreRowModel *> *cub;//
+@property (strong,nonatomic) NSArray<ECRMoreRowModel *> *inb;//
+@property (strong,nonatomic) NSArray<ECRMoreRowModel *> *filterArray;//
+
+@property (strong,nonatomic) NSMutableArray *bookClassIds;//
+@property (strong,nonatomic) NSMutableArray *array_all;// "全部" 模型数组
+@property (assign,nonatomic) NSInteger requestLength;//
+@property (assign,nonatomic) NSInteger requestPage;//
+@property (assign,nonatomic) NSInteger requestSort;//
+
+@end
+
+@implementation ECRMoreBooksViewController
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+}
+
+// MARK: 通过接口 加载 filter（分类）
+- (void)setClassModel:(ECRClassSortModel *)classModel{
+    _classModel = classModel;
+    [self.bookClassIds addObject:[NSString stringWithFormat:@"%ld",classModel.id]];
+    NSLog(@"bookClassIds -- %@",self.bookClassIds);
+    if ([LGPChangeLanguage currentLanguageIsEnglish]) {
+        self.title = classModel.en_name;
+    }else{
+        self.title = classModel.name;
+    }
+    if (_filterArray == nil) {
+        //    NSLog(@"datakey -- %@",// MARK: 通过接口 加载 filter（分类）.dataKey);
+        [[ECRDataHandler sharedDataHandler] bmDataWithSuccess:^(id object) {
+            ECRMoreBaseModel *mbModel = [ECRMoreBaseModel mj_objectWithKeyValues:object];
+            mbModel.id = classModel.id;
+            self.mbModel = mbModel;
+            self.esb = mbModel.esb;
+            self.cub = mbModel.cub;
+            self.inb = mbModel.inb;
+            [self setFilterData];
+        } failure:^(NSString *msg) {
+            // TODO:添加请求失败视图
+        } commenFailure:^(NSError *error) {
+            
+        }];
+    }else{
+        [self setFilterData];
+    }
+    [self loadLisytData];
+}
+
+// 装载顶部筛选条件的数据
+- (void)setFilterData{
+    NSArray *arr;
+    switch (self.classModel.id) {
+        case 425:{// 汉语读物
+            arr = self.esb;
+        }
+            break;
+        case 446:{// 文化读物
+            arr = self.cub;
+            
+        }
+            break;
+        case 447:{// 互动教材
+            arr = self.inb;
+        }
+            break;
+        default:{
+            arr = self.esb;
+        }
+            break;
+    }
+    
+    for (NSInteger i = 0; i < arr.count; i++) {
+        ECRMoreRowModel *rowModel = arr[i];
+        for (NSInteger j = 0; j < rowModel.classArray.count; j++) {
+            ECRClassSortModel *classModel = rowModel.classArray[j];
+            classModel.lg_isSelected = NO;
+            if (classModel.id == self.classModel.id) {
+                classModel.lg_isSelected = YES;
+            }
+        }
+    }
+    self.filterArray = arr;
+    
+}
+- (void)setFilterArray:(NSArray<ECRMoreRowModel *> *)filterArray{
+    _filterArray = filterArray;
+    filterHeight = filterArray.count * self.stvc.sortCellH;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)loadLisytData{
+    // 请求书籍列表
+    // [NSString stringWithFormat:@"%ld",self.classModel.id]
+    // 测试 447
+    NSString *classId;
+    if (self.classModel == nil) {
+        classId = @"0";
+    }else{
+        classId = [self.bookClassIds componentsJoinedByString:@","];
+    }
+    NSLog(@"classid -- %@",classId);
+    [self.tableView.mj_header beginRefreshing];
+    self.requestPage = 0;
+    [[ECRDataHandler sharedDataHandler] bmListDataWithSpecial:nil series:nil classify:classId length:self.requestLength page:self.requestPage sort:self.requestSort success:^(id object) {
+        //        NSLog(@"bookarray -- %@",object);
+        self.array = object;
+        self.requestPage = self.array.count;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+        }];
+        
+    } failure:^(NSString *msg) {
+        self.requestPage = 0;
+        [self.tableView.mj_header endRefreshing];
+    } commenFailure:^(NSError *error) {
+        self.requestPage = 0;
+        [self.tableView.mj_header endRefreshing];
+    }];
+    
+}
+- (void)loadMoreListData{
+    // MARK: 加载更多数据
+    [self.tableView.mj_footer endRefreshing];
+}
+
+#pragma mark - ECRSearchTitleViewDelegate
+- (void)stViewClose:(ECRSearchTitleView *)view{
+    [self endSearching];
+}
+- (void)stView:(ECRSearchTitleView *)view content:(NSString *)content{
+    // MARK: 根据content 开始搜索
+    NSLog(@"content: %@",content);
+}
+
+#pragma mark - ECRSortTableViewControllerDelegate
+- (void)stbController:(ECRSortTableViewController *)controller classModel:(ECRClassSortModel *)classModel rowModel:(ECRMoreRowModel *)rowModel{
+    
+    if (classModel.parentId == 0) {
+        // MARK: 切换分类
+        // 点击 汉语读物,文化读物,互动教材
+        if (self.bookClassIds.count != 0) {
+            [self.bookClassIds removeAllObjects];
+        }
+        if (self.array_all.count != 0) {
+            [self.array_all removeAllObjects];
+        }
+        self.classModel = classModel;
+    }else if(classModel.id == -1){
+        // MARK: 点击全部
+        if (rowModel.indexPath.item == 0) {// 点击第一行,改变title
+            [self textDependsLauguage];
+        }
+
+        BOOL isAdd = YES;// 默认添加 分类id
+        for (NSIndexPath *index in self.array_all) {
+            if (index.item == rowModel.indexPath.item) {
+                isAdd = NO;// 代码执行此分支表示 该行的分类id已经全部添加至 bookClassIds
+            }
+        }
+        [rowModel.classArray enumerateObjectsUsingBlock:^(ECRClassSortModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//           NSLog(@"%@ -- %ld",obj.name,obj.id);
+            if (obj.id == -1) {// 不添加"全部"
+                
+            }else{
+                if (isAdd) {
+                    [self.bookClassIds addObject:[NSString stringWithFormat:@"%ld",obj.id]];
+                }else{
+                    [self.bookClassIds removeObject:[NSString stringWithFormat:@"%ld",obj.id]];
+                }
+            }
+        }];
+        if (isAdd) {
+            [self.array_all addObject:rowModel.indexPath];
+        }else{
+            [self.array_all removeObject:rowModel.indexPath];
+        }
+        [self.array_all enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSIndexPath *index = obj;
+            NSLog(@"index -- %ld",index.item);
+        }];
+        NSLog(@"点击全部 -- %@",self.bookClassIds);
+        [self loadLisytData];
+    }else{
+        //        NSLog(@"删除前 -- %@",self.bookClassIds);
+        BOOL isAdd = YES;// 默认添加 分类id
+        for (NSInteger i =self.bookClassIds.count - 1;i >= 0;i--) {
+            NSString *classId = self.bookClassIds[i];
+            if ([classId integerValue] == classModel.id) {
+                [self.bookClassIds removeObject:classId];
+                isAdd = NO;// 如果数组中已经存在 分类id,表示点击取消该分类,则只删除此id,不做添加该分类id操作
+            }else{
+            }
+        }
+        //        NSLog(@"删除后 -- %@",self.bookClassIds);
+        if (isAdd) {
+            [self.bookClassIds addObject:[NSString stringWithFormat:@"%ld",classModel.id]];
+        }
+//        NSLog(@"点击单个分类ids -- %@",self.bookClassIds);
+        [self loadLisytData];
+    }
+
+    [self.tableView reloadData];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = filterHeight;
+    if(scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0,0);
+    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
+}
+
+#pragma mark - table view delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _array.count ? _array.count : 0;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [self reTable:tableView cellForRowAtIndexPath:indexPath];
+}
+
+- (UITableViewCell *)reTable:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ECRMoreBooksCell *cell = [tableView dequeueReusableCellWithIdentifier:reuserID];
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+    cell.indexPath = indexPath;
+    BookModel *model;
+    if (_array.count) {
+        model              = _array[indexPath.row];
+    }
+    cell.model             = model;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return listCellH;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    ECRBookClassSortHeader *head = [tableView dequeueReusableHeaderFooterViewWithIdentifier:rHeadID];
+//    head.contentView.backgroundColor = [UIColor whiteColor];
+    head.stvc.delegate = self;
+    head.rowModels = self.filterArray;
+    head.delegate = self;
+    return head;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return filterHeight + sortCellH2;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self reTableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
+- (void)reTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    BookModel *model;
+    if (_array.count) {
+        model              = _array[indexPath.row];
+    }
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"BookInfo" bundle:nil];
+    ECRBookInfoViewController *bivc = [board instantiateViewControllerWithIdentifier:@"ECRBookInfoViewController"];
+    bivc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    bivc.bookId = model.bookId;
+    [self.navigationController pushViewController:bivc animated:YES];
+}
+
+#pragma mark - ECRBookClassSortHeaderDelegate
+- (void)bcsHeader:(ECRBookClassSortHeader *)header tag:(NSInteger)tag{
+//    NSLog(@"--tag:%ld",tag);x
+    switch (tag) {
+        case 0:// 销量
+            NSLog(@"--销量");
+            break;
+        case 1:// 价格
+            NSLog(@"--价格");
+            break;
+        case 2:// 好评
+            NSLog(@"--好评");
+            break;
+    }
+}
+
+- (void)setupUI{
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);//.offset(7);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    // MARK: MJRefresh
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadLisytData)];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    self.tableView.mj_header = header;
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreListData)];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellReuseIdentifier:reuserID];
+    [self.tableView registerNib:[UINib nibWithNibName:rHeadID bundle:nil] forHeaderFooterViewReuseIdentifier:rHeadID];
+    
+    // MARK: 设置导航栏右边搜索按钮
+    [self setNavRighSearchItem];
+    [self setSubView];
+
+}
+// 设置顶部搜索框
+- (void)replaceTitleViewForSearch{
+    // 设置 搜索 title view
+    CGRect stRect                   = CGRectMake(0, 0, Screen_Width, 64);
+    ECRSearchTitleView *stv         = [[ECRSearchTitleView alloc] initWithFrame:stRect];
+    stv.delegate                    = self;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.navigationItem.titleView   = stv;
+        self.navigationItem.rightBarButtonItem = nil;
+        UIBarButtonItem *spaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        spaceBarButtonItem.width = -4;
+        self.navigationItem.leftBarButtonItems = @[spaceBarButtonItem];
+        [self.navigationItem setHidesBackButton:YES];
+    } completion:^(BOOL finished) {
+        [stv lg_becomResponser];
+    }];
+}
+// 设置导航栏右侧搜索按钮
+- (void)setNavRighSearchItem{
+    UIBarButtonItem *rItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_search"] style:UIBarButtonItemStyleDone target:self action:@selector(bookSearch:)];
+    self.navigationItem.rightBarButtonItem = rItem;
+}
+- (void)bookSearch:(id)sender{
+    [self replaceTitleViewForSearch];
+}
+// 结束搜索状态
+- (void)endSearching{
+    // MARK: moreCallBack.关闭搜索
+    [self.view endEditing:YES];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.navigationItem.titleView = nil;
+    }];
+    [self createNavLeftBackItem];
+    [self setNavRighSearchItem];
+}
+
+// 留给子界面重写或更新界面
+- (void)setSubView{
+    
+}
+
+- (void)settingsWithNumber:(NSInteger)number searchCallBack:(void(^)())searchCallBack moreCallBack:(void(^)())moreCallBack{
+    switch (number) {
+        case 1:
+            if (searchCallBack) {
+                searchCallBack();
+            }
+            break;
+        case 4:
+            if (moreCallBack) {
+                moreCallBack();
+            }
+            break;
+    }
+}
+
+
+- (void)dealloc{
+    
+}
+
+- (ECRSortTableViewController *)stvc{
+    if (_stvc == nil) {
+        _stvc = [[ECRSortTableViewController alloc] init];
+    }
+    return _stvc;
+}
+
+- (UITableView *)tableView{
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.dataSource      = self;
+        _tableView.delegate        = self;
+        _tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
+    }
+    return _tableView;
+}
+
+//- (NSArray<ECRMoreRowModel *> *)filterArray{
+//    switch (self.classModel.id) {
+//        case 425:{// 汉语读物
+//            _filterArray = self.esb;
+//        }
+//            break;
+//        case 446:{// 文化读物
+//            _filterArray = self.cub;
+//
+//        }
+//            break;
+//        case 447:{// 互动教材
+//            _filterArray = self.inb;
+//        }
+//            break;
+//    }
+//    return _filterArray;
+//}
+
+/// ***************************废弃方法
+// MARK: 通过本地plist 加载filter（分类）
+- (void)loadFilterView{
+    ECRSortTableViewController *stvc = [[ECRSortTableViewController alloc] init];
+    self.stvc                        = stvc;
+    stvc.delegate                    = self;
+    stvc.bookListType                = _bookListType;
+    
+    [self loadLocalPlistWithType:_bookListType
+                          pBlock:^(NSArray *models, CGFloat filterH) {
+                              //                              NSLog(@"models -- %@",models);
+                              [self loadFilterWithVc:stvc
+                                        filterHeight:filterH
+                                          modelArray:models];
+                          }];
+    
+}
+// MARK: 刷新页面
+- (void)reloadFilterView{
+    //    [self.filterView removeFromSuperview];
+    //    _filterView = nil;
+    [self.tableView removeFromSuperview];
+    _tableView  = nil;
+    self.stvc   = nil;
+    [self loadFilterView];
+    //    [self loadNewData];
+}
+#pragma mark - UI
+- (void)loadLocalPlistWithType:(ECRMoreBookListType)type pBlock:(void(^)(NSArray *models, CGFloat filterH))pBlock{
+    NSString *lpName;
+    BOOL isHot = 0;
+    switch (type) {
+        case ECRMoreBookListTypeHotSeal:// 热销
+            lpName = @"moreBooksModified";
+            isHot = 1;
+            break;
+        case ECRMoreBookListTypeInterText:// 互动教材
+            lpName = @"interectBooksModified";
+            isHot = 0;
+            break;
+        case ECRMoreBookListTypeChineseReading:// 汉语读物
+            lpName = @"ChineseBooksModified";
+            isHot = 0;
+            break;
+        case ECRMoreBookListTypeCultureReading:// 文化读物
+            lpName = @"cultureBooksModified";
+            isHot = 0;
+            break;
+        default:
+            lpName = @"ChineseBooksModified";
+            break;
+    }
+    // MARK: 获取本地plist数据
+    // 1.获取path
+    if (lpName) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:lpName ofType:@"plist"];
+        NSArray *array = [NSArray arrayWithContentsOfFile:path];
+        NSMutableArray *arrM = [NSMutableArray array];
+        // 加载后面的几行, 行数, 以及每行的内容均有不同程度的 差别
+        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *dict = (NSDictionary *)obj;
+            ECRHomeSortModel *model = [ECRHomeSortModel mj_objectWithKeyValues:dict];
+            [arrM addObject:model];
+        }];
+        if (!isHot) {
+            // 加载 第一行: 全部 互动教材 汉语读物 文化读物
+            // 除了 热销之外, 三个分类的第一行内容都一样
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"bookTotalClass" ofType:@"plist"];
+            NSArray *array = [NSArray arrayWithContentsOfFile:path];
+            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSDictionary *dict = (NSDictionary *)obj;
+                ECRHomeSortModel *model = [ECRHomeSortModel mj_objectWithKeyValues:dict];
+                [arrM insertObject:model atIndex:0];
+            }];
+        }
+        // MARK: arr.count * 每行行高及为 筛选条件view 所需要的高度
+        filterHeight = arrM.count * self.stvc.sortCellH;
+        if (pBlock) {
+            pBlock(arrM.copy, filterHeight);
+        }
+    }
+}
+
+- (void)loadFilterWithVc:(ECRSortTableViewController *)stvc filterHeight:(CGFloat)filterH modelArray:(NSArray *)models{
+    //    stvc.view.frame = CGRectMake(0,
+    //                                 navH,
+    //                                 Screen_Width,
+    //                                 filterH);
+    //    stvc.modelArray = models;
+    //
+    //    [self.view addSubview:self.filterView];
+    //    [self.view addSubview:self.tableView];
+    //
+    //    // 设置约束
+    //    [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.top.equalTo(self.view.mas_top).offset(navH + 7);
+    //        make.left.equalTo(self.view.mas_left);
+    //        make.right.equalTo(self.view.mas_right);
+    //        make.height.equalTo(@(filterH));
+    //    }];
+    //    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.top.equalTo(self.filterView.mas_bottom).offset(7);
+    //        make.left.equalTo(self.view.mas_left);
+    //        make.right.equalTo(self.view.mas_right);
+    //        make.bottom.equalTo(self.view.mas_bottom);
+    //    }];
+    //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //    [self.tableView registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellReuseIdentifier:reuserID];
+    //    [self.tableView registerNib:[UINib nibWithNibName:rHeadID bundle:nil] forHeaderFooterViewReuseIdentifier:rHeadID];
+}
+- (NSMutableArray *)bookClassIds{
+    if (_bookClassIds == nil) {
+        _bookClassIds = [NSMutableArray new];
+    }
+    return _bookClassIds;
+}
+- (NSMutableArray *)array_all{
+    if (_array_all == nil) {
+        _array_all = [NSMutableArray new];
+    }
+    return _array_all;
+}
+- (NSInteger)requestLength{
+    return 12;
+}
+- (void)textDependsLauguage{
+    // TODO: 为什么该方法会 在 setClassModel之后才执行?
+//    self.title = [LGPChangeLanguage localizedStringForKey:@"全部"];
+}
+
+@end
+
+
+

@@ -1,0 +1,90 @@
+//
+//  USCResult.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "USecurityCenterResultVC.h"
+#import "USecurityCenterVC.h"
+#import "LoginVC.h"
+
+@interface USecurityCenterResultVC ()
+
+@end
+
+@implementation USecurityCenterResultVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configResultView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)updateSystemLanguage
+{
+    self.title = LOCALIZATION(@"设置成功");
+}
+
+- (void)configResultView
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"img_login_register_success"]];
+    imageView.layer.masksToBounds = YES;
+    imageView.layer.cornerRadius = imageView.height/2;
+    [self.view addSubview:imageView];
+    
+    UILabel *lblDesc = [[UILabel alloc] init];
+    lblDesc.text = LOCALIZATION(@"设置成功");
+    lblDesc.textColor = [UIColor cm_graryColor_807F7F_1];
+    [self.view addSubview:lblDesc];
+    
+    UILabel *lblReturn = [[UILabel alloc] init];
+    lblReturn.textColor = [UIColor cm_graryColor_807F7F_1];
+    lblReturn.userInteractionEnabled = YES;
+    NSString *textStr = _securityCenterUpdateType == ENUM_ZUserSecurityCenterUpdateMethodForget ? LOCALIZATION(@"返回登录>") : LOCALIZATION(@"返回安全中心>");
+    
+    // 下划线
+    NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:textStr attributes:attribtDic];
+    //赋值
+    lblReturn.attributedText = attribtStr;
+    [self.view addSubview:lblReturn];
+    
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).offset(100);
+        make.centerX.equalTo(self.view.mas_centerX);
+    }];
+    
+    [lblDesc mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(imageView.mas_bottom).offset(20);
+        make.centerX.equalTo(imageView.mas_centerX);
+    }];
+    
+    [lblReturn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lblDesc.mas_bottom).offset(25);
+        make.centerX.equalTo(lblDesc.mas_centerX);
+    }];
+    
+    UITapGestureRecognizer *tapReturn = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(baseViewControllerDismiss)];
+    [lblReturn addGestureRecognizer:tapReturn];
+}
+
+- (void)baseViewControllerDismiss
+{
+    for (UIViewController *temp in self.navigationController.viewControllers) {
+        if ([temp isKindOfClass:[USecurityCenterVC class]]) {
+            [self.navigationController popToViewController:temp animated:YES];
+        }
+        else if ([temp isKindOfClass:[LoginVC class]]) {
+            [self.navigationController popToViewController:temp animated:YES];
+        }
+    }
+}
+
+@end

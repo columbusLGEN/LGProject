@@ -1,0 +1,68 @@
+//
+//  UOrderHeaderView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UOrderHeaderView.h"
+
+@interface UOrderHeaderView ()
+
+@property (strong, nonatomic) IBOutlet UILabel *lblOrderId;
+@property (strong, nonatomic) IBOutlet UILabel *lblOrderState;
+
+@end
+
+@implementation UOrderHeaderView
+
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self configOrderHeaderView];
+}
+
+
+- (void)configOrderHeaderView
+{
+    _lblOrderId.textColor = _lblOrderState.textColor = [UIColor cm_blackColor_333333_1];
+    
+}
+
+
+
+- (void)dataDidChange
+{
+    OrderModel *order = self.data;
+    _lblOrderId.text = [NSString stringWithFormat:@"订单号: %@", order.orderNumber];
+    if (!_isDetailHeader) {
+        _lblOrderState.textColor = [UIColor cm_orangeColor_FC6120_1];
+        switch (order.state) {
+            case ENUM_ZOrderStateObligation:
+                _lblOrderState.text = @"待支付";
+                break;
+            case ENUM_ZOrderStatePendingEvaluation:
+                _lblOrderState.text = @"待评价";
+                break;
+            case ENUM_ZOrderStateDone:
+                _lblOrderState.text = @"已完成";
+                _lblOrderState.textColor = [UIColor cm_blackColor_333333_1];
+                break;
+            default:
+                break;
+        }
+    }
+    else {
+        _lblOrderState.text = [NSString stringWithFormat:@"下单时间: %@", order.date];
+    }
+}
+
+
+
+@end

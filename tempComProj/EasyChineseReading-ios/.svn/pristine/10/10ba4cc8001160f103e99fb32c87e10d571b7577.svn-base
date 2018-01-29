@@ -1,0 +1,96 @@
+//
+//  YMEpubManager.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/9/24.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "YMMyBook.h"
+
+#import "JRBookItemData.h"
+
+#import "YMBSCoreDataDelegate.h"
+
+#import "YMSpine.h"
+#import <UIKit/UIKit.h>
+
+//#define KEY @"ymepub3554700623"
+
+//#define KEY @"c9493909bb634ad9"
+
+typedef void(^creatBlock)(NSString *result);
+
+
+@interface YMEpubManager : NSObject
+{
+    YMBSCoreDataDelegate  *bsdd;
+}
+@property (nonatomic, retain) YMMyBook      *currentBook;
+@property (nonatomic, retain) UIApplication *app;
+
++(YMEpubManager *)sharedInstance;
+
+#pragma mark 对外接口
+//创建图书 （优先使用这个方法创建图书模型）
+- (void)creatBookByInfo:(NSString *)bookID
+                   JRID:(NSString *)jrID
+           withReadTypr:(BOOL)type withBlock:(creatBlock)block;
+
+//删除图书
+- (void)deleteBook:(NSString *)bookID;
+
+//仅删除数据库不删除文件
+- (void)deleteOneBookMessageForSQL:(NSString *)bookID;
+
+
+//拷贝javascript资源
+- (void)copyJavascriptFiles;
+
+//根据bookID获取图书模型
+- (YMMyBook *)getCurrentBookWithBookID:(NSString *)bookID;
+
+//获取封面路径
+- (NSString *)getCoverPath:(YMMyBook *)book;
+
+//获取所有图书模型
+- (NSArray *)allMyBooks;
+
+
+//创建模型本地创建模型 （使用内部提供的模型时可以使用这个创建图书）
+- (void)creatBook:(JRBookItemData *)book;
+
+
+#pragma mark 其他方法
+- (NSString *)getBasePath:(NSString *)bookID;
+
+- (NSString *)creatBookSpineString:(NSArray *)spines
+                      withCatalogs:(NSArray *)catalogs;
+
+- (NSString *)getFullPath:(NSString *)name
+             withBasePath:(NSString *)base;
+
+- (NSString *)getFullPath:(NSString *)name
+             withBasePath:(NSString *)base
+             isNeedBookID:(NSString *)bookID;
+
+
+- (NSString *)getFullPath:(NSString *)name
+             withBasePath:(NSString *)base
+               withBookID:(NSString *)bookID;
+
+//获取spine拼的json
+- (NSString *)creatBookSpineString:(NSArray*)spines
+                      withCatalogs:(NSArray*)catalogs
+                         andBookID:(NSString *)bookID;
+
+- (NSString *)getOPESPath;
+
+//图书aes加密
+- (void)isNeedCodeWithBlock:(creatBlock)block withBookID:(NSString *)bookID;
+
+
+- (NSString *)creatKey;
+
+@end

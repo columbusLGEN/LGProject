@@ -1,0 +1,81 @@
+//
+//  USetLanguageVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserSetLanguageVC.h"
+#import "AppDelegate.h"
+
+@interface UserSetLanguageVC ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgChinese;
+@property (weak, nonatomic) IBOutlet UIImageView *imgEnglish;
+
+@property (strong, nonatomic) NSString *language;
+
+@end
+
+@implementation UserSetLanguageVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"语言";
+    [self getSystemLanguage];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - 判断是中英文
+
+- (void)getSystemLanguage
+{
+    _language = [[NSUserDefaults standardUserDefaults]objectForKey:@"appLanguage"];
+    
+    _imgChinese.image = [_language isEqualToString:@"zh-Hans"] ? [UIImage imageNamed:@"selected"] : [UIImage imageNamed:@"unSelected"];
+    _imgEnglish.image = [_language isEqualToString:@"zh-Hans"] ? [UIImage imageNamed:@"unSelected"] : [UIImage imageNamed:@"selected"];
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //修改本地获取的语言文件-交替
+    
+    if (0 == indexPath.row && [_language isEqualToString:@"en"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"zh-Hans" forKey:@"appLanguage"];
+    }
+    else if (1 == indexPath.row && [_language isEqualToString:@"zh-Hans"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"en" forKey:@"appLanguage"];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self fk_postNotification:kNotificationLanguageChanged];
+    [self getSystemLanguage];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.height - 0.5, Screen_Width, .5)];
+    line.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+    [cell addSubview:line];
+}
+
+//重新设置
+-(void)resetRootViewController
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *rootNav = [storyBoard instantiateViewControllerWithIdentifier:@"rootnav"];
+    UINavigationController *personNav = [storyBoard instantiateViewControllerWithIdentifier:@"personnav"];
+    UITabBarController *tabVC = (UITabBarController*)appDelegate.window.rootViewController;
+    tabVC.viewControllers = @[rootNav,personNav];
+}
+
+@end

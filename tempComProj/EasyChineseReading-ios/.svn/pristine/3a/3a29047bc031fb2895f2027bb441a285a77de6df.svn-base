@@ -1,0 +1,25 @@
+//
+//  USCAccountTableViewCell.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class USCAccountTableViewCell;
+
+@protocol USCAccountTableViewCellDelegate <NSObject>
+
+@end
+
+@interface USCAccountTableViewCell : ECRBaseTableViewCell
+
+@property (strong, nonatomic) IBOutlet UILabel *lblDesc;
+@property (weak, nonatomic) IBOutlet UITextField *txtfAccount;
+
+/** 是否可变 */
+@property (nonatomic, assign) BOOL isUpdated;
+
+@end

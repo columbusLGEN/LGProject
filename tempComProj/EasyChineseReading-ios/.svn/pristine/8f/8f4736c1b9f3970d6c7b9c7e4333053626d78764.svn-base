@@ -1,0 +1,172 @@
+//
+//  UMessageVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserMessageVC.h"
+
+#import "UMessageSystemTableViewCell.h"
+#import "UMessageTableViewCell.h"
+
+#import "UserTicketCenterVC.h"
+
+@interface UserMessageVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray *arrMessages;
+
+@end
+
+@implementation UserMessageVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configTableView];
+    
+    [self getNewMessage];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)updateSystemLanguage
+{
+    self.title = LOCALIZATION(@"消息");
+}
+
+#pragma mark -
+    
+- (void)configTableView
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, self.view.height - cHeaderHeight_64) style:UITableViewStylePlain];
+    
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    _tableView.estimatedRowHeight = 100;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    _tableView.tableFooterView = [UIView new];
+    
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UMessageSystemTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UMessageSystemTableViewCell class])];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UMessageTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UMessageTableViewCell class])];
+    [self.view addSubview:_tableView];
+}
+
+- (void)getNewMessage
+{
+    self.arrMessages = [[CacheDataSource sharedInstance] loadCacheWithCacheKey:CacheKey_MessagesReaded];
+
+//    //1.获取当前时间时区
+//    NSDate *date = [NSDate date];
+//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+//    //2.获得0时区时间到当前时间的时间差seconds
+    //    NSTimeInterval seconds = [zone secondsFromGMTForDate:date];
+    //    //3.将date的时间加上seconds时间即可获得当前时间
+    //    NSDate *now = [date dateByAddingTimeInterval:seconds];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateString = [formatter stringFromDate:date];
+    [[FriendRequest sharedInstance] getMessageAndShareBookWithStartTime:[UserRequest sharedInstance].user.messageTime
+                                                                endTime:dateString
+                                                             completion:^(id object, ErrorModel *error) {
+                                                                 if (error) {
+                                                                     [self presentFailureTips:error.message];
+                                                                 }
+                                                                 else {
+                                                                     [UserRequest sharedInstance].user.messageTime = dateString;
+                                                                     [[UserRequest sharedInstance] saveCache];
+                                                                     
+                                                                     NSArray *array = [MessageModel mj_objectArrayWithKeyValuesArray:object];
+                                                                     if (array.count > 0) {
+                                                                         [_arrMessages addObjectsFromArray:array];
+                                                                         [[CacheDataSource sharedInstance] setCache:_arrMessages withCacheKey:CacheKey_MessagesReaded];
+                                                                         [_tableView reloadData];
+                                                                     }
+                                                                 }
+                                                             }];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrMessages.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MessageModel *message = _arrMessages[indexPath.row];
+    if (message.messageType == ENUM_MessageTypeActivity) {
+        UMessageSystemTableViewCell *systemCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UMessageSystemTableViewCell class])];
+        systemCell.data = message;
+        return systemCell;
+    }
+    else {
+        UMessageTableViewCell *messageCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UMessageTableViewCell class])];
+        messageCell.data = message;
+        return messageCell;
+    }
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MessageModel *message = _arrMessages[indexPath.row];
+    message.type = ENUM_MessageReadTypeReaded;
+    if (message.messageType == ENUM_MessageTypeActivity) {
+        UMessageSystemTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell updateReadType:YES];
+    }
+    else {
+        UMessageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell updateReadType:YES];
+    }
+    
+    [[CacheDataSource sharedInstance] setCache:_arrMessages withCacheKey:CacheKey_MessagesReaded];
+    
+    if (message.messageType == ENUM_MessageTypeCoupon) {
+        [self toCouponCenter];
+    }
+    [self tagReadedWithId:message.messagesId type:message.messageType];
+}
+
+- (void)toCouponCenter
+{
+    UserTicketCenterVC *ticketCenter = [UserTicketCenterVC new];
+    [self.navigationController pushViewController:ticketCenter animated:YES];
+}
+
+- (void)tagReadedWithId:(NSInteger)messageId type:(NSInteger)type
+{
+    [[FriendRequest sharedInstance] updateMessageStatusWithMessageId:messageId messageType:type completion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            
+        }
+    }];
+}
+
+#pragma mark - 属性
+
+- (NSMutableArray *)arrMessages
+{
+    if (_arrMessages == nil) {
+        _arrMessages = [NSMutableArray array];
+    }
+    return _arrMessages;
+}
+
+@end

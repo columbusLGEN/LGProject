@@ -1,0 +1,170 @@
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("GREN"));
+	else if(typeof define === 'function' && define.amd)
+		define("EFFECT", ["GREN"], factory);
+	else if(typeof exports === 'object')
+		exports["EFFECT"] = factory(require("GREN"));
+	else
+		root["EFFECT"] = factory(root["GREN"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/**
+	 * Created by grenlight on 16/4/22.
+	 *
+	 * 使用雅可比矩阵实现法线变换
+	 */
+	var vertexShader = '\nattribute vec3 vertexPosition;\n\nuniform mat4 mvMatrix;\nuniform mat4 pMatrix;\n\n// 波的相位\nuniform float phase;\n// 波频\nuniform float frequency;\n\n\nvoid main(void) {\n  gl_Position = pMatrix * mvMatrix * vec4(vertexPosition, 1.0);\n}\n';
+
+	var GREN = __webpack_require__(1);
+
+	var JacobianWave = exports.JacobianWave = function (_GREN$IAnimation) {
+	    _inherits(JacobianWave, _GREN$IAnimation);
+
+	    function JacobianWave() {
+	        var width = arguments.length <= 0 || arguments[0] === undefined ? 300 : arguments[0];
+	        var height = arguments.length <= 1 || arguments[1] === undefined ? 100 : arguments[1];
+
+	        _classCallCheck(this, JacobianWave);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(JacobianWave).call(this));
+
+	        _this.renderer = new GREN.WebGLRenderer();
+	        _this.renderer.setStyle(width, height, 'margin:0px;');
+	        _this.gl = _this.renderer.gl;
+
+	        _this.domElement = _this.renderer.canvas;
+
+	        if (_this.renderer.isWebGLSuported === false) {
+	            return _possibleConstructorReturn(_this);
+	        }
+
+	        _this.mvMatrix = GREN.Matrix4.identity();
+	        _this.pMatrix = GREN.Matrix4.perspective(60, _this.renderer.canvasWidth / _this.renderer.canvasHeight, 0.01, -5000);
+
+	        _this._initProgram();
+
+	        var mesh = new GREN.PlaneGeometry(1, 1, 100, 200);
+	        _this.indices = mesh.indices;
+	        var vertexBuffer = _this.gl.createArrayBufferWithTypedArray(mesh.vertices);
+	        _this.gl.enableVertexAttribArray(_this.prg.vertexPosition);
+	        _this.gl.bindBuffer(_this.gl.ARRAY_BUFFER, vertexBuffer);
+
+	        _this.indexBuffer = _this.gl.createElementBufferWithTypedArray(_this.indices);
+
+	        _this.startAnimating();
+	        return _this;
+	    }
+
+	    /**
+	     *  初始化着色器
+	     */
+
+
+	    _createClass(JacobianWave, [{
+	        key: '_initProgram',
+	        value: function _initProgram() {
+	            this.prg = this.gl.makeProgram(vertexShader, GREN.commonFS);
+	            if (this.prg) {
+	                this.prg.setAttribLocations(['vertexPosition']);
+	                this.prg.setUniformLocations(['pMatrix', 'mvMatrix', 'color']);
+
+	                this.gl.uniformMatrix4fv(this.prg.pMatrix, false, this.pMatrix);
+	                this.gl.uniformMatrix4fv(this.prg.mvMatrix, false, this.mvMatrix);
+
+	                this.gl.uniform4fv(this.prg.color, [1.0, 1.0, 0.0, 1.0]);
+	            }
+	        }
+	    }, {
+	        key: 'enterFrame',
+	        value: function enterFrame() {
+	            // super.enterFrame();
+	            // 先设置 clearColor, 后 clear
+	            this.gl.clearColor(0.25, 0.25, 0.25, 1.0);
+	            this.gl.viewport(0, 0, this.renderer.canvasWidth, this.renderer.canvasHeight);
+	            this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+
+	            //透明度混合
+	            this.gl.enable(this.gl.BLEND);
+	            this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
+
+	            //这个地方要写在bind后,相当于获取并设置顶点数据
+	            this.gl.vertexAttribPointer(this.prg.vertexPosition, 3, this.gl.FLOAT, false, 0, 0);
+
+	            this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+	            this.gl.drawElements(this.gl.TRIANGLES, this.indices.length, this.gl.UNSIGNED_SHORT, 0);
+	        }
+	    }]);
+
+	    return JacobianWave;
+	}(GREN.IAnimation);
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ }
+/******/ ])
+});
+;

@@ -1,0 +1,64 @@
+//
+//  ECRDownloadManager.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/11/6.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+
+/**
+ 下载成功回调
+ 
+ @param zpfPath 压缩包本地存储路径
+ @param uzpfPath 解压后文件本地存储路径
+ */
+typedef void(^ECRDownloadManagerSuccess)(NSString *zpfPath,NSString *uzpfPath);
+typedef void(^ECRDownloadManagerFailure)(NSError *error);
+
+typedef void(^ECRDownloadManagerAbsuloteSuccess)(NSString *localURL);
+typedef void(^ECRDownloadManagerAbsuloteFailure)(NSError *);
+typedef void(^ECRDownloadManagerProgress) (CGFloat progress,CGFloat total,CGFloat current);
+
+#import <Foundation/Foundation.h>
+
+@interface ECRDownloadManager : NSObject
+
+// 对链接DES解密
++ (NSString *)desUncodeWithDesString:(NSString *)desString key:(NSString *)key;
+
++ (BOOL)fileIsExist:(NSString *)path;
+- (BOOL)fileIsExist:(NSString *)path;
+
+/// epub 文件夹路径
+@property (copy,nonatomic) NSString *epubFile;//
+
+
++ (void)downloadWithURLString:(NSString *)URLString fileName:(NSString *)fileName progress:(ECRDownloadManagerProgress)progress success:(ECRDownloadManagerAbsuloteSuccess)success failure:(ECRDownloadManagerAbsuloteFailure)failure;
+- (void)downloadWithURLString:(NSString *)URLString fileName:(NSString *)fileName progress:(ECRDownloadManagerProgress)progress success:(ECRDownloadManagerAbsuloteSuccess)success failure:(ECRDownloadManagerAbsuloteFailure)failure;
+
++ (void)downloadWithURLString:(NSString *)URLString;
+- (void)downloadWithURLString:(NSString *)URLString;
+
+/// epub 单本书路径
+- (NSString *)bookPathWith:(NSInteger)bookId eBookformat:(NSInteger)eBookformat isTry:(BOOL)isTry;
+
+// 本地存储路径,
++ (NSString *)localPathWithBookId:(NSInteger)bookId eBookFormat:(NSInteger)eBookFormat isTry:(BOOL)isTry;
+
+/**
+ 根据书籍id,书籍类型,是否试读,返回下载路径
+ 
+ @param bookId 书籍id
+ @param eBookFormat 书籍类型, /// eBookFormat: 1pdf, 2epub, 3hypermedia
+ @param isTry 是否试读
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)downloadWithBookId:(NSInteger)bookId eBookFormat:(NSInteger)eBookFormat isTry:(BOOL)isTry success:(ECRDownloadManagerSuccess)success failure:(ECRDownloadManagerFailure)failure;
+
+
++ (void)initLocalFilePath;
++ (instancetype)sharedInstance;
+@end
+

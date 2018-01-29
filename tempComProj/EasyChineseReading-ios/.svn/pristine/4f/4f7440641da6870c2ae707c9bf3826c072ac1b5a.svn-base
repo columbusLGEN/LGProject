@@ -1,0 +1,108 @@
+//
+//  ZPickView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/6.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ZPickView.h"
+
+static id instance = nil;
+
+@interface ZPickView ()
+
+@property (strong, nonatomic) IBOutlet UIPickerView *pickView;
+@property (strong, nonatomic) IBOutlet UIView *viewBackground;
+
+@end
+
+@implementation ZPickView
+
+/**
+ *  创建实体
+ *
+ *  @return 实体
+ */
++ (instancetype)createInstanceWithFrame:(CGRect)frame
+{
+    return [ZPickView loadFromNibWithFrame:frame];
+}
+
+/**
+ *  配置初始界面
+ */
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.size = CGSizeMake(Screen_Width, 260);
+
+    _btnSure.hidden = YES;
+}
+
+- (void)setDelegate:(id<ZPickViewDelegate>)delegate
+{
+    _delegate = delegate;
+    _pickView.delegate = delegate;
+    _pickView.dataSource = delegate;
+}
+
+/**
+ *  是否弹出日期选择器
+ */
+- (BOOL)showing
+{
+    return (self.superview!=nil);
+}
+/**
+ *  弹出日期选择器
+ */
+- (void)show
+{
+    if ([self showing]) {
+        return;
+    }
+    
+    NSArray *windows = [UIApplication sharedApplication].windows;
+    UIWindow *window =  [windows lastObject];
+    [window addSubview:self];
+    
+    self.width = Screen_Width;
+    self.top = Screen_Height;
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        _btnSure.hidden = YES;
+        self.top = self.top - self.height;
+    } completion:^(BOOL finished) {
+        //        if (finished) {
+        //            window.rootViewController.view.userInteractionEnabled = NO;
+        //        }
+    }];
+}
+/**
+ *  隐藏日期选择器
+ */
+- (void)hidden
+{
+    //    UIWindow *window = [AppDelegate sharedInstance].window;
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.top = self.top + self.height;
+    } completion:^(BOOL finished){
+        //        if (finished) {
+        [self removeFromSuperview];
+        //            window.rootViewController.view.userInteractionEnabled = YES;
+        //        }
+    }];
+}
+
+- (IBAction)click_btnSure:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(ZPickerView:selectedIndex:)]) {
+        [self.delegate ZPickerView:self selectedIndex:_selectedIndex];
+    }
+}
+- (IBAction)click_btnCancel:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(ZPickerViewCancel:)]) {
+        [self.delegate ZPickerViewCancel:self];
+    }
+}
+
+@end

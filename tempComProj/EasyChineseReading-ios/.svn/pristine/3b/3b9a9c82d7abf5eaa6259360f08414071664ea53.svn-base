@@ -1,0 +1,58 @@
+//
+//  ECRRentReadController.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/25.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRRentReadController.h"
+#import "ECRRentReadView.h"
+#import "ECRPayStyleDelegate.h"
+#import "ECRBookInfoModel.h"
+
+@interface ECRRentReadController ()<ECRPayStyleDelegate>
+@property (strong,nonatomic) ECRRentReadView *rentView;
+
+@end
+
+@implementation ECRRentReadController
+
+-(void)payStyle:(NSObject *)object style:(NSInteger)style{
+    switch (style) {
+        case 101:{// 微信
+            
+        }
+            
+            break;
+        case 102:{
+            
+        }
+            
+            break;
+        
+    }
+}
+- (void)payNow:(NSObject *)object{
+    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    
+}
+- (void)textDependsLauguage{
+    self.title = [LGPChangeLanguage localizedStringForKey:@"租阅结算"];
+}
+
+- (void)setupUI{
+    
+    self.rentView = [ECRRentReadView rentReadView];
+    self.rentView.delegate = self;
+    self.rentView.frame = self.view.bounds;
+    [self.view addSubview:self.rentView];
+    
+}
+
+@end

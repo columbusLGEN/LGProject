@@ -1,0 +1,73 @@
+//
+//  OrderRequest.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "BaseNetRequest.h"
+
+@interface OrderRequest : BaseNetRequest
+
+#pragma mark ========== 订单相关网络请求 ==========
+
+CM_SINGLETON_INTERFACE(OrderRequest)
+
+#pragma mark - 获取订单列表
+
+/**
+ *  获取订单列表
+ *
+ *  @param page        页数
+ *  @param payStatus   支付状态（不传 = 全部，1 = 待支付，3 = 已完成）
+ *  @param completion  结果返回order列表,error
+ */
+- (void)getOrderListWithPage:(NSInteger)page
+                   payStatus:(ENUM_ZOrderState)payStatus
+                  completion:(CompleteBlock)completion;
+
+#pragma mark - 查看用户对订单的评分 ？？
+
+/**
+ 查看用户对订单的评分
+
+ @param orderId     订单id
+ @param completion  回调
+ */
+- (void)getOrderScoreWithOrderId:(NSString *)orderId
+                      completion:(CompleteBlock)completion;
+
+#pragma mark - 添加评分 ？？
+
+/**
+ 添加评分
+
+ @param orderId     订单id
+ @param arrScores   分数数组（{@"bookId":@"boodId", @"score": @"score"}）
+ @param completion  回调
+ */
+- (void)addOrderScoreWithOrderId:(NSString *)orderId
+                          scores:(NSArray *)arrScores
+                      completion:(CompleteBlock)completion;
+
+#pragma mark - 查看书籍全部评分
+
+/**
+ 查看书籍全部评分
+
+ @param bookId      书籍id
+ @param page        页数
+ @param completion  回调
+ */
+- (void)getOrderAllScoresWithBookId:(NSString *)bookId
+                               page:(NSString *)page
+                         completion:(CompleteBlock)completion;
+
+
+
+
+
+
+
+@end

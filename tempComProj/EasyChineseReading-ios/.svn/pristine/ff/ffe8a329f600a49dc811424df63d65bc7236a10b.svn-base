@@ -1,0 +1,13 @@
+//
+//  YMSearchFiled.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/10/15.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface YMSearchFiled : UITextField
+
+@end

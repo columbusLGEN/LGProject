@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UIVCRTopCollectionViewCell" id="gTV-IL-0wX" customClass="UIVCRTopCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="85"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="449" height="85"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egs-N9-gKQ">
+                        <rect key="frame" x="10" y="5" width="429" height="75"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_aliPay" translatesAutoresizingMaskIntoConstraints="NO" id="OlQ-Fc-IOJ">
+                                <rect key="frame" x="12" y="29" width="16" height="16"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="UeI-9D-gBf">
+                                <rect key="frame" x="398" y="24.5" width="26" height="26"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXY-ny-rse">
+                                <rect key="frame" x="362" y="29" width="31" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UeI-9D-gBf" firstAttribute="centerY" secondItem="egs-N9-gKQ" secondAttribute="centerY" id="3AP-RX-ofB"/>
+                            <constraint firstAttribute="trailing" secondItem="UeI-9D-gBf" secondAttribute="trailing" constant="5" id="6cs-2z-uLR"/>
+                            <constraint firstItem="YXY-ny-rse" firstAttribute="centerY" secondItem="egs-N9-gKQ" secondAttribute="centerY" id="Jix-ee-opV"/>
+                            <constraint firstItem="OlQ-Fc-IOJ" firstAttribute="centerY" secondItem="egs-N9-gKQ" secondAttribute="centerY" id="RV3-I3-4vE"/>
+                            <constraint firstItem="OlQ-Fc-IOJ" firstAttribute="leading" secondItem="egs-N9-gKQ" secondAttribute="leading" constant="12" id="UqD-0o-SWS"/>
+                            <constraint firstItem="UeI-9D-gBf" firstAttribute="leading" secondItem="YXY-ny-rse" secondAttribute="trailing" constant="5" id="wQU-fV-mIK"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="egs-N9-gKQ" secondAttribute="trailing" constant="10" id="ZfT-dp-55s"/>
+                <constraint firstAttribute="bottom" secondItem="egs-N9-gKQ" secondAttribute="bottom" constant="5" id="hWF-eT-ApU"/>
+                <constraint firstItem="egs-N9-gKQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="tZX-rH-5jT"/>
+                <constraint firstItem="egs-N9-gKQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="zG6-qL-ZN0"/>
+            </constraints>
+            <size key="customSize" width="449" height="85"/>
+            <connections>
+                <outlet property="imgIcon" destination="OlQ-Fc-IOJ" id="AfX-oi-EXa"/>
+                <outlet property="lblRechargeType" destination="YXY-ny-rse" id="uQX-Cp-fiz"/>
+                <outlet property="viewBackground" destination="egs-N9-gKQ" id="Pcg-hx-U08"/>
+            </connections>
+            <point key="canvasLocation" x="233.5" y="54.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_aliPay" width="16" height="16"/>
+        <image name="icon_arrow_right" width="26" height="26"/>
+    </resources>
+</document>

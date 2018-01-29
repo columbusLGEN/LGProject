@@ -1,0 +1,102 @@
+//
+//  UFriendInfoHeaderView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UFriendInfoHeaderView.h"
+
+@interface UFriendInfoHeaderView ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgAvatar;      // 头像
+
+@property (weak, nonatomic) IBOutlet UIView *viewVerLine;
+@property (weak, nonatomic) IBOutlet UIView *viewBackground;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblName;            // 用户名
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDesReaded;   // 描述 读完
+@property (weak, nonatomic) IBOutlet UILabel *lblDesReadTime; // 描述 总阅读小时
+@property (weak, nonatomic) IBOutlet UILabel *lblDesReadWords;// 描述 阅读字数
+@property (weak, nonatomic) IBOutlet UILabel *lblDesBooks;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblReaded;       // 读完
+@property (weak, nonatomic) IBOutlet UILabel *lblReadTime;     // 总阅读小时
+@property (weak, nonatomic) IBOutlet UILabel *lblReadWords;    // 阅读字数
+
+@end
+
+@implementation UFriendInfoHeaderView
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self configManager];
+}
+
+#pragma mark - 配置界面
+
+- (void)configManager
+{
+    [self configHeaderView];
+    [self configHeaderViewMainColor:[UIColor cm_purpleColor_82056B_1]];
+    [self configHeaderLineColor:[UIColor cm_lineColor_D9D7D7_1]];
+}
+
+- (void)configHeaderViewMainColor:(UIColor *)mainColor
+{
+    _lblReaded.textColor = mainColor;
+    _lblReadTime.textColor = mainColor;
+    _lblReadWords.textColor = mainColor;
+    
+    _viewVerLine.backgroundColor = mainColor;
+}
+
+- (void)configHeaderView
+{
+
+    _imgAvatar.layer.cornerRadius = _imgAvatar.height/2;
+    
+    _imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+    _imgAvatar.layer.borderWidth = 3.f;
+    
+    _imgAvatar.layer.shadowColor = [UIColor cm_blackColor_333333_1].CGColor;
+    _imgAvatar.layer.shadowOffset = CGSizeMake(0, 0);
+    _imgAvatar.layer.shadowOpacity = 0.5f;
+    
+    _lblName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDesReaded.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDesReadTime.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDesReadWords.textColor = [UIColor cm_blackColor_333333_1];
+    
+    [self configHeaderLineColor:[UIColor cm_lineColor_D9D7D7_1]];
+}
+- (void)configHeaderLineColor:(UIColor *)lineColor
+{
+    _viewBackground.layer.borderWidth = 1.f;
+    _viewBackground.layer.borderColor = lineColor.CGColor;
+}
+
+#pragma mark - 数据
+
+- (void)dataDidChange
+{
+    FriendModel *user = self.data;
+    ReadHistoryModel *readHistory = [ReadHistoryModel mj_objectWithKeyValues:user.readHistory.firstObject];
+    [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:user.iconUrl] placeholderImage:[UIImage imageNamed:@"tx"]];
+    _lblName.text = [user.name notEmpty] ? user.name : LOCALIZATION(@"匿名");
+    if (user.canview) {
+        _lblReaded.text = [NSString stringWithFormat:@"%ld %@", readHistory.readThrough, LOCALIZATION(@"本")];
+        _lblReadTime.text = [NSString stringWithFormat:@"%ld %@", readHistory.readTime, LOCALIZATION(@"小时")];
+        _lblReadWords.text = [NSString stringWithFormat:@"%ld %@", readHistory.sameDayWord, LOCALIZATION(@"字")];
+    }
+    else {
+        _viewBackground.hidden = YES;
+        _viewVerLine.hidden = YES;
+        _lblDesBooks.hidden = YES;
+    }
+}
+
+@end

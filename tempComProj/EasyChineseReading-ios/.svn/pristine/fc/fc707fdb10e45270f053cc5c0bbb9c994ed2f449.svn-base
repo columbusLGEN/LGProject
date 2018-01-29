@@ -1,0 +1,20 @@
+//
+//  ErrorModel.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "BaseModel.h"
+
+@interface ErrorModel : BaseModel
+
+/**
+ 错误
+ */
+
+@property (nonatomic, assign) NSInteger code;       // 错误码
+@property (nonatomic, strong) NSString *message;    // 错误信息
+
+@end

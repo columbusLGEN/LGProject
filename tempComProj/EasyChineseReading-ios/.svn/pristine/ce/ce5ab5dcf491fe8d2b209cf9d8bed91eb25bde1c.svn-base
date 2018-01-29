@@ -1,0 +1,29 @@
+//
+//  BookmarkTableViewCell.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/10/10.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "YMBookmark.h"
+
+@interface BookmarkTableViewCell : UITableViewCell
+{
+    __weak IBOutlet UILabel            *catNameLab;
+    __weak IBOutlet UILabel            *contentLab;
+    __weak IBOutlet UIView             *line;
+    
+    __weak IBOutlet NSLayoutConstraint *lineHeight;
+    __weak IBOutlet UILabel            *sumLab;
+    __weak IBOutlet UILabel            *timeLab;
+}
+
+@property (nonatomic, retain) YMBookmark *model;
+
+- (void)updateStyle;
+
+- (void)setCellContent;
+
+@end

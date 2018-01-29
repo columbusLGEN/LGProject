@@ -1,0 +1,175 @@
+//
+//  ECRHomeTitleView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+static CGFloat cnFont = 16;
+static CGFloat marginA = 10;
+
+#import "ECRHomeTitleView.h"
+#import "UIView+Extension.h"
+#import "ECRSearchBar.h"
+
+@interface ECRHomeTitleView ()
+
+// 0.
+// 定位按钮
+@property (strong,nonatomic) UILabel *contryName;//
+@property (strong,nonatomic) UIImageView *downArrow;//
+@property (strong,nonatomic) UIButton *locatioButton;//
+
+// 1.假装搜索框
+@property (strong,nonatomic) UIButton *fakeSearch;
+// 2.购物车按钮
+@property (strong,nonatomic) UIButton *shoppingCar;
+
+@end
+
+@implementation ECRHomeTitleView
+
+// 点击定位
+- (void)locationClick:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(htViewRgLocated:cnBlock:)]) {
+        [self.delegate htViewRgLocated:self cnBlock:^(NSString *country) {
+            if (country == nil) {
+                self.contryName.text = @"中国";
+            }else{
+                self.contryName.text = country;
+            }
+//            NSLog(@"country -- %@",country);
+        }];
+    }
+}
+// 点击搜索
+- (void)searchClick:(UIButton *)bsender{
+    if ([self.delegate respondsToSelector:@selector(htViewBeginSearch:)]) {
+        [self.delegate htViewBeginSearch:self];
+    }
+}
+
+// 点击购物车按钮
+- (void)scClick:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(htView:sCarClick:)]) {
+        [self.delegate htView:self sCarClick:nil];
+    }
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        
+        [self addSubview:self.contryName];
+        [self addSubview:self.downArrow];
+        [self addSubview:self.locatioButton];
+        [self addSubview:self.fakeSearch];
+        [self addSubview:self.shoppingCar];
+        
+        self.contryName.text = @"中国";
+        [self.contryName mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left).offset(marginA);
+            make.centerY.equalTo(self.mas_centerY);
+        }];
+        [self.downArrow mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contryName.mas_right).offset(-2);
+            make.centerY.equalTo(self.contryName.mas_centerY);
+        }];
+        [self.locatioButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contryName.mas_top);
+            make.left.equalTo(self.contryName.mas_left);
+            make.bottom.equalTo(self.contryName.mas_bottom);
+            make.right.equalTo(self.downArrow.mas_right);
+        }];
+        
+        [self.fakeSearch mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.downArrow.mas_right).offset(4);
+            make.centerY.equalTo(self.mas_centerY);
+//            if (Screen_Width < 375) {
+//                make.width.equalTo(@(self.width * 0.6));
+//            }else{
+//                make.width.equalTo(@(self.width * 0.7));
+//            }
+            
+        }];
+
+        [self.shoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.fakeSearch.mas_right).offset(8);
+            make.right.equalTo(self.mas_right).offset(-marginA);
+            make.centerY.equalTo(self.fakeSearch.mas_centerY);
+        }];
+//        [self setNeedsLayout];
+//        [self layoutIfNeeded];
+
+    }
+    return self;
+}
+
+- (UILabel *)contryName{
+    if (_contryName == nil) {
+        _contryName = [[UILabel alloc] init];
+        _contryName.textColor = [UIColor cm_blackColor_333333_1];
+        _contryName.font = [UIFont systemFontOfSize:cnFont];
+    }
+    return _contryName;
+}
+- (UIImageView *)downArrow{
+    if (_downArrow == nil) {
+        _downArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bys_5"]];
+    }
+    return _downArrow;
+}
+- (UIButton *)locatioButton{
+    if (_locatioButton == nil) {
+//        _locatioButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 40)];
+        _locatioButton = [[UIButton alloc] init];
+        [_locatioButton addTarget:self action:@selector(locationClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _locatioButton;
+}
+- (UIButton *)fakeSearch{
+    if (_fakeSearch == nil) {
+//        _fakeSearch = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.downArrow.frame) + 5, 0, self.frame.size.width * 0.7, 40)];
+        _fakeSearch = [[UIButton alloc] init];
+        _fakeSearch.highlighted = NO;
+        [_fakeSearch setTitle:@"搜索图书/作者" forState:UIControlStateNormal];
+        _fakeSearch.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_fakeSearch setTitleColor:[UIColor cm_blackColor_333333_1] forState:UIControlStateNormal];
+        [_fakeSearch setImage:[UIImage imageNamed:@"lei1"] forState:UIControlStateNormal];
+        [_fakeSearch setBackgroundColor:[UIColor colorWithHexString:@"f7f7f7"]];
+        _fakeSearch.layer.cornerRadius = 16;
+        _fakeSearch.layer.masksToBounds = YES;
+        [_fakeSearch setContentEdgeInsets:UIEdgeInsetsMake(2, 0, 2, 0)];
+        [_fakeSearch addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
+        //        _fakeSearch.layer.borderColor = [UIColor blackColor].CGColor;
+        //        _fakeSearch.layer.borderWidth = 1;
+    }
+    return _fakeSearch;
+}
+- (UIButton *)shoppingCar{
+    if (_shoppingCar == nil) {
+        _shoppingCar = [[UIButton alloc] init];
+        [_shoppingCar setBackgroundImage:[UIImage imageNamed:@"bys_6"] forState:UIControlStateNormal];
+        [_shoppingCar sizeToFit];
+        [_shoppingCar addTarget:self action:@selector(scClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _shoppingCar;
+}
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

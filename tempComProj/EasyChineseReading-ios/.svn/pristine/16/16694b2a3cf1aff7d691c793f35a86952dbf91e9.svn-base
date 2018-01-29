@@ -1,0 +1,21 @@
+//
+//  UCRBooksShopCarView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/14.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRBooksShopCarView.h"
+
+@implementation UCRBooksShopCarView
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+@end

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ECRHomeSBVCell" id="cek-Df-J6r" customClass="ECRHomeSBVCell">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="286"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="412" height="286"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HbI-W8-8V2">
+                        <rect key="frame" x="0.0" y="0.0" width="412" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="NfD-vW-B3I"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="傲慢与偏见" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06j-Ue-v7k">
+                        <rect key="frame" x="-0.5" y="124" width="412.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7s-4V-lUW">
+                        <rect key="frame" x="15.5" y="143" width="39.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        </variation>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_virtual_currency" translatesAutoresizingMaskIntoConstraints="NO" id="4hZ-Tp-2ei">
+                        <rect key="frame" x="-0.5" y="148.5" width="14" height="9"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="K7s-4V-lUW" firstAttribute="bottom" secondItem="4hZ-Tp-2ei" secondAttribute="bottom" constant="5" id="FcP-Bs-A5M"/>
+                <constraint firstItem="HbI-W8-8V2" firstAttribute="centerX" secondItem="cek-Df-J6r" secondAttribute="centerX" id="KhP-6I-PBN"/>
+                <constraint firstItem="HbI-W8-8V2" firstAttribute="top" secondItem="cek-Df-J6r" secondAttribute="top" id="KsD-aV-LLa"/>
+                <constraint firstItem="06j-Ue-v7k" firstAttribute="leading" secondItem="HbI-W8-8V2" secondAttribute="leading" id="T4Q-MW-koR"/>
+                <constraint firstItem="K7s-4V-lUW" firstAttribute="leading" secondItem="4hZ-Tp-2ei" secondAttribute="trailing" constant="2" id="YXr-ei-nXc"/>
+                <constraint firstItem="06j-Ue-v7k" firstAttribute="top" secondItem="HbI-W8-8V2" secondAttribute="bottom" constant="4" id="ZMW-cW-297"/>
+                <constraint firstItem="HbI-W8-8V2" firstAttribute="width" secondItem="cek-Df-J6r" secondAttribute="width" id="aC9-3u-fci"/>
+                <constraint firstItem="4hZ-Tp-2ei" firstAttribute="leading" secondItem="06j-Ue-v7k" secondAttribute="leading" id="fLc-Ah-T1x"/>
+                <constraint firstItem="06j-Ue-v7k" firstAttribute="trailing" secondItem="HbI-W8-8V2" secondAttribute="trailing" id="mjj-Of-mnR"/>
+                <constraint firstItem="4hZ-Tp-2ei" firstAttribute="top" secondItem="06j-Ue-v7k" secondAttribute="bottom" constant="5" id="ysj-xo-EqY"/>
+            </constraints>
+            <size key="customSize" width="412" height="286"/>
+            <connections>
+                <outlet property="bName" destination="06j-Ue-v7k" id="yym-lC-esa"/>
+                <outlet property="bPriceNum" destination="K7s-4V-lUW" id="9lI-49-2wa"/>
+                <outlet property="cover" destination="HbI-W8-8V2" id="sVx-tF-TkQ"/>
+                <outlet property="imgHeight" destination="NfD-vW-B3I" id="ZAM-am-BHi"/>
+            </connections>
+            <point key="canvasLocation" x="130" y="124"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_virtual_currency" width="14" height="9"/>
+    </resources>
+</document>

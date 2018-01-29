@@ -1,0 +1,18 @@
+@font-face{
+    font-family:'FangSong';
+    src: url('../../Fonts/FangSong.ttf');
+/*    src:*/
+}
+
+@font-face{
+    font-family:'KaiTi_GB2312';
+    src: url('../../Fonts/KaiTi_GB2312.ttf');
+}
+
+@font-face{
+    font-family:'SimSun';
+    src: url('../../Fonts/SimSun.ttf');
+}
+
+
+

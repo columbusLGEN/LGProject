@@ -1,0 +1,88 @@
+//
+//  UCRDetailStudentHeaderView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/13.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRDetailStudentHeaderView.h"
+
+@interface UCRDetailStudentHeaderView ()
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgAvatar;
+@property (strong, nonatomic) IBOutlet UILabel *lblName;
+@property (strong, nonatomic) IBOutlet UIView *viewProgressBack;
+@property (strong, nonatomic) IBOutlet UIView *viewProgressFront;
+@property (strong, nonatomic) IBOutlet UILabel *lblPercent;
+
+@property (strong, nonatomic) IBOutlet UIView *viewBottomTopLine;
+@property (strong, nonatomic) IBOutlet UIView *viewBottomBottomLine;
+@property (strong, nonatomic) IBOutlet UIView *viewBottomCenterLine;
+
+@property (strong, nonatomic) IBOutlet UIView *viewBottom;
+
+@property (strong, nonatomic) IBOutlet UILabel *lblDesWords;        // 描述 阅读总字数
+@property (strong, nonatomic) IBOutlet UILabel *lblDesDays;         // 描述 阅读总天数
+@property (strong, nonatomic) IBOutlet UILabel *lblDesAveWords;     // 描述 阅读平均字数
+@property (strong, nonatomic) IBOutlet UILabel *lblDesBooks;        // 描述 已完成阅读
+
+@property (strong, nonatomic) IBOutlet UILabel *lblWords;       // 阅读总字数
+@property (strong, nonatomic) IBOutlet UILabel *lblDays;        // 阅读总天数
+@property (strong, nonatomic) IBOutlet UILabel *lblAveWords;    // 阅读平均字数
+@property (strong, nonatomic) IBOutlet UILabel *lblBooks;       // 已完成阅读
+
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rightConstraint;
+@end
+
+@implementation UCRDetailStudentHeaderView
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self configView];
+}
+
+- (void)configView
+{
+    _imgAvatar.layer.masksToBounds = YES;
+    _imgAvatar.layer.cornerRadius = _imgAvatar.height/2;
+    _imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+    _imgAvatar.layer.borderWidth = 3.f;
+    
+    _lblName.textColor = _lblPercent.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDesDays.textColor = _lblDesWords.textColor = _lblDesBooks.textColor = _lblDesAveWords.textColor = [UIColor cm_blackColor_333333_1];
+    _lblWords.textColor = _lblDays.textColor = _lblBooks.textColor = _lblAveWords.textColor = [UIColor cm_orangeColor_FF6000_1];
+    
+    _lblName.font =_lblPercent.font = [UIFont systemFontOfSize:15.f];
+    _lblDesDays.font = _lblDesWords.font = _lblDesBooks.font = _lblDesAveWords.font = [UIFont systemFontOfSize:15.f];
+    _lblWords.font = _lblDays.font = _lblBooks.font = _lblAveWords.font = [UIFont systemFontOfSize:15.f];
+    
+    _viewBottomTopLine.backgroundColor = _viewBottomBottomLine.backgroundColor = _viewBottomCenterLine.backgroundColor = [UIColor cm_lineColor_E3E3E3_1];
+    
+    _viewBottom.layer.borderWidth = .5f;
+    _viewBottom.layer.borderColor = [UIColor cm_lineColor_E3E3E3_1].CGColor;
+    
+    
+    _viewProgressBack.layer.masksToBounds = YES;
+    _viewProgressBack.layer.cornerRadius = _viewProgressBack.height/2;
+    _viewProgressBack.layer.borderColor = [UIColor cm_orangeColor_FF6000_1].CGColor;
+    _viewProgressBack.layer.borderWidth = .5f;
+    
+}
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    
+    _imgAvatar.image = [UIImage imageNamed:dic[@"image"]];
+    _lblName.text = dic[@"name"];
+    _lblPercent.text = [NSString stringWithFormat:@"%@%%", dic[@"percent"]];
+    
+    NSInteger percent = [[NSString stringWithFormat:@"%@", dic[@"percent"]] integerValue];
+    _rightConstraint.constant = _viewProgressBack.width - _viewProgressBack.width * percent / 100;
+}
+
+
+@end

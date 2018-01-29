@@ -1,0 +1,30 @@
+//
+//  ECRStarView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/2.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRStarView.h"
+
+@interface ECRStarView ()
+
+
+@end
+
+@implementation ECRStarView
+
+- (void)setScore:(CGFloat *)score{
+    _score = score;
+    // 星星数量由 score 决定
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        
+    }
+    return self;
+}
+
+@end

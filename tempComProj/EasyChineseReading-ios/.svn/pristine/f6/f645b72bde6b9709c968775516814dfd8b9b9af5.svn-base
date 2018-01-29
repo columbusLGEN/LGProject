@@ -1,0 +1,40 @@
+//
+//  UCRecommendDetailDescribeTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/15.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRecommendDetailDescribeTableViewCell.h"
+
+@interface UCRecommendDetailDescribeTableViewCell ()
+@property (weak, nonatomic) IBOutlet UILabel *lblDescribe;
+
+@end
+
+@implementation UCRecommendDetailDescribeTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configDescribeCell
+{
+    _lblDescribe.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescribe.font = [UIFont systemFontOfSize:15.f];
+}
+
+- (void)dataDidChange
+{
+    
+}
+
+@end

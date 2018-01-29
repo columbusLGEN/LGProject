@@ -1,0 +1,150 @@
+
+//
+//  UCSManageDetailVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/13.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCStudentManageEditVC.h"
+
+@interface UCStudentManageEditVC () <ZPickViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDescClass;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescSex;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescAge;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescAccount;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescRemark;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblClass;
+@property (weak, nonatomic) IBOutlet UILabel *lblSex;
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
+@property (weak, nonatomic) IBOutlet UILabel *lblAge;
+@property (weak, nonatomic) IBOutlet UILabel *lblAccount;
+@property (weak, nonatomic) IBOutlet UILabel *lblRemark;
+
+@property (strong, nonatomic) ZPickView *pickViewClass; // 班级
+
+@property (strong, nonatomic) NSArray *arrClass; // 班级
+
+@end
+
+@implementation UCStudentManageEditVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark action
+
+- (void)configView
+{
+    [self configNavigationBar];
+    [self configTableView];
+}
+
+- (void)configTableView
+{
+    UIColor *descTextColor = [UIColor cm_blackColor_333333_1];
+    UIColor *textColor = [UIColor cm_graryColor_807F7F_1];
+    UIFont *font = [UIFont systemFontOfSize:16.f];
+    
+    _lblDescClass.textColor     = descTextColor;
+    _lblDescName.textColor      = descTextColor;
+    _lblDescSex.textColor       = descTextColor;
+    _lblDescAge.textColor       = descTextColor;
+    _lblDescAccount.textColor   = descTextColor;
+    _lblDescRemark.textColor    = descTextColor;
+    
+    _lblClass.textColor     = descTextColor;
+    _lblName.textColor      = textColor;
+    _lblSex.textColor       = textColor;
+    _lblAge.textColor       = textColor;
+    _lblAccount.textColor   = textColor;
+    _lblRemark.textColor    = textColor;
+    
+    _lblDescClass.font   = font;
+    _lblDescName.font    = font;
+    _lblDescSex.font     = font;
+    _lblDescAge.font     = font;
+    _lblDescAccount.font = font;
+    _lblDescRemark.font  = font;
+    
+    _lblClass.font   = font;
+    _lblSex.font     = font;
+    _lblName.font    = font;
+    _lblAge.font     = font;
+    _lblAccount.font = font;
+    _lblRemark.font  = font;
+}
+
+- (void)configNavigationBar
+{
+    self.title = @"修改学生";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveStudentInfo)];
+}
+
+- (void)saveStudentInfo
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ 班级选择
+ */
+- (void)configPickViewClass
+{
+    if (_pickViewClass == nil) {
+        _pickViewClass = [[ZPickView alloc] initWithFrame:self.view.bounds dataSource:self.arrClass selected:0];
+        _pickViewClass.delegates = self;
+        [self.view addSubview:_pickViewClass];
+    }
+    [_pickViewClass show];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (0 == indexPath.row) {
+        [self configPickViewClass];
+    }
+}
+
+#pragma mark - ZPickViewDelegate
+
+- (void)ZPickerViewCancel:(ZPickView *)picker
+{
+    [picker hidden];
+}
+
+- (void)ZPickerView:(ZPickView *)picker makeSureIndex:(NSInteger)index
+{
+    _lblClass.text = _arrClass[index];
+    [picker hidden];
+}
+
+#pragma mark - 属性
+
+- (NSArray *)arrClass
+{
+    if (_arrClass == nil) {
+        _arrClass = @[@"这个班", @"哪个班", @"sm 班"];
+    }
+    return _arrClass;
+}
+
+
+
+@end

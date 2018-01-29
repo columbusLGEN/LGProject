@@ -1,0 +1,23 @@
+//
+//  AboutJson.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/11/17.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface AboutJson : NSObject
+
++ (NSString *)anyObjectToJson:(id)info;
+
++ (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
+
++ (NSString *)md5:(NSString *)str;
+
++ (NSString *)base64:(NSString *)string;
+
++ (NSData *)anyToJson:(id)info;
+
+@end

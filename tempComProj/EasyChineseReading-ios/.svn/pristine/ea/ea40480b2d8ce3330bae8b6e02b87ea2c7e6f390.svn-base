@@ -1,0 +1,117 @@
+//
+//  UCImpowerTeacherViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/12.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UCImpowerTeacherVC.h"
+
+#import "UCImpowerTeacherTableViewCell.h"
+
+@interface UCImpowerTeacherVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@end
+
+@implementation UCImpowerTeacherVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configTableView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - 配置界面
+
+- (void)configTableView
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, self.view.height) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    _tableView.estimatedRowHeight = 100;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    UIView *footer = [UIView new];
+    footer.backgroundColor = [UIColor whiteColor];
+    _tableView.tableFooterView = footer;
+    
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UCImpowerTeacherTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UCImpowerTeacherTableViewCell class])];
+    
+    [self.view addSubview:_tableView];
+}
+
+#pragma mark -
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrDataSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UCImpowerTeacherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UCImpowerTeacherTableViewCell class])];
+
+    cell.lblNumber.text = [NSString stringWithFormat:@"%02ld", indexPath.row + 1];
+    cell.data = self.arrDataSource[indexPath.row];
+    
+    return cell;
+}
+
+#pragma mark -
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UCImpowerTeacherTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UserModel *user = self.arrDataSource[indexPath.row];
+    if (cell.selected) {
+        [_arrSelectedTeacher addObject:user];
+        [cell setIsSelected];
+    }
+    else {
+        [_arrSelectedTeacher removeObject:user];
+        [cell setUnSelected];
+    }
+
+    self.reloadTeacherBlock(_arrSelectedTeacher);
+}
+
+#pragma mark - UCRStudentSelectedHeaderViewDelegate
+
+- (void)selectedAllUser
+{
+    NSSet *allUser = [NSSet setWithArray:_arrDataSource];
+    NSSet *selecte = [NSSet setWithArray:_arrSelectedTeacher];
+    // 已经全部都选择
+    if ([allUser isSubsetOfSet:selecte]) {
+        for (NSInteger i = 0; i < _arrDataSource.count; i ++) {
+            [_arrSelectedTeacher removeObject:_arrDataSource[i]];
+        }
+    }
+    else {
+        [_arrSelectedTeacher addObjectsFromArray:_arrDataSource];
+        NSSet *currentArrSet = [NSSet setWithArray:_arrSelectedTeacher];
+        // 排序
+        //        NSArray *sortDesc = @[[[NSSortDescriptor alloc] initWithKey:nil ascending:YES]];
+        //        NSArray *sortSetArray = [currentArrSet sortedArrayUsingDescriptors:sortDesc];
+        
+        [_arrSelectedTeacher removeAllObjects];
+        NSArray *array = [currentArrSet allObjects];
+        [_arrSelectedTeacher addObjectsFromArray:array];
+    }
+    self.reloadTeacherBlock(_arrSelectedTeacher);
+}
+
+- (NSMutableArray *)arrSelectedTeacher
+{
+    if (_arrSelectedTeacher == nil) {
+        _arrSelectedTeacher = [NSMutableArray array];
+    }
+    return _arrSelectedTeacher;
+}
+
+@end

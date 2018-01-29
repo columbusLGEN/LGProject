@@ -1,0 +1,37 @@
+//
+//  ECRHomeMainModel.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/29.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRHomeMainModel.h"
+//#import "ECRHomeClassModel.h"
+//#import "ECRHomeBook.h"
+//#import "ECRSeriesModel.h"
+//#import "ECRThematicModel.h"
+//#import "ECRAdvModel.h"
+//#import "ECRRankUser.h"
+
+@implementation ECRHomeMainModel
+
+//- (UIImage *)img{
+//    if (_img == nil) {
+//        _img = [UIImage imageNamed:_imgName];
+//    }
+//    return _img;
+//}
+
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"Rank": @"ECRRankUser",
+             @"Advertisement": @"ECRAdvModel",
+             @"thematic": @"ECRThematicModel",
+             @"Series": @"ECRSeriesModel",
+             @"reco": @"ECRHomeBook",
+             @"SeriesClassif": @"ECRHomeClassModel"
+             };
+}
+
+
+@end

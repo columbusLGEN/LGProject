@@ -1,0 +1,57 @@
+//
+//  CLMTabBarController.m
+//  Pandora
+//
+//  Created by lee on 2017/7/17.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "CLMTabBarController.h"
+#import "CLMNavigationController.h"
+
+@interface CLMTabBarController ()
+
+@end
+
+@implementation CLMTabBarController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self baseSetting];
+//    NSLog(@"%@",self.tabBar);
+    // TEST
+    self.selectedIndex = 1;
+}
+
+- (void)baseSetting{
+    [self clmSetChildViewControllerWith:
+     (UIViewController *)[[NSClassFromString(@"ECRHomeViewController") alloc] init]
+                                  title:@"书城"
+                               iconName:@"tab_icon"
+                             iconSeName:@"tab_icon_se"];
+    [self clmSetChildViewControllerWith:
+     (UIViewController *)[[NSClassFromString(@"ECRBookRackController") alloc] init]
+                                  title:@"书架"
+                               iconName:@"tab_icon"
+                             iconSeName:@"tab_icon_se"];
+    [self clmSetChildViewControllerWith:
+     (UIViewController *)[[NSClassFromString(@"UserViewController") alloc] init]
+                                  title:@"我"
+                               iconName:@"tab_icon"
+                             iconSeName:@"tab_icon_se"];
+}
+- (void)clmSetChildViewControllerWith:(UIViewController *)vc title:(NSString *)title iconName:(NSString *)iconName iconSeName:(NSString *)iconSeName{
+    vc.title = title;
+    vc.tabBarItem.image = [[UIImage imageNamed:iconSeName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    vc.tabBarItem.selectedImage = [[UIImage imageNamed:iconName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    CLMNavigationController *nav = [[CLMNavigationController alloc] initWithRootViewController:vc];
+    [nav.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -2.5)];
+    [self addChildViewController:nav];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+}
+
+@end

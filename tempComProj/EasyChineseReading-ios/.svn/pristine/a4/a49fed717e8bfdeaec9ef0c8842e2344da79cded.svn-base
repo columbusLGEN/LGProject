@@ -1,0 +1,77 @@
+//
+//  UCommentVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserCommentVC.h"
+
+@interface UserCommentVC ()<UITextViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITextView *txtView;
+@property (strong, nonatomic) IBOutlet UILabel *lblPlaceholder;
+
+@end
+
+@implementation UserCommentVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configNavigationBar];
+    [self configTextView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)updateSystemLanguage
+{
+    self.title = LOCALIZATION(@"意见反馈");
+    _lblPlaceholder.text = LOCALIZATION(@"请输入你的意见反馈");
+}
+
+#pragma mark ========== 配置 textView ==========
+
+- (void)configTextView
+{
+    _txtView.layer.borderWidth = 1.f;
+    _txtView.layer.borderColor = [UIColor cm_blackColor_333333_1].CGColor;
+}
+
+#pragma mark ========== 配置 navigationBar ==========
+
+- (void)configNavigationBar
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOCALIZATION(@"发送") style:UIBarButtonItemStylePlain target:self action:@selector(pushComment)];
+}
+
+- (void)pushComment
+{
+    if (_txtView.text.length == 0) {
+        [self presentFailureTips:LOCALIZATION(@"请输入你的意见反馈")];
+    }
+    else {
+        [[UserRequest sharedInstance] submitFeedbackWithMessage:_txtView.text phoneModel:[IPhoneVersion deviceName] mobileSystem:SSystemVersion appversion:appVersion completion:^(id object, ErrorModel *error) {
+            if (error) {
+                [self presentFailureTips:error.message];
+            }
+            else {
+                _txtView.text = @"";
+                [self presentSuccessTips:LOCALIZATION(@"发送成功, 感谢您的反馈")];
+            }
+        }];
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    _lblPlaceholder.hidden = textView.text.length > 0;
+}
+
+
+@end

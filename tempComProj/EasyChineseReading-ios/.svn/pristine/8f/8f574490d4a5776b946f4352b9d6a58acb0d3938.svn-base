@@ -1,0 +1,93 @@
+//
+//  UFavouriteVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UFavouriteVC.h"
+
+#import "UFavouriteTableViewCell.h"
+
+@interface UFavouriteVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UILabel *lblTime;
+@property (strong, nonatomic) IBOutlet UILabel *lblMoney;
+@property (strong, nonatomic) IBOutlet UILabel *lblFavouriteNum;
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgTime;
+@property (strong, nonatomic) IBOutlet UIImageView *imgMoney;
+@property (strong, nonatomic) IBOutlet UIImageView *imgFavouriteNum;
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+/* 数据 */
+@property (strong, nonatomic) NSArray *arrDataSource;
+/* 选中的数据 */
+@property (strong, nonatomic) NSMutableArray *arrSelected;
+
+@end
+
+@implementation UFavouriteVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self registTableView];
+    self.title = @"我的收藏";
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)registTableView
+{
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UFavouriteTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UFavouriteTableViewCell class])];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _arrDataSource.count > 0 ? _arrDataSource.count : 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UFavouriteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UFavouriteTableViewCell"];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+#pragma mark -
+#pragma mark 属性
+
+- (NSArray *)arrDataSource
+{
+    if (_arrDataSource == nil) {
+        _arrDataSource = [NSArray array];
+    }
+    return _arrDataSource;
+}
+
+- (NSMutableArray *)arrSelected
+{
+    if (_arrSelected == nil) {
+        _arrSelected = [NSMutableArray array];
+    }
+    return _arrSelected;
+}
+@end

@@ -1,0 +1,319 @@
+//
+//  ECRHomeViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/29.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+static NSString *bcCell = @"ECRBookClassesCollectionCell";
+static NSString *brCell = @"ECRHomeBRCell";
+static NSString *rmCell = @"ECRHomeRMCell";
+static NSString *sbvCell = @"ECRHomeSBVCell";
+
+static CGFloat rmRowHeight = 70;
+
+#import "ECRHomeViewController.h"
+#import <WebKit/WebKit.h>// test
+#import "ECRHomeMainModel.h"// 主view model
+#import "ECRHomeMainView.h"// 主 view
+#import "ECRHomeTitleView.h"// title view
+#import "ECRMoreBooksViewController.h"// 更多
+#import "ECRShoppingCarViewController.h"// 购物车
+#import "ECRSearchBooksViewController.h"
+#import "ECRBookInfoViewController.h"
+#import "ECRTestModel.h"
+#import "ECRBookClasses.h"
+#import "ECRBoomRecomment.h"
+#import "ECRSeriesAera.h"
+#import "ECRSeriesBooksView.h"
+#import "ECRReadMonster.h"
+#import "ECRBookClassesCollectionCell.h"
+#import "ECRHomeBRCell.h"
+#import "ECRHomeRMCell.h"
+#import "ECRHomeSBVCell.h"
+#import "ECRHomeClassModel.h"
+#import "ECRLocationManager.h"
+
+@interface ECRHomeViewController ()<
+ECRHomeTitleViewDelelgate,
+ECRHomeMainViewDelegate,
+UICollectionViewDataSource,
+UICollectionViewDelegate,
+UITableViewDataSource,
+UITableViewDelegate
+>
+@property (strong,nonatomic) WKWebView *wk;// test
+@property (strong,nonatomic) UIScrollView *scroll;// 备用
+@property (strong,nonatomic) NSArray *imgNames;// test
+@property (strong,nonatomic) ECRHomeMainView *mainView;
+@property (strong,nonatomic) NSArray *hcnModels;// test
+
+@end
+
+@implementation ECRHomeViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    
+}
+
+- (void)setupUI{
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+//    NSLog(@"navilg -- %@",self.navigationController);
+    ECRHomeTitleView *tView = [[ECRHomeTitleView alloc] initWithFrame:CGRectMake(0, 20, Screen_Width, 44)];
+    tView.delegate = self;
+//    self.navigationItem.titleView = tView;
+    
+    [self.view addSubview:tView];
+    [self.view addSubview:self.mainView];
+    // MARK: 注册cell
+    [self.mainView.bookClasses.collectionView registerNib:[UINib nibWithNibName:bcCell bundle:nil] forCellWithReuseIdentifier:bcCell];
+    [self.mainView.boomRecomment.collectionView registerNib:[UINib nibWithNibName:brCell bundle:nil] forCellWithReuseIdentifier:brCell];
+    [self.mainView.readMonster.tableView registerNib:[UINib nibWithNibName:rmCell bundle:nil] forCellReuseIdentifier:rmCell];
+    [self.mainView.seriesAera.viewFirst.collectionView registerNib:[UINib nibWithNibName:sbvCell bundle:nil] forCellWithReuseIdentifier:sbvCell];
+    [self.mainView.seriesAera.viewSecond.collectionView registerNib:[UINib nibWithNibName:sbvCell bundle:nil] forCellWithReuseIdentifier:sbvCell];
+    [self.mainView.seriesAera.viewThird.collectionView registerNib:[UINib nibWithNibName:sbvCell bundle:nil] forCellWithReuseIdentifier:sbvCell];
+    
+    [self test];
+}
+
+- (void)test{
+    // --------测试数据
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (NSInteger i = 0; i < 6; ++i) {
+        ECRHomeMainModel *model = [[ECRHomeMainModel alloc] init];
+        model.imgTestURL = @"http://scimg.jb51.net/allimg/121209/2-1212091UH0339.jpg";
+        [arrM addObject:model];
+    }
+    _imgNames = arrM.copy;
+    
+    NSString *arrPath = [[NSBundle mainBundle] pathForResource:@"HomeClassNames" ofType:@"plist"];
+    NSArray *array = [NSArray arrayWithContentsOfFile:arrPath];
+    NSMutableArray *hcnArrM = [NSMutableArray arrayWithCapacity:10];
+    for (NSInteger i = 0; i < array.count; ++i) {
+        ECRHomeClassModel *model = [ECRHomeClassModel mj_objectWithKeyValues:array[i]];
+        [hcnArrM addObject:model];
+    }
+    self.hcnModels = hcnArrM.copy;
+    // 刷新数据
+
+    // --------测试数据
+    
+    // MARK: homeMainView模型赋值
+    _mainView.models = arrM.copy;
+        
+}
+#pragma mark - ECRHomeMainViewDelegate
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if ([collectionView isEqual:self.mainView.bookClasses.collectionView]) {
+        return self.hcnModels.count;
+    }
+    if ([collectionView isEqual:self.mainView.boomRecomment.collectionView]) {
+        return 10;
+    }
+    if ([collectionView isEqual:self.mainView.seriesAera.viewFirst.collectionView]  ||
+        [collectionView isEqual:self.mainView.seriesAera.viewSecond.collectionView] ||
+        [collectionView isEqual:self.mainView.seriesAera.viewThird.collectionView]) {
+        if (Screen_Width < 375) {
+            return 2;
+        }else{
+            return 3;
+        }
+    }
+    return 0;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if ([collectionView isEqual:self.mainView.bookClasses.collectionView]) {
+        ECRBookClassesCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:bcCell forIndexPath:indexPath];
+        ECRHomeClassModel *model = self.hcnModels[indexPath.item];
+        cell.indexPath = indexPath;
+        cell.model = model;
+        return cell;
+    }
+    if ([collectionView isEqual:self.mainView.boomRecomment.collectionView]) {
+        ECRHomeBRCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:brCell forIndexPath:indexPath];
+        
+        return cell;
+    }
+    if ([collectionView isEqual:self.mainView.seriesAera.viewFirst.collectionView]  ||
+        [collectionView isEqual:self.mainView.seriesAera.viewSecond.collectionView] ||
+        [collectionView isEqual:self.mainView.seriesAera.viewThird.collectionView]) {
+        ECRHomeSBVCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:sbvCell forIndexPath:indexPath];
+        
+        return cell;
+    }
+    return nil;
+}
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if ([collectionView isEqual:self.mainView.bookClasses.collectionView]) {
+        ECRHomeClassModel *model = self.hcnModels[indexPath.item];
+        [self sortTableViewTestWithType:model.classType];
+    }else{   
+        // test
+        // 进入详情页面
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"BookInfo" bundle:nil];
+        ECRBookInfoViewController *bivc = [board instantiateViewControllerWithIdentifier:@"ECRBookInfoViewController"];
+        bivc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+        [self.navigationController pushViewController:bivc animated:YES];
+    }
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([tableView isEqual:self.mainView.readMonster.tableView]) {
+        ECRHomeRMCell *cell = [tableView dequeueReusableCellWithIdentifier:rmCell forIndexPath:indexPath];
+        return cell;
+    }
+    return nil;
+}
+
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return rmRowHeight;
+}
+
+#pragma mark - 自定义导航栏 代理
+- (void)htViewRgLocated:(ECRHomeTitleView *)titleView cnBlock:(void (^)(NSString *))cnBlock{
+    [self rg_locatedWithBlock:cnBlock];
+}
+- (void)htViewBeginSearch:(ECRHomeTitleView *)titleView{
+    [self.view endEditing:YES];
+    // MARK: 弹出搜索视图
+    ECRSearchBooksViewController *test = [[ECRSearchBooksViewController alloc] init];
+//    test.bookListType = 2;// 如何让搜索页面 显示全部筛选条件,但是默认不选中?
+    test.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    [self.navigationController pushViewController:test animated:NO];
+    
+}
+- (void)htView:(ECRHomeTitleView *)titlView sCarClick:(id)param{
+    // MARK: 购物车
+    ECRShoppingCarViewController *sc = [[ECRShoppingCarViewController alloc] init];
+    sc.viewControllerPushWay = 0;
+    [self.navigationController pushViewController:sc animated:YES];
+}
+
+- (void)createNavLeftBackItem{
+    // 重写,不做任何操作
+}
+
+- (ECRHomeMainView *)mainView{
+    if (_mainView == nil) {
+        //    CGRect mvRect = CGRectMake(0, -64, Screen_Width, Screen_Height);
+        _mainView = [[ECRHomeMainView alloc] initWithFrame:CGRectMake(0, 64, Screen_Width, Screen_Height - 64)];
+        _mainView.delegate = self;
+        _mainView.bookClasses.collectionView.dataSource = self;
+        _mainView.bookClasses.collectionView.delegate = self;
+        _mainView.boomRecomment.collectionView.dataSource = self;
+        _mainView.boomRecomment.collectionView.delegate = self;
+        _mainView.readMonster.tableView.dataSource = self;
+        _mainView.readMonster.tableView.delegate = self;
+        _mainView.seriesAera.viewFirst.collectionView.dataSource = self;
+        _mainView.seriesAera.viewFirst.collectionView.delegate = self;
+        _mainView.seriesAera.viewSecond.collectionView.dataSource = self;
+        _mainView.seriesAera.viewSecond.collectionView.delegate = self;
+        _mainView.seriesAera.viewThird.collectionView.dataSource = self;
+        _mainView.seriesAera.viewThird.collectionView.delegate = self;
+    }
+    return _mainView;
+}
+
+// TEST
+- (void)testTag:(NSInteger)tag{
+    if (tag <= 5) {
+        // MARK: 跳转至分类页面
+        // 0 热销
+        // 1 互动教材
+        // 2 汉语读物
+        // 3 文化读物
+        if (tag == 4) {
+            // MARK: 接口调试
+            // http://192.168.10.107:8080/UniversityPressService/books/books
+            NSString *testURL = @"http://192.168.10.107:8080/UniversityPressService/books/books";
+            NSMutableDictionary *dict  = [NSMutableDictionary dictionaryWithCapacity:10];
+            NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:10];
+            param[@"imei"] = @"460030912121001";
+            param[@"imsi"] = @"460030912121001";
+            param[@"type"] = @"1";
+            param[@"special"] = @"";
+            param[@"classify"] = @"1";
+            param[@"length"] = @"3";
+            param[@"page"] = @"1";
+            param[@"sort"] = @"1";
+            dict[@"params"] = param;
+            dict[@"md5"] = @"654c01acaf40e0ce6d841a552fd3b96c";
+            
+            [[ECRHTTPSessionManager sharedManager] lg_POSTWithURLString:testURL parameters:dict success:^(id responseObject) {
+                
+            } failure:^(NSError *error) {
+                
+            }];
+            
+        }else{
+            [self sortTableViewTestWithType:tag];
+        }
+    }else{
+        if (tag < 10) {
+            //MARK: 详情页面
+            UIStoryboard *board = [UIStoryboard storyboardWithName:@"BookInfo" bundle:nil];
+            ECRBookInfoViewController *bInfo = [board instantiateViewControllerWithIdentifier:@"ECRBookInfoViewController"];
+            bInfo.viewControllerPushWay = ECRBaseControllerPushWayPush;
+            [self.navigationController pushViewController:bInfo animated:YES];
+            return;
+        }
+        if (tag < 15) {
+            
+            return;
+        }
+        
+        
+    }
+}
+// MARK: 创建分类页面
+- (void)sortTableViewTestWithType:(ECRMoreBookListType)blType{
+    NSString *vcTitle;
+    switch (blType) {
+        case ECRMoreBookListTypeHotSeal:
+            vcTitle = @"热销图书";
+            break;
+        case ECRMoreBookListTypeInterText:
+            vcTitle = @"互动教材";
+            break;
+        case ECRMoreBookListTypeChineseReading:
+            vcTitle = @"汉语读物";
+            break;
+        case ECRMoreBookListTypeCultureReading:
+            vcTitle = @"文化读物";
+            break;
+    }
+    ECRMoreBooksViewController *test = [[ECRMoreBooksViewController alloc] init];
+    test.title = vcTitle;
+    test.bookListType = blType;
+    test.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    [self.navigationController pushViewController:test animated:YES];
+}
+- (void)rg_locatedWithBlock:(void (^)(NSString *))cnBlock{
+    [ECRLocationManager rg_startUpdatingLocationWithBlock:cnBlock];
+}
+
+@end
+
+

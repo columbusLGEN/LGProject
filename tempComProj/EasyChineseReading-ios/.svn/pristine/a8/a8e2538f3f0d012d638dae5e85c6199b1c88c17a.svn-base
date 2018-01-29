@@ -1,0 +1,26 @@
+//
+//  USCVerifyTableViewCell.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class USCVerifyTableViewCell;
+
+@protocol USCVerifyTableViewCellDelegate <NSObject>
+
+- (void)sendVerifyCode;
+
+@end
+
+@interface USCVerifyTableViewCell : ECRBaseTableViewCell
+
+@property (assign, nonatomic) id<USCVerifyTableViewCellDelegate> delegate;
+
+@property (strong, nonatomic) IBOutlet UITextField *txtfVerity;
+@property (strong, nonatomic) IBOutlet UIButton *btnSendVerify;
+
+@end

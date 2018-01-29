@@ -1,0 +1,68 @@
+//
+//  UCRecommendDetailDescribeTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/15.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRecommendDetailDescribeTableViewCell.h"
+
+@interface UCRecommendDetailDescribeTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDescribe;
+@property (weak, nonatomic) IBOutlet UIView *verLine;
+@property (weak, nonatomic) IBOutlet UILabel *lblImpowerTime;
+@property (weak, nonatomic) IBOutlet UIView *viewBackground;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewBackTopConstraint;
+
+@end
+
+@implementation UCRecommendDetailDescribeTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configDescribeCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)setRecommendType:(ENUM_RecommendType)recommendType
+{
+    _verLine.hidden = _recommendType == ENUM_RecommendTypeRecommend;
+    _lblImpowerTime.hidden = _recommendType == ENUM_RecommendTypeRecommend;
+    _viewBackTopConstraint.constant = _recommendType == ENUM_RecommendTypeRecommend ? 10.f : 10.f + 25.f;
+}
+
+- (void)configDescribeCell
+{
+    _lblDescribe.textColor = [UIColor cm_blackColor_666666_1];
+    _lblDescribe.font = [UIFont systemFontOfSize:cFontSize_16];
+    
+    _viewBackground.layer.borderColor = [UIColor cm_lineColor_D9D7D7_1].CGColor;
+    _viewBackground.layer.borderWidth = 1.f;
+    
+    _lblImpowerTime.textColor = [UIColor cm_blackColor_333333_1];
+    _lblImpowerTime.font = [UIFont systemFontOfSize:cFontSize_16];
+}
+
+- (void)dataDidChange
+{
+    if (_recommendType == ENUM_RecommendTypeRecommend) {
+        RecommendModel *recommend = self.data;
+        _lblDescribe.text = recommend.content.length > 0 ? recommend.content : LOCALIZATION(@"推荐内容");
+    }
+    else {
+        ImpowerModel *impower = self.data;
+        _lblDescribe.text = impower.content.length > 0 ? impower.content : LOCALIZATION(@"授权描述");
+        _lblImpowerTime.text = [NSString stringWithFormat:@"%@: %@ - %@", LOCALIZATION(@"授权周期"), [impower.startTime substringToIndex:10], [impower.endTime substringToIndex:10]];
+    }
+
+}
+
+@end

@@ -1,0 +1,31 @@
+//
+//  ECRmultiObject.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRMultiObject.h"
+
+@interface ECRMultiObject ()
+
+
+@end
+
+@implementation ECRMultiObject
+
+- (UIUserInterfaceIdiom)userInterfaceIdiom{
+    return [[UIDevice currentDevice] userInterfaceIdiom];
+}
+
++ (instancetype)sharedInstance{
+    static id instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
+
+@end

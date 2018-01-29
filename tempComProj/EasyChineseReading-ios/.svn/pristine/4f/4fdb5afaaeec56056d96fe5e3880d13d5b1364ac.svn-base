@@ -1,0 +1,16 @@
+//
+//  UCMAddVC.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/2.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBaseViewController.h"
+
+@interface UCMAddVC : ECRBaseTableViewController
+
+/* 类型 0创建班级 1班级详情 */
+@property (assign, nonatomic) NSInteger classType;
+
+@end

@@ -1,0 +1,64 @@
+//
+//  LTextFieldTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/8.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "LTextFieldTableViewCell.h"
+
+@interface LTextFieldTableViewCell ()<UITextFieldDelegate>
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgIcon;
+@property (strong, nonatomic) IBOutlet UITextField *txtfContent;
+@property (strong, nonatomic) IBOutlet UIImageView *imgSelected;
+
+@end
+
+@implementation LTextFieldTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    _imgSelected.image = [UIImage imageNamed:@"2"];
+    _txtfContent.delegate = self;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    _imgIcon.image = [UIImage imageNamed:dic[@"icon"]];
+    _txtfContent.placeholder = dic[@"placeHolder"];
+    _imgSelected.hidden = !dic[@"showSelected"];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (!_imgSelected.hidden) {
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap_txtfContent)];
+        [_txtfContent addGestureRecognizer:tap];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)tap_txtfContent
+{
+    if ([self.delegate respondsToSelector:@selector(selectedCountry)]) {
+        [self.delegate selectedCountry];
+    }
+}
+
+- (void)resignAllFirstResponder
+{
+    [_txtfContent resignFirstResponder];
+}
+
+@end

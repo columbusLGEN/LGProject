@@ -1,0 +1,24 @@
+//
+//  ECRHypermediaManager.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/11/13.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+@class DBPlayer;
+@interface ECRHypermediaManager : NSObject
+
+
+/**
+ 打开超媒体文件
+
+ @param hyperURL 文件路径
+ @param vc 控制器
+ */
++ (void)openHypermidiaWithURL:(NSString *)hyperURL vc:(UIViewController *)vc;
+
+@property (strong,nonatomic) DBPlayer *dbPlayer;
+
+@end

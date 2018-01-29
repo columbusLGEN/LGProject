@@ -1,0 +1,75 @@
+//
+//  ECRBoomRecomment.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+static CGFloat itemW = 72;
+static CGFloat itemH = 194;
+static CGFloat insetsLR = 11;
+
+#import "ECRBoomRecomment.h"
+#import "ECRHeadlineView.h"
+
+@interface ECRBoomRecomment ()
+@property (strong,nonatomic) ECRHeadlineView *headLine;// 标题
+
+
+@end
+
+
+@implementation ECRBoomRecomment
+
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self addSubview:self.headLine];
+        
+        [self.headLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top);
+            make.left.equalTo(self.mas_left);
+            make.right.equalTo(self.mas_right);
+            make.height.equalTo(@36);
+        }];
+        [self addSubview:self.collectionView];
+        self.collectionView.backgroundColor = [UIColor whiteColor];
+        
+        [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.headLine.mas_bottom).offset(5);
+            make.left.equalTo(self.mas_left);
+            make.right.equalTo(self.mas_right);
+            make.bottom.equalTo(self.mas_bottom);
+        }];
+    }
+    return self;
+}
+
+- (ECRHeadlineView *)headLine{
+    if (_headLine == nil) {
+        _headLine = [[ECRHeadlineView alloc] init];
+        _headLine.headTitle = @"重磅推荐";
+    }
+    return _headLine;
+}
+- (UICollectionView *)collectionView{
+    if (_collectionView == nil) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.brFlowLayout];
+        [_collectionView setContentInset:UIEdgeInsetsMake(0, insetsLR, 0, insetsLR)];
+    }
+    return _collectionView;
+}
+
+- (UICollectionViewFlowLayout *)brFlowLayout{
+    if (_brFlowLayout == nil) {
+        _brFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+        _brFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _brFlowLayout.itemSize = CGSizeMake(itemW, itemH);
+        _brFlowLayout.minimumLineSpacing = 26;// 横向,一行,控制每个之间的空间
+        _brFlowLayout.minimumInteritemSpacing = 0;
+    }
+    return _brFlowLayout;
+}
+
+@end

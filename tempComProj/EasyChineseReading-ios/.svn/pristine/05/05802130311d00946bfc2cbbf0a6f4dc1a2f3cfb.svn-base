@@ -1,0 +1,28 @@
+//
+//  UFavouriteTableViewCell.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/31.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class UFavouriteTableViewCell;
+
+@protocol UFavouriteTableViewCellDelegate <NSObject>
+
+- (void)addToShopCarWithBook:(BookModel *)book;
+
+- (void)shareWithBook:(BookModel *)book;
+
+@end
+
+@interface UFavouriteTableViewCell : UITableViewCell
+
+/** 代理 */
+@property (nonatomic, assign) id<UFavouriteTableViewCellDelegate> delegate;
+/** 是否选中 */
+@property (nonatomic, assign) BOOL isSelected;
+
+@end

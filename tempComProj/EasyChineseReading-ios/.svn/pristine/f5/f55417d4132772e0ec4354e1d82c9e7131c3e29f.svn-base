@@ -1,0 +1,38 @@
+//
+//  UCMessageListTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/13.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCMessageListTableViewCell.h"
+
+@interface UCMessageListTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UILabel *lblMessage;
+@property (weak, nonatomic) IBOutlet UIView *viewLine;
+
+@end
+
+@implementation UCMessageListTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    _viewLine.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+
+- (void)dataDidChange
+{
+    SendMessageModel *message = self.data;
+    _lblMessage.text = message.message;
+}
+
+@end

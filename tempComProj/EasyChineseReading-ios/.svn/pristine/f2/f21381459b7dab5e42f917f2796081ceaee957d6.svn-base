@@ -1,0 +1,52 @@
+//
+//  YMWMReceiver.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/10/29.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+
+/*
+ 该类俩大功能
+ 1、持有4个功能对象
+ 2、web端消息接收与分发功能
+ 
+ 
+ 该类包含了4个功能对象
+ 1、目录
+ 2、文件序列
+ 3、书签
+ 4、笔记
+*/
+
+
+
+#import <Foundation/Foundation.h>
+#import "CatalogParser.h"
+#import "SpineParser.h"
+#import "BookMarkOperator.h"
+#import "BookDigestOperator.h"
+#import "AboutJson.h"
+#import "YMMakeModels.h"
+
+
+@class YMEpubSearchModel;
+
+@interface YMWMReceiver : NSObject
+
+@property (nonatomic, retain) NSNumber           *currentCatIndex;
+@property (nonatomic, retain) NSNumber           *currentOffset;
+
+@property (nonatomic, retain) CatalogParser      *catParser;
+@property (nonatomic, retain) SpineParser        *spParser;
+@property (nonatomic, retain) BookMarkOperator   *bkOperator;
+@property (nonatomic, retain) BookDigestOperator *bdOperator;
+
++ (YMWMReceiver *)sharedInstance;
+
+- (void)creatParser;
+
+- (NSString *)getNoteListToJsonStringWithIndex:(NSNumber *)index;
+
+@end

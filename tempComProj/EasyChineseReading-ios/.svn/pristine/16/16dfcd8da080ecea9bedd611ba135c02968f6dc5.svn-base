@@ -1,0 +1,61 @@
+//
+//  ECRMoreBooksCell.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRMoreBooksCell.h"
+#import "BookModel.h"
+#import "ECRStarView.h"
+
+@interface ECRMoreBooksCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *cover;
+@property (weak, nonatomic) IBOutlet UILabel *bName;
+@property (weak, nonatomic) IBOutlet UILabel *bAuthor;
+@property (weak, nonatomic) IBOutlet UILabel *bSynopsis;
+@property (weak, nonatomic) IBOutlet ECRStarView *starView;
+@property (weak, nonatomic) IBOutlet UILabel *bMoney;
+@property (weak, nonatomic) IBOutlet UIView *line;
+@property (weak, nonatomic) IBOutlet UIView *lineTop;
+
+
+@end
+
+@implementation ECRMoreBooksCell
+
+- (void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = indexPath;
+    if (indexPath.row) {
+        self.lineTop.hidden = YES;
+    }else{
+        self.lineTop.hidden = NO;
+    }
+}
+
+- (void)setModel:(BookModel *)model{
+    _model = model;
+    
+//    [_cover sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:nil];
+    _bName.text     = [NSString stringWithFormat:@"%@",model.bookName];
+    _bAuthor.text   = [NSString stringWithFormat:@"作者：%@",model.author];
+    _bSynopsis.text = [NSString stringWithFormat:@"简介：%@",model.contentValidity];
+    _bMoney.text = [NSString stringWithFormat:@"￥%.2f",model.price];
+    
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    _cover.clipsToBounds = YES;
+    UIColor *lColor = [UIColor colorWithHexString:@"e3e3e3"];
+    _line.backgroundColor = lColor;
+    _lineTop.backgroundColor = lColor;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+
+@end
+
+

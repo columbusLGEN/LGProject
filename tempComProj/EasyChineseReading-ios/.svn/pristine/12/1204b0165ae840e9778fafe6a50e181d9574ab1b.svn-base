@@ -1,0 +1,64 @@
+//
+//  ECRSettleAccountsController.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRSettleAccountsController.h"
+#import "ECRSettleAccountsView.h"
+#import "ECRSettleAccountsModel.h"
+#import "ECRPayStyleDelegate.h"
+#import "ECRBookInfoModel.h"
+
+@interface ECRSettleAccountsController ()<ECRPayStyleDelegate>
+
+@property (strong,nonatomic) ECRSettleAccountsView *saView;//
+
+@end
+
+@implementation ECRSettleAccountsController
+
+- (void)setModel:(ECRBookInfoModel *)model{
+    _model = model;
+    self.saView.model = model;
+}
+
+-(void)payStyle:(NSObject *)object style:(NSInteger)style{
+    switch (style) {
+        case 101:{// 苹果
+            
+        }
+            
+            break;
+        case 102:{
+            
+        }
+            
+            break;
+            
+    }
+}
+- (void)payNow:(NSObject *)object{
+    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    
+}
+- (void)textDependsLauguage{
+    self.title = [LGPChangeLanguage localizedStringForKey:@"订单结算"];
+}
+
+- (void)setupUI{
+    [self textDependsLauguage];
+    self.saView = [[[NSBundle mainBundle] loadNibNamed:@"ECRSettleAccountsView" owner:nil options:nil] firstObject];
+    self.saView.frame = self.view.bounds;
+    self.saView.delegate = self;
+    self.view = self.saView;
+}
+
+@end

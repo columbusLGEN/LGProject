@@ -1,0 +1,56 @@
+//
+//  UserTicketVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/14.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserTicketVC.h"
+
+@interface UserTicketVC ()
+@property (weak, nonatomic) IBOutlet UILabel *lblDescTicketCode;        // 卡券描述
+@property (weak, nonatomic) IBOutlet UITextField *txtfDescTicketCode;   // 输入卡券
+
+@property (weak, nonatomic) IBOutlet UILabel *lblVerifyCode;            // 验证码描述
+@property (weak, nonatomic) IBOutlet UITextField *txtfVerifyCode;       // 输入验证码
+@property (weak, nonatomic) IBOutlet UIImageView *imgVerifyCode;        // 验证码图片
+@property (weak, nonatomic) IBOutlet UILabel *lblUpdateVerifyCode;      // 更换验证码（button功能，需要下划线，label实现方便）
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDescHint;              // 提示描述
+@property (weak, nonatomic) IBOutlet UITextView *txtVHint;              // 提示
+
+@end
+
+@implementation UserTicketVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configTicketView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 配置界面
+
+- (void)configTicketView
+{
+    _lblDescTicketCode.textColor = [UIColor cm_blackColor_333333_1];
+    _lblVerifyCode.textColor = [UIColor cm_blackColor_333333_1];
+    _lblUpdateVerifyCode.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescTicketCode.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfDescTicketCode.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfVerifyCode.textColor = [UIColor cm_blackColor_333333_1];
+    _txtVHint.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _lblDescTicketCode.font = [UIFont systemFontOfSize:15.f];
+    _lblUpdateVerifyCode.font = [UIFont systemFontOfSize:15.f];
+    _lblDescHint.font = [UIFont systemFontOfSize:17.f];
+    
+}
+
+
+@end

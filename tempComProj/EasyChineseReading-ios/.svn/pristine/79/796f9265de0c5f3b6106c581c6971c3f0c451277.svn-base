@@ -1,0 +1,75 @@
+//
+//  USCHeaderView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "USCHeaderView.h"
+
+@interface USCHeaderView ()
+
+@property (strong, nonatomic) UIView *headerView;
+
+@property (strong, nonatomic) UIButton *btnL;
+@property (strong, nonatomic) UIButton *btnR;
+
+@end
+
+@implementation USCHeaderView
+
+- (void)drawRect:(CGRect)rect
+{
+    [self configHeaderView];
+}
+
+- (void)configHeaderView
+{
+    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, Screen_Width, 44)];
+    _headerView.backgroundColor = [UIColor whiteColor];
+    
+    _btnL = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, Screen_Width/2 - 1, 43)];
+    [_btnL setTitle:@"手机" forState:UIControlStateNormal];
+    [_btnL setTitleColor:[UIColor cm_blackColor_333333_1] forState:UIControlStateNormal];
+    [_btnL setTitleColor:[UIColor cm_purpleColor_82056B_1] forState:UIControlStateSelected];
+    [_btnL setBackgroundColor:[UIColor clearColor]];
+    [_btnL addTarget:self action:@selector(selectLeftButton) forControlEvents:UIControlEventTouchUpInside];
+//    _btnL.selected = _verifyType == ENUM_VerityTypePhone;
+    
+    _btnR = [[UIButton alloc] initWithFrame:CGRectMake(Screen_Width/2, 0, Screen_Width/2, 43)];
+    [_btnR setTitle:@"邮箱" forState:UIControlStateNormal];
+    [_btnR setTitleColor:[UIColor cm_blackColor_333333_1] forState:UIControlStateNormal];
+    [_btnR setTitleColor:[UIColor cm_purpleColor_82056B_1] forState:UIControlStateSelected];
+    [_btnR setBackgroundColor:[UIColor clearColor]];
+    [_btnR addTarget:self action:@selector(selectedRightButton) forControlEvents:UIControlEventTouchUpInside];
+//    _btnR.selected = _verifyType == ENUM_VerityTypeEmail;
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(Screen_Width/2 - 1, 10, .5, 24)];
+    lineView.backgroundColor = [UIColor cm_lineColor_C6C6C6_1];
+    
+    UIView *bLineView = [[UIView alloc] initWithFrame:CGRectMake(0, _headerView.height - 0.5, Screen_Width, 0.5)];
+    bLineView.backgroundColor = [UIColor cm_lineColor_C6C6C6_1];
+    
+    [self addSubview:_headerView];
+    [_headerView addSubview:_btnL];
+    [_headerView addSubview:_btnR];
+    [_headerView addSubview:lineView];
+    [_headerView addSubview:bLineView];
+}
+
+- (void)selectLeftButton
+{
+    if ([self.delegate respondsToSelector:@selector(selectedPhoneVerify)]) {
+        [self.delegate selectedPhoneVerify];
+    }
+}
+
+- (void)selectedRightButton
+{
+    if ([self.delegate respondsToSelector:@selector(selectedEmailVeirfy)]) {
+        [self.delegate selectedEmailVeirfy];
+    }
+}
+
+@end

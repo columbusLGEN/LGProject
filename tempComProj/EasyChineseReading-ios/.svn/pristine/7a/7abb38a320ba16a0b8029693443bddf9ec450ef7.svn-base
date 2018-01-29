@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="pub-id">
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title id="title">Unit 1. Life Sciences: Studying the Life Sciences</dc:title>
+    <dc:creator id="creator">CK-12</dc:creator>
+    <dc:language>en</dc:language>
+    <dc:identifier id="pub-id">ls-studying-the-life-sciences</dc:identifier>
+    <meta name="wmk" content="Purchased from:www.azardi.com/daxiang/    Title:Unit 1. Life Sciences: Studying the Life Sciences    ISBN:ls-studying-the-life-sciences    Author:CK-12    Account:AAAA0267    Invoice:AAAA0231    Dated:2013-06-05 02:31:32.704317    Purchased by:xingyun wu" />
+    <dc:source>ls-studying-the-life-sciences</dc:source>
+    <meta property="dcterms:modified">2013-06-03T00:07:29Z</meta>
+    <dc:date>2013</dc:date>
+    <dc:publisher>Infogrid Pacific Pte. Ltd.</dc:publisher>
+    <dc:rights>Infogrid Pacific Pte. Ltd.</dc:rights>
+    <dc:description>* Describe the role of a scientist.
+* Understand that science is a system based on evidence, testing, and reasoning.
+* Define Life Science.
+* Describe how evidence is used to create and support scientific theories.
+* Describe the scientific method as a process.
+* Explain why the scientific method allows scientists and others to examine the physical world more objectively than other ways of knowing.
+* Describe the steps involved in the scientific method.
+* Describe the growing number of tools available to investigate different features of the physical world.
+* Describe how microsco
+* Recognize how the kind of hazards that a scientist faces depends on the kind of research they do.
+* Identify some potential risks associated with scientific research.
+* Identify how safety regulations protect scientists and the environment.</dc:description>
+    <dc:subject>Science, Life Science, Introduction</dc:subject>
+</metadata>
+<manifest>
+    <item id="toc" properties="nav" href="TOC.xhtml" media-type="application/xhtml+xml" />
+    <item id="cover" properties="scripted" href="cover.xhtml" media-type="application/xhtml+xml" />
+    <item id="cover-image" properties="cover-image" href="images/ls-studying-the-life-sciences.jpg" media-type="image/jpeg" />
+    <item id="s001" properties="scripted" href="s001-Unit-001.xhtml" media-type="application/xhtml+xml" />
+    <item id="s002" properties="scripted" href="s002-Lesson-001.xhtml" media-type="application/xhtml+xml" />
+    <item id="s003" properties="scripted" href="s003-Lesson-002.xhtml" media-type="application/xhtml+xml" />
+    <item id="s004" properties="scripted" href="s004-Lesson-003.xhtml" media-type="application/xhtml+xml" />
+    <item id="s005" properties="scripted" href="s005-Lesson-004.xhtml" media-type="application/xhtml+xml" />
+    <item id="s006" properties="scripted" href="s006-Lesson-005.xhtml" media-type="application/xhtml+xml" />
+    <item id="images-001"  href="images/20130404122558290965_online.jpg" media-type="image/jpeg" />
+    <item id="images-002"  href="images/20130404122558463154_online.jpg" media-type="image/jpeg" />
+    <item id="images-003"  href="images/20130404122558615445_online.jpg" media-type="image/jpeg" />
+    <item id="images-004"  href="images/20130404122558830967_online.png" media-type="image/png" />
+    <item id="images-005"  href="images/20130404122558991996_online.jpg" media-type="image/jpeg" />
+    <item id="images-006"  href="images/20130404122559204773_online.jpg" media-type="image/jpeg" />
+    <item id="images-007"  href="images/20130404122559406390_online.jpg" media-type="image/jpeg" />
+    <item id="images-008"  href="images/20130404122559610535_online.jpg" media-type="image/jpeg" />
+    <item id="images-009"  href="images/20130404122559762283_online.jpg" media-type="image/jpeg" />
+    <item id="images-010"  href="images/20130404122559926530_online.jpg" media-type="image/jpeg" />
+    <item id="images-011"  href="images/20130404122600155261_online.jpg" media-type="image/jpeg" />
+    <item id="images-012"  href="images/20130404122600296583_online.png" media-type="image/png" />
+    <item id="images-013"  href="images/20130404122600641737_online.jpg" media-type="image/jpeg" />
+    <item id="images-014"  href="images/20130404122600807095_online.png" media-type="image/png" />
+    <item id="images-015"  href="images/20130404122600967414_online.png" media-type="image/png" />
+    <item id="images-016"  href="images/20130404122601145638_online.jpg" media-type="image/jpeg" />
+    <item id="images-017"  href="images/20130404122601272685_online.png" media-type="image/png" />
+    <item id="images-018"  href="images/20130404122601379896_online.jpg" media-type="image/jpeg" />
+    <item id="images-019"  href="images/20130404122601563620_online.jpg" media-type="image/jpeg" />
+    <item id="images-020"  href="images/20130404122601783248_online.jpg" media-type="image/jpeg" />
+    <item id="images-021"  href="images/20130404122601967575_online.jpg" media-type="image/jpeg" />
+    <item id="images-022"  href="images/20130404122602223271_online.jpg" media-type="image/jpeg" />
+    <item id="images-023"  href="images/20130404122602361439_online.png" media-type="image/png" />
+    <item id="images-024"  href="images/20130404122602823528_online.jpg" media-type="image/jpeg" />
+    <item id="images-025"  href="images/20130404122603335368_online.jpg" media-type="image/jpeg" />
+    <item id="images-026"  href="images/ch01_online.jpg" media-type="image/jpeg" />
+    <item id="images-027"  href="images/icon-intractive-tutorials-c.png" media-type="image/png" />
+    <item id="js-001"  href="js/LAB.min.js" media-type="text/javascript" />
+    <item id="js-002"  href="js/aie_core.js" media-type="text/javascript" />
+    <item id="js-003"  href="js/aie_events.js" media-type="text/javascript" />
+    <item id="js-004"  href="js/aie_explore.js" media-type="text/javascript" />
+    <item id="js-005"  href="js/aie_gameutils.js" media-type="text/javascript" />
+    <item id="js-006"  href="js/aie_qaa.js" media-type="text/javascript" />
+    <item id="js-007"  href="js/aie_storyline.js" media-type="text/javascript" />
+    <item id="js-008"  href="js/aie_textsound.js" media-type="text/javascript" />
+    <item id="js-009"  href="js/igp_audio.js" media-type="text/javascript" />
+    <item id="js-010"  href="js/iscroll.js" media-type="text/javascript" />
+    <item id="js-011"  href="js/jquery-1.9.1.min.js" media-type="text/javascript" />
+    <item id="js-012"  href="js/jquery-migrate-1.2.1.min.js" media-type="text/javascript" />
+    <item id="js-013"  href="js/jquery-ui.min.js" media-type="text/javascript" />
+    <item id="js-014"  href="js/jquery.slides.min.js" media-type="text/javascript" />
+    <item id="js-015"  href="js/panelnav.js" media-type="text/javascript" />
+    <item id="js-016"  href="js/popup.js" media-type="text/javascript" />
+    <item id="js-017"  href="js/pubsub.js" media-type="text/javascript" />
+    <item id="css-001"  href="css/ls-studying-the-life-sciences.css" media-type="text/css" />
+    <item id="fonts-001"  href="fonts/SourceSansPro-Black.woff" media-type="application/font-woff" />
+    <item id="fonts-002"  href="fonts/SourceSansPro-BlackIt.woff" media-type="application/font-woff" />
+    <item id="fonts-003"  href="fonts/SourceSansPro-Bold.woff" media-type="application/font-woff" />
+    <item id="fonts-004"  href="fonts/SourceSansPro-BoldIt.woff" media-type="application/font-woff" />
+    <item id="fonts-005"  href="fonts/SourceSansPro-ExtraLight.woff" media-type="application/font-woff" />
+    <item id="fonts-006"  href="fonts/SourceSansPro-ExtraLightIt.woff" media-type="application/font-woff" />
+    <item id="fonts-007"  href="fonts/SourceSansPro-It.woff" media-type="application/font-woff" />
+    <item id="fonts-008"  href="fonts/SourceSansPro-Light.woff" media-type="application/font-woff" />
+    <item id="fonts-009"  href="fonts/SourceSansPro-LightIt.woff" media-type="application/font-woff" />
+    <item id="fonts-010"  href="fonts/SourceSansPro-Regular.woff" media-type="application/font-woff" />
+    <item id="fonts-011"  href="fonts/SourceSansPro-Semibold.woff" media-type="application/font-woff" />
+    <item id="fonts-012"  href="fonts/SourceSansPro-SemiboldIt.woff" media-type="application/font-woff" />
+</manifest>
+<spine page-progression-direction="ltr">
+    <itemref idref="cover" linear="yes" />
+    <itemref idref="s001" linear="yes" />
+    <itemref idref="s002" linear="yes" />
+    <itemref idref="s003" linear="yes" />
+    <itemref idref="s004" linear="yes" />
+    <itemref idref="s005" linear="yes" />
+    <itemref idref="s006" linear="yes" />
+</spine>
+</package>

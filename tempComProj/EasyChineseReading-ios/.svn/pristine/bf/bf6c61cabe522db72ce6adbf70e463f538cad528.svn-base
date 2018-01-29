@@ -1,0 +1,108 @@
+//
+//  ECRBookFormViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/27.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRBookFormViewController.h"
+#import "ECRPaymentPreviousView.h"
+#import "ECRBookFormTopView.h"
+
+@interface ECRBookFormViewController ()
+//@property (strong,nonatomic) UIScrollView *scrollView;//
+@property (strong,nonatomic) UIButton *backTosc;//
+@property (strong,nonatomic) UIButton *pay;//
+
+@end
+
+@implementation ECRBookFormViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    
+}
+
+- (void)setupUI{
+    self.title = @"订单明细";
+    
+//    UIScrollView *scrollView = [[UIScrollView alloc] init];
+//    self.scrollView = scrollView;
+//    scrollView.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:scrollView];
+    [self.view addSubview:self.backTosc];
+    [self.view addSubview:self.pay];
+//    [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view.mas_top);
+//        make.left.equalTo(self.view.mas_left);
+//        make.right.equalTo(self.view.mas_right);
+//        make.bottom.equalTo(self.backTosc.mas_top);
+//    }];
+    
+//    ECRBookFormTopView *btv = [[ECRBookFormTopView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, 50)];
+    ECRBookFormTopView *btv = [[ECRBookFormTopView alloc] init];
+    btv.priceYu = @"90.00";
+    [self.view addSubview:btv];
+    
+//    ECRPaymentPreviousView *ppv = [[ECRPaymentPreviousView alloc] initWithFrame:CGRectMake(0, 50, Screen_Width, Screen_Height - 50)];
+    ECRPaymentPreviousView *ppv = [[ECRPaymentPreviousView alloc] init];
+    [self.view addSubview:ppv];
+    
+    [btv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);
+        make.left.equalTo(self.view.mas_left);
+        make.bottom.equalTo(ppv.mas_top);
+        make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(@50);
+        make.width.equalTo(@(Screen_Width));
+    }];
+    [ppv mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(btv.mas_bottom);
+        make.width.equalTo(@(Screen_Width));
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.backTosc.mas_top);
+    }];
+    CGFloat heightBB = 50;
+    [self.backTosc mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ppv.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.height.equalTo(@(heightBB));
+        make.width.equalTo(@(Screen_Width / 2));
+    }];
+    [self.pay mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view.mas_right);
+        make.width.equalTo(@(Screen_Width / 2 + 1));
+        make.top.equalTo(self.backTosc.mas_top);
+        make.bottom.equalTo(self.backTosc.mas_bottom);
+    }];
+    
+}
+- (UIButton *)backTosc{
+    if (_backTosc == nil) {
+        _backTosc = [[UIButton alloc] init];
+        _backTosc.layer.borderWidth = 1;
+        _backTosc.layer.borderColor = [UIColor blackColor].CGColor;
+        [_backTosc setTitle:@"返回购物车" forState:UIControlStateNormal];
+        [_backTosc setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_backTosc.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [_backTosc setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _backTosc;
+}
+- (UIButton *)pay{
+    if (_pay == nil) {
+        _pay = [[UIButton alloc] init];
+        _pay.layer.borderWidth = 1;
+        _pay.layer.borderColor = [UIColor blackColor].CGColor;
+        [_pay setTitle:@"购买" forState:UIControlStateNormal];
+        [_pay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_pay.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [_pay setBackgroundColor:[UIColor purpleColor]];
+    }
+    return _pay;
+}
+@end

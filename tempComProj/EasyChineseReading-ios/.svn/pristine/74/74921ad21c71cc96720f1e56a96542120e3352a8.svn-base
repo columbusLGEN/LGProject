@@ -1,0 +1,400 @@
+﻿body
+{
+    font-family: SimSun;
+}
+a
+{
+    text-decoration: none;
+}
+hr
+{
+    text-align:left;
+	margin-left:0;
+    width:30%;
+}
+.bok_seriesname
+{
+    font-size:1.2em;
+    text-align:left;
+}
+.bok_bookname
+{
+    font-weight:bold;
+    font-size:2.0em;
+    text-align:center;
+    margin: 2em 0em 0em 0em;
+}
+.bok_booksubname
+{
+    font-size:1.5em;
+    text-align:center;
+    margin: 0.5em 0em 0em 0em;
+}
+.bok_author
+{
+    font-size:1.5em;
+    text-align:center;
+    margin: 1em 0em 0em 0em;
+}
+.bok_publish
+{
+    font-size:1.5em;
+    text-align:center;
+    margin: 6em 0em 1em 0em;
+}
+.part
+{
+    font-weight:bold;
+    font-size:2.0em;
+    color:#c36500;
+    text-align:center;
+    margin: 1em 0em 2em 0em;
+}
+
+.sect1
+{
+    text-align:center;
+    font-size:1.8em;
+    color:#c36500;
+    font-weight:bold;
+    margin: 1em 0em 1em 0em;
+}
+.sect2
+{   
+    text-align:left;
+    text-indent:0em;
+    font-size:1.6em;
+    color:#c36500;
+    font-weight:bold;
+    margin: 1em 0em 1em 0em;
+}
+.sect3
+{
+    text-align:left;
+    text-indent:0em;
+    font-size:1.4em;
+    color:#c36500;
+    font-weight:bold;
+    margin: 1em 0em 1em 0em;
+}
+.sect4
+{
+    text-align:left;
+    text-indent:0em;
+    font-size:1.2em;
+    color:#c36500;
+    font-weight:bold;
+    margin: 1em 0em 1em 0em;
+}
+.sect5
+{
+    text-align:left;
+    text-indent:1em;
+    font-size:1.0em;
+    color:#c36500;
+    font-weight:bold;
+    margin: 1em 0em 1em 0em;
+}
+.sect6
+{
+    text-align:left;
+    text-indent:2em;
+    font-size:1.0em;
+    color:#c36500;
+    font-weight:bold;
+    margin: 1em 0em 1em 0em;
+}
+.content
+{
+    font-size: 1.0em;
+    text-align:justify;
+    text-justify:inter-ideograph;
+    text-indent:2.0em;
+    line-height:1.25em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_right
+{
+    font-size: 1.0em;
+    text-align:right;
+    text-indent:2.0em;
+    line-height:1.25em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_left
+{
+    font-size: 1.0em;
+    text-align:justify;
+    text-justify:inter-ideograph;
+    text-indent:0em;
+    line-height:1.25em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_center
+{
+    font-size: 1.0em;
+    text-align:center;
+    line-height:1.25em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_side
+{
+    font-size: 0.8em;
+    text-align:justify;
+    text-justify:inter-ideograph;
+    color:gray;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_reference
+{
+    font-size: 0.8em;
+    text-align:justify;
+    text-justify:inter-ideograph;
+    text-indent:2.0em;
+    line-height:1.25em;
+    padding-left:2.0em;
+    padding-right:2.0em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_reference_right
+{
+    font-size: 0.8em;
+    text-align:right;
+    text-indent:2.0em;
+    line-height:1.25em;
+    padding-left:2.0em;
+    padding-right:2.0em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_reference_center
+{
+    font-size: 0.8em;
+    text-align:center;
+    line-height:1.25em;
+    padding-left:2.0em;
+    padding-right:2.0em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_reference_left
+{
+    font-size: 0.8em;
+    text-align:justify;
+    text-justify:inter-ideograph;
+    line-height:1.25em;
+    padding-left:2.0em;
+    padding-right:2.0em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+.content_poem
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 1.0em;
+    text-align: left;
+    padding-left:4.0em;
+    padding-right:4.0em;
+}
+.content_poem_center
+{
+    text-align:center;
+    font-size: 1.0em;
+    text-align: left;
+    padding-left:4.0em;
+    padding-right:4.0em;
+}
+.content_poem_left
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 1.0em;
+    text-align: left;
+    padding-left:4.0em;
+    padding-right:4.0em;
+}
+.content_poem_right
+{
+    text-align:right;
+    font-size: 1.0em;
+    text-align: left;
+    padding-left:4.0em;
+    padding-right:4.0em;
+}
+.picture_character
+{
+    height:1.0em;
+    vertical-align:text-bottom;
+}
+.picture_line
+{
+    vertical-align:middle;
+}
+.picture_figure_line
+{
+    vertical-align:middle;
+}
+.picture_formula_line
+{
+    vertical-align:middle;
+}
+.picture_formula
+{
+    vertical-align:middle;
+    text-align:center;
+}
+.picture_figure
+{
+    text-align:center;
+}
+.picture_figure_center
+{
+    text-align:center;
+}
+.picture_figure_left
+{
+    text-align:left;
+}
+.picture_figure_right
+{
+    text-align:right;
+}
+.picture_figure_left_float
+{
+    float:left;
+}
+.picture_figure_right_float
+{
+    float:right;
+}
+.picture_figure_note
+{
+    font-size: 0.8em;
+    text-align: center;
+    line-height:1.25em;
+}
+.picture_figure_title
+{
+    font-size: 0.8em;
+    text-align: center;
+    line-height:1.25em;
+    margin-top:0.2em;
+}
+.picture_table
+{
+    text-align: center;
+}
+.picture_table_note
+{
+    font-size: 0.8em;
+    text-align: left;
+    line-height:1.25em;
+}
+.picture_table_title
+{
+    font-size: 0.8em;
+    text-align: center;
+    line-height:1.25em;
+    margin-bottom:0.2em;
+}
+.picture_table_content
+{
+    display: none;
+    font-size: 0.8em;
+    text-align: left;
+    line-height:1.25em;
+}
+.footnote_quote
+{
+    font-size: 0.6em;
+    vertical-align:super;
+}
+.footnote_content
+{
+    font-size: 0.8em;
+}
+.endnote_quote
+{
+    font-size: 0.6em;
+    vertical-align:super;
+}
+.endnote_content
+{
+    font-size: 0.8em;
+}
+
+.superscript
+{
+    font-size: 0.6em;
+    vertical-align:super;
+}
+.subscript
+{
+    font-size: 0.6em;
+    vertical-align:sub;
+}
+.emphasis_italic
+{
+    font-style:italic;
+}
+.emphasis_bold
+{
+    font-weight:bold;
+}
+.emphasis_underlined
+{
+    text-decoration:underline;
+}
+.emphasis_delete_line
+{
+    text-decoration:line-through;
+}
+
+.toc_part
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 1.2em;
+    font-weight:bold;
+    padding-left:0.0em;
+}
+.toc_sect1
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 1.2em;
+    padding-left:2.0em;
+}
+.toc_sect2
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 1.0em;
+    padding-left:4.0em;
+}
+.toc_sect3
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 1.0em;
+    padding-left:6.0em;
+}
+.toc_sect4
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 1.0em;
+    padding-left:8.0em;
+}
+.toc_sect5
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 0.8em;
+    padding-left:9.0em;
+}
+.toc_sect6
+{
+    text-align:justify;
+    text-justify:inter-ideograph;
+    font-size: 0.8em;
+    padding-left:10.0em;
+}

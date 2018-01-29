@@ -1,0 +1,52 @@
+//
+//  ECRBooksSelectedTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/15.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRBooksSelectedTableViewCell.h"
+
+@interface UCRBooksSelectedTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *lblBookName;          // 选中图书的书名
+@property (weak, nonatomic) IBOutlet UIButton *btnUnSelectedBook;   // 删除选中的图书
+
+@end
+
+@implementation UCRBooksSelectedTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+#pragma mark - 配置界面
+
+- (void)configBookSelectedCell
+{
+    _lblBookName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblBookName.font = [UIFont systemFontOfSize:15.f];
+}
+
+#pragma mark - 赋值
+
+- (void)dataDidChange
+{
+    
+}
+
+- (IBAction)click_btnUnSelectedBook:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(removeSelectedBook:)]) {
+        [self.delegate removeSelectedBook:self.data];
+    }
+}
+
+@end

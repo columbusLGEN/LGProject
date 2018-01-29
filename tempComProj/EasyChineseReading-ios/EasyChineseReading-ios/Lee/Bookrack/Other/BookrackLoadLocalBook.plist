@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>cellTitle</key>
+		<string>第一步</string>
+		<key>en_cellTitle</key>
+		<string>Step 1</string>
+		<key>cellInfo</key>
+		<string>把iPhone（iPad）与电脑连接，打开电脑上的iTunes</string>
+		<key>en_cellInfo</key>
+		<string>Connect the iPhone (iPad) to your computer, and open iTunes on the computer.</string>
+		<key>cellImageName</key>
+		<string>bookrack_local_book_step_1</string>
+		<key>en_cellImageName</key>
+		<string>bookrack_local_book_step_1</string>
+	</dict>
+	<dict>
+		<key>cellTitle</key>
+		<string>第二步</string>
+		<key>en_cellTitle</key>
+		<string>Step 2</string>
+		<key>cellInfo</key>
+		<string>在ITunes里选择设备，点击“我的应用程序”，选择“Easy Chinese reading”</string>
+		<key>en_cellInfo</key>
+		<string>Select the device in ITunes, click &quot;My Applications&quot; and choose &quot;Easy Chinese reading&quot;.</string>
+		<key>cellImageName</key>
+		<string>bookrack_local_book_step_2</string>
+		<key>en_cellImageName</key>
+		<string>bookrack_local_book_step_2_en</string>
+	</dict>
+	<dict>
+		<key>cellTitle</key>
+		<string>第三步</string>
+		<key>en_cellTitle</key>
+		<string>Step 3</string>
+		<key>cellInfo</key>
+		<string>点击“添加到”按钮，上传本地图书（pdf，epub，超媒体格式）。在书架中即可阅读该电子书。</string>
+		<key>en_cellInfo</key>
+		<string>Click &quot;Add to&quot; to upload local books (pdf, epub, hypermedia format) so that you can read the e-book in the shelf.</string>
+		<key>cellImageName</key>
+		<string>bookrack_local_book_step_3</string>
+		<key>en_cellImageName</key>
+		<string>bookrack_local_book_step_3_en</string>
+	</dict>
+</array>
+</plist>

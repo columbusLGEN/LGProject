@@ -1,0 +1,28 @@
+//
+//  ECRBookrackView.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@class ECRBookrackModel,ECRBookrackView,ECRBookrackFlowLayout;
+
+@protocol ECRBookrackViewDelegate <NSObject>
+
+- (void)brView:(ECRBookrackView *)brViiew didSelectBookrack:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
+- (void)brViewDidSwitch:(ECRBookrackView *)brViiew;
+
+@end
+
+@interface ECRBookrackView : UIView
+
+- (instancetype)initWithFrame:(CGRect)frame flowLayout:(ECRBookrackFlowLayout *)flowLayout;
+
+@property (strong,nonatomic) UICollectionView *allOfBooks;// 书架 已购买列表
+@property (strong,nonatomic) UICollectionView *bookrack;// 书架 已购买列表
+@property (weak,nonatomic) id<ECRBookrackViewDelegate> delegate;
+
+
+@end

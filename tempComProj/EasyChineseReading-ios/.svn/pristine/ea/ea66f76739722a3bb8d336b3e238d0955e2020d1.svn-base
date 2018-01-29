@@ -1,0 +1,162 @@
+//
+//  ECRPaymentPreviousView.m
+//  downloadStateDemo
+//
+//  Created by Peanut Lee on 2017/9/28.
+//  Copyright © 2017年 Lee. All rights reserved.
+//
+
+#import "ECRPaymentPreviousView.h"
+#import "ECRTopupFieldView.h"
+#import "ECRFullMinusRollView.h"
+#import "ECRPpvPirceView.h"
+#import "ECRPpvSwitchView.h"
+#import "ECRPpvScoreView.h"
+
+static CGFloat marginA         = 15;
+static CGFloat height_fifty    = 50;
+static CGFloat textSizeA       = 14;
+static CGFloat heightBB        = 50;// bottom button
+static NSString *topupBtnTitle = @"充值";
+
+
+@interface ECRPaymentPreviousView ()<
+UIScrollViewDelegate,
+ECRPpvSwitchViewDelegate
+>
+
+@property (strong,nonatomic) ECRPpvSwitchView *switchView;// 切换 --> 充值 满减卷 积分抵扣
+@property (strong,nonatomic) UIScrollView *scrollView;//
+@property (strong,nonatomic) ECRTopupFieldView *topupField;//
+
+@end
+
+@implementation ECRPaymentPreviousView
+
+#pragma mark - UIScrollViewDelegate
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+////    CGFloat offsetX = scrollView.contentOffset.x;
+////    NSLog(@"offsetX -- %f",offsetX);
+//}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGFloat offsetX = scrollView.contentOffset.x;
+//    NSLog(@"offsetX -- %f",offsetX);
+    [self.switchView switchBtnWithOffsetX:offsetX];
+
+}
+
+- (void)ppvsView:(ECRPpvSwitchView *)view offsetPoint:(CGPoint)offsetPoint{
+    [self.scrollView setContentOffset:offsetPoint animated:YES];
+}
+
+#pragma mark - ECRPpvSwitchViewDelegate
+
+- (void)setupUI{
+    self.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.priceView];
+    [self addSubview:self.switchView];
+    [self addSubview:self.scrollView];
+    [self.scrollView addSubview:self.topupField];
+    [self.scrollView addSubview:self.fullMinusView];
+    [self.scrollView addSubview:self.scoreCoun];
+    
+    [self.priceView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.left.equalTo(self.mas_left).offset(marginA);
+        make.right.equalTo(self.mas_right).offset(-marginA);
+        make.bottom.equalTo(self.switchView.mas_top);
+        make.height.equalTo(@(height_fifty));
+    }];
+    [self.switchView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.priceView.mas_left);
+        make.right.equalTo(self.priceView.mas_right);
+        make.height.equalTo(@(height_fifty));
+    }];
+    CGFloat heightA = Screen_Height - 3 * height_fifty - heightBB - 64;
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.switchView.mas_bottom);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.height.equalTo(@(heightA));
+    }];
+    
+    [self.topupField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollView.mas_left);
+        make.right.equalTo(self.fullMinusView.mas_left);
+        make.top.equalTo(self.scrollView.mas_top);
+        make.bottom.equalTo(self.scrollView.mas_bottom);
+        make.width.equalTo(@(Screen_Width));
+        make.height.equalTo(@(heightA));
+    }];
+    [self.fullMinusView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.scoreCoun.mas_left);
+        make.top.equalTo(self.scrollView.mas_top).offset(marginA);
+        make.bottom.equalTo(self.scrollView.mas_bottom);
+        make.width.equalTo(@(Screen_Width));
+    }];
+    [self.scoreCoun mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.scrollView.mas_right);
+        make.top.equalTo(self.scrollView.mas_top);
+        make.bottom.equalTo(self.scrollView.mas_bottom);
+        make.width.equalTo(@(Screen_Width));
+        make.height.equalTo(@(heightA));
+    }];
+    
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupUI];
+    }
+    return self;
+}
+- (ECRPpvPirceView *)priceView{
+    if (_priceView == nil) {
+        _priceView = [[ECRPpvPirceView alloc] init];
+    }
+    return _priceView;
+}
+- (ECRPpvSwitchView *)switchView{
+    if (_switchView == nil) {
+        _switchView = [[ECRPpvSwitchView alloc] init];
+        _switchView.delegate = self;
+    }
+    return _switchView;
+}
+- (UIScrollView *)scrollView{
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] init];
+        _scrollView.delegate = self;
+        _scrollView.pagingEnabled = YES;
+    }
+    return _scrollView;
+}
+- (ECRTopupFieldView *)topupField{
+    if (_topupField == nil) {
+        _topupField = [[ECRTopupFieldView alloc] init];
+        _topupField.buttonTitle = topupBtnTitle;
+        _topupField.textFontSize = textSizeA;
+    }
+    return _topupField;
+}
+- (ECRFullMinusRollView *)fullMinusView{
+    if (_fullMinusView == nil) {
+        _fullMinusView = [[ECRFullMinusRollView alloc] init];
+    }
+    return _fullMinusView;
+}
+- (ECRPpvScoreView *)scoreCoun{
+    if (_scoreCoun == nil) {
+        _scoreCoun = [[ECRPpvScoreView alloc] init];
+    }
+    return _scoreCoun;
+}
+
+@end

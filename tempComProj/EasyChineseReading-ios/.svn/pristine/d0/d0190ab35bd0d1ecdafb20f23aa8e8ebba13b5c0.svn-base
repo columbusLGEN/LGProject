@@ -1,0 +1,458 @@
+//
+//  LoginVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/8.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "LoginVC.h"
+
+#import "WXApi.h"
+
+#import "LTextFieldTableViewCell.h"
+#import "LButtonTableViewCell.h"
+#import "LFooterView.h"
+
+#import "RegisterVC.h"              // 注册
+#import "ForgotPasswordManageVC.h"  // 找回密码
+#import "RegisterWeChatUserVC.h"
+
+static CGFloat const kFooterHeight = 150.f; // tableViewFooter 的高度
+
+@interface LoginVC ()<
+UITableViewDelegate,
+UITableViewDataSource,
+UITextFieldDelegate,
+LFooterViewDelegate,
+LButtonTableViewCellDelegate,
+WXApiDelegate
+>
+
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSArray *arrViewConfiguration;   // 界面配置
+
+/** 键盘高度 */
+@property (assign, nonatomic) CGFloat keyBoardHeight;
+/** table 偏移量 */
+@property (assign, nonatomic) CGFloat tableOffset;
+/** 选中的cell */
+@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
+
+/** 用户名 */
+@property (nonatomic, strong) NSString *user;
+/** 密码 */
+@property (strong, nonatomic) NSString *password;
+
+/** 登录类型(0 普通用户 1 机构用户) */
+@property (assign, nonatomic) NSInteger loginType;
+
+@property (strong, nonatomic) ZSegment *segment;               // 选择注册类型
+
+@end
+
+@implementation LoginVC
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self configHeaderView];
+    [self configTableView];
+    [self addNotification];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 配置登录界面
+
+- (void)updateSystemLanguage
+{
+    self.title = LOCALIZATION(@"用户登录");
+}
+
+- (void)configHeaderView
+{
+    _loginType = ENUM_UserTypePerson;
+    _segment = [[ZSegment alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, cHeaderHeight_44) leftTitle:LOCALIZATION(@"个人用户") rightTitle:LOCALIZATION(@"机构用户")];
+    [self.view addSubview:_segment];
+    
+    WeakSelf(self)
+    _segment.selectedLeft = ^{
+        [weakself updateLoginTypeWithType:ENUM_UserTypePerson];
+    };
+    _segment.selectedRight = ^{
+        [weakself updateLoginTypeWithType:ENUM_UserTypeOrganization];
+    };
+}
+
+- (void)updateLoginTypeWithType:(NSInteger)type
+{
+    _loginType = type;
+    [_tableView reloadData];
+}
+
+- (void)configTableView
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, cHeaderHeight_44 + 10, Screen_Width, self.view.height - cHeaderHeight_64 - 2*cHeaderHeight_44 - 10) style:UITableViewStyleGrouped];
+    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
+    _tableView.estimatedRowHeight = 100;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.view addSubview:_tableView];
+    
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LTextFieldTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([LTextFieldTableViewCell class])];
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LButtonTableViewCell class])    bundle:nil] forCellReuseIdentifier:NSStringFromClass([LButtonTableViewCell class])];
+}
+
+- (void)addNotification
+{
+    // 监听 键盘出现或改变
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    // 监听 键盘退出
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    [self fk_observeNotifcation:kNotificationAlertError usingBlock:^(NSNotification *note) {
+        [self presentFailureTips:note.object];
+    }];
+    
+    [self fk_observeNotifcation:kNotificationWXLogin usingBlock:^(NSNotification *note) {
+        NSDictionary *dic = note.object;
+        [self loginWithWeChatWithInfo:dic];
+    }];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrViewConfiguration.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_arrViewConfiguration[indexPath.row][@"identify"]];
+    cell.data = _arrViewConfiguration[indexPath.row];
+    
+    if ([cell.reuseIdentifier isEqualToString:NSStringFromClass([LButtonTableViewCell class])]) {
+        LButtonTableViewCell *bCell = (LButtonTableViewCell *)cell;
+        bCell.delegate = self;
+    }
+    
+    [self configTextWithCell:cell];
+    
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    LFooterView *footerView = [LFooterView loadFromNib];
+    
+    footerView.delegate = self;
+    footerView.loginType = _loginType;
+    
+    return footerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return kFooterHeight;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    UITableViewCell *cell = [_tableView cellForRowAtIndexPath:_selectedIndexPath];
+    [cell resignAllFirstResponder];
+}
+
+#pragma mark - LFooterViewDelegate
+
+// 注册
+- (void)registerNow
+{
+    RegisterVC *registerVC = [RegisterVC new];
+    registerVC.hidesBottomBarWhenPushed = NO;
+    [self.navigationController pushViewController:registerVC animated:YES];
+}
+
+// 忘记密码
+- (void)forgetPassword
+{
+    ForgotPasswordManageVC *forgotPassword = [ForgotPasswordManageVC new];
+    [self.navigationController pushViewController:forgotPassword animated:YES];
+}
+
+// 第三方登录
+- (void)loginByIndex:(NSInteger)index
+{
+    // TODO: 0 微信登录 1 北语登录
+    if (0 == index) {
+        [self clickWeChatToLogin];
+    }
+    else if (1 == index) {
+        [self loginWithBeiyu];
+    }
+}
+
+#pragma mark 微信型录
+
+// 点击微信登录
+- (void)clickWeChatToLogin
+{
+    // 判断机器上是否有微信
+    if ([WXApi isWXAppInstalled]) {
+        [[WXLogin sharedInstance] getCode];
+        //        [self checkAccessTokenCanLogin];
+    }
+    else {
+        [self presentFailureTips:@"没有微信"];
+    }
+}
+
+- (void)checkAccessTokenCanLogin
+{
+    NSString *wechatAccessToken = [[NSUserDefaults standardUserDefaults] objectForKey:WX_ACCESS_TOKEN];
+    NSString *wechatOpenId      = [[NSUserDefaults standardUserDefaults] objectForKey:WX_OPEN_ID];
+    // 如果曾经登陆过微信, 检查access_token有效期
+    if (wechatAccessToken && wechatOpenId) {
+        [[WXLogin sharedInstance] checkAccessTokenComplete:^(id object, NSError *error) {
+            if (error) {
+                NSLog(@"checkAccessTokenError0 %@", error);
+            }
+            else {
+                NSDictionary *dic = object;
+                if ([dic[@"errcode"] isEqualToNumber:@(0)] || dic[@"errcode"] == nil) {
+                    [self weChatGetUserInfo];
+                }
+                else if ([dic[@"errcode"] isEqualToNumber:@(40001)]) {
+                    [self weChatRefreshAccessToken];
+                }
+                else {
+                    NSLog(@"checkAccessTokenError1 %@", dic);
+                }
+            }
+        }];
+    }
+    else {
+        [[WXLogin sharedInstance] getCode];
+    }
+}
+
+- (void)weChatRefreshAccessToken
+{
+    [[WXLogin sharedInstance] refreshAccessTokenComplete:^(id object, NSError *error) {
+        if (error) {
+            NSLog(@"refreshAccessTokenError0 %@", error);
+        }
+        else {
+            NSDictionary *dic = object;
+            if ([dic[@"errcode"] isEqualToNumber:@(0)] || dic[@"errcode"] == nil) {
+                [self weChatGetUserInfo];
+            }
+            else {
+                NSLog(@"refreshAccessTokenError1 %@", dic);
+            }
+        }
+    }];
+}
+
+- (void)weChatGetUserInfo
+{
+    [[WXLogin sharedInstance] getUserInfoComplete:^(id object, NSError *error) {
+        if (error) {
+            NSLog(@"getUserInfoError0 %@", error);
+        }
+        else {
+            NSDictionary *dic = object;
+            if ([dic[@"errcode"] isEqualToNumber:@(0)] || dic[@"errcode"] == nil) {
+                [self loginWithWeChatWithInfo:dic];
+            }
+            else {
+                NSLog(@"getUserInfoError1 %@", dic);
+            }
+        }
+    }];
+}
+
+- (void)loginWithWeChatWithInfo:(NSDictionary *)info
+{
+    NSString *unionid = info[@"unionid"];
+    [[UserRequest sharedInstance] loginWithWeChatUnionid:unionid completion:^(id object, ErrorModel *error) {
+        if (error) {
+            
+            if (error.code == 205) { // 未注册 提交注册申请
+                RegisterWeChatUserVC *registerWX = [RegisterWeChatUserVC new];
+                registerWX.userDic = info;
+                [self.navigationController pushViewController:registerWX animated:YES];
+            }
+            else {
+                [self presentFailureTips:error.message];
+            }
+        }
+        else {
+            UserModel *user = [UserModel mj_objectWithKeyValues:object[@"user"]];
+            [UserRequest sharedInstance].user = user;
+            [UserRequest sharedInstance].token = object[@"token"];
+            [[UserRequest sharedInstance] saveCache];
+            [self fk_postNotification:kNotificationUserLogin];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+}
+
+#pragma mark 北语登录
+
+// 北语登录
+- (void)loginWithBeiyu
+{
+    // TODO: 北语登录
+}
+
+
+#pragma mark - LButtonTableViewCellDelegate
+#pragma mark 登录
+/** 登录 */
+- (void)login
+{
+    NSString *userType = @""; // 用户类型
+    
+    if ([NSString isEmpty:_user]) {
+        [self presentFailureTips:LOCALIZATION(@"账号不能为空")];
+        return;
+    }
+    
+    if ([_user isEmail]) {
+        userType = [NSString stringWithFormat:@"%lu", (unsigned long)ENUM_AccountTypeEmail];
+    }
+    else if ([_user isPhone]) {
+        userType = [NSString stringWithFormat:@"%lu", (unsigned long)ENUM_AccountTypePhone];
+    }
+    else {
+        [self presentFailureTips:LOCALIZATION(@"账号类型错误，账号为手机/邮箱号")];
+        return;
+    }
+    
+    if ([NSString isEmpty:_password]) {
+        [self presentFailureTips:LOCALIZATION(@"输入密码")];
+        return;
+    }
+    if (_password.length > cMaxPasswordLength || _password.length < cMinPasswordLength) {
+        [self presentFailureTips:LOCALIZATION(@"密码为8-16个字符，可由英文、数字组成")];
+        return;
+    }
+    [[UserRequest sharedInstance] loginWithType:[NSString stringWithFormat:@"%ld", ENUM_LoginTypePassword]
+                                       userType:userType
+                                           user:_user
+                                       password:_password
+                                         userId:@""
+                                          token:@""
+                                     completion:^(id object, ErrorModel *error) {
+                                         if (error) {
+                                             [self presentFailureTips:error.message];
+                                         }
+                                         else {
+                                             UserModel *user = [UserModel mj_objectWithKeyValues:object[@"user"]];
+                                             [UserRequest sharedInstance].user = user;
+                                             [UserRequest sharedInstance].token = object[@"token"];
+                                             [[UserRequest sharedInstance] saveCache];
+                                             [self fk_postNotification:kNotificationUserLogin];
+                                             [self.navigationController popViewControllerAnimated:YES];
+                                         }
+                                     }];
+}
+
+/** 记住密码 */
+- (void)rememberPassword:(BOOL)remember
+{
+    if (remember) {
+        
+    }
+    else {
+        
+    }
+}
+
+#pragma mark - 键盘监听
+
+// 键盘出现或改变
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    //获取键盘的高度
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    _keyBoardHeight = keyboardRect.size.height;
+    
+    UITableViewCell *cell = [_tableView cellForRowAtIndexPath:_selectedIndexPath];
+    if (cell.y + cell.height > self.view.height - _keyBoardHeight) {
+        _tableOffset = (cell.y + cell.height) - self.view.height + _keyBoardHeight;
+        NSLog(@"offset %f", _tableOffset);
+        //        [_tableView setOffset:CGPointMake(-_tableView.width, -_tableOffset)];
+        _tableView.frame = CGRectMake(0, -_tableOffset, Screen_Width, self.view.height);
+    }
+}
+
+// 键盘退出
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    _tableView.frame = CGRectMake(0, cHeaderHeight_44 + 10, Screen_Width, self.view.height - cHeaderHeight_64 - 2*cHeaderHeight_44 - 10);
+}
+
+#pragma mark - action
+
+- (void)configTextWithCell:(UITableViewCell *)cell
+{
+    LTextFieldTableViewCell *tCell = (LTextFieldTableViewCell *)cell;
+    if ([cell.reuseIdentifier isEqualToString:NSStringFromClass([LTextFieldTableViewCell class])]) {
+        [tCell.txtfContent addTarget:self action:@selector(textFieldWithText:) forControlEvents:UIControlEventEditingChanged];
+    }
+}
+
+- (void)textFieldWithText:(UITextField *)textField
+{
+    switch (textField.tag) {
+        case 100: _user = textField.text;     break;
+        case 101: _password = textField.text; break;
+        default: break;
+    }
+    
+    LButtonTableViewCell *cell = (LButtonTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    if ([cell isKindOfClass:[LButtonTableViewCell class]]) {
+        [cell updateButtonEnable:_user.length > 0 && _password.length > 0];
+    }
+}
+
+#pragma mark -
+#pragma mark 属性
+#pragma mark 界面配置
+
+- (NSArray *)arrViewConfiguration
+{
+    if (_arrViewConfiguration == nil) {
+        _arrViewConfiguration = @[@{@"index": @"100", @"identify": NSStringFromClass([LTextFieldTableViewCell class]), @"placeHolder": LOCALIZATION(@"邮箱/手机号"), @"icon": @"icon_login_user_account"},
+                                  @{@"index": @"101", @"identify": NSStringFromClass([LTextFieldTableViewCell class]), @"placeHolder": LOCALIZATION(@"输入密码"), @"icon": @"icon_login_password", @"password": @"1"},
+                                  @{@"index": @"103", @"identify": NSStringFromClass([LButtonTableViewCell class]),    @"remember": @(1)},];
+    }
+    return _arrViewConfiguration;
+}
+
+
+@end

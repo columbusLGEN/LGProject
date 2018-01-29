@@ -1,0 +1,446 @@
+//
+//  UIVCRechargeVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/7.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UVirtualCurrencyRechargeVC.h"
+
+#import <PassKit/PassKit.h>                                 //用户绑定的银行卡信息
+#import <PassKit/PKPaymentAuthorizationViewController.h>    //Apple pay的展示控件
+#import <AddressBook/AddressBook.h>                         //用户联系信息相关
+#import <AlipaySDK/AlipaySDK.h>
+
+#import "UIVCRTopCollectionViewCell.h"
+#import "UIVCRBottomCollectionViewCell.h"
+#import "UIVCRHeaderRV.h"
+#import "UIVCRFooterRV.h"
+
+static CGFloat kSpace = 10.f;
+
+@interface UVirtualCurrencyRechargeVC ()<
+UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,
+PKPaymentAuthorizationViewControllerDelegate,
+UIVCRFooterRVDelegate>
+
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) UICollectionViewFlowLayout *layout;
+
+@property (nonatomic, strong) UIVCRFooterRV *footerView;    // 支付
+
+@property (strong, nonatomic) NSArray *arrRechargeType; // 充值方式
+@property (strong, nonatomic) NSArray *arrRechargeNumb; // 充值数额
+
+@property (nonatomic, assign) NSInteger selectedType;   // 选择支付类别
+@property (nonatomic, assign) NSInteger selectedNumb;   // 选择支付数额
+
+@property (nonatomic, assign) CGFloat price;            // 支付的金额
+
+@end
+
+@implementation UVirtualCurrencyRechargeVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self configRechargeView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)updateSystemLanguage
+{
+    self.title = _arrRechargeType == ENUM_RechargeTypeRecharge ? LOCALIZATION(@"虚拟币充值") : LOCALIZATION(@"包月套餐");
+    [_collectionView reloadData];
+}
+
+#pragma mark 配置 虚拟币充值界面
+
+- (void)configRechargeView
+{
+    self.collectionView.collectionViewLayout = self.layout;
+
+    [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UIVCRTopCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([UIVCRTopCollectionViewCell class])];
+    [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UIVCRBottomCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([UIVCRBottomCollectionViewCell class])];
+
+    [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UIVCRHeaderRV class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UIVCRHeaderRV class])];
+    [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UIVCRFooterRV class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([UIVCRFooterRV class])];
+}
+
+#pragma mark -
+#pragma mark UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 2;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 0 == section ? self.arrRechargeType.count : self.arrRechargeNumb.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section) {
+        UIVCRTopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UIVCRTopCollectionViewCell class]) forIndexPath:indexPath];
+        cell.lblRechargeType.text = [[_arrRechargeType objectAtIndex:indexPath.row] objectForKey:@"type"];
+        cell.imgIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [[_arrRechargeType objectAtIndex:indexPath.row] objectForKey:@"image"]]];
+        cell.isSelected = indexPath.row == _selectedType;
+        return cell;
+    }
+    else {
+        UIVCRBottomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UIVCRBottomCollectionViewCell class]) forIndexPath:indexPath];
+        cell.isSelected = indexPath.row == _selectedNumb;
+
+        if (_rechargeType == ENUM_RechargeTypeRecharge) { // 充值
+            cell.lblRechargeNum.text = [NSString stringWithFormat:@"%@%@", LOCALIZATION(@"¥"),[_arrRechargeNumb[indexPath.row] objectForKey:@"price"]];
+            cell.lblGiveNum.text = [NSString stringWithFormat:@"%@%@%@", LOCALIZATION(@"赠送"), [_arrRechargeNumb[indexPath.row] objectForKey:@"give"], LOCALIZATION(@"虚拟币")];
+            cell.lblLeaseNum.hidden = YES;
+        }
+        else {  // 包月
+            cell.lblLeaseNum.text = [NSString stringWithFormat:@"%@%@/%@", LOCALIZATION(@"¥"), [_arrRechargeNumb[indexPath.row] objectForKey:@"pay"], LOCALIZATION(@"天")];
+            cell.lblLeaseNum.hidden = YES;
+            cell.lblGiveNum.hidden = YES;
+        }
+        
+        return cell;
+    }
+}
+
+#pragma mark UICollectionViewDelegate
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+
+    if (kind == UICollectionElementKindSectionHeader) {
+        UIVCRHeaderRV *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UIVCRHeaderRV class]) forIndexPath:indexPath];
+        if (0 == indexPath.section) {
+            headerView.lblDescribe.text = _rechargeType == ENUM_RechargeTypeRecharge ? LOCALIZATION(@"请选择充值方式") : LOCALIZATION(@"请选择支付方式");
+        }
+        else {
+            headerView.lblDescribe.text =  _rechargeType == ENUM_RechargeTypeRecharge ?  LOCALIZATION(@"请选择充值金额") : LOCALIZATION(@"请选择租阅套餐");
+        }
+        return headerView;
+    }
+    else {
+        _footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UIVCRFooterRV" forIndexPath:indexPath];
+        if (1 == indexPath.section) {
+            if (_price == 0) {
+                NSNumber *num = _arrRechargeNumb.firstObject[@"price"];
+                _price = [num floatValue];
+            }
+            _footerView.payNum = _price;
+            _footerView.delegate = self;
+        }
+        else {
+            
+        }
+        return _footerView;
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat width  = 0 == indexPath.section ? Screen_Width - kSpace * 2 : (Screen_Width - kSpace * 3) / 2;
+    CGFloat height = 0 == indexPath.section ? 60 : 70;
+    return CGSizeMake(width, height);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(Screen_Width, 56);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    CGFloat height = 0 == section ? .5f : 150;
+    return CGSizeMake(Screen_Width, height);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section) {
+        _selectedType = indexPath.row;
+        [self.collectionView reloadData];
+    }
+    else {
+        _selectedNumb = indexPath.row;
+        NSNumber *num = [_arrRechargeNumb objectAtIndex:indexPath.row][@"price"];
+        _price = [num floatValue];
+        [self.collectionView reloadData];
+    }
+}
+
+#pragma mark -
+#pragma mark UIVCRFooterRVDelegate
+
+- (void)payWithMoney
+{
+    NSLog(@"掏钱");
+}
+
+#pragma mark --------------- 支付选择项 ---------------
+#pragma mark - applePay
+
+- (void)actionApplePay:(UIButton *)button
+{
+    // 是否支持ApplePay
+    if ([PKPaymentAuthorizationViewController canMakePayments]) {
+        if (![PKPaymentAuthorizationViewController class]) {
+            //PKPaymentAuthorizationViewController需iOS8.0以上支持
+            [self presentFailureTips:LOCALIZATION(@"操作系统不支持ApplePay，请升级至9.0以上版本，且iPhone6以上设备才支持")];
+            return;
+        }
+        //检查当前设备是否可以支付
+        if (![PKPaymentAuthorizationViewController canMakePayments]) {
+            //支付需iOS9.0以上支持
+            [self presentFailureTips:LOCALIZATION(@"操作系统不支持ApplePay，请升级至9.0以上版本，且iPhone6以上设备才支持")];
+            return;
+        }
+        //检查用户是否可进行某种卡的支付，是否支持Amex、MasterCard、Visa与银联四种卡，根据自己项目的需要进行检测
+        NSArray *supportedNetworks = @[PKPaymentNetworkAmex,            // 美国运通卡
+                                       PKPaymentNetworkMasterCard,      // Master卡
+                                       PKPaymentNetworkVisa,            // Visa卡
+                                       PKPaymentNetworkChinaUnionPay];  // 中国银联卡
+        // 判断 设备上用户有没有添加银行卡，如果没添加，不写这个判断，真机上会crash。
+        if (![PKPaymentAuthorizationViewController canMakePaymentsUsingNetworks:supportedNetworks]) {
+            [self presentFailureTips:LOCALIZATION(@"还没有绑定支付卡, 请先到 wallet 绑定支付卡")];
+            return;
+        }
+        
+        // 支付类目及额度
+        PKPaymentRequest *request = [[PKPaymentRequest alloc] init];
+        
+        PKPaymentSummaryItem *widget1 = [PKPaymentSummaryItem
+                                         summaryItemWithLabel:@"Widget 1"
+                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.01"]];
+        
+        PKPaymentSummaryItem *widget2 = [PKPaymentSummaryItem
+                                         summaryItemWithLabel:@"Widget 2"
+                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.01"]];
+        
+        PKPaymentSummaryItem *total = [PKPaymentSummaryItem
+                                       summaryItemWithLabel:@"Grand Total"
+                                       amount:[NSDecimalNumber decimalNumberWithString:@"0.02"]];
+        
+        request.paymentSummaryItems = @[widget1, widget2, total];
+        // 国家码
+        request.countryCode = @"CN";
+        // 币种 (CNY 人民币)
+        request.currencyCode = @"CHW";
+        
+        //能支付的币种
+        request.supportedNetworks = @[
+                                      PKPaymentNetworkChinaUnionPay,
+                                      PKPaymentNetworkMasterCard,
+                                      PKPaymentNetworkVisa
+                                      ];
+        
+        //Merchant ID
+        request.merchantIdentifier = @"merchant.com.retech.EasyChineseReading.applypay";
+        
+        // 询问你的付款处理器 （PKMerchantCapabilityCredit
+        // 信用卡，PKMerchantCapabilityDebit 借记卡）
+        
+        /*
+         PKMerchantCapabilityCredit NS_ENUM_AVAILABLE_IOS(9_0)   = 1UL << 2,   //
+         支持信用卡
+         PKMerchantCapabilityDebit  NS_ENUM_AVAILABLE_IOS(9_0)   = 1UL << 3    //
+         支持借记卡
+         */
+        request.merchantCapabilities = PKMerchantCapabilityDebit;
+        // 添加联系人全部信息
+        request.requiredShippingAddressFields = PKAddressFieldAll;
+        
+        // 调用 PKPaymentAuthorizationViewController
+        PKPaymentAuthorizationViewController *paymentPane = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:request];
+        paymentPane.delegate = self;
+        [self presentViewController:paymentPane animated:TRUE completion:nil];
+        
+    } else {
+        [self presentFailureTips:LOCALIZATION(@"你的设备目前还不支持 applepay 支付")];
+        return;
+    }
+}
+
+#pragma mark PKPaymentAuthorizationViewControllerDelegate
+
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus status))completion {
+    NSLog(@"Payment was authorized: %@", payment);
+    
+//    -- PKPayment 对象
+//    token 支付成功之后的回执，需要上传给服务器。
+//    billingAddress 用户账单地址
+//    billingContact 用户账单信息
+//    shippingAddress 送货地址
+//    shippingContact 送货信息
+//    shippingMethod 送货方式
+    
+    BOOL asyncSuccessful = FALSE;
+    
+    if (asyncSuccessful) {
+        completion(PKPaymentAuthorizationStatusSuccess);
+        [self presentSuccessTips:LOCALIZATION(@"支付成功")];
+    }
+    else {
+        completion(PKPaymentAuthorizationStatusFailure);
+        [self presentFailureTips:LOCALIZATION(@"支付失败")];
+    }
+}
+
+- (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
+    // hide the payment window
+    [controller dismissViewControllerAnimated:TRUE completion:nil];
+}
+
+#pragma mark - aliPay
+// TODO: 临时测试用, 应该在后台获取数据, 加密
+- (void)aliPayHandle
+{
+    //将商品信息赋予AlixPayOrder的成员变量
+    OrderModel* order = [OrderModel new];
+    
+    // NOTE: app_id设置
+    order.app_id = @"";
+    
+    // NOTE: 支付接口名称
+    order.method = @"alipay.trade.app.pay";
+    
+    // NOTE: 参数编码格式
+    order.charset = @"utf-8";
+    
+    // NOTE: 当前时间点
+    NSDateFormatter* formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    order.timestamp = [formatter stringFromDate:[NSDate date]];
+    
+    // NOTE: 支付版本
+    order.version = @"1.0";
+    
+    // NOTE: sign_type设置
+    order.sign_type = @"RSA2";
+    
+    // NOTE: 商品数据
+    order.biz_content = [BizContent new];
+    order.biz_content.body = @"我是测试数据";
+    order.biz_content.subject = @"1";
+    order.biz_content.out_trade_no = [self generateTradeNO]; //订单ID（由商家自行制定）
+    order.biz_content.timeout_express = @"30m"; //超时时间设置
+    order.biz_content.total_amount = [NSString stringWithFormat:@"%.2f", 0.01]; //商品价格
+    
+    //将商品信息拼接成字符串
+    NSString *orderInfo = [order orderInfoEncoded:NO];
+    NSString *orderInfoEncoded = [order orderInfoEncoded:YES];
+    NSLog(@"orderSpec = %@",orderInfo);
+    
+    // NOTE: 获取私钥并将商户信息签名，外部商户的加签过程请务必放在服务端，防止公私钥数据泄露；
+    //       需要遵循RSA签名规范，并将签名字符串base64编码和UrlEncode
+//    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+    NSString *signedString = @"zzz"; // [signer signString:orderInfo];
+    
+    // NOTE: 如果加签成功，则继续执行支付
+    if (signedString != nil) {
+        //应用注册scheme,在Info.plist定义URL types
+        NSString *appScheme = @"EasyChineseReading";
+        
+        // NOTE: 将签名成功字符串格式化为订单字符串,请严格按照该格式
+        NSString *orderString = [NSString stringWithFormat:@"%@&sign=%@",
+                                 orderInfoEncoded, signedString];
+        
+        // NOTE: 调用支付结果开始支付
+        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+            NSLog(@"reslut = %@",resultDic);
+        }];
+    }
+}
+
+
+
+
+
+// 临时 ---
+
+- (NSString *)generateTradeNO
+{
+    static int kNumber = 15;
+    
+    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSMutableString *resultStr = [[NSMutableString alloc] init];
+    srand((unsigned)time(0));
+    for (int i = 0; i < kNumber; i++)
+    {
+        unsigned index = rand() % [sourceStr length];
+        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
+        [resultStr appendString:oneStr];
+    }
+    return resultStr;
+}
+
+//---
+#pragma mark - 属性
+
+- (UICollectionViewFlowLayout *)layout
+{
+    if (!_layout) {
+        _layout = [[UICollectionViewFlowLayout alloc] init];
+        _layout.minimumLineSpacing = kSpace;
+        _layout.minimumInteritemSpacing = kSpace;
+        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _layout.sectionInset = UIEdgeInsetsMake(0, kSpace, kSpace, kSpace);
+    }
+    return _layout;
+}
+
+- (UICollectionView *)collectionView
+{
+    if (!_collectionView) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:self.layout];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.scrollEnabled = NO;
+        [self.view addSubview:_collectionView];
+    }
+    return _collectionView;
+}
+
+- (NSArray *)arrRechargeType
+{
+    if (_arrRechargeType == nil) {
+        _arrRechargeType = @[@{@"type": @"Apple Pay" , @"image": @"buy4"},
+                             @{@"type": LOCALIZATION(@"支付宝支付"), @"image": @"pay1"}];
+    }
+    return _arrRechargeType;
+}
+
+- (NSArray *)arrRechargeNumb
+{
+    if (_arrRechargeNumb == nil) {
+        if (_rechargeType == ENUM_RechargeTypeRecharge) { // 充值
+            _arrRechargeNumb = @[@{@"price": @"50",  @"give": @"0"},
+                                 @{@"price": @"100", @"give": @"10"},
+                                 @{@"price": @"200", @"give": @"20"},
+                                 @{@"price": @"500", @"give": @"100"}];
+        }
+        else if (_rechargeType == ENUM_RechargeTypeLeaseAll) { // 全平台包月
+            _arrRechargeNumb = @[@{@"price": @"50",  @"days": @"30"},
+                                 @{@"price": @"100", @"days": @"90"},
+                                 @{@"price": @"300", @"days": @"365"},
+                                 @{@"price": @"500", @"days": @"730"}];
+        }
+        else {  // 包月
+            _arrRechargeNumb = @[@{@"price": @"10", @"days": @"30"},
+                                 @{@"price": @"20", @"days": @"90"},
+                                 @{@"price": @"30", @"days": @"180"},
+                                 @{@"price": @"50", @"days": @"365"}];
+        }
+    }
+    return _arrRechargeNumb;
+}
+
+@end

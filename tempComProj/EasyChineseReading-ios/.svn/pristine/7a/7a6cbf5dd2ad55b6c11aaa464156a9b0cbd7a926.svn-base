@@ -1,0 +1,42 @@
+//
+//  TaskModel.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "BaseModel.h"
+
+@interface TaskModel : BaseModel
+
+/**
+ 任务
+ */
+
+/** 任务id */
+@property (assign, nonatomic) NSInteger taskId;
+
+/** 任务名 */
+@property (strong, nonatomic) NSString *taskdescribe;
+
+/** 任务类型 */
+@property (assign, nonatomic) NSInteger tasktype;
+
+/** 奖励值 */
+@property (assign, nonatomic) NSInteger taskreward;
+
+/** 任务状态 */
+@property (nonatomic, assign) ENUM_TaskStatusType status;
+
+//----------------------- 活动相关
+
+/** 活动达成条件数量 */
+@property (nonatomic, assign) NSInteger taskreachcount;
+
+/** 活动奖励类型(虚拟币/积分) */
+@property (nonatomic, assign) NSInteger taskrewardtype;
+
+// ----------------------
+
+@end

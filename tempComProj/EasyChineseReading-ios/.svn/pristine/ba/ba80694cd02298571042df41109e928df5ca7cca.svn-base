@@ -1,0 +1,79 @@
+//
+//  ULeaseBookCollectionViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/28.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ULeaseBookCollectionViewCell.h"
+
+@interface ULeaseBookCollectionViewCell ()
+
+@property (nonatomic, strong) UIImageView *imgBookCover; // 图书封面
+@property (nonatomic, strong) UILabel *lblBookName;      // 图书名
+@property (nonatomic, strong) UILabel *lblBookPrice;     // 价格
+
+@end
+
+@implementation ULeaseBookCollectionViewCell
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self configBookCell];
+    }
+    return self;
+}
+
+#pragma mark - 配置界面
+
+- (void)configBookCell
+{
+    self.backgroundColor = [UIColor whiteColor];
+    
+    _imgBookCover = [UIImageView new];
+    [self addSubview:_imgBookCover];
+    
+    _lblBookName = [UILabel new];
+    _lblBookName.font = [UIFont systemFontOfSize:12.f];
+    _lblBookName.textColor = [UIColor blackColor];
+    [self addSubview:_lblBookName];
+    
+    _lblBookPrice = [UILabel new];
+    _lblBookPrice.font = [UIFont systemFontOfSize:12.f];
+    _lblBookPrice.textColor = [UIColor cm_orangeColor_FF5910_1];
+    [self addSubview:_lblBookPrice];
+    
+    [_imgBookCover mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(self.mas_top);
+    }];
+    
+    [_lblBookName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(_imgBookCover.mas_bottom).offset(10);
+    }];
+    
+    [_lblBookPrice mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(_lblBookName.mas_bottom).offset(2);
+        make.bottom.equalTo(self.mas_bottom);
+    }];
+    
+    _lblBookName.text = @"书名";
+    _lblBookPrice.text = @"￥100.00";
+    _imgBookCover.image = [UIImage imageNamed:@"bys_9"];
+}
+
+#pragma mark - 更新数据
+
+- (void)dataDidChange
+{
+    BookModel *book = [BookModel mj_objectWithKeyValues:self.data];
+    [_imgBookCover sd_setImageWithURL:[NSURL URLWithString:book.iconUrl] placeholderImage:[UIImage imageNamed:@"person14"]];
+    _lblBookName.text = book.bookName;
+    _lblBookPrice.text = [NSString stringWithFormat:@"￥%.2f", book.price];
+}
+
+@end

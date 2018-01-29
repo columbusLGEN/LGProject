@@ -1,0 +1,53 @@
+//
+//  UCManagerTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/12.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCManagerTableViewCell.h"
+
+@interface UCManagerTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UILabel *lblClassName;
+@property (strong, nonatomic) IBOutlet UILabel *lblNumber;
+@property (strong, nonatomic) IBOutlet UIButton *btnUpdate;
+@property (strong, nonatomic) IBOutlet UIButton *btnDelete;
+
+@end
+
+@implementation UCManagerTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configManageCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configManageCell
+{
+    _lblNumber.textColor = _lblClassName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblNumber.font = _lblClassName.font = [UIFont systemFontOfSize:15.f];
+}
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    
+    _lblClassName.text = dic[@"name"];
+    _lblNumber.text = dic[@"number"];
+}
+
+- (IBAction)click_btnUpdate:(id)sender {
+}
+- (IBAction)click_btnDelete:(id)sender {
+}
+
+@end

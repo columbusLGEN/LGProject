@@ -1,0 +1,49 @@
+//
+//  ECRFullminusJuanView.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/24.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRFullminusJuanView.h"
+#import "ECRFullminusModel.h"
+
+@interface ECRFullminusJuanView ()
+@property (weak, nonatomic) IBOutlet UIImageView *bgImg;
+@property (weak, nonatomic) IBOutlet UILabel *money;// 减
+@property (weak, nonatomic) IBOutlet UILabel *fullMoney;// 满
+@property (weak, nonatomic) IBOutlet UILabel *timeLimit;
+
+@end
+
+@implementation ECRFullminusJuanView
+
+- (IBAction)juanClick:(UIButton *)sender {
+    NSDictionary *userInfo = @{@"model":self.model};
+    [[NSNotificationCenter defaultCenter] postNotificationName:ECRFullminusJuanViewClickNotification object:nil userInfo:userInfo];
+}
+
+- (void)setModel:(ECRFullminusModel *)model{
+    _model = model;
+    [self.bgImg setImage:[UIImage imageNamed:model.bgImgName]];
+    _money.text = [NSString stringWithFormat:@"￥%@",model.minusMoney];
+    _fullMoney.text = [NSString stringWithFormat:@"满%ld可用",model.fullMoney.integerValue];
+    if (model.isAva) {
+    }else{
+        self.userInteractionEnabled = NO;
+        // TODO: 不可用的juan 设置 灰色背景图
+
+    }
+}
+
++ (instancetype)fmJuanView{
+    return [[[NSBundle mainBundle] loadNibNamed:@"ECRFullminusJuanView" owner:nil options:nil] firstObject];
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    
+}
+
+@end

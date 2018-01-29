@@ -1,0 +1,27 @@
+//
+//  YMSpine+CoreDataProperties.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/12/2.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
+//  to delete and recreate this implementation file for your updated model.
+//
+
+#import "YMSpine.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface YMSpine (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSString *bookID;
+@property (nullable, nonatomic, retain) NSString *fileName;
+@property (nullable, nonatomic, retain) NSNumber *index;
+@property (nullable, nonatomic, retain) NSString *indexID;
+@property (nullable, nonatomic, retain) id pagecounts;
+@property (nullable, nonatomic, retain) id startPages;
+
+@end
+
+NS_ASSUME_NONNULL_END

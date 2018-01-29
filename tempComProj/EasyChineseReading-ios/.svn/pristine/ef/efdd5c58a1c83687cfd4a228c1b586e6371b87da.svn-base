@@ -1,0 +1,185 @@
+//
+//  ECRHTTPSessionManager.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/31.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRHTTPSessionManager.h"
+//#import "DES3Util.h"// des加密类
+#import "NSString+TOPExtension.h"
+
+@protocol NetworkToolsProxy <NSObject>
+
+@optional
+- (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
+                                       URLString:(NSString *)URLString
+                                      parameters:(id)parameters
+                                  uploadProgress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgress
+                                downloadProgress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
+                                         success:(void (^)(NSURLSessionDataTask *, id))success
+                                         failure:(void (^)(NSURLSessionDataTask *, NSError *))failure;
+
+@end
+
+@interface ECRHTTPSessionManager ()
+
+
+@end
+
+@implementation ECRHTTPSessionManager
+
+static CGFloat timeOutLimit = 3.0;//7.0;
+
+- (void)lg_POSTWithURLString:(NSString *)URLString parameters:(NSDictionary *)param success:(ECRLEHTTPSuccess)success failure:(ECRLEHTTPFailure)failure{
+    [[self class] lg_requestWithHTTPMethod:methodName(ECRHTTPRequestMethodPost) URLString:URLString param:param success:success failure:failure];
+}
+
++ (void)lg_requestWithHTTPMethod:(NSString *)method URLString:(NSString *)URLString param:(NSDictionary *)param success:(ECRLEHTTPSuccess)success failure:(ECRLEHTTPFailure)failure{
+    // test
+    NSError *error;
+    NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:param
+                                                        options:NSJSONWritingPrettyPrinted
+                                                          error:&error];
+    NSString *jsonString;
+    if (!jsonData) {
+        NSLog(@"jsonDataerror:%@",error);
+    }else{
+        jsonString               = [[NSString alloc] initWithData:jsonData
+                                                         encoding:NSUTF8StringEncoding];
+        NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer]
+                                    requestWithMethod:methodName(ECRHTTPRequestMethodPost)
+                                    URLString:URLString
+                                    parameters:nil
+                                    error:nil];
+        req.timeoutInterval      = timeOutLimit;
+        
+        [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [req setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [[[self sharedManager] dataTaskWithRequest:req
+                completionHandler:^(NSURLResponse * _Nonnull response,
+                                    id              _Nullable responseObject,
+                                    NSError       * _Nullable error) {
+                    
+                    if (responseObject) {
+                        NSLog(@"res:%@",responseObject);
+                        NSString *rjKey = @"returnJson";
+                        NSString *returnJSON;
+                        if ([[responseObject allKeys] containsObject:rjKey]) {
+                             returnJSON = [responseObject objectForKey:rjKey];
+                        }
+                        if (success) {
+                            NSLog(@"resJSON:%@",returnJSON);
+                            success(returnJSON);
+                        }
+                    }
+            
+                    if (error) {
+//                        NSLog(@"error:%@",error);
+                        if (failure) {
+                            failure(error);
+                        }
+                    }
+        }] resume];
+        
+    }
+    
+    
+}
+
+// MARK: 暂时不使用该方法
++ (void)lg_requestWithHTTPMethod:(NSString *)method URLString:(NSString *)URLString parameters:(NSDictionary *)param {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    // 判空
+    [self verifyWithMethod:method URLString:URLString param:param vrSuccess:^{
+        // 加密
+        [self encodeWithParams:param backInfo:^(NSString *encodedtring, NSString *md5String) {
+
+            [[[self sharedManager] dataTaskWithHTTPMethod:method URLString:URLString parameters:param uploadProgress:nil downloadProgress:nil success:^(NSURLSessionDataTask *task, id responseObjc) {
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                NSLog(@"responseObjc:%@",responseObjc);
+                
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                NSLog(@"error:%@",error);
+                
+            }] resume];
+            
+        }];
+    } vrFailure:^(NSDictionary *info) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        NSLog(@":%@",info);
+    }];
+}
+
+// MARK: 参数加密
++ (void)encodeWithParams:(NSDictionary *)param backInfo:(void(^)(NSString *encodedtring,NSString *md5String))backInfo {
+    
+    if (backInfo) {
+        backInfo(@"DES",@"MD5");
+    }
+    
+}
+
++ (instancetype)sharedManager{
+    static ECRHTTPSessionManager *instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [[self alloc] init];
+        // MARK:设置请求头
+//        instance.requestSerializer setValue:@"value" forHTTPHeaderField:@"key";
+        // MARK: 设置反序列化格式
+        instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"text/plain",@"charset=utf-8", nil];
+        instance.requestSerializer.timeoutInterval = timeOutLimit;
+    });
+    
+    // MARK: 重新登陆后需要重新设置的
+    //        instance.requestSerializer setValue:@"value" forHTTPHeaderField:@"key";
+    
+    return instance;
+}
+// 判空处理
++ (void)verifyWithMethod:(NSString *)method URLString:(NSString *)URLString param:(NSDictionary *)param vrSuccess:(void(^)())vrSuccess vrFailure:(void(^)(NSDictionary *info))vrFailure{
+    BOOL ver = 1;
+    NSMutableDictionary *info = [NSMutableDictionary dictionaryWithCapacity:10];
+    if (method == nil) {
+        ver = 0;
+        info[@"method"] = @"method_is_nil";
+    }
+    if (URLString == nil) {
+        ver = 0;
+        info[@"URLString"] = @"URL_is_nil";
+    }
+    if (param == nil) {
+        ver = 0;
+        info[@"param"] = @"param_is_nil";
+    }
+    if (ver) {
+        if (vrSuccess) {
+            vrSuccess();
+        }
+    }else{
+        if (vrFailure) {
+            vrFailure(info.copy);
+        }
+    }
+}
+// 返回http method名称的函数
+NSString *methodName(ECRHTTPRequestMethod method){
+    NSString *mName;
+    switch (method) {
+        case 0:
+            mName = @"GET";
+            break;
+        case 1:
+            mName = @"POST";
+            break;
+            
+    }
+    return mName;
+}
+@end

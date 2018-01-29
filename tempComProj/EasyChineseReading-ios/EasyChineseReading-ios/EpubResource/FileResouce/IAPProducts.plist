@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Recharge_6k</key>
+	<string>6</string>
+	<key>Recharge_12k</key>
+	<string>12</string>
+	<key>Recharge_18k</key>
+	<string>18</string>
+	<key>Recharge_25k</key>
+	<string>25</string>
+	<key>Recharge_30k</key>
+	<string>30</string>
+	<key>Recharge_40k</key>
+	<string>40</string>
+	<key>Recharge_50k</key>
+	<string>50</string>
+	<key>Recharge_98k</key>
+	<string>98</string>
+	<key>Recharge_618k</key>
+	<string>618</string>
+</dict>
+</plist>

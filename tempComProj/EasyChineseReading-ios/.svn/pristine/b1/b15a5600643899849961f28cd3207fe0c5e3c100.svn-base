@@ -1,0 +1,23 @@
+//
+//  UFriendDynamicTableViewCell.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class UFriendDynamicTableViewCell;
+
+@protocol UFriendDynamicTableViewCellDelegate <NSObject>
+
+- (void)toBookDetailWithBookId:(NSInteger)bookId;
+
+@end
+
+@interface UFriendDynamicTableViewCell : ECRBaseTableViewCell
+
+@property (assign, nonatomic) id<UFriendDynamicTableViewCellDelegate> delegate;
+
+@end

@@ -1,0 +1,282 @@
+//
+//  UCSManagerAddVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/2.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCStudentManagerAddVC.h"
+
+@interface UCStudentManagerAddVC () <
+UITextFieldDelegate,
+ZPickViewDelegate
+>
+//
+@property (weak, nonatomic) IBOutlet UILabel *lblDescClass;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescSex;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescAge;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescAccount;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescPassword;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescRePassword;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescRemark;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblClass;
+@property (weak, nonatomic) IBOutlet UILabel *lblSex;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtfName;
+@property (weak, nonatomic) IBOutlet UITextField *txtfAge;
+@property (weak, nonatomic) IBOutlet UITextField *txtfAccount;
+@property (weak, nonatomic) IBOutlet UITextField *txtfPassword;
+@property (weak, nonatomic) IBOutlet UITextField *txtfRePassword;
+@property (weak, nonatomic) IBOutlet UITextField *txtfRemark;
+
+@property (strong, nonatomic) ZPickView *pickViewSex;   // 性别
+@property (strong, nonatomic) ZPickView *pickViewClass; // 班级
+
+@property (strong, nonatomic) NSArray *arrSex;   // 性别
+@property (strong, nonatomic) NSArray *arrClass; // 班级
+
+@property (assign, nonatomic) NSInteger sex; // 性别
+@property (assign, nonatomic) NSInteger classIndex; // 班级
+@property (assign, nonatomic) NSInteger accountType; // 账号类型
+
+@end
+
+@implementation UCStudentManagerAddVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.row) {
+        [self configPickViewClass];
+    }
+    else if (2 == indexPath.row) {
+        [self configPickViewSex];
+    }
+}
+
+#pragma mark -
+#pragma mark action
+
+- (void)configView
+{
+    [self configNavigationBar];
+    [self configTableView];
+}
+
+- (void)configNavigationBar
+{
+    self.title = @"创建学生";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(checkStudentInfo)];
+}
+
+- (void)configTableView
+{
+    _lblDescName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescSex.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescAge.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescAccount.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescPassword.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescRePassword.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescRemark.textColor = [UIColor cm_blackColor_333333_1];
+
+    _lblDescName.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblDescSex.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblDescAge.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblDescAccount.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblDescPassword.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblDescRePassword.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblDescRemark.font = [UIFont systemFontOfSize:cFontSize_16];
+
+    _txtfName.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfAge.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfAccount.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfPassword.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfRePassword.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfRemark.textColor = [UIColor cm_blackColor_333333_1];
+}
+
+#pragma mark - 保存学生信息
+
+- (void)checkStudentInfo
+{
+    // 手机号检查
+    if ([NSString isEmpty:_txtfAccount.text]) {
+        [self presentFailureTips:@"姓名不能为空"];
+        return;
+    }
+
+    if ([NSString isEmpty:_txtfName.text]) {
+        [self presentFailureTips:@"账号不能为空"];
+        return;
+    }
+
+    // 密码检查
+    if ([NSString isEmpty:_txtfPassword.text]) {
+        [self presentFailureTips:@"密码不能为空"];
+        return;
+    }
+    if ([NSString isEmpty:_txtfRePassword.text]) {
+        [self presentFailureTips:@"确认密码不能为空"];
+        return;
+    }
+    if (_txtfPassword.text.length > cMaxPasswordLength || _txtfPassword.text.length < cMinPasswordLength) {
+        [self presentFailureTips:@"密码长度为6-16"];
+        return;
+    }
+    if (![_txtfPassword.text isEqualToString:_txtfRePassword.text]) {
+        [self presentFailureTips:@"两次输入的密码不一样，请确认后重新输入"];
+        return;
+    }
+
+    if ([_txtfAccount.text isEmail]) {
+        _accountType = ENUM_AccountTypeEmail;
+    }
+    else if ([_txtfAccount.text isPhone]) {
+        _accountType = ENUM_AccountTypePhone;
+    }
+    else {
+        [self presentFailureTips:@"账号类型错误，账号为手机/邮箱号"];
+        return;
+    }
+
+    [self saveStudentInfo];
+}
+
+- (void)saveStudentInfo
+{
+    ClassModel *classInfo = _arrClass[_classIndex];
+    
+    [[ClassRequest sharedInstance] addStudentInfoWithClassId:classInfo.classId name:_txtfName.text age:[_txtfAge.text integerValue] userName:_txtfAccount.text password:_txtfPassword.text sex:_sex userType:_accountType remark:_txtfRemark.text completion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            UserModel *user = [UserModel new];
+            
+            user.name = _txtfName.text;
+            user.age = [_txtfAge.text integerValue];
+            user.sex = _sex;
+            if (_accountType == ENUM_AccountTypeEmail) {
+                user.email = _txtfAccount.text;
+            }
+            else {
+                user.phone = _txtfAccount.text;
+            }
+            user.classId = classInfo.classId;
+            user.className = classInfo.className;
+            user.remark = _txtfRemark.text;
+            
+            NSArray *classIds = [NSDictionary mj_objectArrayWithKeyValuesArray:object];
+            user.userId = [[classIds firstObject][@"userId"] integerValue];
+            
+            [self fk_postNotification:kNotificationCreateStudentInfo object:user];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+}
+
+/**
+ 性别选择
+ */
+- (void)configPickViewSex
+{
+    if (_pickViewSex == nil) {
+        _pickViewSex = [[ZPickView alloc] initWithFrame:self.view.bounds dataSource:self.arrSex selected:0];
+        _pickViewSex.delegates = self;
+        [self.view addSubview:_pickViewSex];
+    }
+    [self resignAllFirstResponder];
+    [_pickViewSex show];
+}
+
+/**
+ 班级选择
+ */
+- (void)configPickViewClass
+{
+    if (_pickViewClass == nil) {
+        _pickViewClass = [[ZPickView alloc] initWithFrame:self.view.bounds dataSource:self.arrClass selected:0];
+        _pickViewClass.delegates = self;
+        [self.view addSubview:_pickViewClass];
+    }
+    [self resignAllFirstResponder];
+    [_pickViewClass show];
+}
+
+#pragma mark - ZPickViewDelegate
+
+- (void)ZPickerViewCancel:(ZPickView *)picker
+{
+    [picker hidden];
+}
+
+- (void)ZPickerView:(ZPickView *)picker makeSureIndex:(NSInteger)index
+{
+    if ([picker isEqual:_pickViewSex]) {
+        _sex = index;
+        _lblSex.text = _arrSex[index];
+    }
+    else {
+        _classIndex = index;
+        ClassModel *classInfo = _arrClass[index];
+        _lblClass.text = classInfo.className;
+    }
+    [picker hidden];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (_pickViewSex.showing) {
+        [_pickViewSex hidden];
+    }
+    if (_pickViewClass.showing) {
+        [_pickViewClass hidden];
+    }
+    return YES;
+}
+
+#pragma mark - 取消第一响应者
+
+- (void)resignAllFirstResponder
+{
+    [self.view endEditing:YES];
+}
+
+#pragma mark - 属性
+
+- (NSArray *)arrClass
+{
+    if (_arrClass == nil) {
+        _arrClass = [[CacheDataSource sharedInstance] loadCacheWithCacheKey:CacheKey_ClassesList];
+    }
+    return _arrClass;
+}
+
+- (NSArray *)arrSex
+{
+    if (_arrSex == nil) {
+        _arrSex = @[@"男", @"女"];
+    }
+    return _arrSex;
+}
+
+
+@end

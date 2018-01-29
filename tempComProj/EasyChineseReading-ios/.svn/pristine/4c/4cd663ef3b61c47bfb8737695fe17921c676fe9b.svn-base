@@ -1,0 +1,26 @@
+//
+//  ECRClassSortModel.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRClassSortModel.h"
+
+@implementation ECRClassSortModel
+
+
+- (NSString *)name{
+    if ([LGPChangeLanguage currentLanguageIsEnglish]) {
+        return _en_name;
+    }else{
+        return _name;
+    }
+}
+
+- (NSString *)btnTitle{
+    return self.name;
+}
+
+@end

@@ -1,0 +1,22 @@
+//
+//  ECRPpvScoreView.h
+//  downloadStateDemo
+//
+//  Created by Peanut Lee on 2017/9/28.
+//  Copyright © 2017年 Lee. All rights reserved.
+//
+
+#import "ECRBaseView.h"
+@class ECRRgButton;
+
+@interface ECRPpvScoreView : ECRBaseView
+
+@property (strong,nonatomic) ECRRgButton *userScore;//
+
+//@property (assgin,nonatomic) NSString *priceYu;//
+@property (assign,nonatomic) NSInteger priceYu;//
+
+@property (assign,nonatomic) NSInteger avaScore;//
+@property (assign,nonatomic) NSInteger integralrate;//
+
+@end

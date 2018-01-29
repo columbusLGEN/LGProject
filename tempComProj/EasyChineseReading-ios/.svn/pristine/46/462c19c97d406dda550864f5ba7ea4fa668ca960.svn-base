@@ -1,0 +1,15 @@
+//
+//  MenuTopView.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/11/24.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface MenuTopView : UIView
+
+@property (nonatomic, retain) UIColor *lineColor;
+
+@end

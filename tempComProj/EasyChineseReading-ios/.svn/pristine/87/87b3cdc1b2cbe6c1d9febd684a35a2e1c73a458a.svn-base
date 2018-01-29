@@ -1,0 +1,41 @@
+//
+//  ECRHomeSBVCell.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/20.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRHomeSBVCell.h"
+#import "ECRHomeBook.h"
+
+@interface ECRHomeSBVCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *cover;
+@property (weak, nonatomic) IBOutlet UILabel *bName;
+@property (weak, nonatomic) IBOutlet UILabel *bPrice;
+
+
+@end
+
+@implementation ECRHomeSBVCell
+
+- (void)setModel:(ECRHomeBook *)model{
+    _model = model;
+    _bName.text = model.bookName;
+    // 名字长度大于 4 左对齐
+    //    NSLog(@"%@ -- %ld",model.name,[model.name length]);
+    if ([model.bookName length] > 4) {
+        _bName.textAlignment = NSTextAlignmentLeft;
+    }else{
+        _bName.textAlignment = NSTextAlignmentCenter;
+    }
+    _bPrice.text = [NSString stringWithFormat:@"%.2f",model.price];
+    [_cover sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:nil];
+    
+}
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    
+}
+
+@end

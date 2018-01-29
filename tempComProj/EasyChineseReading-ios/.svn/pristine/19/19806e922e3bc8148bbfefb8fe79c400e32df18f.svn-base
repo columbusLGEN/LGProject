@@ -1,0 +1,57 @@
+//
+//  FriendRequest.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/18.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "BaseNetRequest.h"
+
+@interface FriendRequest : BaseNetRequest
+
+#pragma mark ========== 好友相关网络请求 ==========
+
+CM_SINGLETON_INTERFACE(FriendRequest)
+
+#pragma mark - 获取好友列表
+
+/**
+ 获取好友列表
+
+ @param completion 回调
+ */
+- (void)getFriendListCompletion:(CompleteBlock)completion;
+
+#pragma mark - 关注好友
+
+/**
+ 关注好友
+
+ @param friendId    好友id
+ @param completion  回调
+ */
+- (void)addFriendWithFriendId:(NSString *)friendId
+                   completion:(CompleteBlock)completion;
+
+#pragma mark - 赠送好友积分 ？？？
+
+
+#pragma mark - 获取好友动态
+
+/**
+ 获取好友动态
+
+ @param page        页数
+ @param completion  回调
+ */
+- (void)getDynamicsWithPage:(NSString *)page
+                 completion:(CompleteBlock)completion;
+
+#pragma mark - 分享图书到朋友圈
+
+- (void)shareBookWithBookId:(NSString *)bookId
+                 shareTitle:(NSString *)shareTitle
+                 completion:(CompleteBlock)completion;
+
+@end

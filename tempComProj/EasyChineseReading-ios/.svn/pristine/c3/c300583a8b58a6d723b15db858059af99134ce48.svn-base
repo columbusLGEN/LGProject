@@ -1,0 +1,65 @@
+//
+//  LTextFieldTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/8.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "LTextFieldTableViewCell.h"
+
+@interface LTextFieldTableViewCell ()<UITextFieldDelegate>
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgIcon;
+@property (strong, nonatomic) IBOutlet UIImageView *imgSelected;
+
+@end
+
+@implementation LTextFieldTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    _imgSelected.image = [UIImage imageNamed:@"2"];
+    _txtfContent.delegate = self;
+    
+    _txtfContent.font = [UIFont systemFontOfSize:16.f];
+    [self fitIphone4Or5f:^{
+        _txtfContent.font = [UIFont systemFontOfSize:14.f];
+    } and6:nil and6P:nil];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    _txtfContent.tag = [dic[@"index"] integerValue];
+
+    _imgIcon.image = [UIImage imageNamed:dic[@"icon"]];
+    _txtfContent.placeholder = dic[@"placeHolder"];
+    _imgSelected.hidden = !dic[@"showSelected"];
+    _txtfContent.secureTextEntry = dic[@"password"];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (!_imgSelected.hidden) {
+        if ([self.delegate respondsToSelector:@selector(selectedCountry)]) {
+            [self.delegate selectedCountry];
+        }
+        return NO;
+    }
+    return YES;
+}
+
+- (void)resignAllFirstResponder
+{
+    [_txtfContent resignFirstResponder];
+}
+
+@end

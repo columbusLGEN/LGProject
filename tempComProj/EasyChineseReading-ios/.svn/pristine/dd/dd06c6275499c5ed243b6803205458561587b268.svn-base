@@ -1,0 +1,23 @@
+//
+//  ECRSettleDoneView.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/31.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@class ECRSettleDoneView;
+
+@protocol ECRSettleDoneViewDelegate <NSObject>
+
+- (void)sdView:(ECRSettleDoneView *)sdView;
+
+@end
+
+@interface ECRSettleDoneView : UIView
+
+@property (assign,nonatomic) CGFloat price;// 结算总价
+@property (weak,nonatomic) id<ECRSettleDoneViewDelegate> delegate;
+
+@end

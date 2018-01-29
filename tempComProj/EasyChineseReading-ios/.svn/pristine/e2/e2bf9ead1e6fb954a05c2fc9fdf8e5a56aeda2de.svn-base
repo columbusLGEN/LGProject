@@ -1,0 +1,35 @@
+//
+//  ECRMentionBoy.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/12/4.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRMentionBoy.h"
+
+@implementation ECRMentionBoy
+
+// TODO: 打开阅读器时,开始计时,,满1小时后,弹出 "小书童"
+
++ (void)loadTipsForOneHour{
+    [[self sharedInstance] loadTipsForOneHour];
+}
+// 提示阅读一小时
+- (void)loadTipsForOneHour{
+    ZAnimationTips *tips = [ZAnimationTips loadFromNib];
+    tips.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    tips.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:tips animated:YES completion:nil];
+}
+
++ (instancetype)sharedInstance{
+    static id instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
+
+@end

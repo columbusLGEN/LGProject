@@ -1,0 +1,39 @@
+//
+//  ECRHomeTitleView.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class ECRHomeTitleView;
+
+@protocol ECRHomeTitleViewDelelgate <NSObject>
+
+@optional
+/**
+ 开始搜索
+
+ @param titleView self
+ */
+- (void)htViewBeginSearch:(ECRHomeTitleView *)titleView;
+
+/**
+ 点击购物车
+
+ @param titlView self
+ @param param 预留参数
+ */
+- (void)htView:(ECRHomeTitleView *)titlView sCarClick:(id)param;
+- (void)htViewRgLocated:(ECRHomeTitleView *)titleView cnBlock:(void(^)(NSString *country))cnBlock;// cn = country name
+
+@end
+
+@interface ECRHomeTitleView : UIView
+
+@property (copy,nonatomic) NSString *title;//
+@property (weak,nonatomic) id<ECRHomeTitleViewDelelgate> delegate;
+
+@end

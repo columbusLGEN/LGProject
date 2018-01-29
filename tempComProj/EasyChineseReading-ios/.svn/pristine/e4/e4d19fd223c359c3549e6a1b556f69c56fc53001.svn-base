@@ -1,0 +1,151 @@
+//
+//  ShareView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/20.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ShareView.h"
+
+#import "ShareBookView.h"
+
+@interface ShareView () <ShareBookViewDelegate>
+
+// 底部 view
+
+@property (weak, nonatomic) IBOutlet UIView *viewBottom;            // 分享底部按键
+
+@property (weak, nonatomic) IBOutlet UIView *viewBottomLine;        // 分享底部的线
+@property (weak, nonatomic) IBOutlet UIView *viewBottomLeft;        // 左边的 view(当做按钮)
+@property (weak, nonatomic) IBOutlet UIView *viewBottomRight;       // 右边的 view
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgBottomLeft;    // 左边的图片
+@property (weak, nonatomic) IBOutlet UIImageView *imgBottomRight;   // 右边的图片
+
+@property (weak, nonatomic) IBOutlet UILabel *lblBottomLeft;        // 左边文字描述
+@property (weak, nonatomic) IBOutlet UILabel *lblBottomRight;       // 右边文字描述
+
+@property (assign, nonatomic) NSInteger shareType; // 分享的类型 (0好友 1动态)
+
+@property (strong, nonatomic) BookModel *book;
+
+@end
+
+@implementation ShareView
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self configBottomView];
+}
+
+- (void)updateSystemLanguage
+{
+    _lblBottomLeft.text = LOCALIZATION(@"分享给好友");
+    _lblBottomRight.text = LOCALIZATION(@"分享到好友动态");
+}
+
+- (void)configBottomView
+{
+    self.backgroundColor = [UIColor clearColor];
+    
+    _viewBottom.backgroundColor = [UIColor whiteColor];
+    _viewBottomLine.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+    
+    _viewBottomLeft.backgroundColor  = [UIColor whiteColor];
+    _viewBottomRight.backgroundColor = [UIColor whiteColor];
+    
+    _lblBottomLeft.textColor  = [UIColor cm_blackColor_333333_1];
+    _lblBottomRight.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _lblBottomLeft.font  = [UIFont systemFontOfSize:cFontSize_16];
+    _lblBottomRight.font = [UIFont systemFontOfSize:cFontSize_16];
+    
+    _viewBottomLeft.userInteractionEnabled  = YES;
+    _viewBottomRight.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tapLView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareToFriend)];
+    UITapGestureRecognizer *tapRView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareToDynamic)];
+    
+    [_viewBottomLeft  addGestureRecognizer:tapLView];
+    [_viewBottomRight addGestureRecognizer:tapRView];
+}
+
+- (void)dataDidChange
+{
+    _book = self.data;
+}
+
+#pragma mark - 操作
+
+- (void)show
+{
+    self.top = Screen_Height;
+    [UIView animateWithDuration:cAnimationTime animations:^{
+        self.top = 0;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)hidden
+{
+    [UIView animateWithDuration:cAnimationTime animations:^{
+        self.top = Screen_Height;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+/**
+ 点击空白
+ */
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    UIView *view = touch.view;
+    
+    if (view == self) {
+        [UIView animateWithDuration:cAnimationTime animations:^{
+            self.top = Screen_Height;
+        } completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
+    }
+}
+
+/**
+ 分享给好友
+ */
+- (void)shareToFriend
+{
+    _shareType = 0;
+    [self.delegate shareBook:_book content:nil type:_shareType];
+}
+
+/**
+ 分享到动态
+ */
+- (void)shareToDynamic
+{
+    _shareType = 1;
+    [self shareBook];
+}
+
+- (void)shareBook
+{
+    [ShareBookView sharedInstance].delegate = self;
+    [ShareBookView sharedInstance].type = _shareType;
+    [ShareBookView sharedInstance].data = _book;
+    [[ShareBookView sharedInstance] show];
+}
+
+#pragma mark - ShareBookViewDelegate
+
+- (void)shareBookWithBook:(BookModel *)book content:(NSString *)content type:(NSInteger)type
+{
+    [self.delegate shareBook:book content:content type:type];
+}
+
+@end

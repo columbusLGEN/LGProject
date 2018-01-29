@@ -1,0 +1,23 @@
+//
+//  CacheDataSource.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/6.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#define CACHE_KEY_USER_MODEL @"CACHE_KEY_USER_MODEL"
+
+@interface CacheDataSource : NSObject
+
+CM_SINGLETON_INTERFACE(CacheDataSource)
+
+/* 本地缓存 */
+
+- (void)setCache:(id)data withCacheKey:(NSString *)cacheKey;
+
+- (id)loadCacheWithCacheKey:(NSString *)cacheKey;
+
+@end

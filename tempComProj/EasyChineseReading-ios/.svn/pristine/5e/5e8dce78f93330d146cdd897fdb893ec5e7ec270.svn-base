@@ -1,0 +1,74 @@
+//
+//  UTaskTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UTaskTableViewCell.h"
+
+@interface UTaskTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UILabel *lblTaskName;
+@property (strong, nonatomic) IBOutlet UIView  *viewBackground;
+
+@property (nonatomic, strong) TaskModel *task; // 任务
+
+@end
+
+@implementation UTaskTableViewCell
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self configTaskCell];
+}
+
+#pragma mark - config task cell
+
+- (void)configTaskCell
+{
+    _viewBackground.layer.borderColor = [UIColor cm_lineColor_E3E3E3_1].CGColor;
+    _viewBackground.layer.borderWidth = .5f;
+    
+    _lblTaskName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblTaskName.font = [UIFont systemFontOfSize:15.f];
+    
+    _btnGetIntegral.layer.masksToBounds = YES;
+    _btnGetIntegral.layer.cornerRadius  = _btnGetIntegral.height/2;
+    
+    _btnGetIntegral.layer.borderColor = [UIColor cm_purpleColor_82056B_1].CGColor;
+    _btnGetIntegral.layer.borderWidth = .5f;
+    
+    _btnGetIntegral.backgroundColor = [UIColor whiteColor];
+    
+    [_btnGetIntegral setTitle:@"未领取" forState:UIControlStateNormal];
+    [_btnGetIntegral setTitle:@"已领取" forState:UIControlStateSelected];
+    [_btnGetIntegral setTitleColor:[UIColor cm_purpleColor_82056B_1] forState:UIControlStateNormal];
+    [_btnGetIntegral setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    if (_btnGetIntegral.selected) {
+        _btnGetIntegral.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    }
+}
+
+#pragma mark - action
+
+- (void)dataDidChange
+{
+    _task = self.data;
+    
+    _lblTaskName.text = _task.taskName;
+    
+    if (_btnGetIntegral.selected) {
+        _btnGetIntegral.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    }
+}
+
+- (IBAction)click_btnGetIntegral:(id)sender
+{
+    [self.delegate getTaskAwardWithTask:_task];
+}
+
+
+@end

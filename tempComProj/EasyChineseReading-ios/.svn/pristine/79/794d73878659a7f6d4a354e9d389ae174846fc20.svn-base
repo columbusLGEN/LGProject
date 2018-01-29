@@ -1,0 +1,69 @@
+//
+//  GuideFigureVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2018/1/10.
+//  Copyright © 2018年 retech. All rights reserved.
+//
+
+#import "GuideFigureVC.h"
+
+@implementation GuideFigureVC
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self == [super initWithFrame:frame]) {
+        [self loadImage];
+    }
+    
+    return self;
+}
+
+- (void)setItemIndex:(NSInteger)itemIndex
+{
+    _itemIndex = itemIndex;
+    BOOL iPhoneX = [IPhoneVersion deviceVersion] == iphoneX;
+    if (0 == _itemIndex) {
+        if (isPad)
+            self.image = [UIImage imageNamed:@"img_guide_figure_0_pad"];
+        else
+            self.image = iPhoneX ? [UIImage imageNamed:@"img_guide_figure_0_phoneX"] : [UIImage imageNamed:@"img_guide_figure_0_phone"];
+    }
+    else if (1 == _itemIndex) {
+        if (isPad)
+            self.image = [UIImage imageNamed:@"img_guide_figure_1_pad"];
+        else
+            self.image = iPhoneX ? [UIImage imageNamed:@"img_guide_figure_1_phoneX"] : [UIImage imageNamed:@"img_guide_figure_1_phone"];
+    }
+    else {
+        if (isPad)
+            self.image = [UIImage imageNamed:@"img_guide_figure_2_pad"];
+        else
+            self.image = iPhoneX ? [UIImage imageNamed:@"img_guide_figure_2_phoneX"] : [UIImage imageNamed:@"img_guide_figure_2_phone"];
+    }
+}
+
+- (void)loadImage
+{
+    self.backgroundColor = [UIColor clearColor];
+    
+    self.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeGuideFigure)];
+    [self addGestureRecognizer:tapImage];
+}
+
+- (void)closeGuideFigure
+{
+    if (0 == _itemIndex) {
+        [[CacheDataSource sharedInstance] setCache:@"YES" withCacheKey:CacheKey_NotFirstTimeBookStore];
+    }
+    else if (1 == _itemIndex) {
+        [[CacheDataSource sharedInstance] setCache:@"YES" withCacheKey:CacheKey_NotFirstTimeBookShelf];
+    }
+    else {
+        [[CacheDataSource sharedInstance] setCache:@"YES" withCacheKey:CacheKey_NotFirstTimeMe];
+    }
+    [self removeFromSuperview];
+}
+
+@end

@@ -1,0 +1,126 @@
+//
+//  ECRSeriesBooksView.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/20.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+static CGFloat margin = 12;
+static CGFloat marginToBound = 13;
+//static CGFloat iconW = 67;
+//static CGFloat iconH = 116;
+//static CGFloat itemW = 60;
+
+#import "ECRSeriesBooksView.h"
+#import "ECRSeriesModel.h"
+
+@interface ECRSeriesBooksView ()
+@property (assign,nonatomic) CGFloat iconW;//
+@property (assign,nonatomic) CGFloat iconH;//
+@property (assign,nonatomic) CGFloat itemW;//
+@property (strong,nonatomic) UIImageView *icon;//
+@property (strong,nonatomic) UICollectionViewFlowLayout *flowLayout;//
+
+@end
+
+@implementation ECRSeriesBooksView
+
+- (instancetype)initWithFrame:(CGRect)frame height:(CGFloat)height{
+    self.iconH = height - 2 * margin;
+    self.itemW = (self.iconH + 4) / 2;
+    self.iconW = self.itemW + 7;
+    return [self initWithFrame:frame];
+}
+
+- (void)setModel:(ECRSeriesModel *)model{
+    _model = model;
+    if ([LGPChangeLanguage currentLanguageIsEnglish]) {
+        [_icon sd_setImageWithURL:[NSURL URLWithString:model.serialUrl] placeholderImage:LGPlaceHolderImg];
+    }else{
+        [_icon sd_setImageWithURL:[NSURL URLWithString:model.en_serialUrl] placeholderImage:LGPlaceHolderImg];
+    }
+//    model.serialName;
+    
+}
+
+- (void)setImgName:(NSString *)imgName{
+    _imgName = imgName;
+    [self.icon setImage:[UIImage imageNamed:imgName]];
+    
+}
+
+- (void)setupUI{
+    
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [UIColor colorWithHexString:@"e3e3e3"].CGColor;
+    
+    [self addSubview:self.icon];
+    [self addSubview:self.collectionView];
+    
+    [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).offset(margin);
+        make.left.equalTo(self.mas_left).offset(margin);
+        make.width.equalTo(@(self.iconW));
+        make.height.equalTo(@(self.iconH));
+    }];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.icon.mas_top);
+        make.left.equalTo(self.icon.mas_right).offset(26);
+        make.right.equalTo(self.mas_right).offset(-marginToBound);
+        make.height.equalTo(@(self.iconH));
+    }];
+
+    
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (UIImageView *)icon{
+    if (_icon == nil) {
+        _icon = [[UIImageView alloc] init];
+        _icon.contentMode = UIViewContentModeScaleAspectFill;
+        _icon.clipsToBounds = YES;
+    }
+    return _icon;
+}
+- (UICollectionView *)collectionView{
+    if (_collectionView == nil) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+    }
+    return _collectionView;
+}
+- (UICollectionViewFlowLayout *)flowLayout{
+    if (_flowLayout == nil) {
+        _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        _flowLayout.itemSize = CGSizeMake(self.itemW, self.iconH);
+        _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        
+        CGFloat space;
+        if (Screen_Width == 375) {
+            space = 21;
+        }else if(Screen_Width > 414){// ipad
+            space = 52;
+        }else{// plus & SE
+            space = 42;
+        }
+        _flowLayout.minimumLineSpacing = space;
+//        _flowLayout.minimumInteritemSpacing;
+    }
+    return _flowLayout;
+}
+
+@end

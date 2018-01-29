@@ -1,0 +1,67 @@
+//
+//  ECRSearchBooksViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRSearchBooksViewController.h"
+#import "ECRSearchTitleView.h"
+
+@interface ECRSearchBooksViewController ()<
+ECRSearchTitleViewDelegate
+>
+
+@end
+
+@implementation ECRSearchBooksViewController
+
+#pragma mark - ECRSearchTitleViewDelegate
+- (void)stViewClose:(ECRSearchTitleView *)view{
+    [self baseViewControllerDismiss];
+}
+- (void)baseViewControllerDismiss{
+    [self.navigationController popViewControllerAnimated:NO];
+}
+// 不实现此方法,会走父类的实现
+- (void)stView:(ECRSearchTitleView *)view content:(NSString *)content{
+    // MARK: 根据content 开始搜索
+    NSLog(@"booksClassIds -- %@",self.bookClassIds);
+    NSString *classId = [self.bookClassIds componentsJoinedByString:@","];
+    self.requestPage = 0;
+    
+    [[ECRDataHandler sharedDataHandler] bmListDataWithSpecial:nil series:nil classify:classId length:100 page:self.requestPage sort:0 searchName:content success:^(id object) {
+        self.array = [NSMutableArray arrayWithArray:object];
+        self.requestPage = self.array.count;
+//        NSLog(@"page_more -- %ld",self.requestPage);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+        }];
+    } failure:^(NSString *msg) {
+        
+    } commenFailure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self replaceTitleViewForSearch];// 设置搜索框
+}
+
+// 重写不实现
+- (void)setNavRighSearchItem{
+    
+}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    return nil;
+//}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 0;
+//}
+
+
+@end

@@ -1,0 +1,24 @@
+//
+//  UTaskTableViewCell.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class UTaskTableViewCell;
+
+@protocol UTaskTableViewCellDelegate<NSObject>
+
+- (void)getTaskAwardWithTask:(TaskModel *)task;
+
+@end
+
+@interface UTaskTableViewCell : UITableViewCell
+
+@property (strong, nonatomic) IBOutlet UIButton *btnGetIntegral;        // 领取积分(完成任务)
+@property (nonatomic,  assign) id<UTaskTableViewCellDelegate> delegate; // 代理
+
+@end

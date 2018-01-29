@@ -1,0 +1,26 @@
+//
+//  TMPBook.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/9/24.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface TMPBook : NSObject
+
+//基本信息
+@property (nonatomic, retain) NSString *bookName;
+@property (nonatomic, retain) NSString *bookID;
+
+//路径
+@property (nonatomic, retain) NSString *bookCoverPath;//封面路径
+@property (nonatomic, retain) NSString *bookPath;//图书路径
+@property (nonatomic, retain) NSString *ncxPath;//目录路径
+@property (nonatomic, retain) NSString *opsPath;//图书信息路径
+
+
+
+
+@end

@@ -1,0 +1,47 @@
+//
+//  UFriendAddTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UFriendAddTableViewCell.h"
+
+@interface UFriendAddTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgAvatar;
+
+@property (strong, nonatomic) IBOutlet UILabel *lblUserName;
+@property (strong, nonatomic) IBOutlet UIButton *btnAdd;
+
+@end
+
+@implementation UFriendAddTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configAddCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configAddCell
+{
+    _imgAvatar.layer.masksToBounds = YES;
+    _imgAvatar.layer.cornerRadius = _imgAvatar.height/2;
+    
+    _imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+    _imgAvatar.layer.borderWidth = 3.f;
+    
+    _lblUserName.textColor = [UIColor cm_blackColor_333333_1];
+    
+    [_btnAdd setTintColor:[UIColor cm_purpleColor_82056B_1]];
+}
+
+@end

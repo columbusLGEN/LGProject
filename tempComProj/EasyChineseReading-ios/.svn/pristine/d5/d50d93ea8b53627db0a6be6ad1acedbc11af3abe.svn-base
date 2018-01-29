@@ -1,0 +1,113 @@
+//
+//  UserVirtualCurrencyVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UVirtualCurrencyVC.h"
+
+#import "UVirtualCurrencyTableViewCell.h"
+
+#import "UIVCRechargeVC.h"
+
+@interface UVirtualCurrencyVC ()
+@property (strong, nonatomic) IBOutlet UIView *viewVerLine;
+@property (strong, nonatomic) IBOutlet UIView *viewLine;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescribe;
+@property (strong, nonatomic) IBOutlet UILabel *lblVirtualCurrencyNumber;
+@property (strong, nonatomic) IBOutlet UIButton *btnRecharge;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+/* 充值记录 */
+@property (strong, nonatomic) NSMutableArray *arrVirtualCurrency;
+
+@end
+
+@implementation UVirtualCurrencyVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configView];
+    [self getDataSource];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark 配置界面
+
+- (void)configView
+{
+    _viewVerLine.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    _lblVirtualCurrencyNumber.textColor = [UIColor cm_purpleColor_82056B_1];
+    _viewLine.backgroundColor = [UIColor cm_lineColor_C6C6C6_1];
+    
+    _btnRecharge.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    _btnRecharge.layer.masksToBounds = YES;
+    _btnRecharge.layer.cornerRadius = _btnRecharge.height/2;
+    _btnRecharge.tintColor = [UIColor whiteColor];
+    [_btnRecharge setTitle:@"充值" forState:UIControlStateNormal];
+    
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UVirtualCurrencyTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UVirtualCurrencyTableViewCell class])];
+    
+    // tableView 自适应高度
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+}
+
+#pragma mark -
+#pragma mark 获取数据
+
+- (void)getDataSource
+{
+    
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+//    return _arrVirtualCurrency.count != 0 ? _arrVirtualCurrency.count : 1;
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    if (_arrVirtualCurrency.count != 0) {
+        UVirtualCurrencyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UVirtualCurrencyTableViewCell class])];
+        cell.data = _arrVirtualCurrency[indexPath.row];
+        return cell;
+//    }
+//    else {
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_arrVirtualCurrency.count != 0) {
+        NSLog(@" to indexPath %ld", (long)indexPath.row);
+    }
+}
+
+#pragma mark -
+#pragma mark action
+
+- (IBAction)click_btnRecharge:(id)sender {
+    [self pushToViewControllerWithStoryBoard:@"User" withStoryBoardId:NSStringFromClass([UIVCRechargeVC class])];
+}
+
+@end

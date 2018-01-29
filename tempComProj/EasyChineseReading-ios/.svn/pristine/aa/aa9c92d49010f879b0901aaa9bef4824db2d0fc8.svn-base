@@ -1,0 +1,383 @@
+//
+//  UFavouriteVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserFavouriteVC.h"
+
+#import "UFavouriteTableViewCell.h"
+#import "EmptyView.h"
+#import "ShareView.h"
+
+#import "ShareBookSelectedFriendVC.h"
+
+@interface UserFavouriteVC ()<
+UITableViewDelegate,
+UITableViewDataSource,
+UFavouriteTableViewCellDelegate,
+ShareViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblTime;            // 时间
+@property (weak, nonatomic) IBOutlet UILabel *lblMoney;           // 价格
+@property (weak, nonatomic) IBOutlet UILabel *lblFavouriteNum;    // 收藏人气
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgTime;        // 时间
+@property (weak, nonatomic) IBOutlet UIImageView *imgMoney;       // 价格
+@property (weak, nonatomic) IBOutlet UIImageView *imgFavouriteNum;// 收藏人气
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgSelectedAll;   // 选择全部
+@property (weak, nonatomic) IBOutlet UILabel *lblSelectedAll;       // 选择全部
+@property (weak, nonatomic) IBOutlet UIView *viewBottomLine;        // 底部横线
+
+@property (weak, nonatomic) IBOutlet UIButton *btnDelete;           // 批量删除
+@property (weak, nonatomic) IBOutlet UIButton *btnBuy;              // 批量购买
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraint; // 底部高度
+
+/* 数据 */
+@property (strong, nonatomic) NSMutableArray *arrDataSource;
+/* 选中的数据 */
+@property (strong, nonatomic) NSMutableArray *arrSelected;
+
+/** 空白提示界面 */
+@property (nonatomic, strong) EmptyView *emptyView;
+
+/** 图书分享 */
+@property (strong, nonatomic) ShareView *shareView;
+
+/** 排序 */
+@property (nonatomic, assign) ENUM_FavouriteSortType favouriteSort;
+
+/** 选择全部 */
+@property (nonatomic, assign) BOOL selectedAll;
+
+@end
+
+
+@implementation UserFavouriteVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configFavouriteView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 配置界面
+
+- (void)configFavouriteView
+{
+    self.title = @"我的收藏";
+    [self registTableView];
+    [self configHeaderView];
+    [self configFooterView];
+    [self addEmptyView];
+    [self getFavourite];
+}
+
+- (void)configHeaderView
+{
+    _lblTime.font = [UIFont systemFontOfSize:16.f];
+    _lblMoney.font = [UIFont systemFontOfSize:16.f];
+    _lblSelectedAll.font = [UIFont systemFontOfSize:16.f];
+    
+    _lblTime.textColor = [UIColor cm_purpleColor_82056B_1];
+    _lblMoney.textColor = [UIColor cm_blackColor_333333_1];
+    _lblSelectedAll.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _imgTime.image = [UIImage imageNamed:@"lei2"];
+    _imgMoney.image = [UIImage imageNamed:@"lei3"];
+    _imgFavouriteNum.image = [UIImage imageNamed:@"lei3"];
+    
+    UITapGestureRecognizer *tapTime  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sortWithTime)];
+    UITapGestureRecognizer *tapMoney = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sortWithMoney)];
+    UITapGestureRecognizer *tapNumb  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sortWithNumb)];
+
+    [_lblTime addGestureRecognizer:tapTime];
+    [_lblMoney addGestureRecognizer:tapMoney];
+    [_lblFavouriteNum addGestureRecognizer:tapNumb];
+    
+    _favouriteSort = ENUM_FavouriteSortTypeTimeDown;
+}
+
+- (void)configFooterView
+{
+    _bottomViewHeightConstraint.constant = isPad ? 60.f : 44.f;
+    
+    _lblSelectedAll.textColor = [UIColor cm_blackColor_333333_1];
+    _lblSelectedAll.font = [UIFont systemFontOfSize:16.f];
+    
+    _btnBuy.layer.masksToBounds = YES;
+    _btnBuy.layer.cornerRadius = _btnBuy.height/2;
+    
+    _btnBuy.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    [_btnBuy setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    _btnDelete.layer.masksToBounds = YES;
+    _btnDelete.layer.cornerRadius = _btnDelete.height/2;
+    
+    _btnDelete.layer.borderColor = [UIColor cm_purpleColor_82056B_1].CGColor;
+    _btnDelete.layer.borderWidth = .5f;
+    
+    _btnDelete.backgroundColor = [UIColor whiteColor];
+    [_btnDelete setTitleColor:[UIColor cm_purpleColor_82056B_1] forState:UIControlStateNormal];
+    
+    UITapGestureRecognizer *tapSelectAll = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectedAllFavourite)];
+    [_imgSelectedAll addGestureRecognizer:tapSelectAll];
+    [_lblSelectedAll addGestureRecognizer:tapSelectAll];
+    
+    _viewBottomLine.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+}
+
+- (void)registTableView
+{
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UFavouriteTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UFavouriteTableViewCell class])];
+}
+
+- (void)addEmptyView
+{
+    _emptyView = [EmptyView loadFromNibWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height - cHeaderHeight_44)];
+    [_emptyView updateEmptyViewWithType:ENUM_EmptyResultTypeUnknow Image:nil desc:@"没有收藏过图书" subDesc:nil];
+    [self.view addSubview:_emptyView];
+}
+
+#pragma mark - 获取数据
+
+- (void)getFavourite
+{
+    _selectedAll = NO;
+    [[FavouriteRequest sharedInstance] getFavourtesWithCompletion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            _arrDataSource = [NSMutableArray mj_objectArrayWithKeyValuesArray:object];
+            _emptyView.hidden = _arrDataSource.count > 0;
+            if (_arrDataSource.count > 0) {
+                [self.tableView reloadData];
+            }
+        }
+    }];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _arrDataSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UFavouriteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UFavouriteTableViewCell class])];
+    cell.data = _arrDataSource[indexPath.row];
+    cell.delegate = self;
+    if (_selectedAll == YES) {
+        cell.isSelected = YES;
+    }
+    else {
+        cell.isSelected = NO;
+    }
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UFavouriteTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.isSelected = !cell.isSelected;
+    if (cell.isSelected) {
+        [self.arrSelected addObject:_arrDataSource[indexPath.row]];
+    }
+    else {
+        [self.arrSelected removeObject:_arrDataSource[indexPath.row]];
+        if (_selectedAll == YES) {
+            _selectedAll = NO;
+            _imgSelectedAll.image = [UIImage imageNamed:cImageUnSelected];
+        }
+    }
+}
+
+#pragma mark - UFavouriteTableViewCellDelegate
+/** 添加到购物车 */
+- (void)addToShopCarWithBook:(BookModel *)book
+{
+    [[ShopCarRequest sharedInstance] configShopCarWithBookId:[NSString stringWithFormat:@"%ld", (long)book.bookId]
+                                                    serialId:@""
+                                                     buyType:[NSString stringWithFormat:@"%ld", (long)ENUM_GetBookTypeBuy]
+                                                        type:[NSString stringWithFormat:@"%ld", (long)ENUM_ShopCarActionAdd]
+                                                       price:[NSString stringWithFormat:@"%.2f", book.price]
+                                                     orderId:@""
+                                                     readDay:@""
+                                                  completion:^(id object, ErrorModel *error) {
+                                                      if (error) {
+                                                          [self presentFailureTips:error.message];
+                                                      }
+                                                      else {
+                                                          if ([object isEqualToString:@"SUCCESS"]) {
+                                                              [self presentSuccessTips:@"成功添加到购物车"];
+                                                          }
+                                                          else {
+                                                              NSLog(@"favourite error %@", object);
+                                                              [self presentFailureTips:@"出错啦~"];
+                                                          }
+                                                      }
+                                                  }];
+}
+
+/** 分享图书 */
+- (void)shareWithBook:(BookModel *)book
+{
+    _shareView = [ShareView loadFromNibWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+    _shareView.delegate = self;
+    _shareView.data = book;
+    [self.view addSubview:_shareView];
+    [_shareView show];
+}
+
+#pragma mark -
+
+- (void)shareBook:(BookModel *)book content:(NSString *)content type:(NSInteger)type
+{
+    if (type == 0) { // 好友
+        ShareBookSelectedFriendVC *friendVC = [ShareBookSelectedFriendVC new];
+        friendVC.book = book;
+        [self.navigationController pushViewController:friendVC animated:YES];
+        [_shareView hidden];
+    }
+    else {// 动态
+        [[FriendRequest sharedInstance] shareBookWithBookId:book.bookId shareTitle:content completion:^(id object, ErrorModel *error) {
+            if (error) {
+                [self presentFailureTips:error.message];
+            }
+            else {
+                [self fk_postNotification:kNotificationShareBookToDynamic];
+                [_shareView hidden];
+                [self presentSuccessTips:@"分享成功"];
+            }
+        }];
+    }
+}
+
+#pragma mark - action
+
+/**
+ 选择全部或取消选中
+ */
+- (void)selectedAllFavourite
+{
+    [_arrSelected removeAllObjects];
+    if (_selectedAll == NO) {
+        [_arrSelected addObjectsFromArray:_arrDataSource];
+        _imgSelectedAll.image = [UIImage imageNamed:cImageSelected];
+    }
+    else {
+        _imgSelectedAll.image = [UIImage imageNamed:cImageUnSelected];
+    }
+    _selectedAll = !_selectedAll;
+    [self.tableView reloadData];
+}
+
+/**
+ 批量删除
+ */
+- (IBAction)click_btnDelete:(id)sender {
+    if (self.arrSelected.count > 0) {
+        NSMutableString *bookIds = [[NSMutableString alloc] init];
+        for (NSInteger i = 0; i < _arrSelected.count; i ++) {
+            BookModel *book = _arrSelected[i];
+            [bookIds appendString:[NSString stringWithFormat:@"%ld,", (long)book.bookId]];
+        }
+        [[FavouriteRequest sharedInstance] updateFavouriteWithBookId:bookIds
+                                                                type:ENUM_FavouriteActionTypeDelete
+                                                          completion:^(id object, ErrorModel *error) {
+                                                              if (error) {
+                                                                  [self presentFailureTips:error.message];
+                                                              }
+                                                              else {
+                                                                  [_arrDataSource removeObjectsInArray:_arrSelected];
+                                                                  [_tableView reloadData];
+                                                              }
+                                                          }];
+    }
+}
+
+/**
+ 批量购买
+ */
+- (IBAction)click_btnBuy:(id)sender {
+    // TODO: 创建订单
+}
+
+#pragma mark - 排序
+
+- (void)sortWithTime
+{
+    if (_favouriteSort == ENUM_FavouriteSortTypeTimeDown) {
+        _favouriteSort = ENUM_FavouriteSortTypeTimeUp;
+    }
+    else {
+        _favouriteSort = ENUM_FavouriteSortTypeTimeDown;
+    }
+    [self updateViewWithSort];
+}
+
+- (void)sortWithMoney
+{
+    if (_favouriteSort == ENUM_FavouriteSortTypePriceDown) {
+        _favouriteSort = ENUM_FavouriteSortTypePriceUp;
+    }
+    else {
+        _favouriteSort = ENUM_FavouriteSortTypePriceDown;
+    }
+    [self updateViewWithSort];
+}
+
+- (void)sortWithNumb
+{
+    if (_favouriteSort == ENUM_FavouriteSortTypeHotDown) {
+        _favouriteSort = ENUM_FavouriteSortTypeHotUp;
+    }
+    else {
+        _favouriteSort = ENUM_FavouriteSortTypeHotDown;
+    }
+    [self updateViewWithSort];
+}
+
+- (void)updateViewWithSort
+{
+    // TODO: 根据排序 获取收藏的书
+}
+
+#pragma mark -
+#pragma mark 属性
+
+- (NSMutableArray *)arrDataSource
+{
+    if (_arrDataSource == nil) {
+        _arrDataSource = [NSMutableArray array];
+    }
+    return _arrDataSource;
+}
+
+- (NSMutableArray *)arrSelected
+{
+    if (_arrSelected == nil) {
+        _arrSelected = [NSMutableArray array];
+    }
+    return _arrSelected;
+}
+@end

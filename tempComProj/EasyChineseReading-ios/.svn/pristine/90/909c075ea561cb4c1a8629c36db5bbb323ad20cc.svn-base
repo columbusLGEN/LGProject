@@ -1,0 +1,124 @@
+//
+//  ZSegment.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/11/6.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ZSegment.h"
+
+@interface ZSegment ()
+
+@property (strong, nonatomic) UIView *viewSlider; // 底部滑块
+
+@property (strong, nonatomic) UIView *botline; // 底部横线
+@property (strong, nonatomic) UIView *verLine; // 竖线
+
+@property (strong, nonatomic) UIView *viewLeft;
+@property (strong, nonatomic) UIView *viewRight;
+
+@property (strong, nonatomic) UILabel *lblLeft;
+@property (strong, nonatomic) UILabel *lblRight;
+
+@property (assign, nonatomic) NSInteger selectedIndex;
+
+@end
+
+@implementation ZSegment
+
+- (instancetype)initWithFrame:(CGRect)frame leftTitle:(NSString *)lt rightTitle:(NSString *)rt
+{
+    if (self = [super initWithFrame:frame]) {
+        [self configSegmentWithSColor:[UIColor cm_mainColor] lt:lt rt:rt];
+    }
+    return self;
+}
+
+- (void)configSegmentWithSColor:(UIColor *)scolor lt:(NSString *)lt rt:(NSString *)rt
+{
+    self.backgroundColor = [UIColor whiteColor];
+    
+    _viewLeft = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width/2 - 1, self.height - 1)];
+    [self addSubview:_viewLeft];
+    
+    _viewRight = [[UIView alloc] initWithFrame:CGRectMake(self.width/2, 0, self.width/2, self.height - 1)];
+    [self addSubview:_viewRight];
+    
+    _lblLeft = [[UILabel alloc] init];
+    _lblLeft.textAlignment = NSTextAlignmentCenter;
+    _lblLeft.textColor = scolor;
+    _lblLeft.text = lt;
+    _lblLeft.font = [UIFont systemFontOfSize:cFontSize_16];
+    [_viewLeft addSubview:_lblLeft];
+
+    [_lblLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(_viewLeft);
+    }];
+
+    _lblRight = [[UILabel alloc] init];
+    _lblRight.textAlignment = NSTextAlignmentCenter;
+    _lblRight.textColor = [UIColor cm_blackColor_333333_1];
+    _lblRight.text = rt;
+    _lblRight.font = [UIFont systemFontOfSize:cFontSize_16];
+    [_viewRight addSubview:_lblRight];
+    [_lblRight mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(_viewRight);
+    }];
+    
+    _botline = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - 1, self.width, 1)];
+    _botline.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+    [self addSubview:_botline];
+    
+    _verLine = [[UIView alloc] initWithFrame:CGRectMake(self.width/2 - 1, (self.height - cFontSize_16)/2, 1, cFontSize_16)];
+    _verLine.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+    [self addSubview:_verLine];
+
+    _viewSlider = [[UIView alloc] initWithFrame:CGRectMake((_viewLeft.width - [NSString stringWidthWithText:lt fontSize:cFontSize_16])/2, _viewLeft.height - 5
+                                                           , [NSString stringWidthWithText:_lblLeft.text fontSize:cFontSize_16], 3)];
+    _viewSlider.backgroundColor = [UIColor cm_mainColor];
+    [self addSubview:_viewSlider];
+
+    _viewLeft.userInteractionEnabled  = YES;
+    _viewRight.userInteractionEnabled = YES;
+
+    UITapGestureRecognizer *tapL = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLLabel)];
+    UITapGestureRecognizer *tapR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRLabel)];
+
+    [_viewLeft  addGestureRecognizer:tapL];
+    [_viewRight addGestureRecognizer:tapR];
+
+    _selectedIndex = 0;
+}
+
+- (void)tapLLabel
+{
+    if (_selectedIndex == 1) {
+        _selectedIndex = 0;
+        _lblLeft.textColor  = [UIColor cm_mainColor];
+        _lblRight.textColor = [UIColor cm_blackColor_333333_1];
+        
+        _viewSlider.frame = CGRectMake((_viewLeft.width - [NSString stringWidthWithText:_lblLeft.text fontSize:cFontSize_16])/2
+                                       , _viewLeft.height - 5
+                                       , [NSString stringWidthWithText:_lblLeft.text fontSize:cFontSize_16]
+                                       , 3);
+        self.selectedLeft();
+    }
+}
+
+- (void)tapRLabel
+{
+    if (_selectedIndex == 0) {
+        _selectedIndex = 1;
+        _lblLeft.textColor  = [UIColor cm_blackColor_333333_1];
+        _lblRight.textColor = [UIColor cm_mainColor];
+        
+        _viewSlider.frame = CGRectMake(_viewLeft.width + (_viewRight.width - [NSString stringWidthWithText:_lblRight.text fontSize:cFontSize_16])/2, _viewRight.height - 5
+                                       , [NSString stringWidthWithText:_lblRight.text fontSize:cFontSize_16], 3);
+        self.selectedRight();
+    }
+}
+
+
+
+@end

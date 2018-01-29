@@ -1,0 +1,74 @@
+
+
+//
+//  UTaskCollectionViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/11/21.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UTaskCollectionViewCell.h"
+
+@interface UTaskCollectionViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgBadge;     // 徽章
+@property (weak, nonatomic) IBOutlet UILabel *lblIntegral;      // 积分数
+@property (weak, nonatomic) IBOutlet UILabel *lblDescIntegral;  // 积分
+@property (weak, nonatomic) IBOutlet UILabel *lblCompleteness;  // 完成度
+@property (weak, nonatomic) IBOutlet UILabel *lblDescTask;      // 任务描述
+
+@property (strong, nonatomic) TaskModel *task;
+
+@end
+
+@implementation UTaskCollectionViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configView];
+}
+
+- (void)configView
+{
+    _lblDescTask.textColor = [UIColor cm_blackColor_333333_1];
+    _lblIntegral.textColor = [UIColor whiteColor];
+    _lblDescIntegral.textColor = [UIColor whiteColor];
+    _lblCompleteness.textColor = [UIColor whiteColor];
+    
+    _lblDescTask.font = [UIFont systemFontOfSize:cFontSize_14];
+    _lblIntegral.font = [UIFont boldSystemFontOfSize:30.f];
+    _lblDescIntegral.font = [UIFont systemFontOfSize:cFontSize_14];
+    _lblCompleteness.font = [UIFont systemFontOfSize:cFontSize_14];
+}
+
+- (void)dataDidChange
+{
+    _task = self.data;
+    _lblDescIntegral.text = LOCALIZATION(@"积分");
+    _lblIntegral.text = [NSString stringWithFormat:@"%ld", _task.taskreward];
+    _lblDescTask.text = [UserRequest sharedInstance].language == ENUM_LanguageTypeChinese ? _task.taskdescribe : _task.en_taskdescribe;
+    
+    if (_task.status == ENUM_TaskStatusTypeUnFinish) {
+        _lblCompleteness.text = LOCALIZATION(@"未完成");
+        _imgBadge.image = [UIImage imageNamed:@"img_background_about"];
+    }
+    else if (_task.status == ENUM_TaskStatusTypeDone) {
+        _lblCompleteness.text = LOCALIZATION(@"未领取");
+        _imgBadge.image = [UIImage imageNamed:@"img_background_lease"];
+    }
+    else {
+        _lblCompleteness.text = LOCALIZATION(@"已领取");
+        _imgBadge.image = [UIImage imageNamed:@"img_background_user"];
+    }
+}
+
+- (void)getTaskIntegral
+{
+    _task.status = ENUM_TaskStatusTypeGetIntegral;
+    _lblCompleteness.text = LOCALIZATION(@"已领取");
+    _imgBadge.image = [UIImage imageNamed:@"img_background_user"];
+}
+
+
+@end

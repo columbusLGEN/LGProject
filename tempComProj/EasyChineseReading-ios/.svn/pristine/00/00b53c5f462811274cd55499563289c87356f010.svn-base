@@ -1,0 +1,60 @@
+//
+//  UOrderHeaderView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserOrderHeaderView.h"
+
+@interface UserOrderHeaderView ()
+
+@property (strong, nonatomic) IBOutlet UILabel *lblOrderId;
+@property (strong, nonatomic) IBOutlet UILabel *lblOrderState;
+
+@end
+
+@implementation UserOrderHeaderView
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self configOrderHeaderView];
+}
+
+- (void)configOrderHeaderView
+{
+    _lblOrderId.textColor    = [UIColor cm_blackColor_333333_1];
+    _lblOrderState.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _lblOrderId.font    = [UIFont systemFontOfSize:16.f];
+    _lblOrderState.font = [UIFont systemFontOfSize:16.f];
+}
+
+- (void)dataDidChange
+{
+    OrderModel *order = self.data;
+    _lblOrderId.text = [NSString stringWithFormat:@"订单号: %@", order.orderId];
+    if (!_isDetailHeader) {
+        if (order.orderStatus == ENUM_ZOrderStateScore) {
+            _lblOrderState.textColor = [UIColor cm_orangeColor_FF6000_1];
+            _lblOrderState.text = @"待评价";
+        }
+        else if (order.orderStatus == ENUM_ZOrderStateDone) {
+            _lblOrderState.textColor = [UIColor cm_blackColor_333333_1];
+            _lblOrderState.text = @"已完成";
+        }
+        else { // 不应该存在的状态,防止出现,做个判断
+            _lblOrderState.textColor = [UIColor cm_blackColor_333333_1];
+            _lblOrderState.text = @"未完成";
+        }
+    }
+    else {
+        _lblOrderState.text = [NSString stringWithFormat:@"下单时间: %@", order.date];
+    }
+}
+
+
+
+@end

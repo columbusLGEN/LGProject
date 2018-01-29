@@ -1,0 +1,35 @@
+//
+//  UFriendReadPadTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/12/7.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UFriendReadPadTableViewCell.h"
+
+@implementation UFriendReadPadTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+//- (void)drawRect:(CGRect)rect
+//{
+//    [super drawRect:rect];
+//    // 切掉背景的右上角, 左下角
+//UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:_viewBackground.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(10, 10)];
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = _viewBackground.bounds;
+//    maskLayer.path = path.CGPath;
+//    _viewBackground.layer.mask = maskLayer;
+//}
+
+@end

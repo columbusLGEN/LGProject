@@ -1,0 +1,38 @@
+//
+//  YMBookDigest+CoreDataProperties.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/12/2.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
+//  to delete and recreate this implementation file for your updated model.
+//
+
+#import "YMBookDigest.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface YMBookDigest (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSDate *addDate;
+@property (nullable, nonatomic, retain) NSString *bookID;
+@property (nullable, nonatomic, retain) NSString *bookJRID;
+@property (nullable, nonatomic, retain) NSNumber *catIndex;
+@property (nullable, nonatomic, retain) NSString *catName;
+@property (nullable, nonatomic, retain) NSString *dataID;
+@property (nullable, nonatomic, retain) NSString *digestNote;
+@property (nullable, nonatomic, retain) NSString *lineColor;
+@property (nullable, nonatomic, retain) NSString *message;
+@property (nullable, nonatomic, retain) NSString *needSend;
+@property (nullable, nonatomic, retain) NSNumber *noteID;
+@property (nullable, nonatomic, retain) NSNumber *pos;
+@property (nullable, nonatomic, retain) NSString *range;
+@property (nullable, nonatomic, retain) NSString *startContainerPosition;
+@property (nullable, nonatomic, retain) NSString *summary;
+@property (nullable, nonatomic, retain) NSString *userID;
+@property (nullable, nonatomic, retain) NSNumber *status;
+
+@end
+
+NS_ASSUME_NONNULL_END

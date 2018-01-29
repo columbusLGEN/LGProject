@@ -1,0 +1,438 @@
+//
+//  ULeaseVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserLeaseVC.h"
+
+#import "UserLeaseTableViewCell.h"
+#import "UserLeaseTicketsTableViewCell.h"
+
+#import "UVirtualCurrencyRechargeVC.h"
+#import "UserLeaseSelectedVC.h"
+#import "UserLeaseDetailVC.h"
+
+@interface UserLeaseVC ()<
+UITableViewDelegate, UITableViewDataSource,
+UserLeaseTableViewCellDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *viewHeader;
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgHeader;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescLeft;
+@property (strong, nonatomic) IBOutlet UILabel *lblRange;
+@property (strong, nonatomic) IBOutlet UILabel *lblEndTime;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnPay;
+@property (strong, nonatomic) IBOutlet UITableView *tableVIew;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lblDescCenterYConstraint;
+
+/** 系列列表 */
+@property (strong, nonatomic) NSMutableArray *arrLeases;
+/** 卡券兑换 集合 */
+@property (strong, nonatomic) NSMutableArray *arrTicket;
+
+@property (nonatomic, strong) EmptyView *emptyView;   // 没有数据
+@property (strong, nonatomic) EmptyView *emptyLease;  // 没有系列
+@property (strong, nonatomic) EmptyView *emptyTicket; // 没有兑换书集
+@property (nonatomic, strong) UVirtualCurrencyRechargeVC *rechargeVC; // 全平台包月
+
+@property (assign, nonatomic) NSInteger currentLeasePage;  // 当前系列页
+@property (assign, nonatomic) NSInteger currentTicketPage; // 当前卡券兑换的书集页
+
+@property (assign, nonatomic) BOOL isLoadMoreLeases; // 点击加载更多系列
+@property (assign, nonatomic) BOOL isLoadMoreTicket; // 点击加载更多兑换的书集
+
+@property (assign, nonatomic) NSInteger selectedIndex; // 选中的系列
+
+@end
+
+@implementation UserLeaseVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self configLeaseView];
+    [self configEmptyView];
+
+    [self getFirstLeaseData];
+    [self getFirstTicketBooksData];
+    
+    [self fk_observeNotifcation:kNotificationUpdateSerialInfo usingBlock:^(NSNotification *note) {
+        [_arrLeases removeObjectAtIndex:_selectedIndex];
+        [_arrLeases insertObject:note.object atIndex:_selectedIndex];
+        [_tableVIew reloadData];
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 配置界面
+
+- (void)updateSystemLanguage
+{
+    [_btnPay setTitle:[UserRequest sharedInstance].user.endtime ? LOCALIZATION(@"续期") : LOCALIZATION(@"购买") forState:UIControlStateNormal];
+    _lblDescLeft.text  = LOCALIZATION(@"VIP租阅");
+    _lblRange.text     = [NSString stringWithFormat:@"-%@",LOCALIZATION(@"全平台资源")];
+    _lblEndTime.hidden = [[UserRequest sharedInstance].user.endtime empty] || ![UserRequest sharedInstance].user.endtime;
+    _lblDescCenterYConstraint.constant = _lblEndTime.hidden ? 10 : 0;
+    _lblEndTime.text  = [NSString stringWithFormat:@"%@ %@", LOCALIZATION(@"到期"), [UserRequest sharedInstance].user.endtime];
+    [_tableVIew reloadData];
+}
+
+- (void)configLeaseView
+{
+    _lblRange.textColor    = [UIColor cm_blackColor_666666_1];
+    _lblDescLeft.textColor = [UIColor cm_blackColor_666666_1];
+    _lblEndTime.textColor  = [UIColor cm_orangeColor_BB7435_1];
+    
+    _lblDescLeft.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblRange.font    = [UIFont systemFontOfSize:cFontSize_14];
+    _lblEndTime.font  = [UIFont systemFontOfSize:cFontSize_14];
+    
+    _btnPay.layer.masksToBounds = YES;
+    _btnPay.layer.cornerRadius = _btnPay.height/2;
+    _btnPay.layer.borderWidth = 1.f;
+    _btnPay.layer.borderColor = [UIColor cm_orangeColor_BB7435_1].CGColor;
+    
+    [_btnPay setTintColor:[UIColor cm_orangeColor_BB7435_1]];
+    [_btnPay setTitle:[UserRequest sharedInstance].user.readAllBook ? LOCALIZATION(@"续期") : LOCALIZATION(@"购买") forState:UIControlStateNormal];
+    
+    [_tableVIew registerNib:[UINib nibWithNibName:NSStringFromClass([UserLeaseTableViewCell class])        bundle:nil] forCellReuseIdentifier:NSStringFromClass([UserLeaseTableViewCell class])];
+    [_tableVIew registerNib:[UINib nibWithNibName:NSStringFromClass([UserLeaseTicketsTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UserLeaseTicketsTableViewCell class])];
+    
+    _tableVIew.estimatedRowHeight = 100;
+    _tableVIew.rowHeight = UITableViewAutomaticDimension;
+}
+
+- (void)configEmptyView
+{
+    _emptyView = [EmptyView loadFromNibWithFrame:CGRectMake(0, _viewHeader.height, Screen_Width, self.view.height - _viewHeader.height)];
+    [_emptyView updateEmptyViewWithType:ENUM_EmptyResultTypeData Image:nil desc:nil subDesc:nil];
+    [self.view addSubview:_emptyView];
+}
+
+#pragma mark 获取数据
+
+/**
+ 第一页系列列表数据
+ */
+- (void)getFirstLeaseData
+{
+    _currentLeasePage = 0;
+    [[OrderRequest sharedInstance] getOrderListWithPage:_currentLeasePage
+                                            orderStatus:ENUM_ZOrderStateDone
+                                              orderType:[NSString stringWithFormat:@"%ld", ENUM_PayPurposeLease]
+                                                 length:[NSString stringWithFormat:@"%ld", cListNumber_10]
+                                             completion:^(id object, ErrorModel *error) {
+                                                 [_tableVIew.mj_header endRefreshing];
+                                                 if (error) {
+                                                     [self presentFailureTips:error.message];
+                                                 }
+                                                 else {
+                                                     _isLoadMoreLeases = NO;
+                                                     self.arrLeases = [SerialModel mj_objectArrayWithKeyValuesArray:object];
+                                                     _emptyView.hidden = _arrTicket.count > 0 || _arrLeases.count > 0;
+                                                     if (_arrLeases.count > 0) {
+                                                         _currentLeasePage += 1;
+                                                     }
+                                                     _emptyView.hidden = _arrLeases.count > 0;
+                                                     [self.tableVIew reloadData];
+                                                 }
+                                             }];
+}
+
+/**
+ 系列列表数据
+ */
+- (void)getLeaseDataWithPage
+{
+    [[OrderRequest sharedInstance] getOrderListWithPage:_currentLeasePage
+                                            orderStatus:ENUM_ZOrderStateDone
+                                              orderType:[NSString stringWithFormat:@"%ld", ENUM_PayPurposeLease]
+                                                 length:[NSString stringWithFormat:@"%ld", cListNumber_10]
+                                             completion:^(id object, ErrorModel *error) {
+                                                 [_tableVIew.mj_footer endRefreshing];
+                                                 if (error) {
+                                                     [self presentFailureTips:error.message];
+                                                 }
+                                                 else {
+                                                     NSArray *array = [SerialModel mj_objectArrayWithKeyValuesArray:object];
+                                                     if (array.count > 0) {
+                                                         _isLoadMoreLeases = YES;
+                                                         [self.arrLeases addObjectsFromArray:array];
+                                                         _currentLeasePage += 1;
+                                                         _emptyView.hidden = YES;
+                                                         [self.tableVIew reloadData];
+                                                     }
+                                                 }
+                                             }];
+}
+
+/**
+ 兑换券兑换的书集列表
+ */
+- (void)getFirstTicketBooksData
+{
+    _currentTicketPage = 0;
+    [[OrderRequest sharedInstance] getTicketesWithPage:_currentTicketPage
+                                                length:cListNumber_10
+                                            completion:^(id object, ErrorModel *error) {
+                                                if (error) {
+                                                    [self presentFailureTips:error.message];
+                                                }
+                                                else {
+                                                    self.arrTicket = [TicketBookModel mj_objectArrayWithKeyValuesArray:object];
+                                                    _emptyView.hidden = _arrTicket.count > 0 || _arrLeases.count > 0;
+                                                    if (_arrTicket.count > 0) {
+                                                        _isLoadMoreTicket = NO;
+                                                        _currentTicketPage += 1;
+                                                    }
+                                                    [_tableVIew reloadData];
+                                                }
+                                            }];
+}
+
+/**
+ 兑换券兑换的书集列表
+ */
+- (void)getTicketBooksDataWithPage
+{
+    [[OrderRequest sharedInstance] getTicketesWithPage:_currentTicketPage
+                                                length:cListNumber_10
+                                            completion:^(id object, ErrorModel *error) {
+                                                if (error) {
+                                                    [self presentFailureTips:error.message];
+                                                }
+                                                else {
+                                                    NSArray *array = [NSDictionary mj_objectArrayWithKeyValuesArray:object];
+                                                    if (array.count > 0) {
+                                                        [_arrTicket addObjectsFromArray:array];
+                                                        _currentTicketPage += 1;
+                                                        _isLoadMoreTicket = YES;
+                                                    }
+                                                    [_tableVIew reloadData];
+                                                }
+                                            }];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (0 == section) {
+        return _isLoadMoreLeases ? _arrLeases.count : (_arrLeases.count > 3 ? 3 : _arrLeases.count);
+    }
+    else {
+        return _isLoadMoreTicket ? _arrTicket.count : (_arrTicket.count > 3 ? 3 : _arrTicket.count);
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section) {
+        UserLeaseTableViewCell *leaseCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UserLeaseTableViewCell class])];
+        leaseCell.delegate = self;
+        leaseCell.data = _arrLeases[indexPath.row];
+        WeakSelf(self)
+        leaseCell.toSerialBooksListView = ^{
+            [weakself toSerialBooksListViewWithIndex:indexPath.row];
+        };
+        return leaseCell;
+    }
+    else {
+        UserLeaseTicketsTableViewCell *ticketCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UserLeaseTicketsTableViewCell class])];
+        ticketCell.data = _arrTicket[indexPath.row];
+        WeakSelf(self)
+        ticketCell.toTicketsBooksListView = ^{
+            [weakself toTicketBooksListViewWithIndex:indexPath.row];
+        };
+        return ticketCell;
+    }
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (0 == indexPath.section) {
+        [self toSerialBooksListViewWithIndex:indexPath.row];
+    }
+    else {
+        [self toTicketBooksListViewWithIndex:indexPath.row];
+    }
+}
+
+- (void)toSerialBooksListViewWithIndex:(NSInteger)index
+{
+    _selectedIndex = index;
+    UserLeaseDetailVC *leaseDetailVC = [UserLeaseDetailVC new];
+    leaseDetailVC.serial = _arrLeases[index];
+    [self.navigationController pushViewController:leaseDetailVC animated:YES];
+}
+
+- (void)toTicketBooksListViewWithIndex:(NSInteger)index
+{
+    UserLeaseDetailVC *ticketDetailVC = [UserLeaseDetailVC new];
+    ticketDetailVC.ticket = _arrTicket[index];
+    [self.navigationController pushViewController:ticketDetailVC animated:YES];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *header = [UIView new];
+    header.backgroundColor = [UIColor whiteColor];
+    
+    UIView *verLine = [UIView new];
+    verLine.backgroundColor = [UIColor cm_mainColor];
+    [header addSubview:verLine];
+    [verLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(header.mas_centerY);
+        make.left.equalTo(header.mas_left).offset(12);
+        make.size.mas_equalTo(CGSizeMake(3, 14));
+    }];
+    
+    UILabel *lblDesc = [UILabel new];
+    lblDesc.textColor = [UIColor cm_blackColor_333333_1];
+    lblDesc.font = [UIFont systemFontOfSize:16.f];
+    lblDesc.text = section == 0 ? LOCALIZATION(@"系列包月") : LOCALIZATION(@"专题包月");
+    [header addSubview:lblDesc];
+    [lblDesc mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(verLine.mas_centerY);
+        make.left.equalTo(verLine.mas_right).offset(10);
+    }];
+    
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return cHeaderHeight_44;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footer = [UIView new];
+    
+    UILabel *lblMore = [UILabel new];
+    lblMore.textColor = [UIColor cm_blackColor_333333_1];
+    lblMore.font = [UIFont systemFontOfSize:cFontSize_16];
+    lblMore.text = LOCALIZATION(@"加载更多");
+    
+    if (0 == section) {
+        if (_arrLeases.count > 0) {
+            [footer addSubview:lblMore];
+            [lblMore mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(footer.mas_centerX);
+                make.centerY.equalTo(footer.mas_centerY);
+            }];
+            _emptyLease.hidden = YES;
+        }
+        else {
+            _emptyLease = [EmptyView loadFromNibWithFrame:CGRectMake(0, 0, 0, 120)];
+            [_emptyLease updateEmptyViewWithType:ENUM_EmptyResultTypeData Image:nil desc:nil subDesc:nil];
+            [footer addSubview:_emptyLease];
+        }
+    }
+    else {
+        if (_arrTicket.count > 0) {
+            [footer addSubview:lblMore];
+            [lblMore mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(footer.mas_centerX);
+                make.centerY.equalTo(footer.mas_centerY);
+            }];
+        }
+        else {
+            // TODO: 为什么 width 是 0 !!!
+            _emptyTicket = [EmptyView loadFromNibWithFrame:CGRectMake(0, 0, 0, 120)];
+            [_emptyTicket updateEmptyViewWithType:ENUM_EmptyResultTypeData Image:nil desc:nil subDesc:nil];
+            [footer addSubview:_emptyTicket];
+        }
+        _emptyTicket.hidden = _arrTicket.count > 0;
+    }
+    
+    UITapGestureRecognizer *tapLoadMoreLeases = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getLeaseDataWithPage)];
+    UITapGestureRecognizer *tapLoadMoreTicket = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getTicketBooksDataWithPage)];
+    footer.userInteractionEnabled = YES;
+    if (0 == section && _arrLeases.count > 0)
+        [footer addGestureRecognizer:tapLoadMoreLeases];
+    else if (1 == section && _arrTicket.count > 0)
+        [footer addGestureRecognizer:tapLoadMoreTicket];
+    
+    UIView *line = [UIView new];
+    line.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+    [footer addSubview:line];
+    
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.  mas_equalTo(footer.mas_left);
+        make.right. mas_equalTo(footer.mas_right);
+        make.bottom.mas_equalTo(footer.mas_bottom);
+        make.height.mas_equalTo(.5f);
+    }];
+    
+    return footer;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if ((0 == section && _arrLeases.count == 0) || (1 == section && _arrTicket.count == 0)) {
+        return 200;
+    }
+    return cFooterHeight_44;
+}
+
+#pragma mark - UserLeaseTableViewCellDelegate
+
+- (void)continueLeaseWithSerial:(SerialModel *)serial
+{
+    UserLeaseSelectedVC *leaseSelectedVC = [UserLeaseSelectedVC new];
+    leaseSelectedVC.payPurpose = ENUM_PayPurposeContinue;
+    leaseSelectedVC.serial = serial;
+    _selectedIndex = [_arrLeases indexOfObject:serial];
+    [self.navigationController pushViewController:leaseSelectedVC animated:YES];
+}
+
+#pragma mark - action
+
+- (IBAction)click_btnPay:(id)sender {
+    [self buyAllRead];
+}
+
+- (void)buyAllRead
+{
+    _rechargeVC = [UVirtualCurrencyRechargeVC loadFromStoryBoard:@"User"];
+    _rechargeVC.payPurpose = ENUM_PayPurposeAllLease;
+    [self.navigationController pushViewController:_rechargeVC animated:YES];
+}
+
+#pragma mark -
+
+- (NSMutableArray *)arrLeases
+{
+    if (_arrLeases == nil) {
+        _arrLeases = [NSMutableArray array];
+    }
+    return _arrLeases;
+}
+
+- (NSMutableArray *)arrTicket
+{
+    if (_arrTicket == nil) {
+        _arrTicket = [NSMutableArray array];
+    }
+    return _arrTicket;
+}
+
+@end

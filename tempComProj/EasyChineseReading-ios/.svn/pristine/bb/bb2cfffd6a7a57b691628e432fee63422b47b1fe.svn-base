@@ -1,0 +1,130 @@
+//
+//  ECRHeadlineView.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/20.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+static CGFloat margin = 14;
+static CGFloat marginB = 10;
+static CGFloat marginC = 8;
+static NSString *moreIconName = @"icon_arrow_right_bookstore";
+
+#import "ECRHeadlineView.h"
+
+@interface ECRHeadlineView ()
+@property (strong,nonatomic) UIView *rectView;//
+@property (strong,nonatomic) UIButton *title;// 
+@property (strong,nonatomic) UIView *line;// 暂时用view 可能会换
+@property (assign,nonatomic) CGFloat titleFont;//
+
+@end
+
+@implementation ECRHeadlineView
+
+- (void)setShowMore:(BOOL)showMore{
+    _showMore = showMore;
+    if (showMore) {
+        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.title.mas_centerY);
+            make.left.equalTo(self.title.mas_right).offset(marginC);
+            make.height.equalTo(@1);
+            make.right.equalTo(self.more.mas_left).offset(-marginB);
+        }];
+        [self.more mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.title.mas_centerY);
+            make.right.equalTo(self.mas_right).offset(-margin);
+        }];
+    }
+}
+
+- (void)textDependsLauguage{
+    [self.title setTitle:[LGPChangeLanguage localizedStringForKey:_headTitle] forState:UIControlStateNormal];
+    
+}
+
+- (void)setHeadTitle:(NSString *)headTitle{
+    _headTitle = headTitle;
+    [self textDependsLauguage];
+}
+
+- (void)setupUI{
+    [self addSubview:self.rectView];
+    [self addSubview:self.title];
+    [self addSubview:self.line];
+    [self addSubview:self.more];
+    
+    self.line.backgroundColor = [UIColor cm_mainColor];
+    [self.title setTitleColor:[UIColor cm_mainColor] forState:UIControlStateNormal];
+    self.title.titleLabel.font = [UIFont systemFontOfSize:self.titleFont];
+    
+    [self.rectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.title.mas_centerY);
+        make.left.equalTo(self.mas_left).offset(10);
+        make.height.equalTo(@(12));
+        make.width.equalTo(@(3));
+    }];
+    [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.left.equalTo(self.rectView.mas_right).offset(5);
+    }];
+    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.title.mas_centerY);
+        make.left.equalTo(self.title.mas_right).offset(marginB);
+        make.right.equalTo(self.mas_right).offset(-margin);
+        make.height.equalTo(@1);
+    }];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupUI];
+    }
+    return self;
+}
+- (UIView *)rectView{
+    if (_rectView == nil) {
+        _rectView = [[UIView alloc] init];
+        _rectView.backgroundColor = [UIColor cm_mainColor];
+    }
+    return _rectView;
+}
+- (UIButton *)title{
+    if (_title == nil) {
+        _title = [[UIButton alloc] init];
+    }
+    return _title;
+}
+- (UIView *)line{
+    if (_line == nil) {
+        _line = [[UIView alloc] init];
+    }
+    return _line;
+}
+- (UIButton *)more{
+    if (_more == nil) {
+        _more = [[UIButton alloc] init];
+//        icon_arrow_right_bookstore
+        [_more setBackgroundImage:[UIImage imageNamed:moreIconName] forState:UIControlStateNormal];
+
+    }
+    return _more;
+}
+
+- (CGFloat)titleFont{
+    if (Screen_Width > 414) {
+        return 18;
+    }else{
+        return 16;
+    }
+}
+
+@end

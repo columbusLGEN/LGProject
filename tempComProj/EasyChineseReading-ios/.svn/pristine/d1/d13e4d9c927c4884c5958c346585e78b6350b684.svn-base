@@ -1,0 +1,184 @@
+//
+//  ECRShoppingCarViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/31.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+/*
+    购物车:
+        状态:
+            1.空
+            2.非空
+                2.1 有勾选商品
+                2.2 无勾选商品
+        跳转
+            1.商品详情
+            2.订单页面
+ 
+ */
+
+#import "ECRShoppingCarViewController.h"
+#import "ECRShoppingCarCell.h"
+#import "ECRShoppingCarModel.h"
+#import "ECRSettleDoneView.h"
+#import "ECRBookInfoController.h"// 商品详情控制器
+#import "ECRBookFormController.h"// 订单页面控制器
+
+@interface ECRShoppingCarViewController ()<
+UITableViewDataSource,
+UITableViewDelegate,
+ECRShoppingCarCellDelegate,
+ECRSettleDoneViewDelegate
+>
+
+@property (strong,nonatomic) NSMutableArray<ECRShoppingCarModel *> *array;// 商品数组(可变,方便删减物品)
+@property (strong,nonatomic) NSMutableArray<ECRShoppingCarModel *> *tickedArray;// 勾选商品数组
+@property (strong,nonatomic) UITableView *list;
+@property (strong,nonatomic) ECRSettleDoneView *settleDoneView;// MARK: 结算view
+@property (assign,nonatomic) CGFloat totalPrice;// 勾选商品总价
+
+@end
+
+@implementation ECRShoppingCarViewController
+
+static NSString *reuserID = @"ECRShoppingCarCell";
+static CGFloat sdvHeight = 50;// 结算view 高度
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    [self loadData];
+    
+}
+- (void)loadData{
+    // TODO: 请求服务器 购物车数据
+    // MARK: 计算总价
+    
+    // test数据
+    for (NSInteger i = 0; i < 10; ++i) {
+        ECRShoppingCarModel *model = [[ECRShoppingCarModel alloc] init];
+        model.isTick = arc4random_uniform(2);
+        model.money = arc4random_uniform(50);// 随机价格
+        [self.array addObject:model];
+        if (model.isTick) {
+            [self.tickedArray addObject:model];
+            _totalPrice += model.money;
+        }
+    }
+    self.settleDoneView.price = _totalPrice;
+    [self.list reloadData];
+}
+- (void)setupUI{
+    [self.list registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellReuseIdentifier:reuserID];
+    
+    // MARK:设置 结算view
+    self.settleDoneView.delegate = self;
+    
+    // test data
+    
+}
+#pragma mark - settleDoneView delegate
+- (void)sdView:(ECRSettleDoneView *)sdView{
+    // MARK: 结算(跳转到订单页面)
+//    self.tickedArray
+    ECRBookFormController *bForm = [[ECRBookFormController alloc] init];
+    [self.navigationController pushViewController:bForm animated:YES];
+}
+
+#pragma mark - cell delegate
+- (void)scCell:(ECRShoppingCarCell *)cell selectProduct:(ECRShoppingCarModel *)model{
+    // MARK: 选中 或者 取消选中 商品
+    if (model.isTick) {
+        model.isTick = NO;
+        [self.tickedArray removeObject:model];
+        // MARK: 修改总价(-)
+        self.totalPrice -= model.money;
+    }else{
+        model.isTick = YES;
+        [self.tickedArray addObject:model];
+        // MARK: 修改总价(+)
+        self.totalPrice += model.money;
+    }
+    
+    [self.list reloadData];
+}
+- (void)scCell:(ECRShoppingCarCell *)cell clickProduct:(ECRShoppingCarModel *)model{
+    // MARK: 点击商品, 跳转至商品详情页面
+    
+}
+
+#pragma mark - UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _array.count ? _array.count : 0;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ECRShoppingCarCell *cell = [tableView dequeueReusableCellWithIdentifier:reuserID];
+    cell.delegate = self;
+    ECRShoppingCarModel *model;
+    if (_array.count) {
+        model = _array[indexPath.row];
+    }
+    cell.model = model;
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 100;// TODO: 购物车cell高度待修改
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    // 跳转至详情页面
+    ECRShoppingCarModel *model;
+    if (_array.count) {
+        model = _array[indexPath.row];
+    }
+    // test: 详情链接
+    ECRBookInfoController *info = [[ECRBookInfoController alloc] init];
+    [self.navigationController pushViewController:info animated:YES];
+}
+
+- (void)setTotalPrice:(CGFloat)totalPrice{
+    _totalPrice = totalPrice;
+    self.settleDoneView.price = totalPrice;
+}
+
+- (UITableView *)list{
+    if (_list == nil) {
+        CGRect rect = CGRectMake(0, 0, Screen_Width, Screen_Height - sdvHeight);
+        _list = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
+        _list.delegate = self;
+        _list.dataSource = self;
+        [self.view addSubview:_list];
+    }
+    return _list;
+}
+- (NSMutableArray *)array{
+    if (_array == nil) {
+        _array = [NSMutableArray arrayWithCapacity:10];
+    }
+    return _array;
+}
+- (NSMutableArray<ECRShoppingCarModel *> *)tickedArray{
+    if (_tickedArray == nil) {
+        _tickedArray = [NSMutableArray arrayWithCapacity:10];
+    }
+    return _tickedArray;
+}
+- (ECRSettleDoneView *)settleDoneView{
+    if (_settleDoneView == nil) {
+        CGFloat sdY = self.view.height - sdvHeight - 64;
+        CGRect sdRect = CGRectMake(0, sdY, Screen_Width, sdvHeight);
+        _settleDoneView = [[ECRSettleDoneView alloc] initWithFrame:sdRect];
+        _settleDoneView.backgroundColor = [UIColor grayColor];// TODO:
+        [self.view addSubview:_settleDoneView];
+    }
+    return _settleDoneView;
+}
+
+@end
+
+
+
+
+
+

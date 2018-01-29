@@ -1,0 +1,48 @@
+//
+//  UserInfoModel.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserModel.h"
+
+@implementation UserModel
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    UserModel *user = [[UserModel allocWithZone:zone] init];
+    user.userId = self.userId;
+    user.name = self.name;
+    user.userType = self.userType;
+    user.iconUrl = self.iconUrl;
+    user.address = self.address;
+    user.sex = self.sex;
+    user.motherTongue = self.motherTongue;
+    user.country = self.country;
+    user.learnyear = self.learnyear;
+    user.school = self.school;
+    user.interest = self.interest;
+    user.birthday = self.birthday;
+    user.phone = self.phone;
+    user.email = self.email;
+    user.skin = self.skin;
+    user.score = self.score;
+    user.virtualCurrency = self.virtualCurrency;
+    user.readHistoryId = self.readHistoryId;
+    user.wordCount = self.wordCount;
+    user.readTime = self.readTime;
+    user.averageWordCount = self.averageWordCount;
+    user.ranking = self.ranking;
+    user.readThrough = self.readThrough;
+    return user;
+}
+
+- (id)copy
+{
+    UserModel *user = [[UserModel alloc] init];
+    return user;
+}
+
+@end

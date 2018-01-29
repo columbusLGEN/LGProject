@@ -1,0 +1,72 @@
+//
+//  ECRDownloadFirstReadSecond.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/11/27.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRDownloadFirstReadSecond.h"
+
+
+@implementation ECRDownloadFirstReadSecond
+
+//+ (void)downloadFirstReadSecondWithDownloadURL:(NSString *)downloadURL localFilePath:(NSString *)localFilePath{
+//    //        self.model.eBookFormat = 3;
+//    //         NSString *URLString = @"http://123.59.197.176/group1/M00/00/01/CgoKBFoKft2Ad_aGAE31tVJfh_w438.pdf";// pdf 测试链接
+//    //        NSString *URLString = @"http://192.168.10.68:8080/BLCUPManageSystem/book/epub/9787561944882.epub";// epub 测试链接
+//    //        NSString *URLString = @"http://123.59.197.176/group1/M00/00/01/CgoKBFoEGTmAN5SaAv7FFFfh4_U313.dbz";// dbz 测试链接 超媒体压缩包
+//    // 1 获取下载链接
+//    NSString *URLString = downloadURL;
+//    //        // 2 创建本地存储链接 -- 将拼接链接的操作封装到 ECRDownloadManager 内部
+////    NSString *localFilePath
+//    
+//    // 3 判断本地存储链接是否存在,若存在直接打开,否则进行下载
+//    BOOL filePathIsExist = [ECRDownloadManager fileIsExist:localFilePath];
+//    if (filePathIsExist) {
+//        // 3.1 直接打开本地路径
+//        [ECRBookReaderManager readBookWithType:self.model.eBookFormat localURL:localFilePath vc:self bookModel:self.model ymeBook:self.model.ymeBook readFailure:^(id info) {
+//            NSLog(@"readfailure -- %@",info);
+//        }];
+//    }else{
+//        // 3.2.1 添加下载进度条
+//        self.dlProgressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        [self.view addSubview:self.dlProgressHUD];
+//        self.dlProgressHUD.mode = MBProgressHUDModeAnnularDeterminate;
+//        self.dlProgressHUD.progress = 0.0;
+//        
+//        // 3.2.2 开始下载
+//        [ECRDownloadManager downloadWithURLString:URLString fileName:localFilePath progress:^(CGFloat progress, CGFloat total, CGFloat current) {
+//            //        NSLog(@"下载中 grogress -- %f",progress / 100);
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                // 3.2.2.1 更新下载进度
+//                self.dlProgressHUD.progress = progress / 100;
+//            }];
+//        } success:^(NSString *localURL) {
+//            NSLog(@"localURL -- %@",localURL);
+//            // 3.2.2.2.1 隐藏下载进度条
+//            [self.dlProgressHUD hideAnimated:YES];
+//            
+//            // 3.2.2.2.2 打开本地路径
+//            [ECRBookReaderManager readBookWithType:self.model.eBookFormat localURL:localURL vc:self bookModel:self.model ymeBook:self.model.ymeBook readFailure:^(id info) {
+//                NSLog(@"readfailure -- %@",info);
+//            }];
+//            
+//            // MARK: 调用接口, 将该书加入书架,
+//            [ECRBookrackDataHandler bookShelfAddBookToBookrackWithBookId:self.model.bookId success:^(id objc) {
+//                NSLog(@"加入书架成功 -- %@",objc);
+//            } failure:^(NSError *error, NSString *msg) {
+//                NSLog(@"加入书架失败 error: %@ --msg %@",error,msg);
+//            }];
+//            
+//        } failure:^(NSError *error) {
+//            // 3.2.2.3 下载失败回调
+//            [ECRLocalFileManager deleteLocalFileWithPath:localFilePath];
+//            [self.dlProgressHUD hideAnimated:YES];
+//            [self presentSuccessTips:LOCALIZATION(@"下载失败,请稍后重试")];
+//            NSLog(@"下载失败 -- %@",error);
+//        }];
+//    }
+//}
+
+@end

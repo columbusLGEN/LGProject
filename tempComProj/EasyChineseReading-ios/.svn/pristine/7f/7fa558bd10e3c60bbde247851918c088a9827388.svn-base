@@ -1,0 +1,353 @@
+//
+//  ECRBookInfoViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+static CGFloat pjRowHeight = 70;
+static NSString *pjCell = @"ECRDetailPJTableViewCell";
+
+#import "ECRBookInfoViewController.h"
+#import "ECRSwichView.h"
+#import "ECRBookInfoModel.h"
+#import "ECRBookInfoTableViewCell.h"
+#import "ECRBiCommentModel.h"
+#import "ECRDetailPJTableViewCell.h"
+#import "ZStarView.h"
+#import "ECRSettleAccountsController.h"
+#import "ECRRentSeriousViewController.h"
+#import "ECRShoppingCarViewController.h"
+#import "ECRShoppingCarManager.h"
+#import "ECRShoppingCarModel.h"
+#import "UIBarButtonItem+SXCreate.h"
+#import "ECRDataHandler.h"
+
+@interface ECRBookInfoViewController ()<
+UITableViewDelegate,
+UITableViewDataSource,
+ECRSwichViewDelegate
+>
+
+@property (strong, nonatomic) IBOutlet UIScrollView *baseScrollView;
+@property (strong, nonatomic) IBOutlet UIView *topInfoView;
+@property (strong, nonatomic) IBOutlet UIScrollView *swithcScrollView;
+@property (strong, nonatomic) IBOutlet UIView *buttonView;
+
+@property (strong, nonatomic) IBOutlet ECRSwichView *diSwitchView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ssvHeight;
+
+@property (weak, nonatomic) IBOutlet UIImageView *biCover;
+@property (weak, nonatomic) IBOutlet UILabel *biName;
+@property (weak, nonatomic) IBOutlet UILabel *biAuthor;
+@property (weak, nonatomic) IBOutlet ZStarView *biStar;
+@property (weak, nonatomic) IBOutlet UILabel *biPrice;
+@property (weak, nonatomic) IBOutlet UILabel *biPriceSymbles;
+
+@property (weak, nonatomic) IBOutlet UIView *biRectView;
+@property (weak, nonatomic) IBOutlet UIView *biLine;
+@property (weak, nonatomic) IBOutlet UIView *biLine2;
+@property (weak, nonatomic) IBOutlet UIButton *buyButton;// 购买纸质书
+
+@property (weak, nonatomic) IBOutlet UITableView *infoTableView;
+@property (weak, nonatomic) IBOutlet UITableView *pjTableView;
+
+@property (strong,nonatomic) ECRBookInfoModel *model;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bitbHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pjtbHeight;
+
+
+@property (assign,nonatomic) CGFloat rHeight1;
+@property (assign,nonatomic) CGFloat rHeight2;
+@property (assign,nonatomic) CGFloat rHeight3;
+@property (assign,nonatomic) CGFloat rHeight4;
+
+@property (assign,nonatomic) CGFloat pjHeight;
+
+@property (weak, nonatomic) IBOutlet UIButton *addTosc;// 加入购物车
+@property (weak, nonatomic) IBOutlet UIButton *buyEbook;// 购买
+@property (weak, nonatomic) IBOutlet UIButton *exper;// 试读
+@property (weak, nonatomic) IBOutlet UIButton *setBao;// 系列包月
+
+@property (strong,nonatomic) NSArray *comments;// 品论数据源
+
+@end
+
+@implementation ECRBookInfoViewController{
+    CGFloat ssvH;// switchscrollview 的 height
+}
+
+- (IBAction)addToscClick:(UIButton *)sender {
+    // MARK: 加入购物车
+    // TODO: 调接口
+    // TEST
+    ECRShoppingCarModel *model = [ECRShoppingCarModel new];
+    [[ECRShoppingCarManager sharedInstance] addWithModel:model success:nil];
+}
+- (IBAction)buyEbookClick:(UIButton *)sender {
+    // MARK: 购买电子书
+    ECRSettleAccountsController *savc = [[ECRSettleAccountsController alloc] init];
+    savc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    [self.navigationController pushViewController:savc animated:YES];
+}
+- (IBAction)experClick:(UIButton *)sender {
+    // MARK: 试读
+    
+}
+- (IBAction)setBaoClick:(UIButton *)sender {
+    // MARK: 先跳转至租约系列列表页面，点击租约时再跳转至租约结算
+    ECRRentSeriousViewController *rsvc = [[ECRRentSeriousViewController alloc] init];
+    rsvc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    [self.navigationController pushViewController:rsvc animated:YES];
+    
+}
+
+- (IBAction)bookBuy:(UIButton *)sender {
+    // MARK: 购买纸质书
+    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    [self loadNewData];
+
+}
+- (void)setBookId:(NSString *)bookId{
+    _bookId = bookId;
+    NSLog(@"bookid -- %@",bookId);
+    [[ECRDataHandler sharedDataHandler] biDataWithBookId:self.bookId success:^(id object) {
+//        NSLog(@"object -- %@",object);
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.infoTableView reloadData];
+        }];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+#pragma mark - data
+- (void)loadNewData{
+    self.model = [[ECRBookInfoModel alloc] init];
+    // 设置分数 biStar
+    [self.biStar setScore:0.3 withAnimation:YES completion:^(BOOL finished) {
+       NSLog(@"%d",finished);
+    }];
+    self.model.press = @"舌尖上就是看看";
+    self.model.publicationTime = @"2017年9月11日";
+    self.model.isbn = @"328750238423549";
+    self.model.eisbn = @"835287356309452";
+    self.model.classify = @"汉语读物";
+    self.model.theme = @"现代故事";
+    self.model.bookObject = @"儿童";
+    self.model.intro = @"央视网消息：2014年新年钟声即将敲响时，习近平首次发表了新年贺词：“我们将在改革的道路上迈出新的步伐。我们推进改革的根本目的，是要让国家变得更加富强、让社会变得更加公平正义、让人民生活得更加美好。央视网消息：2014年新年钟声即将敲响时，习近平首次发表了新年贺词：“我们将在改革的道路上迈出新的步伐。我们推进改革的根本目的，是要让国家变得更加富强、让社会变得更加公平正义、让人民生活得更加美好。";
+    [self.infoTableView reloadData];
+    
+     // 推荐书籍
+    NSMutableArray *arrRecoM = [NSMutableArray arrayWithCapacity:10];
+    for (NSInteger i = 0; i < 4; ++i) {
+        ECRBookInfoModel *model = [[ECRBookInfoModel alloc] init];
+        model.cover = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506045368&di=f2dcf3e92bcc8475ba36c7a10b085d74&imgtype=jpg&er=1&src=http%3A%2F%2Fb.zol-img.com.cn%2Fdesk%2Fbizhi%2Fimage%2F4%2F960x600%2F1390442719906.jpg";
+        if (i) {
+            model.bookName = @"道德经论语孟子孔子";
+        }else{
+            model.bookName = @"道德经";
+        }
+        if (i == 3) {
+            model.bookName = @"wwww";
+        }
+        model.price = 77.7776;
+        [arrRecoM addObject:model];
+    }
+    self.model.recoArr = arrRecoM.copy;
+    
+    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:10];
+    for (NSInteger i = 0; i < 20; ++i) {
+        ECRBiCommentModel *model = [[ECRBiCommentModel alloc] init];
+        model.userName = @"北语社";
+        model.iconURL = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505891101&di=eba294476270c28beb0361bd54d3d0da&imgtype=jpg&er=1&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F902397dda144ad3464639dc8d1a20cf430ad85a4.jpg";
+        
+        [arrM addObject:model];
+    }
+    self.comments = arrM.copy;
+    [self.pjTableView reloadData];
+    // MARK: ssv height 计算
+    
+}
+
+#pragma mark - delegate
+- (void)ecrSwichView:(ECRSwichView *)view didClick:(NSInteger)click{
+    switch (click) {
+        case 0:
+            [self.swithcScrollView setContentOffset:CGPointZero animated:YES];
+            break;
+        case 1:
+            [self.swithcScrollView setContentOffset:CGPointMake(Screen_Width, 0) animated:YES];
+            break;
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if ([scrollView isEqual:self.swithcScrollView]) {
+        // TODO:
+        if (scrollView.contentOffset.x == 0) {
+            // MARK: ssv height
+            self.ssvHeight.constant = _rHeight1 + _rHeight2 +_rHeight3 +_rHeight4;
+            self.bitbHeight.constant = _rHeight1 + _rHeight2 +_rHeight3 +_rHeight4;
+            [self.diSwitchView switchSelectedItem:0];
+        }
+        if (scrollView.contentOffset.x >= Screen_Width) {
+//            NSLog(@"pjh---%f",_pjHeight);
+            [self.diSwitchView switchSelectedItem:1];
+            self.ssvHeight.constant = _pjHeight;// pjTableView的高度
+        }
+    }
+}
+
+#pragma mark - data source
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if ([tableView isEqual:self.infoTableView]) {
+        return 4;
+    }
+    return _comments.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([tableView isEqual:self.infoTableView]) {
+        ECRBookInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ECRBookInfoTableViewCell gainReuseID:indexPath]];
+        cell.indx = indexPath;
+//        NSLog(@"%@",indexPath);
+        cell.model = self.model;
+        return cell;
+    }
+    ECRDetailPJTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:pjCell];
+    ECRBiCommentModel *model = _comments[indexPath.row];
+    cell.model = model;
+    return cell;
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([tableView isEqual:self.infoTableView]) {
+        // MARK: ssv height
+        ECRBookInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ECRBookInfoTableViewCell gainReuseID:indexPath]];
+        cell.indx = indexPath;
+        cell.model = self.model;
+        
+        if (indexPath.row == 0) {
+            _rHeight1 = cell.rHeight1;
+        }
+        if (indexPath.row == 1) {
+            _rHeight2 = cell.rHeight2;
+        }
+        if (indexPath.row == 2) {
+            _rHeight3 = cell.rHeight3;
+        }
+        if (indexPath.row == 3) {// 如何获取总高度?
+            _rHeight4 = cell.rHeight4;
+            self.ssvHeight.constant = _rHeight1 + _rHeight2 +_rHeight3 +_rHeight4;
+            self.bitbHeight.constant = _rHeight1 + _rHeight2 +_rHeight3 +_rHeight4;
+        }
+        return cell.rHeight;
+    }
+    if (indexPath.row == (_comments.count - 1)) {
+        _pjHeight = pjRowHeight * (_comments.count);
+        self.pjtbHeight.constant = _pjHeight;
+        
+    }
+    return pjRowHeight;
+}
+
+#pragma mark - UI
+- (void)setupUI{
+//    [self.view setNeedsLayout];
+//    [self.view layoutIfNeeded];
+    [self setNavRightCustemView];
+    if (Screen_Width > 414) {
+//        self.switchViewHeight.constant = 72;
+        self.diSwitchView.customHeight = 72;
+    }
+    [self.swithcScrollView setContentSize:CGSizeMake(Screen_Width, 0)];
+    self.swithcScrollView.pagingEnabled = YES;
+    self.infoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    _diSwitchView.delegate = self;
+    _diSwitchView.buttonNames = @[@"图片详情",@"评价"];
+    
+    self.pjTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.pjTableView registerNib:[UINib nibWithNibName:pjCell bundle:nil] forCellReuseIdentifier:pjCell];
+    
+    CGFloat borderW = 1;
+    UIColor *borderColor = [UIColor cm_purpleColor_82056B_1];
+    self.addTosc.layer.borderWidth = borderW;
+    self.addTosc.layer.borderColor = borderColor.CGColor;
+    self.buyEbook.layer.borderWidth = borderW;
+    self.exper.layer.borderWidth = borderW;
+    self.setBao.layer.borderWidth = borderW;
+    self.buyEbook.layer.borderColor = borderColor.CGColor;
+    self.exper.layer.borderColor = borderColor.CGColor;
+    self.setBao.layer.borderColor = borderColor.CGColor;
+    
+    [self.buyEbook setBackgroundColor:[UIColor cm_purpleColor_82056B_1]];
+    [self.buyEbook setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+}
+
+#pragma mark - target
+- (void)navLike:(UIButton *)sender{
+    if (sender.selected) {
+        sender.selected = NO;
+    }else{
+        sender.selected = YES;
+    }
+    // TODO: 收藏接口
+    
+}
+- (void)navShare:(UIButton *)sender{
+    // TODO: 分享(站内信)
+    
+}
+- (void)navCar:(UIButton *)sender{
+    // MARK: 跳转购物车
+    ECRShoppingCarViewController *spvc = [[ECRShoppingCarViewController alloc] init];
+    spvc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    [self.navigationController pushViewController:spvc animated:YES];
+}
+
+- (void)setNavRightCustemView{
+    self.title = @"图书详情";
+    // 导航栏按钮s
+    CGFloat bItemW = 28;
+    CGFloat bItemY = -3;
+    UIButton *like = [UIButton buttonWithType:UIButtonTypeCustom];
+    [like setImage:[UIImage imageNamed:@"det3"] forState:UIControlStateNormal];
+    [like setImage:[UIImage imageNamed:@"message3" ] forState:UIControlStateSelected];
+    [like setFrame:CGRectMake(0, bItemY, bItemW, bItemW)];
+    UIBarButtonItem *navLike = [[UIBarButtonItem alloc] initWithCustomView:like];
+    [like addTarget:self action:@selector(navLike:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    UIButton *share = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [share setImage:[UIImage imageNamed:@"det1"] forState:UIControlStateNormal];
+//    [share setFrame:CGRectMake(0, bItemY, bItemW, bItemW)];
+//    UIBarButtonItem *navShare = [[UIBarButtonItem alloc] initWithCustomView:share];
+//    [share addTarget:self action:@selector(navShare:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    UIButton *car = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [car setImage:[UIImage imageNamed:@"bys_6"] forState:UIControlStateNormal];
+//    [car setFrame:CGRectMake(0, bItemY, bItemW, bItemW)];
+//    UIBarButtonItem *navCar = [[UIBarButtonItem alloc] initWithCustomView:car];
+//    [car addTarget:self action:@selector(navCar:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    UIBarButtonItem *back = [UIBarButtonItem itemWithTarget:self action:@selector(baseViewControllerDismiss) image:[UIImage imageNamed:@"login6"]]
+    UIBarButtonItem *navShare = [UIBarButtonItem itemWithTarget:self action:@selector(navShare:) image:[UIImage imageNamed:@"det1"]];
+    UIBarButtonItem *navCar = [UIBarButtonItem itemWithTarget:self action:@selector(navCar:) image:[UIImage imageNamed:@"bys_6"]];
+    
+//    self.navigationItem.rightBarButtonItems = @[navCar,navShare];
+//    self.navigationController.navigationItem.rightBarButtonItems = @[navCar,navShare];
+//    self.navigationItem.rightBarButtonItem = navShare;
+}
+
+
+#pragma mark - lazy load
+
+@end

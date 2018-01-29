@@ -1,0 +1,91 @@
+//
+//  UCTeacherEditVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/11.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UCTeacherEditVC.h"
+
+@interface UCTeacherEditVC () <ZPickViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDescName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescSex;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescAge;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescAccount;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescRemark;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblSex;
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
+@property (weak, nonatomic) IBOutlet UILabel *lblAge;
+@property (weak, nonatomic) IBOutlet UILabel *lblAccount;
+@property (weak, nonatomic) IBOutlet UILabel *lblRemark;
+
+@end
+
+@implementation UCTeacherEditVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark action
+
+- (void)configView
+{
+    [self configNavigationBar];
+    [self configTableView];
+}
+
+- (void)configTableView
+{
+    UIColor *descTextColor = [UIColor cm_blackColor_333333_1];
+    UIColor *textColor = [UIColor cm_graryColor_807F7F_1];
+    UIFont *font = [UIFont systemFontOfSize:16.f];
+    
+    _lblDescName.textColor      = descTextColor;
+    _lblDescSex.textColor       = descTextColor;
+    _lblDescAge.textColor       = descTextColor;
+    _lblDescAccount.textColor   = descTextColor;
+    _lblDescRemark.textColor    = descTextColor;
+    
+    _lblName.textColor      = textColor;
+    _lblSex.textColor       = textColor;
+    _lblAge.textColor       = textColor;
+    _lblAccount.textColor   = textColor;
+    _lblRemark.textColor    = textColor;
+    
+    _lblDescName.font    = font;
+    _lblDescSex.font     = font;
+    _lblDescAge.font     = font;
+    _lblDescAccount.font = font;
+    _lblDescRemark.font  = font;
+    
+    _lblSex.font     = font;
+    _lblName.font    = font;
+    _lblAge.font     = font;
+    _lblAccount.font = font;
+    _lblRemark.font  = font;
+}
+
+- (void)configNavigationBar
+{
+    self.title = @"修改教师";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveTeacherInfo)];
+}
+
+- (void)saveTeacherInfo
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+@end

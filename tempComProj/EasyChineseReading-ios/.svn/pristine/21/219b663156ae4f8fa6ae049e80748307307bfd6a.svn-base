@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+ <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,shrink-to-fit=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="../Styles/Style0001.css" rel="stylesheet" type="text/css"/>
+
+	<title>Canvas之生长树</title>
+	
+</head>
+<body>
+<div id="Container">
+
+</div>
+<script type="text/javascript" src="../Misc/gren.js"></script>
+<script type="text/javascript" src="../Misc/fractal.js"></script>
+
+<script type="text/javascript">
+    var container = document.getElementById('Container');
+//    var fractal = new FRACTAL.KochCurve(container.offsetWidth, container.offsetHeight);
+    var fractal = new FRACTAL.Tree(container.offsetWidth, container.offsetHeight);
+
+    container.appendChild(fractal.domElement);
+</script>
+</body>
+</html>

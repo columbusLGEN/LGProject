@@ -1,0 +1,106 @@
+//
+//  ECRSearchBooksViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRSearchBooksViewController.h"
+#import "ECRSearchTitleView.h"
+#import "ECRClassSortModel.h"
+
+@interface ECRSearchBooksViewController ()<
+ECRSearchTitleViewDelegate
+>
+
+@end
+
+@implementation ECRSearchBooksViewController
+@synthesize classModel = _classModel;
+
+- (void)setClassModel:(ECRClassSortModel *)classModel{
+    _classModel = classModel;
+    [self.bookClassIds addObject:[NSString stringWithFormat:@"%ld",classModel.id]];
+    [self loadFilterData];
+}
+
+// MARK: 搜索
+- (void)stView:(ECRSearchTitleView *)view content:(NSString *)content{
+    // MARK: 根据content 开始搜索
+    NSLog(@"content -- %@",content);
+    NSLog(@"booksClassIds -- %@",self.bookClassIds);
+    NSString *classId = [self.bookClassIds componentsJoinedByString:@","];
+    self.requestPage = 0;
+    
+    [[ECRDataHandler sharedDataHandler] bmListDataWithSpecial:nil series:nil classify:classId length:100 page:self.requestPage sort:0 searchName:content success:^(id object) {
+        self.array = [NSMutableArray arrayWithArray:object];
+        self.requestPage = self.array.count;
+//        NSLog(@"page_more -- %ld",self.requestPage);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView.mj_header endRefreshing];
+            self.tableView.hidden = NO;
+            [self.tableView reloadData];
+        }];
+    } failure:^(NSString *msg) {
+        self.tableView.hidden = YES;
+    } commenFailure:^(NSError *error) {
+        self.tableView.hidden = YES;
+    }];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self replaceTitleViewForSearch];// 设置搜索框
+    [self setupUI];
+    
+}
+- (void)setupUI{
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);//.offset(7);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    // MARK: MJRefresh
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreListData)];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellReuseIdentifier:reuserID];
+    [self.tableView registerNib:[UINib nibWithNibName:rHeadID bundle:nil] forHeaderFooterViewReuseIdentifier:rHeadID];
+    
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    
+    self.tableView.hidden = YES;
+}
+
+// 重写不实现
+- (void)setNavRighSearchItem{
+    
+}
+#pragma mark - ECRSearchTitleViewDelegate
+- (void)stViewClose:(ECRSearchTitleView *)view{
+    [self baseViewControllerDismiss];
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.stv endEditing:YES];
+}
+//- (void)baseViewControllerDismiss{
+//    [super baseViewControllerDismiss];
+//}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    return nil;
+//}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 0;
+//}
+
+
+@end

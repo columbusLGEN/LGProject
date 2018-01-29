@@ -1,0 +1,165 @@
+//
+//  ECRDBReadViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/16.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRDBReadViewController.h"
+#import "ZipArchive.h"
+#import "ECRLocalFileManager.h"
+
+#ifdef TARGET_IPHONE_SIMULATOR
+// MARK: 模拟器1
+@interface ECRDBReadViewController ()
+
+#else
+// MARK: 真机1
+#import "DBPlayer.h"
+@interface ECRDBReadViewController ()<DBPlayerDelegate>
+@property (strong,nonatomic) DBPlayer *dbPlayer;
+
+#endif
+// MARK:1结束
+
+@property (strong,nonatomic) UIButton *button;
+@property (copy,nonatomic) NSString *test1;
+@property (copy,nonatomic) NSString *test2;
+@property (copy,nonatomic) NSString *test3;
+
+@end
+
+@implementation ECRDBReadViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // 1.把bundle 下的文件 拷贝到 documents/bookZips
+    NSString *dbzPath1 = [[NSBundle mainBundle] pathForResource:@"干在实处走在前列" ofType:@"dbz"];
+    NSString *dbzPath2 = [[NSBundle mainBundle] pathForResource:@"熊猫美美：四季" ofType:@"dbz"];
+    NSString *dbzPath3 = [[NSBundle mainBundle] pathForResource:@"西渡湖之酒" ofType:@"dbz"];
+    NSString *bookZips = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"bookZips"];
+//    NSLog(@"%@",NSHomeDirectory());
+    ECRLocalFileManager *lfMgr = [ECRLocalFileManager sharedLocalFileManager];
+    [lfMgr copyFileInBundleWithBundlePath:dbzPath1 toPath:bookZips fileName:@"book1"];
+    [lfMgr copyFileInBundleWithBundlePath:dbzPath2 toPath:bookZips fileName:@"book2"];
+    [lfMgr copyFileInBundleWithBundlePath:dbzPath3 toPath:bookZips fileName:@"book3"];
+  
+#ifdef TARGET_IPHONE_SIMULATOR
+// MARK: 模拟器2
+
+#else
+// MARK: 真机2
+    _dbPlayer = [[DBPlayer alloc]init];
+    _dbPlayer.delegate = self;
+    _dbPlayer.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    //    UIButton *dbTest = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 0, 0)];
+    //    [dbTest setTitle:@"超媒体" forState:UIControlStateNormal];
+    //    [dbTest sizeToFit];
+    //    [dbTest setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    //    dbTest.titleLabel.font = [UIFont systemFontOfSize:18];
+    //    [self.view addSubview:dbTest];
+    //    [dbTest addTarget:self action:@selector(openSuperMediaBook:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self createTestButtonWith:CGRectMake(100, 100, 0, 0) bName:@"解压缩" sel:@selector(openSuperMediaBook:)];
+    [self createTestButtonWith:CGRectMake(140, 140, 0, 0) bName:@"book1" sel:@selector(book1:)];
+    [self createTestButtonWith:CGRectMake(100, 180, 0, 0) bName:@"book2" sel:@selector(book1:)];
+    [self createTestButtonWith:CGRectMake(140, 220, 0, 0) bName:@"book3" sel:@selector(book1:)];
+    
+#endif
+// MARK: 2结束
+    
+}
+
+#ifdef TARGET_IPHONE_SIMULATOR
+// MARK: 模拟器3
+
+#else
+// MARK: 真机3
+- (void)book1:(UIButton *)sender{
+    
+    [self presentViewController:_dbPlayer animated:YES completion:^{
+        [_dbPlayer openABook:_test1 contentUrl:@""];
+    }];
+}
+- (void)book2:(UIButton *)sender{
+    [self presentViewController:_dbPlayer animated:YES completion:^{
+        [_dbPlayer openABook:_test2 contentUrl:@""];
+    }];
+}
+- (void)book3:(UIButton *)sender{
+    [self presentViewController:_dbPlayer animated:YES completion:^{
+        [_dbPlayer openABook:_test3 contentUrl:@""];
+    }];
+}
+
+#endif
+// MARK: 3结束
+
+- (void)createTestButtonWith:(CGRect)rect bName:(NSString *)bName sel:(SEL)selector{
+    UIButton *dbTest = [[UIButton alloc] initWithFrame:rect];
+    [dbTest setTitle:bName forState:UIControlStateNormal];
+    [dbTest sizeToFit];
+    [dbTest setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    dbTest.titleLabel.font = [UIFont systemFontOfSize:18];
+    [self.view addSubview:dbTest];
+    [dbTest addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)openSuperMediaBook:(UIButton *)sender{
+    NSString *bookZips = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"bookZips"];
+    ECRLocalFileManager *lfMgr = [ECRLocalFileManager sharedLocalFileManager];
+    // 2.解压缩文件致 documents/bookUnzips
+    NSString *bookUnzips = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"bookUnzips"];
+    [lfMgr unzipFileWithPath:bookZips fileName:@"book1" toPath:bookUnzips toFileName:@"book1" uzSuccess:^(NSString *absuPath) {
+        NSLog(@"success++ %@",absuPath);
+        _test1 = absuPath;
+    } uzFailure:^(NSString *info) {
+        NSLog(@"failure-- %@",info);
+    }];
+    [lfMgr unzipFileWithPath:bookZips fileName:@"book2" toPath:bookUnzips toFileName:@"book2" uzSuccess:^(NSString *absuPath) {
+        NSLog(@"success++ %@",absuPath);
+        _test2 = absuPath;
+    } uzFailure:^(NSString *info) {
+        NSLog(@"failure-- %@",info);
+    }];
+    [lfMgr unzipFileWithPath:bookZips fileName:@"book3" toPath:bookUnzips toFileName:@"book3" uzSuccess:^(NSString *absuPath) {
+        NSLog(@"success++ %@",absuPath);
+        _test3 = absuPath;
+    } uzFailure:^(NSString *info) {
+        NSLog(@"failure-- %@",info);
+    }];
+    
+}
+
+- (void)applicationWillResignActivePlayer:(NSNotification *)noti{
+    
+}
+- (void)applicationDidBecomeActivePlayer:(NSNotification *)noti{
+    
+}
+
+#ifdef TARGET_IPHONE_SIMULATOR
+// MARK: 模拟器4
+
+#else
+
+// MARK: 真机4
+- (void)dbPlayerDidClosed{
+    [_dbPlayer dismissViewControllerAnimated:YES completion:^{
+        // 显示状态栏
+        //       self performSelector:@selector() withObject:self afterDelay:0.3
+    }];
+}
+
+#endif
+// MARK: 4结束
+
+// 隐藏状态栏
+//- (BOOL)prefersStatusBarHidden{
+//    return YES;
+//}
+
+@end

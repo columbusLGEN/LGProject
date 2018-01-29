@@ -1,0 +1,36 @@
+//
+//  ECRBookReaderController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/6.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookReaderController.h"
+
+@interface ECRBookReaderController ()
+
+
+@end
+
+@implementation ECRBookReaderController
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+   
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+
+@end

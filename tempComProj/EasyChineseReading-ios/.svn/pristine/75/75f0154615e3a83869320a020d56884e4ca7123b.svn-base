@@ -1,0 +1,366 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="en">
+  <head>
+    <meta http-equiv="default-style" content="text/html; charset=utf-8"/>
+    <title>The Scientific Method</title>
+    <link rel="stylesheet" href="css/ls-studying-the-life-sciences.css" type="text/css"/>
+    <script type="text/javascript" src="js/LAB.min.js"/>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"/>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"/>
+    <script type="text/javascript" src="js/jquery-ui.min.js"/>
+    <script type="text/javascript" src="js/pubsub.js"/>
+    <script type="text/javascript" src="js/aie_core.js"/>
+    <script type="text/javascript" src="js/aie_explore.js"/>
+    <script type="text/javascript" src="js/aie_qaa.js"/>
+    <script type="text/javascript" src="js/aie_textsound.js"/>
+    <script type="text/javascript" src="js/aie_storyline.js"/>
+    <script type="text/javascript" src="js/aie_events.js"/>
+    <script type="text/javascript" src="js/aie_gameutils.js"/>
+    <script type="text/javascript" src="js/iscroll.js"/>
+    <script type="text/javascript" src="js/jquery.slides.min.js"/>
+    <script type="text/javascript" src="js/panelnav.js"/>
+    <script type="text/javascript" src="js/popup.js"/>
+    <script type="text/javascript" src="js/igp_audio.js"/>
+    <meta name="wmk" content="Purchased from:www.azardi.com/daxiang/    Title:Unit 1. Life Sciences: Studying the Life Sciences    ISBN:ls-studying-the-life-sciences    Author:CK-12    Account:AAAA0267    Invoice:AAAA0231    Dated:2013-06-05 02:31:32.704317    Purchased by:xingyun wu"/>
+  </head>
+  <body>
+	<div class="galley-rw">
+		<section class="body-rw Lesson-rw exclude-auto-rw page-open-auto-rw" id="LessonRunOn1" epub:type="bodymatter chapter"><div class="title-block-rw" id="title-block4">
+
+
+            <p class="title-num-rw" id="title-num4"><span class="title-num-label-rw">Lesson</span> 3
+            </p>
+
+            <h1 id="h14">The Scientific Method</h1>
+
+         </div>
+
+         <div class="block-rw section-opening-rw exclude-auto-rw" id="section-opening3">
+
+
+            <h4 id="h414">Lesson Objectives</h4>
+
+            <ul id="ul11" epub:type="list"><li id="li48">Describe the scientific method as a process.</li>
+    
+               <li id="li49">Explain why the scientific method allows scientists and others to examine the physical world more objectively than other ways of knowing.</li>
+    
+               <li id="li50">Describe the steps involved in the scientific method.</li>
+
+            </ul><h4 id="h415">Vocabulary</h4>
+
+            <ul id="ul12" epub:type="list"><li id="li51">applied science</li>
+    
+               <li id="li52">basic science</li>
+    
+               <li id="li53">hypothesis</li>
+    
+               <li id="li54">scientific method</li>
+
+            </ul></div>
+
+         <h2 id="h211">The Scientific Method</h2>
+
+         <p id="p38">The <span class="ref-popup-rw" data-popup-target="scientific_method">scientific method</span> is a process used to investigate the unknown. This process uses evidence and testing. Scientists use the scientific method so they can find information. A common method allows all scientists to answer questions in a similar way. Scientists who use this method can reproduce another scientist's experiments. Why do you think it is important that scientists reproduce each other's experiments?
+         </p>
+
+         <p id="p39">Almost all versions of the scientific method include the following steps, though not always in the same order:</p>
+
+         <ol class="x-ck12-decimal" id="x-ck12-decimal5" epub:type="list"><li id="li55">Make observations</li>
+    
+            <li id="li56">Identify a question you would like to answer based on the observation</li>
+    
+            <li id="li57">Find out what is already known about your observation (research)</li>
+    
+            <li id="li58">Form a hypothesis</li>
+    
+            <li id="li59">Test the hypothesis</li>
+    
+            <li id="li60">Analyze your results</li>
+    
+            <li id="li61">Communicate your results</li>
+
+         </ol><h3 id="h33">Making Observations</h3>
+
+         <p class="firstpara-rw" id="p40">Imagine that you are scientist. While collecting water samples at a local pond, you notice a frog with five legs instead of four (<em>Figure <span class="ref-figure-rw">3-1</span></em>). As you start to look around, you discover that many of the frogs have extra limbs, extra eyes or no eyes. One frog even has limbs coming out of its mouth. These are your <strong> observations </strong> , or things you notice about an environment using your five senses.
+         </p>
+
+         <div class="media-rw figure-rw image-rw float-none-rw floatgalley-none-rw align-center-rw width-50-rw exclude-auto-rw" id="figure8">
+
+
+            <div class="pc-rw" id="pc19">
+
+               <div class="pc-rw" id="pc20"><img src="images/20130404122559610535_online.jpg" alt=""/></div>
+
+               <p class="caption-rw" id="caption8"><strong>Figure <span class="num-image-rw variable-rw">3-1</span>.</strong> A frog with an extra leg.
+               </p>
+
+               <p class="source-rw" id="source8">Source: <a href="http://en.wikipedia.org/wiki/File:Deformed_Frog.gif" target="_blank">Wikipedia. USGS. Public Domain.</a>
+               </p>
+
+            </div>
+
+         </div>
+
+         <h3 id="h34">Identify a Question Based on Your Observations</h3>
+
+         <p class="firstpara-rw" id="p42">The next step is to ask a question about the frogs. You may ask, "Why are so many frogs are deformed?" Or, "Is there something in their environment causing these defects, like water pollution?"</p>
+
+         <p id="p43">Yet, you do not know if this large number of deformities is "normal" for frogs. What if many of the frogs found in ponds and lakes all over the world have similar deformities? Before you look for causes, you need to find out if the number and kind of deformities is unusual. So besides finding out <em> why </em> the frogs are deformed, you should also ask: "Is the percentage of deformed frogs in this pond greater than the percentage of deformed frogs in other places?" (<em>Figure <span class="ref-figure-rw">3-2</span></em>)
+         </p>
+
+         <div class="media-rw figure-rw image-rw float-none-rw floatgalley-none-rw align-center-rw width-60-rw exclude-auto-rw" id="figure9">
+
+
+            <div class="pc-rw" id="pc21">
+
+               <div class="pc-rw" id="pc22"><img src="images/20130404122559762283_online.jpg" alt=""/></div>
+
+               <p class="caption-rw" id="caption9"><strong>Figure <span class="num-figure-rw variable-rw">3-2</span>.</strong> A pond with frogs.
+               </p>
+
+               <p class="source-rw" id="source9">Source: Shutterstock.com</p>
+
+            </div>
+
+         </div>
+
+         <h3 id="h35">Research Existing Knowledge About the Topic</h3>
+
+         <p class="firstpara-rw" id="p45">No matter what you observe, you need to find out what is already known about your questions. For example, is anyone else doing research on deformed frogs? If yes, what did they find out? Do you think that you should repeat their research to see if it can be duplicated? During your research, you might learn something that convinces you to change or refine your question.</p>
+
+         <h3 id="h36">Construct a Hypothesis</h3>
+
+         <p class="firstpara-rw" id="p46">A <span class="ref-popup-rw" data-popup-target="hypothesis">hypothesis</span> is an educated guess that tries to explain an observation. A good hypothesis allows you to make more predictions. For example, you might hypothesize that a pesticide from a nearby farm is running into the pond and causing frogs to have extra legs. If that's true, then you can predict that the water in a pond of non-deformed frogs will have lower levels of that pesticide.
+         </p>
+
+         <p id="p47">That's a prediction you can test by measuring pesticide levels in two sets of ponds, those with deformed frogs and those with nothing but healthy frogs. Every hypothesis needs to be written in a way that it can:</p>
+
+         <ol class="x-ck12-decimal" id="x-ck12-decimal6" epub:type="list"><li id="li62">Be tested using evidence.</li>
+    
+            <li id="li63">Be proven wrong.</li>
+    
+            <li id="li64">Provide measurable results.</li>
+    
+            <li id="li65">Provide yes or no answers.</li>
+
+         </ol><p id="p48">For example, do you think the following hypothesis meets the four criteria above? Let's see. Hypothesis: "The number of deformed frogs in five ponds that are polluted with chemical X is higher than the number of deformed frogs in five ponds without chemical X."</p>
+
+         <h3 id="h37">Test Your Hypothesis</h3>
+
+         <p class="firstpara-rw" id="p49">To test the hypothesis, you would count the healthy and deformed frogs and measure the amount of chemical X in all of the ponds. The hypothesis will be either true or false. Here is an example of a hypothesis that is not testable: "The frogs are deformed because someone cast a magic spell on them." You cannot test a magic hypothesis or measure any results of magic. Doing an experiment will test most hypotheses. The experiment may generate evidence in support of the hypothesis. The experiment may also generate evidence proving the hypothesis false.</p>
+
+         <h3 id="h38">Analyze Data and Draw a Conclusion</h3>
+
+         <p class="firstpara-rw" id="p50">If a hypothesis and experiment are well-designed, the experiment will produce results that you can measure, collect, and analyze. The <strong> analysis </strong> should tell you if the hypothesis is true or false. See <em>Table <span class="ref-table-rw">3-1</span></em> for the experimental results.
+         </p>
+
+         <div class="table-rw custom-rw table-grid-rw align-auto-rw float-none-rw width-auto-rw exclude-auto-rw" id="custom4" epub:type="table">
+
+
+            <div class="pc-rw" id="pc23">
+
+               <table id="table4"><thead><tr class="row1"><th><strong>Polluted Pond </strong>
+                        </th>
+            
+                        <th><strong>Number of Deformed Frogs </strong>
+                        </th>
+            
+                        <th><strong>Non-polluted Pond </strong>
+                        </th>
+            
+                        <th><strong>Number of Deformed Frogs </strong>
+                        </th>
+        
+                     </tr></thead><tbody><tr class="row1"><td class="col1">1</td>
+            
+                        <td class="col2">20</td>
+            
+                        <td class="col3">1</td>
+            
+                        <td class="col4">23</td>
+        
+                     </tr><tr class="row2"><td class="col1">2</td>
+            
+                        <td class="col2">23</td>
+            
+                        <td class="col3">2</td>
+            
+                        <td class="col4">25</td>
+        
+                     </tr><tr class="row3"><td class="col1">3</td>
+            
+                        <td class="col2">25</td>
+            
+                        <td class="col3">3</td>
+            
+                        <td class="col4">30</td>
+        
+                     </tr><tr class="row4"><td class="col1">4</td>
+            
+                        <td class="col2">26</td>
+            
+                        <td class="col3">4</td>
+            
+                        <td class="col4">16</td>
+        
+                     </tr><tr class="row5"><td class="col1">5</td>
+            
+                        <td class="col2">21</td>
+            
+                        <td class="col3">5</td>
+            
+                        <td class="col4">20</td>
+        
+                     </tr><tr class="row6"><td class="col1">Average:</td>
+            
+                        <td class="col2">23</td>
+            
+                        <td class="col3">Average:</td>
+            
+                        <td class="col4">22.8</td>
+        
+                     </tr></tbody></table><p class="caption-rw" id="caption10"><strong>Table <span class="num-table-rw variable-rw">3-1</span>.</strong>
+               </p>
+
+            </div>
+
+         </div>
+
+         <p class="firstpara-rw" id="p51"><strong>Deformed Frog Data </strong>
+         </p>
+
+         <p id="p52">Your results show that pesticide levels in the two sets of ponds are different, but the average number of deformed frogs is almost the same. Your results demonstrate that your hypothesis is false. The situation may be more complicated than you thought. This gives you new information that will help you decide what to do next. Even if the results supported your hypothesis, you would probably ask a new question to try to better understand what is happening to the frogs and why.</p>
+
+         <h3 id="h39">Drawing Conclusions and Communicating Results</h3>
+
+         <p class="firstpara-rw" id="p53">If a hypothesis and experiment are well-designed, the results will tell whether your hypothesis is true or false. If a hypothesis is true, scientists will often continuing testing the hypothesis in new ways to learn more. If a hypothesis is false, the results may be used to come up with and test a new hypothesis.</p>
+
+         <p id="p54">Scientists communicate their results in a number of ways. For example, they may talk to small groups of scientists and give talks at large scientific meetings. They will write articles for scientific journals. Their findings may also be communicated to journalists.</p>
+
+         <p id="p55">If you conclude that frogs are deformed due to a pesticide not previously measured, you would publish an article and give talks about your research. Your conclusion could eventually help find solutions to this problem.</p>
+
+         <h2 id="h212">Basic and Applied Science</h2>
+
+         <p class="firstpara-rw" id="p56">Science can be "basic" or "applied." The goal of <span class="ref-popup-rw" data-popup-target="basic_science">basic science</span> is to understand how things work - whether it is a cell or a whole ecosystem. Basic science is the source of most scientific theories and new knowledge. For example, a scientist that tries to find the right drug to treat brain injuries is performing basic science.
+         </p>
+
+         <p id="p57"><span class="ref-popup-rw" data-popup-target="applied_science">Applied science</span> is using scientific discoveries to solve practical problems. Applied science also creates new technologies. For example, medicine and all that is known about how to treat patients is applied science based on basic research (<em>Figure <span class="ref-figure-rw">3-3</span></em>). A doctor administering a drug or performing surgery on a patient is an example of applied science.
+         </p>
+
+         <div class="media-rw figure-rw float-none-rw floatgalley-none-rw align-center-rw width-80-rw exclude-auto-rw" id="figure10">
+
+
+            <div class="pc-rw" id="pc24">
+
+               <div class="pc-rw" id="pc25"><img src="images/20130404122559926530_online.jpg" alt=""/></div>
+
+               <p class="caption-rw" id="caption11"><strong>Figure <span class="num-figure-rw variable-rw">3-3</span>.</strong> Surgeons operating on a person, an example of applied science.
+               </p>
+
+               <p class="source-rw" id="source10">Source: Shutterstock.com</p>
+
+            </div>
+
+         </div>
+
+         <h2 id="h213">Lesson Summary</h2>
+
+         <ul id="ul13" epub:type="list"><li id="li66">The scientific method is a process used to investigate questions.</li>
+    
+            <li id="li67">The scientific method uses observable evidence and testing.</li>
+    
+            <li id="li68">A hypothesis is a proposed explanation of an observation; it is used to test an idea.</li>
+    
+            <li id="li69">A hypothesis must be written in a way that can be tested, can be proved false, can be measured, and will help answer the original question.</li>
+    
+            <li id="li70">Basic research produces knowledge and theories.</li>
+    
+            <li id="li71">Applied research uses knowledge and theories from basic research to develop solutions to practical problems.</li>
+
+         </ul><div class="block-rw section-closing-rw exclude-auto-rw" id="section-closing2">
+
+
+            <h4 id="h416">Review Questions</h4>
+
+            <h5 id="h54">Recall</h5>
+
+            <ol id="ol10" epub:type="list"><li id="p59">What does a hypothesis need to include?</li>
+    
+               <li id="p60">What does "falsifiable" mean?</li>
+    
+               <li id="p61">List the steps of the Scientific Method.</li>
+
+            </ol><h5 id="h55">Apply Concepts</h5>
+
+            <ol id="ol11" start="4" epub:type="list"><li id="p62">How is a hypothesis different from a theory?</li>
+    
+               <li id="p63">A doctor treats a patient with HIV with a new anti-viral drug. Is this an example of basic or applied science?</li>
+
+            </ol><h5 id="h56">Think Critically</h5>
+
+            <ol id="ol12" start="7" epub:type="list"><li id="p64">What does a scientist do if their research contradicts previous theories or popular knowledge?</li>
+    
+               <li id="p65">A field scientist studies mice and observes that mice in the desert have fewer offspring (children) than mice in the forest. She hypothesizes that mice in the desert have access to less water and therefore have fewer offspring to conserve the much-needed resource. Is this a testable hypothesis? Why or why not?</li>
+
+            </ol><h4 id="h417">Further Reading / Supplemental Links</h4>
+
+            <ul id="ul14" epub:type="list"><li id="li72">William Souder, A Plague of Frogs: The Horrifying True Story. Hyperion Press, 2000.</li>
+
+            </ul><h4 id="h418">Points to Consider</h4>
+
+            <ul id="ul15" epub:type="list"><li id="li73">How do you think scientific “tools” can help scientists?</li>
+    
+               <li id="li74">What do you think is one of the more common tools of the life scientist?</li>
+
+            </ul></div>
+
+         <div class="named-lists-rw toc-lists-rw exclude-auto-rw" id="toc-lists3">
+
+
+            <h2 id="h21">Lesson Glossary</h2>
+
+            <div class="list-named-rw list-glossary-rw exclude-auto-rw" id="list-glossary3" epub:type="glossary">
+
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="applied_science">
+
+
+                  <h4 id="h419">Applied Science</h4>
+
+                  <p id="p14">The application of science to practical problems.</p>
+
+               </div>
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="basic_science">
+
+
+                  <h4 id="h420">Basic Science</h4>
+
+                  <p id="p21">Research whose goal is just to find out how the world works, not to solve an urgent problem. Basic research is the source of most new scientific information and nearly all new theories.</p>
+
+               </div>
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="hypothesis">
+
+
+                  <h4 id="h421">Hypothesis</h4>
+
+                  <p id="p22">A proposed explanation for something that is testable.</p>
+
+               </div>
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="scientific_method">
+
+
+                  <h4 id="h422">Scientific Method</h4>
+
+                  <p id="p24">A careful way of asking and answering questions to learn about the physical world that is based on reason and observable evidence.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </section></div>
+    </body>
+</html>

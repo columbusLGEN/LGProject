@@ -1,0 +1,109 @@
+//
+//  ECRDataHandler.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRDataHandler.h"
+#import "ECRHTTPSessionManager.h"
+#import "ECRResObjc.h"
+#import "ECRHomeMainModel.h"
+#import "ECRBookInfoModel.h"
+
+@interface ECRDataHandler ()
+
+
+@end
+
+@implementation ECRDataHandler
+
+// MARK: 图书分类
+- (void)bmDataWithSuccess:(ECRDataHandlerSuccess)success failure:(ECRDataHandlerFailure)failure commenFailure:(ECRDataHandlerCommenFailure)commenFailure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:10];
+    param[@"imei"] = @"imei";
+    param[@"imsi"] = @"imsi";
+    [self commonGetDataWithInterface:@"books/classifyBook" param:param success:^(id responseObject) {
+        
+        if (success) {
+            success([responseObject firstObject]);
+        }
+    } failure:failure commenFailure:commenFailure];
+}
+
+// MARK: 书籍详情请求
+- (void)biDataWithBookId:(NSString *)bookId success:(ECRDataHandlerSuccess)success failure:(ECRDataHandlerFailure)failure commenFailure:(ECRDataHandlerCommenFailure)commenFailure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:10];
+    param[@"imei"] = @"imei";
+    param[@"imsi"] = @"imsi";
+    param[@"bookId"] = bookId;
+    //books/bookDetails
+    [self commonGetDataWithInterface:@"books/bookDetails" param:param success:^(id responseObject) {
+        ECRBookInfoModel *model = [ECRBookInfoModel mj_objectWithKeyValues:[responseObject firstObject]];
+        if (success) {
+            success(model);
+        }
+    } failure:failure commenFailure:commenFailure];
+}
+
+// MARK: 首页请求
+- (void)homeDataWithSuccess:(ECRDataHandlerSuccess)success failure:(ECRDataHandlerFailure)failure commenFailure:(ECRDataHandlerCommenFailure)commenFailure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:10];
+    param[@"imei"] = @"imei";
+    param[@"imsi"] = @"imsi";
+    [self commonGetDataWithInterface:@"books/index" param:param success:^(id responseObject) {
+        ECRHomeMainModel *homeModel = [ECRHomeMainModel mj_objectWithKeyValues:[responseObject firstObject]];
+        if (success) {
+            success(homeModel);
+        }
+    } failure:failure commenFailure:commenFailure];
+}
+
+// MARK: 通用请求
+- (void)commonGetDataWithInterface:(NSString *)interface param:(id)param success:(void(^)(id responseObject))success failure:(ECRDataHandlerFailure)failure commenFailure:(void (^)(NSError *error))commenFailure{
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:10];
+    parameters[@"params"] = param;
+    parameters[@"md5"] = @"md5";// TODO: 参数加密 & md5
+    
+    [[ECRHTTPSessionManager sharedManager] POSTWithInterface:interface param:parameters success:^(id responseObject) {
+        // 对请求的数据进行处理
+        // TODO: 数据解密
+        NSString *msg = [responseObject objectForKey:@"msg"];
+        // TODO: .判断请求是否成功
+        NSNumber *result = [responseObject objectForKey:@"result"];
+        NSLog(@"msg -- %@",msg);
+        NSLog(@"result -- %@",result);
+        if (result.integerValue == 0) {
+            // returnJson string
+            NSString *jsonString = [responseObject objectForKey:@"returnJson"];
+            NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+            id jsonObjc = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"returnJson -- %@",jsonString);
+            if (success) {
+                success(jsonObjc);
+            }
+        }else{
+            if (failure) {
+                failure(msg);
+            }
+        }
+    } failure:^(NSError *error) {
+        if (commenFailure) {
+            commenFailure(error);
+        }
+    }];
+    
+}
+
++ (instancetype)sharedDataHandler{
+    static id instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
+
+@end

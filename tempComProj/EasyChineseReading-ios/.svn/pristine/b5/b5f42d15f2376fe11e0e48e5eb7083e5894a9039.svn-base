@@ -1,0 +1,130 @@
+//
+//  UCTeackerListVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/11.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UCTeacherListVC.h"
+
+#import "UCStudentListTableViewCell.h"
+
+#import "UCTeacherAddVC.h"
+#import "UCTeacherEditVC.h"
+
+@interface UCTeacherListVC ()<
+UITableViewDelegate, UITableViewDataSource,
+UCStudentListTableViewCellDelegate>
+
+@end
+
+@implementation UCTeacherListVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self configNavigationBar];
+    [self configTableView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrDataSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UCStudentListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UCStudentListTableViewCell class])];
+    cell.data = _arrDataSource[indexPath.row];
+    cell.delegate = self;
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UCTeacherEditVC *editVC = [UCTeacherEditVC loadFromStoryBoard:@"UserClass"];
+    [self.navigationController pushViewController:editVC animated:YES];
+}
+
+#pragma mark -  action
+
+- (void)configTableView
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, self.view.height) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    _tableView.estimatedRowHeight = 100;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    [self.view addSubview:_tableView];
+    
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UCStudentListTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UCStudentListTableViewCell class])];
+}
+
+- (void)configNavigationBar
+{
+    self.title = @"教师";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ban2"] style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
+}
+
+- (void)addTeacher
+{
+    UCTeacherAddVC *addVC = [UCTeacherAddVC loadFromStoryBoard:@"UserClass"];
+    [self.navigationController pushViewController:addVC animated:YES];
+}
+
+#pragma mark - UCStudentListTableViewCellDelegate
+
+- (void)editStudentWithId:(NSInteger)studentId
+{
+    UCTeacherEditVC *edit = [UCTeacherEditVC loadFromStoryBoard:@"UserClass"];
+    [self.navigationController pushViewController:edit animated:YES];
+}
+
+- (void)deleteStudentWithId:(NSInteger)studentId
+{
+    static ZAlertView *alertView;
+    if (alertView == nil) {
+        NSString * str = [NSString stringWithFormat:@"确定要删除这个教师吗"];
+        alertView = [[ZAlertView alloc] initWithTitle:str message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+        alertView.whenDidSelectCancelButton = ^{
+            alertView = nil;
+        };
+        alertView.whenDidSelectOtherButton = ^{
+            alertView = nil;
+        };
+        [alertView show];
+    }
+}
+
+#pragma mark -
+
+- (NSArray *)arrDataSource
+{
+    if (_arrDataSource == nil) {
+        NSMutableArray *arr = [NSMutableArray array];
+        for (NSInteger i = 0; i < 10; i ++) {
+            UserModel *user = [[UserModel alloc] init];
+            user.name = [NSString stringWithFormat:@"zhao%ld", (long)i];
+            [arr addObject:user];
+        }
+        _arrDataSource = [NSArray arrayWithArray:arr];
+    }
+    return _arrDataSource;
+}
+
+@end

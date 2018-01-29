@@ -1,0 +1,65 @@
+//
+//  ECRBookReaderController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/6.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookReaderController.h"
+#import <YMEpubReader/YMEpubReader.h>
+
+@interface ECRBookReaderController ()<
+YMReaderViewControllerDelegate
+>
+
+@property (strong,nonatomic) YMReaderViewController *reader;
+
+@end
+
+@implementation ECRBookReaderController
+
+/*
+ 退出时代理方法
+ */
+- (void)quitReader:(BOOL)buy{
+    //退出阅读时调用
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)gotoBookShop{
+    //购买图书时调用
+}
+
+- (void)endMessage:(NSDictionary *)info{
+    //达到最后一页时调用
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    _reader = [[YMReaderViewController alloc] init];
+    // 打开阅读器
+    [[YMEpubManager sharedInstance] creatBookByInfo:@"1" JRID:@"1" withReadTypr:NO withBlock:^(NSString *result) {
+        
+        NSLog(@"完成");
+        // 设置当前图书
+        [YMEpubManager sharedInstance].currentBook = [[YMEpubManager sharedInstance] getCurrentBookWithBookID:@"1"];
+        _reader.delegate = self;
+        _reader.view.frame = self.view.bounds;
+        [self.view addSubview:_reader.view];
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+
+@end

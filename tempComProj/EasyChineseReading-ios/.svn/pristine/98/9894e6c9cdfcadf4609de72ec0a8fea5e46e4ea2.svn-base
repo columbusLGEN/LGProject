@@ -1,0 +1,32 @@
+//
+//  ECRBookClassSortHeader.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/2.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookClassSortHeader.h"
+
+@interface ECRBookClassSortHeader ()
+@property (weak, nonatomic) IBOutlet UIButton *sale;// 销量
+@property (weak, nonatomic) IBOutlet UIButton *price;// 价格
+@property (weak, nonatomic) IBOutlet UIButton *score;// 好评
+
+@end
+
+@implementation ECRBookClassSortHeader
+
+- (IBAction)sortClick:(UIButton *)sender{
+    
+    if ([self.delegate respondsToSelector:@selector(bcsHeader:tag:)]) {
+        [self.delegate bcsHeader:self tag:sender.tag];
+    }
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.contentView.backgroundColor = [UIColor whiteColor];
+}
+
+@end

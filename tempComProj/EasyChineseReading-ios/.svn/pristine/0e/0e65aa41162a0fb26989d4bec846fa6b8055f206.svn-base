@@ -1,0 +1,47 @@
+//
+//  ECRBaseCollectionFlowLayout.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/20.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+//static CGFloat bookMargin = 10;
+//static CGFloat bookSpace = 40;
+
+#import "ECRBaseCollectionFlowLayout.h"
+
+@interface ECRBaseCollectionFlowLayout ()
+
+@end
+
+@implementation ECRBaseCollectionFlowLayout
+
+- (NSInteger)bookSpace{
+    return 40;
+}
+- (NSInteger)bookMargin{
+//    if (Screen_Width > 414) {
+//        return 18;
+//    }else{
+//        return 10;
+//    }
+    return 10;
+}
+
+- (CGSize)itemSize{
+    CGSize custemSize;
+    if (Screen_Width < 375) {
+        custemSize = CGSizeMake((Screen_Width - 2 * self.bookMargin - self.bookSpace) / 3, 150);
+    }else if(Screen_Width == 375){
+        custemSize = CGSizeMake((Screen_Width - 2 * self.bookMargin - 2 * self.bookSpace) / 3, 150);
+    }else if(Screen_Width == 414){
+        custemSize = CGSizeMake((Screen_Width - 2 * self.bookMargin - 2 * self.bookSpace) / 3, 180);
+    }else{
+        //为什么 4 * self.bookSpace 配合 minimumInteritemSpacing doesn't work
+        custemSize = CGSizeMake((Screen_Width - 2 * self.bookMargin - 3 * self.bookSpace) / 5, 180);
+    }
+    return custemSize;
+}
+
+@end

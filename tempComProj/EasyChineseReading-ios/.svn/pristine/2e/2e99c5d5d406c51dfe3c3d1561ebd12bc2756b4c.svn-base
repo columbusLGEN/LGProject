@@ -1,0 +1,17 @@
+//
+//  ECRStarView.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/2.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+// 根据score 显示星星数量的view
+
+#import <UIKit/UIKit.h>
+
+@interface ECRStarView : UIView
+
+@property (assign,nonatomic) CGFloat *score;
+
+@end

@@ -1,0 +1,38 @@
+//
+//  ZPickView.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/6.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class ZPickView;
+
+@protocol ZPickViewDelegate<NSObject>
+
+- (void)ZPickerView:(ZPickView *)pikcer makeSureIndex:(NSInteger)index;
+- (void)ZPickerViewCancel:(ZPickView *)pikcer;
+
+@end
+
+@interface ZPickView : UIView <UIPickerViewDataSource, UIPickerViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UIView   *viewBackground;
+@property (strong, nonatomic) IBOutlet UIButton *btnCancel;
+@property (strong, nonatomic) IBOutlet UIButton *btnSure;
+@property (strong, nonatomic) IBOutlet UIPickerView *pickView;
+
+@property (weak, nonatomic) id<ZPickViewDelegate> delegates;
+@property (nonatomic ,readonly) BOOL showing;
+
+@property (nonatomic ,assign) NSInteger selectedIndex;
+@property (strong, nonatomic) NSArray *arrData;
+
+- (instancetype)initWithFrame:(CGRect)frame dataSource:(NSArray *)dataSource selected:(NSInteger)selected;
+
+- (void)show;
+- (void)hidden;
+
+@end

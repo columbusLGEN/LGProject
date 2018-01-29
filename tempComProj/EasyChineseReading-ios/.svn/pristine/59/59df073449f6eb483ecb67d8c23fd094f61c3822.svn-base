@@ -1,0 +1,75 @@
+//
+//  ECRBookrackModel.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookrackModel.h"
+#import "SDWebImageDownloader.h"
+
+@interface ECRBookrackModel ()
+
+@end
+
+@implementation ECRBookrackModel
+
+- (id)copyWithZone:(NSZone *)zone{
+    ECRBookrackModel *copyModel = [[ECRBookrackModel allocWithZone:zone] init];
+    copyModel.currentPlace = 2;
+    copyModel.owendType = self.owendType;
+    copyModel.id = self.id;
+    copyModel.bookType = self.bookType;
+    copyModel.books = self.books.mutableCopy;
+    copyModel.alreadyBuyBooks = self.alreadyBuyBooks.mutableCopy;
+    copyModel.groupName = self.groupName.mutableCopy;
+    copyModel.name = self.name.mutableCopy;
+    copyModel.groupId = self.groupId;
+    copyModel.bookName = self.bookName.mutableCopy;
+    copyModel.en_bookName = self.en_bookName.mutableCopy;
+    
+    return copyModel;
+}
+
+- (void)createGroupWithFromModel:(ECRBookrackModel *)fromModel toModel:(ECRBookrackModel *)toModel{
+    if (self.currentPlace == 1) {// 全部图书
+        self.books = [NSMutableArray arrayWithCapacity:10];
+        [self.books addObject:fromModel];// 先加"手上"的
+        [self.books addObject:toModel];
+    }
+    if (self.currentPlace == 2) {// 已购买
+        [self.alreadyBuyBooks addObject:fromModel];// 先加"手上"的
+        [self.alreadyBuyBooks addObject:toModel];
+    }
+    
+}
+
+- (void)addBooksWithFromModel:(ECRBookrackModel *)fromModel{
+    if (self.owendType == 1) {
+        [self.alreadyBuyBooks insertObject:fromModel atIndex:0];
+    }else{
+        [self.books insertObject:fromModel atIndex:0];
+    }
+}
+
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"books":@"ECRBookrackModel"};
+}
+
+- (NSMutableArray<ECRBookrackModel *> *)alreadyBuyBooks{
+    if (_alreadyBuyBooks == nil) {
+        _alreadyBuyBooks = [NSMutableArray array];
+    }
+    return _alreadyBuyBooks;
+}
+
+@end
+
+
+
+
+
+
+
+

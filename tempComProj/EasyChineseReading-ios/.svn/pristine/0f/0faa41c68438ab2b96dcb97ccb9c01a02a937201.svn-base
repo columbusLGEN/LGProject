@@ -1,0 +1,208 @@
+//
+//  ECRBookFloderLayout.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/9.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookFloderLayout.h"
+
+CG_INLINE CGPoint CGPointOffset(CGPoint point,CGFloat dx, CGFloat dy){
+    return CGPointMake(point.x + dx, point.y + dy);
+}
+
+@interface ECRBookFloderLayout ()
+@property (strong,nonatomic) UILongPressGestureRecognizer *sonLongPressGestureRecognizer;
+@property (strong,nonatomic) UIPanGestureRecognizer *sonPanGestureRecognizer;
+
+@end
+
+@implementation ECRBookFloderLayout
+
+static NSString *kLECollectionViewKeyPath = @"collectionView";
+
+- (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
+    switch(gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan: {
+            
+            NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
+            
+            if ([self.dataSource respondsToSelector:@selector(collectionView:canMoveItemAtIndexPath:)] &&
+                ![self.dataSource collectionView:self.collectionView canMoveItemAtIndexPath:currentIndexPath]) {
+                return;
+            }
+            if ([self.delegate respondsToSelector:@selector(collectionView:layout:willBeginDraggingItemAtIndexPath:)]) {
+                [self.delegate collectionView:self.collectionView layout:self willBeginDraggingItemAtIndexPath:self.selectedItemIndexPath];
+            }
+            
+            self.selectedItemIndexPath = currentIndexPath;
+            ECRBookrackCollectionViewCell *collectionViewCell = (ECRBookrackCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:self.selectedItemIndexPath];
+            // MARK: 通知代理,进入编辑状态
+            if ([self.flssDelegate respondsToSelector:@selector(brflayout:beginEditWithModel:doneBlock:)]) {
+                if (self.isEdit) {
+                }else{
+                    self.isEdit = YES;
+                }
+                __weak ECRBookFloderLayout *weakSelf = self;
+                [self.flssDelegate brflayout:self beginEditWithModel:collectionViewCell.model doneBlock:^{
+                    // 用户退出编辑状态,执行此回调
+                    weakSelf.isEdit = NO;
+                }];
+            }
+            
+            self.currentView = [[UIView alloc] initWithFrame:collectionViewCell.frame];
+            
+            collectionViewCell.highlighted = YES;
+            UIView *highlightedImageView = [collectionViewCell LX_snapshotView];
+            highlightedImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            highlightedImageView.alpha = 1.0f;
+            
+            collectionViewCell.highlighted = NO;
+            UIView *imageView = [collectionViewCell LX_snapshotView];
+            imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            imageView.alpha = 0.0f;
+            
+            [self.currentView addSubview:imageView];
+            [self.currentView addSubview:highlightedImageView];
+            [self.collectionView addSubview:self.currentView];
+            
+            self.currentViewCenter = self.currentView.center;
+            
+            __weak typeof(self) weakSelf = self;
+            [UIView
+             animateWithDuration:0.3
+             delay:0.0
+             options:UIViewAnimationOptionBeginFromCurrentState
+             animations:^{
+                 __strong typeof(self) strongSelf = weakSelf;
+                 if (strongSelf) {
+                     strongSelf.currentView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
+                     highlightedImageView.alpha = 0.0f;
+                     imageView.alpha = 1.0f;
+                 }
+             }
+             completion:^(BOOL finished) {
+                 __strong typeof(self) strongSelf = weakSelf;
+                 if (strongSelf) {
+                     [highlightedImageView removeFromSuperview];
+                     
+                     if ([strongSelf.delegate respondsToSelector:@selector(collectionView:layout:didBeginDraggingItemAtIndexPath:)]) {
+                         [strongSelf.delegate collectionView:strongSelf.collectionView layout:strongSelf didBeginDraggingItemAtIndexPath:strongSelf.selectedItemIndexPath];
+                     }
+                 }
+             }];
+            
+            [self invalidateLayout];
+        } break;
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded: {
+            NSIndexPath *currentIndexPath = self.selectedItemIndexPath;
+            
+            if (currentIndexPath) {
+                if ([self.delegate respondsToSelector:@selector(collectionView:layout:willEndDraggingItemAtIndexPath:)]) {
+                    [self.delegate collectionView:self.collectionView layout:self willEndDraggingItemAtIndexPath:currentIndexPath];
+                }
+                
+                self.selectedItemIndexPath = nil;
+                self.currentViewCenter = CGPointZero;
+                
+                UICollectionViewLayoutAttributes *layoutAttributes = [self layoutAttributesForItemAtIndexPath:currentIndexPath];
+                
+                self.longPressGestureRecognizer.enabled = NO;
+                
+                __weak typeof(self) weakSelf = self;
+                [UIView
+                 animateWithDuration:0.3
+                 delay:0.0
+                 options:UIViewAnimationOptionBeginFromCurrentState
+                 animations:^{
+                     __strong typeof(self) strongSelf = weakSelf;
+                     if (strongSelf) {
+                         strongSelf.currentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+                         strongSelf.currentView.center = layoutAttributes.center;
+                     }
+                 }
+                 completion:^(BOOL finished) {
+                     
+                     self.longPressGestureRecognizer.enabled = YES;
+                     
+                     __strong typeof(self) strongSelf = weakSelf;
+                     if (strongSelf) {
+                         [strongSelf.currentView removeFromSuperview];
+                         strongSelf.currentView = nil;
+                         [strongSelf invalidateLayout];
+                         
+                         if ([strongSelf.delegate respondsToSelector:@selector(collectionView:layout:didEndDraggingItemAtIndexPath:)]) {
+                             [strongSelf.delegate collectionView:strongSelf.collectionView layout:strongSelf didEndDraggingItemAtIndexPath:currentIndexPath];
+                         }
+                     }
+                 }];
+            }
+        } break;
+            
+        default: break;
+    }
+}
+
+- (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged: {
+            self.panTranslationInCollectionView = [gestureRecognizer translationInView:self.collectionView];
+            CGPoint viewCenter = self.currentView.center = LXS_CGPointAdd(self.currentViewCenter, self.panTranslationInCollectionView);
+            
+            [self panChanged:gestureRecognizer];
+            [self invalidateLayoutIfNecessary];
+            
+            switch (self.scrollDirection) {
+                case UICollectionViewScrollDirectionVertical: {
+                    if (viewCenter.y < (CGRectGetMinY(self.collectionView.bounds) + self.scrollingTriggerEdgeInsets.top)) {
+                        [self setupScrollTimerInDirection:LXScrollingDirectionUp];
+                    } else {
+                        if (viewCenter.y > (CGRectGetMaxY(self.collectionView.bounds) - self.scrollingTriggerEdgeInsets.bottom)) {
+                            [self setupScrollTimerInDirection:LXScrollingDirectionDown];
+                        } else {
+                            [self invalidatesScrollTimer];
+                        }
+                    }
+                } break;
+                case UICollectionViewScrollDirectionHorizontal: {
+                    if (viewCenter.x < (CGRectGetMinX(self.collectionView.bounds) + self.scrollingTriggerEdgeInsets.left)) {
+                        [self setupScrollTimerInDirection:LXScrollingDirectionLeft];
+                    } else {
+                        if (viewCenter.x > (CGRectGetMaxX(self.collectionView.bounds) - self.scrollingTriggerEdgeInsets.right)) {
+                            [self setupScrollTimerInDirection:LXScrollingDirectionRight];
+                        } else {
+                            [self invalidatesScrollTimer];
+                        }
+                    }
+                } break;
+            }
+        } break;
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded: {
+            [self invalidatesScrollTimer];
+        } break;
+        default: {
+            // Do nothing...
+        } break;
+    }
+}
+
+- (void)panChanged:(UIPanGestureRecognizer *)pan{
+    
+    // 当前view的center
+//    self.currentView.center
+//    NSLog(@"%@",NSStringFromCGPoint(self.currentView.center));
+    if (self.currentViewCenter.x < 0 ||
+        self.currentViewCenter.y < 0 ||
+        self.currentViewCenter.x > self.collectionView.width ||
+        self.currentViewCenter.y > self.collectionView.height) {
+        NSLog(@"outing");
+    }
+    
+}
+
+
+@end

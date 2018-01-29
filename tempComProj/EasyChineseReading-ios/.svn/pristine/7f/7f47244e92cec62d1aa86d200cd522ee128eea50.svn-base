@@ -1,0 +1,26 @@
+//
+//  ECRHTTPSessionManager.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/31.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+typedef void(^ECRLEHTTPSuccess)(id responseObject);
+typedef void(^ECRLEHTTPFailure)(NSError *error);
+
+typedef NS_ENUM(NSUInteger, ECRHTTPRequestMethod) {
+    ECRHTTPRequestMethodGet,
+    ECRHTTPRequestMethodPost,
+};
+
+#import <AFNetworking/AFNetworking.h>
+
+@interface ECRHTTPSessionManager : AFHTTPSessionManager
+
+// test
+- (void)lg_POSTWithURLString:(NSString *)URLString parameters:(NSDictionary *)param success:(ECRLEHTTPSuccess)success failure:(ECRLEHTTPFailure)failure;
+
++ (instancetype)sharedManager;
+
+@end

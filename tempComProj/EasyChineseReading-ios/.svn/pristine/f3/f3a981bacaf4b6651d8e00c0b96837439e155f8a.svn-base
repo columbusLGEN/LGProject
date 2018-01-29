@@ -1,0 +1,153 @@
+//
+//  ECRBookInfoTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/12.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookInfoTableViewCell.h"
+#import "ECRBookInfoModel.h"
+
+@interface ECRBookInfoTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIView *adreV;// 标题前面的rect
+@property (weak, nonatomic) IBOutlet UIView *adreV1;
+@property (weak, nonatomic) IBOutlet UIView *adreV2;
+@property (weak, nonatomic) IBOutlet UIView *adreV3;
+@property (weak, nonatomic) IBOutlet UIView *line;
+@property (weak, nonatomic) IBOutlet UIView *line1;
+@property (weak, nonatomic) IBOutlet UIView *line2;
+@property (weak, nonatomic) IBOutlet UIView *line3;
+
+
+// 1
+@property (weak, nonatomic) IBOutlet UILabel *t0;// 标题
+@property (weak, nonatomic) IBOutlet UILabel *publishCom;// 出版社
+@property (weak, nonatomic) IBOutlet UILabel *pubTime;// 出版时间
+@property (weak, nonatomic) IBOutlet UILabel *isbn;// isbn
+@property (weak, nonatomic) IBOutlet UILabel *eisbn;// eisbn
+@property (weak, nonatomic) IBOutlet UILabel *fl;// 分类
+@property (weak, nonatomic) IBOutlet UILabel *zt;// 主题
+@property (weak, nonatomic) IBOutlet UILabel *dx;// 对象
+
+
+// 2
+@property (weak, nonatomic) IBOutlet UILabel *t1;
+@property (weak, nonatomic) IBOutlet UILabel *nr;// 内容简介
+
+// 3
+@property (weak, nonatomic) IBOutlet UILabel *t2;
+
+// 4
+@property (weak, nonatomic) IBOutlet UILabel *t4;
+@property (weak, nonatomic) IBOutlet UICollectionView *recoView;// 推荐书籍
+
+
+@end
+
+@implementation ECRBookInfoTableViewCell
+
+- (IBAction)foldUnfold:(UIButton *)sender {
+    
+}
+
+- (void)setModel:(ECRBookInfoModel *)model{
+    _model = model;
+    switch (self.indx.row) {
+        case 0:{
+            // 出版信息
+            _publishCom.text = model.press;
+            _pubTime.text = model.publicationTime;
+            _isbn.text = model.isbn;
+            _eisbn.text = model.eisbn;
+            _fl.text = model.classify;
+            _zt.text = model.theme;
+            _dx.text = model.bookObject;
+            // 马上布局,计算frame
+            [self setNeedsLayout];
+            [self layoutIfNeeded];
+            _rHeight = CGRectGetMaxY(_dx.frame) + 10;
+            _rHeight1 = _rHeight;
+        }
+            break;
+        case 1:{
+            // 内容简介
+            _nr.text = model.intro;
+            [self setNeedsLayout];
+            [self layoutIfNeeded];
+            // 计算文字内容高度
+            // 指定字号
+            NSDictionary *dict = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
+            // 计算高度(需要制定宽度)
+            CGRect textRect = [model.intro boundingRectWithSize:CGSizeMake(Screen_Width - _nr.frame.origin.x - 20, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
+//            NSLog(@"----%@",NSStringFromCGRect(textRect));
+            
+            _rHeight = textRect.size.height + 70;
+            _rHeight2 = _rHeight;
+        }
+            break;
+        case 2:{
+            // 目录
+            // 马上布局,计算frame
+            [self setNeedsLayout];
+            [self layoutIfNeeded];
+            _rHeight = CGRectGetMaxY(_t2.frame) + 10;
+            _rHeight3 = _rHeight;
+        }
+            break;
+        case 3:{
+            // 推荐书籍
+            // 马上布局,计算frame
+            [self setNeedsLayout];
+            [self layoutIfNeeded];
+            _rHeight = CGRectGetMaxY(_t4.frame) + 10;
+            _rHeight4 = _rHeight;
+        }
+            break;
+    }
+    
+}
+
++ (NSString *)gainReuseID:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+        return @"ECRBookInfoTableViewCell1";
+            break;
+        case 1:
+        return @"ECRBookInfoTableViewCell2";
+            break;
+        case 2:
+        return @"ECRBookInfoTableViewCell3";
+            break;
+        case 3:
+        return @"ECRBookInfoTableViewCell4";
+            break;
+    }
+    return nil;
+}
++ (CGFloat)gainRowHeight:(ECRBookInfoModel *)model{
+    // TODO:
+    return 0;
+}
+
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    _line.backgroundColor = [UIColor orangeColor];
+    _line1.backgroundColor = [UIColor orangeColor];
+    _line2.backgroundColor = [UIColor orangeColor];
+    _line3.backgroundColor = [UIColor orangeColor];
+    
+}
+
+
+@end
+
+
+
+
+
+
+
+
+

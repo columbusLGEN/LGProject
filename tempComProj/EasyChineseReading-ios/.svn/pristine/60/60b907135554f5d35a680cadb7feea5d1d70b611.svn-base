@@ -1,0 +1,50 @@
+//
+//  ECRDetailPJTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/13.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRDetailPJTableViewCell.h"
+#import "ECRBiCommentModel.h"
+
+@interface ECRDetailPJTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIView *iconBg;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UIView *starView;
+@property (weak, nonatomic) IBOutlet UIImageView *icon;
+
+
+@end
+
+@implementation ECRDetailPJTableViewCell
+
+- (void)setModel:(ECRBiCommentModel *)model{
+    _model = model;
+    
+    _userName.text = model.userName;
+//    [_icon sd_setImageWithURL:[NSURL URLWithString:model.iconURL] placeholderImage:nil];
+    
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    _icon.clipsToBounds = YES;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    _icon.layer.cornerRadius = _icon.width * 0.5;
+    _icon.layer.masksToBounds = YES;
+    _iconBg.layer.cornerRadius = _iconBg.width * 0.5;
+    _iconBg.layer.masksToBounds = YES;
+    _iconBg.layer.borderWidth = 1;
+    _iconBg.layer.borderColor = [UIColor colorWithHexString:@"e3e3e3"].CGColor;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

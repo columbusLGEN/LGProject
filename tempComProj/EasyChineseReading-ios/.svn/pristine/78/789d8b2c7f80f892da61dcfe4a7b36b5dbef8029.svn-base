@@ -1,0 +1,28 @@
+//
+//  ECRHomeBRCell.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRHomeBRCell.h"
+
+@interface ECRHomeBRCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (weak, nonatomic) IBOutlet UILabel *bName;
+@property (weak, nonatomic) IBOutlet UILabel *price;
+
+
+@end
+
+@implementation ECRHomeBRCell
+
+
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    
+}
+
+@end

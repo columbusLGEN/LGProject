@@ -1,0 +1,679 @@
+//
+//  UIVCRechargeVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/7.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UVirtualCurrencyRechargeVC.h"
+
+#import <AlipaySDK/AlipaySDK.h>                             //ali 支付
+
+#import "UIVCRPayTypeCollectionViewCell.h"                  // 支付方式
+#import "UIVCRSelectPriceCollectionViewCell.h"              // 选择价格
+#import "UVCRShowPriceCollectionViewCell.h"                 // 支付价格
+#import "UIVCRHeaderRV.h"
+#import "UIVCRFooterRV.h"
+
+#import "PaySuccessViewController.h"
+
+static CGFloat const kSpace = 10.f;
+static CGFloat const kFooterHeight = 160.f;
+static NSInteger kMaxRequestNumber = 10;
+static NSString * const appScheme = @"EasyChineseReading";
+
+@interface UVirtualCurrencyRechargeVC ()<
+UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,
+UIVCRFooterRVDelegate>
+
+@property (strong, nonatomic) UICollectionView *collectionView;
+@property (strong, nonatomic) UICollectionViewFlowLayout *layout;
+
+@property (nonatomic, strong) UIVCRFooterRV *footerView;  // 支付
+
+@property (strong, nonatomic) NSMutableArray *arrPayType;         // 充值方式
+@property (strong, nonatomic) NSMutableArray *arrPayPriceApple;   // 苹果充值数额
+@property (strong, nonatomic) NSMutableArray *arrPayPriceAli;     // 阿里充值数额
+
+@property (nonatomic, assign) NSInteger selectedType;     // 选择支付类别
+@property (nonatomic, assign) NSInteger selectedNumb;     // 选择支付数额
+@property (assign, nonatomic) NSInteger requestNumber;    // 网络请求失败或需要重新请求的剩余请求的次数
+
+@property (assign, nonatomic) BOOL showSelectePayType;    // 展示选择方式
+
+@property (assign, nonatomic) CGFloat price;              // 选中的需支付的价格
+@property (strong, nonatomic) PayPriceModel *priceModel;  // 选中需支付的价格
+
+@property (strong, nonatomic) NSString *shop;             // appstore 支付名
+
+@end
+
+@implementation UVirtualCurrencyRechargeVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = _payPurpose == ENUM_PayPurposeAllLease ? LOCALIZATION(@"支付") : LOCALIZATION(@"虚拟币充值");
+    _selectedType = ENUM_PayTypeApplePay;
+    _requestNumber = kMaxRequestNumber;
+    [self getPayType];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - 获取数据
+
+// 支付类型
+- (void)getPayType
+{
+    self.arrPayType = [NSMutableArray array];
+    [[OrderRequest sharedInstance] getPayTypeCompletion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            NSArray *array = [PayTypeModel mj_objectArrayWithKeyValuesArray:object];
+            
+            for (NSInteger i = 0; i < array.count; i ++) {
+                PayTypeModel *payType = array[i];
+                if ([payType.isdisplay isEqualToString:@"1"])
+                    [_arrPayType addObject:payType];
+            }
+            // 没有更多的支付方式, 默认内购方式
+            _showSelectePayType = _arrPayType.count > 1;
+            [self getPayPrice];
+        }
+    }];
+}
+
+// 支付价格
+- (void)getPayPrice
+{
+    self.arrPayPriceAli   = [NSMutableArray array];
+    self.arrPayPriceApple = [NSMutableArray array];
+    [[OrderRequest sharedInstance] getPayPriceWithPayPurpose:_payPurpose == ENUM_PayPurposeAllLease ? ENUM_PayPurposeAllLease : ENUM_PayPurposeRecharge
+                                                    serialId:0
+                                                       price:_order.rechargeMoney > 0 ? _order.rechargeMoney : (_order.totalmoney - [UserRequest sharedInstance].user.virtualCurrency)
+                                                  completion:^(id object, ErrorModel *error) {
+                                                      if (error) {
+                                                          [self presentFailureTips:error.message];
+                                                      }
+                                                      else {
+                                                          NSArray *array = [NSDictionary mj_objectArrayWithKeyValuesArray:object];
+                                                          if (array.count == 0) return;
+                                                          
+                                                          NSDictionary *dic = array.firstObject;
+                                                          if (!dic[@"alipay"]) return;
+                                                          if (!dic[@"applepay"]) return;
+
+                                                          _arrPayPriceAli   = [PayPriceModel mj_objectArrayWithKeyValuesArray:dic[@"alipay"]];
+                                                          _arrPayPriceApple = [PayPriceModel mj_objectArrayWithKeyValuesArray:dic[@"applepay"]];
+                                                          NSLog(@"order %@", _order);
+                                                          if (_payPurpose != ENUM_PayPurposeAllLease && _payPurpose != ENUM_PayPurposeRecharge && (_order.rechargeMoney > 0 || _order.totalmoney - [UserRequest sharedInstance].user.virtualCurrency > 0)) {
+                                                              PayPriceModel *price = [PayPriceModel new];
+                                                              price.id = 0;
+                                                              price.presenterSum = 0;
+                                                              price.rmb = _order.rechargeMoney > 0 ? _order.rechargeMoney/cRechargePercent : (_order.totalmoney - [UserRequest sharedInstance].user.virtualCurrency)/cRechargePercent;
+                                                              price.dollar = price.rmb/6*1.0;
+                                                              BOOL hasSamePrice = NO;
+                                                              for (PayPriceModel *p in _arrPayPriceAli) {
+                                                                  if (p.rmb == price.rmb) {
+                                                                      hasSamePrice = YES;
+                                                                      break;
+                                                                  }
+                                                              }
+                                                              if (hasSamePrice == NO && (price.rmb > 0.01 || price.dollar > 0.01)) {
+                                                                  [_arrPayPriceAli insertObject:price atIndex:0];
+                                                              }
+                                                          }
+                                                          [self.collectionView reloadData];
+                                                      }
+                                                  }];
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return _payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease ? 1 + _showSelectePayType : 2 + _showSelectePayType;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if (_showSelectePayType) { // 显示选择支付方式
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease) {  // 没有顶部订单价格信息
+            if (0 == section)
+                return self.arrPayType.count;
+            else
+                return _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple.count : _arrPayPriceAli.count;
+        }
+        else { // 有顶部价格订单信息
+            if (0 == section)
+                return 2;
+            else if (1 == section)
+                return self.arrPayType.count;
+            else
+                return _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple.count : _arrPayPriceAli.count;
+        }
+    }
+    else { // 不显示选择支付方式
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease) {
+            if (0 == section)
+                return 2;
+            else
+                return _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple.count : _arrPayPriceAli.count;
+        }
+        else
+            return _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple.count : _arrPayPriceAli.count;
+    }
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UVCRShowPriceCollectionViewCell *orderPriceCell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UVCRShowPriceCollectionViewCell class])
+                                                                                              forIndexPath:indexPath];
+    UIVCRPayTypeCollectionViewCell *payTypeCell     = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UIVCRPayTypeCollectionViewCell class])
+                                                                                              forIndexPath:indexPath];
+    UIVCRSelectPriceCollectionViewCell *priceCell   = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UIVCRSelectPriceCollectionViewCell class])
+                                                                                              forIndexPath:indexPath];
+    orderPriceCell.index = indexPath.row;
+    if (_showSelectePayType) { // 有选择支付方式
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease) { // 充值或全平台(使用现金)
+            if (0 == indexPath.section) {
+                payTypeCell.isSelected = indexPath.row == _selectedType - 1;
+                payTypeCell.data = _arrPayType[indexPath.row];
+                return payTypeCell;
+            }
+            else {
+                priceCell.isSelected = indexPath.row == _selectedNumb;
+                priceCell.payPurpose = _payPurpose;
+                priceCell.data = _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple[indexPath.row] : _arrPayPriceAli[indexPath.row];
+                return priceCell;
+            }
+        }
+        else {
+            if (0 == indexPath.section) {
+                orderPriceCell.data = _order;
+                return orderPriceCell;
+            }
+            else if (1 == indexPath.section) {
+                payTypeCell.isSelected = indexPath.row == _selectedType - 1;
+                payTypeCell.data = _arrPayType[indexPath.row];
+                return payTypeCell;
+            }
+            else {
+                priceCell.isSelected = indexPath.row == _selectedNumb;
+                priceCell.payPurpose = _payPurpose;
+                priceCell.data = _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple[indexPath.row] : _arrPayPriceAli[indexPath.row];
+                return priceCell;
+            }
+        }
+    }
+    else { // 没有选择支付方式
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease) {
+            priceCell.isSelected = indexPath.row == _selectedNumb;
+            priceCell.payPurpose = _payPurpose;
+            priceCell.data = _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple[indexPath.row] : _arrPayPriceAli[indexPath.row];
+            return priceCell;
+        }
+        else {
+            if (0 == indexPath.section) {
+                orderPriceCell.data = _order;
+                return orderPriceCell;
+            }
+            else {
+                priceCell.isSelected = indexPath.row == _selectedNumb;
+                priceCell.payPurpose = _payPurpose;
+                priceCell.data = _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple[indexPath.row] : _arrPayPriceAli[indexPath.row];
+                return priceCell;
+            }
+        }
+    }
+}
+
+#pragma mark UICollectionViewDelegate
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if (kind == UICollectionElementKindSectionHeader) {
+        UIVCRHeaderRV *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UIVCRHeaderRV class]) forIndexPath:indexPath];
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease) {
+            if (0 == indexPath.section && _showSelectePayType)
+                headerView.lblDescribe.text = _payPurpose == ENUM_PayPurposeAllLease ? LOCALIZATION(@"请选择支付方式") : LOCALIZATION(@"请选择充值方式");
+            else
+                headerView.lblDescribe.text = _payPurpose == ENUM_PayPurposeAllLease ? LOCALIZATION(@"请选择租阅套餐") : LOCALIZATION(@"请选择充值金额");
+        }
+        else {
+            if (0 == indexPath.section) {
+                headerView.showPrice = YES;
+                headerView.data = [NSString stringWithFormat:@"%.2f", _order.totalmoney];
+            }
+            else if (1 == indexPath.section && _showSelectePayType) {
+                headerView.lblDescribe.text = _payPurpose == ENUM_PayPurposeAllLease ? LOCALIZATION(@"请选择支付方式") : LOCALIZATION(@"请选择充值方式");
+                
+            }
+            else
+                headerView.lblDescribe.text = _payPurpose == ENUM_PayPurposeAllLease ? LOCALIZATION(@"请选择租阅套餐") : LOCALIZATION(@"请选择充值金额");
+        }
+        return headerView;
+    }
+    else {
+        _footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UIVCRFooterRV" forIndexPath:indexPath];
+        _footerView.delegate = self;
+        if (_price == 0) {
+            _priceModel = _selectedType == ENUM_PayTypeApplePay ? _arrPayPriceApple.firstObject : _arrPayPriceAli.firstObject;
+            _price = [UserRequest sharedInstance].language == ENUM_LanguageTypeChinese ? _priceModel.rmb : _priceModel.dollar;
+        }
+        _footerView.payPurpose = _payPurpose;
+        _footerView.payNum = _price;
+        return _footerView;
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat width  = 0;
+    CGFloat height = 0;
+    
+    if (_showSelectePayType) {
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease) {
+            width  = 1 == indexPath.section && _showSelectePayType ? (Screen_Width - kSpace * 3) / 2 : Screen_Width - kSpace * 2;
+            height = 1 == indexPath.section && _showSelectePayType ? 70 : 60;
+        }
+        else {
+            width  = 2 == indexPath.section && _showSelectePayType ? (Screen_Width - kSpace * 3) / 2 : Screen_Width - kSpace * 2;
+            height = 2 == indexPath.section && _showSelectePayType ? 70 : 60;
+        }
+    }
+    else {
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease) {
+            width  = (Screen_Width - kSpace * 3) / 2;
+            height = 70;
+        }
+        else {
+            width  = 1 == indexPath.section && _showSelectePayType ? (Screen_Width - kSpace * 3) / 2 : Screen_Width - kSpace * 2;
+            height = 1 == indexPath.section && _showSelectePayType ? 70 : 60;
+        }
+    }
+    return CGSizeMake(width, height);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(Screen_Width, 56);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    CGFloat height = 0;
+    if (_showSelectePayType) {
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease)
+            height = 1 == section ? kFooterHeight : .5f;
+        else
+            height = 2 == section ? kFooterHeight : .5f;
+    }
+    else {
+        if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease)
+            height = kFooterHeight;
+        else
+            height = 1 == section ? kFooterHeight : .5f;
+    }
+    return CGSizeMake(Screen_Width, height);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_payPurpose == ENUM_PayPurposeRecharge || _payPurpose == ENUM_PayPurposeAllLease) {
+        if (0 == indexPath.section && _showSelectePayType) {
+            _selectedType = indexPath.row + 1;
+            _selectedNumb = 0;
+        }
+        else {
+            _selectedNumb = indexPath.row;
+        }
+    }
+    else {
+        if (1 == indexPath.section && _showSelectePayType) {
+            _selectedType = indexPath.row + 1;
+            _selectedNumb = 0;                                                                                
+        }
+        else {
+            _selectedNumb = indexPath.row;
+        }
+    }
+    _priceModel = _selectedType == ENUM_PayTypeApplePay ? [_arrPayPriceApple objectAtIndex:_selectedNumb] : [_arrPayPriceAli objectAtIndex:_selectedNumb];
+    _price = [UserRequest sharedInstance].language == ENUM_LanguageTypeChinese ? _priceModel.rmb : _priceModel.dollar;
+    [self.collectionView reloadData];
+}
+
+#pragma mark - UIVCRFooterRVDelegate
+// 点击立即支付
+- (void)payWithMoney
+{
+//    if (_showSelectePayType) {
+//        if (_selectedType == ENUM_PayTypeApplePay)
+//            [self appStoreHandle];
+//        else
+            [self aliPayHandle];
+//    }
+//    else
+//        [self appStoreHandle];
+}
+// 支付成功
+- (void)paySuccessWithOrder:(OrderModel *)order
+{
+    [self fk_postNotification:kNotificationUpdateOrderInfo object:order];
+    PaySuccessViewController *success = [PaySuccessViewController new];
+    success.order = order;
+    [self.navigationController pushViewController:success animated:YES];
+//    [self presentViewController:success animated:YES completion:^{
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//    }];
+}
+
+#pragma mark - 创建订单
+
+// 创建购买充值订单
+- (void)createOrderWithOrder
+{
+    NSString *strFullMinusCost = @"";
+    NSString *booksId = @"";
+    if (_order.books.count > 0) {
+        for (NSInteger i = 0; i < _order.books.count; i ++) {
+            BookModel *book = _order.books[i];
+            booksId = [booksId stringByAppendingString:[NSString stringWithFormat:@"%ld,", book.bookId]];
+        }
+        booksId = [booksId substringToIndex:booksId.length - 1];
+    }
+    for (NSInteger i = 0; i < _order.fullMinusCost.count; i ++) {
+        // TODO: 满减券
+    }
+    
+    [[OrderRequest sharedInstance] addOrderWithType:_payPurpose
+                                            payType:_selectedType
+                                         totalmoney:_order.totalmoney
+                                      fullMinusCost:strFullMinusCost
+                                    finalTotalMoney:_order.finalTotalMoney
+                                                 id:_priceModel.id
+                                      rechargeMoney:_price
+                                              score:_order.score
+                                            booksId:booksId
+                                         completion:^(id object, ErrorModel *error) {
+                                             if (error) {
+                                                 [self presentFailureTips:error.message];
+                                             }
+                                             else {
+                                                 NSDictionary *dicOrder = [object mj_JSONObject];
+                                                 _order.orderId = dicOrder[@"orderId"];
+                                                 [self aliPayWithOrderString:dicOrder[@"orderStr"]];
+                                             }
+                                         }];
+}
+// 创建包月订单
+- (void)creatOrderWithSerial
+{
+    if (_payPurpose == ENUM_PayPurposeAllLease) {
+        self.order.totalmoney  = _price*cRechargePercent;
+        _order.finalTotalMoney = _price*cRechargePercent;
+        _order.rechargeMoney   = _price;
+    }
+    
+    [[OrderRequest sharedInstance] addSerialOrderWithType:_payPurpose
+                                                  payType:_selectedType
+                                                 serialId:_order.serialId
+                                               totalmoney:_order.totalmoney
+                                          finalTotalMoney:_order.finalTotalMoney
+                                                       id:_priceModel.id
+                                            rechargeMoney:_price
+                                                     name:_order.name
+                                                  readDay:_payPurpose == ENUM_PayPurposeAllLease ? _priceModel.day : _order.readDay
+                                               completion:^(id object, ErrorModel *error) {
+                                                   if (error) {
+                                                       [self presentFailureTips:error.message];
+                                                   }
+                                                   else {
+                                                       NSDictionary *dicOrder = [object mj_JSONObject];
+                                                       _order.orderId = dicOrder[@"orderId"];
+                                                       [self aliPayWithOrderString:dicOrder[@"orderStr"]];
+                                                   }
+                                               }];
+}
+// 更新订单
+- (void)updateOrder
+{
+    NSString *strFullMinusCost = @"";
+    NSString *booksId = @"";
+    if (_order.books.count > 0) {
+        for (NSInteger i = 0; i < _order.books.count; i ++) {
+            BookModel *book = _order.books[i];
+            booksId = [booksId stringByAppendingString:[NSString stringWithFormat:@"%ld,", book.bookId]];
+        }
+        booksId = [booksId substringToIndex:booksId.length - 1];
+    }
+    
+    for (NSInteger i = 0; i < _order.fullMinusCost.count; i ++) {
+        
+    }
+    [[OrderRequest sharedInstance] updateOrderWithOrderId:_order.orderId
+                                                 WithType:_payPurpose
+                                                  payType:_selectedType
+                                               totalmoney:_order.totalmoney
+                                            fullMinusCost:strFullMinusCost
+                                          finalTotalMoney:_order.finalTotalMoney
+                                                       id:_priceModel.id
+                                            rechargeMoney:_price
+                                                    score:_order.score
+                                                  booksId:booksId
+                                               completion:^(id object, ErrorModel *error) {
+                                                   if (error) {
+                                                       [self presentFailureTips:error.message];
+                                                   }
+                                                   else {
+                                                       NSDictionary *dicOrder = [object mj_JSONObject];
+                                                       _order.orderId = dicOrder[@"orderId"];
+                                                       [self aliPayWithOrderString:dicOrder[@"orderStr"]];
+                                                   }
+                                               }];
+}
+
+#pragma mark --------------- 支付选择项 ---------------
+
+#pragma mark - appStore 内购
+
+- (void)appStoreHandle
+{
+    //TODO: 接入苹果内购
+    [self presentFailureTips:@"还没有 apple 支付"];
+}
+
+#pragma mark - aliPay
+// 使用alipay
+- (void)aliPayHandle
+{
+    if (_payPurpose == ENUM_PayPurposeBuy || _payPurpose == ENUM_PayPurposeRecharge) {
+        if ([_order.orderId notEmpty] && [_order.orderId isNot:@"0"])
+            [self updateOrder];
+        else
+            [self createOrderWithOrder];
+    }
+    else
+        [self creatOrderWithSerial];
+}
+
+/**
+  使用alipay支付
+
+ @param orderString 加密订单码
+ */
+- (void)aliPayWithOrderString:(NSString *)orderString
+{
+    if (!orderString) {
+        [self presentFailureTips:LOCALIZATION(@"支付失败")];
+        return;
+    }
+    // NOTE: 调用支付结果开始支付
+    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        AliPayResultDicModel *aliPayResultDic = [AliPayResultDicModel mj_objectWithKeyValues:resultDic];
+        AliPayResultModel *aliPayresult       = [AliPayResultModel    mj_objectWithKeyValues:aliPayResultDic.result];
+        AliPayResponseModel *aliPayResponse   = [AliPayResponseModel  mj_objectWithKeyValues:aliPayresult.alipay_trade_app_pay_response];
+        NSString *orderId = aliPayResponse.out_trade_no;
+        if ([orderId notEmpty]) {
+            _order.orderId = orderId;
+        }
+        switch (aliPayResultDic.resultStatus) {
+            case 9000: // 订单支付成功
+                [self getResultWithOrderId:orderId];
+                break;
+            case 8000: // 正在处理中，支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
+                [self presentFailureTips:LOCALIZATION(@"正在处理中...")];
+                [self getResultWithOrderId:orderId];
+                break;
+            case 4000: // 订单支付失败
+                [self presentFailureTips:LOCALIZATION(@"支付失败")];
+                [self updateOrderStatus];
+                break;
+            case 5000: // 重复请求
+                [self presentSuccessTips:LOCALIZATION(@"重复请求")];
+                break;
+            case 6001: // 用户中途取消
+                [self presentSuccessTips:LOCALIZATION(@"取消支付")];
+                [self updateOrderStatus];
+                break;
+            case 6002: // 网络连接出错
+                [self presentSuccessTips:LOCALIZATION(@"网络连接失败")];
+                break;
+            case 6004: // 支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
+                [self getResultWithOrderId:orderId];
+
+                break;
+            default:   // 其它支付错误
+                [self presentFailureTips:LOCALIZATION(@"未知错误")];
+                break;
+        }
+    }];
+}
+
+- (void)updateOrderStatus
+{
+    [[OrderRequest sharedInstance] updateOrderStatusWithOrderId:_order.orderId
+                                                     completion:^(id object, ErrorModel *error) {
+                                                         if (error) {
+                                                             [self presentFailureTips:error.message];
+                                                         }
+                                                         else {
+                                                             
+                                                         }
+                                                     }];
+}
+
+// 在服务器获取订单信息, 避免本地与服务器数据不同步, 数据出错
+- (void)getResultWithOrderId:(NSString *)orderId
+{
+    if (_requestNumber <= 0) {
+        [self presentFailureTips:LOCALIZATION(@"支付结果未知, 请查询订单状态")];
+        return;
+    }
+    _requestNumber -= 1;
+    [[OrderRequest sharedInstance] getOrderResultWithOrderId:orderId type:_payPurpose completion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+            _requestNumber = kMaxRequestNumber;
+        }
+        else {
+            NSArray *array = [OrderModel mj_objectArrayWithKeyValuesArray:object];
+            OrderModel *order = array.firstObject;
+            [self getUserInfo];
+            switch (order.orderStatus) {
+                case ENUM_ZOrderStateObligation: // 待付款
+                    _requestNumber = kMaxRequestNumber;
+                    _order.orderId = orderId;
+                    [self presentFailureTips:LOCALIZATION(@"支付失败, 余额不足")];
+                    break;
+                case ENUM_ZOrderStateScore: // 待评价
+                case ENUM_ZOrderStateDone: {// 完成
+                    _requestNumber = kMaxRequestNumber;
+                    [self paySuccessWithOrder:order];
+                }
+                    break;
+                case ENUM_ZOrderStatePaying:// 支付中
+                    [self getResultWithOrderId:orderId];
+                    break;
+                default:
+                    [self presentFailureTips:LOCALIZATION(@"未知错误")];
+                    _requestNumber = kMaxRequestNumber;
+                    _order.orderId = orderId;
+                    break;
+            }
+        }
+    }];
+}
+
+- (void)getUserInfo
+{
+    [[UserRequest sharedInstance] getUserInfoWithUserId:[NSString stringWithFormat:@"%ld", [UserRequest sharedInstance].user.userId]
+                                             completion:^(id object, ErrorModel *error) {
+                                                 if (error) {
+                                                     [self presentFailureTips:error.message];
+                                                 }
+                                             }];
+}
+
+#pragma mark - 属性
+
+- (UICollectionViewFlowLayout *)layout
+{
+    if (!_layout) {
+        _layout = [[UICollectionViewFlowLayout alloc] init];
+        _layout.minimumLineSpacing = kSpace;
+        _layout.minimumInteritemSpacing = kSpace;
+        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _layout.sectionInset = UIEdgeInsetsMake(0, kSpace, kSpace, kSpace);
+    }
+    return _layout;
+}
+
+- (UICollectionView *)collectionView
+{
+    if (!_collectionView) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, self.view.height) collectionViewLayout:self.layout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.collectionViewLayout = self.layout;
+        
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UIVCRPayTypeCollectionViewCell class]) bundle:nil]
+          forCellWithReuseIdentifier:NSStringFromClass([UIVCRPayTypeCollectionViewCell class])];
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UIVCRSelectPriceCollectionViewCell class]) bundle:nil]
+          forCellWithReuseIdentifier:NSStringFromClass([UIVCRSelectPriceCollectionViewCell class])];
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UVCRShowPriceCollectionViewCell class]) bundle:nil]
+          forCellWithReuseIdentifier:NSStringFromClass([UVCRShowPriceCollectionViewCell class])];
+        
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UIVCRHeaderRV class]) bundle:nil]
+          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                 withReuseIdentifier:NSStringFromClass([UIVCRHeaderRV class])];
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UIVCRFooterRV class]) bundle:nil]
+          forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                 withReuseIdentifier:NSStringFromClass([UIVCRFooterRV class])];
+        
+        [self.view addSubview:_collectionView];
+    }
+    return _collectionView;
+}
+
+- (OrderModel *)order
+{
+    if (_order == nil) {
+        _order = [OrderModel new];
+    }
+    return _order;
+}
+
+@end

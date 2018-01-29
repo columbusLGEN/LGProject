@@ -1,0 +1,49 @@
+//
+//  UIColor+CustomColor.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface UIColor(CustomColor)
+
+/*
+ 项目主题颜色；
+ */
++ (UIColor *)cm_mainColor;
+
+/*
+ 自定义颜色      cm_xxxColor_XXXXXX_X
+ xxxColor:     颜色的趋近颜色 或者 功能颜色
+ XXXXXX:       颜色值 0000000-FFFFFF
+ X             透明度 0F-1
+ */
+
+// ------------ 趋近颜色 ------------
+
++ (UIColor *)cm_whiteColor_E7E7E7_1;
++ (UIColor *)cm_whiteColor_FFFFFF_8F;
+
++ (UIColor *)cm_purpleColor_82056B_1;
+
++ (UIColor *)cm_orangeColor_FF6000_1;
++ (UIColor *)cm_orangeColor_F2C782_1;
++ (UIColor *)cm_orangeColor_BB7435_1; // 包月续费
+
++ (UIColor *)cm_blackColor_333333_1;
++ (UIColor *)cm_blackColor_666666_1;
++ (UIColor *)cm_blackColor_000000_3F;
+
++ (UIColor *)cm_greenColor_21C0AE_1;
++ (UIColor *)cm_graryColor_807F7F_1;
+
+// ----------- 功能颜色 -------------
+
++ (UIColor *)cm_grayTitleColor_848B8F_9F;
++ (UIColor *)cm_lineColor_E3E3E3_1;
+
+
+@end

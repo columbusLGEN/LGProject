@@ -1,0 +1,15 @@
+//
+//  UserMessageSystemVC.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRBaseViewController.h"
+
+@interface UserMessageSystemVC : ECRBaseViewController
+
+@property (strong, nonatomic) NSMutableArray *arrNewMessages; // 新系统消息数组
+
+@end

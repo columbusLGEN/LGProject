@@ -1,0 +1,31 @@
+//
+//  NoteTableViewCell.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/10/10.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "YMBookDigest.h"
+
+@interface NoteTableViewCell : UITableViewCell
+{
+    __weak IBOutlet UILabel               *catLab;
+    __weak IBOutlet UILabel               *timeLab;
+    __weak IBOutlet UILabel               *contentLab;
+    __weak IBOutlet UIView                *contentBackgroundView;
+    __weak IBOutlet UILabel               *noteSectionLab;
+    __weak IBOutlet UILabel               *noteContentLab;
+    __weak IBOutlet UIView                *noteRootView;
+    __weak IBOutlet UIView                *line;
+    __weak IBOutlet NSLayoutConstraint    *lineHeight;
+}
+
+@property (nonatomic, retain) YMBookDigest *model;
+
+- (void)updateStyle;
+
+- (void)setCellContent;
+
+@end

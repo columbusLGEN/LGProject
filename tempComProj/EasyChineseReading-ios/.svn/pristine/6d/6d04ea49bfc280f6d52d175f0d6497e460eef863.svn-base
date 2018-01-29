@@ -1,0 +1,42 @@
+//
+//  TableBaseViewController.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/9/29.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Defines.h"
+#import "YMEpubStyleManager.h"
+#import "OWColor.h"
+
+typedef enum {
+    
+    CatalogType,
+    BookMarkType,
+    NoteType
+    
+}ReauestType;
+
+
+@interface TableBaseViewController : UIViewController
+<UITableViewDelegate,
+UITableViewDataSource>
+{
+    
+}
+@property (nonatomic, retain)          NSArray        *datas;
+@property (nonatomic, strong) IBOutlet UITableView    *dataTable;
+@property (nonatomic, strong) IBOutlet UILabel        *messageLab;
+
+- (NSArray *)sortDataList:(NSArray *)array;
+
+- (int)compareOneDay:(NSDate *)oneDay
+      withAnotherDay:(NSDate *)anotherDay;
+
+- (void)requestList:(ReauestType)type;
+
+- (void)updateStyle;
+
+@end

@@ -1,0 +1,14 @@
+//
+//  ECRRentReadController.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/25.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRBaseViewController.h"
+@class ECRBookInfoModel;
+@interface ECRRentReadController : ECRBaseViewController
+@property (strong,nonatomic) ECRBookInfoModel *model;//
+
+@end

@@ -1,0 +1,168 @@
+//
+//  UserIntegralVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserIntegralVC.h"
+
+#import "UserIntegralTableViewCell.h"
+#import "EmptyView.h"
+
+@interface UserIntegralVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UIView  *viewVerLine; 
+@property (strong, nonatomic) IBOutlet UILabel *lblDescribe;
+@property (strong, nonatomic) IBOutlet UILabel *lblIntegral;
+@property (strong, nonatomic) IBOutlet UIView  *viewLine;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+/** 空白提示界面 */
+@property (nonatomic, strong) EmptyView *emptyView;
+
+/* 积分列表 */
+@property (strong, nonatomic) NSMutableArray *arrIntegrals;
+
+/** 当前页数 */
+@property (nonatomic, assign) NSInteger currentPage;
+
+@end
+
+@implementation UserIntegralVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configView];
+    [self getDataSource];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark 配置界面
+
+- (void)configView
+{
+    self.title = @"积分";
+    
+    _viewVerLine.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    _viewLine.backgroundColor    = [UIColor cm_lineColor_D9D7D7_1];
+    
+    _lblIntegral.textColor       = [UIColor cm_purpleColor_82056B_1];
+    _lblDescribe.textColor       = [UIColor cm_blackColor_333333_1];
+    
+    _lblDescribe.font = [UIFont systemFontOfSize:16.f];
+    _lblIntegral.font = [UIFont systemFontOfSize:26.f];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UserIntegralTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UserIntegralTableViewCell class])];
+    
+    // tableView 自适应高度
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+    
+    [self addEmptyView];
+}
+
+- (void)addEmptyView
+{
+    _emptyView = [EmptyView loadFromNibWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+    _emptyView.image = [UIImage imageNamed:@"zan9"];
+    [_emptyView updateEmptyViewWithImage:[UIImage imageNamed:@"zan9"] desc:@"你还没有获得积分~" subDesc:@""];
+    [self.view addSubview:_emptyView];
+}
+
+#pragma mark -
+#pragma mark 获取数据
+
+- (void)getDataSource
+{
+    _currentPage = 0;
+    
+    _lblIntegral.text = [NSString stringWithFormat:@"%ld", [UserRequest sharedInstance].user.score];
+    
+    self.arrIntegrals = [NSMutableArray array];
+    
+    [[UserRequest sharedInstance] getIntegralListWithPage:[NSString stringWithFormat:@"%ld", _currentPage]
+                                               completion:^(id object, ErrorModel *error) {
+                                                   if (error) {
+                                                       [self presentSuccessTips:error.message];
+                                                   }
+                                                   else {
+                                                       NSMutableArray *array = [IntegralModel mj_objectArrayWithKeyValuesArray:object];
+                                                       if (array.count > 0) {
+                                                           _currentPage += 1;
+                                                           [_arrIntegrals addObjectsFromArray:array];
+                                                       }
+                                                       _emptyView.hidden = _arrIntegrals.count > 0;
+                                                       if (_arrIntegrals.count > 0) {
+                                                           [self.tableView reloadData];
+                                                       }
+                                                   }
+                                               }];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrIntegrals.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UserIntegralTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UserIntegralTableViewCell class])];
+    cell.data = _arrIntegrals[indexPath.row];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *header = [UIView new];
+    header.backgroundColor = [UIColor whiteColor];
+    
+    UIView *verLine = [UIView new];
+    verLine.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    [header addSubview:verLine];
+    [verLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(header.mas_centerY);
+        make.left.equalTo(header.mas_left).offset(12);
+        make.size.mas_equalTo(CGSizeMake(3, 14));
+    }];
+    
+    UILabel *lblDesc = [UILabel new];
+    lblDesc.textColor = [UIColor cm_blackColor_333333_1];
+    lblDesc.font = [UIFont systemFontOfSize:16.f];
+    lblDesc.text = @"积分明细";
+    [header addSubview:lblDesc];
+    [lblDesc mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(verLine.mas_centerY);
+        make.left.equalTo(verLine.mas_right).offset(10);
+    }];
+    
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return cHeaderHeight_44;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_arrIntegrals.count != 0) {
+        NSLog(@" to indexPath %ld", (long)indexPath.row);
+    }
+}
+
+@end

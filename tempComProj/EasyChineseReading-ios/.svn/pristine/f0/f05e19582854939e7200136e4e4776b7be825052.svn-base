@@ -1,0 +1,71 @@
+
+//
+//  UCSManageDetailVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/13.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCSManageEditVC.h"
+
+@interface UCSManageEditVC ()
+@property (strong, nonatomic) IBOutlet UILabel *lblDescClass;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescName;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescSex;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescAge;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescAccount;
+
+@property (strong, nonatomic) IBOutlet UILabel *lblClass;
+@property (strong, nonatomic) IBOutlet UILabel *lblSex;
+@property (strong, nonatomic) IBOutlet UILabel *lblName;
+@property (strong, nonatomic) IBOutlet UILabel *lblAge;
+@property (strong, nonatomic) IBOutlet UILabel *lblAccount;
+
+@end
+
+@implementation UCSManageEditVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark action
+
+- (void)configView
+{
+    [self configNavigationBar];
+    [self configTableView];
+}
+
+- (void)configTableView
+{
+    _lblDescClass.textColor = _lblDescName.textColor = _lblDescSex.textColor = _lblDescAge.textColor = _lblDescAccount.textColor = [UIColor cm_blackColor_333333_1];
+    _lblClass.textColor = [UIColor cm_blackColor_333333_1];
+    _lblName.textColor = _lblSex.textColor = _lblAge.textColor = _lblAccount.textColor = [UIColor cm_graryColor_807F7F_1];
+
+    
+    _lblDescClass.font = _lblDescName.font = _lblDescSex.font = _lblDescAge.font = _lblDescAccount.font = [UIFont systemFontOfSize:15.f];
+    _lblClass.font = _lblSex.font = _lblName.font = _lblAge.font = _lblAccount.font = [UIFont systemFontOfSize:15.f];
+}
+
+- (void)configNavigationBar
+{
+    self.title = @"创建学生";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveStudentInfo)];
+}
+
+- (void)saveStudentInfo
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+@end

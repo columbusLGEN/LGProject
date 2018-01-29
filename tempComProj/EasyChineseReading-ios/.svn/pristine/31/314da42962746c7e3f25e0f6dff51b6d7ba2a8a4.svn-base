@@ -1,0 +1,15 @@
+//
+//  ECRPpvScoreView.h
+//  downloadStateDemo
+//
+//  Created by Peanut Lee on 2017/9/28.
+//  Copyright © 2017年 Lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ECRPpvScoreView : UIView
+
+@property (copy,nonatomic) NSString *priceYu;// 
+
+@end

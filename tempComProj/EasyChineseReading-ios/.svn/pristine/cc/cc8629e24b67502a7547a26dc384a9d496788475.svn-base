@@ -1,0 +1,20 @@
+//
+//  USCVerifyVC.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBaseViewController.h"
+
+@interface USCVerifyVC : ECRBaseViewController
+
+/* 更改类型 */
+@property (assign, nonatomic) ENUM_ZUserSecurityCenterUpdateMethod securityCenterUpdateType;
+/* 用户信息 */
+@property (strong, nonatomic) UserModel *user;
+/* 有复用，确定是否为修改界面，如果是安全中心点击跳转则为NO，验证后跳转为YES */
+@property (assign, nonatomic) BOOL isUpdateVC;
+
+@end

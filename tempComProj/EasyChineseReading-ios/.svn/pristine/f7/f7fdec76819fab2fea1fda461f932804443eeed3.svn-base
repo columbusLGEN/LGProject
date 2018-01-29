@@ -1,0 +1,57 @@
+//
+//  UTickListTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/29.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UTickListTableViewCell.h"
+
+@interface UTickListTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIView *viewBackground;
+@property (weak, nonatomic) IBOutlet UIImageView *imgBackground;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblTickPrice;     // 卡券面额
+@property (weak, nonatomic) IBOutlet UILabel *lblTickRange;     // 卡券使用范围
+@property (weak, nonatomic) IBOutlet UILabel *lblTickCondition; // 卡券使用条件
+@property (weak, nonatomic) IBOutlet UILabel *lblTickTime;      // 卡券使用时间
+
+@end
+
+@implementation UTickListTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configTickCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configTickCell
+{
+    _lblTickPrice.textColor     = [UIColor whiteColor];
+    _lblTickTime.textColor      = [UIColor whiteColor];
+    _lblTickCondition.textColor = [UIColor whiteColor];
+    _lblTickRange.textColor     = [UIColor whiteColor];
+    
+    _lblTickCondition.font = [UIFont systemFontOfSize:14.f];
+    _lblTickRange.font     = [UIFont systemFontOfSize:14.f];
+    _lblTickPrice.font     = [UIFont systemFontOfSize:22.f];
+    _lblTickTime.font      = [UIFont systemFontOfSize:14.f];
+}
+
+- (void)dataDidChange
+{
+    _lblTickPrice.text = [NSString stringWithFormat:@"%@%@", @"¥", @"100"];
+    _lblTickCondition.text = [NSString stringWithFormat:@"满100可用"];
+    _lblTickTime.text = [NSString stringWithFormat:@"%@--%@", @"2017.12.12", @"2018.12.12"];
+    _lblTickRange.text = [NSString stringWithFormat:@"使用平台: %@", @"移动端"];
+}
+
+@end

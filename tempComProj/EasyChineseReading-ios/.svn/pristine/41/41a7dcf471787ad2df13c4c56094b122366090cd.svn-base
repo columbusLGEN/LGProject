@@ -1,0 +1,35 @@
+//
+//  UIVCRHeaderRV.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/7.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UIVCRHeaderRV.h"
+
+@implementation UIVCRHeaderRV
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    
+    _verLine.backgroundColor = [UIColor cm_mainColor];
+    
+    _lblDescribe.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescribe.font = [UIFont systemFontOfSize:16.f];
+}
+- (void)dataDidChange
+{
+    NSString *price = self.data;
+    
+    NSMutableAttributedString *muPrice = [[NSMutableAttributedString alloc] initWithString:price];
+    // 获取要调整颜色的文字位置,调整颜色
+    NSRange spaceRange = [[muPrice string] rangeOfString:@" "];
+    NSRange dotRange   = [[muPrice string] rangeOfString:@"."];
+    NSRange upRange = NSMakeRange(spaceRange.location + spaceRange.length, dotRange.location - spaceRange.location + 2);
+    [muPrice addAttribute:NSForegroundColorAttributeName value:[UIColor cm_orangeColor_FF5910_1] range:upRange];
+    _lblDescribe.attributedText = muPrice;
+}
+
+@end

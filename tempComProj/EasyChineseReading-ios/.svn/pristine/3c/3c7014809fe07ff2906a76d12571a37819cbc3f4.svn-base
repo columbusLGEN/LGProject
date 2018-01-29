@@ -1,0 +1,30 @@
+//
+//  YMReadTime+CoreDataProperties.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/12/2.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
+//  to delete and recreate this implementation file for your updated model.
+//
+
+#import "YMReadTime.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface YMReadTime (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSString *bookJRID;
+@property (nullable, nonatomic, retain) NSString *bookName;
+@property (nullable, nonatomic, retain) NSDate *endDate;
+@property (nullable, nonatomic, retain) NSNumber *isSend;
+@property (nullable, nonatomic, retain) NSDate *pauseDate;
+@property (nullable, nonatomic, retain) NSDate *recoveryDate;
+@property (nullable, nonatomic, retain) NSDate *startDate;
+@property (nullable, nonatomic, retain) NSNumber *time;
+@property (nullable, nonatomic, retain) NSString *userID;
+
+@end
+
+NS_ASSUME_NONNULL_END

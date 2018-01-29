@@ -1,0 +1,156 @@
+//
+//  ECRBookrackCollectionViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookrackCollectionViewCell.h"
+#import "ECRBookrackModel.h"
+
+@interface ECRBookrackCollectionViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *coverPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *bfName;// book or file
+
+@property (weak, nonatomic) IBOutlet UIView *fileCoverView;// 文件夹封面view
+@property (strong,nonatomic) NSMutableArray *fileImageViews;
+@property (weak, nonatomic) IBOutlet UIView *bgBorderView;
+
+// temporary
+@property (strong,nonatomic) UIImageView *first;
+@property (strong,nonatomic) UIImageView *second;
+@property (strong,nonatomic) UIImageView *third;
+@property (strong,nonatomic) UIImageView *forth;
+
+@end
+
+@implementation ECRBookrackCollectionViewCell
+
+- (void)setModel:(ECRBookrackModel *)model{
+    _model = model;
+    _bfName.text = model.name;
+    if (model.groupId == 0) {// 单本书
+        _fileCoverView.hidden = YES;
+        self.coverPhoto.hidden = NO;
+        [self.coverPhoto sd_setImageWithURL:[NSURL URLWithString:model.bookPic]
+                           placeholderImage:nil];
+        self.coverPhoto.clipsToBounds = YES;
+    }else{
+        [self setFileCover];
+    }
+    
+    
+}
+
+- (void)setFileCover{
+    _fileImageViews = [NSMutableArray arrayWithCapacity:10];
+    _fileCoverView.hidden = NO;
+    self.coverPhoto.hidden = YES;
+    [_model.books enumerateObjectsUsingBlock:^(ECRBookrackModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"index.item_%ld----idx_%ld",self.inx.item,idx);
+        
+        __block CGFloat margin = 5;
+        // TODO: 具体数值根据UI图修改
+        __block CGFloat imgW = (self.width - 3 * margin) / 2;
+        __block CGFloat imgH = (self.width - 3 * margin) / 2;
+        switch (idx) {// 以后再优化代码
+            case 0:{
+                [self.first sd_setImageWithURL:[NSURL URLWithString:obj.bookPic] placeholderImage:nil];
+                [self.first mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(_fileCoverView.mas_left).offset(margin);
+                    make.top.equalTo(_fileCoverView.mas_top).offset(margin);
+                    make.width.equalTo(@(imgW));
+                    make.height.equalTo(@(imgH));
+                }];
+            }
+                
+                break;
+            case 1:{
+                [self.second sd_setImageWithURL:[NSURL URLWithString:obj.bookPic] placeholderImage:nil];
+                [self.second mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(_fileCoverView.mas_left).offset(imgW + 2 * margin);
+                    make.top.equalTo(_fileCoverView.mas_top).offset(margin);
+                    make.width.equalTo(@(imgW));
+                    make.height.equalTo(@(imgH));
+                }];
+            }
+                
+                break;
+            case 2:{
+                [self.third sd_setImageWithURL:[NSURL URLWithString:obj.bookPic] placeholderImage:nil];
+
+                [self.third mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(_fileCoverView.mas_left).offset(margin);
+                    make.top.equalTo(_fileCoverView.mas_top).offset(imgH + 2 * margin);
+                    make.width.equalTo(@(imgW));
+                    make.height.equalTo(@(imgH));
+                }];
+            }
+                
+                break;
+            case 3:{
+                [self.forth sd_setImageWithURL:[NSURL URLWithString:obj.bookPic] placeholderImage:nil];
+
+                [self.forth mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(_fileCoverView.mas_left).offset(imgW + 2 * margin);
+                    make.top.equalTo(_fileCoverView.mas_top).offset(imgH + 2 * margin);
+                    make.width.equalTo(@(imgW));
+                    make.height.equalTo(@(imgH));
+                }];
+            }
+                
+                break;
+        }
+        
+    }];
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+//    _coverPhoto.alpha = 1;
+//    self.contentView.backgroundColor = [UIColor randomColor];
+    _fileCoverView.layer.borderWidth = 1;
+    _fileCoverView.layer.borderColor = [UIColor grayColor].CGColor;
+    _bgBorderView.layer.borderWidth = 1;
+    _bgBorderView.layer.borderColor = [UIColor grayColor].CGColor;
+    
+}
+
+- (UIImageView *)first{
+    if (_first == nil) {
+        _first = [[UIImageView alloc] init];
+        _first.clipsToBounds = YES;
+        [_fileCoverView addSubview:_first];
+    }
+    return _first;
+}
+- (UIImageView *)second{
+    if (_second == nil) {
+        _second = [[UIImageView alloc] init];
+        _second.clipsToBounds = YES;
+        [_fileCoverView addSubview:_second];
+    }
+    return _second;
+}
+- (UIImageView *)third{
+    if (_third == nil) {
+        _third = [[UIImageView alloc] init];
+        _third.clipsToBounds = YES;
+        [_fileCoverView addSubview:_third];
+    }
+    return _third;
+}
+- (UIImageView *)forth{
+    if (_forth == nil) {
+        _forth = [[UIImageView alloc] init];;
+        _forth.clipsToBounds = YES;
+        [_fileCoverView addSubview:_forth];
+    }
+    return _forth;
+}
+
+@end
+
+
+

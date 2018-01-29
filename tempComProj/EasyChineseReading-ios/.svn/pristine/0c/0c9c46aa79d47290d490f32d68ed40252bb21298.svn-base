@@ -1,0 +1,54 @@
+
+//
+//  UCRDetailStudentTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/13.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRDetailStudentTableViewCell.h"
+
+@interface UCRDetailStudentTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgBook;
+@property (strong, nonatomic) IBOutlet UILabel *lblBookName;
+@property (strong, nonatomic) IBOutlet UILabel *lblPercent;
+@property (strong, nonatomic) IBOutlet UIView *viewProgressBack;
+@property (strong, nonatomic) IBOutlet UIView *viewProgressFront;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rightConstraint;
+
+@end
+
+@implementation UCRDetailStudentTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configView];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configView
+{
+    _lblBookName.textColor = _lblPercent.textColor = [UIColor cm_blackColor_333333_1];
+    _lblBookName.font = [UIFont systemFontOfSize:12.f];
+    _lblPercent.font = [UIFont systemFontOfSize:15.f];
+    
+    _lblPercent.text = @"30%%";
+    _lblBookName.text = @"高考模拟";
+}
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    
+    NSInteger percent = [[NSString stringWithFormat:@"%@", dic[@"percent"]] integerValue];
+    _rightConstraint.constant = _viewProgressBack.width - _viewProgressBack.width * percent / 100;
+}
+
+@end

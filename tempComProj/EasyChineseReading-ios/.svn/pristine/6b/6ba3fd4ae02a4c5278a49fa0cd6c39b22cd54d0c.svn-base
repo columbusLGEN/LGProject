@@ -1,0 +1,22 @@
+//
+//  UCStudentListVC.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/12.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBaseViewController.h"
+
+@interface UCStudentListVC : ECRBaseViewController
+
+@property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) NSArray *arrDataSource;   // 数据
+
+// 继承时需要重写的父类方法 创建cell
+- (UITableViewCell *)reTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+// 继承时需要重写的父类方法 选择cell
+- (void)reTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@end

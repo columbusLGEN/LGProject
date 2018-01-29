@@ -1,0 +1,119 @@
+//
+//  UserMessageSystemVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UserMessageSystemVC.h"
+
+#import "UserMessageVC.h"
+
+@interface UserMessageSystemVC ()
+
+@property (strong, nonatomic) UserMessageVC *unReadMessageVC; // 未读
+@property (strong, nonatomic) UserMessageVC *readedMessageVC; // 已读
+
+@property (strong, nonatomic) UIButton *btnL;
+@property (strong, nonatomic) UIButton *btnR;
+
+@end
+
+@implementation UserMessageSystemVC
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configMyOrderView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark -
+#pragma mark 配置订阅界面
+
+- (void)configMyOrderView
+{
+    self.title = @"系统消息";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, 44)];
+    topView.backgroundColor = [UIColor whiteColor];
+    
+    _btnL = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, Screen_Width/2 - 1, 43)];
+    [_btnL setTitle:@"未读" forState:UIControlStateNormal];
+    [_btnL setTitleColor:[UIColor cm_blackColor_333333_1] forState:UIControlStateNormal];
+    [_btnL setTitleColor:[UIColor cm_purpleColor_82056B_1] forState:UIControlStateSelected];
+    [_btnL setBackgroundColor:[UIColor clearColor]];
+    //    [_btnL addTarget:self action:@selector(selectedTeacher) forControlEvents:UIControlEventTouchUpInside];
+    [_btnL setSelected:YES];
+    
+    _btnR = [[UIButton alloc] initWithFrame:CGRectMake(Screen_Width/2, 0, Screen_Width/2, 43)];
+    [_btnR setTitle:@"已读" forState:UIControlStateNormal];
+    [_btnR setTitleColor:[UIColor cm_blackColor_333333_1] forState:UIControlStateNormal];
+    [_btnR setTitleColor:[UIColor cm_purpleColor_82056B_1] forState:UIControlStateSelected];
+    [_btnR setBackgroundColor:[UIColor clearColor]];
+    //    [_btnR addTarget:self action:@selector(selecteStudent) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(Screen_Width/2 - 1, 10, .5, 24)];
+    lineView.backgroundColor = [UIColor cm_lineColor_E3E3E3_1];
+    
+    UIView *bLineView = [[UIView alloc] initWithFrame:CGRectMake(0, topView.height - 0.5, Screen_Width, 0.5)];
+    bLineView.backgroundColor = [UIColor cm_lineColor_E3E3E3_1];
+    
+    [topView addSubview:_btnL];
+    [topView addSubview:_btnR];
+    [topView addSubview:lineView];
+    [topView addSubview:bLineView];
+    
+    [self.view addSubview:topView];
+    
+    [self configLeaseView];
+    [self configOrderView];
+}
+
+#pragma mark -
+#pragma mark 查看订单 包月
+
+- (void)selectedOrder
+{
+    [_btnL setSelected:YES];
+    [_btnR setSelected:NO];
+    [self.view bringSubviewToFront:_unReadMessageVC.view];
+}
+
+- (void)selectedLease
+{
+    [_btnL setSelected:NO];
+    [_btnR setSelected:YES];
+    [self.view bringSubviewToFront:_readedMessageVC.view];
+}
+
+#pragma mark -
+#pragma mark 展示订单 包月
+
+// 包月
+- (void)configLeaseView {
+    _unReadMessageVC = [UserMessageVC new];
+    _unReadMessageVC.view.frame = CGRectMake(0, 44, Screen_Width, self.view.height - 44);
+    
+    [self addChildViewController:_unReadMessageVC];
+    [self.view addSubview:_unReadMessageVC.view];
+}
+
+/**
+ 订单
+ */
+- (void)configOrderView {
+    _readedMessageVC = [UserMessageVC new];
+    _readedMessageVC.view.frame = CGRectMake(0, 44, Screen_Width, self.view.height - 44);
+    
+    [self addChildViewController:_readedMessageVC];
+    [self.view addSubview:_readedMessageVC.view];
+}
+@end

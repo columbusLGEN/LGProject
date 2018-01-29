@@ -1,0 +1,85 @@
+//
+//  UFriendAddTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UFriendAddTableViewCell.h"
+
+@interface UFriendAddTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgAvatar;
+@property (weak, nonatomic) IBOutlet UIImageView *imgAddFriend;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblUserName;
+@property (weak, nonatomic) IBOutlet UILabel *lblAddFriend;
+
+@property (strong, nonatomic) FriendModel *user;
+
+@end
+
+@implementation UFriendAddTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configAddCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configAddCell
+{
+    _imgAvatar.layer.masksToBounds = YES;
+    _imgAvatar.layer.cornerRadius = _imgAvatar.height/2;
+    
+    _imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+    _imgAvatar.layer.borderWidth = 3.f;
+    
+    _lblUserName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblAddFriend.textColor = [UIColor cm_purpleColor_82056B_1];
+    
+    UITapGestureRecognizer *tapImgFriend = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addFriend)];
+    UITapGestureRecognizer *tapLblFriend = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addFriend)];
+
+    [_imgAddFriend addGestureRecognizer:tapImgFriend];
+    [_lblAddFriend addGestureRecognizer:tapLblFriend];
+}
+
+- (void)dataDidChange
+{
+    _user = self.data;
+    _lblUserName.text = _user.name.length > 0 ? _user.name : LOCALIZATION(@"匿名");
+    _lblAddFriend.text = LOCALIZATION(@"加书友");
+    [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:_user.iconUrl] placeholderImage:[UIImage imageNamed:@"tx"]];
+    
+    NSArray *arrFriendIds = [[CacheDataSource sharedInstance] loadCacheWithCacheKey:CacheKey_FriendIdsList];
+    if ([arrFriendIds containsObject:@(_user.userId)]) {
+        [self isFriend];
+    }
+}
+
+- (void)isFriend
+{
+    _imgAddFriend.image = [UIImage imageNamed:@"friend3"];
+    
+    _lblAddFriend.text = LOCALIZATION(@"已关注");
+    _lblAddFriend.textColor = [UIColor cm_blackColor_666666_1];
+    
+    _imgAddFriend.userInteractionEnabled = NO;
+    _lblAddFriend.userInteractionEnabled = NO;
+}
+
+- (void)addFriend
+{
+    [self isFriend];
+    [self.delegate addFriendWithFriend:_user];
+}
+
+@end

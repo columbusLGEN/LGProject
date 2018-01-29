@@ -1,0 +1,29 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'EasyChineseReading-ios' do
+    use_frameworks!
+    
+    pod 'AFNetworking'
+    pod 'SDWebImage'
+    pod 'FMDB'
+    pod 'Masonry'
+    pod 'MBProgressHUD'
+    pod 'MJRefresh'
+    pod 'MJExtension'
+    pod 'SDCycleScrollView'#图片轮播器
+    pod 'ReactiveCocoa'
+    pod 'GCDWebServer'
+    pod 'ZipArchive'
+    pod 'Mantle'
+    pod 'pop'
+    
+#    post_install do |installer|
+#        installer.pods_project.targets.each do |target|
+#            target.build_configurations.each do |config|
+#                config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+#            end
+#        end
+#    end
+    
+end

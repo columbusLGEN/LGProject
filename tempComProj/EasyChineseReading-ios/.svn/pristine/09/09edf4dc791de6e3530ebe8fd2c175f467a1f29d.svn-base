@@ -1,0 +1,152 @@
+//
+//  ClassRequest.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/18.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "BaseNetRequest.h"
+
+@interface ClassRequest : BaseNetRequest
+
+#pragma mark ========== 班级管理相关网络请求 ==========
+
+CM_SINGLETON_INTERFACE(ClassRequest)
+
+#pragma mark - 查看班级接口
+
+/**
+ 查看班级接口
+ 
+ @param completion 回调
+ */
+- (void)getClassesWithCompletion:(CompleteBlock)completion;
+
+#pragma mark - 查看阅读进度
+
+/**
+ 查看班级阅读进度
+ 
+ @param classId     班级id
+ @param completion  回调
+ */
+- (void)getReadingProgressWithClassId:(NSString *)classId
+                           completion:(CompleteBlock)completion;
+
+/**
+ 查询学生的阅读进度
+ 
+ @param studentId  学生id
+ @param completion 回调
+ */
+- (void)getReadingProgressWithStudentId:(NSString *)studentId
+                             completion:(CompleteBlock)completion;
+
+#pragma mark - 班级管理
+
+/**
+ 添加或修改班级信息
+ 
+ @param type        修改类型：1：新增 2：修改
+ @param school      学校名
+ @param address     地址
+ @param classId     班级id
+ @param className   班级名
+ @param synopsis    简介
+ @param completion  回调
+ */
+- (void)updateClassInfoWithType:(NSString *)type
+                         school:(NSString *)school
+                        address:(NSString *)address
+                        classId:(NSString *)classId
+                      className:(NSString *)className
+                       synopsis:(NSString *)synopsis
+                     completion:(CompleteBlock)completion;
+
+/**
+ 删除班级
+ 
+ @param classId    班级id
+ @param completion 回调
+ */
+- (void)deleteClassWithClassId:(NSString *)classId
+                    completion:(CompleteBlock)completion;
+
+#pragma mark - 获取学生列表接口
+
+/**
+ 获取学生列表
+ 
+ @param classId    班级id
+ @param completion 回调
+ */
+- (void)getStudentsWithClassId:(NSString *)classId
+                    completion:(CompleteBlock)completion;
+
+/**
+ 获取单个学生信息
+ 
+ @param studentId  学生id
+ @param completion 回调
+ */
+- (void)getStudentInfoWithStudentId:(NSString *)studentId
+                         completion:(CompleteBlock)completion;
+
+#pragma mark - 学生管理接口
+
+/**
+ 添加学生
+ 
+ @param classId     班级id
+ @param name        学生姓名
+ @param age         年龄
+ @param user        账号（手机号或邮箱）
+ @param password    密码
+ @param sex         性别
+ @param completion  回调
+ */
+- (void)addStudentInfoWithClassId:(NSString *)classId
+                             name:(NSString *)name
+                              age:(NSString *)age
+                             user:(NSString *)user
+                         password:(NSString *)password
+                              sex:(NSString *)sex
+                       completion:(CompleteBlock)completion;
+
+
+/**
+ 更新学生信息
+ 
+ @param classId    班级id
+ @param studentId  学生id
+ @param completion 回调
+ */
+- (void)updateStudentWithClassId:(NSString *)classId
+                       studentId:(NSString *)studentId
+                      completion:(CompleteBlock)completion;
+
+#pragma mark - 发送站内信
+
+/**
+ 发送站内信
+ 
+ @param type        ？
+ @param message     信息内容
+ @param studentId   学生id
+ @param completion  回调
+ */
+- (void)setMessageWithType:(NSString *)type
+                   message:(NSString *)message
+                 studentId:(NSString *)studentId
+                completion:(CompleteBlock)completion;
+
+#pragma mark - 教师推荐图书给学生
+
+- (void)recommendBooksWithShareTitle:(NSString *)shareTitle
+                             bookIds:(NSArray *)bookIds
+                          studentIds:(NSArray *)studentIds
+                           shareTime:(NSString *)shareTime
+                          completion:(CompleteBlock)completion;
+
+@end

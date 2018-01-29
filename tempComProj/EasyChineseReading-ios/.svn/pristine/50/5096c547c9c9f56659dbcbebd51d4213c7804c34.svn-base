@@ -1,0 +1,66 @@
+//
+//  UMessageSystemTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UMessageSystemTableViewCell.h"
+
+@interface UMessageSystemTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgSelected;
+@property (weak, nonatomic) IBOutlet UILabel *lblMessageTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblMessageContent;
+@property (weak, nonatomic) IBOutlet UILabel *lblMessageTime;
+
+@end
+
+@implementation UMessageSystemTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configMessageCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+}
+
+- (void)updateSystemLanguage
+{
+    
+}
+
+- (void)configMessageCell
+{
+    _lblMessageTitle.textColor   = [UIColor cm_blackColor_333333_1];
+    _lblMessageContent.textColor = [UIColor cm_blackColor_333333_1];
+    _lblMessageTime.textColor    = [UIColor cm_blackColor_333333_1];
+    
+    _lblMessageTime.font    = [UIFont systemFontOfSize:cFontSize_16];
+    _lblMessageContent.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblMessageTitle.font   = [UIFont systemFontOfSize:cFontSize_16];
+}
+
+- (void)dataDidChange
+{
+    MessageModel *message = self.data;
+    
+    if (message.messageType == ENUM_MessageTypeShare) {
+        _lblMessageTitle.text   = message.bookName;
+        _lblMessageContent.text = message.title;
+    }
+    else if (message.messageType == ENUM_MessageTypeChat) {
+        _lblMessageTitle.text   = message.bookName;
+        _lblMessageContent.text = message.message;
+    }
+    else {
+        _lblMessageTitle.text   = LOCALIZATION(@"系统消息");
+        _lblMessageContent.text = message.message;
+    }
+    _lblMessageTime.text = [message.emailCreatedTime substringToIndex:10];
+}
+
+@end

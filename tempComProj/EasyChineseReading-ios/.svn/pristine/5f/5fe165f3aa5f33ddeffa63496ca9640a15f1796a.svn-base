@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>cellTitle</key>
+		<string>第一步</string>
+		<key>cellInfo</key>
+		<string>把iPhone（iPad）与电脑连接，打开电脑上的iTunes</string>
+		<key>en_cellInfo</key>
+		<string></string>
+		<key>cellImageName</key>
+		<string>bookrack_local_book_step_1</string>
+		<key>en_cellImageName</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>cellTitle</key>
+		<string>第二步</string>
+		<key>cellInfo</key>
+		<string>在ITunes里选择设备，点击“我的应用程序”，选择“Easy Chinese reading”</string>
+		<key>en_cellInfo</key>
+		<string></string>
+		<key>cellImageName</key>
+		<string>bookrack_local_book_step_2</string>
+		<key>en_cellImageName</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>cellTitle</key>
+		<string>第三步</string>
+		<key>cellInfo</key>
+		<string>点击“添加到”按钮，上传本地图书（pdf，epub，超媒体格式）。在书架中即可阅读该电子书。</string>
+		<key>en_cellInfo</key>
+		<string></string>
+		<key>cellImageName</key>
+		<string>bookrack_local_book_step_3</string>
+		<key>en_cellImageName</key>
+		<string></string>
+	</dict>
+</array>
+</plist>

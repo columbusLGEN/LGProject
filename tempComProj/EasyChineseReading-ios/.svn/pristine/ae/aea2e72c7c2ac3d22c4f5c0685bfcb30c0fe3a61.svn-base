@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UCRBooksSelectedTableViewCell" rowHeight="122" id="KGk-i7-Jjw" customClass="UCRBooksSelectedTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="628" height="122"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="628" height="122"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97D-pQ-4KP">
+                        <rect key="frame" x="15" y="5" width="42" height="111"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySE-NQ-Ucm">
+                        <rect key="frame" x="567" y="46" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="click_btnUnSelectedBook:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8Hd-nl-UwI"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ySE-NQ-Ucm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="97D-pQ-4KP" secondAttribute="trailing" priority="750" constant="15" id="NYw-jC-6UC"/>
+                    <constraint firstAttribute="trailing" secondItem="ySE-NQ-Ucm" secondAttribute="trailing" constant="15" id="TYb-yd-5Ea"/>
+                    <constraint firstItem="97D-pQ-4KP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="X61-Jx-q8B"/>
+                    <constraint firstItem="ySE-NQ-Ucm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="afB-mh-fYR"/>
+                    <constraint firstItem="97D-pQ-4KP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="gtU-6H-0LQ"/>
+                    <constraint firstItem="97D-pQ-4KP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" priority="750" constant="5" id="h6E-ez-6Lp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnUnSelectedBook" destination="ySE-NQ-Ucm" id="NMu-hv-eiv"/>
+                <outlet property="lblBookName" destination="97D-pQ-4KP" id="fAb-VQ-J19"/>
+            </connections>
+            <point key="canvasLocation" x="-85" y="93"/>
+        </tableViewCell>
+    </objects>
+</document>

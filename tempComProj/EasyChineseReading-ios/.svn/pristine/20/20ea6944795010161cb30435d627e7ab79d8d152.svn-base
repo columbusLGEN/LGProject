@@ -1,0 +1,47 @@
+//
+//  ECRMoreBooksCell.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRMoreBooksCell.h"
+#import "ECRBookListModel.h"
+#import "ECRStarView.h"
+
+@interface ECRMoreBooksCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *cover;
+@property (weak, nonatomic) IBOutlet UILabel *bName;
+@property (weak, nonatomic) IBOutlet UILabel *bAuthor;
+@property (weak, nonatomic) IBOutlet UILabel *bSynopsis;
+@property (weak, nonatomic) IBOutlet ECRStarView *starView;
+@property (weak, nonatomic) IBOutlet UILabel *bMoney;
+@property (weak, nonatomic) IBOutlet UIView *line;
+
+
+@end
+
+@implementation ECRMoreBooksCell
+
+- (void)setModel:(ECRBookListModel *)model{
+    _model = model;
+    
+//    [_cover sd_setImageWithURL:[NSURL URLWithString:model.coverPhoto] placeholderImage:nil];
+    _bName.text     = model.bookName;
+    _bAuthor.text   = [NSString stringWithFormat:@"作者：%@",model.author];
+    _bSynopsis.text = [NSString stringWithFormat:@"简介：%@",model.synopsis];
+    _bMoney.text = [NSString stringWithFormat:@"￥%.2f",model.money];
+    
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    _cover.clipsToBounds = YES;
+    _line.backgroundColor = [UIColor colorWithHexString:@"e3e3e3"];
+}
+
+
+@end
+
+

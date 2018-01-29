@@ -1,0 +1,321 @@
+//
+//  AppDelegate.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/29.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "AppDelegate.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import <UserNotifications/UserNotifications.h>
+#import "UMessage.h"
+
+#import "WXApi.h"
+#import "CLMTabBarController.h"
+#import "ECRDownloadManager.h"
+
+@interface AppDelegate ()<
+WXApiDelegate,
+UNUserNotificationCenterDelegate
+>
+
+@end
+
+@implementation AppDelegate
+
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+    // 发送崩溃日志
+    NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
+    // 微信开发者ID
+    [WXApi registerApp:WX_App_ID];
+    
+    // 首次打开 app 配置相关信息
+    if (![[CacheDataSource sharedInstance] loadCacheWithCacheKey:CacheKey_NotFirstTime]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"zh-Hans" forKey:@"appLanguage"];
+        [NSBundle setLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"appLanguage"]];
+        [[CacheDataSource sharedInstance] setCache:@"YES" withCacheKey:CacheKey_NotFirstTime];
+    }
+    
+    // 获取 app 语言及设置语言
+    [self getSystemLanguage];
+    [self baseSettingWithOptions:application];
+    [self fk_observeNotifcation:kNotificationLanguageChanged usingBlock:^(NSNotification *note) {
+        [self getSystemLanguage];
+        [self baseSettingWithOptions:application];
+    }];
+    
+    // 友盟推送
+    [self configUMessagePushWithApplication:application didFinishLaunchingWithOptions:launchOptions];
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+//    BOOL result = [WXApi handleOpenURL:url delegate:self];
+//    if (result == NO && [url.host isEqualToString:@"safepay"]) {
+//        //跳转支付宝钱包进行支付，处理支付结果
+//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+//            NSLog(@"result = %@",resultDic);
+//        }];
+//        result = YES;
+//    }
+//    return result;
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    BOOL result = [WXApi handleOpenURL:url delegate:self];
+
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"appDele: alipay result = %@",resultDic);
+        }];
+        result = YES;
+    }
+    return result;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    // 友盟推送 统计点击数
+    [UMessage didReceiveRemoteNotification:userInfo];
+    
+    //    self.userInfo = userInfo;
+    //    //定制自定的的弹出框
+    //    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+    //    {
+    //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"标题"
+    //                                                            message:@"Test On ApplicationStateActive"
+    //                                                           delegate:self
+    //                                                  cancelButtonTitle:@"确定"
+    //                                                  otherButtonTitles:nil];
+    //
+    //        [alertView show];
+    //
+    //    }
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"device_token :%@", [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""]);
+}
+
+#pragma mark - 初始化
+
+- (void)getSystemLanguage
+{
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"appLanguage"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"zh-Hans" forKey:@"appLanguage"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSBundle setLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"appLanguage"]];
+        // 获取系统语言
+//        NSArray *languages = [NSLocale preferredLanguages];
+//        NSString *language = [languages objectAtIndex:0];
+//        if ([language hasPrefix:@"zh-Hans"]) {//开头匹配
+//            [[NSUserDefaults standardUserDefaults] setObject:@"zh-Hans" forKey:@"appLanguage"];
+//        }
+//        else{
+//            [[NSUserDefaults standardUserDefaults] setObject:@"en" forKey:@"appLanguage"];
+//        }
+    }
+}
+
+- (void)baseSettingWithOptions:(UIApplication *)application{
+
+    self.window = [[UIWindow alloc] initWithFrame:Screen_Bounds];
+    // 我们要把系统windown的rootViewController替换掉
+    CLMTabBarController *tab = [[CLMTabBarController alloc] init];
+    self.window.rootViewController = tab;
+    // 跳转到设置页
+//    tab.selectedIndex = 2;
+    [self.window makeKeyAndVisible];
+
+    // 初始化本地下载路径
+    [ECRDownloadManager initLocalFilePath];
+    
+    [SDImageCache sharedImageCache];
+}
+
+#pragma mark - 友盟推送
+
+- (void)configUMessagePushWithApplication:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //初始化方法,也可以使用(void)startWithAppkey:(NSString *)appKey launchOptions:(NSDictionary * )launchOptions httpsenable:(BOOL)value;这个方法，方便设置https请求。
+    [UMessage startWithAppkey:UM_App_Key launchOptions:launchOptions];
+    // 注册通知, 如果要使用
+    [UMessage registerForRemoteNotifications];
+    //iOS10必须加下面这段代码。配置推送中心
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    UNAuthorizationOptions types10 = UNAuthorizationOptionBadge|  UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
+    [center requestAuthorizationWithOptions:types10 completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            //点击允许
+            //这里可以添加一些自己的逻辑
+        } else {
+            //点击不允许
+            //这里可以添加一些自己的逻辑
+        }
+    }];
+    
+    //打开日志，方便调试
+    [UMessage setLogEnabled:YES];
+}
+
+// iOS10新增：处理前台收到通知的代理方法
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于前台时的远程推送接受
+        //关闭U-Push自带的弹出框
+        [UMessage setAutoAlert:NO];
+        //必须加这句代码
+        [self fk_postNotification:kNotificationPush object:self userInfo:userInfo];
+        [UMessage didReceiveRemoteNotification:userInfo];
+    }else{
+        //应用处于前台时的本地推送接受
+    }
+    //当应用处于前台时提示设置，需要哪个可以设置哪一个
+    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
+}
+
+// iOS10新增：处理后台点击通知的代理方法
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于后台时的远程推送接受
+        //必须加这句代码
+        [self fk_postNotification:kNotificationPush object:self userInfo:userInfo];
+        [UMessage didReceiveRemoteNotification:userInfo];
+        
+    }else{
+        //应用处于后台时的本地推送接受
+    }
+}
+
+// 检查是否打开了推送开关
+//- (void)checkUserNotificationSetting
+//{
+//    if ([[UIDevice currentDevice].systemVersion floatValue]>=8.0f) {
+//        UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+//        if (UIUserNotificationTypeNone == setting.types) {
+//            NSLog(@"推送关闭");
+//            // 跳转设置推送界面
+////            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//        }
+//    }
+//    else {
+//        UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+//        if(UIRemoteNotificationTypeNone == type){
+//            NSLog(@"推送关闭");
+//        }
+//    }
+//}
+
+#pragma mark - 微信登录
+
+- (void)onResp:(BaseResp *)resp
+{
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        SendAuthResp *authResp = (SendAuthResp *)resp;
+        if (authResp.errCode == 0) {
+            [[NSUserDefaults standardUserDefaults] setObject:authResp.code  forKey:WX_CODE];
+            [self fk_postNotification:kNotificationWXAccessToken object:authResp.code];
+        }
+        else {
+            [self fk_postNotification:kNotificationAlertError object:@"授权失败"];
+        }
+    }
+}
+
+
+#pragma mark - 崩溃日志记录
+
+void UncaughtExceptionHandler(NSException *exception) {
+    /**
+     *  当前时间
+     */
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *now = [formatter stringFromDate:date];
+    
+    /**
+     *  获取异常崩溃信息
+     */
+    NSString *name = [exception name];
+    NSString *reason = [exception reason];
+    NSArray  *callStack = [exception callStackSymbols];
+    NSString *content = [NSString stringWithFormat:@"========异常错误报告========\n崩溃报告:\n%@\n崩溃原因:\n%@\n崩溃日志:\n%@ \n机器型号:\n%@\n系统版本:\n%@\n软件版本:\n%@\n崩溃时间:\n%@"
+                         , name                                         // 报告名
+                         , reason                                       // 崩溃原因
+                         , [callStack componentsJoinedByString:@"\n"]   // 日志详情
+                         , [IPhoneVersion deviceName]                   // 设备名
+                         , SSystemVersion                               // 设备系统版本
+                         , appVersion                                   // App 版本
+                         , now];                                        // 当前时间
+    
+    /**
+     *  把异常崩溃信息发送至开发者邮件
+     */
+    NSMutableString *mailUrl = [NSMutableString string];
+    [mailUrl appendString:@"mailto:zhaocy@retechcorp.com"];
+    [mailUrl appendString:@"?cc=lig@retechcorp.com"];
+    [mailUrl appendString:@"&subject=程序崩溃，请配合发送异常报告，谢谢合作！"];
+    [mailUrl appendFormat:@"&body=%@", content];
+    // 打开地址
+    NSString *mailPath = [mailUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:mailPath]];
+}
+
+#pragma mark -
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+}
+
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+}
+
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+}
+
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#if DEBUG
+
+#else
+/**
+ * 功能：禁止横屏
+ */
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window{
+    return UIInterfaceOrientationMaskPortrait;
+}
+#endif
+
+@end

@@ -1,0 +1,56 @@
+//
+//  OrderTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserOrderTableViewCell.h"
+
+@interface UserOrderTableViewCell ()
+@property (strong, nonatomic) IBOutlet UILabel *lblBookName;    // 书名
+@property (strong, nonatomic) IBOutlet UILabel *lblBookCost;    // 钱
+@property (strong, nonatomic) IBOutlet UILabel *lblAuthor;      // 作者
+@property (weak, nonatomic) IBOutlet UIImageView *imgBookCoverPic; // 图书封面
+
+@property (strong, nonatomic) IBOutlet UIView *viewBackground;  // 信息背景（为了边框）
+
+@property (assign, nonatomic) ENUM_ZOrderState orderState;
+@end
+
+@implementation UserOrderTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configOrderListTableViewCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)dataDidChange
+{
+    OrderModel *order = self.data;
+    BookModel *book = [BookModel mj_objectWithKeyValues:[order.books objectAtIndex:_index]];
+    
+    _lblBookName.text = book.bookName;
+    _lblAuthor.text = book.author;
+    _lblBookCost.text = [NSString stringWithFormat:@"￥%.02f", book.price];
+}
+
+- (void)configOrderListTableViewCell
+{
+    _lblBookCost.textColor = [UIColor cm_orangeColor_FF5910_1];
+    _lblAuthor.textColor = [UIColor cm_blackColor_333333_1];
+    _lblBookName.textColor = [UIColor cm_blackColor_333333_1];
+
+    _viewBackground.layer.borderColor = [UIColor cm_lineColor_D9D7D7_1].CGColor;
+    _viewBackground.layer.borderWidth = .5f;
+}
+
+@end

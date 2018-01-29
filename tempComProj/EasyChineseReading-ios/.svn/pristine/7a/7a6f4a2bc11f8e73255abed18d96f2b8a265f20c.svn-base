@@ -1,0 +1,89 @@
+//
+//  ZPickViewTool.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/6.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ZPickViewTool.h"
+#import "ZPickView.h"
+
+@interface ZPickViewTool ()<ZPickViewDelegate>
+
+@property (strong, nonatomic) ZPickView *pickView;
+@property (strong, nonatomic) NSArray *arrData;
+@property (assign, nonatomic) NSInteger selectedIndex;
+
+@end
+
+@implementation ZPickViewTool
+
+- (instancetype)initWithDataSource:(NSArray *)dataSource selected:(NSInteger)selected
+{
+    self = [super init];
+    if (self) {
+        
+//        _pickView = [ZPickView createInstance];
+//        _pickView.delegate = self;
+        
+        _arrData = dataSource;
+        _selectedIndex = selected;
+        _pickView.selectedIndex = selected;
+    }
+    return self;
+}
+
+#pragma mark - event
+
+- (void)show
+{
+    [self.pickView show];
+}
+- (void)hidden
+{
+    [self.pickView hidden];
+}
+
+#pragma mark - delegate
+
+- (void)ZPickerViewCancel:(ZPickView *)pikcer
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZPickView:clickCancel:)])
+        [self.delegate ZPickView:self clickCancel:nil];
+}
+
+- (void)ZPickerView:(ZPickView *)pikcer makeSureIndex:(NSInteger)index
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZPickView:clickSureWithIndex:)]) {
+        [self.delegate ZPickView:self clickSureWithIndex:_selectedIndex];
+    }
+}
+
+#pragma mark -
+#pragma mark UIPickerViewDelegate, UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return _arrData.count;
+}
+
+- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return _arrData[row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    _pickView.btnSure.hidden = NO;
+    _selectedIndex = row;
+}
+
+
+
+@end

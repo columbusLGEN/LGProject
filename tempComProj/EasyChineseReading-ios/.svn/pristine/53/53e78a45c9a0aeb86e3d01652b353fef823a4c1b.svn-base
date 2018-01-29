@@ -1,0 +1,20 @@
+//
+//  YMEpubSearchModel.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/11/30.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface YMEpubSearchModel : NSObject
+
+@property (nonatomic, retain) NSString *nodeText;
+@property (nonatomic, retain) NSNumber *offset;
+@property (nonatomic, retain) NSString *search;
+@property (nonatomic, retain) NSNumber *spinePos;
+@property (nonatomic, retain) NSString *xPath;
+@property (nonatomic, retain) NSString *chapterName;
+
+@end

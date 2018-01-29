@@ -1,0 +1,122 @@
+//
+//  UTaskReadingVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UTaskReadingVC.h"
+
+#import "UTaskRecommendTableViewCell.h"
+#import "UTaskImpowerTableViewCell.h"
+
+@interface UTaskReadingVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *tableView;
+/* 数据 */
+@property (strong, nonatomic) NSArray *arrTasks;
+
+@property (assign, nonatomic) NSInteger currentPage; // 当前页
+
+@end
+
+@implementation UTaskReadingVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configSystemTaskView];
+    _currentPage = 0;
+    [self getReadingTaskDataWithPage:_currentPage];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 获取数据
+
+- (void)getReadingTaskDataWithPage:(NSInteger)page
+{
+    [[TaskRequest sharedInstance] getReadTaskWithPage:[NSString stringWithFormat:@"%ld", page]
+                                           completion:^(id object, ErrorModel *error) {
+                                               if (error) {
+                                                   [self presentFailureTips:error.message];
+                                               }
+                                               else {
+                                                   _arrTasks = [ReadTaskModel mj_objectArrayWithKeyValuesArray:object];
+                                                   _tableView.hidden = _arrTasks.count == 0;
+                                                   [self.tableView reloadData];
+                                               }
+                                           }];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _arrTasks.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ReadTaskModel *readTask = _arrTasks[indexPath.row];
+    
+    if (readTask.type == ENUM_RecommendTypeRecommend) {
+        UTaskRecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UTaskRecommendTableViewCell class])];
+        cell.data = _arrTasks[indexPath.row];
+        return cell;
+    }
+    else {
+        UTaskImpowerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UTaskImpowerTableViewCell class])];
+        cell.data = _arrTasks[indexPath.row];
+        return cell;
+    }
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ReadTaskModel *readTask = _arrTasks[indexPath.row];
+    
+    if (readTask.type == ENUM_RecommendTypeRecommend) {
+        
+    }
+    else {
+        
+    }
+}
+
+#pragma mark - 配置界面
+
+- (void)configSystemTaskView
+{
+    [self.view addSubview:self.tableView];
+    _tableView.hidden = YES;
+}
+
+#pragma mark - 属性
+
+- (UITableView *)tableView
+{
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.estimatedRowHeight = 100;
+        
+        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UTaskRecommendTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UTaskRecommendTableViewCell class])];
+        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UTaskImpowerTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UTaskImpowerTableViewCell class])];
+    }
+    return _tableView;
+}
+
+@end

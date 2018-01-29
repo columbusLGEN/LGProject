@@ -1,0 +1,130 @@
+//
+//  ECREpubReader.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/21.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECREpubReader.h"
+//#import "ECRLocalFileManager.h"
+#import <YMEpubReaderKit/YMEpubReaderKit.h>
+#import <YMEpubReaderKit/Bookmark.h>
+
+@interface ECREpubReader ()<
+YMEpubReaderManagerDelegate
+>
+@property (strong,nonatomic) NSArray *localTestBooks;//
+@property (strong,nonatomic) YMEpubReaderManager *ymepubReader;//
+
+@end
+
+@implementation ECREpubReader
+
+// MARK: 单本阅读
+- (void)readBookWithPath:(NSString *)path fromController:(UIViewController *)vc{
+    // 加载之前,需要判断路径是否存在
+    NSLog(@"epub_book_path -- %@",path);
+    // 一定不要加载path 下的 未解密文件, 否则会造成 读取书籍错误
+    BOOL pathIsExist = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    if (pathIsExist) {
+        NSArray *bookArr = [self.ymepubReader loadBookWithPath:path];
+        if (self.ymepubReader.bookArray.count > 0) {
+            //        if (self.ymepubReader.bookArray.count > 1) {
+            //            for (NSInteger i = self.ymepubReader.bookArray.count - 2; i >= 0; i--) {
+            //                MyBook *book = self.ymepubReader.bookArray[i];
+            //                [self.ymepubReader.bookArray removeObject:book];
+            //            }
+            //        }
+            NSLog(@"mybooks -- %@",self.ymepubReader.bookArray);
+            MyBook *book = [self.ymepubReader.bookArray lastObject];
+            [self.ymepubReader readBook:book fromController:vc];
+        }
+    }else{
+        NSLog(@"书籍路径不存在 -- ");
+    }
+}
+
+
+
+// read
+- (void)readBook:(MyBook *)book fromController:(UIViewController *)vc{
+//    NSLog(@"book -- %@",book);
+    [self.ymepubReader readBook:book fromController:vc];
+    
+}
+
+#pragma mark - YMEpubReaderManagerDelegate
+// read controller 生命周期 回调
+- (void)willBeginRead{
+    NSLog(@"willBeginRead");
+}
+- (void)didBeginRead{
+    NSLog(@"didBeginRead");
+}
+- (void)willEndRead{
+    NSLog(@"willEndRead");
+}
+- (void)didEndRead{
+    NSLog(@"didEndRead");
+}
+
+- (void)didAddDigest:(BookDigest *)digest{
+
+}     //添加书摘或笔记，对应回调
+- (void)didDeleteDigest:(BookDigest *)digest{
+
+}
+- (void)didAddBookMark:(Bookmark *)bookMark{
+
+}   //添加书签，对应回调
+- (void)didDeleteBookMark:(Bookmark *)bookMark{
+
+}
+
++ (instancetype)sharedEpubReader{
+    static id instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
+- (YMEpubReaderManager *)ymepubReader{
+    if (_ymepubReader == nil) {
+        _ymepubReader = [YMEpubReaderManager shardInstance];
+        _ymepubReader.delegate = self;
+    }
+    return _ymepubReader;
+}
+
+/// *****************测试代码
+
+- (void)loadBookList{
+    // 创建文件路径
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"book" ofType:@"bundle"];
+//    NSLog(@"path -- %@",path);
+//    NSLog(@"home -- %@",NSHomeDirectory());
+//
+//    [self.ymepubReader loadBooksOfDirectoryAtPath:path completeBlock:^(NSArray<MyBook *> *bookArray, NSError *error) {
+//        //        self.localTestBooks = bookArray;
+//        NSLog(@"ymepubReader.bookArray %@",bookArray);
+//    }];
+    // 加载书籍
+    
+}
+
+- (void)getTestBooks:(void(^)(NSArray<MyBook *> *books,NSString *info))completeBlock{
+    if (completeBlock) {
+        if (self.ymepubReader.bookArray) {
+            completeBlock(self.ymepubReader.bookArray,@"加载完成");
+        }else{
+            completeBlock(nil,@"本地书籍还未加载完成，请稍后");
+        }
+    }
+    
+}
+
+@end
+
+

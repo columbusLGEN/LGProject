@@ -1,0 +1,247 @@
+//
+//  ECRSettleAccountsView.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/20.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRSettleAccountsView.h"
+//#import "ECRSettleAccountsModel.h"
+#import "ECRBookInfoModel.h"
+#import "ECRPayStyleDelegate.h"
+
+@interface ECRSettleAccountsView ()
+@property (weak, nonatomic) IBOutlet UILabel *totalPrice;// 商品总价
+@property (weak, nonatomic) IBOutlet UILabel *userAccounts;// 用户余额
+@property (weak, nonatomic) IBOutlet UILabel *anotherPrice;// 还需支付
+@property (weak, nonatomic) IBOutlet UIView *line;
+@property (weak, nonatomic) IBOutlet UIView *lineCopy;
+@property (weak, nonatomic) IBOutlet UIView *lineCopySecond;
+
+@property (weak, nonatomic) IBOutlet UIButton *payNow;
+
+@property (weak, nonatomic) IBOutlet UIView *weView;
+@property (weak, nonatomic) IBOutlet UIView *zfbView;
+
+@property (weak, nonatomic) IBOutlet UIView *senView;// nine
+@property (weak, nonatomic) IBOutlet UIView *seoView;// one hundred
+@property (weak, nonatomic) IBOutlet UIView *setView;// two hundred
+@property (weak, nonatomic) IBOutlet UIView *sethView;// three hundred
+@property (weak, nonatomic) IBOutlet UILabel *topUp;
+
+@property (weak, nonatomic) IBOutlet UILabel *totalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentYu;
+@property (weak, nonatomic) IBOutlet UILabel *stilPay;
+@property (weak, nonatomic) IBOutlet UILabel *choosePayWay;
+@property (weak, nonatomic) IBOutlet UILabel *chooseMoney;
+@property (weak, nonatomic) IBOutlet UILabel *zhifu;
+@property (weak, nonatomic) IBOutlet UILabel *aliPay;
+@property (weak, nonatomic) IBOutlet UILabel *applePay;
+
+@end
+
+@implementation ECRSettleAccountsView
+
+- (void)textDependsLauguage{
+    NSString *vrCoin = [LGPChangeLanguage localizedStringForKey:@"虚拟币"];
+    // 总计
+    NSString *totalPrice = [NSString stringWithFormat:@"%.2f",_model.price];
+    NSString *tpAllString = [NSString stringWithFormat:@"%@%@",totalPrice,vrCoin];
+    
+    // 余额
+    NSString *userAccounts = [NSString stringWithFormat:@"%.2f",[UserRequest sharedInstance].user.virtualCurrency];
+    NSString *uaAllString = [NSString stringWithFormat:@"%@%@",userAccounts,vrCoin];
+    
+    CGFloat yue = _model.price - [UserRequest sharedInstance].user.virtualCurrency;
+    if (yue > 0) {
+    }else{
+        yue = 0;
+    }
+    // 还需支付
+    NSString *anotherPrice = [NSString stringWithFormat:@"%.2f",yue];
+    NSString *apAllString = [NSString stringWithFormat:@"%@%@",anotherPrice,vrCoin];
+    
+    UIColor *labelHighColor = [UIColor colorWithHexString:@"ff6000"];
+    
+    NSAttributedString *tpAttrString = [self attrStrFrom:tpAllString colorStr:totalPrice color:labelHighColor font:[UIFont systemFontOfSize:14]];
+    
+    NSAttributedString *uaAttrString = [self attrStrFrom:uaAllString colorStr:userAccounts color:labelHighColor font:[UIFont systemFontOfSize:14]];
+    
+    NSAttributedString *apAttrString = [self attrStrFrom:apAllString colorStr:anotherPrice color:labelHighColor font:[UIFont systemFontOfSize:14]];
+    
+    [self.totalPrice setAttributedText:tpAttrString];
+    [self.userAccounts setAttributedText:uaAttrString];
+    [self.anotherPrice setAttributedText:apAttrString];
+    
+    self.totalLabel.text = [self strignWithSem:[LGPChangeLanguage localizedStringForKey:@"商品共计"]];
+    self.currentYu.text = [self strignWithSem:[LGPChangeLanguage localizedStringForKey:@"当前余额"]];
+    self.stilPay.text = [self strignWithSem:[LGPChangeLanguage localizedStringForKey:@"还需支付"]];
+
+    self.choosePayWay.text = [LGPChangeLanguage localizedStringForKey:@"请选择支付方式"];
+    self.chooseMoney.text = [LGPChangeLanguage localizedStringForKey:@"请选择充值金额"];
+    
+    [self.payNow setTitle:[LGPChangeLanguage localizedStringForKey:@"立即支付"] forState:UIControlStateNormal];
+    self.zhifu.text = [LGPChangeLanguage localizedStringForKey:@"支付"];
+    [self.aliPay setText:[LGPChangeLanguage localizedStringForKey:@"支付宝支付"]];
+    [self.applePay setText:[LGPChangeLanguage localizedStringForKey:@"苹果支付"]];
+    
+}
+
+- (NSString *)strignWithSem:(NSString *)string{
+    return [NSString stringWithFormat:@"%@: ",string];
+}
+
+- (void)setModel:(ECRBookInfoModel *)model{
+    _model = model;
+    [self textDependsLauguage];
+}
+
+- (IBAction)payClick:(UIButton *)sender {
+    UIColor *borderColor = [UIColor colorWithHexString:@"e3e3e3"];
+    UIColor *borderSelectColor = [UIColor cm_mainColor];
+    switch (sender.tag) {
+        case 2:{// 微信支付
+            self.weView.layer.borderColor = borderSelectColor.CGColor;
+            self.zfbView.layer.borderColor = borderColor.CGColor;
+            if ([self.delegate respondsToSelector:@selector(payStyle:style:)]) {
+                [self.delegate payStyle:self style:101];
+            }
+        }
+            break;
+        case 3:{// 支付宝
+            self.weView.layer.borderColor = borderColor.CGColor;
+            self.zfbView.layer.borderColor = borderSelectColor.CGColor;
+            if ([self.delegate respondsToSelector:@selector(payStyle:style:)]) {
+                [self.delegate payStyle:self style:102];
+            }
+        }
+            break;
+            
+        
+    }
+}
+
+- (IBAction)selectMoney:(UIButton *)sender {
+    UIColor *borderColor = [UIColor colorWithHexString:@"e3e3e3"];
+    UIColor *borderSelectColor = [UIColor cm_mainColor];
+    switch (sender.tag) {
+        case 90:{// 90
+//            self.model.topUp = 90.0;
+            _senView.layer.borderColor = borderSelectColor.CGColor;
+            _seoView.layer.borderColor = borderColor.CGColor;
+            _setView.layer.borderColor = borderColor.CGColor;
+            _sethView.layer.borderColor = borderColor.CGColor;
+
+        }
+            break;
+        case 100:{// 100
+//            self.model.topUp = 100.0;
+            _senView.layer.borderColor = borderColor.CGColor;
+            _seoView.layer.borderColor = borderSelectColor.CGColor;
+            _setView.layer.borderColor = borderColor.CGColor;
+            _sethView.layer.borderColor = borderColor.CGColor;
+        }
+            break;
+        case 200:{// 200
+//            self.model.topUp = 200.0;
+            _senView.layer.borderColor = borderColor.CGColor;
+            _seoView.layer.borderColor = borderColor.CGColor;
+            _setView.layer.borderColor = borderSelectColor.CGColor;
+            _sethView.layer.borderColor = borderColor.CGColor;
+        }
+            break;
+        case 300:{// 300
+//            self.model.topUp = 300.0;
+            _senView.layer.borderColor = borderColor.CGColor;
+            _seoView.layer.borderColor = borderColor.CGColor;
+            _setView.layer.borderColor = borderColor.CGColor;
+            _sethView.layer.borderColor = borderSelectColor.CGColor;
+        }
+            break;
+    }
+//    NSLog(@"topUp: %f",self.model.topUp);
+    self.topUp.text = [NSString stringWithFormat:@"￥%.2f",90];
+}
+
+- (IBAction)payNowClick:(UIButton *)sender {
+    NSLog(@"立即支付");
+}
+
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self setupUI];
+    [self textDependsLauguage];
+}
+
+- (void)setupUI{
+    self.payNow.layer.cornerRadius = 20;
+    self.payNow.layer.masksToBounds = YES;
+    [self.payNow setBackgroundColor:[UIColor cm_mainColor]];
+    
+    UIColor *borderColor = [UIColor colorWithHexString:@"e3e3e3"];
+    _line.backgroundColor = borderColor;
+    _lineCopy.backgroundColor = borderColor;
+    _lineCopySecond.backgroundColor = [UIColor whiteColor];//borderColor;//[UIColor cm_lineColor_C6C6C6_1];
+    
+    _weView.layer.borderWidth = 1;
+    _weView.layer.borderColor = borderColor.CGColor;
+    
+    _zfbView.layer.borderWidth = 1;
+    _zfbView.layer.borderColor = borderColor.CGColor;
+    
+    _senView.layer.borderWidth = 1;
+    _seoView.layer.borderWidth = 1;
+    _setView.layer.borderWidth = 1;
+    _sethView.layer.borderWidth = 1;
+    _senView.layer.borderColor = borderColor.CGColor;
+    _seoView.layer.borderColor = borderColor.CGColor;
+    _setView.layer.borderColor = borderColor.CGColor;
+    _sethView.layer.borderColor = borderColor.CGColor;
+    
+    [self.topUp setTextColor:[UIColor colorWithHexString:@"ff6000"]];
+    self.topUp.text = @"00.00";//[NSString stringWithFormat:@"￥%.2f",self.model.topUp];
+    // ff6000 -> 橙
+    // 4个位置需要设置橙色（xx），分别是：1.商品共计：xx虚拟币；2.当前余额：xx虚拟币；3.还需支付：xx虚拟币；4.支付：￥xx虚拟币
+    
+    // 2f2f2f
+    
+}
+
+/**
+ *  @brief  关键字高亮的处理
+ *  @category
+ *  @param  allString         整体字符串
+ *  @param  colorStr          要改变颜色的字符串
+ *  @param  color             要设置的颜色
+ *  @param  font              字号
+ **/
+- (NSMutableAttributedString *)attrStrFrom:(NSString *)allString colorStr:(NSString *)colorStr color:(UIColor *)color font:(UIFont *)font{
+    NSMutableAttributedString *arrString = [[NSMutableAttributedString alloc]initWithString:allString];
+    // 设置前面几个字串的格式:字号字体、颜色
+    [arrString addAttributes:@{NSFontAttributeName:font,
+                               NSForegroundColorAttributeName:color
+                               }
+                       range:[allString rangeOfString:colorStr]];
+    return arrString;
+}// TODO: 思考：该方法应该抽到谁的分类中去共用？
+
+@end
+
+
+
+
+
+
+
+
+
+

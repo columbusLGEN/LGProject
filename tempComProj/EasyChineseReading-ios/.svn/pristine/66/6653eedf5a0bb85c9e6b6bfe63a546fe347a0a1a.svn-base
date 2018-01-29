@@ -1,0 +1,17 @@
+//
+//  ECRMoreRowModel.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/20.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRMoreRowModel.h"
+
+@implementation ECRMoreRowModel
+
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"classArray":@"ECRClassSortModel"};
+}
+
+@end

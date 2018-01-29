@@ -1,0 +1,154 @@
+//
+//  UFriendReadInfoTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/12.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UFriendReadInfoTableViewCell.h"
+
+@interface UFriendReadInfoTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgAvatar;  // 头像
+@property (strong, nonatomic) IBOutlet UIView *viewBackground;  // 背景图
+
+@property (strong, nonatomic) IBOutlet UILabel *lblUserName;    // 用户名
+@property (strong, nonatomic) IBOutlet UILabel *lblDesc;        // 分享说明
+@property (strong, nonatomic) IBOutlet UILabel *lblTime;        // 分享时间
+
+@property (strong, nonatomic) IBOutlet UILabel *lblDesReaded;   // 描述 读完
+@property (strong, nonatomic) IBOutlet UILabel *lblDesReading;  // 描述 已读
+@property (strong, nonatomic) IBOutlet UILabel *lblDesReadTime; // 描述 总阅读小时
+@property (strong, nonatomic) IBOutlet UILabel *lblDesReadWords;// 描述 今天阅读字数
+
+@property (strong, nonatomic) IBOutlet UILabel *lblReaded;       // 读完
+@property (strong, nonatomic) IBOutlet UILabel *lblReading;      // 已读
+@property (strong, nonatomic) IBOutlet UILabel *lblReadTime;     // 总阅读小时
+@property (strong, nonatomic) IBOutlet UILabel *lblReadWords;    // 今天阅读字数
+
+@property (strong, nonatomic) IBOutlet UIView *viewBottomTopLine;
+@property (strong, nonatomic) IBOutlet UIView *viewBottomBottomLine;
+@property (strong, nonatomic) IBOutlet UIView *viewBottomCenterLine;
+
+@end
+
+@implementation UFriendReadInfoTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configManager];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configManager
+{
+    _imgAvatar.layer.cornerRadius = _imgAvatar.height/2;
+    
+    _imgAvatar.layer.borderWidth = 3.f;
+    _imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    _imgAvatar.layer.shadowOffset = CGSizeMake(0, 0);
+    _imgAvatar.layer.shadowColor = [UIColor blackColor].CGColor;
+    _imgAvatar.layer.shadowOpacity = 0.8f;
+    _imgAvatar.layer.shadowRadius = 4.f;
+    
+    _lblUserName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblUserName.font = [UIFont systemFontOfSize:16.f];
+    
+    _lblDesc.font = [UIFont systemFontOfSize:16.f];
+    
+    _lblTime.textColor = [UIColor cm_blackColor_333333_1];
+    _lblTime.font = [UIFont systemFontOfSize:14.f];
+    
+    _lblDesReaded.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDesReading.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDesReadTime.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDesReadWords.textColor = [UIColor cm_blackColor_333333_1];
+    
+    NSMutableAttributedString *ranking = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"我战胜了 0%% 的书友"]];
+    // 获取要调整颜色的文字位置,调整颜色
+    NSRange rangeSpace   = [[ranking string] rangeOfString:@" "];
+    NSRange rangePercent = [[ranking string] rangeOfString:@"%"];
+    // 更新第一个空格到%之间的范围
+    NSRange upRange = NSMakeRange(rangeSpace.location + 1, rangePercent.location + 1 - rangeSpace.location);
+    [ranking addAttribute:NSForegroundColorAttributeName value:[UIColor cm_purpleColor_82056B_1] range:upRange];
+    _lblDesc.attributedText = ranking;
+    
+    [self configViewMainColor:[UIColor cm_purpleColor_82056B_1]];
+    [self configLineColor:[UIColor cm_lineColor_E3E3E3_1]];
+    [self configViewFont:[UIFont systemFontOfSize:16.f]];
+}
+
+- (void)configViewMainColor:(UIColor *)mainColor
+{
+    _lblReaded.textColor = mainColor;
+    _lblReading.textColor = mainColor;
+    _lblReadTime.textColor = mainColor;
+    _lblReadWords.textColor = mainColor;
+}
+
+- (void)configViewFont:(UIFont *)font
+{
+    _lblReaded.font = font;
+    _lblReading.font = font;
+    _lblReadTime.font = font;
+    _lblReadWords.font = font;
+    
+    _lblDesReaded.font = font;
+    _lblDesReading.font = font;
+    _lblDesReadTime.font = font;
+    _lblDesReadWords.font = font;
+}
+
+- (void)configLineColor:(UIColor *)lineColor
+{
+    _viewBottomTopLine.backgroundColor = lineColor;
+    _viewBottomBottomLine.backgroundColor = lineColor;
+    _viewBottomCenterLine.backgroundColor = lineColor;
+}
+
+- (void)dataDidChange
+{
+    UserModel *user = self.data;
+    
+    if (user) {
+        NSString *name = @"";
+        if (user.name.length > 0) {
+            name = user.name;
+        }
+        else if (user.phone.length > 0) {
+            name = user.phone;
+        }
+        else if (user.email.length > 0) {
+            name = user.email;
+        }
+        _lblUserName.text = name;
+        
+        [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:user.iconUrl] placeholderImage:[UIImage imageNamed:@"tx"]];
+        
+        NSMutableAttributedString *ranking = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"我战胜了 0%% 的书友"]];
+        // 获取要调整颜色的文字位置,调整颜色
+        NSRange rangeSpace   = [[ranking string] rangeOfString:@" "];
+        NSRange rangePercent = [[ranking string] rangeOfString:@"%"];
+        // 更新第一个空格到%之间的范围
+        NSRange upRange = NSMakeRange(rangeSpace.location + 1, rangePercent.location + 1 - rangeSpace.location);
+        [ranking addAttribute:NSForegroundColorAttributeName value:[UIColor cm_purpleColor_82056B_1] range:upRange];
+        _lblDesc.attributedText = ranking;
+        
+        _lblTime.text = @"2010.02.02 12: 12: 12";
+        
+        _lblReaded.text = [NSString stringWithFormat:@"%ld册", (long)user.readThrough];
+        _lblReading.text = [NSString stringWithFormat:@"%ld册", (long)user.readHave];
+        _lblReadTime.text = [NSString stringWithFormat:@"%ld小时", (long)user.readTime];
+        _lblReadWords.text = [NSString stringWithFormat:@"%ld字", (long)user.sameDayWord];
+    }
+}
+
+
+@end

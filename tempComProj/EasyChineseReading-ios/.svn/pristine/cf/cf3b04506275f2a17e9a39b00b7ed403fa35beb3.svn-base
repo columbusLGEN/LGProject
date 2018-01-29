@@ -1,0 +1,43 @@
+//
+//  BookDigestParser.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/11/3.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "YMBookDigest.h"
+#import "YMNetHostManager.h"
+
+#define SQLLISTNAME @"YMBookDigest"
+
+typedef void(^completeBlock)(NSDictionary *result);
+
+
+@interface BookDigestOperator : NSObject
+
+//存储笔记
+- (void)saveBookNoteWithMessage:(NSDictionary *)info
+                        Message:(NSDictionary *)message
+                      withBlock:(completeBlock)block;
+
+//删除笔记
+- (void)noteDeleteWithMessage:(NSString *)message
+                   withBlock:(completeBlock)block;
+
+//根据dataId 获取一条笔记
++ (YMBookDigest *)getBookDigestsByDataID:(NSString *)message;
+
++ (NSArray *)getBookDigests;
+
++ (NSArray *)getBookDigestsBySpineIndex:(NSNumber *)index;
+
+//传入条件查找
++ (NSArray *)getBookDigestsByPredicate:(NSPredicate *)predicate;
+
+- (void)saveBookDigestsWithArray:(NSArray *)array;
+
++ (void)updateNouserIdNoteWithBlock:(completeBlock)block;
+
+@end

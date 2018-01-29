@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RButtonTableViewCell" rowHeight="128" id="7B7-CY-Tgg" customClass="RButtonTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="444" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7B7-CY-Tgg" id="1Lx-ck-sbk">
+                <rect key="frame" x="0.0" y="0.0" width="444" height="127.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utL-WA-Hn6">
+                        <rect key="frame" x="86" y="30" width="272" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="GV0-Kx-nv6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <state key="normal" title="立即注册"/>
+                        <connections>
+                            <action selector="click_btnRegister:" destination="7B7-CY-Tgg" eventType="touchUpInside" id="yLb-OV-Ovc"/>
+                        </connections>
+                    </button>
+                    <imageView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_selected_no" translatesAutoresizingMaskIntoConstraints="NO" id="1Wh-0w-bkb">
+                        <rect key="frame" x="162" y="87" width="17" height="17"/>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同意注册条款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7y-Su-ZTY">
+                        <rect key="frame" x="184" y="80" width="86" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="5bv-rk-gEG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="utL-WA-Hn6" firstAttribute="leading" secondItem="1Lx-ck-sbk" secondAttribute="leading" constant="86" id="8iG-Fd-Dmx"/>
+                    <constraint firstItem="T7y-Su-ZTY" firstAttribute="top" secondItem="utL-WA-Hn6" secondAttribute="bottom" constant="10" id="8ya-bz-s0A"/>
+                    <constraint firstAttribute="bottom" secondItem="utL-WA-Hn6" secondAttribute="bottom" priority="800" constant="60" id="bSt-k6-nsn"/>
+                    <constraint firstItem="T7y-Su-ZTY" firstAttribute="centerX" secondItem="utL-WA-Hn6" secondAttribute="centerX" constant="5" id="d3f-4u-5cA"/>
+                    <constraint firstItem="utL-WA-Hn6" firstAttribute="top" secondItem="1Lx-ck-sbk" secondAttribute="top" constant="30" id="dfT-dq-Q9b"/>
+                    <constraint firstItem="1Wh-0w-bkb" firstAttribute="centerY" secondItem="T7y-Su-ZTY" secondAttribute="centerY" id="fbN-TI-MM7"/>
+                    <constraint firstItem="utL-WA-Hn6" firstAttribute="centerX" secondItem="1Lx-ck-sbk" secondAttribute="centerX" id="r6Y-cf-BVA"/>
+                    <constraint firstItem="T7y-Su-ZTY" firstAttribute="leading" secondItem="1Wh-0w-bkb" secondAttribute="trailing" constant="5" id="ufe-gn-0af"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnRegister" destination="utL-WA-Hn6" id="dPX-JS-FMe"/>
+                <outlet property="imgAllow" destination="1Wh-0w-bkb" id="KeG-fT-7OK"/>
+                <outlet property="lblDescAllow" destination="T7y-Su-ZTY" id="ez3-2a-kCj"/>
+            </connections>
+            <point key="canvasLocation" x="42" y="-98"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_selected_no" width="17" height="17"/>
+    </resources>
+</document>

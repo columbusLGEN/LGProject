@@ -1,0 +1,125 @@
+//
+//  ECRThemeAera.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+static CGFloat margin = 12;
+static CGFloat taHeight = 220;// 主题// 父view 中也有这个高度,后期需优化
+
+#import "ECRThemeAera.h"
+
+@interface ECRThemeAera ()
+@property (strong,nonatomic) UIButton *title;// 重磅推荐
+@property (strong,nonatomic) UIView *line;// 暂时用view 可能会换
+
+@property (strong,nonatomic) UIButton *tlButton;// top left
+@property (strong,nonatomic) UIButton *blButton;// bottom left
+@property (strong,nonatomic) UIButton *trButton;// top right
+@property (strong,nonatomic) UIButton *brButton;// bottom right
+
+@end
+
+@implementation ECRThemeAera
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self addSubview:self.title];
+        [self addSubview:self.line];
+        [self addSubview:self.tlButton];
+        [self addSubview:self.trButton];
+        [self addSubview:self.blButton];
+        [self addSubview:self.brButton];
+        
+        self.line.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+        [self.title setTitle:@"主题专区" forState:UIControlStateNormal];
+        [self.title setTitleColor:[UIColor cm_purpleColor_82056B_1] forState:UIControlStateNormal];
+        self.title.titleLabel.font = [UIFont systemFontOfSize:16];
+        [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top);
+            make.left.equalTo(self.mas_left).offset(10);
+        }];
+        [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.title.mas_centerY);
+            make.left.equalTo(self.title.mas_right).offset(8);
+            make.right.equalTo(self.mas_right).offset(9);
+            make.height.equalTo(@1);
+        }];
+        CGFloat btnW = (Screen_Width - 3 * margin)/2;
+        CGFloat btnH = (taHeight - margin - 14 - 10)/2 - 10;
+        [self.tlButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.title.mas_bottom).offset(5);
+            make.left.equalTo(self.mas_left).offset(margin);
+            make.width.equalTo(@(btnW));
+            make.height.equalTo(@(btnH));
+        }];
+        [self.trButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.tlButton.mas_top);
+            make.left.equalTo(self.tlButton.mas_right).offset(margin);
+            make.width.equalTo(@(btnW));
+            make.height.equalTo(@(btnH));
+        }];
+        [self.blButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.tlButton.mas_bottom).offset(margin);
+            make.left.equalTo(self.tlButton.mas_left);
+            make.width.equalTo(@(btnW));
+            make.height.equalTo(@(btnH));
+        }];
+        [self.brButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.blButton.mas_top);
+            make.left.equalTo(self.trButton.mas_left);
+            make.width.equalTo(@(btnW));
+            make.height.equalTo(@(btnH));
+        }];
+        [self.tlButton setImage:[UIImage imageNamed:@"bys_16"] forState:UIControlStateNormal];
+        [self.trButton setImage:[UIImage imageNamed:@"bys_16"] forState:UIControlStateNormal];
+        [self.blButton setImage:[UIImage imageNamed:@"bys_16"] forState:UIControlStateNormal];
+        [self.brButton setImage:[UIImage imageNamed:@"bys_16"] forState:UIControlStateNormal];
+    }
+    return self;
+}
+- (UIButton *)title{
+    if (_title == nil) {
+        _title = [[UIButton alloc] init];
+    }
+    return _title;
+}
+- (UIView *)line{
+    if (_line == nil) {
+        _line = [[UIView alloc] init];
+    }
+    return _line;
+}
+- (UIButton *)tlButton{
+    if (_tlButton == nil) {
+        _tlButton = [[UIButton alloc] init];
+        
+    }
+    return _tlButton;
+}
+- (UIButton *)blButton{
+    if (_blButton == nil) {
+        _blButton = [[UIButton alloc] init];
+        
+    }
+    return _blButton;
+}
+- (UIButton *)trButton{
+    if (_trButton == nil) {
+        _trButton = [[UIButton alloc] init];
+        
+    }
+    return _trButton;
+}
+- (UIButton *)brButton{
+    if (_brButton == nil) {
+        _brButton = [[UIButton alloc] init];
+        
+    }
+    return _brButton;
+}
+
+
+@end

@@ -1,0 +1,27 @@
+//
+//  ECRBaseCollectionViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/25.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRBaseCollectionViewCell.h"
+
+@implementation ECRBaseCollectionViewCell
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self updateSystemLanguage];
+    [self fk_observeNotifcation:kNotificationLanguageChanged usingBlock:^(NSNotification *note) {
+        [self updateSystemLanguage];
+    }];
+}
+
+- (void)updateSystemLanguage
+{
+    
+}
+
+@end

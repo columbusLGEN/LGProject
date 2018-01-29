@@ -1,0 +1,24 @@
+//
+//  ECRBookClassSortHeader.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/2.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@class ECRBookClassSortHeader,ECRMoreRowModel,ECRSortTableViewController;
+
+@protocol ECRBookClassSortHeaderDelegate <NSObject>
+
+- (void)bcsHeader:(ECRBookClassSortHeader *)header tag:(NSInteger)tag;// 0销量,1价格,2好评论
+
+@end
+
+@interface ECRBookClassSortHeader : UITableViewHeaderFooterView
+
+@property (strong,nonatomic) NSArray<ECRMoreRowModel *> *rowModels;//
+@property (weak,nonatomic) id<ECRBookClassSortHeaderDelegate> delegate;
+@property (strong,nonatomic) ECRSortTableViewController *stvc;//
+
+@end

@@ -1,0 +1,37 @@
+//
+//  EmptyView.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/12.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "EmptyView.h"
+
+@interface EmptyView ()
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgEmtpy;
+@property (strong, nonatomic) IBOutlet UILabel *lblDesc;
+@property (strong, nonatomic) IBOutlet UILabel *lblSubDesc;
+
+@end
+
+@implementation EmptyView
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self updateEmptyView];
+}
+
+- (void)updateEmptyView
+{
+    _imgEmtpy.image = _image;
+    _lblDesc.text = _strDesc;
+    
+    _lblSubDesc.hidden = !_showSubDesc;
+    _lblSubDesc.text = _strSubDesc;
+}
+
+
+@end

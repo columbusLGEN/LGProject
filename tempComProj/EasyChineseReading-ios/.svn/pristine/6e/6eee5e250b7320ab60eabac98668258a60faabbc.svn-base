@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无限运行任务测试</title>
+</head>
+<body>
+<div id="testNode0">测试</div>
+<h1>测试</h1>
+<h2>测试</h2>
+<h3>测试</h3>
+<h3 id="testNode1">测试</h3>
+<h4>测试</h4>
+
+<script type="text/javascript">
+    var indexCount = 0
+    function mission() {
+        var node0  = document.getElementById("testNode0");
+        var node1  = document.getElementById("testNode1");
+        var randomParam = indexCount;
+        for (var i=0; i<1000; i++) {
+            randomParam += Math.sin(randomParam) ;
+            randomParam -= Math.cos(randomParam);
+            randomParam += Math.atan(indexCount);
+            node0.innerText = "测试"+randomParam;
+            node1.innerText = "测试"+randomParam;
+        }
+//        randomParam = Math.tan(randomParam)
+        indexCount += randomParam;
+
+        console.log(indexCount);
+        requestAnimationFrame(mission);
+    }
+    requestAnimationFrame(mission);
+</script>
+</body>
+</html>

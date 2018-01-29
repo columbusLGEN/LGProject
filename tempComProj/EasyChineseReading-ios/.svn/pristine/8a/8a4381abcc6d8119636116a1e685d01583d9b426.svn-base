@@ -1,0 +1,75 @@
+
+//
+//  RButtonTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/8.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "RButtonTableViewCell.h"
+
+@interface RButtonTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UIButton *btnRegister;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescAllow;
+
+@end
+
+@implementation RButtonTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    _btnRegister.layer.masksToBounds = YES;
+    _btnRegister.layer.cornerRadius = _btnRegister.height/2;
+    
+    _btnRegister.backgroundColor = [UIColor cm_grayColor__E4E4E4_1];
+    [_btnRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _btnRegister.enabled = YES;
+    
+    UITapGestureRecognizer *tapAllowGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAllowProtocol)];
+    UITapGestureRecognizer *tapAllowGestureImg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAllowProtocol)];
+
+    [_lblDescAllow addGestureRecognizer:tapAllowGesture];
+    [_imgAllow addGestureRecognizer:tapAllowGestureImg];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)updateSystemLanguage
+{
+    [_btnRegister setTitle:LOCALIZATION(@"立即注册") forState:UIControlStateNormal];
+    _lblDescAllow.text = LOCALIZATION(@"同意注册条款");
+}
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    _imgAllow.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", dic[@"agree"] ? cImageSelected : cImageUnSelected]];
+}
+
+- (IBAction)click_btnRegister:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(registerNow)]) {
+        [self.delegate registerNow];
+    }
+}
+
+- (void)tapAllowProtocol
+{
+    if ([self.delegate respondsToSelector:@selector(allowProtocolWithCell:)]) {
+        [self.delegate allowProtocolWithCell:self];
+    }
+}
+
+- (void)updateButtonEnable:(BOOL)btnEnable
+{
+    _btnRegister.enabled = btnEnable;
+    _btnRegister.backgroundColor = btnEnable ? [UIColor cm_purpleColor_82056B_1] : [UIColor cm_grayColor__E4E4E4_1];
+}
+
+@end

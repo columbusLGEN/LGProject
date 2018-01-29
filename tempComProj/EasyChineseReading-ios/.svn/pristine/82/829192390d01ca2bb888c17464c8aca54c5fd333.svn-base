@@ -1,0 +1,45 @@
+/*
+ DBInternational.strings
+ DBPlayer
+ 
+ Created by SummerZhao on 2017/3/7.
+ Copyright © 2017年 Retech. All rights reserved.
+ */
+"ok" = "好的";
+"confirm" = "确定";
+
+"cancel" = "取消";
+"finish" = "完成";
+
+"tip" = "提示";
+"warning" = "提醒";
+"opening" = "正在打开";
+
+"inputcontent" = "输入内容";
+
+"nonetworkupdatefail" = "网络不通畅,更新失败";
+"onlinevideoneednetwork" = "播放网络视频需要有网络连接,请检查";
+"notopenyet" = "暂未开放";
+
+"savePhotoFail" = "保存图片失败";
+"gotosettingforphoto" = "应用程序无法访问照片,请到设置-隐私-照片，允许访问后再使用";
+
+"savePhotoSuccess" = "保存图片成功";
+
+"checknocamera" = "检测该设备没有摄像头";
+"gotosettingforcamera" = "请到\"设置-隐私-相机\"选项中,允许该程序访问你的相机";
+
+"youscoreis" = "你的分数是%.1f分";
+"questionnotallfinish" = "题目没有全部答完";
+"answeragain" = "确定要重新答题吗?";
+
+"confirmtodelete" = "确定删除?";
+
+"textcopy" = "文本拷贝";
+"selectedinclipboard" = "选择的文本已保存在剪贴板中";
+
+"downloading" = "正在下载,请稍等...";
+"canceldownloading" = "取消下载";
+"continuedownload" = "需要继续下载吗？";
+"notcontinue" = "不继续";
+"continue" = "继续";

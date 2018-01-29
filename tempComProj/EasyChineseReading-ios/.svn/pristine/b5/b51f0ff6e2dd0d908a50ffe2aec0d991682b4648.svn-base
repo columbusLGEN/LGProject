@@ -1,0 +1,322 @@
+//
+//  ECRBookRackController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#define ECRBookrackcell @"ECRBookrackCollectionViewCell"
+
+#import "ECRBookRackController.h"
+#import "ECRBookrackView.h"
+#import "ECRBookrackModel.h"
+#import "ECRBookrackCollectionViewCell.h"
+#import "ECRBookrackFlowLayout.h"
+#import "ECRBookrackModel.h"
+#import "ECRFloderView.h"
+#import "ECRBookFloderLayout.h"
+
+@interface ECRBookRackController ()<
+ECRBookrackViewDelegate,
+UICollectionViewDelegate,
+UICollectionViewDataSource,
+ECRBookrackFlowLayoutSwitchStateDelegate,
+LXReorderableCollectionViewDataSource,
+LXReorderableCollectionViewDelegateFlowLayout,
+ECRFloderViewDelegate
+>
+
+@property (strong,nonatomic) ECRBookrackView *mainView;
+@property (copy,nonatomic) void(^editDoneBlock)();
+@property (strong,nonatomic) NSArray<ECRBookrackModel *> *allBookModels;
+@property (strong,nonatomic) NSMutableArray<ECRBookrackModel *> *bookrackModels;// 已购买模型数组
+//@property (strong,nonatomic) ECRBookrackFlowLayout *brLayout;
+@property (strong,nonatomic) ECRFloderView *floderView;
+
+@end
+
+@implementation ECRBookRackController
+
+#pragma mark - ECRFloderViewDelegate
+- (void)floderViewClose:(ECRFloderView *)floderView{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    if (self.floderView != nil) {
+        [self.floderView removeFromSuperview];
+        self.floderView = nil;
+    }
+}
+// 文件夹中点击完成, 退出编辑状态
+- (void)floderViewEndEdit:(ECRFloderView *)floderView{
+    [self editDone];
+}
+
+#pragma mark - ECRBookrackViewDelegate 点击书本或者文件夹
+- (void)brView:(ECRBookrackView *)brViiew didSelectBookrack:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath{
+    // 全部图书列表,进入详情页面
+    if ([collectionView isEqual:_mainView.allOfBooks]) {
+        // TODO: 进入详情页面
+        NSLog(@"图书详情");
+    }else{
+        // 已购买列表点击事件
+        ECRBookrackModel *model = self.bookrackModels[indexPath.item];
+        if (model.groupId == 0) {
+            // 读书
+            
+            
+        }else{
+            // 隐藏导航栏
+            [self.navigationController setNavigationBarHidden:YES animated:NO];
+            // 打开文件夹
+            ECRBookFloderLayout *brLayout = [[ECRBookFloderLayout alloc] init];
+            brLayout.flssDelegate = self;
+            _floderView = [[ECRFloderView alloc] initWithFrame:CGRectZero flowLayout:brLayout];
+            _floderView.delegate = self;
+            [self.view addSubview:_floderView];
+            _floderView.fileName = model.name;
+            _floderView.bookModels = model.books;
+            _floderView.collectionView.dataSource = self;
+            _floderView.collectionView.delegate = self;
+            
+            [_floderView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
+        }
+    }
+}
+
+#pragma mark - ECRBookrackFlowLayoutSwitchStateDelegate
+- (void)brflayout:(ECRBookrackFlowLayout *)flowLayout beginEditWithModel:(ECRBookrackModel *)model doneBlock:(void (^)())doneBlock {
+    
+    [self setNavRightItemsWithState:NO];
+    self.editDoneBlock = doneBlock;
+    if (model.groupId == 0) {// 单本书
+        // 将该模型 切换为选中状态
+        
+        // 更换导航栏右边 item
+    }else{// 文件夹
+        // 不操作
+    }
+}
+
+#pragma mark LXReorderableCollectionViewDataSource
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath{
+    // 完成移动时执行
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath{
+    if ([collectionView isEqual:_mainView.bookrack]) {
+        
+        ECRBookrackModel *fromModel = _bookrackModels[fromIndexPath.item];
+        [_bookrackModels removeObjectAtIndex:fromIndexPath.item];
+        [_bookrackModels insertObject:fromModel atIndex:toIndexPath.item];
+    }else{
+        ECRBookrackModel *fromModel = _floderView.bookModels[fromIndexPath.item];
+        [_floderView.bookModels removeObjectAtIndex:fromIndexPath.item];
+        [_floderView.bookModels insertObject:fromModel atIndex:toIndexPath.item];
+    }
+    
+}
+// lee
+- (void)collectionView:(UICollectionView *)collectionView deleteItemAndModelAtIndexPath:(NSIndexPath *)fromIndexPath insertModel:(ECRBookrackModel *)model toIndexPath:(NSIndexPath *)toIndexPath{
+    
+    if (model == nil) {// 如果model为nil, 那么toIndex的模型为文件夹类型
+        [_bookrackModels removeObjectAtIndex:fromIndexPath.item];
+    }else{
+        if (fromIndexPath.item < toIndexPath.item) {// 从前往后添加
+                [_bookrackModels removeObjectAtIndex:fromIndexPath.item];
+                [_bookrackModels removeObjectAtIndex:(toIndexPath.item - 1)];
+                [_bookrackModels insertObject:model atIndex:(toIndexPath.item - 1)];
+        }else{// 从后往前添加
+
+            [_bookrackModels removeObjectAtIndex:fromIndexPath.item];
+            [_bookrackModels removeObjectAtIndex:toIndexPath.item];
+            [_bookrackModels insertObject:model atIndex:toIndexPath.item];
+//            NSLog(@"文件夹index%ld",toIndexPath.item);
+        }
+    }
+    
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath{
+    return YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+//// 点击cell
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    ECRBookrackModel *model = self.bookrackModels[indexPath.item];
+//    if (model.groupId == 0) {
+//        // 读书
+//        ECRBookReaderController *rvc = [[ECRBookReaderController alloc] init];
+//        rvc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+//        [self.navigationController pushViewController:rvc animated:YES];
+//        
+//    }else{
+//        // 隐藏导航栏
+//        [self.navigationController setNavigationBarHidden:YES animated:NO];
+//        // 打开文件夹
+//        ECRBookFloderLayout *brLayout = [[ECRBookFloderLayout alloc] init];
+//        brLayout.flssDelegate = self;
+//        _floderView = [[ECRFloderView alloc] initWithFrame:CGRectZero flowLayout:brLayout];
+//        _floderView.delegate = self;
+//        [self.view addSubview:_floderView];
+//        _floderView.fileName = model.name;
+//        _floderView.bookModels = model.books;
+//        _floderView.collectionView.dataSource = self;
+//        _floderView.collectionView.delegate = self;
+//        
+//        [_floderView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.equalTo(self.view);
+//        }];
+//    }
+//}
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if ([collectionView isEqual:_mainView.bookrack]) {
+        return _bookrackModels.count;
+    }
+    if ([collectionView isEqual:_floderView.collectionView]) {
+        return _floderView.bookModels.count;
+    }
+    if ([collectionView isEqual:_mainView.allOfBooks]) {
+        return _allBookModels.count;
+    }
+    return 0;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    // 待优化
+    if ([collectionView isEqual:_mainView.bookrack]) {
+        ECRBookrackModel *model;
+        ECRBookrackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ECRBookrackcell forIndexPath:indexPath];
+        cell.inx  = indexPath;
+        if (self.bookrackModels.count == 0) {
+        }else{
+            model = self.bookrackModels[indexPath.item];
+            cell.model = model;
+        }
+        return cell;
+    }
+    if ([collectionView isEqual:_floderView.collectionView]) {
+        ECRBookrackModel *model;
+        ECRBookrackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ECRBookrackcell forIndexPath:indexPath];
+        cell.inx  = indexPath;
+        if (self.floderView.bookModels.count == 0) {
+        }else{
+            model = self.floderView.bookModels[indexPath.item];
+            cell.model = model;
+        }
+        return cell;
+    }
+    if ([collectionView isEqual:_mainView.allOfBooks]) {
+        ECRBookrackModel *model;
+        ECRBookrackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ECRBookrackcell forIndexPath:indexPath];
+        cell.inx  = indexPath;
+        if (self.bookrackModels.count == 0) {
+        }else{
+            model = self.allBookModels[indexPath.item];
+            cell.model = model;
+        }
+        return cell;
+    }
+    return nil;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    [self loadNewData];
+    
+}
+
+- (void)loadNewData{
+    // TEST - CODE FOR DATA
+    NSString *testURL0 = @"https://images-cn.ssl-images-amazon.com/images/I/51VNBGrPxVL._SX353_BO1,204,203,200_.jpg";
+    NSString *testURL1 = @"http://pic13.photophoto.cn/20091109/0005018327183438_b.jpg";
+    NSInteger count = 19;//arc4random_uniform(10) + 6;
+    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:10];
+    for (NSInteger i = 0; i < count; ++i) {
+        ECRBookrackModel *model = [[ECRBookrackModel alloc] init];
+        model.name = [NSString stringWithFormat:@"营销_%ld",i];
+        model.groupId = 0;
+        model.bookPic = testURL0;
+        if (i == 0 || i == 5) {
+            NSMutableArray *arr2 = [NSMutableArray arrayWithCapacity:10];
+            for (NSInteger i = 0; i < 9; ++i) {
+                ECRBookrackModel *modelBook = [[ECRBookrackModel alloc] init];
+                modelBook.bookPic = testURL1;
+                modelBook.name = @"Java从入门到放弃";
+                [arr2 addObject:modelBook];
+            }
+            model.books = arr2;
+            model.groupId = 1;
+            model.name = [NSString stringWithFormat:@"文件夹%ld",i];
+        }
+        [arrM addObject:model];
+    }
+    
+    self.allBookModels = arrM.copy;// 全部图书
+    [self.mainView.allOfBooks reloadData];
+    self.bookrackModels = arrM;// 已购买
+    [self.mainView.bookrack reloadData];
+    
+}
+
+
+
+- (void)setupUI{
+    ECRBookrackFlowLayout *brLayout = [[ECRBookrackFlowLayout alloc] init];
+    brLayout.flssDelegate =  self;
+    _mainView          = [[ECRBookrackView alloc]
+                          initWithFrame:self.view.bounds flowLayout:brLayout];
+    _mainView.delegate = self;
+    _mainView.bookrack.dataSource = self;
+    _mainView.allOfBooks.dataSource = self;
+//    _mainView.allOfBooks.delegate = self;
+//    _mainView.bookrack.delegate = self;
+    self.view          = _mainView;
+    
+    // 设置导航栏右箭头
+    [self setNavRightItemsWithState:YES];
+}
+- (void)setNavRightItemsWithState:(BOOL)normal{
+    if (normal) {
+        UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithTitle:@"😯" style:UIBarButtonItemStylePlain target:self action:@selector(menuDropDown)];
+        UIBarButtonItem *test = [[UIBarButtonItem alloc] initWithTitle:@"😈" style:UIBarButtonItemStylePlain target:self action:@selector(test)];
+        
+        self.navigationItem.rightBarButtonItems = @[menuItem,test];
+    }else{
+        if (self.navigationItem.rightBarButtonItems.count == 2) {
+            self.navigationItem.rightBarButtonItems = nil;
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithTitle:@"\ue018" style:UIBarButtonItemStylePlain target:self action:@selector(editDone)];
+        self.navigationItem.rightBarButtonItem = doneItem;
+        }
+    }
+}
+- (void)menuDropDown{// 展开下拉菜单
+
+}
+- (void)test{
+    // 待定
+}
+- (void)editDone{
+    [self setNavRightItemsWithState:YES];
+    // 回调,告诉flow layout 结束 编辑
+    if (self.editDoneBlock) {
+        self.editDoneBlock();
+    }
+}
+
+
+- (void)createNavLeftBackItem{
+    
+}
+
+
+@end

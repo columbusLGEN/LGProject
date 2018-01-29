@@ -1,0 +1,22 @@
+//
+//  ECRDataHandler.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+@class ECRHomeMainModel;
+
+typedef void(^ECRDataHandlerSuccess)(ECRHomeMainModel *model);
+//typedef void(^ECRDataHandlerFailure)(ECRHomeMainModel *model);
+
+#import <Foundation/Foundation.h>
+@class ECRHomeMainModel;
+
+@interface ECRDataHandler : NSObject
+
+// 请求首页数据
+- (void)homeDataWithSuccess:(ECRDataHandlerSuccess)success failure:(void(^)(NSError *error))failure;
+
++ (instancetype)sharedDataHandler;
+@end

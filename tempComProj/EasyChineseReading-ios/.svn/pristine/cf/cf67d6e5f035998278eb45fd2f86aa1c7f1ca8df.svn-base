@@ -1,0 +1,139 @@
+//
+//  LoginDetailVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/8.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "LoginDetailVC.h"
+
+#import "LTextFieldTableViewCell.h"
+#import "LVerifyTableViewCell.h"
+#import "LButtonTableViewCell.h"
+
+#import "LFooterView.h"
+
+#import "RegisterVC.h"
+
+@interface LoginDetailVC ()<UITableViewDelegate, UITableViewDataSource, LFooterViewDelegate>
+
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSArray *arrViewConfiguration;   // 界面配置
+
+@end
+
+@implementation LoginDetailVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configTableView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark 配置登录界面
+
+- (void)configTableView
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, self.view.height) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
+    _tableView.estimatedRowHeight = 100;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.view addSubview:_tableView];
+    
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LTextFieldTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([LTextFieldTableViewCell class])];
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LVerifyTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([LVerifyTableViewCell class])];
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LButtonTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([LButtonTableViewCell class])];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrViewConfiguration.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_arrViewConfiguration[indexPath.row][@"identify"]];
+    cell.data = _arrViewConfiguration[indexPath.row];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *header = [UIView new];
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    LFooterView *footerView = [LFooterView loadFromNib];
+    
+    footerView.delegate = self;
+    footerView.loginType = _loginType;
+    
+    return footerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 200;
+}
+
+#pragma mark -
+#pragma mark LFooterViewDelegate
+
+- (void)loginByIndex:(NSInteger)index
+{
+    
+}
+
+- (void)registerNow
+{
+    RegisterVC *registerVC = [RegisterVC new];
+    registerVC.hidesBottomBarWhenPushed = NO;
+    [self.navigationController pushViewController:registerVC animated:YES];
+}
+
+- (void)forgetPassword
+{
+    
+}
+
+#pragma mark -
+#pragma mark 属性
+#pragma mark 界面配置
+
+- (NSArray *)arrViewConfiguration
+{
+    if (_arrViewConfiguration == nil) {
+        _arrViewConfiguration = @[@{@"index": @(0), @"identify": NSStringFromClass([LTextFieldTableViewCell class]), @"placeHolder": @"请输入邮箱/手机号", @"icon": @"2"},
+                                  @{@"index": @(1), @"identify": NSStringFromClass([LTextFieldTableViewCell class]), @"placeHolder": @"请输入密码", @"icon": @"2"},
+                                  @{@"index": @(2), @"identify": NSStringFromClass([LVerifyTableViewCell class]), @"placeHolder": @"请输入验证码", @"icon": @"2"},
+                                  @{@"index": @(3), @"identify": NSStringFromClass([LButtonTableViewCell class]), @"rember": @(1)},];
+    }
+    return _arrViewConfiguration;
+}
+
+
+
+@end

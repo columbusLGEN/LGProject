@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserLeaseTableViewCell" rowHeight="235" id="KGk-i7-Jjw" customClass="UserLeaseTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="452" height="235"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="452" height="235"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015年3月2日到期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogE-Pb-JSq">
+                        <rect key="frame" x="46" y="9.5" width="145" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="续费 &gt;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgo-XW-Sy4">
+                        <rect key="frame" x="360" y="0.0" width="80" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="9eu-Cw-Rin"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person17" translatesAutoresizingMaskIntoConstraints="NO" id="vK7-KH-S98">
+                        <rect key="frame" x="12" y="6.5" width="26" height="26"/>
+                    </imageView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="JP8-lq-Tkp">
+                        <rect key="frame" x="12" y="40" width="428" height="184.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="750" constant="160" id="8OY-Y4-aDr"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ksg-mH-8jr">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <connections>
+                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="b9D-vJ-sKH"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="nsz-Br-ppI"/>
+                        </connections>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JP8-lq-Tkp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="8LP-ER-d3e"/>
+                    <constraint firstItem="ogE-Pb-JSq" firstAttribute="centerY" secondItem="vK7-KH-S98" secondAttribute="centerY" id="8NN-HB-3Iw"/>
+                    <constraint firstAttribute="trailing" secondItem="JP8-lq-Tkp" secondAttribute="trailing" constant="12" id="EDd-8Y-vTW"/>
+                    <constraint firstAttribute="trailing" secondItem="jgo-XW-Sy4" secondAttribute="trailing" constant="12" id="Fiv-VP-Ug6"/>
+                    <constraint firstItem="vK7-KH-S98" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="ORb-YW-LQw"/>
+                    <constraint firstItem="JP8-lq-Tkp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="VOX-OJ-BsR"/>
+                    <constraint firstItem="JP8-lq-Tkp" firstAttribute="top" secondItem="jgo-XW-Sy4" secondAttribute="bottom" id="W3S-6C-i9r"/>
+                    <constraint firstItem="jgo-XW-Sy4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YHz-9a-76F"/>
+                    <constraint firstAttribute="bottom" secondItem="JP8-lq-Tkp" secondAttribute="bottom" constant="10" id="ds5-ug-YrK"/>
+                    <constraint firstItem="ogE-Pb-JSq" firstAttribute="leading" secondItem="vK7-KH-S98" secondAttribute="trailing" constant="8" id="iWk-w1-PBm"/>
+                    <constraint firstItem="ogE-Pb-JSq" firstAttribute="centerY" secondItem="jgo-XW-Sy4" secondAttribute="centerY" id="ivz-We-DMH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionHeightConstraint" destination="8OY-Y4-aDr" id="6Vm-ma-ON9"/>
+                <outlet property="collectionView" destination="JP8-lq-Tkp" id="hLx-Up-3ua"/>
+                <outlet property="lblLeaseContinue" destination="jgo-XW-Sy4" id="KGg-NL-S4T"/>
+                <outlet property="lblLeaseEndTime" destination="ogE-Pb-JSq" id="2NR-XY-wdP"/>
+            </connections>
+            <point key="canvasLocation" x="-91" y="131"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="person17" width="26" height="26"/>
+    </resources>
+</document>

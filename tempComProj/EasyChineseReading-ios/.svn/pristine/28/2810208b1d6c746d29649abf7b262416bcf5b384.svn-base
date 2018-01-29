@@ -1,0 +1,25 @@
+//
+//  UIVCRFooterRV.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/7.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class UIVCRFooterRV;
+
+@protocol UIVCRFooterRVDelegate <NSObject>
+
+- (void)payWithMoney;
+
+@end
+
+@interface UIVCRFooterRV : UICollectionReusableView
+
+@property (weak, nonatomic) id<UIVCRFooterRVDelegate> delegate;
+/* 花费 */
+@property (assign, nonatomic) CGFloat payNum;
+
+@end

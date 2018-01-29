@@ -1,0 +1,121 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="en">
+  <head>
+    <meta http-equiv="default-style" content="text/html; charset=utf-8"/>
+    <title>Scientific Ways of Thinking</title>
+    <link rel="stylesheet" href="css/ls-studying-the-life-sciences.css" type="text/css"/>
+    <script type="text/javascript" src="js/LAB.min.js"/>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"/>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"/>
+    <script type="text/javascript" src="js/jquery-ui.min.js"/>
+    <script type="text/javascript" src="js/pubsub.js"/>
+    <script type="text/javascript" src="js/aie_core.js"/>
+    <script type="text/javascript" src="js/aie_explore.js"/>
+    <script type="text/javascript" src="js/aie_qaa.js"/>
+    <script type="text/javascript" src="js/aie_textsound.js"/>
+    <script type="text/javascript" src="js/aie_storyline.js"/>
+    <script type="text/javascript" src="js/aie_events.js"/>
+    <script type="text/javascript" src="js/aie_gameutils.js"/>
+    <script type="text/javascript" src="js/iscroll.js"/>
+    <script type="text/javascript" src="js/jquery.slides.min.js"/>
+    <script type="text/javascript" src="js/panelnav.js"/>
+    <script type="text/javascript" src="js/popup.js"/>
+    <script type="text/javascript" src="js/igp_audio.js"/>
+    <meta name="wmk" content="Purchased from:www.azardi.com/daxiang/    Title:Unit 1. Life Sciences: Studying the Life Sciences    ISBN:ls-studying-the-life-sciences    Author:CK-12    Account:AAAA0267    Invoice:AAAA0231    Dated:2013-06-05 02:31:32.704317    Purchased by:xingyun wu"/>
+  </head>
+  <body>
+	<div class="galley-rw">
+		<section class="body-rw Lesson-rw exclude-auto-rw page-open-auto-rw" id="Lesson1" epub:type="bodymatter chapter"><div class="title-block-rw" id="title-block2">
+
+
+            <p class="title-num-rw" id="title-num3"><span class="title-num-label-rw">Lesson</span> 1
+            </p>
+
+            <h1 id="h12">Scientific Ways of Thinking</h1>
+
+         </div>
+
+         <div class="block-rw section-opening-rw exclude-auto-rw" id="section-opening2">
+
+
+            <h4 id="h410">Lesson Objectives</h4>
+
+            <ul id="ul1" epub:type="list"><li id="li1">Describe the role of a scientist.</li>
+    
+               <li id="li2">Understand that science is a system based on evidence, testing, and reasoning.</li>
+
+            </ul><h4 id="h411">Vocabulary</h4>
+
+            <ul id="ul2" epub:type="list"><li id="li3">evidence</li>
+    
+               <li id="li4">experiment</li>
+
+            </ul></div>
+
+         <h2 id="h23">Modern Science</h2>
+
+         <p id="p3">Modern science is:</p>
+
+         <ol class="x-ck12-decimal" id="x-ck12-decimal1" epub:type="list"><li id="li5">A way of understanding the physical world, based on observable evidence, reasoning, and repeated testing.</li>
+    
+            <li id="li6">A body of knowledge that is based on observable evidence, experimentation, reasoning, and repeated testing.</li>
+
+         </ol><h2 id="h24">Thinking Like a Scientist</h2>
+
+         <p class="firstpara-rw" id="p4">How can you think like a scientist?</p>
+
+         <p id="li7"><strong>Scientists ask questions: </strong> The key to being a great scientist is to ask questions. Imagine you are a scientist in the African Congo. While in the field, you observe one group of healthy chimpanzees on the North side of the jungle. On the other side of the jungle, you find a group of chimpanzees that are mysteriously dying. What questions might you ask? A good scientist will ask, "What differs between the two environments where the chimpanzees live?" and "Are there differences in behavior between the two chimps that allow one group to survive over another?"
+         </p>
+
+         <p id="li8"><strong>Scientists make detailed observations: </strong> A person untrained in the sciences may observe, "The chimps on one side of the jungle are dying, while chimps on the other side of the jungle are healthy." Can you think of ways to make this observation more detailed? What about the number of chimps? Are they male of female? Young or old? A good scientist may observe, "While all seven females and three males on the North side of the jungle are healthy and show normal behavior, four female and five male chimps under the age of five have died." Detailed observations can ultimately help scientists to design their experiments and answer their questions. See a photo of chimpanzees in <em>Figure </em><span class="ref-figure-rw">1-1</span>.
+         </p>
+
+         <div class="media-rw figure-rw float-none-rw floatgalley-none-rw align-center-rw width-50-rw exclude-auto-rw" id="image1">
+
+
+            <div class="pc-rw" id="pc2"><img alt="" src="images/20130404122558290965_online.jpg"/><p class="caption-rw" id="caption1"><strong>Figure <span class="num-figure-rw variable-rw">1-1</span>.</strong> An adult and child chimpanzee.
+               </p>
+
+               <p class="source-rw" id="source7">Source: <a href="http://en.wikipedia.org/wiki/File:Chimpanzee_mom_and_baby.jpg" target="_blank">Wikipedia. Steve. CC-BY-SA 3.0</a>
+               </p>
+
+            </div>
+
+         </div>
+
+         <p class="firstpara-rw" id="li10"><strong>Scientists find answers using tests: </strong> When scientists want to answer a question, they search for evidence using experiments. An <span class="ref-popup-rw" data-popup-target="experiment">experiment</span> is a test to see if a hypothesis is right or wrong. <span class="ref-popup-rw" data-popup-target="evidence">Evidence</span> is made up of the observations a scientist makes during an experiment. To study the cause of death in the chimpanzees, scientists may give the chimps nutrients in the form of nuts, berries, and vitamins to see if they are dying from a lack of food. This test is the experiment. If fewer chimps die, then the experiment shows that the chimps may have died from not having enough food. This is the evidence.
+         </p>
+
+         <p id="li11"><strong>Scientists question the answers: </strong> Good scientists are skeptical. Scientists never use only one piece of evidence to form a conclusion. For example, the chimpanzees in the experiment may have died from a lack of food, but can you think of another explanation for their death? They may have died from a virus, or from another less obvious cause. More experiments need to be completed before scientists can be sure. Good scientists constantly question their own conclusions. They also find other scientists to confirm or disagree with their evidence.
+         </p>
+
+         <div class="named-lists-rw toc-lists-rw exclude-auto-rw" id="toc-lists2">
+
+
+            <div class="list-named-rw list-glossary-rw exclude-auto-rw" id="list-glossary2" epub:type="glossary">
+
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="evidence">
+
+
+                  <h4 id="h412">Evidence</h4>
+
+                  <p id="p10">Something that gives us grounds for knowing of the existence or presence of something else.</p>
+
+               </div>
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="experiment">
+
+
+                  <h4 id="h413">Experiment</h4>
+
+                  <p id="p11">A test to see if a hypothesis is right or wrong; a test to obtain new data.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </section></div>
+    </body>
+</html>

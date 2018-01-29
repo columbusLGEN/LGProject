@@ -1,0 +1,139 @@
+//
+//  OrderRequest.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "OrderRequest.h"
+
+@interface OrderRequest ()
+
+/* 订单数组 */
+@property (strong, nonatomic) NSArray *arrOrders;
+
+@end
+
+@implementation OrderRequest
+
+CM_SINGLETON_IMPLEMENTION(OrderRequest)
+
+
+#pragma mark - 获取订单列表
+/**
+ 获取订单列表
+
+ @param page 页数
+ @param completion 订单列表、error
+ */
+- (void)getOrderListWithPage:(NSInteger)page paystatus:(ENUM_ZOrderState)paystatus completion:(CompleteBlock)completion
+{
+    NSDictionary *dic = @{@"params":
+                              @{@"length": @"10",
+                                @"userId": @"1",
+                                @"paystatus": paystatus == 0 ? @"" : [NSString stringWithFormat:@"%ld", (long)paystatus],
+                                @"page"  : [NSString stringWithFormat:@"%ld", (long)page]},
+                          @"md5": @"654c01acaf40e0ce6d841a552fd3b96c"};
+    
+    [ZNetworkRequest requestWithHttpMethod:ENUM_ZHttpRequestMethodPost strUrl:@"order/queryOrders" parameters:dic completeBlock:^(id responseObject, ErrorModel *error) {
+        if ( error )
+        {
+            completion(nil,error);
+        }
+        else
+        {
+            NSArray *list = [NSArray arrayWithArray:responseObject];
+            
+            _arrOrders = [NSMutableArray arrayWithArray:list];
+            completion(_arrOrders, nil);
+        }
+    }];
+}
+
+#pragma mark - 查看用户对订单的评分 ？？
+
+/**
+ 查看用户对订单的评分
+ 
+ @param orderId     订单id
+ @param completion  回调
+ */
+- (void)getOrderScoreWithOrderId:(NSString *)orderId
+                      completion:(CompleteBlock)completion
+{
+//    NSDictionary *dic = @{@"params": @{@"userId": userId},
+//                          @"md5"   : @"654c01acaf40e0ce6d841a552fd3b96c"};
+//    [ZNetworkRequest requestWithHttpMethod:ENUM_ZHttpRequestMethodPost
+//                                    strUrl:@"user/personalInformation"
+//                                parameters:dic
+//                             completeBlock:^(id responseObject, ErrorModel *error) {
+//                                 if (error) {
+//                                     completion(nil, error);
+//                                 }
+//                                 else {
+//                                     
+//                                     completion(responseObject, nil);
+//                                 }
+//                             }];
+}
+
+#pragma mark - 添加评分 ？？
+
+/**
+ 添加评分
+ 
+ @param orderId     订单id
+ @param arrScores   分数数组（{@"bookId":@"boodId", @"score": @"score"}）
+ @param completion  回调
+ */
+- (void)addOrderScoreWithOrderId:(NSString *)orderId
+                          scores:(NSArray *)arrScores
+                      completion:(CompleteBlock)completion
+{
+//    NSDictionary *dic = @{@"params": @{@"userId": userId},
+//                          @"md5"   : @"654c01acaf40e0ce6d841a552fd3b96c"};
+//    [ZNetworkRequest requestWithHttpMethod:ENUM_ZHttpRequestMethodPost
+//                                    strUrl:@"user/personalInformation"
+//                                parameters:dic
+//                             completeBlock:^(id responseObject, ErrorModel *error) {
+//                                 if (error) {
+//                                     completion(nil, error);
+//                                 }
+//                                 else {
+//                                     
+//                                     completion(responseObject, nil);
+//                                 }
+//                             }];
+}
+
+#pragma mark - 查看书籍全部评分
+
+/**
+ 查看书籍全部评分
+ 
+ @param bookId      书籍id
+ @param page        页数
+ @param completion  回调
+ */
+- (void)getOrderAllScoresWithBookId:(NSString *)bookId
+                               page:(NSString *)page
+                         completion:(CompleteBlock)completion
+{
+//    NSDictionary *dic = @{@"params": @{@"userId": userId},
+//                          @"md5"   : @"654c01acaf40e0ce6d841a552fd3b96c"};
+//    [ZNetworkRequest requestWithHttpMethod:ENUM_ZHttpRequestMethodPost
+//                                    strUrl:@"user/personalInformation"
+//                                parameters:dic
+//                             completeBlock:^(id responseObject, ErrorModel *error) {
+//                                 if (error) {
+//                                     completion(nil, error);
+//                                 }
+//                                 else {
+//                                     
+//                                     completion(responseObject, nil);
+//                                 }
+//                             }];
+}
+
+@end

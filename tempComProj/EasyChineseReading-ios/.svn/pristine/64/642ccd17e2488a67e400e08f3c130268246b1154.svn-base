@@ -1,0 +1,43 @@
+//
+//  USCAccountTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "USCAccountTableViewCell.h"
+
+@interface USCAccountTableViewCell ()
+
+@end
+
+@implementation USCAccountTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configView];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configView
+{
+    _lblDesc.textColor     = [UIColor cm_blackColor_333333_1];
+    _txtfAccount.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _lblDesc.font     = [UIFont systemFontOfSize:cFontSize_16];
+    _txtfAccount.font = [UIFont systemFontOfSize:cFontSize_16];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return _isUpdated;
+}
+
+@end

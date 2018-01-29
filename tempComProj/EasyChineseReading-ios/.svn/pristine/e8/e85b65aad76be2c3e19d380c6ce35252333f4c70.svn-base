@@ -1,0 +1,17 @@
+//
+//  ECRRequestFailuredView.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/18.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ECRRequestFailuredView : UIView
+
+@property (copy,nonatomic) NSString *imgName;//
+@property (copy,nonatomic) NSString *btnTitle;//
+- (instancetype)requestFailuredViewWithFrame:(CGRect)frame clickBlock:(void(^)())block;
+
+@end

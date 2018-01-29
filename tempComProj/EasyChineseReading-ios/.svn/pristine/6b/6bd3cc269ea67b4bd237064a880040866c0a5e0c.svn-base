@@ -1,0 +1,24 @@
+//
+//  ECRmultiObject.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/19.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface ECRMultiObject : NSObject
+
+- (NSArray *)doubleArrayWithOriginArray:(NSArray *)array rowKey:(NSString *)rowKey;// 字典
+- (NSArray *)singleLineDoubleModelWithOriginArr:(NSArray *)array;// 模型
+
++ (CGFloat)userYue;/// 获取用户余额
++ (NSInteger)userScore;/// 获取用户积分
+
++ (BOOL)userInterfaceIdiomIsPad;
+- (UIUserInterfaceIdiom)userInterfaceIdiom;
++ (UIUserInterfaceIdiom)userInterfaceIdiom;
++ (instancetype)sharedInstance;
+
+@end

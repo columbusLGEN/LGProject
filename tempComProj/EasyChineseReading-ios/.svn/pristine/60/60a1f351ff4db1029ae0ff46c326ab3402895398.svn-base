@@ -1,0 +1,145 @@
+//
+//  UFriendInfoVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UFriendInfoVC.h"
+
+#import "UFriendInfoCollectionViewCell.h"
+#import "UFriendInfoHeaderView.h"
+
+#import "UFriendChatVC.h"
+#import "ECRBookInfoViewController.h"
+
+@interface UFriendInfoVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) UICollectionViewFlowLayout *layout;
+
+@property (strong, nonatomic) IBOutlet UILabel *lblChat;            // 私信
+@property (strong, nonatomic) UFriendInfoHeaderView *headerView;    // 好友信息
+
+@end
+
+@implementation UFriendInfoVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configFriendInfoView];
+    [self registerCollection];
+    [self getFriendsData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark 配置界面
+
+- (void)configFriendInfoView
+{
+    _lblChat.hidden = YES;
+    _collectionView.hidden = YES;
+    
+    _lblChat.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    _lblChat.textColor = [UIColor whiteColor];
+    
+    UITapGestureRecognizer *tapChat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toChatVC)];
+    [_lblChat addGestureRecognizer:tapChat];
+}
+
+- (void)registerCollection
+{
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UFriendInfoCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([UFriendInfoCollectionViewCell class])];
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([UFriendInfoHeaderView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UFriendInfoHeaderView class])];
+    self.collectionView.collectionViewLayout = self.layout;
+}
+
+#pragma mark - 获取好友信息
+
+- (void)getFriendsData
+{
+    [[FriendRequest sharedInstance] getFriendReadHistoryWithFriendId:[NSString stringWithFormat:@"%ld", _friendInfo.userId] completion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            NSArray *array = [NSDictionary mj_objectArrayWithKeyValuesArray:object];
+            _friendInfo.readBook = [BookModel mj_objectArrayWithKeyValuesArray:array.firstObject[@"readBook"]];
+            _friendInfo.readHistory = [ReadHistoryModel mj_objectArrayWithKeyValuesArray:array.firstObject[@"readHistory"]];
+            
+            _lblChat.hidden = NO;
+            _collectionView.hidden = NO;
+            [_collectionView reloadData];
+        }
+    }];
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _friendInfo.readBook.count;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UFriendInfoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UFriendInfoCollectionViewCell" forIndexPath:indexPath];
+    cell.data = _friendInfo.readBook[indexPath.row];
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    self.headerView = (UFriendInfoHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UFriendInfoHeaderView class]) forIndexPath:indexPath];
+    self.headerView.data = _friendInfo;
+    return _headerView;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self pushToViewControllerWithIndex:indexPath.row];
+}
+
+#pragma mark - action
+
+- (void)toChatVC
+{
+    UFriendChatVC *chatVC = [UFriendChatVC loadFromStoryBoard:@"User"];
+    chatVC.userId = _friendInfo.userId;
+    [self.navigationController pushViewController:chatVC animated:YES];
+}
+
+- (void)pushToViewControllerWithIndex:(NSInteger)index
+{
+    BookModel *book = _friendInfo.readBook[index];
+    // 进入详情页面
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"BookInfo" bundle:nil];
+    ECRBookInfoViewController *bivc = [board instantiateViewControllerWithIdentifier:@"ECRBookInfoViewController"];
+    bivc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    bivc.bookId = [NSString stringWithFormat:@"%ld", book.bookId];
+    [self.navigationController pushViewController:bivc animated:YES];
+}
+
+#pragma mark - 属性
+
+- (UICollectionViewFlowLayout *)layout
+{
+    if (!_layout) {
+        _layout = [[UICollectionViewFlowLayout alloc] init];
+        _layout.minimumLineSpacing = 10.f;
+        _layout.minimumInteritemSpacing = 10.f;
+        CGFloat itemWidth = (Screen_Width - 10.f * 5) / 4;
+        _layout.itemSize = CGSizeMake(itemWidth, itemWidth + 50);
+        _layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        _layout.headerReferenceSize = CGSizeMake(Screen_Width, 320);
+    }
+    return _layout;
+}
+
+@end

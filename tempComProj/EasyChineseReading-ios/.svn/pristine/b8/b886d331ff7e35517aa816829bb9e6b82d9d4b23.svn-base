@@ -1,0 +1,44 @@
+//
+//  UIVCRFooterRV.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/7.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UIVCRFooterRV.h"
+
+@interface UIVCRFooterRV ()
+@property (strong, nonatomic) IBOutlet UIButton *btnPay;
+@property (strong, nonatomic) IBOutlet UILabel *lblPayNum;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescPayNum;
+
+@end
+
+@implementation UIVCRFooterRV
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    
+    _lblPayNum.text = [NSString stringWithFormat:@"%.2f", _payNum];
+    
+    _lblPayNum.textColor = [UIColor cm_orangeColor_FF6000_1];
+    
+    _lblDescPayNum.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _btnPay.layer.masksToBounds = YES;
+    _btnPay.layer.cornerRadius = _btnPay.height/2;
+    
+    [_btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_btnPay setTitle:@"立即支付" forState:UIControlStateNormal];
+    [_btnPay setBackgroundColor:[UIColor cm_purpleColor_82056B_1]];
+}
+
+- (IBAction)click_btnPay:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(payWithMoney)] ) {
+        [self.delegate payWithMoney];
+    }
+}
+
+@end

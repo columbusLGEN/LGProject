@@ -1,0 +1,139 @@
+//
+//  UCRecommendStudentsVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/14.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRecommendStudentsVC.h"
+
+#import "UCRStudentsShopCarView.h"
+
+#import "UCRecommendDescribeVC.h"
+#import "UCRecommendStudentListVC.h"
+
+@interface UCRecommendStudentsVC ()<UCRStudentsShopCarViewDelegate>
+
+@property (nonatomic, strong) UCRStudentsShopCarView *shopCarView;  // 购物车
+
+@property (nonatomic, strong) NSMutableArray *arrSelectedStudent;   // 选择的学生
+@property (nonatomic, strong) NSMutableArray *arrViewControllers;   // 控制器
+
+@end
+
+@implementation UCRecommendStudentsVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 重写父类方法配置header navigation 与 tableView
+
+- (void)configHeaderView
+{
+    //要显示的标题
+    NSArray *titles = @[@"禁区班", @"什么班", @"鬼神班", @"这个班", @"清华班", @"那个班", @"就是班"];
+    _arrSelectedStudent = [NSMutableArray arrayWithCapacity:0];
+    //创建需要展示的ViewController
+    _arrViewControllers = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0 ; i<titles.count; i++) {
+        UCRecommendStudentListVC *studentList = [UCRecommendStudentListVC new];
+        
+        studentList.arrSelectedStudent = self.arrSelectedStudent;
+        [_arrViewControllers addObject:studentList];
+        studentList.reloadBlock = ^(BOOL isSelected) {
+            [self updateRecommendStudentView];
+        };
+    }
+    [self configSlideSwitchWithTitles:titles viewControllers:_arrViewControllers];
+}
+
+- (void)configNavigationBar
+{
+    self.title = @"推荐阅读";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"2"] style:UIBarButtonItemStylePlain target:self action:@selector(searchStudent)];
+}
+
+- (void)configOtherView
+{
+    _shopCarView  = [[UCRStudentsShopCarView alloc] initWithFrame:CGRectMake(0, Screen_Height - 64 - 50, CGRectGetWidth(self.view.bounds), 50) inView:self.view];
+    _shopCarView.delegate = self;
+    [self.view addSubview:_shopCarView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWithNotification:) name:kNotificationRemoveSelectedStudent object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllStudents) name:kNotificationRemoveAllStudents object:nil];
+}
+
+- (void)searchStudent
+{
+    
+}
+
+#pragma mark - 通知方法
+// 删除选中的学生
+- (void)updateWithNotification:(NSNotification *)notification
+{
+    if ([_arrSelectedStudent containsObject:notification.object]) {
+        [_arrSelectedStudent removeObject:notification.object];
+    }
+    [self updateRecommendStudentView];
+}
+// 删除全部选中的学生
+- (void)removeAllStudents
+{
+    [_arrSelectedStudent removeAllObjects];
+    [self updateRecommendStudentView];
+}
+
+#pragma mark - 下一步
+
+- (void)nextStep
+{
+    UCRecommendDescribeVC *recommendDescribeVC = [[UCRecommendDescribeVC alloc] init];
+    [self.navigationController pushViewController:recommendDescribeVC animated:YES];
+}
+
+#pragma mark - 设置购物车动画
+- (void)animationDidFinish
+{
+    [UIView animateWithDuration:0.1 animations:^{
+        _shopCarView.btnShowSelectedStudents.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 animations:^{
+            _shopCarView.btnShowSelectedStudents.transform = CGAffineTransformMakeScale(1, 1);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }];
+}
+
+#pragma mark - 更新选中界面
+
+- (void)updateRecommendStudentView {
+    
+    _shopCarView.studentSelectedView.objects = _arrSelectedStudent;
+    //设置高度。
+    [_shopCarView updateFrame:_shopCarView.studentSelectedView];
+    [_shopCarView.studentSelectedView.tableView reloadData];
+    //设置选中的数量
+    [_shopCarView setSelectedBooksNumber:_arrSelectedStudent.count];
+    //重新设置数据源
+    UCRecommendStudentListVC *studentList = _arrViewControllers[self.slideSwitch.selectedIndex];
+    [studentList.tableView reloadData];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:kNotificationRemoveSelectedStudent];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:kNotificationRemoveAllStudents];
+}
+
+@end

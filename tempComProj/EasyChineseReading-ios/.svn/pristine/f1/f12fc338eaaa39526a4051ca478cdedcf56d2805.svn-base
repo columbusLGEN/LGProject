@@ -1,0 +1,71 @@
+//
+//  YMMyBook+CoreDataProperties.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/12/2.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
+//  to delete and recreate this implementation file for your updated model.
+//
+
+#import "YMMyBook.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface YMMyBook (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSDate *accessDate;
+@property (nullable, nonatomic, retain) NSDate *addDate;
+@property (nullable, nonatomic, retain) NSString *author;
+@property (nullable, nonatomic, retain) NSString *bookID;
+@property (nullable, nonatomic, retain) NSString *bookJRID;
+@property (nullable, nonatomic, retain) NSString *bookName;
+@property (nullable, nonatomic, retain) NSString *bookName_EN;
+@property (nullable, nonatomic, retain) NSString *bookType;
+@property (nullable, nonatomic, retain) NSString *categoryID;
+@property (nullable, nonatomic, retain) NSString *categoryName;
+@property (nullable, nonatomic, retain) NSString *cover;
+@property (nullable, nonatomic, retain) NSString *cycle;
+@property (nullable, nonatomic, retain) NSNumber *downloadingSortID;
+@property (nullable, nonatomic, retain) NSNumber *downloadProgress;
+@property (nullable, nonatomic, retain) NSNumber *downloadStatus;
+@property (nullable, nonatomic, retain) NSString *downloadURL;
+@property (nullable, nonatomic, retain) NSNumber *dreamBookPage;
+@property (nullable, nonatomic, retain) NSNumber *dreamBookScene;
+@property (nullable, nonatomic, retain) NSString *epubVersion;
+@property (nullable, nonatomic, retain) NSNumber *expiringDate;
+@property (nullable, nonatomic, retain) NSString *expiringMessage;
+@property (nullable, nonatomic, retain) NSString *fatherFolder;
+@property (nullable, nonatomic, retain) NSNumber *fileSize;
+@property (nullable, nonatomic, retain) NSString *introduce;
+@property (nullable, nonatomic, retain) NSNumber *isBook;
+@property (nullable, nonatomic, retain) NSNumber *isDownloaded;
+@property (nullable, nonatomic, retain) NSNumber *isFolder;
+@property (nullable, nonatomic, retain) NSNumber *isInCloud;
+@property (nullable, nonatomic, retain) NSNumber *isPageParsed;
+@property (nullable, nonatomic, retain) NSNumber *isReaded;
+@property (nullable, nonatomic, retain) NSNumber *isSdFile;
+@property (nullable, nonatomic, retain) NSString *issueString;
+@property (nullable, nonatomic, retain) NSNumber *itemIndex;
+@property (nullable, nonatomic, retain) NSDate *lastOperateDate;
+@property (nullable, nonatomic, retain) NSNumber *lastReadCID;
+@property (nullable, nonatomic, retain) NSNumber *lastReadPosition;
+@property (nullable, nonatomic, retain) NSString *ncxPath;
+@property (nullable, nonatomic, retain) NSString *opsPath;
+@property (nullable, nonatomic, retain) id pageCounts;
+@property (nullable, nonatomic, retain) NSString *publishName;
+@property (nullable, nonatomic, retain) NSNumber *readProgress;
+@property (nullable, nonatomic, retain) NSString *smallCover;
+@property (nullable, nonatomic, retain) NSNumber *sortID;
+@property (nullable, nonatomic, retain) NSNumber *syncStatus;
+@property (nullable, nonatomic, retain) NSString *unitDomain;
+@property (nullable, nonatomic, retain) NSString *unitName;
+@property (nullable, nonatomic, retain) NSNumber *usedFontSizeScale;
+@property (nullable, nonatomic, retain) NSString *userID;
+@property (nullable, nonatomic, retain) NSString *ncxBasePath;
+@property (nullable, nonatomic, retain) id webPageCounts;
+
+@end
+
+NS_ASSUME_NONNULL_END

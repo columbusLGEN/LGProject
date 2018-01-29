@@ -1,0 +1,51 @@
+//
+//  ECRSearchBooksViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRSearchBooksViewController.h"
+#import "ECRSearchTitleView.h"
+
+@interface ECRSearchBooksViewController ()<
+ECRSearchTitleViewDelegate
+>
+
+@end
+
+@implementation ECRSearchBooksViewController
+
+#pragma mark - ECRSearchTitleViewDelegate
+- (void)stViewClose:(ECRSearchTitleView *)view{
+    [self baseViewControllerDismiss];
+}
+- (void)baseViewControllerDismiss{
+    [self.navigationController popViewControllerAnimated:NO];
+}
+// 不实现此方法,会走父类的实现
+//- (void)stView:(ECRSearchTitleView *)view content:(NSString *)content{
+//    // MARK: 根据content 开始搜索
+//    
+//}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self replaceTitleViewForSearch];// 设置搜索框
+}
+
+// 重写不实现
+- (void)setNavRighSearchItem{
+    
+}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    return nil;
+//}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 0;
+//}
+
+
+@end

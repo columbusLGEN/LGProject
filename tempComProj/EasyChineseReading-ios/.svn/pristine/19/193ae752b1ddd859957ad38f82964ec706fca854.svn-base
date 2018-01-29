@@ -1,0 +1,67 @@
+//
+//  UMessageVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserMessageVC.h"
+
+#import "UMessageTableViewCell.h"
+
+#import "UserMessageDetailVC.h"
+
+@interface UserMessageVC ()
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+
+@end
+
+@implementation UserMessageVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configTableView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)configTableView
+{
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UMessageTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UMessageTableViewCell class])];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UMessageTableViewCell"];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 88.f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UserMessageDetailVC *detail = [UserMessageDetailVC loadFromNib];
+    [self.navigationController pushViewController:detail animated:YES];
+}
+@end

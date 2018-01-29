@@ -1,0 +1,101 @@
+//
+//  ECRHomeTitleView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRHomeTitleView.h"
+#import "UIView+Extension.h"
+#import "ECRSearchBar.h"
+
+@interface ECRHomeTitleView ()//<UISearchBarDelegate>
+
+// 1.搜索框
+//@property (strong,nonatomic) ECRSearchBar *search;
+// 假装搜索框
+@property (strong,nonatomic) UIButton *fakeSearch;
+// 2.购物车按钮
+@property (strong,nonatomic) UIButton *shoppingCar;
+
+@end
+
+@implementation ECRHomeTitleView
+
+//static CGFloat btnW = 40;
+static CGFloat h = 40;
+
+#pragma mark - UISearchBarDelegate
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+//    if ([self.delegate respondsToSelector:@selector(htView:searchWithContent:)]) {
+//        [self.delegate htView:self searchWithContent:searchText];
+//    }
+//}
+//- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+//    [self endEditing:YES];
+//    if ([self.delegate respondsToSelector:@selector(htViewBeginSearch:)]) {
+//        [self.delegate htViewBeginSearch:self];
+//    }
+//}
+- (void)searchClick:(UIButton *)bsender{
+    if ([self.delegate respondsToSelector:@selector(htViewBeginSearch:)]) {
+        [self.delegate htViewBeginSearch:self];
+    }
+}
+
+// 点击购物车按钮
+- (void)scClick:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(htView:sCarClick:)]) {
+        [self.delegate htView:self sCarClick:nil];
+    }
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        UIImage *scBImg = [UIImage imageNamed:@"tab_icon"];// 购物车按钮icon
+        _fakeSearch = [[UIButton alloc] init];
+        [self addSubview:_fakeSearch];
+        
+        _shoppingCar = [[UIButton alloc] init];
+        [self addSubview:_shoppingCar];
+        [_shoppingCar setBackgroundImage:scBImg forState:UIControlStateNormal];
+        [_shoppingCar sizeToFit];
+
+        // 按钮基础设置
+        _fakeSearch.highlighted = NO;
+        [_fakeSearch setImage:[UIImage imageNamed:@"lei1"] forState:UIControlStateNormal];
+        [_fakeSearch setTitle:@"搜索图书或作者" forState:UIControlStateNormal];
+        _fakeSearch.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_fakeSearch setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _fakeSearch.layer.borderColor = [UIColor blackColor].CGColor;
+        _fakeSearch.layer.borderWidth = 1;
+        [_fakeSearch addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
+        _fakeSearch.layer.cornerRadius = 10;
+        _fakeSearch.layer.masksToBounds = YES;
+        [_fakeSearch setContentEdgeInsets:UIEdgeInsetsMake(2, 0, 2, 0)];
+        
+        [_fakeSearch mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).offset(15);
+            make.left.equalTo(self.mas_left);
+//            make.right.equalTo(_shoppingCar.mas_left);
+        }];
+
+        // MARK: 购物车按钮
+        UIColor *scBColor = [UIColor grayColor];
+        [_shoppingCar setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        [_shoppingCar setBackgroundColor:scBColor];
+        [_shoppingCar addTarget:self action:@selector(scClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_shoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_fakeSearch.mas_right).offset(8);
+            make.centerY.equalTo(_fakeSearch.mas_centerY);
+            make.right.equalTo(self.mas_right);
+        }];
+        
+        
+    }
+    return self;
+}
+
+
+@end

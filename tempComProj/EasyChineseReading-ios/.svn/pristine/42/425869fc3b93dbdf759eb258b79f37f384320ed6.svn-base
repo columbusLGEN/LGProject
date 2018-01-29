@@ -1,0 +1,195 @@
+//
+//  ECRHomeMainView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/29.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+static CGFloat cvHeight = 130;// 轮播
+static CGFloat bcHeight = 126;// 分类
+static CGFloat brHeight = 230;// 推荐
+static CGFloat saHeight = 484;// 系列
+static CGFloat taHeight = 220;// 主题
+static CGFloat rmHeight = 316;// 达人
+
+#import "ECRHomeMainView.h"
+#import "ECRHomeMainModel.h"
+#import "SDCycleScrollView.h"
+#import "ECRBookClasses.h"
+#import "ECRBoomRecomment.h"
+#import "ECRThemeAera.h"
+#import "ECRSeriesAera.h"
+#import "ECRReadMonster.h"
+
+@interface ECRHomeMainView ()<
+SDCycleScrollViewDelegate,
+UIScrollViewDelegate
+>
+
+@end
+
+@implementation ECRHomeMainView
+
+#pragma mark - SDCycleScrollViewDelegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+}
+
+- (void)setModels:(NSArray *)models{
+    _models = models;
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (NSInteger i = 0; i < models.count; ++i) {
+        ECRHomeMainModel *model = models[i];
+        [arrM addObject:model.imgTestURL];
+    }
+    
+    // MARK: 赋值网络轮播数组
+    _cycleView.imageURLStringsGroup = arrM.copy;
+//    _cycleView.localizationImagesGroup = arrM.copy;
+    
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+        [self setupUI];
+        
+    }
+    return self;
+}
+
+- (void)setupUI{
+    [self addSubview:self.scrollView];
+    // MARK: 必要时轮播器需要加载本地图片
+    [self.scrollView addSubview:self.cycleView];
+    [self.scrollView addSubview:self.bookClasses];
+    [self.scrollView addSubview:self.boomRecomment];
+    [self.scrollView addSubview:self.seriesAera];
+    [self.scrollView addSubview:self.themeAera];
+    [self.scrollView addSubview:self.readMonster];
+    
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.left.equalTo(self.mas_left);
+        make.bottom.equalTo(self.mas_bottom).offset(-49);;
+        make.right.equalTo(self.mas_right);
+    }];
+    [self.cycleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.scrollView.mas_top);
+        make.left.equalTo(self.scrollView.mas_left);
+        make.width.equalTo(self.mas_width);
+        make.right.equalTo(self.scrollView.mas_right);
+        make.height.equalTo(@(cvHeight));
+    }];
+
+    [self.bookClasses mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.cycleView.mas_bottom);
+        make.left.equalTo(self.scrollView.mas_left);
+        make.width.equalTo(@(Screen_Width));
+        make.right.equalTo(self.scrollView.mas_right);
+        make.height.equalTo(@(bcHeight));
+    }];
+    [self.boomRecomment mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.bookClasses.mas_bottom);
+        make.left.equalTo(self.scrollView.mas_left);
+        make.width.equalTo(@(Screen_Width));
+        make.right.equalTo(self.scrollView.mas_right);
+        make.height.equalTo(@(brHeight));;
+    }];
+    [self.seriesAera mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.boomRecomment.mas_bottom);
+        make.left.equalTo(self.scrollView.mas_left);
+        make.width.equalTo(@(Screen_Width));
+        make.right.equalTo(self.scrollView.mas_right);
+        make.height.equalTo(@(saHeight));;
+    }];
+    [self.themeAera mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.seriesAera.mas_bottom);
+        make.left.equalTo(self.scrollView.mas_left);
+        make.width.equalTo(@(Screen_Width));
+        make.right.equalTo(self.scrollView.mas_right);
+        make.height.equalTo(@(taHeight));;
+    }];
+    [self.readMonster mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.themeAera.mas_bottom);
+        make.left.equalTo(self.scrollView.mas_left);
+        make.width.equalTo(@(Screen_Width));
+        make.right.equalTo(self.scrollView.mas_right);
+        make.height.equalTo(@(rmHeight));;
+        make.bottom.equalTo(self.scrollView.mas_bottom);
+    }];
+    UIColor *color1 = [UIColor cyanColor];
+    UIColor *color2 = [UIColor orangeColor];
+//    self.scrollView.backgroundColor = [UIColor grayColor];
+//    self.bookClasses.backgroundColor = color1;
+//    self.boomRecomment.backgroundColor = color2;
+    self.seriesAera.backgroundColor = color1;
+//    self.themeAera.backgroundColor = color2;
+//    self.readMonster.backgroundColor = color1;
+    
+    
+}
+- (UIScrollView *)scrollView{
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] init];
+        _scrollView.delegate = self;
+    }
+    return _scrollView;
+}
+- (SDCycleScrollView *)cycleView{
+    if (_cycleView == nil) {
+        _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero imageNamesGroup:nil];
+    }
+    return _cycleView;
+}
+- (ECRBookClasses *)bookClasses{
+    if (_bookClasses == nil) {
+        _bookClasses = [[ECRBookClasses alloc] init];
+    }
+    return _bookClasses;
+}
+
+- (ECRBoomRecomment *)boomRecomment{
+    if (_boomRecomment == nil) {
+        _boomRecomment = [[ECRBoomRecomment alloc] init];
+    }
+    return _boomRecomment;
+}
+- (ECRSeriesAera *)seriesAera{
+    if (_seriesAera == nil) {
+        _seriesAera = [[ECRSeriesAera alloc] init];
+    }
+    return _seriesAera;
+}
+- (ECRThemeAera *)themeAera{
+    if (_themeAera == nil) {
+        _themeAera = [[ECRThemeAera alloc] init];
+    }
+    return _themeAera;
+}
+- (ECRReadMonster *)readMonster{
+    if (_readMonster == nil) {
+        _readMonster = [[ECRReadMonster alloc] init];
+    }
+    return _readMonster;
+}
+
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+//
+//  ECRMoreBooksViewController.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+// 搜索 与 更多(分类) 公用控制器
+
+#import "ECRBaseViewController.h"
+
+typedef NS_ENUM(NSUInteger, ECRMoreBookListType) {
+    ECRMoreBookListTypeHotSeal = 1,// 热销
+    ECRMoreBookListTypeInterText,// 互动教材
+    ECRMoreBookListTypeChineseReading,// 汉语读物
+    ECRMoreBookListTypeCultureReading// 文化读物
+};
+// 这里的type需要 与 bookTotalClass 和 moreBooksModified 中的数据的classType一致
+
+@interface ECRMoreBooksViewController : ECRBaseViewController<
+UITableViewDelegate,
+UITableViewDataSource
+>
+
+@property (assign,nonatomic) ECRMoreBookListType bookListType;
+
+// 需要子类继承的方法
+// 设置顶部搜索框
+- (void)replaceTitleViewForSearch;
+// 设置导航栏右侧搜索按钮
+- (void)setNavRighSearchItem;
+
+@end

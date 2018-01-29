@@ -1,0 +1,18 @@
+//
+//  UIVCRechargeVC.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/7.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBaseViewController.h"
+
+@interface UVirtualCurrencyRechargeVC : ECRBaseViewController
+
+@property (nonatomic, assign) ENUM_PayPurpose payPurpose; // 支付目的
+@property (strong, nonatomic) SerialModel *serial;        // 系列模型(包月系列传值)
+@property (assign, nonatomic) CGFloat payPrice;           // 支付价格
+@property (strong, nonatomic) NSArray *arrBooks;          //
+
+@end

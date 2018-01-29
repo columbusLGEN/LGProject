@@ -1,0 +1,55 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - Masonry (1.0.2)
+  - MBProgressHUD (1.0.0)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.12)
+  - SDCycleScrollView (1.73):
+    - SDWebImage (~> 4.0.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SSZipArchive (2.0.7)
+
+DEPENDENCIES:
+  - AFNetworking
+  - FMDB
+  - Masonry
+  - MBProgressHUD
+  - MJExtension
+  - MJRefresh
+  - SDCycleScrollView
+  - SDWebImage
+  - SSZipArchive
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  SDCycleScrollView: d0fd5fe40a80918371fd8939214eb3be81033d83
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SSZipArchive: 8c197761d66bd33e7f8b5b51ee57dff303971150
+
+PODFILE CHECKSUM: 1970dd338a00aa41fb435b7fb66e88b136217969
+
+COCOAPODS: 1.3.1

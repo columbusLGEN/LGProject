@@ -1,0 +1,15 @@
+//
+//  ECRSubjectSingleView.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/23.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@class ECRSubjectModel;
+@interface ECRSubjectSingleView : UIView
++ (instancetype)subjectSingleView;
+@property (strong,nonatomic) ECRSubjectModel *model;//
+
+@end

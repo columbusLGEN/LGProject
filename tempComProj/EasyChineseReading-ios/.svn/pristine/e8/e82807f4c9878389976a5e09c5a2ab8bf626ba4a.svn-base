@@ -1,0 +1,116 @@
+//
+//  ECRHomeMainView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/29.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRHomeMainView.h"
+#import "ECRHomeMainModel.h"
+#import "SDCycleScrollView.h"
+
+
+@interface ECRHomeMainView ()<SDCycleScrollViewDelegate>
+//@property (weak, nonatomic) IBOutlet UIView *cycleView;// test
+@property (strong,nonatomic) SDCycleScrollView *cycleView;// 轮播 view
+@property (strong,nonatomic) NSArray *buttons;//test
+
+
+@end
+
+@implementation ECRHomeMainView
+
+static CGFloat tstBtnCount = 20;
+CGFloat staH = 20;
+CGFloat rowW;
+
+#pragma mark - SDCycleScrollViewDelegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+}
+
+- (void)setModels:(NSArray *)models{
+    _models = models;
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    [models enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        ECRHomeMainModel *model = obj;
+        [arrM addObject:model.imgTestURL];
+    }];
+    
+    // MARK: 赋值网络轮播数组
+    _cycleView.imageURLStringsGroup = arrM.copy;
+//    _cycleView.localizationImagesGroup = arrM.copy;
+    
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+        
+        // MARK: 网络不好时,加载本地图片
+        _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero imageNamesGroup:nil];
+        [self addSubview:_cycleView];
+        [_cycleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left);
+            make.top.equalTo(self.mas_top).offset(v_u_offset_top);
+            make.width.equalTo(self.mas_width);
+            make.height.equalTo(@(Screen_Height / 3));
+        }];
+        _cycleView.delegate = self;
+        
+        // MARK: 创建测试按钮
+        CGFloat margin = 10;
+        NSMutableArray *buttonArrM = [NSMutableArray array];
+        for (NSInteger i = 0; i < tstBtnCount; ++i) {
+            UIButton *button = [[UIButton alloc] init];
+            [self addSubview:button];
+            [button setTitle:[NSString stringWithFormat:@"测试%zd",i] forState:UIControlStateNormal];
+            [button sizeToFit];
+            if (i == 0) {
+                [button mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(self.mas_left).offset(margin);
+                    make.top.equalTo(_cycleView.mas_bottom).offset(20);
+                }];
+                rowW = margin;
+            }else{
+                UIButton *last = buttonArrM[i - 1];
+                rowW += (button.width + margin);
+                if (rowW <= Screen_Width) {
+                    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.left.equalTo(last.mas_right).offset(margin);
+                        make.top.equalTo(last.mas_top);
+                    }];
+                }else{
+                    rowW = 0;
+                    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.left.equalTo(self.mas_left).offset(margin);
+                        make.top.equalTo(last.mas_bottom).offset(margin);
+                    }];
+                }
+                
+            }
+            [button setTitleColor:[UIColor cm_blackColor_333333_1] forState:UIControlStateNormal];
+            [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
+            [buttonArrM addObject:button];
+            button.tag = i;
+            [button addTarget:self action:@selector(testClick:) forControlEvents:UIControlEventTouchUpInside];
+        }
+
+    }
+    return self;
+}
+- (void)testClick:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(hmView:tag:)]) {
+        [self.delegate hmView:self tag:sender.tag];
+    }
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    
+}
+
+
+@end

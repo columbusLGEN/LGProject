@@ -1,0 +1,138 @@
+//
+//  UCRecommendStudentListVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/15.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRecommendStudentListVC.h"
+
+//#import "UCStudentListTableViewCell.h"
+#import "UCRStudentListTableViewCell.h"
+
+#import "UCRStudentSelectedHeaderView.h"
+
+@interface UCRecommendStudentListVC ()<
+UITableViewDelegate, UITableViewDataSource,
+UCRStudentSelectedHeaderViewDelegate
+>
+
+@end
+
+@implementation UCRecommendStudentListVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configTableView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+#pragma mark - 配置界面
+
+- (void)configTableView
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, self.view.height) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    _tableView.estimatedRowHeight = 100;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    UIView *footer = [UIView new];
+    footer.backgroundColor = [UIColor whiteColor];
+    _tableView.tableFooterView = footer;
+    
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UCRStudentListTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UCRStudentListTableViewCell class])];
+    
+    [self.view addSubview:_tableView];
+}
+
+#pragma mark -
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrDataSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UCRStudentListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UCRStudentListTableViewCell class])];
+    
+    cell.lblNumber.text = [NSString stringWithFormat:@"%02ld", indexPath.row + 1];
+    cell.data = self.arrDataSource[indexPath.row];
+    return cell;
+}
+
+#pragma mark -
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UCRStudentSelectedHeaderView *headerView = [UCRStudentSelectedHeaderView loadFromNib];
+    headerView.frame = CGRectMake(0, 0, Screen_Width, cHeaderHeight_44);
+    headerView.backgroundColor = [UIColor colorWithHexString:@"F6F6F6"];
+    
+    headerView.delegate = self;
+    
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return cHeaderHeight_44;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footerView = [UIView new];
+    footerView.backgroundColor = [UIColor whiteColor];
+    return footerView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UCRStudentListTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UserModel *user = self.arrDataSource[indexPath.row];
+    
+    if ([_arrSelectedStudent containsObject:user]) {
+        cell.imgSelected.image = [UIImage imageNamed:cImageUnSelected];
+        [_arrSelectedStudent removeObject:user];
+    }
+    else {
+        cell.imgSelected.image = [UIImage imageNamed:cImageSelected];
+        [_arrSelectedStudent addObject:user];
+    }
+    self.reloadBlock();
+}
+
+#pragma mark - UCRStudentSelectedHeaderViewDelegate
+
+- (void)selectedAllUser
+{
+    NSSet *allUser = [NSSet setWithArray:_arrDataSource];
+    NSSet *selecte = [NSSet setWithArray:_arrSelectedStudent];
+    // 已经全部都选择
+    if ([allUser isSubsetOfSet:selecte]) {
+        for (NSInteger i = 0; i < _arrDataSource.count; i ++) {
+            [_arrSelectedStudent removeObject:_arrDataSource[i]];
+        }
+    }
+    else {
+        [_arrSelectedStudent addObjectsFromArray:_arrDataSource];
+        NSSet *currentArrSet = [NSSet setWithArray:_arrSelectedStudent];
+        // 排序
+//        NSArray *sortDesc = @[[[NSSortDescriptor alloc] initWithKey:nil ascending:YES]];
+//        NSArray *sortSetArray = [currentArrSet sortedArrayUsingDescriptors:sortDesc];
+        
+        [_arrSelectedStudent removeAllObjects];
+        NSArray *array = [currentArrSet allObjects];
+        [_arrSelectedStudent addObjectsFromArray:array];
+    }
+    self.reloadBlock();
+}
+
+@end

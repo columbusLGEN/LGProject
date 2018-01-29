@@ -1,0 +1,107 @@
+//
+//  OrderRequest.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "BaseNetRequest.h"
+
+@interface OrderRequest : BaseNetRequest
+
+#pragma mark ========== 订单相关网络请求 ==========
+
+CM_SINGLETON_INTERFACE(OrderRequest)
+
+#pragma mark - 获取订单列表
+
+/**
+ 获取订单列表
+ 
+ @param page        页数
+ @param orderStatus 订单状态(0 未完成 1 待评价 2 完成)
+ @param orderType   订单类型(0 购买 1 租赁)
+ @param length      每一页数据量
+ @param completion  回调
+ */
+- (void)getOrderListWithPage:(NSInteger)page
+                 orderStatus:(ENUM_ZOrderState)orderStatus
+                   orderType:(NSString *)orderType
+                      length:(NSString *)length
+                  completion:(CompleteBlock)completion;
+
+#pragma mark - 创建订单
+
+/**
+ 创建订单
+ 
+ @param type       类型 0.购买 1.租赁
+ @param totalmoney 总价
+ @param book       图书列表 (购买传值)
+ @param score      消费积分 (购买传值)
+ @param serialId   系列 id (租赁传值)
+ @param readDay    租赁天数 (租赁传值)
+ @param completion 回调
+ */
+- (void)createOrderWithType:(NSString *)type
+                 totalmoney:(NSString *)totalmoney
+                      books:(NSString *)book
+                      score:(NSString *)score
+                   serialId:(NSString *)serialId
+                    readDay:(NSString *)readDay
+                 completion:(CompleteBlock)completion;
+
+#pragma mark - 用户订单支付结果
+
+/**
+ 订单状态
+
+ @param orderId    订单 id
+ @param type       类型 (0 支付失败 1 支付成功)
+ @param completion 回调
+ */
+- (void)postOrderResultWithOrderId:(NSString *)orderId
+                              type:(NSString *)type
+                        completion:(CompleteBlock)completion;
+
+#pragma mark - 查看用户对订单的评分 ？？
+
+/**
+ 查看用户对订单的评分
+
+ @param orderId     订单id
+ @param completion  回调
+ */
+- (void)getOrderScoreWithOrderId:(NSString *)orderId
+                      completion:(CompleteBlock)completion;
+
+#pragma mark - 添加评分 ？？
+
+/**
+ 添加评分
+
+ @param orderId     订单id
+ @param arrScores   分数数组（{@"bookId":@"boodId", @"score": @"score"}）
+ @param completion  回调
+ */
+- (void)addOrderScoreWithOrderId:(NSString *)orderId
+                          scores:(NSArray *)arrScores
+                      completion:(CompleteBlock)completion;
+
+#pragma mark - 查看书籍全部评分
+
+/**
+ 查看书籍全部评分
+
+ @param bookId      书籍id
+ @param page        页数
+ @param completion  回调
+ */
+- (void)getOrderAllScoresWithBookId:(NSString *)bookId
+                               page:(NSString *)page
+                         completion:(CompleteBlock)completion;
+
+
+
+@end

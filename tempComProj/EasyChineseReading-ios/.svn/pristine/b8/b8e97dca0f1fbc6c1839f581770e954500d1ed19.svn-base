@@ -1,0 +1,91 @@
+//
+//  UCRecommendDescribeVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/14.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRecommendDescribeVC.h"
+
+#import "UCRecommendListVC.h"
+
+@interface UCRecommendDescribeVC ()<UITextViewDelegate>
+
+@property (nonatomic, strong) UITextView *txtDescribe;  // 推荐的内容
+@property (nonatomic, strong) UILabel *lblPlaceHolder;  // 用 label 仿制推荐描述上的 placeHolder
+
+@end
+
+static NSInteger const kMaxDescribeLength = 500;
+
+@implementation UCRecommendDescribeVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configRecommendDetailView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+
+- (void)configRecommendDetailView
+{
+    self.title = @"推荐阅读";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"推荐" style:UIBarButtonItemStylePlain target:self action:@selector(submitRecommend)];
+}
+
+- (void)configTxtDescribeView
+{
+    _txtDescribe = [[UITextView alloc] initWithFrame:CGRectMake(20, 20, Screen_Width - 20 * 2, 200)];
+    _txtDescribe.textColor = [UIColor cm_blackColor_333333_1];
+    _txtDescribe.font = [UIFont systemFontOfSize:14.f];
+    _txtDescribe.delegate = self;
+    
+    _txtDescribe.layer.borderColor = [UIColor cm_blackColor_333333_1].CGColor;
+    _txtDescribe.layer.borderWidth = .5f;
+    
+    _lblPlaceHolder = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 100, 20)];
+    _lblPlaceHolder.textColor = [UIColor cm_lineColor_C6C6C6_1];
+    _lblPlaceHolder.font = [UIFont systemFontOfSize:14.f];
+    _lblPlaceHolder.text = @"请输入推荐内容";
+    
+    [self.view addSubview:_txtDescribe];
+    [self.view addSubview:_lblPlaceHolder];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    _lblPlaceHolder.hidden = textView.text.length > 0;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@""]) {
+        return YES;
+    }
+    if (range.length + range.location > textView.text.charLength) {
+        return NO;
+    }
+    NSUInteger newLength = [textView.text charLength] + [text length] - range.length;
+    
+    return newLength <= kMaxDescribeLength;
+}
+
+// 提交推荐阅读的内容
+- (void)submitRecommend
+{
+    for (UIViewController *temp in self.navigationController.viewControllers) {
+        if ([temp isKindOfClass:[UCRecommendListVC class]]) {
+            [self.navigationController popToViewController:temp animated:YES];
+        }
+    }
+}
+
+@end

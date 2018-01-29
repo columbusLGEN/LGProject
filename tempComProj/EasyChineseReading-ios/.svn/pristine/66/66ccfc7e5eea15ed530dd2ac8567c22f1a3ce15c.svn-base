@@ -1,0 +1,48 @@
+//
+//  UFriendListTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UFriendListTableViewCell.h"
+
+@interface UFriendListTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgAvatar;
+@property (strong, nonatomic) IBOutlet UILabel *lblUserName;
+
+@end
+
+@implementation UFriendListTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configFriendListCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configFriendListCell
+{
+    _imgAvatar.layer.masksToBounds = YES;
+    _imgAvatar.layer.cornerRadius = _imgAvatar.height/2;
+    
+    _lblUserName.textColor = [UIColor cm_blackColor_333333_1];
+}
+
+- (void)dataDidChange
+{
+    FriendModel *friend = self.data;
+    
+    [_imgAvatar sd_setImageWithURL:[NSURL URLWithString:friend.iconUrl] placeholderImage:[UIImage imageNamed:@"img_avatar_placeholder"]];
+    _lblUserName.text = [friend.name notEmpty] ? friend.name : LOCALIZATION(@"匿名");
+}
+
+@end

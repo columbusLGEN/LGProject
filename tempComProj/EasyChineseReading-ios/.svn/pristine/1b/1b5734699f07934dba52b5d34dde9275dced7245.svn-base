@@ -1,0 +1,81 @@
+//
+//  ECRRentReadView.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/25.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRRentReadView.h"
+#import "ECRPayStyleDelegate.h"
+
+@interface ECRRentReadView ()
+@property (weak, nonatomic) IBOutlet UILabel *finalPrice;
+@property (weak, nonatomic) IBOutlet UIButton *payNowBtn;
+@property (weak, nonatomic) IBOutlet UIView *webg;
+@property (weak, nonatomic) IBOutlet UIView *alibg;
+@property (weak, nonatomic) IBOutlet UIView *fsbg;
+@property (weak, nonatomic) IBOutlet UIView *ssbg;
+@property (weak, nonatomic) IBOutlet UIView *tsbg;
+@property (weak, nonatomic) IBOutlet UIButton *beiBtn;
+
+
+@end
+
+@implementation ECRRentReadView
+
+- (IBAction)wePay:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(payStyle:style:)]) {
+        [self.delegate payStyle:self style:101];
+    }
+}
+- (IBAction)aliPay:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(payStyle:style:)]) {
+        [self.delegate payStyle:self style:102];
+    }
+}
+
+
+- (IBAction)firstStair:(UIButton *)sender {
+    _finalPrice.text = @"5.00";
+}
+- (IBAction)secondStair:(UIButton *)sender {
+    _finalPrice.text = @"10.00";
+}
+- (IBAction)thirdStair:(UIButton *)sender {
+    _finalPrice.text = @"15.00";
+}
+- (IBAction)payNow:(UIButton *)sender {
+    
+}
+
+
++ (instancetype)rentReadView{
+    return [[[NSBundle mainBundle] loadNibNamed:@"ECRRentReadView" owner:nil options:nil] firstObject];
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    
+    UIColor *borderColor = [UIColor colorWithHexString:@"e3e3e3"];
+    
+    _webg.layer.borderWidth = 1;
+    _webg.layer.borderColor = borderColor.CGColor;
+    _alibg.layer.borderWidth = 1;
+    _alibg.layer.borderColor = borderColor.CGColor;
+    _fsbg.layer.borderWidth = 1;
+    _fsbg.layer.borderColor = borderColor.CGColor;
+    _ssbg.layer.borderWidth = 1;
+    _ssbg.layer.borderColor = borderColor.CGColor;
+    _tsbg.layer.borderWidth = 1;
+    _tsbg.layer.borderColor = borderColor.CGColor;
+    
+    self.payNowBtn.layer.cornerRadius = 20;
+    self.payNowBtn.layer.masksToBounds = YES;
+    [self.payNowBtn setBackgroundColor:[UIColor cm_purpleColor_82056B_1]];
+        
+    [self.finalPrice setTextColor:[UIColor colorWithHexString:@"ff6000"]];
+    self.finalPrice.text = @"0.00";//[NSString stringWithFormat:@"￥%.2f",self.model.topUp];
+}
+
+@end

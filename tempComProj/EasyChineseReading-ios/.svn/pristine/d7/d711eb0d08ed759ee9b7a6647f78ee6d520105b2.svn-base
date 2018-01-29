@@ -1,0 +1,218 @@
+//
+//  UFriendAddVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UFriendAddVC.h"
+
+#import "UFriendAddTableViewCell.h"
+
+@interface UFriendAddVC ()<
+UITableViewDelegate, UITableViewDataSource,
+UITextFieldDelegate,
+UFriendAddTableViewCellDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextField *txtfSearch;
+
+@property (assign, nonatomic) NSInteger currentPage; // 当前页
+@property (assign, nonatomic) BOOL searchState;      // 搜索状态
+
+@property (strong, nonatomic) NSMutableArray *arrFriends;   // 推荐的好友
+@property (strong, nonatomic) NSArray *arrSearchs;   // 搜索的好友
+
+@end
+
+@implementation UFriendAddVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configAddFriend];
+    _searchState = NO;
+    [self configMJRefresh];
+    [self getFirstPageRecommendFriends];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)updateSystemLanguage
+{
+    self.title = LOCALIZATION(@"添加好友");
+    _txtfSearch.placeholder = LOCALIZATION(@"搜索好友(请输入好友账号)");
+    [_tableView reloadData];
+}
+
+#pragma mark - 配置界面
+
+- (void)configAddFriend
+{
+    [self registerTableView];
+    [self configSearchBar];
+}
+
+- (void)configSearchBar
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"friend1"]];
+    _txtfSearch.leftView = imageView;
+    _txtfSearch.leftViewMode = UITextFieldViewModeAlways;
+    
+    _txtfSearch.layer.cornerRadius  = _txtfSearch.height/2;
+    _txtfSearch.layer.masksToBounds = YES;
+}
+
+- (void)registerTableView
+{
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UFriendAddTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UFriendAddTableViewCell class])];
+}
+
+- (void)configMJRefresh
+{
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getFirstPageRecommendFriends];
+    }];
+    
+    _tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+        [self getRecommendFriendsWithPage:_currentPage];
+    }];
+}
+
+#pragma mark - 获取推荐好友
+
+- (void)getFirstPageRecommendFriends
+{
+    _currentPage = 0;
+    [[FriendRequest sharedInstance] getRecommendFriendsWithPage:_currentPage length:cListNumber_10 * 2 completion:^(id object, ErrorModel *error) {
+        [_tableView.mj_header endRefreshing];
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            _arrFriends = [FriendModel mj_objectArrayWithKeyValuesArray:object];
+            if (_arrFriends.count > 0) {
+                _currentPage += 1;
+            }
+            [_tableView reloadData];
+        }
+    }];
+}
+
+- (void)getRecommendFriendsWithPage:(NSInteger)page
+{
+    [[FriendRequest sharedInstance] getRecommendFriendsWithPage:page length:cListNumber_10 * 2 completion:^(id object, ErrorModel *error) {
+        [_tableView.mj_footer endRefreshing];
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            NSArray *array = [FriendModel mj_objectArrayWithKeyValuesArray:object];
+            if (array.count > 0) {
+                _currentPage += 1;
+                [_arrFriends addObjectsFromArray:array];
+                [_tableView reloadData];
+            }
+        }
+    }];
+}
+
+- (void)getFriendWithAccount:(NSString *)account
+{
+    [[FriendRequest sharedInstance] getFriendListWithUserName:account completion:^(id object, ErrorModel *error) {
+        
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            _arrFriends = [FriendModel mj_objectArrayWithKeyValuesArray:object];
+            [_tableView reloadData];
+        }
+    }];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _searchState ? _arrSearchs.count : _arrFriends.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UFriendAddTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UFriendAddTableViewCell"];
+    cell.delegate = self;
+    cell.data = _searchState ? _arrSearchs[indexPath.row] : _arrFriends[indexPath.row];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70.f;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setCellSeparatorInset:UIEdgeInsetsZero];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    return view;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [[FriendRequest sharedInstance] getFriendListWithUserName:textField.text completion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            _arrSearchs = [FriendModel mj_objectArrayWithKeyValuesArray:object];
+            [_tableView reloadData];
+        }
+    }];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    _arrSearchs = @[];
+    _searchState = YES;
+    [_tableView reloadData];
+}
+
+#pragma mark - UFriendAddTableViewCellDelegate
+
+- (void)addFriendWithFriend:(FriendModel *)user
+{
+    [[FriendRequest sharedInstance] addFriendWithFriendId:user.userId completion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            self.addFriendSuccess(user);
+        }
+    }];
+}
+
+#pragma mark -
+
+- (NSMutableArray *)arrFriends
+{
+    if (_arrFriends == nil) {
+        _arrFriends = [NSMutableArray array];
+    }
+    return _arrFriends;
+}
+
+@end

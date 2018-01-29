@@ -1,0 +1,148 @@
+//
+//  USetSkinVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserSetSkinVC.h"
+
+static CGFloat kSectionHeight = 44;
+
+@interface UserSetSkinVC ()
+
+@property (nonatomic, strong) NSArray *arrThemeDataSource; // 皮肤
+@property (weak, nonatomic) IBOutlet UILabel *lblTheme00;
+@property (weak, nonatomic) IBOutlet UILabel *lblTheme01;
+@property (weak, nonatomic) IBOutlet UILabel *lblTheme10;
+@property (weak, nonatomic) IBOutlet UILabel *lblTheme11;
+
+@end
+
+static NSString * const kThemeNameKey = @"kThemeNameKey";
+
+@implementation UserSetSkinVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    
+    ThemeManager *themeManager = [ThemeManager sharedThemeManager];
+    _arrThemeDataSource = [NSMutableArray arrayWithArray:themeManager.dicThemePlist.allKeys];
+    [self createNavLeftBackItem];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)updateSystemLanguage
+{
+    self.title = LOCALIZATION(@"皮肤切换");
+    
+    _lblTheme00.text = LOCALIZATION(@"风格一");
+    _lblTheme01.text = LOCALIZATION(@"风格二");
+    _lblTheme10.text = LOCALIZATION(@"风格一");
+    _lblTheme11.text = LOCALIZATION(@"风格二");
+}
+
+#pragma mark -
+#pragma mark 实现更换皮肤
+#pragma mark UITableViewDataSource
+//
+//// 动态更换皮肤 后台控制皮肤的数量 ---- 暂时还用不到 第一版本写死皮肤
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    
+//    return self.arrThemeDataSource.count;
+//}
+//
+//- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    static NSString * Identifier = @"Cell";
+//    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+//    }
+//    
+//    NSString * text = _arrThemeDataSource[indexPath.row];
+//    cell.textLabel.text = text;
+//    
+//    ThemeManager * themeManager = [ThemeManager sharedThemeManager];
+//    NSString * currentTheme = themeManager.themeName;
+//    if (currentTheme == nil) {
+//        currentTheme = @"默认";
+//    }
+//    if ([currentTheme isEqualToString:text]) {
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    } else {
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//    }
+//    
+//    return cell;
+//}
+
+#pragma mark UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, kSectionHeight)];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    UIView *verLine = [[UIView alloc] initWithFrame:CGRectMake(10, (kSectionHeight - 14) / 2, 3, 14)];
+    verLine.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, .5)];
+    line.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+    
+    UILabel *lblType = [[UILabel alloc] initWithFrame:CGRectMake(20, 8, 200, kSectionHeight - 2 * 8)];
+    lblType.font = [UIFont systemFontOfSize:16.f];
+    lblType.textColor = [UIColor cm_blackColor_333333_1];
+    lblType.text = section == 0 ? LOCALIZATION(@"成人版") : LOCALIZATION(@"儿童版");
+    
+    [view addSubview:line];
+    [view addSubview:verLine];
+    [view addSubview:lblType];
+    
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return kSectionHeight;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, .5)];
+    line.backgroundColor = [UIColor cm_lineColor_D9D7D7_1];
+    [cell addSubview:line];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    
+//    
+//    // 动态更换皮肤
+//    ThemeManager * themeManager = [ThemeManager sharedThemeManager];
+//    NSString * themeName = _arrThemeDataSource[indexPath.row];
+//    
+//    if ([themeName isEqualToString:@"默认"]) {
+//        themeName = nil;
+//    }
+//    
+//    // 记录当前主题名字
+//    themeManager.themeName = themeName;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationThemeChanged object:nil];
+//    
+//    // 主题持久化
+//    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:themeName forKey:kThemeNameKey];
+//    [userDefaults synchronize];
+//    
+//    // 重新加载数据显示UITableViewCellAccessoryCheckmark 显示选中的对号 v
+//    [self.tableView reloadData];
+}
+
+@end

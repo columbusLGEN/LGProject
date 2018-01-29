@@ -1,0 +1,173 @@
+//
+//  ECRSwichView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRSwichView.h"
+
+@interface ECRSwichView ()
+// 分割线
+@property (strong,nonatomic) UIView *lineTop;
+@property (strong,nonatomic) UIView *lineBottom;
+
+// 按钮
+@property (strong,nonatomic) UIButton *buttonLeft;// 左
+@property (strong,nonatomic) UIButton *buttonRight;// 右
+
+// 下划线
+@property (strong,nonatomic) UIView *underButton;
+
+
+
+@end
+
+@implementation ECRSwichView{
+    // 使用纯代码创建时,在initheight中指定self的高度
+    // xib创建时,该值为0,且在xib中需要制定self的高度
+    CGFloat _customHeight;
+}
+
+- (void)setButtonNames:(NSArray<NSString *> *)buttonNames{
+    _buttonNames = buttonNames;
+    [_buttonNames enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx == 0) {
+            [_buttonLeft setTitle:obj forState:UIControlStateNormal];
+            [_buttonLeft setNeedsLayout];
+            [_buttonLeft layoutIfNeeded];
+            [_underButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.equalTo(@1);
+                make.left.equalTo(_buttonLeft.titleLabel.mas_left);
+                make.top.equalTo(_buttonLeft.titleLabel.mas_bottom).offset(2);
+                make.width.equalTo(@(_buttonLeft.titleLabel.width));
+            }];
+        }else{
+            [_buttonRight setTitle:obj forState:UIControlStateNormal];
+        }
+        
+    }];
+    
+}
+- (void)switchSelectedItem:(NSInteger)item{
+    switch (item) {
+        case 0:{
+            
+            [_underButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.height.equalTo(@1);
+                make.left.equalTo(_buttonLeft.titleLabel.mas_left);
+                make.top.equalTo(_buttonLeft.titleLabel.mas_bottom).offset(2);
+                make.width.equalTo(@(_buttonLeft.titleLabel.width));
+            }];
+        }
+            break;
+            
+        case 1:{
+            
+            [_underButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.height.equalTo(@1);
+                make.left.equalTo(_buttonRight.titleLabel.mas_left);
+                make.top.equalTo(_buttonRight.titleLabel.mas_bottom).offset(2);
+                make.width.equalTo(@(_buttonRight.titleLabel.width));
+            }];
+        }
+            break;
+    }
+}
+
+#pragma mark - target
+- (void)btnClick:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(ecrSwichView:didClick:)]) {
+        [self.delegate ecrSwichView:self didClick:sender.tag];
+    }
+    [self switchSelectedItem:sender.tag];
+
+}
+
+
+// 初始化
+- (instancetype)initWithFrame:(CGRect)frame height:(CGFloat)height{
+    _customHeight = height;
+    return [self initWithFrame:frame];
+}
+
+-  (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        _customHeight = 0;
+        [self setupSonUI];
+    }
+    return self;
+}
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setupSonUI];
+    }
+    return self;
+}
+
+- (void)setupSonUI{
+    _lineTop = [[UIView alloc]init];
+    _lineBottom = [[UIView alloc]init];
+    _buttonLeft = [[UIButton alloc]init];
+    _buttonLeft.tag = 0;
+    [_buttonLeft setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _buttonLeft.titleLabel.font = [UIFont systemFontOfSize:14];
+    _buttonRight = [[UIButton alloc] init];
+    _buttonRight.tag = 1;
+    [_buttonRight setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _buttonRight.titleLabel.font = [UIFont systemFontOfSize:14];
+    _underButton = [[UIView alloc] init];
+
+    _lineTop.backgroundColor = [UIColor orangeColor];
+    _lineBottom.backgroundColor = [UIColor orangeColor];
+    _underButton.backgroundColor = [UIColor orangeColor];
+    
+    [self addSubview:_lineTop];
+    [self addSubview:_lineBottom];
+    [self addSubview:_buttonLeft];
+    [self addSubview:_buttonRight];
+    [self addSubview:_underButton];
+    
+    [_lineTop mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.height.equalTo(@1);
+    }];
+    [_lineBottom mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.mas_bottom);
+        make.height.equalTo(@1);
+    }];
+    CGFloat buttonHeight;
+    if (_customHeight == 0) {
+        buttonHeight = self.height;
+    }else{
+        buttonHeight = _customHeight;
+    }
+    [_buttonLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_lineTop.mas_bottom);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(_buttonRight.mas_left);
+        make.width.equalTo(@(Screen_Width * 0.5));
+        make.height.equalTo(@(buttonHeight));
+    }];
+    [_buttonRight mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_lineTop.mas_bottom);
+        make.left.equalTo(_buttonLeft.mas_right);
+        make.right.equalTo(self.mas_right);
+        make.width.equalTo(@(Screen_Width * 0.5));
+        make.height.equalTo(@(buttonHeight));
+    }];
+    
+    [_buttonLeft addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_buttonRight addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self setNeedsLayout];
+//    [self layoutIfNeeded];
+}
+
+// lazy
+
+@end

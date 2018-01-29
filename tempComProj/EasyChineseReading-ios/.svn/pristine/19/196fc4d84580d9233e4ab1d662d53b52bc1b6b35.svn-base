@@ -1,0 +1,74 @@
+//
+//  ECRBookFormTopView.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/28.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRBookFormTopView.h"
+
+@interface ECRBookFormTopView ()
+@property (strong,nonatomic) UILabel *price;//
+@property (strong,nonatomic) UILabel *priceDup;// 
+
+@end
+
+@implementation ECRBookFormTopView
+
+- (void)setPriceYu:(NSString *)priceYu{
+    _priceYu = priceYu;
+    [self.price setText:priceYu];
+    [self.priceDup setText:priceYu];
+}
+
+- (void)setupUI{
+    [self addSubview:self.price];
+    [self addSubview:self.priceDup];
+    
+    [self.price mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(self.mas_top).offset(15);
+    }];
+    [self.priceDup mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.price.mas_centerY);
+        make.left.equalTo(self.price.mas_right).offset(5);
+    }];
+    
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupUI];
+    }
+    return self;
+}
+- (UILabel *)price{
+    if (_price == nil) {
+        _price = [[UILabel alloc] init];
+        [_price setTextColor:[UIColor blackColor]];// TODO:
+        [_price setFont:[UIFont systemFontOfSize:14]];
+    }
+    return _price;
+}
+- (UILabel *)priceDup{
+    if (_priceDup == nil) {
+        _priceDup = [[UILabel alloc] init];
+        [_priceDup setTextColor:[UIColor blackColor]];
+        [_priceDup setFont:[UIFont systemFontOfSize:14]];
+    }
+    return _priceDup;
+}
+@end
+
+
+
+
+

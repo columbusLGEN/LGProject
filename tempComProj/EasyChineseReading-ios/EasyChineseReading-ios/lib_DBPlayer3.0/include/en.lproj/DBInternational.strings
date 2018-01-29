@@ -1,0 +1,44 @@
+/*
+ DBInternational.strings
+ DBPlayer
+ 
+ Created by SummerZhao on 2017/3/7.
+ Copyright © 2017年 Retech. All rights reserved.
+ */
+"ok" = "OK";
+"confirm" = "Yes";
+
+"cancel" = "Cancel";
+"finish" = "Finish";
+
+"tip" = "Tip";
+"warning" = "Warning";
+"opening" = "Opening";
+
+"inputcontent" = "Please input";
+
+"nonetworkupdatefail" = "Failed to update,check the network";
+"onlinevideoneednetwork" = "Please check the network";
+"notopenyet" = "Not open yet";
+
+"savePhotoFail" = "Failed to save the photo";
+"gotosettingforphoto" = "App cannot access photos,please go to Settings-Privacy-Photos,allowing access of this app";
+
+"savePhotoSuccess" = "Save the photo successfully";
+
+"checknocamera" = "Check there is a camera";
+"gotosettingforcamera" = "App cannot access camera,please go to Settings-Privacy-Camera,allowing access of this app";
+
+"youscoreis" = "Your score is %.1f";
+"questionnotallfinish" = "Not finish all questions yet";
+"answeragain" = "Confirm to answer the questions from the begining?";
+
+"confirmtodelete" = "Confirm to delete?";
+"textcopy" = "Text copy";
+"selectedinclipboard" = "The selected text is saved in clipboard";
+
+"downloading" = "downloading, please wait...";
+"canceldownloading" = "Cancel Download";
+"continuedownload" = "Want to continue?";
+"notcontinue" = "No";
+"continue" = "Yes";

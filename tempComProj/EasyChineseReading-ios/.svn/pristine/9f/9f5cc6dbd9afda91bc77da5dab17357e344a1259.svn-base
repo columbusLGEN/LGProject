@@ -1,0 +1,45 @@
+//
+//  NotificationConstants.h
+//  ZProject
+//
+//  Created by 赵春阳 on 16/9/21.
+//  Copyright © 2016年 Z. All rights reserved.
+//
+
+#ifndef NotificationConstants_h
+#define NotificationConstants_h
+
+/** 更换主题 */
+static NSString * const kNotificationThemeChanged = @"kNotificationThemeChanged";
+/** 更换语言 */
+static NSString * const kNotificationLanguageChanged = @"kNotificationLanguageChanged";
+
+/** 退出登录 */
+static NSString * const kNotificationUserLogout = @"kNotificationUserLogout";
+
+/** 删除推荐购物车中选中的图书 */
+static NSString * const kNotificationRemoveSelectedBook = @"kNotificationRemoveSelectedBook";
+/** 删除推荐购物车中全部的图书 */
+static NSString * const kNotificationRemoveAllBooks = @"kNotificationRemoveAllBooks";
+/** 删除推荐购物车中的选中的学生 */
+static NSString * const kNotificationRemoveSelectedStudent = @"kNotificationRemoveSelectedStudent";
+/** 删除推荐购物车中全部的学生 */
+static NSString * const kNotificationRemoveAllStudents = @"kNotificationRemoveAllBooks";
+
+
+/** 刷新班级列表 */
+static NSString * const kNotificationUpdateClasses = @"kNotificationUpdateClasses";
+/** 刷新教师列表 */
+static NSString * const kNotificationUpdateTeachers = @"kNotificationUpdateTeachers";
+/** 刷新学生列表 */
+static NSString * const kNotificationUpdateStudents = @"kNotificationUpdateStudents";
+
+/** 新建学生 */
+static NSString * const kNotificationCreateStudentInfo = @"kNotificationCreateStudentInfo";
+/** 修改学生 */
+static NSString * const kNotificationUpdateStudentInfo = @"kNotificationUpdateStudentInfo";
+/** 删除学生 */
+static NSString * const kNotificationDeleteStudentInfo = @"kNotificationDeleteStudentInfo";
+
+
+#endif /* NotificationConstants_h */

@@ -1,0 +1,553 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="en">
+  <head>
+    <meta http-equiv="default-style" content="text/html; charset=utf-8"/>
+    <title>What Are the Life Sciences?</title>
+    <link rel="stylesheet" href="css/ls-studying-the-life-sciences.css" type="text/css"/>
+    <script type="text/javascript" src="js/LAB.min.js"/>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"/>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"/>
+    <script type="text/javascript" src="js/jquery-ui.min.js"/>
+    <script type="text/javascript" src="js/pubsub.js"/>
+    <script type="text/javascript" src="js/aie_core.js"/>
+    <script type="text/javascript" src="js/aie_explore.js"/>
+    <script type="text/javascript" src="js/aie_qaa.js"/>
+    <script type="text/javascript" src="js/aie_textsound.js"/>
+    <script type="text/javascript" src="js/aie_storyline.js"/>
+    <script type="text/javascript" src="js/aie_events.js"/>
+    <script type="text/javascript" src="js/aie_gameutils.js"/>
+    <script type="text/javascript" src="js/iscroll.js"/>
+    <script type="text/javascript" src="js/jquery.slides.min.js"/>
+    <script type="text/javascript" src="js/panelnav.js"/>
+    <script type="text/javascript" src="js/popup.js"/>
+    <script type="text/javascript" src="js/igp_audio.js"/>
+    <meta name="wmk" content="Purchased from:www.azardi.com/daxiang/    Title:Unit 1. Life Sciences: Studying the Life Sciences    ISBN:ls-studying-the-life-sciences    Author:CK-12    Account:AAAA0267    Invoice:AAAA0231    Dated:2013-06-05 02:31:32.704317    Purchased by:xingyun wu"/>
+  </head>
+  <body>
+	<div class="galley-rw">
+		<section class="body-rw Lesson-rw exclude-auto-rw page-open-auto-rw" id="Lesson2" epub:type="bodymatter chapter"><div class="title-block-rw" id="title-block3">
+
+
+            <p class="title-num-rw" id="title-num2"><span class="title-num-label-rw">Lesson</span> 2
+            </p>
+
+            <h1 id="h13">What Are the Life Sciences?</h1>
+
+         </div>
+
+         <div class="block-rw section-opening-rw exclude-auto-rw" id="section-opening1">
+
+
+            <h4 id="h41">Lesson Objectives</h4>
+
+            <ul id="ul5" epub:type="list"><li id="li12">Define Life Science.</li>
+    
+               <li id="li13">Describe how evidence is used to create and support scientific theories.</li>
+
+            </ul><h4 id="h42">Vocabulary</h4>
+
+            <ul id="ul6" epub:type="list"><li id="li14">cell theory</li>
+    
+               <li id="li15">life science</li>
+    
+               <li id="li16">scientific theory</li>
+    
+               <li id="li17">theory of evolution</li>
+
+            </ul></div>
+
+         <h2 id="h25">Fields in the Life Sciences</h2>
+
+         <p id="p5">The <span class="ref-popup-rw" data-popup-target="life_science">life sciences</span> are the study of living organisms, and how they interact with each other and their environment. Life sciences deal with every aspect of living organisms.
+         </p>
+
+         <p id="p6">The life sciences are so complex that most scientists focus on just one or two subspecialties. If you want to study insects, what would you be called? An entomologist. If you want to study the tiny things that give us the flu, then you need to enter the field of virology. Look at <em> Table <span class="ref-table-rw">2-1</span></em>, <em>Table <span class="ref-table-rw">2-2</span></em>, and <em>Table <span class="ref-table-rw">2-3</span></em>. If you want to study the nervous system, what life sciences field is right for you?
+         </p>
+
+         <div class="table-rw custom-rw table-grid-rw align-auto-rw float-none-rw width-auto-rw exclude-auto-rw" id="custom1" epub:type="table">
+
+
+            <div class="pc-rw" id="pc3">
+
+               <table id="table1"><thead><tr class="row1"><th>Subspecialty</th>
+            
+                        <th>Studies</th>
+            
+                        <th>Subspecialty</th>
+            
+                        <th>Studies</th>
+        
+                     </tr></thead><tbody><tr class="row1"><td class="col1"><strong>Botany </strong>
+                        </td>
+            
+                        <td class="col2">plants</td>
+            
+                        <td class="col3"><strong>Zoology </strong>
+                        </td>
+            
+                        <td class="col4">animals</td>
+        
+                     </tr><tr class="row2"><td class="col1"><strong>Marine biology </strong>
+                        </td>
+            
+                        <td class="col2">organisms living in and around oceans, and seas</td>
+            
+                        <td class="col3"><strong>Fresh water biology </strong>
+                        </td>
+            
+                        <td class="col4">organisms living in and around freshwater lakes, streams, rivers, ponds, etc.</td>
+        
+                     </tr><tr class="row3"><td class="col1"><strong>Microbiology </strong>
+                        </td>
+            
+                        <td class="col2">microorganisms</td>
+            
+                        <td class="col3"><strong>Bacteriology </strong>
+                        </td>
+            
+                        <td class="col4">bacteria</td>
+        
+                     </tr><tr class="row4"><td class="col1"><strong>Virology </strong>
+                        </td>
+            
+                        <td class="col2">viruses (see <em>Figure <span class="ref-figure-rw">2-1</span></em>)
+                        </td>
+            
+                        <td class="col3"><strong>Entomology </strong>
+                        </td>
+            
+                        <td class="col4">insects</td>
+        
+                     </tr><tr class="row5"><td class="col1"><strong>Taxonomy </strong>
+                        </td>
+            
+                        <td class="col2">the classification of organisms</td>
+            
+                        <td class="col3"> </td>
+            
+                        <td class="col4"> </td>
+        
+                     </tr></tbody></table><p id="p7"><strong>Table <span class="num-table-rw variable-rw">2-1</span>.</strong>
+               </p>
+
+            </div>
+
+         </div>
+
+         <div class="table-rw custom-rw table-grid-rw align-auto-rw float-none-rw width-auto-rw exclude-auto-rw" id="custom2" epub:type="table">
+
+
+            <div class="pc-rw" id="pc4">
+
+               <table id="table2"><thead><tr class="row1"><th>Life Science</th>
+            
+                        <th>What it Examines</th>
+            
+                        <th>Life Science</th>
+            
+                        <th>What it Examines</th>
+        
+                     </tr></thead><tbody><tr class="row1"><td class="col1"><strong>Cell biology </strong>
+                        </td>
+            
+                        <td class="col2">cells and their structures (see <em>Figure<span class="ref-figure-rw"> 2-1</span></em>)
+                        </td>
+            
+                        <td class="col3"><strong>Anatomy </strong>
+                        </td>
+            
+                        <td class="col4">the structures of animals</td>
+        
+                     </tr><tr class="row2"><td class="col1"><strong>Morphology </strong>
+                        </td>
+            
+                        <td class="col2">the form and structure of living organisms</td>
+            
+                        <td class="col3"><strong>Physiology </strong>
+                        </td>
+            
+                        <td class="col4">the physical and chemical functions of tissues and organs</td>
+        
+                     </tr><tr class="row3"><td class="col1"><strong>Immunology </strong>
+                        </td>
+            
+                        <td class="col2">the mechanisms inside organisms that protect them from disease and infection</td>
+            
+                        <td class="col3"><strong>Neuroscience </strong>
+                        </td>
+            
+                        <td class="col4">the nervous system</td>
+        
+                     </tr><tr class="row4"><td class="col1"><strong>Developmental biology and embryology </strong>
+                        </td>
+            
+                        <td class="col2">the growth and development of plants and animals</td>
+            
+                        <td class="col3"><strong>Genetics </strong>
+                        </td>
+            
+                        <td class="col4">the genetic make up of all living organisms (heredity)</td>
+        
+                     </tr><tr class="row5"><td class="col1"><strong>Biochemistry </strong>
+                        </td>
+            
+                        <td class="col2">the chemistry of living organisms</td>
+            
+                        <td class="col3"><strong>Molecular biology </strong>
+                        </td>
+            
+                        <td class="col4">biology at the molecular level</td>
+        
+                     </tr><tr class="row6"><td class="col1"><strong>Epidemiology </strong>
+                        </td>
+            
+                        <td class="col2">how diseases arise and spread</td>
+            
+                        <td class="col3"> </td>
+            
+                        <td class="col4"> </td>
+        
+                     </tr></tbody></table><p id="p8"><strong>Table <span class="num-table-rw variable-rw">2-2</span>.</strong>
+               </p>
+
+            </div>
+
+         </div>
+
+         <div class="table-rw custom-rw table-grid-rw align-auto-rw float-none-rw width-auto-rw exclude-auto-rw" id="custom3" epub:type="table">
+
+
+            <div class="pc-rw" id="pc5">
+
+               <table id="table3"><thead><tr class="row1"><th>Life Science</th>
+            
+                        <th>What it Examines</th>
+            
+                        <th>Life Science</th>
+            
+                        <th>What it Examines</th>
+        
+                     </tr></thead><tbody><tr class="row1"><td class="col1"><strong>Ecology </strong>
+                        </td>
+            
+                        <td class="col2">how various organisms interact with their environments</td>
+            
+                        <td class="col3"><strong>Biogeography </strong>
+                        </td>
+            
+                        <td class="col4">the distribution of living organisms (see<em> Figure <span class="ref-figure-rw">2-2</span></em>)
+                        </td>
+        
+                     </tr><tr class="row2"><td class="col1"><strong>Population biology </strong>
+                        </td>
+            
+                        <td class="col2">the biodiversity, evolution, and environmental biology of populations of organisms</td>
+            
+                        <td class="col3"> </td>
+            
+                        <td class="col4"> </td>
+        
+                     </tr></tbody></table><p id="p9"><strong>Table <span class="num-table-rw variable-rw">2-3</span>.</strong>
+               </p>
+
+            </div>
+
+         </div>
+
+         <div class="media-rw figure-rw float-none-rw floatgalley-none-rw align-center-rw width-80-rw exclude-auto-rw" id="figure2">
+
+
+            <div class="pc-rw" id="pc6">
+
+               <div class="pc-rw" id="pc7"><img src="images/20130404122558463154_online.jpg" alt=""/></div>
+
+               <p class="caption-rw" id="caption2"><strong>Figure <span class="num-figure-rw variable-rw">2-1</span>.</strong> This drawing shows red blood cells and viruses. Virology is the study of viruses. Cell biology is the study of cells. Though virology can be considered a Life Science, are viruses in fact living?
+               </p>
+
+               <p class="source-rw" id="source1">Souce: Used under license from Shutterstock.com</p>
+
+            </div>
+
+         </div>
+
+         <div class="media-rw figure-rw float-top-rw floatgalley-none-rw align-center-rw width-80-rw exclude-auto-rw" id="figure3">
+
+
+            <div class="pc-rw" id="pc8">
+
+               <div class="pc-rw" id="pc9"><img src="images/20130404122558615445_online.jpg" alt=""/></div>
+
+               <p class="caption-rw" id="caption3"><strong>Figure <span class="num-figure-rw variable-rw">2-2</span>.</strong> Biogeography looks at the variation of life forms within a given ecosystem, biome, or for the entire Earth. In other words, it tries to explain where organisms live and at what abundance.
+               </p>
+
+               <p class="source-rw" id="source2">Source: <a href="http://www.fs.fed.us/rm/boise/rmrs_sai/sai_subjects/geography.shtml" target="_blank">Public Domain</a>
+               </p>
+
+            </div>
+
+         </div>
+
+         <h2 id="h26">Scientific Evidence and Theories in the Life Sciences</h2>
+
+         <p class="firstpara-rw" id="p12">Scientists perform experiments and collect evidence. Evidence is:</p>
+
+         <ol class="x-ck12-decimal" id="x-ck12-decimal2" epub:type="list"><li id="li18">A direct, physical observation of a thing, a group of things, or a process over time.</li>
+    
+            <li id="li19">Usually something measurable or "quantifiable."</li>
+    
+            <li id="li20">The data resulting from an experiment.</li>
+
+         </ol><p id="p13">For example, an apple falling to the ground is evidence in support of the theory of gravity (<em>Figure <span class="ref-figure-rw">2-3</span></em>). A bear skeleton in the woods would be evidence of the presence of bears.
+         </p>
+
+         <div class="media-rw figure-rw float-none-rw floatgalley-none-rw align-center-rw width-50-rw exclude-auto-rw" id="figure4">
+
+
+            <div class="pc-rw" id="pc10">
+
+               <div class="pc-rw" id="pc11"><img src="images/20130404122558830967_online.png" alt=""/></div>
+
+               <p class="caption-rw" id="caption4"><strong>Figure <span class="num-figure-rw variable-rw">2-3</span>.</strong> An apple falls from a tree to the ground, instead of floating in space. This is evidence for the theory of gravity.
+               </p>
+
+               <p class="source-rw" id="source3">Source: Irina Zavodchikova. Used under license from Shutterstock.com</p>
+
+            </div>
+
+         </div>
+
+         <p class="firstpara-rw" id="p15"><span class="ref-popup-rw" data-popup-target="scientific_theory">Scientific theories</span> are well established and tested explanations of observations or evidence. Scientific theories are produced through repeated experiments. Theories are usually tested and confirmed by many different people.
+         </p>
+
+         <p id="p16">Scientific theories produce information that helps us understand our world. For example, the idea that matter is made up of atoms is a scientific theory. Scientists accept this theory as a fundamental principle of basic science. However, when scientists find new evidence, they can change their theories.</p>
+
+         <div class="block-rw icon-rw" id="icon1">
+
+
+            <div class="pc-rw" id="pc18"><img alt="alt" src="images/icon-intractive-tutorials-c.png"/></div>
+
+            <p id="p17">The following are links to information about the nature of science:</p>
+
+            <ul id="ul7" epub:type="list"><li id="li21"><a href="http://www.project2061.org/publications/bsl/online/index.php?chapter=1" target="_blank">http://www.project2061.org/publications/bsl/online/index.php?chapter=1 </a>
+               </li>
+    
+               <li id="li22"><a href="http://evolution.berkeley.edu/evosite/nature/index.shtml" target="_blank">http://evolution.berkeley.edu/evosite/nature/index.shtml </a>
+               </li>
+
+            </ul></div>
+
+         <h2 id="h27">Two Important Life Science Theories</h2>
+
+         <p class="firstpara-rw" id="p18">In the many life sciences, there are possibly hundreds or thousands of theories. The field of modern biology, however, really depends on two especially significant theories. They are:</p>
+
+         <ol class="x-ck12-decimal" id="x-ck12-decimal3" epub:type="list"><li id="li23"><strong><span class="ref-popup-rw" data-popup-target="cell_theory">The Cell Theory</span>.</strong>
+            </li>
+    
+            <li id="li24"><strong><span class="ref-popup-rw" data-popup-target="theory_of_evolution">The Theory of Evolution.</span></strong>
+            </li>
+
+         </ol><h3 id="h31">The Cell Theory</h3>
+
+         <p class="firstpara-rw" id="p19">The Cell Theory states that:</p>
+
+         <ol class="x-ck12-decimal" id="x-ck12-decimal4" epub:type="list"><li id="li25">All organisms are composed of cells (<em>Figure <span class="ref-figure-rw">2-4</span></em>).
+            </li>
+    
+            <li id="li26">Cells are the basic units of structure and function in an organism.</li>
+    
+            <li id="li27">Cells only come from preexisting cells; life comes from life.</li>
+
+         </ol><p id="p20">The development of the microscope in the mid 1600s made it possible for scientists to develop this theory (<em>Figure <span class="ref-figure-rw">2-5</span></em>).
+         </p>
+
+         <div class="media-rw figure-rw float-none-rw floatgalley-none-rw align-center-rw width-80-rw exclude-auto-rw" id="figure5">
+
+
+            <div class="pc-rw" id="pc12">
+
+               <div class="pc-rw" id="pc13"><img src="images/20130404122558991996_online.jpg" alt=""/></div>
+
+               <p class="caption-rw" id="caption5"><strong>Figure <span class="num-figure-rw variable-rw">2-4</span>.</strong> The two types of cells, eukaryotic (left) and prokaryotic (right).
+               </p>
+
+               <p class="source-rw" id="source4">Source: <a href="http://commons.wikimedia.org/wiki/File:Celltypes.svg" target="_blank">Wikipedia. NCBI. Public Domain.</a>
+               </p>
+
+            </div>
+
+         </div>
+
+         <div class="media-rw figure-rw float-bottom-rw floatgalley-none-rw align-center-rw width-80-rw exclude-auto-rw" id="figure6">
+
+
+            <div class="pc-rw" id="pc14">
+
+               <div class="pc-rw" id="pc15"><img src="images/20130404122559204773_online.jpg" alt=""/></div>
+
+               <p class="caption-rw" id="caption6"><strong>Figure <span class="num-figure-rw variable-rw">2-5</span>.</strong> A mouse cell viewed through a microscope.
+               </p>
+
+               <p class="source-rw" id="source5">Source: <a href="http://commons.wikimedia.org/wiki/File:Cellsize.jpg" target="_blank">Wikipedia. John Schmidt. GNU-FDL.</a>
+               </p>
+
+            </div>
+
+         </div>
+
+         <h3 id="h32">The Theory of Evolution</h3>
+
+         <p class="firstpara-rw" id="p23">The Theory of Evolution explains how populations of organisms can change over time. It also explains why there are many different types of organisms on Earth. This theory is often called the "great unifier" of biology, because it applies to every field of biology. It also explains how all living organisms on Earth come from common ancestors (<em>Figure <span class="ref-figure-rw">2-6</span></em>). You will learn more about the details of the theory of evolution in later chapters.
+         </p>
+
+         <div class="media-rw figure-rw float-bottom-rw floatgalley-none-rw align-center-rw width-80-rw exclude-auto-rw" id="figure7">
+
+
+            <div class="pc-rw" id="pc16">
+
+               <div class="pc-rw" id="pc17"><img src="images/20130404122559406390_online.jpg" alt=""/></div>
+
+               <p class="caption-rw" id="caption7"><strong>Figure <span class="num-figure-rw variable-rw">2-6</span>.</strong> Evolution explains the millions of varieties of organisms on Earth.
+               </p>
+
+               <p class="source-rw" id="source6">Source: <a href="http://commons.wikimedia.org/wiki/File:Animal_diversity_October_2007.jpg" target="_blank">Wikipedia. Justin. CC-BY-SA 3.0.</a>
+               </p>
+
+            </div>
+
+         </div>
+
+         <div class="block-rw icon-rw" id="icon2">
+
+
+            <div class="pc-rw" id="pc56"><img alt="alt" src="images/icon-intractive-tutorials-c.png"/></div>
+
+            <p id="p25"><em>Watch the video. An introduction to evolution and natural selection.  </em><a href="http://www.youtube.com/user/khanacademy#p/c/7A9646BC5110CF64/0/GcjgWov7mTM" target="_blank"><em> </em>http://www.youtube.com/user/khanacademy#p/c/7A9646BC5110CF64/0/GcjgWov7mTM</a>.
+            </p>
+
+         </div>
+
+         <h2 id="h28">Lesson Summary</h2>
+
+         <ul id="ul8" epub:type="list"><li id="li28">Science is a way of understanding about the physical world.</li>
+    
+            <li id="li29">Science is based on evidence, reasoning, and testing predictions.</li>
+    
+            <li id="li30">Information that has been thoroughly tested can still undergo further testing and revisions, as new evidence and questioning are raised.</li>
+    
+            <li id="li31">Science differs from other ways of knowing because it is entirely based on observable evidence.</li>
+    
+            <li id="li32">Scientific explanations are constantly questioned and tested.</li>
+    
+            <li id="li33">Science produces theories and general knowledge.</li>
+    
+            <li id="li34">Science allows us to better understand the world.</li>
+    
+            <li id="li35">Science allows us to apply this knowledge to solve problems.</li>
+
+         </ul><div class="block-rw section-closing-rw exclude-auto-rw" id="section-closing1">
+
+
+            <h4 id="h43">Review Questions</h4>
+
+            <h5 id="h51">Recall</h5>
+
+            <ol id="ol1" epub:type="list"><li id="p26">What do all fields of life science have in common?</li>
+    
+               <li id="p27">What are the three characteristics of evidence?</li>
+    
+               <li id="p28">What is the goal of science?</li>
+
+            </ol><h5 id="h52">Apply Concepts</h5>
+
+            <ol id="ol8" start="4" epub:type="list"><li id="p29">What would you study if you were a biogeographer?</li>
+    
+               <li id="p30">Why do you think the development of microscopes led to the development of the Cell Theory?</li>
+
+            </ol><h5 id="h53">Think Critically</h5>
+
+            <ol id="ol9" start="6" epub:type="list"><li id="p31">What do you think the difference is between a theory and a set of observations?</li>
+    
+               <li id="p32">If all cells come from pre-existing cells, where do you think the first cells came from?</li>
+
+            </ol><h4 id="h44">Further Reading / Supplemental Links</h4>
+
+            <ul id="ul9" epub:type="list"><li id="li36">Moore, John, A., Science as a Way of Knowing: The Foundations of Modern Biology. Harvard University Press, 1993.</li>
+    
+               <li id="li37">Trefil, James, The Nature of Science, An A-Z Guide to the Laws and Principles Guiding the Universe. Houghton Mifflin, Boston, 2003.</li>
+    
+               <li id="li38">Darwin, Charles, Origin of the Species. Random House 1988.</li>
+    
+               <li id="li39">Cromer, Alan, Uncommon Sense: The Heretical Nature of Science, Oxford University Press. 1993.</li>
+    
+               <li id="li40">The Nature of Science the Prentice Hall Science Series 1993.</li>
+    
+               <li id="li41">American Association for the Advancement of Science. Science for All Americans. 1993.</li>
+    
+               <li id="li42">Johnson, Rebecca, Genetics (Great Ideas of Science), Twenty-First Century Books, 2006.</li>
+    
+               <li id="li43">Hedrick, Philip, W., Genetics of Populations (Biological Science (Jones and Bartlett)) Jones and Brothers Publishers, 2005.</li>
+    
+               <li id="li44">Charles Darwin: And the Evolution Revolution (Oxford Portraits in Science) by Rebecca Stefoff. Oxford Press. New York, 1996.</li>
+    
+               <li id="li45">Fleisher, Paul, Evolution (Great Ideas of Science). TwentyFirst Century Books, 2006..</li>
+
+            </ul><h4 id="h45">Points to Consider</h4>
+
+            <p id="p33">Next we discuss the scientific method.</p>
+
+            <ul id="ul10" epub:type="list"><li id="li46">How does thinking like a scientist allow us to answer questions about life?</li>
+    
+               <li id="li47">What is the difference between science completed in a laboratory and science completed outside?</li>
+
+            </ul></div>
+
+         <div class="named-lists-rw toc-lists-rw exclude-auto-rw" id="toc-lists1">
+
+
+            <h4 id="h446">Lesson Glossary</h4>
+
+            <div class="list-named-rw list-glossary-rw exclude-auto-rw" id="list-glossary1" epub:type="glossary">
+
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="cell_theory">
+
+
+                  <h4 id="h46">Cell Theory</h4>
+
+                  <p id="p34">All organisms are composed of cells; cells are the basic units of structure and function in an organism; cells only come from preexisting cells.</p>
+
+               </div>
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="life_science">
+
+
+                  <h4 id="h47">Life Science</h4>
+
+                  <p id="p35">The study of living organisms, and how they interact with each other and their environment.</p>
+
+               </div>
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="scientific_theory">
+
+
+                  <h4 id="h48">Scientific Theory</h4>
+
+                  <p id="p36">A well-established set of explanations that explain a large amount of scientific information.</p>
+
+               </div>
+
+               <div class="widgets-rw popup-text-rw exclude-auto-rw" id="theory_of_evolution">
+
+
+                  <h4 id="h49">Theory Of Evolution</h4>
+
+                  <p id="p37">Theory developed by Charles Darwin that explains how populations of organisms can change over time.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </section></div>
+    </body>
+</html>

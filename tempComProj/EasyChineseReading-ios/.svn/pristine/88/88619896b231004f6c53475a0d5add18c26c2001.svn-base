@@ -1,0 +1,81 @@
+//
+//  UCRecommendBooksTC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/14.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRecommendBooksTableViewCell.h"
+#import "ECRBookListModel.h"
+
+@interface UCRecommendBooksTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgBookCover;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblBookName;
+@property (weak, nonatomic) IBOutlet UILabel *lblBookAuthor;
+@property (weak, nonatomic) IBOutlet UILabel *lblBookSynopsis;
+@property (weak, nonatomic) IBOutlet UILabel *lblBookMoney;
+
+@property (weak, nonatomic) IBOutlet UIView *viewStar;
+
+@end
+
+@implementation UCRecommendBooksTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configCell
+{
+    _lblBookName.textColor     = [UIColor cm_blackColor_333333_1];
+    _lblBookAuthor.textColor   = [UIColor cm_blackColor_666666_1];
+    _lblBookSynopsis.textColor = [UIColor cm_blackColor_666666_1];
+    _lblBookMoney.textColor    = [UIColor cm_orangeColor_FF5910_1];
+    
+    _lblBookName.font     = [UIFont systemFontOfSize:cFontSize_16];
+    _lblBookAuthor.font   = [UIFont systemFontOfSize:cFontSize_14];
+    _lblBookSynopsis.font = [UIFont systemFontOfSize:cFontSize_14];
+    _lblBookMoney.font    = [UIFont systemFontOfSize:cFontSize_12];
+}
+
+- (void)dataDidChange
+{
+    ECRBookListModel *bookModel = self.data;
+    
+    _lblBookName.text     = bookModel.bookName;
+    _lblBookAuthor.text   = [NSString stringWithFormat:@"%@: %@", LOCALIZATION(@"作者"), bookModel.author];
+    _lblBookSynopsis.text = [NSString stringWithFormat:@"%@: %@", LOCALIZATION(@"简介"), bookModel.contentValidity.length ? bookModel.contentValidity : @""];
+    
+    NSString *price = [NSString stringWithFormat:@"%@%.2f", LOCALIZATION(@"¥"), bookModel.price];
+    NSMutableAttributedString *money = [[NSMutableAttributedString alloc] initWithString:price];
+    NSRange upRang = NSMakeRange(1, price.length - 1);
+    [money addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:_lblBookName.font.pointSize] range:upRang];
+    _lblBookMoney.attributedText = money;
+    
+    [_imgBookCover sd_setImageWithURL:[NSURL URLWithString:bookModel.iconUrl] placeholderImage:[UIImage imageNamed:@"img_book_placeholder"]];
+    
+    ZStarView *star = [[ZStarView alloc] initWithFrame:CGRectMake(0, 0, _viewStar.width, _viewStar.height) numberOfStar:5];
+    star.canChange = NO;
+    [_viewStar addSubview:star];
+    
+    [star setScore:bookModel.score withAnimation:NO completion:^(BOOL finished) {
+        // 设置
+    }];
+}
+
+- (void)setIsSelected:(BOOL)isSelected
+{
+    _isSelected = isSelected;
+    _imgSelected.image = isSelected ? [UIImage imageNamed:cImageSelected] : [UIImage imageNamed:cImageUnSelected];
+}
+
+@end

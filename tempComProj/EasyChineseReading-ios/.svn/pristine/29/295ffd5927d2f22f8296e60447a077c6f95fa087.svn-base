@@ -1,0 +1,49 @@
+//
+//  USetAboutVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserSetAboutVC.h"
+
+@interface UserSetAboutVC ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgLogo;
+@property (weak, nonatomic) IBOutlet UILabel *lblAbout;
+@property (weak, nonatomic) IBOutlet UILabel *lblBottom;
+
+@end
+
+@implementation UserSetAboutVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.title = @"关于我们";
+    
+    [self configView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 配置界面
+
+- (void)configView
+{
+    _imgLogo.layer.masksToBounds = YES;
+    _imgLogo.layer.cornerRadius = 15.f;
+    
+    _imgLogo.layer.borderColor = [UIColor cm_lineColor_D9D7D7_1].CGColor;
+    _imgLogo.layer.borderWidth = 0.5f;
+    
+    _lblAbout.textColor = [UIColor cm_blackColor_666666_1];
+    
+    _lblBottom.textColor = [UIColor cm_blackColor_666666_1];
+}
+
+@end

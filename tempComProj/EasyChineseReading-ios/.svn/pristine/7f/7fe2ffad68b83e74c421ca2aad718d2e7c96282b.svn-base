@@ -1,0 +1,50 @@
+//
+//  UCRecommendBooksTC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/14.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCRecommendBooksTableViewCell.h"
+#import "ECRBookListModel.h"
+
+@interface UCRecommendBooksTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgSelected;
+@property (weak, nonatomic) IBOutlet UIImageView *imgBookCover;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblBookName;
+@property (weak, nonatomic) IBOutlet UILabel *lblBookAuthor;
+@property (weak, nonatomic) IBOutlet UILabel *lblBookSynopsis;
+@property (weak, nonatomic) IBOutlet UILabel *lblBookMoney;
+
+@property (weak, nonatomic) IBOutlet UIView *viewStar;
+
+@end
+
+@implementation UCRecommendBooksTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)dataDidChange
+{
+    ECRBookListModel *bookModel = self.data;
+    
+    _lblBookName.text = bookModel.bookName;
+    _lblBookAuthor.text = bookModel.author;
+    _lblBookSynopsis.text = bookModel.synopsis;
+    _lblBookMoney.text = [NSString stringWithFormat:@"%.2f", bookModel.money];
+    
+    _imgBookCover.image = [UIImage imageNamed:bookModel.coverPhoto];
+}
+
+@end

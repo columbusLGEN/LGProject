@@ -1,0 +1,69 @@
+//
+//  FavouriteRequest.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/18.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "FavouriteRequest.h"
+
+@implementation FavouriteRequest
+
+CM_SINGLETON_IMPLEMENTION(FavouriteRequest)
+
+#pragma mark - 获取收藏列表
+
+/**
+ 获取收藏列表
+ 
+ @param completion 回调
+ */
+- (void)getFavourtesWithCompletion:(CompleteBlock)completion
+{
+    NSDictionary *dic = @{@"params": @{@"userId": @"1"}, // [NSString stringWithFormat:@"%ld", (long)self.user.userId]},
+                          @"md5"   : @"654c01acaf40e0ce6d841a552fd3b96c"};
+    [ZNetworkRequest requestWithHttpMethod:ENUM_ZHttpRequestMethodPost
+                                    strUrl:@"collection/collection"
+                                parameters:dic
+                             completeBlock:^(id responseObject, ErrorModel *error) {
+                                 if (error) {
+                                     completion(nil, error);
+                                 }
+                                 else {
+                                     responseObject = [BookModel mj_objectArrayWithKeyValuesArray:responseObject];
+                                     NSLog(@"收藏列表 responseObject = %@", responseObject);
+                                     completion(responseObject, nil);
+                                 }
+                             }];
+}
+
+#pragma mark - 收藏管理
+
+/**
+ 收藏管理
+ 
+ @param bookId      图书id
+ @param updateType  更新的类型
+ @param completion  回调
+ */
+- (void)updateFavouriteWithBookId:(NSString *)bookId
+                             type:(NSString *)updateType
+                       completion:(CompleteBlock)completion
+{
+//    NSDictionary *dic = @{@"params": @{@"userId": userId},
+//                          @"md5"   : @"654c01acaf40e0ce6d841a552fd3b96c"};
+//    [ZNetworkRequest requestWithHttpMethod:ENUM_ZHttpRequestMethodPost
+//                                    strUrl:@"user/personalInformation"
+//                                parameters:dic
+//                             completeBlock:^(id responseObject, ErrorModel *error) {
+//                                 if (error) {
+//                                     completion(nil, error);
+//                                 }
+//                                 else {
+//                                     NSLog(@"用户注册 responseObject = %@", responseObject);
+//                                     completion(responseObject, nil);
+//                                 }
+//                             }];
+}
+@end

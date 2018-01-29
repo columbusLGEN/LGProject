@@ -1,0 +1,28 @@
+//
+//  USCHeaderView.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBaseView.h"
+
+@class USCHeaderView;
+
+@protocol USCHeaderViewDelegate <NSObject>
+
+- (void)selectedPhoneVerify;
+
+- (void)selectedEmailVeirfy;
+
+@end
+
+@interface USCHeaderView : ECRBaseView
+
+@property (weak, nonatomic) id<USCHeaderViewDelegate> delegate;
+
+/* 验证的方式 0-手机，1-邮箱 */
+@property (assign, nonatomic) NSInteger verifyType;
+
+@end

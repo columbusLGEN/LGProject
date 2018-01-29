@@ -1,0 +1,24 @@
+//
+//  UOrderDetailTableViewCell.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/10.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class UOrderDetailTableViewCell;
+
+@protocol UOrderDetailTableViewCellDelegate<NSObject>
+
+- (void)updateScoreWithScore:(CGFloat)score bookId:(NSInteger)bookId orderDetailId:(NSInteger)orderDetailId;
+
+@end
+
+@interface UOrderDetailTableViewCell : ECRBaseTableViewCell
+
+@property (nonatomic, weak) id<UOrderDetailTableViewCellDelegate> delegate;
+@property (assign, nonatomic) BOOL canScore; // 可以评价
+
+@end

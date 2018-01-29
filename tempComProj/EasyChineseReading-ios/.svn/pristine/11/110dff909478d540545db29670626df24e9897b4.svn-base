@@ -1,0 +1,16 @@
+//
+//  ECRBiRecoCollectionViewCell.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/15.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@class ECRRecoBook;
+
+@interface ECRBiRecoCollectionViewCell : UICollectionViewCell
+
+@property (strong,nonatomic) ECRRecoBook *model;
+
+@end

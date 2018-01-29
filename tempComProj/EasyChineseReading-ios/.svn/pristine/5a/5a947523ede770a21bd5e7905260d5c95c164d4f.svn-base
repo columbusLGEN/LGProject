@@ -1,0 +1,56 @@
+//
+//  ECRFloderView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/9.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRFloderView.h"
+#import "ECRBookFloderLayout.h"
+
+@interface ECRFloderView ()
+
+@property (weak, nonatomic) IBOutlet UITextField *floderName;
+@property (strong,nonatomic) IBOutlet ECRBookrackFlowLayout *brLayout;//
+
+
+@end
+
+@implementation ECRFloderView
+
+- (void)setBookModels:(NSMutableArray *)bookModels{
+    _bookModels = bookModels;
+    [self.collectionView reloadData];
+}
+
+- (void)setFileName:(NSString *)fileName{
+    _fileName = fileName;
+    _floderName.text = fileName;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame flowLayout:(ECRBookFloderLayout *)flowLayout{
+//    self.brLayout = flowLayout;
+    return [[[NSBundle mainBundle] loadNibNamed:@"ECRFloderView" owner:nil options:nil] firstObject];
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    CGFloat margin = 10;
+    CGFloat bookSpace = 40;
+    _brLayout.itemSize = CGSizeMake((Screen_Width - 2 * margin - 2 * bookSpace) / 3, 150);
+    _brLayout.minimumInteritemSpacing = 0;
+    self.collectionView.backgroundColor = [UIColor orangeColor];
+    NSString *reuserID = @"ECRBookrackCollectionViewCell";
+    [self.collectionView registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellWithReuseIdentifier:reuserID];
+}
+
+- (IBAction)closeFloder:(UIButton *)sender {
+    // 通知代理, 关闭文件夹
+    if ([self.delegate respondsToSelector:@selector(floderViewClose:)]) {
+        [self.delegate floderViewClose:self];
+    }
+}
+
+
+@end

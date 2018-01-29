@@ -1,0 +1,146 @@
+//
+//  UCTeacherMangerVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/11.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UCTeacherAddVC.h"
+
+@interface UCTeacherAddVC () <
+ZPickViewDelegate
+>
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDescName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescSex;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescAge;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescAccount;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescPassword;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescRePassword;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescRemark;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblSex;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtfName;
+@property (weak, nonatomic) IBOutlet UITextField *txtfAge;
+@property (weak, nonatomic) IBOutlet UITextField *txtfAccount;
+@property (weak, nonatomic) IBOutlet UITextField *txtfPassword;
+@property (weak, nonatomic) IBOutlet UITextField *txtfRePassword;
+@property (weak, nonatomic) IBOutlet UITextField *txtfRemark;
+
+@property (strong, nonatomic) ZPickView *pickViewSex;   // 性别
+
+@property (strong, nonatomic) NSArray *arrSex;   // 性别
+
+@end
+
+@implementation UCTeacherAddVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (1 == indexPath.row) {
+        [self configPickViewSex];
+    }
+}
+
+#pragma mark -
+#pragma mark action
+
+- (void)configView
+{
+    [self configNavigationBar];
+    [self configTableView];
+}
+
+- (void)configNavigationBar
+{
+    self.title = @"创建教师";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveTeacherInfo)];
+}
+
+- (void)configTableView
+{
+    _lblDescName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescSex.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescAge.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescAccount.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescPassword.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescRePassword.textColor = [UIColor cm_blackColor_333333_1];
+    _lblDescRemark.textColor = [UIColor cm_blackColor_333333_1];
+
+    
+    _lblDescName.font = [UIFont systemFontOfSize:15.f];
+    _lblDescSex.font = [UIFont systemFontOfSize:15.f];
+    _lblDescAge.font = [UIFont systemFontOfSize:15.f];
+    _lblDescAccount.font = [UIFont systemFontOfSize:15.f];
+    _lblDescPassword.font = [UIFont systemFontOfSize:15.f];
+    _lblDescRePassword.font = [UIFont systemFontOfSize:15.f];
+    _lblDescRemark.font = [UIFont systemFontOfSize:15.f];
+    
+    _txtfName.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfAge.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfAccount.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfPassword.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfRePassword.textColor = [UIColor cm_blackColor_333333_1];
+    _txtfRemark.textColor = [UIColor cm_blackColor_333333_1];
+}
+
+- (void)saveTeacherInfo
+{
+    // TODO: 保存学生
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ 性别选择
+ */
+- (void)configPickViewSex
+{
+    if (_pickViewSex == nil) {
+        _pickViewSex = [[ZPickView alloc] initWithFrame:self.view.bounds dataSource:self.arrSex selected:0];
+        _pickViewSex.delegates = self;
+        [self.view addSubview:_pickViewSex];
+    }
+    [_pickViewSex show];
+}
+
+#pragma mark - ZPickViewDelegate
+
+- (void)ZPickerViewCancel:(ZPickView *)picker
+{
+    [picker hidden];
+}
+
+- (void)ZPickerView:(ZPickView *)picker makeSureIndex:(NSInteger)index
+{
+    _lblSex.text = _arrSex[index];
+
+    [picker hidden];
+}
+
+#pragma mark - 属性
+
+- (NSArray *)arrSex
+{
+    if (_arrSex == nil) {
+        _arrSex = @[@"男", @"女"];
+    }
+    return _arrSex;
+}
+
+@end

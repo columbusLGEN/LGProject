@@ -1,0 +1,31 @@
+//
+//  ECRBookrackModel.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+//typedef NS_ENUM(NSUInteger, ECRBLModellCode) {
+//    ECRBLModellCodeNormal = 0,
+//    ECRBLModellCodeEdit   = 1,
+//    ECRBLModellCodeOneBook = ,
+//};
+
+#import "ECRBookListModel.h"
+
+@interface ECRBookrackModel : ECRBookListModel
+
+@property (strong,nonatomic) NSMutableArray<ECRBookrackModel *> *books;// 书籍数组
+@property (copy,nonatomic)   NSString *groupName;// 书架分组名称
+@property (copy,nonatomic)   NSString *bookPic;// 书籍封面
+@property (copy,nonatomic)   NSString *name;// 书籍名称
+@property (assign,nonatomic) NSInteger groupId;// 书架分组id
+@property (assign,nonatomic) NSInteger bookParent;// 书籍所属分组
+@property (assign,nonatomic) NSInteger progress;// 阅读进度
+
+@property (assign,nonatomic) NSInteger localGroupId;// 本地文件夹id -> 本地数据库文件夹主键id
+
+- (void)addBooksWithFromModel:(ECRBookrackModel *)fromModel;
+
+@end

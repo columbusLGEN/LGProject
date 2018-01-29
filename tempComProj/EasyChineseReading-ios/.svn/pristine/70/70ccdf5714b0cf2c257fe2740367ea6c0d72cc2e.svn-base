@@ -1,0 +1,72 @@
+//
+//  UClassManagerTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/11.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UClassManagerTableViewCell.h"
+
+@interface UClassManagerTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *lblClassName;
+@property (weak, nonatomic) IBOutlet UILabel *lblStudentNum;
+@property (weak, nonatomic) IBOutlet UIButton *btnUpdate;
+@property (weak, nonatomic) IBOutlet UIButton *btnDelete;
+
+@property (strong, nonatomic) ClassModel *classInfo;
+
+@end
+
+@implementation UClassManagerTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+#pragma mark - 配置界面
+
+- (void)configCell
+{
+    _lblClassName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblStudentNum.textColor = [UIColor cm_blackColor_333333_1];
+
+    _lblClassName.font = [UIFont systemFontOfSize:16.f];
+    _lblStudentNum.font = [UIFont systemFontOfSize:16.f];
+
+    [_btnUpdate setTintColor:[UIColor cm_blackColor_333333_1]];
+    [_btnDelete setTintColor:[UIColor cm_blackColor_333333_1]];
+
+    [_btnUpdate setImage:[UIImage imageNamed:@"ban8"] forState:UIControlStateNormal];
+    [_btnDelete setImage:[UIImage imageNamed:@"ban1"] forState:UIControlStateNormal];
+}
+
+#pragma mark - 数据
+
+- (void)dataDidChange
+{
+    _classInfo = self.data;
+
+    _lblClassName.text = _classInfo.className;
+    _lblStudentNum.text = [NSString stringWithFormat:@"%ld", _classInfo.studentNum];
+}
+
+#pragma mark - 操作
+
+- (IBAction)click_btnUpdate:(id)sender {
+    self.updateClass(self.data);
+}
+
+- (IBAction)click_btnDelete:(id)sender {
+    self.deleteClass(self.data);
+}
+
+@end

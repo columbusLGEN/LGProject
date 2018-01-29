@@ -1,0 +1,51 @@
+//
+//  ECRHomeMainView.h
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/29.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBaseView.h"
+@class
+ECRHomeMainModel,
+ECRHomeMainView,
+SDCycleScrollView,
+ECRSeriesAera,
+ECRThemeAera,
+ECRBookClasses,
+ECRBoomRecomment,
+ECRReadMonster;
+
+@protocol ECRHomeMainViewDelegate <NSObject>
+
+
+
+@optional
+
+
+@end
+
+@interface ECRHomeMainView : ECRBaseView
+
+@property (strong,nonatomic) UIScrollView *scrollView;
+//         高度
+// 1.轮播// 130
+@property (strong,nonatomic) SDCycleScrollView *cycleView;// 轮播 view
+// 2.分类// 126
+@property (strong,nonatomic) ECRBookClasses *bookClasses;// 汉语读物,文化读物,互动教材,更多
+// 3.推荐// 230
+@property (strong,nonatomic) ECRBoomRecomment *boomRecomment;// 重磅推荐
+// 4.系列// 484
+@property (strong,nonatomic) ECRSeriesAera *seriesAera;// 系列专区
+// 5.主题// 220
+@property (strong,nonatomic) ECRThemeAera *themeAera;// 主题专区
+// 6.达人// 700+36 或者 280+36
+@property (strong,nonatomic) ECRReadMonster *readMonster;// 阅读达人
+
+
+@property (strong,nonatomic) NSArray<ECRHomeMainModel *> *models;
+
+@property (weak,nonatomic) id<ECRHomeMainViewDelegate> delegate;
+
+@end

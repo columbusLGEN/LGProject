@@ -1,0 +1,161 @@
+//
+//  FirstLaunchCountryVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/11/22.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "FirstLaunchCountryVC.h"
+
+#import "UserInfoAddressVC.h"
+#import "FirstLaunchBirthdayVC.h"
+#import "ECRLocationManager.h"
+
+@interface FirstLaunchCountryVC ()
+
+@property (strong, nonatomic) UIImageView *imgBackground;
+@property (strong, nonatomic) UILabel     *lblCountry;
+@property (strong, nonatomic) UIButton    *btnNext;
+
+@property (strong, nonatomic) UIImageView *imgHeader; //
+@property (strong, nonatomic) UIImageView *imgHeaderDesc; //
+@property (strong, nonatomic) UIImageView *imgIcon;   //
+@property (strong, nonatomic) UIView *topLine; //
+@property (strong, nonatomic) UIView *botLine; //
+
+@end
+
+@implementation FirstLaunchCountryVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = YES;
+    [self configCountryViewWithCountry:@"China"];
+    [ECRLocationManager rg_startUpdatingLocationWithBlock:^(NSString *country) {
+        _lblCountry.text = LOCALIZATION(country);
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)configCountryViewWithCountry:(NSString *)country
+{
+    _imgBackground = [UIImageView new];
+    _imgBackground.image = isPad ? [UIImage imageNamed:@"img_background_launchScreen_pad"] : [UIImage imageNamed:@"img_background_launchScreen"];
+    [self.view addSubview:_imgBackground];
+    
+    _lblCountry = [UILabel new];
+    _lblCountry.textColor = [UIColor cm_blackColor_666666_1];
+    _lblCountry.font = [UIFont systemFontOfSize:22.f];
+    if ([country isEqualToString:@"中国"]) {
+        country = @"China";
+    }
+    _lblCountry.text = country;
+    _lblCountry.textAlignment = NSTextAlignmentCenter;
+    _lblCountry.userInteractionEnabled = YES;
+    [self.view addSubview:_lblCountry];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toSelectCountry)];
+    [_lblCountry addGestureRecognizer:tap];
+    
+    _btnNext = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.width - 86*2, cButtonHeight_40)];
+    _btnNext.backgroundColor = [UIColor cm_yellowColor_FFE402_1];
+    _btnNext.titleLabel.font = [UIFont systemFontOfSize:cFontSize_16];
+    _btnNext.titleLabel.textColor = [UIColor whiteColor];
+    _btnNext.layer.cornerRadius  = _btnNext.height/2;
+    _btnNext.layer.masksToBounds = YES;
+    [_btnNext setTitle:LOCALIZATION(@"Next") forState:UIControlStateNormal];
+    [_btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_btnNext addTarget:self action:@selector(toSelectedBirthday) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btnNext];
+    
+    _imgHeader = [UIImageView new];
+    _imgHeader.image = [UIImage imageNamed:@"img_launch_header_location"];
+    [self.view addSubview:_imgHeader];
+    
+    _imgHeaderDesc = [UIImageView new];
+    _imgHeaderDesc.image = [UIImage imageNamed:@"img_launch_country_of_nationality"];
+    [self.view addSubview:_imgHeaderDesc];
+    
+    _imgIcon = [UIImageView new];
+    _imgIcon.image = [UIImage imageNamed:@"icon_launch_location"];
+    [self.view addSubview:_imgIcon];
+    
+    _topLine = [UIView new];
+    _topLine.backgroundColor = [UIColor cm_yellowColor_FFE402_1];
+    [self.view addSubview:_topLine];
+    
+    _botLine = [UIView new];
+    _botLine.backgroundColor = [UIColor cm_yellowColor_FFE402_1];
+    [self.view addSubview:_botLine];
+    
+    [self updateConstraint];
+}
+
+- (void)updateConstraint
+{
+    
+    [_imgBackground mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
+    [_lblCountry mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.centerY.mas_equalTo(self.view.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake([NSString stringWidthWithText:_lblCountry.text fontSize:_lblCountry.font.pointSize] + 20, cHeaderHeight_64));
+    }];
+    [_btnNext mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.bottom .mas_equalTo(self.view.mas_bottom).offset(isPad ? -100 : -cHeaderHeight_44);
+        make.size   .mas_equalTo(CGSizeMake(self.view.width - 86*2, cButtonHeight_40));
+    }];
+    
+    [_imgHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.top.mas_equalTo(self.view.top).offset(isPad ? 150.f : cHeaderHeight_64);
+    }];
+    [_imgHeaderDesc mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.top.mas_equalTo(_imgHeader.mas_bottom).offset(30);
+    }];
+    [_imgIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(_lblCountry.mas_centerY);
+        make.right.mas_equalTo(_lblCountry.mas_left).offset(-20);
+    }];
+    [_topLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.mas_equalTo(_lblCountry.mas_leading);
+        make.trailing.mas_equalTo(_lblCountry.mas_trailing);
+        make.bottom.mas_equalTo(_lblCountry.mas_top);
+        make.height.mas_equalTo(3.f);
+    }];
+    [_botLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.mas_equalTo(_lblCountry.mas_leading);
+        make.trailing.mas_equalTo(_lblCountry.mas_trailing);
+        make.top.mas_equalTo(_lblCountry.mas_bottom);
+        make.height.mas_equalTo(3.f);
+    }];
+}
+
+- (void)toSelectCountry
+{
+    UserInfoAddressVC *addressVC = [[UserInfoAddressVC alloc] init];
+    addressVC.language = ENUM_LanguageTypeEnglish;
+    addressVC.selectedCountryBlock = ^(CountryModel * country){
+        _lblCountry.text = country.en_name;
+        [_lblCountry mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake([NSString stringWidthWithText:_lblCountry.text fontSize:_lblCountry.font.pointSize] + 20, cHeaderHeight_64));
+        }];
+    };
+    [self.navigationController pushViewController:addressVC animated:YES];
+}
+
+- (void)toSelectedBirthday
+{
+    FirstLaunchBirthdayVC *birthdayVC = [FirstLaunchBirthdayVC new];
+    [self.navigationController pushViewController:birthdayVC animated:YES];
+}
+
+@end

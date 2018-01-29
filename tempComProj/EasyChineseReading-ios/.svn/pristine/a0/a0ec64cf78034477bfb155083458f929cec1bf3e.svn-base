@@ -1,0 +1,89 @@
+//
+//  YMMakeModels.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/11/30.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+/*
+ 专门做模型转换类
+ 以后网络库还得使用
+*/
+
+
+#import <Foundation/Foundation.h>
+
+#pragma mark 网络同步功能对应的key
+
+#define User_Not_List @"user_note_list"
+#define User_Bookmark_List @"user_bookmark_list"
+
+#define User_ID @"user_id"
+#define Auth_Token @"auth_token"
+#define Book_ID @"book_id"
+#define Page @"page"
+#define Limit @"limit"
+
+
+#define Chapter_Index @"chapter_index"
+#define Chapter_Name @"chapter_name"
+
+#define Position @"position"
+#define Progress @"progress"
+#define Summary_Content @"summary_content"
+#define Note_Content @"note_content"
+#define Summary_Underline_Color @"summary_underline_color"
+
+#define NoteID @"id"
+#define Get_Note_Id @"note_id"
+
+#define Position_Offset @"position_offset"
+#define Add_Date @"add_time"
+
+#define Bookmark_ID @"id"
+#define Get_Bookmark_ID @"bookmark_id"
+
+#define Process @"process"
+
+@interface BookDigestNetModel : NSObject
+
+@property (nonatomic, retain) NSNumber * noteID;
+@property (nonatomic, retain) NSString * range;
+@property (nonatomic, retain) NSDate   * addDate;
+@property (nonatomic, retain) NSString * bookID;
+@property (nonatomic, retain) NSNumber * catIndex;
+@property (nonatomic, retain) NSString * catName;
+@property (nonatomic, retain) NSString * summary;
+@property (nonatomic, retain) NSString * digestNote;
+@property (nonatomic, retain) NSNumber * pos;
+@property (nonatomic, retain) NSString * lineColor;
+@property (nonatomic, retain) id         numbers;
+@property (nonatomic, retain) NSString * message;
+@property (nonatomic, retain) NSString * dataID;
+@property (nonatomic, retain) NSString * startContainerPosition;
+@end
+
+
+@interface BookMarkNetModel : NSObject
+
+@property (nonatomic, retain) NSDate   * addDate;
+@property (nonatomic, retain) NSString * bookID;
+@property (nonatomic, retain) NSNumber * catIndex;//章节索引
+@property (nonatomic, retain) NSString * catName;
+@property (nonatomic, retain) NSNumber * position;
+@property (nonatomic, retain) NSString * summary;
+@property (nonatomic, retain) NSNumber * bookmarkid;
+
+@end
+
+@class YMEpubSearchModel;
+@interface YMMakeModels : NSObject
+
++ (YMEpubSearchModel *)creatSearchModelWithInfo:(NSDictionary *)info;
+
++ (BookDigestNetModel *)changeInfoToBookDigestNetModel:(NSDictionary *)info;
+
+
++ (BookMarkNetModel *)changeInfoToBookMarkNetModel:(NSDictionary *)info;
+
+@end

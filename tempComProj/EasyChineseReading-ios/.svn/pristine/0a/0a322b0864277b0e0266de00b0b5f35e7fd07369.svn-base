@@ -1,0 +1,24 @@
+//
+//  ECRBookFormViewController.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/27.
+//  Copyright © 2017年 retech. All rights reserved.
+//  新的订单明细页面
+
+#import "ECRBaseViewController.h"
+@class ECRShoppingCarModel,ECRFullminusModel;
+
+@interface ECRBookFormViewController : ECRBaseViewController
+
+//1. 可用的满减卷 — 以供用户选择满减
+@property (strong,nonatomic) NSDictionary *avaJuan;
+//2. 所有满减卷 — 用来展示给用户哪些能使用，哪些不能
+@property (strong,nonatomic) NSArray<ECRFullminusModel *> *allJuan;//
+//3. 勾选的商品
+@property (strong,nonatomic) NSArray<ECRShoppingCarModel *> *tickedArray;//
+//4. 勾选商品总价
+@property (assign,nonatomic) CGFloat tickedPrice;//
+
+
+@end

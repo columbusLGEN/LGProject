@@ -1,0 +1,77 @@
+
+//
+//  ECRBookReaderManager.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/11/14.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRBookReaderManager.h"
+#import "ECRHypermediaManager.h"
+#import "ECREpubReader.h"
+#import "ReaderViewController.h"
+#import "ECRLocalFileManager.h"
+#import "ECRDownloadManager.h"
+
+@interface ECRBookReaderManager ()
+@property (strong,nonatomic) ReaderViewController *pdfReader;//
+
+@end
+
+@implementation ECRBookReaderManager
+
++ (void)readBookWithType:(NSInteger)bookType localURL:(NSString *)localURL vc:(UIViewController *)vc bookModel:(BookModel *)bookModel{
+    [[self sharedInstance] readBookWithType:bookType localURL:localURL vc:vc bookModel:bookModel];
+}
+
+- (void)readBookWithType:(NSInteger)bookType localURL:(NSString *)localURL vc:(UIViewController *)vc bookModel:(BookModel *)bookModel{
+    // 根据格式,路径,打开书
+    // 1 pdf
+    // 2 epub
+    // 3 hypermedia
+    switch (bookType) {
+        case 1:{// pdf
+            self.pdfReader = [ECRHypermediaManager openPDFWithURL:localURL];
+            [vc presentViewController:self.pdfReader animated:YES completion:nil];
+        }
+            break;
+        case 2:{// epub
+            [[ECREpubReader sharedEpubReader] readBookWithPath:localURL fromController:vc bookModel:bookModel];
+        }
+            break;
+        case 3:{// 超媒体
+#if TARGET_IPHONE_SIMULATOR
+            // 模拟器
+            
+#else
+            // 真机
+            // 解压缩
+            NSString *hypermedia = [ECRDownloadManager hypermediaURLWithBookId:bookModel.bookId try:YES];
+            [ECRLocalFileManager unzipFileWithPath:localURL fileName:hypermedia toPath:[ECRDownloadManager sharedInstance].hyperUnzipFile toFileName:hypermedia uzSuccess:^(NSString *absuPath) {
+                NSLog(@"absupath -- %@",absuPath);
+                // 打开解压缩后的超媒体文件 --> 超媒体阅读器仅支持真机
+                [ECRHypermediaManager openHypermidiaWithURL:absuPath vc:vc];
+            } uzFailure:^(NSString *info) {
+                NSLog(@"errinfo -- %@",info);
+            }];
+#endif
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
++ (instancetype)sharedInstance{
+    static id instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
+
+@end

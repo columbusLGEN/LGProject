@@ -1,0 +1,34 @@
+//
+//  USCPasswordTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "USCPasswordTableViewCell.h"
+
+@implementation USCPasswordTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configCell
+{
+    _lblDesc.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblDesc.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _txtfPassword.font = [UIFont systemFontOfSize:cFontSize_16];
+    _txtfPassword.secureTextEntry = YES;
+}
+
+@end

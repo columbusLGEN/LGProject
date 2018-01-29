@@ -1,0 +1,31 @@
+//
+//  UOrderFooterView.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@protocol UOrderFooterViewDelegate;
+
+@interface UserOrderFooterView : ECRBaseView
+
+/* 判断是否详情界面 */
+@property (assign, nonatomic) BOOL isDetailFooter;
+@property (weak, nonatomic) id<UOrderFooterViewDelegate> delegate;
+
+@end
+
+@protocol UOrderFooterViewDelegate <NSObject>
+/** 删除订单 */
+- (void)deleteOrderWithOrder:(OrderModel *)order;
+/** 取消订单 */
+- (void)cancelOrderWithOrder:(OrderModel *)order;
+/** 立即支付 */
+- (void)payOrderWithOrder:(OrderModel *)order;
+/** 评价订单 */
+- (void)evaluateWithOrder:(OrderModel *)order;
+
+@end

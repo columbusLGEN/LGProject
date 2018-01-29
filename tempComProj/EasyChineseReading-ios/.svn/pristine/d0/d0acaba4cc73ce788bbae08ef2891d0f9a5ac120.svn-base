@@ -1,0 +1,59 @@
+//
+//  TaskRequest.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/18.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "BaseNetRequest.h"
+
+@interface TaskRequest : BaseNetRequest
+
+#pragma mark ========== 任务相关网络请求 ==========
+
+CM_SINGLETON_INTERFACE(TaskRequest)
+
+#pragma mark - 我的任务接口
+
+/**
+ 我的任务
+
+ @param completion 回调
+ */
+- (void)getTaskListWithCompletion:(CompleteBlock)completion;
+
+#pragma mark - 读书任务
+
+/**
+ 读书任务
+
+ @param page        页数
+ @param completion  回调
+ */
+- (void)getReadTaskWithPage:(NSString *)page
+                 completion:(CompleteBlock)completion;
+
+#pragma mark - 查询任务状态
+
+/**
+ 查询任务状态
+
+ @param taskType   类型(1 每日 2 长期 3 一次性 0 全部)
+ @param completion 回调
+ */
+- (void)getTaskStatusWithTaskType:(NSString *)taskType
+                       completion:(CompleteBlock)completion;
+
+#pragma mark - 领取任务奖励
+
+/**
+ 领取任务奖励
+
+ @param taskId      任务 id
+ @param completion  回调
+ */
+- (void)getTaskAwardWithTaskId:(NSString *)taskId
+                    completion:(CompleteBlock)completion;
+
+@end

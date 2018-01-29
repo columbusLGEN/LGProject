@@ -1,0 +1,42 @@
+//
+//  ECRBiRecoCollectionViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/15.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBiRecoCollectionViewCell.h"
+#import "ECRRecoBook.h"
+
+@interface ECRBiRecoCollectionViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *bookImg;
+@property (weak, nonatomic) IBOutlet UILabel *bName;
+@property (weak, nonatomic) IBOutlet UILabel *bPrice;
+
+
+@end
+
+@implementation ECRBiRecoCollectionViewCell
+
+- (void)setModel:(ECRRecoBook *)model{
+    _model = model;
+    [_bookImg sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:nil];
+    _bName.text = model.bookName;
+    _bPrice.text = [NSString stringWithFormat:@"￥%.2f",model.price];
+//    NSLog(@"---: %ld",[model.bookName length]);
+//    if ([model.bookName length] > 3) {
+//        _bName.textAlignment = NSTextAlignmentLeft;
+//    }else{
+//        _bName.textAlignment = NSTextAlignmentCenter;
+//    }
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    _bookImg.clipsToBounds = YES;
+    
+
+}
+
+@end

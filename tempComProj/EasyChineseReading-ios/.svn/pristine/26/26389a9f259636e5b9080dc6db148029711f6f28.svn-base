@@ -1,0 +1,36 @@
+//
+//  YMCatalogue+CoreDataProperties.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/12/2.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
+//  to delete and recreate this implementation file for your updated model.
+//
+
+#import "YMCatalogue.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface YMCatalogue (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSString *bookID;
+@property (nullable, nonatomic, retain) NSNumber *catID;
+@property (nullable, nonatomic, retain) NSNumber *children;
+@property (nullable, nonatomic, retain) NSNumber *cID;
+@property (nullable, nonatomic, retain) NSString *cName;
+@property (nullable, nonatomic, retain) NSNumber *depth;
+@property (nullable, nonatomic, retain) NSString *filePath;
+@property (nullable, nonatomic, retain) NSNumber *isAlbum;
+@property (nullable, nonatomic, retain) NSNumber *location;
+@property (nullable, nonatomic, retain) NSNumber *navIndex;
+@property (nullable, nonatomic, retain) id pageCounts;
+@property (nullable, nonatomic, retain) id pageTags;
+@property (nullable, nonatomic, retain) id position;
+@property (nullable, nonatomic, retain) NSString *sectionPos;
+@property (nullable, nonatomic, retain) id startPages;
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -1,0 +1,40 @@
+//
+//  SettingButton.h
+//  JRReader
+//
+//  Created by 高濛 on 15/7/23.
+//  Copyright (c) 2015年 grenlight. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+typedef enum {
+    
+    TypeSelect,
+    TypeUnselect
+    
+}ChooseType;
+
+
+@interface SettingButton : UIButton
+{
+    ChooseType  currentType;
+    
+    //背景
+    UIColor     *color;
+    UIColor     *unColor;
+    
+    //border
+    UIColor     *borderColor;
+}
+
+//初始化设置
+- (void)setColor:(UIColor *)c
+        unColor:(UIColor *)unc
+    BorderColor:(UIColor *)bc;
+
+
+//直接改变状态
+- (void)setIsSelected:(ChooseType)type;
+
+@end

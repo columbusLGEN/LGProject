@@ -1,0 +1,92 @@
+//
+//  ECRRequestFailuredView.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/10/18.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+//zan8
+
+static CGFloat font = 18;
+static NSString *txt = @"刷新";
+
+#import "ECRRequestFailuredView.h"
+
+@interface ECRRequestFailuredView ()
+@property (strong,nonatomic) UIImageView *bgImg;//
+@property (strong,nonatomic) UIButton *reRequest;//
+@property (copy,nonatomic) void(^reRequestBlock)();//
+
+@end
+
+@implementation ECRRequestFailuredView
+
+- (void)setImgName:(NSString *)imgName{
+    _imgName = imgName;
+    [self.bgImg setImage:[UIImage imageNamed:imgName]];
+}
+- (void)setBtnTitle:(NSString *)btnTitle{
+    _btnTitle = btnTitle;
+    [self.reRequest setTitle:btnTitle forState:UIControlStateNormal];
+}
+
+- (instancetype)requestFailuredViewWithFrame:(CGRect)frame clickBlock:(void(^)())block{
+    self.reRequestBlock = block;
+    return [self initWithFrame:frame];
+}
+
+- (void)reRequestClick:(UIButton *)sender{
+    if (self.reRequestBlock) {
+        self.reRequestBlock();
+    }
+}
+
+- (void)setupUI{
+    self.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.bgImg];
+    [self addSubview:self.reRequest];
+    
+    [self.bgImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.centerY.equalTo(self.mas_centerY).offset(-30);
+    }];
+    [self.reRequest mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(self.bgImg.mas_bottom).offset(10);
+    }];
+    
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupUI];
+    }
+    return self;
+}
+- (UIImageView *)bgImg{
+    if (_bgImg == nil) {
+        _bgImg = [[UIImageView alloc] init];
+        [_bgImg setImage:[UIImage imageNamed:@"zan8"]];
+    }
+    return _bgImg;
+}
+- (UIButton *)reRequest{
+    if (_reRequest == nil) {
+        _reRequest = [[UIButton alloc] init];
+        [_reRequest.titleLabel setFont:[UIFont systemFontOfSize:font]];
+        [_reRequest setTitleColor:[UIColor cm_blackColor_666666_1] forState:UIControlStateNormal];
+        [_reRequest setTitle:txt forState:UIControlStateNormal];
+        [_reRequest setTintColor:[UIColor clearColor]];
+        [_reRequest addTarget:self action:@selector(reRequestClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _reRequest;
+}
+@end

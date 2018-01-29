@@ -1,0 +1,43 @@
+//
+//  UserCollectionViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/8/29.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserCollectionViewCell.h"
+
+@interface UserCollectionViewCell ()
+
+@property (strong, nonatomic) IBOutlet UILabel *lblTitle;
+@property (strong, nonatomic) IBOutlet UIImageView *imgIcon;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lblTopConstraint;
+
+@end
+
+@implementation UserCollectionViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configCell];
+}
+
+- (void)configCell
+{
+    _imgHeightConstraint.constant = isPad ? 60.f : 40.f;
+    _lblTopConstraint.constant = isPad ? 20.f : 10.f;
+    
+    _lblTitle.font = [UIFont systemFontOfSize:isPad ? cFontSize_iPad_18 : cFontSize_16];
+    _lblTitle.textColor = [UIColor cm_blackColor_333333_1];
+}
+
+- (void)dataDidChange
+{
+    NSDictionary *dic = self.data;
+    _lblTitle.text = [dic objectForKey:@"title"];
+    _imgIcon.image = [UIImage imageNamed:[dic objectForKey:@"image"]];
+}
+
+@end

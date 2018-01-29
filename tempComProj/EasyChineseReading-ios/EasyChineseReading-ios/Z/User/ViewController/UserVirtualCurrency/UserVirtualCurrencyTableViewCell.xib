@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserVirtualCurrencyTableViewCell" rowHeight="108" id="4qz-QP-ZMH" customClass="UserVirtualCurrencyTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="447" height="108"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4qz-QP-ZMH" id="Sfk-c4-3V8">
+                <rect key="frame" x="0.0" y="0.0" width="447" height="108"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZ1-3O-0rh">
+                        <rect key="frame" x="12" y="6" width="423" height="95.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jzf-gt-7Pr">
+                                <rect key="frame" x="10" y="10" width="43" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值日期：2000-01-01 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aY-u2-OZs">
+                                <rect key="frame" x="10" y="32" width="199" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80 虚拟币" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPp-4f-zpg">
+                                <rect key="frame" x="53" y="10" width="64.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="1aY-u2-OZs" secondAttribute="bottom" priority="249" constant="10" id="4Oz-jJ-dRD"/>
+                            <constraint firstItem="ZPp-4f-zpg" firstAttribute="leading" secondItem="Jzf-gt-7Pr" secondAttribute="trailing" id="Hr2-Vt-csa"/>
+                            <constraint firstItem="Jzf-gt-7Pr" firstAttribute="leading" secondItem="fZ1-3O-0rh" secondAttribute="leading" constant="10" id="b34-pR-AMH"/>
+                            <constraint firstItem="1aY-u2-OZs" firstAttribute="leading" secondItem="Jzf-gt-7Pr" secondAttribute="leading" id="cVl-HY-ApQ"/>
+                            <constraint firstItem="ZPp-4f-zpg" firstAttribute="baseline" secondItem="Jzf-gt-7Pr" secondAttribute="baseline" id="dh3-RN-msK"/>
+                            <constraint firstItem="Jzf-gt-7Pr" firstAttribute="top" secondItem="fZ1-3O-0rh" secondAttribute="top" constant="10" id="o4q-5J-klk"/>
+                            <constraint firstItem="1aY-u2-OZs" firstAttribute="top" secondItem="Jzf-gt-7Pr" secondAttribute="bottom" constant="5" id="v8r-iG-ccT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="fZ1-3O-0rh" secondAttribute="bottom" constant="6" id="8X2-fe-OZe"/>
+                    <constraint firstAttribute="trailing" secondItem="fZ1-3O-0rh" secondAttribute="trailing" constant="12" id="WiI-wH-x4J"/>
+                    <constraint firstItem="fZ1-3O-0rh" firstAttribute="top" secondItem="Sfk-c4-3V8" secondAttribute="top" constant="6" id="cdh-9z-MH5"/>
+                    <constraint firstItem="fZ1-3O-0rh" firstAttribute="leading" secondItem="Sfk-c4-3V8" secondAttribute="leading" constant="12" id="xPh-Yi-GKv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lblDescribe" destination="Jzf-gt-7Pr" id="Gwx-c9-x65"/>
+                <outlet property="lblVirtualCurrent" destination="ZPp-4f-zpg" id="dz9-0s-mI3"/>
+                <outlet property="lblVirtualCurrentTime" destination="1aY-u2-OZs" id="MiO-gz-pFO"/>
+                <outlet property="viewBackground" destination="fZ1-3O-0rh" id="48d-gQ-wiO"/>
+            </connections>
+            <point key="canvasLocation" x="20.5" y="30"/>
+        </tableViewCell>
+    </objects>
+</document>

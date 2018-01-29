@@ -1,0 +1,27 @@
+//
+//  MenuRootViewController.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/9/28.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#import "BaseViewController.h"
+
+@protocol MenuRootViewControllerDelegate <NSObject>
+
+- (void)contineRead:(id)sender;
+
+@end
+
+
+
+@interface MenuRootViewController : BaseViewController
+
+@property (assign) id<MenuRootViewControllerDelegate>delegate;
+
+- (void)showBtn;
+
+- (void)hideBtn;
+
+@end

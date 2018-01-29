@@ -1,0 +1,25 @@
+//
+//  UCStudentListTableViewCell.h
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/12.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class UCStudentListTableViewCell;
+
+@protocol UCStudentListTableViewCellDelegate <NSObject>
+
+- (void)editStudentWithId:(NSInteger)studentId;
+
+- (void)deleteStudentWithId:(NSInteger)studentId;
+
+@end
+
+@interface UCStudentListTableViewCell : UITableViewCell
+
+@property (assign, nonatomic) id<UCStudentListTableViewCellDelegate> delegate;
+
+@end

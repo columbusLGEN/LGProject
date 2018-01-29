@@ -1,0 +1,156 @@
+//
+//  ECRBookrackView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/5.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRBookrackView.h"
+#import "ECRSwichView.h"
+#import "ECRBookrackFlowLayout.h"
+
+@interface ECRBookrackView ()<
+ECRSwichViewDelegate,
+UICollectionViewDelegate
+>
+
+@property (strong,nonatomic) ECRSwichView *swichView;//
+@property (strong,nonatomic) UIScrollView *firstFloor;// 容器
+
+@property (strong,nonatomic) UILongPressGestureRecognizer *longPress;
+@property (strong,nonatomic) ECRBookrackFlowLayout *brLayout;//
+
+@end
+
+@implementation ECRBookrackView
+
+static NSString *reuserID = @"ECRBookrackCollectionViewCell";
+CGFloat svH = 40;// swich view height
+CGFloat margin = 10;
+CGFloat bookSpace = 40;
+//static CGFloat navH = 0;// 64 -> 0
+
+- (instancetype)initWithFrame:(CGRect)frame flowLayout:(ECRBookrackFlowLayout *)flowLayout{
+    self.brLayout = flowLayout;
+    return [self initWithFrame:frame];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+        _brLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        // TODO:
+        _brLayout.itemSize = CGSizeMake((Screen_Width - 2 * margin - 2 * bookSpace) / 3, 150);
+        _brLayout.minimumInteritemSpacing = 0;
+        
+        _swichView  = [[ECRSwichView alloc] init];
+        _firstFloor = [[UIScrollView alloc] init];
+        _bookrack   = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_brLayout];
+        _bookrack.showsVerticalScrollIndicator = NO;
+        _bookrack.backgroundColor = [UIColor whiteColor];
+//        _brLayout.flssDelegate =  self;
+//        _bookrack.dataSource      = self;
+        _bookrack.delegate        = self;
+        
+        [self        addSubview:_swichView];
+        [self        addSubview:_firstFloor];
+        [_firstFloor addSubview:_bookrack];
+        
+        // MAKR: 约束
+        [_swichView  mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top    .equalTo(self       .mas_top).offset(v_u_offset_top);
+            make.left   .equalTo(self       .mas_left);
+            make.right  .equalTo(self       .mas_right);
+            make.height .equalTo(@(svH));
+        }];
+        [_firstFloor mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top    .equalTo(_swichView .mas_bottom);
+            make.left   .equalTo(self       .mas_left);
+            make.bottom .equalTo(self       .mas_bottom).offset(-49);
+            make.right  .equalTo(self       .mas_right);
+        }];
+        [_bookrack mas_makeConstraints:^(MASConstraintMaker *make) {
+            // TODO: 未来scrollview 上会有两个view , 需要修改约束
+            make.top    .equalTo(_firstFloor.mas_top);
+            make.left   .equalTo(_firstFloor.mas_left);
+            make.bottom .equalTo(_firstFloor.mas_bottom);
+            make.right  .equalTo(_firstFloor.mas_right);
+            make.width  .equalTo(@(Screen_Width - 2 * margin));
+            make.height .equalTo(_firstFloor.mas_height);
+        }];
+        _bookrack.contentInset = UIEdgeInsetsMake(margin, margin, 0, 0);
+        
+        // TEST - CODE
+//        self       .backgroundColor  = [UIColor redColor];
+        _swichView .backgroundColor  = [UIColor orangeColor];
+//        _firstFloor.backgroundColor  = [UIColor blueColor];
+        
+        // 注册 cell
+        [_bookrack registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellWithReuseIdentifier:reuserID];
+    }
+    return self;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    // Y的偏移量
+    CGFloat offsetY = scrollView.contentOffset.y;
+    // 平移差值
+    CGFloat dValue  = svH - offsetY;
+    
+    if (dValue < 0) {
+        dValue = 0;
+    }
+    
+    if (offsetY > 0) {
+        if (dValue >= 0) {
+            // 平移
+            self.swichView.transform = CGAffineTransformMakeTranslation(0, -offsetY);
+            [self.firstFloor mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top    .equalTo(self.mas_top).offset(dValue + v_u_offset_top);
+                make.left   .equalTo(self.mas_left);
+                make.bottom .equalTo(self.mas_bottom).offset(-49);
+                make.right  .equalTo(self.mas_right);
+            }];
+        }
+    }else{
+        // 恢复
+        self.swichView.transform = CGAffineTransformIdentity;
+        [self.firstFloor mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top    .equalTo(self       .swichView .mas_bottom);
+            make.left   .equalTo(self       .mas_left);
+            make.bottom .equalTo(self       .mas_bottom).offset(-49);
+            make.right  .equalTo(self       .mas_right);
+        }];
+    }
+}
+
+// 修复刷新 闪烁bug
+//    [UIView animateWithDuration:0.0 animations:^{
+//        [self.bookrack performBatchUpdates:^{
+//            [self.bookrack reloadData];
+//        } completion:^(BOOL finished) {
+//
+//        }];
+//    }];
+
+//    [UIView setAnimationsEnabled:NO];
+//    [collectionView performBatchUpdates:^{
+//        [collectionView reloadData];
+//    } completion:^(BOOL finished) {
+//        [UIView setAnimationsEnabled:YES];
+//    }];
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+

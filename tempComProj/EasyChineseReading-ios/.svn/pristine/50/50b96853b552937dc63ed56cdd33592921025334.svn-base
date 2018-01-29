@@ -1,0 +1,115 @@
+//
+//  UCStudentManagerVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/2.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UCStudentManagerVC.h"
+
+#import "UCStudentListVC.h"
+
+#import "UCStudentManagerAddVC.h"
+
+static CGFloat kHeaderHeight = 44.f; // 顶部view高度
+
+@interface UCStudentManagerVC ()<ZSlideSwitchDelegate>
+
+@end
+
+@implementation UCStudentManagerVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configStudentManageView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark action
+
+- (void)configStudentManageView
+{
+    [self configNavigationBar];
+    [self configHeaderView];
+    [self configOtherView];
+}
+
+#pragma mark - 需要子类重写的方法
+
+// 子类需要重写此方法 重写 title 和 rightBarButtonItem
+- (void)configNavigationBar
+{
+    self.title = @"学生管理";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"2"] style:UIBarButtonItemStylePlain target:self action:@selector(addStudent)];
+}
+
+// 子类需要重写此方法 重新配置 titles 和 viewControllers
+- (void)configHeaderView
+{
+    //要显示的标题
+    NSArray *titles = @[@"禁区班", @"什么班", @"鬼神班", @"这个班", @"清华班", @"那个班", @"就是班"];
+    //创建需要展示的ViewController
+    NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0 ; i<titles.count; i++) {
+        UCStudentListVC *studentList = [UCStudentListVC new];
+        [viewControllers addObject:studentList];
+    }
+    [self configSlideSwitchWithTitles:titles viewControllers:viewControllers];
+}
+
+// 留给子类用以补充的方法
+- (void)configOtherView
+{
+    
+}
+
+/**
+ 子类需要此方法-给header滚动条赋值
+ 
+ @param titles 标题数组
+ @param viewControllers 控制器数组
+ */
+- (void)configSlideSwitchWithTitles:(NSArray *)titles viewControllers:(NSArray *)viewControllers
+{
+    //创建滚动视图
+    _slideSwitch = [[ZSlideSwitch alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, self.view.height - kHeaderHeight) titles:titles viewControllers:viewControllers canScroll:YES];
+    //设置代理
+    _slideSwitch.delegate = self;
+    //设置按钮选中和未选中状态的标题颜色
+    _slideSwitch.selectedColor = [UIColor cm_mainColor];
+    _slideSwitch.normalColor = [UIColor cm_blackColor_333333_1];
+    //显示方法
+    [_slideSwitch showInViewController:self];
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, kHeaderHeight)];
+    headerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:headerView];
+    
+    UIView *verLine = [[UIView alloc] initWithFrame:CGRectMake(15, 15, 3, 15)];
+    verLine.backgroundColor = [UIColor cm_purpleColor_82056B_1];
+    [headerView addSubview:verLine];
+    
+    UILabel *lblClass = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 50, 22)];
+    lblClass.text = @"班级：";
+    lblClass.textColor = [UIColor cm_blackColor_333333_1];
+    lblClass.font = [UIFont systemFontOfSize:15.f];
+    [headerView addSubview:lblClass];
+}
+
+#pragma mark -
+
+- (void)addStudent
+{
+    UCStudentManagerAddVC *addVC = [UCStudentManagerAddVC loadFromStoryBoard:@"UserClass"];
+    [self.navigationController pushViewController:addVC animated:YES];
+}
+
+
+
+@end

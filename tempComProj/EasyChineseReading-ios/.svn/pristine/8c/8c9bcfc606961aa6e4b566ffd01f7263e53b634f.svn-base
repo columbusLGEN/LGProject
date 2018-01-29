@@ -1,0 +1,51 @@
+//
+//  UserIntegralTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/4.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UIntegralTableViewCell.h"
+
+@interface UIntegralTableViewCell ()
+
+@property (strong, nonatomic) IBOutlet UIView *viewBackground;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescribe;    // 积分累计
+@property (strong, nonatomic) IBOutlet UILabel *lblIntegralTime;// 更新时间
+@property (strong, nonatomic) IBOutlet UILabel *lblIntegral;    // 积分数
+
+@end
+
+@implementation UIntegralTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configIntegralView];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configIntegralView
+{
+    _viewBackground.layer.borderColor = [UIColor cm_lineColor_C6C6C6_1].CGColor;
+    _viewBackground.layer.borderWidth = .5f;
+    _lblIntegralTime.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _lblIntegral.textColor = [UIColor cm_purpleColor_82056B_1];
+}
+
+#pragma mark -
+#pragma mark 
+
+- (void)dataDidChange
+{
+    
+}
+
+@end

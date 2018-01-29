@@ -1,0 +1,19 @@
+//
+//  ECRRentReadView.h
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/25.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRBaseView.h"
+
+@protocol ECRPayStyleDelegate;
+
+@interface ECRRentReadView : ECRBaseView
+
++ (instancetype)rentReadView;
+
+@property (weak,nonatomic) id<ECRPayStyleDelegate> delegate;// <##>
+
+@end

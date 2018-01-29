@@ -1,0 +1,361 @@
+//
+//  ECRMoreBooksViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRMoreBooksViewController.h"
+#import "ECRSortTableViewController.h"
+#import "ECRMoreBooksCell.h"
+#import "ECRBookListModel.h"
+#import "ECRClassSortModel.h"
+#import "ECRHomeSortModel.h"
+#import "UIView+Extension.h"
+#import "ECRBookClassSortHeader.h"
+#import "ECRSearchTitleView.h"
+
+@interface ECRMoreBooksViewController ()<
+ECRSearchTitleViewDelegate,
+ECRBookClassSortHeaderDelegate,
+ECRSortTableViewControllerDelegate
+>
+@property (strong,nonatomic) UIView *filterView;
+@property (strong,nonatomic) NSArray *array;
+@property (strong,nonatomic) UITableView *tableView;
+@property (strong,nonatomic) ECRSortTableViewController *stvc;
+@property (strong,nonatomic) UIView *originalTitleView;// 原始title view
+
+@end
+
+@implementation ECRMoreBooksViewController
+
+static NSString *reuserID       = @"ECRMoreBooksCell";
+static NSString *rHeadID = @"ECRBookClassSortHeader";
+static CGFloat filterHeight;// 筛选条件高度
+static CGFloat filterCellH      = 40;// MARK: 筛选条件行高,临时值40
+static CGFloat listCellH        = 150;// 图示列表cell高度
+static CGFloat navH             = 0;// 64 -> 0
+static CGFloat sortCellH2 = 40;// MARK: 销量,价格,好评,行高
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    [self loadNewData];
+}
+
+- (void)loadNewData{
+    // test
+    NSInteger count = arc4random_uniform(20) + 10;
+    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:10];
+    for (NSInteger i = 0; i < count; ++i) {
+        ECRBookListModel *model = [[ECRBookListModel alloc] init];
+        model.coverPhoto = @"http://img3m0.ddimg.cn/15/25/25112850-1_u_8.jpg";
+        model.bookName = [NSString stringWithFormat:@"测试%ld",i];
+        model.author = @"海明威";
+        model.synopsis = @"哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或";
+        model.money = arc4random_uniform(100) + arc4random_uniform(100) * 0.01;
+        
+        [arrM addObject:model];
+    }
+    _array = arrM.copy;
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView reloadData];
+}
+#pragma mark - ECRSearchTitleViewDelegate
+- (void)stViewClose:(ECRSearchTitleView *)view{
+    [self endSearching];
+}
+- (void)stView:(ECRSearchTitleView *)view content:(NSString *)content{
+    // MARK: 根据content 开始搜索
+    
+}
+
+#pragma mark - ECRSortTableViewControllerDelegate
+- (void)stbController:(ECRSortTableViewController *)controller classModel:(ECRClassSortModel *)classModel{
+    _bookListType = classModel.classType.integerValue;
+    [self reloadFilterView];
+}
+
+#pragma mark - table view delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _array.count ? _array.count : 0;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [self reTable:tableView cellForRowAtIndexPath:indexPath];
+}
+
+- (UITableViewCell *)reTable:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ECRMoreBooksCell *cell = [tableView dequeueReusableCellWithIdentifier:reuserID];
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+    ECRBookListModel *model;
+    if (_array.count) {
+        model              = _array[indexPath.row];
+    }
+    cell.model             = model;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return listCellH;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    ECRBookClassSortHeader *head = [tableView dequeueReusableHeaderFooterViewWithIdentifier:rHeadID];
+    head.delegate = self;
+    return head;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+    return sortCellH2;
+}
+
+
+#pragma mark - scroll view delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat scoY = scrollView.contentOffset.y;
+    CGFloat dValue = filterHeight - scoY;// 差值
+    
+    if (dValue < 0) {// 修复bug:开始突然大幅度滑动会造成位置错误; 原因: 突然滑动使得dValue<0
+        dValue = 0;
+    }
+    if (scoY > 0) {// 上拉
+        if (dValue >= 0) { // 与 if (scoY < filterHeight) 等价
+            // 平移 fiterV
+            self.filterView.transform = CGAffineTransformMakeTranslation(0, -scoY);
+            // 更新约束
+            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top    .equalTo(self.view.mas_top).offset(dValue + navH);
+                make.left   .equalTo(self.view.mas_left);
+                make.right  .equalTo(self.view.mas_right);
+                make.bottom .equalTo(self.view.mas_bottom);
+            }];
+        }
+    }else{
+        // 恢复 初始化transform
+        self.filterView.transform = CGAffineTransformIdentity;
+        [_tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top    .equalTo(_filterView.mas_bottom);
+            make.left   .equalTo(self.view  .mas_left);
+            make.right  .equalTo(self.view  .mas_right);
+            make.bottom .equalTo(self.view  .mas_bottom);
+        }];
+    }
+}
+
+#pragma mark - ECRBookClassSortHeaderDelegate
+- (void)bcsHeader:(ECRBookClassSortHeader *)header tag:(NSInteger)tag{
+    NSLog(@"--tag:%ld",tag);
+    switch (tag) {
+        case 0:// 销量
+            NSLog(@"--销量");
+            break;
+        case 1:// 价格
+            NSLog(@"--价格");
+            break;
+        case 2:// 好评
+            NSLog(@"--好评");
+            break;
+    }
+}
+
+- (void)setupUI{
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self loadFilterView];
+    
+    // MARK: MJRefresh
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    self.tableView.mj_header = header;
+
+    // MARK: 设置导航栏右边搜索按钮🔍
+    [self setNavRighSearchItem];
+}
+// 设置顶部搜索框
+- (void)replaceTitleViewForSearch{
+    // 设置 搜索 title view
+    CGRect stRect                   = CGRectMake(0, 0, Screen_Width, 64);
+    ECRSearchTitleView *stv         = [[ECRSearchTitleView alloc] initWithFrame:stRect];
+    stv.delegate                    = self;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.navigationItem.titleView   = stv;
+        self.navigationItem.rightBarButtonItem = nil;
+        UIBarButtonItem *spaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        spaceBarButtonItem.width = -4;
+        self.navigationItem.leftBarButtonItems = @[spaceBarButtonItem];
+        [self.navigationItem setHidesBackButton:YES];
+    } completion:^(BOOL finished) {
+        [stv lg_becomResponser];
+    }];
+}
+// 设置导航栏右侧搜索按钮
+- (void)setNavRighSearchItem{
+    UIBarButtonItem *rItem = [[UIBarButtonItem alloc] initWithTitle:@"🔍" style:UIBarButtonItemStylePlain target:self action:@selector(bookSearch:)];
+    self.navigationItem.rightBarButtonItem = rItem;
+}
+- (void)bookSearch:(id)sender{
+    [self replaceTitleViewForSearch];
+}
+// 结束搜索状态
+- (void)endSearching{
+    // MARK: moreCallBack.关闭搜索
+    [self.view endEditing:YES];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.navigationItem.titleView = nil;
+    }];
+    [self createNavLeftBackItem];
+    [self setNavRighSearchItem];
+}
+
+- (void)loadFilterView{
+    
+    ECRSortTableViewController *stvc = [[ECRSortTableViewController alloc] init];
+    self.stvc                        = stvc;
+    stvc.delegate                    = self;
+    stvc.bookListType                = _bookListType;
+    [self loadLocalPlistWithType:_bookListType
+                          pBlock:^(NSArray *models, CGFloat filterH) {
+        stvc.view.frame = CGRectMake(0,
+                                     navH,
+                                     Screen_Width,
+                                     filterH);
+        stvc.modelArray = models;
+        _filterView     = stvc.view;
+        
+        _tableView      = [[UITableView alloc]
+                           initWithFrame:CGRectMake(0,
+                                                    filterH + navH,
+                                                    Screen_Width,
+                                                    Screen_Height - filterH)
+                           style:UITableViewStylePlain];
+        
+        _tableView.dataSource      = self;
+        _tableView.delegate        = self;
+        [self.view addSubview:_filterView];
+        [self.view addSubview:_tableView];
+                              
+                              // 设置约束
+                              [_filterView mas_makeConstraints:^(MASConstraintMaker *make) {
+                                  make.top.equalTo(self.view.mas_top).offset(navH);
+                                  make.left.equalTo(self.view.mas_left);
+                                  make.right.equalTo(self.view.mas_right);
+                                  make.height.equalTo(@(filterH));
+                              }];
+                              [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                                  make.top.equalTo(_filterView.mas_bottom);
+                                  make.left.equalTo(self.view.mas_left);
+                                  make.right.equalTo(self.view.mas_right);
+                                  make.bottom.equalTo(self.view.mas_bottom);
+                              }];
+                              self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+                              [self.tableView registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellReuseIdentifier:reuserID];
+                              [self.tableView registerNib:[UINib nibWithNibName:rHeadID bundle:nil] forHeaderFooterViewReuseIdentifier:rHeadID];
+        
+    }];
+    
+}
+// 切换分类时调用该方法
+- (void)reloadFilterView{
+    [_filterView removeFromSuperview];
+    _filterView = nil;
+    [_tableView removeFromSuperview];
+    _tableView  = nil;
+    self.stvc   = nil;
+    [self loadFilterView];
+//    [self loadNewData];
+}
+
+
+#pragma mark - UI
+- (void)loadLocalPlistWithType:(ECRMoreBookListType)type pBlock:(void(^)(NSArray *models, CGFloat filterH))pBlock{
+    NSString *lpName;
+    BOOL isHot = 0;
+    switch (type) {
+        case ECRMoreBookListTypeHotSeal:// 热销
+            lpName = @"moreBooksModified";
+            isHot = 1;
+            break;
+        case ECRMoreBookListTypeInterText:// 互动教材
+            lpName = @"interectBooksModified";
+            isHot = 0;
+            break;
+        case ECRMoreBookListTypeChineseReading:// 汉语读物
+            lpName = @"ChineseBooksModified";
+            isHot = 0;
+            break;
+        case ECRMoreBookListTypeCultureReading:// 文化读物
+            lpName = @"cultureBooksModified";
+            isHot = 0;
+            break;
+        default:
+            lpName = @"ChineseBooksModified";
+            break;
+    }
+    // MARK: 获取本地plist数据
+    // 1.获取path
+    if (lpName) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:lpName ofType:@"plist"];
+        NSArray *array = [NSArray arrayWithContentsOfFile:path];
+        NSMutableArray *arrM = [NSMutableArray array];
+        // 加载后面的几行, 行数, 以及每行的内容均有不同程度的 差别
+        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *dict = (NSDictionary *)obj;
+            ECRHomeSortModel *model = [ECRHomeSortModel mj_objectWithKeyValues:dict];
+            [arrM addObject:model];
+        }];
+        if (!isHot) {
+            // 加载 第一行: 全部 互动教材 汉语读物 文化读物
+            // 除了 热销之外, 三个分类的第一行内容都一样
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"bookTotalClass" ofType:@"plist"];
+            NSArray *array = [NSArray arrayWithContentsOfFile:path];
+            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSDictionary *dict = (NSDictionary *)obj;
+                ECRHomeSortModel *model = [ECRHomeSortModel mj_objectWithKeyValues:dict];
+                [arrM insertObject:model atIndex:0];
+            }];
+        }
+        // MARK: arr.count * 每行行高及为 筛选条件view 所需要的高度
+        filterHeight = arrM.count * filterCellH;
+        if (pBlock) {
+            pBlock(arrM.copy, filterHeight);
+        }   
+    }
+}
+
+- (void)settingsWithNumber:(NSInteger)number searchCallBack:(void(^)())searchCallBack moreCallBack:(void(^)())moreCallBack{
+    switch (number) {
+        case 1:
+            if (searchCallBack) {
+                searchCallBack();
+            }
+            break;
+        case 4:
+            if (moreCallBack) {
+                moreCallBack();
+            }
+            break;
+    }
+}
+
+- (void)dealloc{
+    self.stvc = nil;
+    
+}
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

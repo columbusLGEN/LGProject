@@ -1,0 +1,51 @@
+//
+//  USCVerifyTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/9/11.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "USCVerifyTableViewCell.h"
+
+@interface USCVerifyTableViewCell ()
+
+@end
+
+@implementation USCVerifyTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    [self configVerifyTableViewCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+#pragma mark -
+#pragma mark 配置界面
+
+- (void)configVerifyTableViewCell
+{
+    [_btnSendVerify setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_btnSendVerify addTarget:self action:@selector(click_btnSendVerify) forControlEvents:UIControlEventTouchUpInside];
+    _btnSendVerify.backgroundColor = [UIColor cm_orangeColor_FF6000_1];
+    
+    _btnSendVerify.layer.masksToBounds = YES;
+    _btnSendVerify.layer.cornerRadius = _btnSendVerify.height/2;
+    
+}
+
+- (void)click_btnSendVerify
+{
+    if ([self.delegate respondsToSelector:@selector(sendVerifyCode)]) {
+        [self.delegate sendVerifyCode];
+    }
+}
+
+
+@end

@@ -1,0 +1,88 @@
+//
+//  LGPChangeLanguage.m
+//  RGTestPorject
+//
+//  Created by Peanut Lee on 2017/10/27.
+//  Copyright © 2017年 Lee. All rights reserved.
+//
+
+//#define LocalLanguageKey @"AppleLanguages"
+#define LocalLanguageKey @"langeuageset"
+
+#import "LGPChangeLanguage.h"
+
+@implementation LGPChangeLanguage
+
+static NSBundle *bundle = nil;
+
++ (NSString *)localizedStringForKey:(NSString *)key{
+    return [[self bundle] localizedStringForKey:key value:nil table:@"Language"];
+}
+
++ (void)switchChineseToEnglishOrBack{// 仅 英汉之间互相切换
+    NSString *language = [LGPChangeLanguage userLanguage];
+    if ([language isEqualToString:@"en"]) {
+        [LGPChangeLanguage setUserlanguage:@"zh-Hans"];
+    }else{
+        [LGPChangeLanguage setUserlanguage:@"en"];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:LGPChangeLanguageNotification object:self];
+}
+
++ (NSBundle *)bundle{
+    if (bundle == nil) {
+        [self initUserLanguage];
+    }
+    return bundle;
+}
+
+//首次加载的时候先检测语言是否存在
++ (void)initUserLanguage{
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    NSString *currLanguage = [def valueForKey:LocalLanguageKey];
+
+    if(!currLanguage){
+        NSArray *preferredLanguages = [NSLocale preferredLanguages];
+        currLanguage = preferredLanguages[0];
+        if ([currLanguage hasPrefix:@"en"]) {
+            currLanguage = @"en";
+        }else if ([currLanguage hasPrefix:@"zh"]) {
+            currLanguage = @"zh-Hans";
+        }else currLanguage = @"en";
+        [def setValue:currLanguage forKey:LocalLanguageKey];
+        [def synchronize];
+    }
+    
+    //获取文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:currLanguage ofType:@"lproj"];
+    bundle = [NSBundle bundleWithPath:path];//生成bundle
+}
+
+//获取当前语言
++ (NSString *)userLanguage{
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    NSString *language = [def valueForKey:LocalLanguageKey];
+    
+    return language;
+}
+//设置语言
++ (void)setUserlanguage:(NSString *)language{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *currLanguage = [userDefaults valueForKey:LocalLanguageKey];
+    if ([currLanguage isEqualToString:language]) {
+        return;
+    }
+    [userDefaults setValue:language forKey:LocalLanguageKey];
+    [userDefaults synchronize];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:language ofType:@"lproj" ];
+    bundle = [NSBundle bundleWithPath:path];
+}
+
+
+@end

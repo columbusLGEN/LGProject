@@ -1,0 +1,136 @@
+//
+//  UserLeaseDetailVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/27.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UserLeaseDetailVC.h"
+#import "ECRBookInfoViewController.h"
+
+#import "ECRMoreBooksCell.h"
+
+@interface UserLeaseDetailVC ()
+<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *arrLeases;
+@property (assign, nonatomic) NSInteger currendPage;
+
+@end
+
+@implementation UserLeaseDetailVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configLeaseDetailView];
+    [self getFirstPageLeases];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 配置界面
+
+- (void)updateSystemLanguage
+{
+    self.title = [UserRequest sharedInstance].language == ENUM_LanguageTypeChinese ? _serial.serialName : _serial.serialName;
+}
+
+- (void)configLeaseDetailView
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height - cHeaderHeight_64) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    _tableView.backgroundColor = [UIColor whiteColor];
+    
+    UIView *footer = [UIView new];
+    footer.backgroundColor = [UIColor whiteColor];
+    _tableView.tableFooterView = footer;
+    
+    [self.view addSubview:_tableView];
+    
+    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([ECRMoreBooksCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([ECRMoreBooksCell class])];}
+
+- (void)configMJRefresh
+{
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getFirstPageLeases];
+    }];
+    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self getLeasesWithPage:_currendPage];
+    }];
+}
+
+#pragma mark - 获取数据
+
+- (void)getFirstPageLeases
+{
+    _currendPage = 0;
+    [[BookRequest sharedInstance] getBooksWithPage:_currendPage length:cListNumber_10 series:_serial.serialId Completion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            _arrLeases = [BookModel mj_objectArrayWithKeyValuesArray:object];
+            if (_arrLeases.count > 0) {
+                _currendPage += 1;
+                [_tableView reloadData];
+            }
+        }
+    }];
+}
+
+- (void)getLeasesWithPage:(NSInteger)page
+{
+    [[BookRequest sharedInstance] getBooksWithPage:page length:cListNumber_10 series:_serial.serialId Completion:^(id object, ErrorModel *error) {
+        if (error) {
+            [self presentFailureTips:error.message];
+        }
+        else {
+            NSArray *array = [BookModel mj_objectArrayWithKeyValuesArray:object];
+            if (array.count > 0) {
+                _currendPage += 1;
+                [_arrLeases addObjectsFromArray:array];
+                [_tableView reloadData];
+            }
+        }
+    }];
+}
+
+#pragma mark -
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _arrLeases.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ECRMoreBooksCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ECRMoreBooksCell class])];
+    cell.model = _arrLeases[indexPath.row];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 150.f;
+}
+
+#pragma mark -
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"BookInfo" bundle:nil];
+    ECRBookInfoViewController *bivc = [board instantiateViewControllerWithIdentifier:@"ECRBookInfoViewController"];
+    bivc.viewControllerPushWay = ECRBaseControllerPushWayPush;
+    BookModel *book = [BookModel mj_objectWithKeyValues:_serial.series[indexPath.row]];
+    bivc.bookId = book.bookId;
+    [self.navigationController pushViewController:bivc animated:YES];
+}
+
+@end

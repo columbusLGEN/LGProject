@@ -1,0 +1,141 @@
+//
+//  ULeaseVC.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 17/9/1.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "UserLeaseVC.h"
+
+#import "UserLeaseTableViewCell.h"
+
+#import "UVirtualCurrencyRechargeVC.h"
+
+@interface UserLeaseVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UIImageView *imgHeader;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescLeft;
+@property (strong, nonatomic) IBOutlet UILabel *lblRange;
+@property (strong, nonatomic) IBOutlet UILabel *lblEndTime;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnPay;
+@property (strong, nonatomic) IBOutlet UITableView *tableVIew;
+
+/* 数据数组 */
+@property (strong, nonatomic) NSMutableArray *arrDataSource;
+
+@property (nonatomic, strong) EmptyView *emptyView; // 没有数据
+@property (nonatomic, strong) UVirtualCurrencyRechargeVC *rechargeVC; // 全平台包月
+
+@end
+
+@implementation UserLeaseVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self configLeaseView];
+//    [self addEmptyView];
+//    [self getLeaseData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark 配置界面
+
+- (void)configLeaseView
+{
+    _imgHeader.layer.masksToBounds = YES;
+    _imgHeader.layer.cornerRadius = _imgHeader.height/2;
+    _imgHeader.layer.borderColor = [UIColor cm_whiteColor_FFFFFF_8F].CGColor;
+    _imgHeader.layer.borderWidth = 4.f;
+    
+    _btnPay.layer.masksToBounds = YES;
+    _btnPay.layer.cornerRadius = _btnPay.height/2;
+    _btnPay.layer.borderWidth = 1.f;
+    _btnPay.layer.borderColor = [UIColor cm_orangeColor_BB7435_1].CGColor;
+    
+    [_btnPay setTintColor:[UIColor cm_orangeColor_BB7435_1]];
+    [_btnPay setTitle:@"购买" forState:UIControlStateNormal];
+    
+    [_tableVIew registerNib:[UINib nibWithNibName:NSStringFromClass([UserLeaseTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([UserLeaseTableViewCell class])];
+    
+    _tableVIew.estimatedRowHeight = 100;
+    _tableVIew.rowHeight = UITableViewAutomaticDimension;
+}
+
+- (void)addEmptyView
+{
+    _emptyView = [EmptyView loadFromNibWithFrame:CGRectMake(0, 0, Screen_Width, Screen_Height)];
+
+    [_emptyView updateEmptyViewWithImage:[UIImage imageNamed:@"zan9"]
+                                    desc:@"你还没有包月的图书系列~"
+                                 subDesc:@""];
+    [self.view addSubview:_emptyView];
+}
+
+#pragma mark -
+#pragma mark 获取数据
+
+- (void)getLeaseData
+{
+    _emptyView.hidden = _arrDataSource.count > 0;
+    if (_arrDataSource.count > 0) {
+        [self.tableVIew reloadData];
+    }
+    else {
+        
+    }
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _arrDataSource.count > 0 ? 1 : 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UserLeaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserLeaseTableViewCell"];
+//    cell.data
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+#pragma mark -
+#pragma mark action
+
+- (IBAction)click_btnPay:(id)sender {
+    if ([UserRequest sharedInstance].user.readAllBook) {
+        [_btnPay setTitle:@"续期" forState:UIControlStateNormal];
+        [self buyAllRead];
+    }
+    else {
+        [_btnPay setTitle:@"购买" forState:UIControlStateNormal];
+        [self buyAllRead];
+    }
+}
+
+- (void)buyAllRead
+{
+    _rechargeVC = [UVirtualCurrencyRechargeVC loadFromStoryBoard:@"User"];
+    _rechargeVC.view.frame = CGRectMake(0, 44 + 64, Screen_Width, self.view.height - 64 - 44);
+    _rechargeVC.rechargeType = ENUM_RechargeTypeLeaseAll;   
+    [self.navigationController pushViewController:_rechargeVC animated:YES];
+}
+
+@end

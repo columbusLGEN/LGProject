@@ -1,0 +1,134 @@
+//
+//  Defines.h
+//  YMEpubReader
+//
+//  Created by 高濛 on 15/9/29.
+//  Copyright © 2015年 grenlight. All rights reserved.
+//
+
+#ifndef Defines_h
+#define Defines_h
+
+
+#endif /* Defines_h */
+
+
+#pragma mark 通知命名
+
+#define READ_STYLE                     @"readStyle"
+#define GOTO_READ_BY_CAT               @"gotoReadByCat"
+#define GOTO_READ_BY_MARK              @"gotoReadByMark"
+#define GOTO_READ_BY_NOTE              @"gotoReadByMote"
+
+#define UPDATE_STYLE                   @"update_style"
+#define READ_BACKGROUND_COLOR          @"read_background_color"
+#define CHANGE_CONTENTBACKGROUND_COLOR @"changeContentBackground"
+#define CHAPTERNUMCALCULATED           @"allPageCount"
+#define UPDATE_BOOKDIGEST_LIST         @"updateBookdigestList"
+#define UPDATE_NOTE_SELECT_TEXT        @"updateNoteSelectText"
+#define SAVE_DIGEST_ACTION             @"saveAction"
+#define UPDATA_SHOWTEXT                @"showText"
+#define UPDATE_BOOKMARK_LIST           @"updateBookmarkList"
+#define EDITE_NOTE                     @"edit_note"
+#define SEARCH_TEXT_COMPLETE           @"searchTextComplete"
+#define CHAPTERS_NUM_START             @"changePageNumStart"
+#define SHOW_ENDPAGE                   @"showEndPage"
+#define SHOW_FRIST_MESSAGE             @"showFristPage"
+
+#pragma mark                           常量
+
+#define DAY                            @"Day"
+#define NEIGHT                         @"Neight"
+#define FONT_NAME                      @"fontName"
+#define FONT_SIZE                      @"fontSize"
+#define MASK_ALPH                      @"maskAlph"
+#define CHANGE_MASK_ALPH               @"changeMaskAlph"
+#define CHANGE_PAGE                    @"changePage"
+
+
+#pragma mark                           字体
+#define KAI_TI                         @"KaiTi_GB2312"
+#define SIM_HEI                        @"SimHei"
+#define FANG_SONG                      @"FangSong"
+#define SONG_TI                        @"SimSun"
+
+#pragma mark 字体字号
+#define FONT_SIZE_MAX 22
+#define FONT_SIZE_MIN 14
+
+
+#define ISPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+
+#pragma mark 网络请求
+//测试使用通道
+#define HOST                         @"http://172.16.4.66:8090/bookstore"
+
+//增加删除接口
+#define SAVE_MARK                    @"/mobile/post/my/bookmark/add"
+
+#define DELETE_MARK                  @"/mobile/post/my/bookmark/delete"
+
+#define SAVE_DIGEST                  @"/mobile/post/my/note/save"
+
+#define DELETE_DIGEST                @"/mobile/post/my/note/delete"
+
+
+//获取单本图书笔记列表
+#define GET_CURRENT_BOOK_DIGEST_LIST @"/mobile/post/my/singlebook/note/list"
+
+#define GET_CURRENT_BOOK_MARK_LIST   @"/mobile/post/my/singlebook/bookmark/list"
+
+#define GET_LAST_READ                @"/mobile/post/my/singlebook/readprogress/get"
+
+#define SAVE_LAST_READ               @"/mobile/post/my/readprogress/save"
+
+#define SAVE_READ_TIME               @"/mobile/post/upload_exp"
+
+#define SAVE_MARK_LIST               @"/mobile/post/my/bookmark/add_batch"
+
+#define SEND_DIGEST_LIST             @"/mobile/post/my/note/save_batch"
+
+//key
+#define User_Not_List           @"user_note_list"
+#define User_Bookmark_List      @"user_bookmark_list"
+
+#define User_ID                 @"user_id"
+#define Auth_Token              @"auth_token"
+#define Book_ID                 @"book_id"
+#define Page                    @"page"
+#define Limit                   @"limit"
+
+
+#define Chapter_Index           @"chapter_index"
+#define Chapter_Name            @"chapter_name"
+
+#define Position                @"position"
+#define Progress                @"progress"
+#define Summary_Content         @"summary_content"
+#define Note_Content            @"note_content"
+#define Summary_Underline_Color @"summary_underline_color"
+
+#define Digest_Message          @"info"
+
+
+#define NoteID                  @"id"
+#define Get_Note_Id             @"note_id"
+
+#define Position_Offset         @"position_offset"
+#define Add_Date                @"add_time"
+
+#define Bookmark_ID             @"id"
+#define Get_Bookmark_ID         @"bookmark_id"
+
+#define Process                 @"process"
+
+//字体下载url
+#define FONT_SONGTI_URL   @"http://timebooks.com.cn/static/font/SimSun.ttf"
+#define FONT_KAITI_URL    @"http://timebooks.com.cn/static/font/GB2312.ttf"
+#define FONT_FANGSONG_URL @"http://timebooks.com.cn/static/font/Fangsong.ttf"
+
+
+
+
+

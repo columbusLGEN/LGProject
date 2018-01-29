@@ -1,0 +1,51 @@
+//
+//  CLMNavigationController.m
+//  Pandora
+//
+//  Created by lee on 2017/7/17.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "CLMNavigationController.h"
+#import "UIImage+LEEImageExtension.h"
+#import "UIColor+TOPColorSet.h"
+#import "LoginVC.h"
+#import "RegisterVC.h"
+#import "RegisterSuccessVC.h"
+
+@interface CLMNavigationController ()
+
+@end
+
+@implementation CLMNavigationController
+
+// MARK: 重写push方法
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.childViewControllers.count && (![viewController isKindOfClass:[RegisterVC class]] &&
+                                            ![viewController isKindOfClass:[RegisterSuccessVC class]] &&
+                                            ![viewController isKindOfClass:[LoginVC class]])) {// 当退出到根控制器时不隐藏
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    [super pushViewController:viewController animated:animated];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+}
+
+- (void)setupUI{
+    self.navigationBar.tintColor = [UIColor cm_blackColor_333333_1];
+    // 设置导航栏标题字体颜色
+    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor cm_blackColor_333333_1]}];
+    [self.navigationBar setBackgroundColor:[UIColor whiteColor]];
+    [self.navigationBar setTranslucent:NO];
+//    self.navigationBar.userInteractionEnabled = YES;
+    
+    // 设置导航栏背景
+//    [self.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor colorR:0 g:0 b:0 a:0.7]] forBarMetrics:UIBarMetricsDefault];
+}
+
+
+
+@end

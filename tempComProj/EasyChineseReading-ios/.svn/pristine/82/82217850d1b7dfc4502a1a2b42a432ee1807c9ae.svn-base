@@ -1,0 +1,62 @@
+//
+//  UCRecommendDetailBooksTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/18.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UCRecommendDetailBooksTableViewCell.h"
+
+@interface UCRecommendDetailBooksTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgBookCover;
+@property (weak, nonatomic) IBOutlet UILabel *lblBookName;
+@property (weak, nonatomic) IBOutlet UILabel *lblAuthor;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrice;
+@property (weak, nonatomic) IBOutlet UILabel *lblSynopsis;
+
+@end
+
+@implementation UCRecommendDetailBooksTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configBookCell];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)configBookCell
+{
+    _lblBookName.textColor = [UIColor cm_blackColor_333333_1];
+    _lblAuthor.textColor   = [UIColor cm_blackColor_666666_1];
+    _lblSynopsis.textColor = [UIColor cm_blackColor_333333_1];
+    _lblPrice.textColor    = [UIColor cm_orangeColor_FF5910_1];
+    
+    _lblBookName.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblAuthor.font   = [UIFont systemFontOfSize:cFontSize_14];
+    _lblSynopsis.font = [UIFont systemFontOfSize:cFontSize_14];
+    _lblPrice.font    = [UIFont systemFontOfSize:cFontSize_12];
+}
+
+- (void)dataDidChange
+{
+    BookModel *book = self.data;
+    
+    _lblBookName.text = [UserRequest sharedInstance].language == ENUM_LanguageTypeChinese ?  book.bookName : book.en_bookName;
+    _lblAuthor.text = book.author;
+    _lblSynopsis.text = book.contentValidity;
+    
+    NSString *price = [NSString stringWithFormat:@"%@%.2f", LOCALIZATION(@"¥"), book.price];
+    NSMutableAttributedString *money = [[NSMutableAttributedString alloc] initWithString:price];
+    NSRange upRang = NSMakeRange(1, price.length - 1);
+    [money addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:_lblBookName.font.pointSize] range:upRang];
+    _lblPrice.attributedText = money;
+    [_imgBookCover sd_setImageWithURL:[NSURL URLWithString:book.iconUrl]];
+}
+
+@end

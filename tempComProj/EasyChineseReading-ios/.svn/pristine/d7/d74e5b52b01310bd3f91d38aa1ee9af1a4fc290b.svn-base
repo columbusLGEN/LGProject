@@ -1,0 +1,22 @@
+//
+//  NSObject+Category.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/12/13.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "NSObject+Category.h"
+
+@implementation NSObject(Category)
+
+- (NSNumber *)floatToNumber:(CGFloat)floatNumber
+{
+    // 取两位小数
+    NSString *strFloat = [NSString stringWithFormat:@"%.2f", floatNumber];
+    NSNumberFormatter *numf = [[NSNumberFormatter alloc] init];
+    NSNumber *numTemp = [numf numberFromString:strFloat];
+    return numTemp;
+}
+
+@end

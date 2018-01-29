@@ -1,0 +1,58 @@
+//
+//  UCImpowerTeacherTableViewCell.m
+//  EasyChineseReading-ios
+//
+//  Created by 赵春阳 on 2017/10/12.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "UCImpowerTeacherTableViewCell.h"
+
+@interface UCImpowerTeacherTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
+
+@end
+
+@implementation UCImpowerTeacherTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configView];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+}
+
+- (void)setSelected:(BOOL)selected
+{
+}
+
+- (void)setIsSelected
+{
+    _imgSelected.image = [UIImage imageNamed:cImageSelected];
+}
+
+- (void)setUnSelected
+{
+    _imgSelected.image = [UIImage imageNamed:cImageUnSelected];
+}
+
+- (void)configView
+{
+    _lblNumber.textColor = [UIColor cm_blackColor_333333_1];
+    _lblName.textColor = [UIColor cm_blackColor_333333_1];
+    
+    _lblNumber.font = [UIFont systemFontOfSize:cFontSize_16];
+    _lblName.font = [UIFont systemFontOfSize:cFontSize_16];
+}
+
+- (void)dataDidChange
+{
+    UserModel *user = self.data;
+    
+    _lblName.text = user.name;
+}
+
+@end

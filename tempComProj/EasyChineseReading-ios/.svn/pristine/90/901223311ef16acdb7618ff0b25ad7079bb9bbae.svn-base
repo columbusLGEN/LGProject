@@ -1,0 +1,123 @@
+//
+//  ECRFloderView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/9/9.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "ECRFloderView.h"
+#import "ECRBookFloderLayout.h"
+
+@interface ECRFloderView ()
+@property (strong, nonatomic) UIVisualEffectView *effectView;// 毛玻璃
+@property (strong, nonatomic)  UITextField *floderName;// 文件名
+@property (strong,nonatomic) ECRBookrackFlowLayout *brLayout;//
+@property (strong,nonatomic) UIButton *trDone;// top right done
+@property (strong,nonatomic) UIButton *tbClose;// top bottom close
+
+@end
+
+@implementation ECRFloderView
+
+static CGFloat trDoneTopOffset = 25;
+static CGFloat trDoneRightOffset = -15;
+static CGFloat fntOffset = 100;// floder name top
+static CGFloat cTopOffset = 15;// collection view leave flodername.bottom
+//static CGFloat margin = 10;// collection item 间距
+static CGFloat insetsMargin = 10;// collection view insets edge
+
+- (void)closeFloder:(UIButton *)sender {
+    // 通知代理, 关闭文件夹
+    if ([self.delegate respondsToSelector:@selector(floderViewClose:)]) {
+        [self.delegate floderViewClose:self];
+    }
+}
+
+- (void)trDoneClick:(UIButton *)button{
+    // 退出编辑状态
+    if ([self.delegate respondsToSelector:@selector(floderViewEndEdit:)]) {
+        [self.delegate floderViewEndEdit:self];
+    }
+}
+
+- (void)setBookModels:(NSMutableArray *)bookModels{
+    _bookModels = bookModels;
+    _brLayout.itemSize;// 不能删
+    [self.collectionView reloadData];
+}
+
+- (void)setFileName:(NSString *)fileName{
+    _fileName = fileName;
+    _floderName.text = fileName;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame flowLayout:(ECRBookFloderLayout *)flowLayout{
+    self.brLayout = flowLayout;
+    return [self initWithFrame:frame];
+}
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        UIBlurEffect *effectBg = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        _effectView = [[UIVisualEffectView alloc] initWithEffect:effectBg];
+        [self addSubview:_effectView];
+        [_effectView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top);
+            make.left.equalTo(self.mas_left);
+            make.bottom.equalTo(self.mas_bottom);
+            make.right.equalTo(self.mas_right);
+        }];
+        
+        _tbClose = [[UIButton alloc] init];
+        [_effectView.contentView addSubview:_tbClose];
+        [_tbClose mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top);
+            make.left.equalTo(self.mas_left);
+            make.bottom.equalTo(self.mas_bottom);
+            make.right.equalTo(self.mas_right);
+        }];
+        [_tbClose addTarget:self action:@selector(closeFloder:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _trDone = [[UIButton alloc] init];
+        [_trDone setTitle:@"完成" forState:UIControlStateNormal];
+        [_trDone setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _trDone.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_trDone addTarget:self action:@selector(trDoneClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_effectView.contentView addSubview:_trDone];
+        [_trDone mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_effectView.mas_top).offset(trDoneTopOffset);
+            make.right.equalTo(_effectView.mas_right).offset(trDoneRightOffset);
+        }];
+        
+        _floderName = [[UITextField alloc] init];
+        [_effectView.contentView addSubview:_floderName];
+        [_floderName mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).offset(fntOffset);
+            make.centerX.equalTo(self.mas_centerX);
+        }];
+
+//        _brLayout.minimumInteritemSpacing = margin;
+//        _brLayout.minimumLineSpacing = margin;
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_brLayout];
+        _collectionView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5);
+        
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.alpha = 0.68;
+        [_collectionView setContentInset:UIEdgeInsetsMake(0, insetsMargin, 0, insetsMargin)];
+        [_effectView.contentView addSubview:_collectionView];
+        NSString *reuserID = @"ECRBookrackCollectionViewCell";
+        [_collectionView registerNib:[UINib nibWithNibName:reuserID bundle:nil] forCellWithReuseIdentifier:reuserID];
+        
+        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_floderName.mas_bottom).offset(cTopOffset);
+            make.centerX.equalTo(self.mas_centerX);
+            make.width.equalTo(@(Screen_Width));
+            make.height.equalTo(@(Screen_Height * 0.5));
+        }];
+        
+    }
+    return self;
+}
+
+
+@end

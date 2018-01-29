@@ -1,0 +1,79 @@
+//
+//  ECRDBReadViewController.m
+//  EasyChineseReading-ios
+//
+//  Created by Peanut Lee on 2017/9/16.
+//  Copyright © 2017年 retech. All rights reserved.
+//
+
+#import "ECRDBReadViewController.h"
+//#import "DBPlayer.h"
+
+//@interface ECRDBReadViewController ()<
+//DBPlayerDelegate
+//>
+//@property (strong,nonatomic) DBPlayer *dbPlayer;
+//@property (strong,nonatomic) UIButton *button;
+//
+//@end
+
+@implementation ECRDBReadViewController
+
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    
+//    UIButton *dbTest = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 0, 0)];
+//    [dbTest setTitle:@"超媒体" forState:UIControlStateNormal];
+//    [dbTest sizeToFit];
+//    [dbTest setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+//    dbTest.titleLabel.font = [UIFont systemFontOfSize:18];
+//    [self.view addSubview:dbTest];
+//    [dbTest addTarget:self action:@selector(openSuperMediaBook:) forControlEvents:UIControlEventTouchUpInside];
+////    self.button = dbTest;
+//    
+//    
+//}
+//
+//- (void)openSuperMediaBook:(UIButton *)sender{
+//    NSString *dbzPath = [[NSBundle mainBundle] pathForResource:@"西渡湖之酒" ofType:@"dbz"];
+//    //    NSLog(@"%@",dbzPath);
+//    NSFileManager *fm = [NSFileManager defaultManager];
+//    if ([fm fileExistsAtPath:dbzPath]) {
+//        // 隐藏状态栏 --> prefersStatusBarHidden
+//        //        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+//        
+//        _dbPlayer = [[DBPlayer alloc] init];
+//        _dbPlayer.delegate = self;
+//        _dbPlayer.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//        [self presentViewController:_dbPlayer animated:YES completion:^{
+//            [_dbPlayer openABook:dbzPath contentUrl:@""];
+//        }];
+//        [[NSNotificationCenter defaultCenter] addObserver:_dbPlayer selector:@selector(applicationWillResignActivePlayer:) name:UIApplicationWillResignActiveNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:_dbPlayer selector:@selector(applicationDidBecomeActivePlayer:) name:UIApplicationDidBecomeActiveNotification object:nil];
+//        
+//    }else{
+//        NSLog(@"file not exist");
+//    }
+//}
+//
+//- (void)applicationWillResignActivePlayer:(NSNotification *)noti{
+//    
+//}
+//- (void)applicationDidBecomeActivePlayer:(NSNotification *)noti{
+//    
+//}
+//
+//- (void)dbPlayerDidClosed{
+//    [_dbPlayer dismissViewControllerAnimated:YES completion:^{
+//        // 显示状态栏
+////       self performSelector:@selector() withObject:self afterDelay:0.3
+//    }];
+//}
+
+
+// 隐藏状态栏
+//- (BOOL)prefersStatusBarHidden{
+//    return YES;
+//}
+
+@end
