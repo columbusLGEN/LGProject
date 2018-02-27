@@ -1,6 +1,0 @@
-framework module XHNetworkCache {
-  umbrella header "XHNetworkCache-umbrella.h"
-
-  export *
-  module * { export * }
-}
