@@ -23,6 +23,7 @@
 		885F907E20158AF500F846B2 /* Chapter2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F907D20158AF500F846B2 /* Chapter2UITests.swift */; };
 		88703D922019C2D700BE41A7 /* closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88703D912019C2D700BE41A7 /* closures.swift */; };
 		887DA642201B20D700D0D461 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887DA641201B20D700D0D461 /* Enumerations.swift */; };
+		88A7D0892045576F00FFD4A7 /* CallonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A7D0882045576F00FFD4A7 /* CallonControl.swift */; };
 		88D2D6DA2022E57A00D5EA92 /* Destruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2D6D92022E57A00D5EA92 /* Destruct.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		88703D8D2019C21600BE41A7 /* fucn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fucn.swift; sourceTree = "<group>"; };
 		88703D912019C2D700BE41A7 /* closures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closures.swift; sourceTree = "<group>"; };
 		887DA641201B20D700D0D461 /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
+		88A7D0882045576F00FFD4A7 /* CallonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallonControl.swift; sourceTree = "<group>"; };
 		88D2D6D92022E57A00D5EA92 /* Destruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +207,7 @@
 				882EE5BB202006F20041CCD9 /* 11析构方法&自动引用计数 */,
 				884EAB262027F80E00A99810 /* 12可选链式调用&错误处理&类型转换 */,
 				884EAB2920284EF800A99810 /* 13嵌套类型&扩展&协议&泛型 */,
+				88A7D0872045573800FFD4A7 /* 14访问控制&高级运算符 */,
 			);
 			path = Chapter2;
 			sourceTree = "<group>";
@@ -268,6 +271,14 @@
 				887DA641201B20D700D0D461 /* Enumerations.swift */,
 			);
 			path = "04枚举";
+			sourceTree = "<group>";
+		};
+		88A7D0872045573800FFD4A7 /* 14访问控制&高级运算符 */ = {
+			isa = PBXGroup;
+			children = (
+				88A7D0882045576F00FFD4A7 /* CallonControl.swift */,
+			);
+			path = "14访问控制&高级运算符";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +422,7 @@
 				88D2D6DA2022E57A00D5EA92 /* Destruct.swift in Sources */,
 				884EAB2B20284F1D00A99810 /* NestClass.swift in Sources */,
 				882EE578201ECC570041CCD9 /* class&struct.swift in Sources */,
+				88A7D0892045576F00FFD4A7 /* CallonControl.swift in Sources */,
 				88703D922019C2D700BE41A7 /* closures.swift in Sources */,
 				885F905E20158AF400F846B2 /* AppDelegate.swift in Sources */,
 				882EE5C320203A650041CCD9 /* Inherit.swift in Sources */,

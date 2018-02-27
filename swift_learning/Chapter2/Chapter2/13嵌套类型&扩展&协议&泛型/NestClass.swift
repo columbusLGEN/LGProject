@@ -64,6 +64,44 @@ class NestClass: ViewController {
          如果多个协议扩展都为同一个协议要求提供了默认实现，而遵循协议的类型又同时满足这些协议扩展的限制条
          件，那么将会使用限制条件最多的那个协议扩展提供的默认实现。
          */
+        
+        /// MARK: 三.泛型
+        /// 1.泛型解决的问题
+        /// * inout（输入输出参数的作用是什么？之前学过，现在忘了）
+        /// --> 被inout 修饰的参数可以在函数内部修改其值。
+        
+        /// 2.泛型函数
+//        swagTwoValues(&<#T##a: A##A#>, &<#T##b: A##A#>)
+        
+        /// 3.类型参数
+//        swagTwoValues 函数的 <A> 中的A 就是类型参数
+        /// * 可以提供多个类型参数，都写在尖括号中，用逗号分隔
+        
+        /// 4.命名类型参数
+        /// * 通常，类型参数有个描述性名字。例如 Dictionary<Key,Value> 中的 Key,Value Array<Element>中的 Element 可以告诉我们类型参数 和 泛型函数之间的关系, 但是当 它们之间没有 有意义的关系时，通常使用单个字母来命名。例如：T,U,V
+        
+        /// 5.泛型类型
+        
+        /// 6.扩展一个泛型类型
+        
+        /// 7.类型约束
+//        func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) { // 这里是泛型函数的函数体部分
+//        }
+        /// T 必须是 SomeClass 的子类型约束，U是必须符合SomeProtocol协议 的类型约束
+        
+        /// 8.关联类型 ---> 没太看懂
+        
+        /// 9.泛型 where 语句 ---> 没懂
+        
+    }
+    
+    /// 2.泛型函数
+    func swagTwoValues<A>(_ a: inout A,_ b: inout A) {
+        /// A 为占位类型名，不表示具体类型, 只有在该函数被调用时，才能根据传入的参数确定 A 代表的类型
+        let temp = a
+        a = b
+        b = temp
+        
     }
     
     
