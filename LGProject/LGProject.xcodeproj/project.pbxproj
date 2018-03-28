@@ -9,10 +9,7 @@
 /* Begin PBXBuildFile section */
 		759869F7201B31203EDA98E7 /* libPods-LGProjectUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C19915B872AEFD228CB74 /* libPods-LGProjectUITests.a */; };
 		88256F7B1FF4C23A0073477D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F7A1FF4C23A0073477D /* AppDelegate.m */; };
-		88256F7E1FF4C23A0073477D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F7D1FF4C23A0073477D /* ViewController.m */; };
-		88256F811FF4C23A0073477D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88256F7F1FF4C23A0073477D /* Main.storyboard */; };
 		88256F831FF4C23A0073477D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88256F821FF4C23A0073477D /* Assets.xcassets */; };
-		88256F861FF4C23A0073477D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88256F841FF4C23A0073477D /* LaunchScreen.storyboard */; };
 		88256F891FF4C23A0073477D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F881FF4C23A0073477D /* main.m */; };
 		88256F931FF4C23A0073477D /* LGProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F921FF4C23A0073477D /* LGProjectTests.m */; };
 		88256F9E1FF4C23A0073477D /* LGProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88256F9D1FF4C23A0073477D /* LGProjectUITests.m */; };
@@ -20,7 +17,10 @@
 		88703CEC2016CBE300BE41A7 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE32016CBE200BE41A7 /* mztools.c */; };
 		88703CED2016CBE300BE41A7 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE52016CBE200BE41A7 /* unzip.c */; };
 		88703CEE2016CBE300BE41A7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE72016CBE200BE41A7 /* zip.c */; };
-		88703CEF2016CBE300BE41A7 /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 88703CEA2016CBE200BE41A7 /* ZipArchive.m */; };
+		88703CEF2016CBE300BE41A7 /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 88703CEA2016CBE200BE41A7 /* ZipArchive.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		88B485AB205F9D360051C79E /* LIGNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B485AA205F9D360051C79E /* LIGNetworkConfig.m */; };
+		88B48645206103B50051C79E /* LIGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B48644206103B50051C79E /* LIGNetworkAgent.m */; };
+		88B48648206103D30051C79E /* LIGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B48647206103D30051C79E /* LIGBaseRequest.m */; };
 		88D622441FFF578E00894D96 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6223C1FFF578E00894D96 /* NSString+Extension.m */; };
 		88D622451FFF578E00894D96 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6223F1FFF578E00894D96 /* UIColor+Extension.m */; };
 		88D622461FFF578E00894D96 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D622411FFF578E00894D96 /* UIImage+Extension.m */; };
@@ -55,11 +55,7 @@
 		88256F761FF4C23A0073477D /* LGProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88256F791FF4C23A0073477D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88256F7A1FF4C23A0073477D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		88256F7C1FF4C23A0073477D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		88256F7D1FF4C23A0073477D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		88256F801FF4C23A0073477D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88256F821FF4C23A0073477D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		88256F851FF4C23A0073477D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88256F871FF4C23A0073477D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88256F881FF4C23A0073477D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		88256F8E1FF4C23A0073477D /* LGProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +75,12 @@
 		88703CE82016CBE200BE41A7 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		88703CE92016CBE200BE41A7 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		88703CEA2016CBE200BE41A7 /* ZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchive.m; sourceTree = "<group>"; };
+		88B485A9205F9D360051C79E /* LIGNetworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGNetworkConfig.h; sourceTree = "<group>"; };
+		88B485AA205F9D360051C79E /* LIGNetworkConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGNetworkConfig.m; sourceTree = "<group>"; };
+		88B48643206103B50051C79E /* LIGNetworkAgent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGNetworkAgent.h; sourceTree = "<group>"; };
+		88B48644206103B50051C79E /* LIGNetworkAgent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGNetworkAgent.m; sourceTree = "<group>"; };
+		88B48646206103D30051C79E /* LIGBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGBaseRequest.h; sourceTree = "<group>"; };
+		88B48647206103D30051C79E /* LIGBaseRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGBaseRequest.m; sourceTree = "<group>"; };
 		88D6223B1FFF578E00894D96 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		88D6223C1FFF578E00894D96 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		88D6223E1FFF578E00894D96 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
@@ -144,6 +146,72 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8819A8BE205259F00061D30B /* BaseObject */ = {
+			isa = PBXGroup;
+			children = (
+				8819A8C320525A790061D30B /* BaseModel */,
+				8819A8C220525A730061D30B /* BaseView */,
+				8819A8C120525A670061D30B /* BaseViewController */,
+			);
+			path = BaseObject;
+			sourceTree = "<group>";
+		};
+		8819A8BF205259FB0061D30B /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				8819A8C420525A910061D30B /* Manager */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		8819A8C020525A5A0061D30B /* Header */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		8819A8C120525A670061D30B /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		8819A8C220525A730061D30B /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		8819A8C320525A790061D30B /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		8819A8C420525A910061D30B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				88B485A8205F636C0051C79E /* LIGNetwork */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		8819A8C520525AC20061D30B /* Ohter */ = {
+			isa = PBXGroup;
+			children = (
+				88256F791FF4C23A0073477D /* AppDelegate.h */,
+				88256F7A1FF4C23A0073477D /* AppDelegate.m */,
+				88256F821FF4C23A0073477D /* Assets.xcassets */,
+				88256F871FF4C23A0073477D /* Info.plist */,
+				88256F881FF4C23A0073477D /* main.m */,
+			);
+			path = Ohter;
+			sourceTree = "<group>";
+		};
 		88256F6D1FF4C23A0073477D = {
 			isa = PBXGroup;
 			children = (
@@ -170,15 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				88256FAB1FF4C25F0073477D /* Public */,
-				88256F791FF4C23A0073477D /* AppDelegate.h */,
-				88256F7A1FF4C23A0073477D /* AppDelegate.m */,
-				88256F7C1FF4C23A0073477D /* ViewController.h */,
-				88256F7D1FF4C23A0073477D /* ViewController.m */,
-				88256F7F1FF4C23A0073477D /* Main.storyboard */,
-				88256F821FF4C23A0073477D /* Assets.xcassets */,
-				88256F841FF4C23A0073477D /* LaunchScreen.storyboard */,
-				88256F871FF4C23A0073477D /* Info.plist */,
-				88256F881FF4C23A0073477D /* main.m */,
 			);
 			path = LGProject;
 			sourceTree = "<group>";
@@ -204,6 +263,10 @@
 		88256FAB1FF4C25F0073477D /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				8819A8C520525AC20061D30B /* Ohter */,
+				8819A8C020525A5A0061D30B /* Header */,
+				8819A8BF205259FB0061D30B /* Tool */,
+				8819A8BE205259F00061D30B /* BaseObject */,
 				88703CDE2016CBC900BE41A7 /* 第三方 */,
 				88D622391FFF578E00894D96 /* Catagory */,
 			);
@@ -234,6 +297,19 @@
 				88703CEA2016CBE200BE41A7 /* ZipArchive.m */,
 			);
 			path = zip;
+			sourceTree = "<group>";
+		};
+		88B485A8205F636C0051C79E /* LIGNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				88B485A9205F9D360051C79E /* LIGNetworkConfig.h */,
+				88B485AA205F9D360051C79E /* LIGNetworkConfig.m */,
+				88B48643206103B50051C79E /* LIGNetworkAgent.h */,
+				88B48644206103B50051C79E /* LIGNetworkAgent.m */,
+				88B48646206103D30051C79E /* LIGBaseRequest.h */,
+				88B48647206103D30051C79E /* LIGBaseRequest.m */,
+			);
+			path = LIGNetwork;
 			sourceTree = "<group>";
 		};
 		88D622391FFF578E00894D96 /* Catagory */ = {
@@ -382,9 +458,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88256F861FF4C23A0073477D /* LaunchScreen.storyboard in Resources */,
 				88256F831FF4C23A0073477D /* Assets.xcassets in Resources */,
-				88256F811FF4C23A0073477D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,9 +581,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LGProject/Pods-LGProject-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -557,7 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88703CEE2016CBE300BE41A7 /* zip.c in Sources */,
-				88256F7E1FF4C23A0073477D /* ViewController.m in Sources */,
+				88B485AB205F9D360051C79E /* LIGNetworkConfig.m in Sources */,
 				88256F891FF4C23A0073477D /* main.m in Sources */,
 				88703CEC2016CBE300BE41A7 /* mztools.c in Sources */,
 				88703CEF2016CBE300BE41A7 /* ZipArchive.m in Sources */,
@@ -565,9 +642,11 @@
 				88D622451FFF578E00894D96 /* UIColor+Extension.m in Sources */,
 				88D622471FFF578E00894D96 /* UIView+Extension.m in Sources */,
 				88703CED2016CBE300BE41A7 /* unzip.c in Sources */,
+				88B48645206103B50051C79E /* LIGNetworkAgent.m in Sources */,
 				88D622461FFF578E00894D96 /* UIImage+Extension.m in Sources */,
 				88256F7B1FF4C23A0073477D /* AppDelegate.m in Sources */,
 				88D622441FFF578E00894D96 /* NSString+Extension.m in Sources */,
+				88B48648206103D30051C79E /* LIGBaseRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,25 +680,6 @@
 			targetProxy = 88256F9A1FF4C23A0073477D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		88256F7F1FF4C23A0073477D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				88256F801FF4C23A0073477D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		88256F841FF4C23A0073477D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				88256F851FF4C23A0073477D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		88256FA01FF4C23A0073477D /* Debug */ = {
@@ -732,8 +792,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EFWLEBR9Q6;
-				INFOPLIST_FILE = LGProject/Info.plist;
+				DEVELOPMENT_TEAM = 33C939949Y;
+				INFOPLIST_FILE = "$(SRCROOT)/LGProject/Public/Ohter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = retech.LGProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -747,8 +807,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EFWLEBR9Q6;
-				INFOPLIST_FILE = LGProject/Info.plist;
+				DEVELOPMENT_TEAM = 33C939949Y;
+				INFOPLIST_FILE = "$(SRCROOT)/LGProject/Public/Ohter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = retech.LGProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
