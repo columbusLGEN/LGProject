@@ -37,6 +37,12 @@
 - (void)setHtml:(NSString *)html{
     _html = html;
     [_wkWebView loadHTMLString:html baseURL:nil];
+    [_webView loadHTMLString:html baseURL:nil];
+    if (_webView) {
+        NSLog(@"uiwebview -- %@",_webView);
+    }else{
+        NSLog(@"wkwebview -- %@",_wkWebView);
+    }
     
 }
 
@@ -44,22 +50,21 @@
     if (self = [super initWithFrame:frame]) {
         
         /// webkit
-        WKWebView *webView = [[WKWebView alloc] initWithFrame:self.bounds];
-        [self addSubview:webView];
-        _wkWebView = webView;
+//        WKWebView *webView = [[WKWebView alloc] initWithFrame:self.bounds];
+//        [self addSubview:webView];
+//        _wkWebView = webView;
 //        _wkWebView.UIDelegate;
 //        _wkWebView.navigationDelegate;
         
         
         // uiwebview
 //        _webViewDelegate = [LEENewsDetailHTMLDelegate new];
-//        UIWebView *webView = [[UIWebView alloc] initWithFrame:self.bounds];
-//        [self addSubview:webView];
-//        _webView = webView;
-//        _webView.delegate = _webViewDelegate;
-////        _webViewDelegate.view = self;
-//        _webView.scalesPageToFit = YES;
-//        [_webView loadHTMLString:html baseURL:nil];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:self.bounds];
+        [self addSubview:webView];
+        _webView = webView;
+        _webView.delegate = _webViewDelegate;
+//        _webViewDelegate.view = self;
+        _webView.scalesPageToFit = YES;
         
     }
     return self;
