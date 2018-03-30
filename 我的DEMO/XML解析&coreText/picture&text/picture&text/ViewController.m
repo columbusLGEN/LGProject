@@ -12,7 +12,7 @@
 #import "LGHTMLParser.h"
 #import <DTCoreText/DTCoreText.h>
 
-@interface ViewController ()<UIScrollViewDelegate,DTAttributedTextContentViewDelegate>
+@interface ViewController ()<UIScrollViewDelegate,DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate>
 
 @property (weak,nonatomic) UIScrollView *scrollView;
 /** */
@@ -25,13 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSString *path = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"html"];
-//    NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//
-//    // html 显示
-//    LEENewsDetailHTMLView *view = [[LEENewsDetailHTMLView alloc] initWithFrame:self.view.bounds];
-//    [self.view addSubview:view];
-//    view.html = html;
+//#ifdef <#macro#>
+    
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"test" ofType:@"html"];
+    NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+
+    // html 显示
+    LEENewsDetailHTMLView *view = [[LEENewsDetailHTMLView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:view];
+    view.html = html;
     
 
     /// DTCoreText 显示
@@ -42,8 +44,9 @@
 
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             DTAttributedTextView *textView = [[DTAttributedTextView alloc] initWithFrame:self.view.bounds];
+            NSLog(@"textView.attributedTextContentView -- %@",textView.attributedTextContentView);
             _textView = textView;
-            textView.shouldDrawImages = NO;
+//            textView.shouldDrawImages = NO;
             textView.textDelegate = self;
             textView.attributedString = string;
             [self.view addSubview:textView];
@@ -53,15 +56,19 @@
     
 }
 
-#pragma mark -
-- (void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView didDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
+#pragma mark - DTAttributedTextContentViewDelegate
+
+- (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame{
     
+    NSLog(@"textBlock.padding -- %@",NSStringFromUIEdgeInsets(textBlock.padding));
     
+    return YES;
 }
 
 - (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame{
     
     DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
+    
     imageView.delegate = self;
     
     // sets the image if there is one
@@ -79,7 +86,8 @@
     NSURL *url = lazyImageView.url;
     CGSize imageSize = size;
     
-    // TODO: 改变图片的尺寸,适应手机屏幕大小
+    /// 重新计算 image size
+    NSLog(@"imagesize -- %@",NSStringFromCGSize(imageSize));
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
     

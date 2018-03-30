@@ -50,21 +50,21 @@
     if (self = [super initWithFrame:frame]) {
         
         /// webkit
-//        WKWebView *webView = [[WKWebView alloc] initWithFrame:self.bounds];
-//        [self addSubview:webView];
-//        _wkWebView = webView;
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:self.bounds];
+        [self addSubview:webView];
+        _wkWebView = webView;
 //        _wkWebView.UIDelegate;
 //        _wkWebView.navigationDelegate;
         
         
         // uiwebview
 //        _webViewDelegate = [LEENewsDetailHTMLDelegate new];
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:self.bounds];
-        [self addSubview:webView];
-        _webView = webView;
-        _webView.delegate = _webViewDelegate;
-//        _webViewDelegate.view = self;
-        _webView.scalesPageToFit = YES;
+        //        _webViewDelegate.view = self;
+//        UIWebView *webView = [[UIWebView alloc] initWithFrame:self.bounds];
+//        [self addSubview:webView];
+//        _webView = webView;
+//        _webView.delegate = _webViewDelegate;
+//        _webView.scalesPageToFit = YES;
         
     }
     return self;
