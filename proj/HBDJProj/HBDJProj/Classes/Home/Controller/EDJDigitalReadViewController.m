@@ -7,6 +7,10 @@
 //
 
 #import "EDJDigitalReadViewController.h"
+#import "LIGCollectionViewFlowLayout.h"
+#import "EDJHomeHeaderView.h"
+
+static NSString * const testCell = @"testCell";
 
 @interface EDJDigitalReadViewController ()
 
@@ -14,30 +18,49 @@
 
 @implementation EDJDigitalReadViewController
 
-- (void)setData:(id)data{
-    /// 处理数据
-    
+- (instancetype)init{
+    if (self = [super init]) {
+        _digitalModels  = [NSMutableArray array];
+        for (int i = 0; i < 10; i++) {
+            [_digitalModels addObject:@"B"];
+        }
+        [self.collectionView reloadData];
+    }
+    return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor randomColor];
-    
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return _digitalModels.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:testCell forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor randomColor];
+    return cell;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UICollectionView *)collectionView{
+    if (_collectionView == nil) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:kScreenBounds collectionViewLayout:self.flowLayout];
+        _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.dataSource = self;
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:testCell];
+        UIEdgeInsets insets = UIEdgeInsetsMake([self headerHeight], 0, kTabBarHeight, 0);
+        [_collectionView setContentInset:insets];
+        _collectionView.scrollIndicatorInsets = insets;
+    }
+    return _collectionView;
+}
+- (LIGCollectionViewFlowLayout *)flowLayout{
+    if (_flowLayout == nil) {
+        _flowLayout = [LIGCollectionViewFlowLayout new];
+    }
+    return _flowLayout;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (CGFloat)headerHeight{
+    return [EDJHomeHeaderView headerHeight];
 }
-*/
 
 @end

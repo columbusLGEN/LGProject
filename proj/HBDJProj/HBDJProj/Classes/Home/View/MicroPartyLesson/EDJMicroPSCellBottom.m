@@ -6,16 +6,78 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "EDJMicroPSCellBottom.h"
+#import "EDJMicroPSCellFooter.h"
 
-@implementation EDJMicroPSCellBottom
+@interface EDJMicroPSCellFooter ()
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+@end
+
+
+@implementation EDJMicroPSCellFooter
+
+- (void)cellFooterClick:(UIGestureRecognizer *)recognizer{
+    NSLog(@"进入胡在哪集 -- ");
 }
-*/
+
+- (void)setupUI{
+    self.userInteractionEnabled = YES;
+    UIView *line_left = [UIView new];
+    [self addSubview:line_left];
+    UIView *line_right = [UIView new];
+    [self addSubview:line_right];
+    
+    UIImageView *icon = [UIImageView new];
+    [self addSubview:icon];
+    
+    UILabel *label = [UILabel new];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont systemFontOfSize:15];
+    label.text = @"进入专辑";
+    [self addSubview:label];
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.centerY.equalTo(self.mas_centerY);
+    }];
+    [icon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(label.mas_centerY);
+        make.right.equalTo(label.mas_left).offset(-marginFive);
+    }];
+    CGFloat lineWidth = 30;
+    CGFloat lineHeight = 1;
+    [line_left mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(icon.mas_right).offset(-marginEight);
+        make.centerY.equalTo(label.mas_centerY);
+        make.height.mas_equalTo(lineHeight);
+        make.width.mas_equalTo(lineWidth);
+    }];
+    [line_right mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(label.mas_right).offset(marginEight);
+        make.centerY.equalTo(label.mas_centerY);
+        make.height.mas_equalTo(lineHeight);
+        make.width.mas_equalTo(lineWidth);
+    }];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellFooterClick:)];
+    [self addGestureRecognizer:tap];
+    
+}
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupUI];
+    }
+    return self;
+}
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self setupUI];
+}
 
 @end

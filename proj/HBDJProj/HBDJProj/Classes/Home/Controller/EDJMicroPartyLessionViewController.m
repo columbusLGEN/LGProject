@@ -7,61 +7,88 @@
 //
 
 #import "EDJMicroPartyLessionViewController.h"
+#import "EDJHomeHeaderView.h"
+#import "EDJMicroLessonHeaderView.h"
 #import <MJRefresh.h>
+#import "EDJMicroPartyLessonCell.h"
 
-static NSString * const testCell = @"testCell";
+static NSString * const microPartyLessonCell = @"EDJMicroPartyLessonCell";
 
 @interface EDJMicroPartyLessionViewController ()<
-UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+UITableViewDelegate
 >
-@property (strong,nonatomic) NSMutableArray *array;
-@property (strong,nonatomic) UITableView *tableView;
+
 
 @end
 
 @implementation EDJMicroPartyLessionViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor randomColor];
-    
-    _array = [NSMutableArray arrayWithObjects:@"a",@"a",@"a",@"a",@"a",@"a",@"a",@"a",@"a",@"a",@"a",@"a", nil];
-    [self.view addSubview:self.tableView];
+- (void)setDataType:(EDJHomeDataType)dataType{
+    _dataType = dataType;
     [self.tableView reloadData];
-    
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        for (NSInteger i = 0; i < 10; i++) {
-            [_array addObject:@"a"];
-        }
-        
-        [self.tableView reloadData];
-        [self.tableView.mj_footer endRefreshing];
-    }];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"offsetY -- %f",scrollView.contentOffset.y);
+- (void)configHeaderWithSegment:(NSInteger)segment delegate:(id)delegate{
+    if (segment == 0) {
+        /// 设置header
+        self.tableView.tableHeaderView = [EDJMicroLessonHeaderView mlHeaderViewWithDelegate:delegate frame:CGRectMake(0, 0, kScreenWidth, 128)];
+    }else{
+        self.tableView.tableHeaderView = nil;
+    }
 }
+
+- (instancetype)init{
+    if (self = [super init]) {
+        _microModels  = [NSMutableArray array];
+        for (int i = 0; i < 4; i++) {
+            [_microModels addObject:@"B"];
+        }
+        [self.tableView reloadData];
+        
+        /// testcode
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.tableView.mj_header endRefreshing];
+            });
+        }];
+        
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//            for (int i = 0; i < 5; i++) {
+//                [_microOrBuildModels addObject:@"a"];
+//            }
+//            [_tableView reloadData];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.tableView.mj_footer endRefreshing];
+            });
+            
+        }];
+        
+    }
+    return self;
+}
+
 
 #pragma mark - data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _array.count;
+    return _microModels.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:testCell];
-    [cell.textLabel setText:[NSString stringWithFormat:@"%@_%ld",_array[indexPath.row],indexPath.row]];
+    EDJMicroPartyLessonCell *cell = [tableView dequeueReusableCellWithIdentifier:microPartyLessonCell];
+    
     return cell;
 }
 
-/// MARK: lazy load
 - (UITableView *)tableView{
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView.scrollEnabled = NO;
-        _tableView.delegate = self;
+        _tableView = [[UITableView alloc] initWithFrame:kScreenBounds style:UITableViewStylePlain];
+        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         _tableView.dataSource = self;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:testCell];
+        UIEdgeInsets insets = UIEdgeInsetsMake([EDJHomeHeaderView headerHeight], 0, 0, 0);
+        [_tableView setContentInset:insets];
+        _tableView.scrollIndicatorInsets = insets;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_tableView registerClass:[EDJMicroPartyLessonCell class] forCellReuseIdentifier:microPartyLessonCell];
     }
     return _tableView;
 }

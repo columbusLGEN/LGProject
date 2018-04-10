@@ -9,11 +9,14 @@
 static const CGFloat marginFive = 5;
 static const CGFloat marginEight = 8;
 static const CGFloat marginTen = 10;
+static const CGFloat marginTwelve = 12;
 static const CGFloat marginFifteen = 15;
 static const CGFloat marginTwenty = 20;
 
 static const CGFloat widthFifty = 50;
-static const CGFloat heightHomeSegment = 80;
+static const CGFloat homeImageLoopHeight = 233;
+static const CGFloat homeSegmentHeight = 80;
+static const CGFloat homeSegmentContentWidth = 38;
 static const CGFloat tabBarHeight = 49;
 
 

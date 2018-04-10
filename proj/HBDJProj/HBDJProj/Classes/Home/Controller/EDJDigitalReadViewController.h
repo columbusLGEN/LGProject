@@ -6,8 +6,15 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LIGBaseViewController.h"
+#import "LIGObject.h"
+@class LIGCollectionViewFlowLayout;
 
-@interface EDJDigitalReadViewController : LIGBaseViewController
+@interface EDJDigitalReadViewController : LIGObject<
+UICollectionViewDataSource
+>
+
+@property (strong,nonatomic) LIGCollectionViewFlowLayout *flowLayout;
+@property (strong,nonatomic) UICollectionView *collectionView;
+@property (strong,nonatomic) NSMutableArray *digitalModels;
 
 @end

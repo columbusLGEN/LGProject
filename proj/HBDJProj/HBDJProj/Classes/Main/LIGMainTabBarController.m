@@ -9,6 +9,13 @@
 #import "LIGMainTabBarController.h"
 #import "LIGBaseNavigationController.h"
 
+#import "LIGBaseViewController.h"// test
+
+static NSString * const vcClassKey = @"className";
+static NSString * const vcTitleKey = @"vcTitle";
+static NSString * const tabbarIconKey = @"tabbarIconKey";
+static NSString * const tabbarSelectedIconKey = @"tabbarSelectedIconKey";
+
 @interface LIGMainTabBarController ()
 
 @end
@@ -18,9 +25,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIViewController *vc = [NSClassFromString(@"EDJHomeViewController") new];
+    /// MARK: 配置自控制器
+    NSArray<NSDictionary *> *childVcSettings = @[
+  @{vcClassKey:@"EDJHomeViewController",
+    vcTitleKey:@"讲习",
+    tabbarIconKey:@"tabbar_icon_selected_home",
+    tabbarSelectedIconKey:@"tabbar_icon_selected_home"
+    },
+  @{vcClassKey:@"EDJDiscoveryViewController",
+    vcTitleKey:@"发现",
+    tabbarIconKey:@"tabbar_icon_normal_discover",
+    tabbarSelectedIconKey:@"tabbar_icon_normal_discover"
+    },
+  @{vcClassKey:@"EDJOnlineViewController",
+    vcTitleKey:@"在线",
+    tabbarIconKey:@"tabbar_icon_normal_online",
+    tabbarSelectedIconKey:@"tabbar_icon_normal_online"
+    },
+  @{vcClassKey:@"EDJUserCenterViewController",
+    vcTitleKey:@"个人中心",
+    tabbarIconKey:@"tabbar_icon_normal_uc",
+    tabbarSelectedIconKey:@"tabbar_icon_normal_uc"
+    }
+  ];
+    for (NSInteger i = 0; i < childVcSettings.count; i++) {
+        NSDictionary *vcSetting = childVcSettings[i];
+        [self setChildViewControllerWithClassName:vcSetting[vcClassKey] title:vcSetting[vcTitleKey] normalIconName:vcSetting[tabbarIconKey] selectedIconName:vcSetting[tabbarSelectedIconKey]];
+    }
+    
+    /// MARK: 设置tabbaritem选中字体颜色
+    UITabBarItem *currentItem = [UITabBarItem appearance];
+    NSMutableDictionary *textDict = [NSMutableDictionary dictionaryWithCapacity:10];
+    textDict[NSForegroundColorAttributeName] = [UIColor EDJMainColor];
+    [currentItem setTitleTextAttributes:textDict forState:UIControlStateSelected];
+}
+
+- (void)setChildViewControllerWithClassName:(NSString *)className title:(NSString *)title normalIconName:(NSString *)normalIconName selectedIconName:(NSString *)selectedIconName{
+    NSString *info = [NSString stringWithFormat:@"%@ is not a kind of class UIViewController",className];
+    UIViewController *vc = [NSClassFromString(className) new];
+    /// isKindOfClass 是否是该类的实例,及其派生类的实例
+    /// isMemberOfClass 是否是该类的实例
+    NSAssert([vc isKindOfClass:[UIViewController class]], info);
+    
     LIGBaseNavigationController *nav = [[LIGBaseNavigationController alloc] initWithRootViewController:vc];
-    vc.title = @"测试";
+    vc.title = title;
+    vc.tabBarItem.image = [[UIImage imageNamed:normalIconName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    vc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedIconName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [self addChildViewController:nav];
 }
 

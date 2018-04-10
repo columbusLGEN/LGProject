@@ -8,6 +8,7 @@
 
 #import "EDJHomeHeaderView.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
+#import "LGSegmentControl.h"
 
 @interface EDJHomeHeaderView ()
 @property (strong,nonatomic) SDCycleScrollView *imgLoop;
@@ -36,10 +37,16 @@
         make.top.equalTo(self.nav.mas_bottom);
         make.left.equalTo(self.mas_left);
         make.width.equalTo(@(kScreenWidth));
-        make.height.equalTo(@([[self class] headerHeight] - navHeight() - heightHomeSegment));
+        make.height.equalTo(@(homeImageLoopHeight));
     }];
     /// MARK: segment
-    
+    [self addSubview:self.segment];
+    [self.segment mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.top.equalTo(self.imgLoop.mas_bottom);
+        make.width.equalTo(self.mas_width);
+        make.bottom.equalTo(self.mas_bottom);
+    }];
 }
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -61,7 +68,14 @@
     }
     return _imgLoop;
 }
+- (LGSegmentControl *)segment{
+    if (_segment == nil) {
+        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectZero];
+        
+    }
+    return _segment;
+}
 + (CGFloat)headerHeight{
-    return floorf(kScreenHeight * 0.48);
+    return 383;
 }
 @end
