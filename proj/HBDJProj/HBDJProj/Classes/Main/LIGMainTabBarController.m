@@ -15,6 +15,7 @@ static NSString * const vcClassKey = @"className";
 static NSString * const vcTitleKey = @"vcTitle";
 static NSString * const tabbarIconKey = @"tabbarIconKey";
 static NSString * const tabbarSelectedIconKey = @"tabbarSelectedIconKey";
+static NSString * const userCenterViewController = @"EDJUserCenterViewController";
 
 @interface LIGMainTabBarController ()
 
@@ -42,7 +43,7 @@ static NSString * const tabbarSelectedIconKey = @"tabbarSelectedIconKey";
     tabbarIconKey:@"tabbar_icon_normal_online",
     tabbarSelectedIconKey:@"tabbar_icon_normal_online"
     },
-  @{vcClassKey:@"EDJUserCenterViewController",
+  @{vcClassKey:userCenterViewController,
     vcTitleKey:@"个人中心",
     tabbarIconKey:@"tabbar_icon_normal_uc",
     tabbarSelectedIconKey:@"tabbar_icon_normal_uc"
@@ -62,6 +63,9 @@ static NSString * const tabbarSelectedIconKey = @"tabbarSelectedIconKey";
 
 - (void)setChildViewControllerWithClassName:(NSString *)className title:(NSString *)title normalIconName:(NSString *)normalIconName selectedIconName:(NSString *)selectedIconName{
     NSString *info = [NSString stringWithFormat:@"%@ is not a kind of class UIViewController",className];
+    if ([className isEqualToString:userCenterViewController]) {
+        
+    }
     UIViewController *vc = [NSClassFromString(className) new];
     /// isKindOfClass 是否是该类的实例,及其派生类的实例
     /// isMemberOfClass 是否是该类的实例

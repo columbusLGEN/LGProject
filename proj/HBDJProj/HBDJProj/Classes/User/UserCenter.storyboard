@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Cxr-Rf-5m7">
+            <objects>
+                <viewController storyboardIdentifier="userCenter" id="kIj-yd-Ei3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0u1-SV-hEg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="RV2-sA-ipO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="190" id="hUR-Q7-bGG"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-w4-L7U">
+                                <rect key="frame" x="16" y="129" width="343" height="521"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_applePay" translatesAutoresizingMaskIntoConstraints="NO" id="Sxm-ny-eW9">
+                                <rect key="frame" x="154" y="99" width="67" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="ldx-27-F92"/>
+                                    <constraint firstAttribute="width" constant="67" id="tNx-Sh-gp6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RV2-sA-ipO" firstAttribute="centerX" secondItem="0u1-SV-hEg" secondAttribute="centerX" id="B78-2J-mKz"/>
+                            <constraint firstItem="LM8-w4-L7U" firstAttribute="top" secondItem="0u1-SV-hEg" secondAttribute="topMargin" constant="109" id="FSh-bw-DhC"/>
+                            <constraint firstItem="RV2-sA-ipO" firstAttribute="width" secondItem="0u1-SV-hEg" secondAttribute="width" id="QPi-nu-YrU"/>
+                            <constraint firstItem="Sxm-ny-eW9" firstAttribute="top" secondItem="LM8-w4-L7U" secondAttribute="top" constant="-30" id="Vkd-hf-H8P"/>
+                            <constraint firstItem="RV2-sA-ipO" firstAttribute="top" secondItem="0u1-SV-hEg" secondAttribute="top" id="Wob-lu-3Xf"/>
+                            <constraint firstAttribute="trailing" secondItem="LM8-w4-L7U" secondAttribute="trailing" constant="16" id="YBF-3E-GgW"/>
+                            <constraint firstItem="LM8-w4-L7U" firstAttribute="leading" secondItem="0u1-SV-hEg" secondAttribute="leading" constant="16" id="gn7-xf-ZDa"/>
+                            <constraint firstItem="Sxm-ny-eW9" firstAttribute="centerX" secondItem="0u1-SV-hEg" secondAttribute="centerX" id="jpP-IG-Z2t"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="LM8-w4-L7U" secondAttribute="bottom" constant="17" id="rfH-IY-eWF"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TJi-QY-tcw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="121" y="151"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_applePay" width="36" height="36"/>
+        <image name="party_history" width="550" height="309"/>
+    </resources>
+</document>
