@@ -1,0 +1,55 @@
+//
+//  LIGMainTabBarController.m
+//  HBDJProj
+//
+//  Created by Peanut Lee on 2018/3/26.
+//  Copyright © 2018年 Lee. All rights reserved.
+//
+
+#import "LIGMainTabBarController.h"
+#import "LIGBaseNavigationController.h"
+
+#import "LIGBaseViewController.h"// test
+
+static NSString * const vcClassKey = @"className";
+static NSString * const vcTitleKey = @"vcTitle";
+
+@interface LIGMainTabBarController ()
+
+@end
+
+@implementation LIGMainTabBarController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    NSArray<NSDictionary *> *childVcSettings = @[
+  @{vcClassKey:@"EDJHomeViewController",vcTitleKey:@"讲习"},
+  @{vcClassKey:@"EDJDiscoveryViewController",vcTitleKey:@"发现"},
+  @{vcClassKey:@"EDJOnlineViewController",vcTitleKey:@"在线"},
+  @{vcClassKey:@"EDJUserCenterViewController",vcTitleKey:@"个人中心"}
+  ];
+    
+    for (NSInteger i = 0; i < childVcSettings.count; i++) {
+        NSDictionary *vcSetting = childVcSettings[i];
+        [self setChildViewControllerWithClassName:vcSetting[vcClassKey] title:vcSetting[vcTitleKey]];
+    }
+}
+
+- (void)setChildViewControllerWithClassName:(NSString *)className title:(NSString *)title{
+    NSString *info = [NSString stringWithFormat:@"%@ is not a kind of class UIViewController",className];
+    UIViewController *vc = [NSClassFromString(className) new];
+    /// isKindOfClass 是否是该类的实例,及其派生类的实例
+    /// isMemberOfClass 是否是该类的实例
+    NSAssert([vc isKindOfClass:[UIViewController class]], info);
+    
+    LIGBaseNavigationController *nav = [[LIGBaseNavigationController alloc] initWithRootViewController:vc];
+    vc.title = title;
+    [self addChildViewController:nav];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+@end
