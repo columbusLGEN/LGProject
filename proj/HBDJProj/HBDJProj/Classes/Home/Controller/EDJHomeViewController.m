@@ -29,6 +29,7 @@ LGSegmentControlDelegate
 @property (strong,nonatomic) EDJDigitalReadViewController *digitalController;
 @property (assign,nonatomic) NSInteger currentSegment;
 @property (assign,nonatomic) CGPoint lastContentOffset;
+@property (strong,nonatomic) EDJHomeNav *nav;
 
 @end
 
@@ -60,6 +61,7 @@ LGSegmentControlDelegate
     /// 添加自定义导航栏
     EDJHomeNav *nav = [[EDJHomeNav alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
     [self.view addSubview:nav];
+    _nav = nav;
 }
 
 /// switch 语句中的两个分支,加载同一个控制器,但是数据需要分别处理,如何简化代码?
@@ -79,6 +81,7 @@ LGSegmentControlDelegate
             [self configMOBVcWithSegment:click];
         }
     }
+    [self.view bringSubviewToFront:_nav];
     _currentSegment = click;
 }
 - (void)configMOBVcWithSegment:(NSInteger)segment{
