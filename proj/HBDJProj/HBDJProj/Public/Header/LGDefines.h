@@ -27,10 +27,10 @@
 /// MARK:tabBar 高度
 #define kTabBarHeight (([[UIScreen mainScreen] bounds].size.height == 812) ? 83 : 49)
 ///MARK:RELEASE模式不打印
-#ifdef DEBUG
-#define NSLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
-#else
-#define NSLog(...)
-#endif
+//#ifdef DEBUG
+//#define NSLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+//#else
+//#define NSLog(...)
+//#endif
 
 

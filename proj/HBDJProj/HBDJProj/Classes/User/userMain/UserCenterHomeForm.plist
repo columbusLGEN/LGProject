@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>iconName</key>
+		<string>uc_icon_person_info</string>
+		<key>title</key>
+		<string>我的信息</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>uc_icon_repotr_form</string>
+		<key>title</key>
+		<string>党员统计报表</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>uc_icon_feedback</string>
+		<key>title</key>
+		<string>帮助与反馈</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>uc_icon_settings</string>
+		<key>title</key>
+		<string>设置</string>
+	</dict>
+</array>
+</plist>

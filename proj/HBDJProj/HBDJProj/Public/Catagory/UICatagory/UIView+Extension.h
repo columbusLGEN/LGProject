@@ -19,6 +19,9 @@
 @property(nonatomic,assign)CGFloat centerX;
 @property(nonatomic,assign)CGFloat centerY;
 
+/// MARK: 切圆形
+- (void)cutToCycle;
+
 /** 设置随机背景色 */
 - (void)randomBackgroundColor;
 

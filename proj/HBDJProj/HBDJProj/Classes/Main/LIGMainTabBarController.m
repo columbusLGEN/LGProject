@@ -8,6 +8,7 @@
 
 #import "LIGMainTabBarController.h"
 #import "LIGBaseNavigationController.h"
+#import "UIViewController+Extension.h"
 
 #import "LIGBaseViewController.h"// test
 
@@ -16,6 +17,8 @@ static NSString * const vcTitleKey = @"vcTitle";
 static NSString * const tabbarIconKey = @"tabbarIconKey";
 static NSString * const tabbarSelectedIconKey = @"tabbarSelectedIconKey";
 static NSString * const userCenterViewController = @"EDJUserCenterViewController";
+static NSString * const ucStoryboard = @"UserCenter";
+static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
 
 @interface LIGMainTabBarController ()
 
@@ -63,10 +66,13 @@ static NSString * const userCenterViewController = @"EDJUserCenterViewController
 
 - (void)setChildViewControllerWithClassName:(NSString *)className title:(NSString *)title normalIconName:(NSString *)normalIconName selectedIconName:(NSString *)selectedIconName{
     NSString *info = [NSString stringWithFormat:@"%@ is not a kind of class UIViewController",className];
+    UIViewController *vc;
     if ([className isEqualToString:userCenterViewController]) {
-        
+        vc = [self lgInstantiateViewControllerWithStoryboardName:ucStoryboard controllerId:ucHomePageVcId];
+    }else{
+        vc = [NSClassFromString(className) new];
     }
-    UIViewController *vc = [NSClassFromString(className) new];
+    
     /// isKindOfClass 是否是该类的实例,及其派生类的实例
     /// isMemberOfClass 是否是该类的实例
     NSAssert([vc isKindOfClass:[UIViewController class]], info);

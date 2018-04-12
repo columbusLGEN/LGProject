@@ -10,6 +10,8 @@
 
 @interface LGBaseTableViewCell : UITableViewCell
 
++ (NSString *)cellReuseIdWithModel:(id)model;
+
 + (CGFloat)cellHeightWithModel:(id)model;
 
 @end

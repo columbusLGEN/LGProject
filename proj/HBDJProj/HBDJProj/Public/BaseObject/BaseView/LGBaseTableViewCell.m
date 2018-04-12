@@ -10,6 +10,9 @@
 
 @implementation LGBaseTableViewCell
 
++ (NSString *)cellReuseIdWithModel:(id)model{
+    return nil;
+}
 + (CGFloat)cellHeightWithModel:(id)model{
     return 0;
 }

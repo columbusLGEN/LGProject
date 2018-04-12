@@ -10,6 +10,12 @@
 
 @implementation UIView (Extension)
 
+/// MARK: 切圆形
+- (void)cutToCycle{
+    self.layer.cornerRadius = self.width * 0.5;
+    self.layer.masksToBounds = YES;
+}
+
 /// MARK: 设置阴影
 - (void)setShadowWithShadowColor:(UIColor *)shadowColor shadowOffset:(CGSize)shadowOffset shadowOpacity:(float)shadowOpacity shadowRadius:(float)shadowRadius{
     // 颜色

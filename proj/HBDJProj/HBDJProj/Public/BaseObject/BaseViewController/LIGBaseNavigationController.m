@@ -25,7 +25,7 @@
 - (void)commonSettins{
     self.view.backgroundColor = [UIColor whiteColor];
     /// MARK: 设置tintColor (按钮颜色)
-    self.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationBar.tintColor = [UIColor blackColor];
     /// MARK: 设置导航栏字体颜色
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     /// MARK: 未知? -- TODO: 该属性的作用?

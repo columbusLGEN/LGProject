@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MJExtension/MJExtension.h>
 
-@interface LIGBaseModel : NSObject
+@interface LGBaseModel : NSObject
+
++ (NSArray *)loadLocalPlist;
 
 @end
