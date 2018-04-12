@@ -1,6 +1,0 @@
-framework module Pods_HBDJProj {
-  umbrella header "Pods-HBDJProj-umbrella.h"
-
-  export *
-  module * { export * }
-}
