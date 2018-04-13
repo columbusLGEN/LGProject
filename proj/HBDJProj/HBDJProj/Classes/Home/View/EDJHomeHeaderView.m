@@ -17,6 +17,11 @@
 
 @implementation EDJHomeHeaderView
 
+//- (void)layoutSubviews{
+//    [super layoutSubviews];
+//    NSLog(@"self.segment -- %@",self.segment);
+//}
+
 - (void)setImgURLStrings:(NSArray<NSString *> *)imgURLStrings{
     _imgLoop.imageURLStringsGroup = imgURLStrings;
 }

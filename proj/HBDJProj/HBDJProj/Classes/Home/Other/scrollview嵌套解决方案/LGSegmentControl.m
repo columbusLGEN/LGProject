@@ -15,6 +15,8 @@
 @interface LGSegmentSingleView: UIView
 @property (copy,nonatomic) NSString *imageName;
 @property (copy,nonatomic) NSString *title;
+@property (assign,nonatomic) BOOL displayIcon;
+@property (assign,nonatomic) NSInteger textFont;
 
 @end
 
@@ -34,17 +36,18 @@
 
 - (void)setImageName:(NSString *)imageName{
     _imageName = imageName;
-    [_imageView setImage:[UIImage imageNamed:imageName]];
+    [self.imageView setImage:[UIImage imageNamed:imageName]];
 }
 - (void)setTitle:(NSString *)title{
     _title = title;
-    [_label setText:title];
+    [self.label setText:title];
 }
 
 - (void)setTag:(NSInteger)tag{
     [super setTag:tag];
     self.button.tag = tag;
 }
+
 
 - (void)setupUI{
     [self addSubview:self.imageView];
@@ -55,7 +58,7 @@
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.centerX.equalTo(self.mas_centerX);
-        make.width.mas_equalTo(homeSegmentContentWidth);
+        make.width.mas_equalTo(self.frame.size.width);
         make.height.equalTo(self.mas_height).multipliedBy(0.63);
     }];
     
@@ -66,7 +69,6 @@
         make.top.equalTo(self.imageView.mas_bottom).offset(7);
     }];
     
-    [_label setText:@"微党课"];
 
     [self addSubview:self.button];
     [_button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,28 +77,27 @@
         make.width.equalTo(self.mas_width);
         make.height.equalTo(self.mas_height);
     }];
-}
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
-        [self setupUI];
+    
+    /// 只展示文字
+    if (_displayIcon == NO) {
+        [self.imageView removeFromSuperview];
+        _imageView = nil;
+        [self.label mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left);
+            make.right.equalTo(self.mas_right);
+            make.centerY.equalTo(self.mas_centerY);
+        }];
     }
-    return self;
 }
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setupUI];
-    }
-    return self;
-}
-- (void)awakeFromNib{
-    [super awakeFromNib];
+- (void)layoutSubviews{
+    [super layoutSubviews];
     [self setupUI];
 }
 
 - (UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _imageView;
 }
@@ -104,7 +105,7 @@
     if (_label == nil) {
         _label = [[UILabel alloc] initWithFrame:CGRectZero];
         _label.textColor = [UIColor blackColor];
-        _label.font = [UIFont systemFontOfSize:15];
+        _label.font = [UIFont systemFontOfSize:(_textFont == 0)?12:_textFont];
         _label.textAlignment = NSTextAlignmentCenter;
     }
     return _label;
@@ -120,9 +121,8 @@
 /// ------------------------------------------------------------------------
 
 @interface LGSegmentControl ()
-@property (weak,nonatomic) NSArray<LGSegmentControlModel *> *models;
 @property (strong,nonatomic) UIView *elf;
-@property (strong,nonatomic) NSArray *subSingleViews;
+@property (strong,nonatomic) NSArray<LGSegmentSingleView *> *subSingleViews;
 
 @end
 
@@ -144,22 +144,23 @@
     
 }
 
+- (void)setDisplayIcon:(BOOL)displayIcon{
+    _displayIcon = displayIcon;
+    [self.subSingleViews enumerateObjectsUsingBlock:^(LGSegmentSingleView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.displayIcon = displayIcon;
+    }];
+}
+
 /// MARK: 初始化
 - (instancetype)initWithFrame:(CGRect)frame models:(NSArray<LGSegmentControlModel *> *)models{
     _models = models;
     return [self initWithFrame:frame];
 }
--  (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setupSubviews];
-    }
-    return self;
-}
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
-        [self setupSubviews];
-    }
-    return self;
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    self.backgroundColor = [UIColor whiteColor];
+    [self setupSubviews];
 }
 
 - (void)setupSubviews{
@@ -167,57 +168,56 @@
     self.backgroundColor = [UIColor whiteColor];
     
     CGFloat singleViewWidth = [self singleViewWidth];
+    
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:10];
-    for (NSInteger i = 0; i < 3; i++) {
-        /// frame
-        
-        CGFloat h = homeSegmentHeight;
-        CGFloat x = i * singleViewWidth;
+    [_models enumerateObjectsUsingBlock:^(LGSegmentControlModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat singleViewH = self.frame.size.height * 0.8;
+        CGFloat x = idx * singleViewWidth;
         CGFloat y = 0;
-        CGRect frame = CGRectMake(x, y, singleViewWidth, h);
+        CGRect frame = CGRectMake(x, y, singleViewWidth, singleViewH);
         
         LGSegmentSingleView *singleView = [[LGSegmentSingleView alloc] initWithFrame:frame];
-        singleView.tag = i;
+        singleView.tag = idx;
+        singleView.imageName = obj.imageName;
+        singleView.textFont = _textFont;
+        singleView.title = obj.title;
+        
         [singleView addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:singleView];
         [arr addObject:singleView];
-    }
-    self.subSingleViews = arr.copy;
-    [_models enumerateObjectsUsingBlock:^(LGSegmentControlModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
     }];
+    self.subSingleViews = arr.copy;
     
     /// 动画横条
-    UIView *first = self.subSingleViews[0];
     [self addSubview:self.elf];
     CGFloat elfHeight = 2;
-
-    self.elf.frame = CGRectMake([self elfXWithIndex:0], first.height - elfHeight, homeSegmentContentWidth, elfHeight);
+    self.elf.frame = CGRectMake([self elfXWithIndex:0], self.frame.size.height - elfHeight, [self singleViewIconWidth], elfHeight);
     
+    self.displayIcon = _displayIcon;
 }
 
-- (CGFloat)elfXWithIndex:(NSUInteger)index{
-    //    CGFloat elfX = ([self singleViewWidth] - homeSegmentContentWidth) / 2;
-    //    /**
-    //     第n个 elf 的 x 为: (2n+1)*elfX + n * homeSegmentContentWidth
-    //     (n 从 0 开始)
-    //     */
-    //    CGFloat secondElfx = 3 * elfX + homeSegmentContentWidth;
-    //    CGFloat thirdElfx = 5 * elfX + 2 * homeSegmentContentWidth;
-    CGFloat elfX = ([self singleViewWidth] - homeSegmentContentWidth) / 2;
-    return (2 * index + 1) * elfX + index * homeSegmentContentWidth;
+- (CGFloat)elfXWithIndex:(NSUInteger)index{/// 返回动画横条的 坐标点 x
+    CGFloat elfX = ([self singleViewWidth] - [self singleViewIconWidth]) / 2;
+    return (2 * index + 1) * elfX + index * [self singleViewIconWidth];
+}
+- (CGFloat)singleViewWidth{/// 单项宽度
+    return [UIScreen mainScreen].bounds.size.width / _models.count;
+}
+- (CGFloat)singleViewIconWidth{/// 单项icon宽度
+    LGSegmentControlModel *model = _models[0];
+    return [UIImage imageNamed:model.imageName].size.width;
 }
 
-- (CGFloat)singleViewWidth{
-    return kScreenWidth / 3;
-}
-
+/// MARK: lazy load
 - (UIView *)elf{
     if (_elf == nil) {
         _elf = [[UIView alloc] initWithFrame:CGRectZero];
-        _elf.backgroundColor = [UIColor EDJMainColor];
+        _elf.backgroundColor = _elfColor?_elfColor:[UIColor blackColor];
     }
     return _elf;
+}
+- (void)setElfColor:(UIColor *)elfColor{
+    _elfColor = elfColor;
 }
 
 @end
