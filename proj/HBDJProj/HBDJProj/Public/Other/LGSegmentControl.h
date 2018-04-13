@@ -31,7 +31,7 @@ extern CGFloat elfHeight;
 
 @interface LGSegmentControl : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame models:(NSArray<LGSegmentControlModel *> *)models;
+//- (instancetype)initWithFrame:(CGRect)frame models:(NSArray<LGSegmentControlModel *> *)models;
 
 /** 图片与纯文字切换,YES = 图片样式, NO = 纯文字切换, 默认为NO */
 @property (assign,nonatomic) BOOL pictureStyle;
