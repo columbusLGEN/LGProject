@@ -11,13 +11,7 @@
 @implementation EDJUserCenterHomePageModel
 
 + (NSArray *)loadLocalPlist{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"UserCenterHomeForm" ofType:@"plist"];
-    NSArray *array = [NSArray arrayWithContentsOfFile:path];
-    NSMutableArray *destine = [NSMutableArray arrayWithCapacity:10];
-    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [destine addObject:(EDJUserCenterHomePageModel *)[self mj_objectWithKeyValues:obj]];
-    }];
-    return destine.copy;
+    return [self loadLocalPlistWithPlistName:@"UserCenterHomeForm"];
 }
 
 

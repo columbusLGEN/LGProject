@@ -6,8 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LIGBaseViewController.h"
+#import "LGBaseViewController.h"
 
-@interface EDJHomeViewController : LIGBaseViewController
+@interface EDJHomeViewController : LGBaseViewController
 
 @end

@@ -45,7 +45,8 @@ UITableViewDataSource>
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad{
@@ -54,7 +55,7 @@ UITableViewDataSource>
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"要跳转了");
+    
 }
 
 - (void)uiConfig{
@@ -85,6 +86,36 @@ UITableViewDataSource>
     return 45;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        /// 第一行为 我的信息
+        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
+    }
+    if (indexPath.row == _array.count - 1) {
+        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCSettingViewController" animated:YES];
+    }
+}
+
+- (void)headerButtonCick:(UIButton *)sender{
+    switch (sender.tag) {
+        case 0:{
+            NSLog(@"提问");
+        }
+            break;
+        case 1:{
+            NSLog(@"收藏");
+        }
+            break;
+        case 2:{
+            NSLog(@"上传");
+        }
+            break;
+        case 3:{
+            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCMsgTableViewController" animated:YES];
+        }
+            break;
+    }
+}
 - (void)setHeaderButtons{
     NSString *hbtColorStr = @"333333";
     
@@ -121,25 +152,4 @@ UITableViewDataSource>
     _headerMsg.button.tag = 3;
     
 }
-- (void)headerButtonCick:(UIButton *)sender{
-    switch (sender.tag) {
-        case 0:{
-            NSLog(@"提问");
-        }
-            break;
-        case 1:{
-            NSLog(@"收藏");
-        }
-            break;
-        case 2:{
-            NSLog(@"上传");
-        }
-            break;
-        case 3:{
-            NSLog(@"消息");
-        }
-            break;
-    }
-}
-
 @end

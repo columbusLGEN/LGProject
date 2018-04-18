@@ -6,8 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LGBaseTableViewController.h"
 
-@interface UCPersonInfoViewController : UITableViewController
+@interface UCPersonInfoViewController : LGBaseTableViewController
 
 @end

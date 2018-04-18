@@ -26,10 +26,15 @@
     [super viewDidLoad];
     
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:10];
-    for (int i = 0;i < 6; i++) {
+    for (int i = 0;i < 11; i++) {
         UCPersonInfoModel *model = [UCPersonInfoModel new];
         if (i == 0 || i == 5) {
             model.iconUrl = @"11";
+        }
+        if (i == 3) {
+            model.itemName = @"密码";
+        }else{
+            model.itemName = @"其他";
         }
         [arr addObject:model];
     }
@@ -51,6 +56,18 @@
     cell.model = model;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UCPersonInfoModel *model = _array[indexPath.row];
+    if (model.canChangePwd) {
+        /// 修改密码
+        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"EDJModifiPwdViewController" animated:YES];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    ///  
 }
 
 

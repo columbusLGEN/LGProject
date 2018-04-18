@@ -11,5 +11,8 @@
 @interface UCPersonInfoModel : LGBaseModel
 
 @property (copy,nonatomic) NSString *iconUrl;
+@property (copy,nonatomic) NSString *itemName;// e.g.: 身份证号
+@property (copy,nonatomic) NSString *content;// e.g.: 1xxxxxxxxxx
+@property (assign,nonatomic) BOOL canChangePwd;
 
 @end

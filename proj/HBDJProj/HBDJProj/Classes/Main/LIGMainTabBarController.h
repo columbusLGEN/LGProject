@@ -6,8 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LIGBaseTabBarController.h"
+#import "LGBaseTabBarController.h"
 
-@interface LIGMainTabBarController : LIGBaseTabBarController
+@interface LIGMainTabBarController : LGBaseTabBarController
 
 @end

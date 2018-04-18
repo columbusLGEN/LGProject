@@ -7,10 +7,10 @@
 //
 
 #import "LIGMainTabBarController.h"
-#import "LIGBaseNavigationController.h"
+#import "LGBaseNavigationController.h"
 #import "UIViewController+Extension.h"
 
-#import "LIGBaseViewController.h"// test
+#import "LGBaseViewController.h"// test
 
 static NSString * const vcClassKey = @"className";
 static NSString * const vcTitleKey = @"vcTitle";
@@ -77,7 +77,7 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
     /// isMemberOfClass 是否是该类的实例
     NSAssert([vc isKindOfClass:[UIViewController class]], info);
     
-    LIGBaseNavigationController *nav = [[LIGBaseNavigationController alloc] initWithRootViewController:vc];
+    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:vc];
     vc.title = title;
     vc.tabBarItem.image = [[UIImage imageNamed:normalIconName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedIconName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

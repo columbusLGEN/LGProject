@@ -10,6 +10,13 @@
 
 @implementation UCPersonInfoModel
 
-
+- (BOOL)canChangePwd{
+    if ([_itemName isEqualToString:@"密码"]) {
+        _canChangePwd = YES;
+    }else{
+        _canChangePwd = NO;
+    }
+    return _canChangePwd;
+}
 
 @end

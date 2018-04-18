@@ -26,7 +26,7 @@
     if (model.iconUrl) {
         _itemIconCell.text = @"头像";
     }else{
-        _item.text = @"姓名";
+        _item.text = model.itemName;
         _content.text = @"孙悟空";
     }
 }

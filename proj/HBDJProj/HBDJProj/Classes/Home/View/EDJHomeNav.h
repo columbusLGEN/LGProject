@@ -6,7 +6,7 @@
 //  Copyright © 2017年 lee. All rights reserved.
 //
 
-#import "LIGBaseView.h"
+#import "LGBaseView.h"
 
 @class EDJHomeNav;
 
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, NavState) {
 
 @end
 
-@interface EDJHomeNav : LIGBaseView
+@interface EDJHomeNav : LGBaseView
 
 @property (assign,nonatomic) NavState bgdsState;
 

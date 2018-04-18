@@ -75,12 +75,34 @@
 }
 - (LGSegmentControl *)segment{
     if (_segment == nil) {
-        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectZero];
-        
+        NSMutableArray *arr = [NSMutableArray arrayWithCapacity:10];
+        for (int i = 0; i < 3; i++) {
+            LGSegmentControlModel *model = [LGSegmentControlModel new];
+            model.title = segTitle(i);
+            model.imageName = [NSString stringWithFormat:@"home_test%d",i];
+            [arr addObject:model];
+        }
+        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, homeSegmentHeight) models:arr.copy];
+        _segment.elfColor = [UIColor EDJMainColor];
     }
     return _segment;
 }
 + (CGFloat)headerHeight{
-    return 383;
+    return 319 + navHeight();
+}
+
+NSString *segTitle(int i){
+    switch (i) {
+        case 0:
+            return @"微党课";
+            break;
+        case 1:
+            return @"党建要闻";
+            break;
+        case 2:
+            return @"数字阅读";
+            break;
+    }
+    return @"微党课";
 }
 @end

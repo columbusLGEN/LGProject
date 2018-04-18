@@ -56,12 +56,66 @@ LGSegmentControlDelegate
     
     /// TODO: 希望: 系统版本小于11.0,编译此处
     self.automaticallyAdjustsScrollViewInsets = NO;
-//    NSLog(@"当前系统版本小于iOS11");
     
     /// 添加自定义导航栏
     EDJHomeNav *nav = [[EDJHomeNav alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
     [self.view addSubview:nav];
     _nav = nav;
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+    [self.view addGestureRecognizer:swipeRight];
+    
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeLeft];
+}
+
+- (void)swipe:(UISwipeGestureRecognizer *)swipeRecognizer{
+    if (swipeRecognizer.direction == 1) {
+        /// 向右扫 -- > 屏幕向左滑动
+        switch (_currentSegment) {
+            case 0:{
+            }
+                break;
+            case 1:{
+                [self segmentControl:nil didClick:0];
+                [self.header.segment elfAnimateWithIndex:0];
+                _currentSegment = 0;
+                
+            }
+                break;
+            case 2:{
+                [self segmentControl:nil didClick:1];
+                [self.header.segment elfAnimateWithIndex:1];
+                _currentSegment = 1;
+                
+            }
+                break;
+        }
+        
+    }else if (swipeRecognizer.direction == 2){
+        /// 向左扫
+        switch (_currentSegment) {
+            case 0:{
+                [self segmentControl:nil didClick:1];
+                [self.header.segment elfAnimateWithIndex:1];
+                _currentSegment = 1;
+            }
+                break;
+            case 1:{
+                [self segmentControl:nil didClick:2];
+                [self.header.segment elfAnimateWithIndex:2];
+                _currentSegment = 2;
+                
+            }
+                break;
+            case 2:{
+            }
+                break;
+        }
+    }
+    
+
 }
 
 /// switch 语句中的两个分支,加载同一个控制器,但是数据需要分别处理,如何简化代码?

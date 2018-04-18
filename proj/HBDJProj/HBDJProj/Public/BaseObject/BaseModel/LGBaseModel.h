@@ -12,5 +12,6 @@
 @interface LGBaseModel : NSObject
 
 + (NSArray *)loadLocalPlist;
++ (NSArray *)loadLocalPlistWithPlistName:(NSString *)plistName;
 
 @end

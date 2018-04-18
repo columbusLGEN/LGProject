@@ -6,11 +6,11 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LIGBaseView.h"
+#import "LGBaseView.h"
 #import "EDJHomeNav.h"
 @class LGSegmentControl;
 
-@interface EDJHomeHeaderView : LIGBaseView
+@interface EDJHomeHeaderView : LGBaseView
 
 + (CGFloat)headerHeight;
 @property (strong,nonatomic) EDJHomeNav *nav;

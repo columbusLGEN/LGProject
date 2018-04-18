@@ -6,9 +6,9 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LIGBaseView.h"
+#import "LGBaseView.h"
 
-@interface EDJMicroPSCellHeader : LIGBaseView
+@interface EDJMicroPSCellHeader : LGBaseView
 @property (copy,nonatomic) NSString *titleText;
 
 @end

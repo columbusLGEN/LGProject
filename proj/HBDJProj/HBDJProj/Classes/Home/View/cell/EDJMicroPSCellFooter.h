@@ -6,8 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LIGBaseView.h"
+#import "LGBaseView.h"
 
-@interface EDJMicroPSCellFooter : LIGBaseView
+@interface EDJMicroPSCellFooter : LGBaseView
 
 @end

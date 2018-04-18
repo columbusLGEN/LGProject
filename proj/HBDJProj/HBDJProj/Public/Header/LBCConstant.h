@@ -19,5 +19,7 @@ static const CGFloat homeSegmentHeight = 80;
 static const CGFloat homeSegmentContentWidth = 38;
 static const CGFloat tabBarHeight = 49;
 
+static NSString * const UserCenterStoryboardName = @"UserCenter";
+
 
 
