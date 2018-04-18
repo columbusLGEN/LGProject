@@ -1190,13 +1190,8 @@
 				884312C1208733F400321F84 /* EDJConfirmPwdViewController.m in Sources */,
 				88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */,
 				88A47113207DBE33002F93E0 /* EDJMicroBuildThreeImgCell.m in Sources */,
-<<<<<<< HEAD
 				8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */,
 				8835B2C120720A1800722010 /* LGBaseView.m in Sources */,
-=======
-				8835B2A32071FBE000722010 /* LIGBaseViewController.m in Sources */,
-				8835B2C120720A1800722010 /* LIGBaseView.m in Sources */,
->>>>>>> 51457437466a9e1ceb1f1f0dcff1544eda8c0365
 				88A4713D207F320F002F93E0 /* LGSpecificButton.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
