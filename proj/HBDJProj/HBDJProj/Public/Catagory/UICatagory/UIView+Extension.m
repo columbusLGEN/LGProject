@@ -10,6 +10,13 @@
 
 @implementation UIView (Extension)
 
+/// MARK: 设置border & 圆角
+- (void)cutBorderWithBorderWidth:(CGFloat)width borderColor:(UIColor *)borderColor cornerRadius:(CGFloat)cornerRadius{
+    self.layer.borderWidth = width;
+    self.layer.borderColor = borderColor.CGColor;
+    self.layer.cornerRadius = cornerRadius;
+}
+
 /// MARK: 切圆形
 - (void)cutToCycle{
     self.layer.cornerRadius = self.width * 0.5;

@@ -91,6 +91,10 @@ UITableViewDataSource>
         /// 第一行为 我的信息
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
     }
+    if (indexPath.row == 2) {
+        /// 第三行 帮助与反馈
+        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCHelpFadebackViewController" animated:YES];
+    }
     if (indexPath.row == _array.count - 1) {
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCSettingViewController" animated:YES];
     }
@@ -107,7 +111,7 @@ UITableViewDataSource>
         }
             break;
         case 2:{
-            NSLog(@"上传");
+            [self lgPushViewControllerWithClassName:@"UCUploadViewController"];
         }
             break;
         case 3:{

@@ -31,5 +31,8 @@
 + (UIColor *)EDJGrayscale_33{
     return [self colorWithHexString:@"333333"];
 }
++ (UIColor *)EDJColor_9B1212{
+    return [self colorWithHexString:@"9B1212"];
+}
 
 @end

@@ -33,23 +33,23 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
     NSArray<NSDictionary *> *childVcSettings = @[
   @{vcClassKey:@"EDJHomeViewController",
     vcTitleKey:@"讲习",
-    tabbarIconKey:@"tabbar_icon_selected_home",
-    tabbarSelectedIconKey:@"tabbar_icon_selected_home"
+    tabbarIconKey:@"tab-icon-jiangxi-",
+    tabbarSelectedIconKey:@"tab-icon-jiangxi-xz"
     },
   @{vcClassKey:@"EDJDiscoveryViewController",
     vcTitleKey:@"发现",
-    tabbarIconKey:@"tabbar_icon_normal_discover",
-    tabbarSelectedIconKey:@"tabbar_icon_normal_discover"
+    tabbarIconKey:@"tab-icon-faxian-",
+    tabbarSelectedIconKey:@"tab-icon-faxian-xz"
     },
   @{vcClassKey:@"EDJOnlineViewController",
     vcTitleKey:@"在线",
-    tabbarIconKey:@"tabbar_icon_normal_online",
-    tabbarSelectedIconKey:@"tabbar_icon_normal_online"
+    tabbarIconKey:@"tab-icon-zaixian-",
+    tabbarSelectedIconKey:@"tab-icon-zaixian-xz"
     },
   @{vcClassKey:userCenterViewController,
     vcTitleKey:@"个人中心",
-    tabbarIconKey:@"tabbar_icon_normal_uc",
-    tabbarSelectedIconKey:@"tabbar_icon_normal_uc"
+    tabbarIconKey:@"tab-icon-wode-",
+    tabbarSelectedIconKey:@"tab-icon-wode-xz"
     }
   ];
     for (NSInteger i = 0; i < childVcSettings.count; i++) {

@@ -34,5 +34,7 @@
  @param shadowRadius 渐变读
  */
 - (void)setShadowWithShadowColor:(UIColor *)shadowColor shadowOffset:(CGSize)shadowOffset shadowOpacity:(float)shadowOpacity shadowRadius:(float)shadowRadius;
+/// MARK: 设置border & 圆角
+- (void)cutBorderWithBorderWidth:(CGFloat)width borderColor:(UIColor *)borderColor cornerRadius:(CGFloat)cornerRadius;
 
 @end

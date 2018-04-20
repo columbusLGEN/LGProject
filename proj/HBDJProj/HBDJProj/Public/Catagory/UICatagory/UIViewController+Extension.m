@@ -19,4 +19,10 @@
     [self.navigationController pushViewController:vc animated:animated];
 }
 
+- (void)lgPushViewControllerWithClassName:(NSString *)className{
+    UIViewController *vc = [NSClassFromString(className) new];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end

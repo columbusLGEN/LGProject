@@ -11,4 +11,5 @@
 @interface UIViewController (Extension)
 - (instancetype)lgInstantiateViewControllerWithStoryboardName:(NSString *)name controllerId:(NSString *)controllerId;
 - (void)lgPushViewControllerWithStoryboardName:(NSString *)name controllerId:(NSString *)controllerId animated:(BOOL)animated;
+- (void)lgPushViewControllerWithClassName:(NSString *)className;
 @end

@@ -39,9 +39,8 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIColor *bgColor = [UIColor orangeColor];
     UIView *bg = [[UIView alloc] initWithFrame:self.view.bounds];
-    bg.backgroundColor = bgColor;
+    bg.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"uc_icon_level_info_bg"]];
     [self.view addSubview:bg];
     
     /// header height 345
