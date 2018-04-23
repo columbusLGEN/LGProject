@@ -17,12 +17,13 @@ UICollectionViewDataSource,
 EDJLeverInfoHeaderViewDelegate
 >
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong,nonatomic) NSArray *array;
 
 @end
 
 @implementation EDJLevelInfoViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -38,12 +39,17 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configUI];
     
+}
+
+- (void)configUI{
+    
+    /// 设置背景图片
     UIView *bg = [[UIView alloc] initWithFrame:self.view.bounds];
     bg.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"uc_icon_level_info_bg"]];
     [self.view addSubview:bg];
     
-    /// header height 345
     EDJLeverInfoHeaderView *header = [EDJLeverInfoHeaderView levelInfoHeader];
     header.frame = CGRectMake(0, 0, kScreenWidth - 20, headerHeight);
     header.delegate = self;
@@ -51,73 +57,27 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self.view bringSubviewToFront:self.collectionView];
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:reuseIdentifier bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
-    
-    
+    _array = [EDJLevelInfoModel loadLocalPlistWithPlistName:@"LevelBonusRules"];
+    [self.collectionView reloadData];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return _array.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor randomColor];
+    EDJLevelInfoModel *model = _array[indexPath.row];
+    EDJLevelInfoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.model = model;
     
     return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
-
-/*
- // Uncomment this method to specify if the specified item should be highlighted during tracking
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
- return YES;
- }
- */
-
-/*
- // Uncomment this method to specify if the specified item should be selected
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
- return YES;
- }
- */
-
-/*
- // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
- return NO;
- }
- 
- - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
- return NO;
- }
- 
- - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
- 
- }
- */
-
 
 #pragma mark - EDJLeverInfoHeaderViewDelegate
 - (void)levelInfoHeaderCLick:(EDJLeverInfoHeaderView *)header itemTag:(NSInteger)tag{
@@ -137,3 +97,40 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 @end
+
+@implementation EDJLevelInfoModel
+
+
+@end
+
+@interface EDJLevelInfoCollectionViewCell ()
+@property (weak, nonatomic) IBOutlet UILabel *itemTitle;
+@property (weak, nonatomic) IBOutlet UILabel *rate;
+@property (weak, nonatomic) IBOutlet UILabel *unit;
+
+@property (weak, nonatomic) IBOutlet UILabel *bonus;
+@property (weak, nonatomic) IBOutlet UIView *container;
+@property (weak, nonatomic) IBOutlet UILabel *upperLimit;
+
+
+@end
+
+@implementation EDJLevelInfoCollectionViewCell
+
+- (void)setModel:(EDJLevelInfoModel *)model{
+    _model = model;
+    _itemTitle.text = model.itemTitle;
+    _rate.text = model.rate.stringValue;
+    _unit.text = model.unit;
+    _bonus.text = model.score.stringValue;
+    _upperLimit.text = [NSString stringWithFormat:@"每日上限%@分",model.upperLimit];
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.backgroundColor = [UIColor whiteColor];
+    [_container cutBorderWithBorderWidth:1 borderColor:[UIColor EDJMainColor] cornerRadius:10];
+    [_container setShadowWithShadowColor:[UIColor EDJMainColor] shadowOffset:CGSizeMake(2,2) shadowOpacity:0.5 shadowRadius:5];
+}
+@end
+

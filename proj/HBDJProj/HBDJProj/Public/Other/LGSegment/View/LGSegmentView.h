@@ -7,8 +7,14 @@
 //
 
 #import "LGBaseView.h"
+@protocol LGSegmentViewDelegate;
 
 @interface LGSegmentView : LGBaseView
 - (instancetype)initWithSegmentItems:(NSArray<NSString *> *)items;
 - (void)setFlyLocationWithIndex:(NSInteger)index;
+@property (weak,nonatomic) id<LGSegmentViewDelegate> delegate;
+@end
+
+@protocol LGSegmentViewDelegate <NSObject>
+- (void)segmentView:(LGSegmentView *)segmentView click:(NSInteger)click;
 @end

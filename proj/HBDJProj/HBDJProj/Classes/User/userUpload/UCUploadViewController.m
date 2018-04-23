@@ -7,6 +7,7 @@
 //
 
 #import "UCUploadViewController.h"
+#import "UCPartyMemberStageController.h"
 
 @interface UCUploadViewController ()
 
@@ -16,8 +17,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"我的上传";
     
+    [self.segmentItems enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        UCPartyMemberStageController *vc = (UCPartyMemberStageController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPartyMemberStageController"];
+        CGFloat x = kScreenWidth * idx;
+        vc.view.frame = CGRectMake(x, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
+        [self.scrollView addSubview:vc.view];
+    }];
+    [self.scrollView setContentSize:CGSizeMake(self.segmentItems.count * kScreenWidth, 0)];
 }
 
 - (NSArray *)segmentItems{

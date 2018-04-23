@@ -13,6 +13,7 @@
 @interface EDJLeverInfoHeaderView : LGBaseView
 + (instancetype)levelInfoHeader;
 @property (weak,nonatomic) id<EDJLeverInfoHeaderViewDelegate> delegate;
+@property (strong,nonatomic) NSObject *model;
 
 @end
 

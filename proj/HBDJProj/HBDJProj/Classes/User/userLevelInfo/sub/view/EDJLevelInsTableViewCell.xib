@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EDJLevelInsTableViewCell" rowHeight="159" id="5CU-nk-Llm" customClass="EDJLevelInsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="463" height="159"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5CU-nk-Llm" id="e5j-nK-oeZ">
+                <rect key="frame" x="0.0" y="0.0" width="463" height="158.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omN-re-BL3">
+                        <rect key="frame" x="30" y="69" width="8" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0039215686274509803" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="先锋党员一级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTu-dS-xjs">
+                        <rect key="frame" x="179.5" y="69" width="104" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0039215686269999999" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1T-IK-tdv">
+                        <rect key="frame" x="425" y="69" width="8" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0039215686269999999" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Uz-ew-YWd">
+                        <rect key="frame" x="15" y="157.5" width="433" height="1"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="iYJ-gp-LAK"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GTu-dS-xjs" firstAttribute="centerY" secondItem="e5j-nK-oeZ" secondAttribute="centerY" id="2fC-iz-Edn"/>
+                    <constraint firstItem="GTu-dS-xjs" firstAttribute="centerX" secondItem="e5j-nK-oeZ" secondAttribute="centerX" id="7kN-hC-xpX"/>
+                    <constraint firstItem="omN-re-BL3" firstAttribute="centerY" secondItem="GTu-dS-xjs" secondAttribute="centerY" id="Dzn-Yd-b6p"/>
+                    <constraint firstItem="x1T-IK-tdv" firstAttribute="centerY" secondItem="GTu-dS-xjs" secondAttribute="centerY" id="Kso-7T-nS7"/>
+                    <constraint firstItem="5Uz-ew-YWd" firstAttribute="leading" secondItem="e5j-nK-oeZ" secondAttribute="leading" constant="15" id="UE5-Lm-9Jc"/>
+                    <constraint firstAttribute="bottom" secondItem="5Uz-ew-YWd" secondAttribute="bottom" id="jy4-42-bQh"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="x1T-IK-tdv" secondAttribute="trailing" constant="10" id="lDV-oA-uvC"/>
+                    <constraint firstItem="omN-re-BL3" firstAttribute="leading" secondItem="e5j-nK-oeZ" secondAttribute="leadingMargin" constant="10" id="w0a-gW-SMF"/>
+                    <constraint firstAttribute="trailing" secondItem="5Uz-ew-YWd" secondAttribute="trailing" constant="15" id="yzh-69-kgO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+            <connections>
+                <outlet property="level" destination="omN-re-BL3" id="FMu-RT-j9i"/>
+                <outlet property="levelName" destination="GTu-dS-xjs" id="bcb-Dh-lGS"/>
+                <outlet property="needsScore" destination="x1T-IK-tdv" id="wBX-IS-Uve"/>
+            </connections>
+            <point key="canvasLocation" x="-151.5" y="-2.5"/>
+        </tableViewCell>
+    </objects>
+</document>

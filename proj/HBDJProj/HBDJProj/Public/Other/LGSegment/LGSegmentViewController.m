@@ -9,9 +9,11 @@
 #import "LGSegmentViewController.h"
 #import "LGSegmentView.h"
 
-@interface LGSegmentViewController ()<UIScrollViewDelegate>
+@interface LGSegmentViewController ()<
+UIScrollViewDelegate,
+LGSegmentViewDelegate
+>
 @property (weak,nonatomic) LGSegmentView *segment;
-@property (weak,nonatomic) UIScrollView *scrollView;
 
 @end
 
@@ -29,16 +31,16 @@
 }
 - (void)uiConfig{
     self.view.backgroundColor = [UIColor EDJGrayscale_F3];
-    CGFloat segmentHeight = 40;
     LGSegmentView *segment = [[LGSegmentView alloc] initWithSegmentItems:self.segmentItems];
     [self.view addSubview:segment];
     [segment mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.height.mas_equalTo(segmentHeight);
+        make.height.mas_equalTo(self.segmentHeight);
         make.width.mas_equalTo(kScreenWidth);
         make.top.equalTo(self.view.mas_topMargin).offset(marginTen);
     }];
+    segment.delegate = self;
     _segment = segment;
     
     UIScrollView *scrollView = [UIScrollView new];
@@ -53,12 +55,6 @@
     }];
     _scrollView = scrollView;
     
-    [self.segmentItems enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIView *test = [[UIView alloc] initWithFrame:CGRectMake(idx * kScreenWidth, 0, kScreenWidth, kScreenHeight - 2 * marginTen - segmentHeight)];
-        test.backgroundColor = [UIColor randomColor];
-        [self.scrollView addSubview:test];
-    }];
-    [scrollView setContentSize:CGSizeMake(self.segmentItems.count * kScreenWidth, 0)];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -66,8 +62,13 @@
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSInteger index = scrollView.contentOffset.x / kScreenWidth;
-    NSLog(@"index -- %ld",index);
     [_segment setFlyLocationWithIndex:index];
+}
+
+#pragma mark - segment view delegate
+- (void)segmentView:(LGSegmentView *)segmentView click:(NSInteger)click{
+    CGFloat contentOffsetX = click * kScreenWidth;
+    [self.scrollView setContentOffset:CGPointMake(contentOffsetX, 0) animated:YES];
 }
 
 
@@ -80,7 +81,9 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (CGFloat)segmentHeight{
+    return 40;
+}
 
 
 @end

@@ -1,47 +1,52 @@
 //
-//  EDJTodayScoreViewController.m
+//  UCPartyMemberStageController.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/4/18.
+//  Created by Peanut Lee on 2018/4/23.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "EDJTodayScoreViewController.h"
+#import "UCPartyMemberStageController.h"
+#import "model/UCPartyMemberStageModel.h"
+#import "view/UCPartyMemberStageCell.h"
 
-@interface EDJTodayScoreViewController ()
-
+@interface UCPartyMemberStageController ()
+@property (strong,nonatomic) NSArray *array;
 @end
 
-@implementation EDJTodayScoreViewController
+@implementation UCPartyMemberStageController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"今日加分";
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self configUI];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)configUI{
+    NSMutableArray *arrMu = [NSMutableArray array];
+    for (int i = 0; i < 10; i++) {
+        UCPartyMemberStageModel *model = [UCPartyMemberStageModel new];
+        [arrMu addObject:model];
+    }
+    _array = arrMu.copy;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    NSLog(@"_array.count -- %ld",_array.count);
+    return _array.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return nil;
+    UCPartyMemberStageModel *model = _array[indexPath.row];
+    UCPartyMemberStageCell *cell = [tableView dequeueReusableCellWithIdentifier:[UCPartyMemberStageCell cellReuseIdWithModel:model]];
+    NSLog(@"cell -- %@",cell);
+    cell.model = model;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 229;
 }
 
 

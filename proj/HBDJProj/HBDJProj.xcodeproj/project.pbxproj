@@ -72,6 +72,18 @@
 		88435E73208D68D700188CE9 /* UCQuestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E72208D68D700188CE9 /* UCQuestionModel.m */; };
 		88435E75208D6DF400188CE9 /* UCQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435E74208D6DF400188CE9 /* UCQuestionTableViewCell.xib */; };
 		88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88435E76208D84E000188CE9 /* userInfoConfig.plist */; };
+		88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435E78208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib */; };
+		88435E7B208DB43800188CE9 /* LevelBonusRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88435E7A208DB43800188CE9 /* LevelBonusRules.plist */; };
+		88435E82208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E81208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m */; };
+		88435E84208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435E83208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib */; };
+		88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E87208DBDE400188CE9 /* EDJLevelInsModel.m */; };
+		88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88435E89208DBF8100188CE9 /* EDJLevelIns.plist */; };
+		88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E8C208DC21700188CE9 /* EDJTotayScoreModel.m */; };
+		88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E8F208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m */; };
+		88435E92208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435E91208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib */; };
+		88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E95208DD09500188CE9 /* UCPartyMemberStageController.m */; };
+		88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */; };
+		88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */; };
 		88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */; };
 		88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F1207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m */; };
 		88A470FA207C8615002F93E0 /* LGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F9207C8615002F93E0 /* LGImageView.m */; };
@@ -253,6 +265,25 @@
 		88435E72208D68D700188CE9 /* UCQuestionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCQuestionModel.m; sourceTree = "<group>"; };
 		88435E74208D6DF400188CE9 /* UCQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UCQuestionTableViewCell.xib; sourceTree = "<group>"; };
 		88435E76208D84E000188CE9 /* userInfoConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfoConfig.plist; sourceTree = "<group>"; };
+		88435E78208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJLevelInfoCollectionViewCell.xib; sourceTree = "<group>"; };
+		88435E7A208DB43800188CE9 /* LevelBonusRules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = LevelBonusRules.plist; sourceTree = "<group>"; };
+		88435E80208DBD2C00188CE9 /* EDJLevelInsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJLevelInsTableViewCell.h; sourceTree = "<group>"; };
+		88435E81208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJLevelInsTableViewCell.m; sourceTree = "<group>"; };
+		88435E83208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJLevelInsTableViewCell.xib; sourceTree = "<group>"; };
+		88435E86208DBDE400188CE9 /* EDJLevelInsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJLevelInsModel.h; sourceTree = "<group>"; };
+		88435E87208DBDE400188CE9 /* EDJLevelInsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJLevelInsModel.m; sourceTree = "<group>"; };
+		88435E89208DBF8100188CE9 /* EDJLevelIns.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EDJLevelIns.plist; sourceTree = "<group>"; };
+		88435E8B208DC21700188CE9 /* EDJTotayScoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJTotayScoreModel.h; sourceTree = "<group>"; };
+		88435E8C208DC21700188CE9 /* EDJTotayScoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJTotayScoreModel.m; sourceTree = "<group>"; };
+		88435E8E208DC27E00188CE9 /* EDJTotayScoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJTotayScoreTableViewCell.h; sourceTree = "<group>"; };
+		88435E8F208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJTotayScoreTableViewCell.m; sourceTree = "<group>"; };
+		88435E91208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJTotayScoreTableViewCell.xib; sourceTree = "<group>"; };
+		88435E94208DD09500188CE9 /* UCPartyMemberStageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPartyMemberStageController.h; sourceTree = "<group>"; };
+		88435E95208DD09500188CE9 /* UCPartyMemberStageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageController.m; sourceTree = "<group>"; };
+		88435E99208DD2DB00188CE9 /* UCPartyMemberStageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPartyMemberStageModel.h; sourceTree = "<group>"; };
+		88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageModel.m; sourceTree = "<group>"; };
+		88435E9C208DD33900188CE9 /* UCPartyMemberStageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPartyMemberStageCell.h; sourceTree = "<group>"; };
+		88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageCell.m; sourceTree = "<group>"; };
 		88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EDJColor.h"; sourceTree = "<group>"; };
 		88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EDJColor.m"; sourceTree = "<group>"; };
 		88A470F0207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeDigitalsFlowLayout.h; sourceTree = "<group>"; };
@@ -609,6 +640,7 @@
 		881C94ED2068F3B0009D6A52 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				88A4713E207F5170002F93E0 /* userMain */,
 				884312ED2089C15000321F84 /* userUpload */,
 				88A4713F207F51BF002F93E0 /* userPersonInfo */,
@@ -739,39 +771,24 @@
 		884312422085C6B800321F84 /* userLevelInfo */ = {
 			isa = PBXGroup;
 			children = (
-				884312AF208721B100321F84 /* SubControllers */,
-				884312A92086F2BF00321F84 /* View */,
-				8843124A2085E60F00321F84 /* EDJLevelInfoViewController.h */,
-				8843124B2085E60F00321F84 /* EDJLevelInfoViewController.m */,
-				884312A62086ED1200321F84 /* EDJLevelInfoFlowLayout.h */,
-				884312A72086ED1200321F84 /* EDJLevelInfoFlowLayout.m */,
+				88435E7D208DBC8900188CE9 /* main */,
+				884312AF208721B100321F84 /* sub */,
 			);
 			path = userLevelInfo;
 			sourceTree = "<group>";
 		};
-		884312A92086F2BF00321F84 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				884312AA2086F2D400321F84 /* EDJLeverInfoHeader.xib */,
-				884312AC2086F2EC00321F84 /* EDJLeverInfoHeaderView.h */,
-				884312AD2086F2EC00321F84 /* EDJLeverInfoHeaderView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		884312AF208721B100321F84 /* SubControllers */ = {
+		884312AF208721B100321F84 /* sub */ = {
 			isa = PBXGroup;
 			children = (
 				884312B32087222600321F84 /* EDJLevelInsTableViewController.h */,
 				884312B42087222600321F84 /* EDJLevelInsTableViewController.m */,
 				884312B9208725C900321F84 /* EDJTodayScoreViewController.h */,
 				884312BA208725C900321F84 /* EDJTodayScoreViewController.m */,
-				884312BC20872ED400321F84 /* EDJModifiPwdViewController.h */,
-				884312BD20872ED400321F84 /* EDJModifiPwdViewController.m */,
-				884312BF208733F400321F84 /* EDJConfirmPwdViewController.h */,
-				884312C0208733F400321F84 /* EDJConfirmPwdViewController.m */,
+				88435E89208DBF8100188CE9 /* EDJLevelIns.plist */,
+				88435E85208DBDD000188CE9 /* model */,
+				88435E7F208DBCB900188CE9 /* view */,
 			);
-			path = SubControllers;
+			path = sub;
 			sourceTree = "<group>";
 		};
 		884312C22087379100321F84 /* userMsgCenter */ = {
@@ -824,6 +841,7 @@
 			children = (
 				884312F72089C82800321F84 /* UCUploadViewController.h */,
 				884312F82089C82800321F84 /* UCUploadViewController.m */,
+				88435E93208DCE7B00188CE9 /* sub */,
 			);
 			path = userUpload;
 			sourceTree = "<group>";
@@ -859,6 +877,94 @@
 				88435E72208D68D700188CE9 /* UCQuestionModel.m */,
 			);
 			path = userQuestion;
+			sourceTree = "<group>";
+		};
+		88435E7C208DBBF500188CE9 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+				884312BC20872ED400321F84 /* EDJModifiPwdViewController.h */,
+				884312BD20872ED400321F84 /* EDJModifiPwdViewController.m */,
+				884312BF208733F400321F84 /* EDJConfirmPwdViewController.h */,
+				884312C0208733F400321F84 /* EDJConfirmPwdViewController.m */,
+			);
+			path = sub;
+			sourceTree = "<group>";
+		};
+		88435E7D208DBC8900188CE9 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				8843124A2085E60F00321F84 /* EDJLevelInfoViewController.h */,
+				8843124B2085E60F00321F84 /* EDJLevelInfoViewController.m */,
+				884312A62086ED1200321F84 /* EDJLevelInfoFlowLayout.h */,
+				884312A72086ED1200321F84 /* EDJLevelInfoFlowLayout.m */,
+				88435E7A208DB43800188CE9 /* LevelBonusRules.plist */,
+				88435E7E208DBC9500188CE9 /* view */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		88435E7E208DBC9500188CE9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88435E78208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib */,
+				884312AA2086F2D400321F84 /* EDJLeverInfoHeader.xib */,
+				884312AC2086F2EC00321F84 /* EDJLeverInfoHeaderView.h */,
+				884312AD2086F2EC00321F84 /* EDJLeverInfoHeaderView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		88435E7F208DBCB900188CE9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88435E80208DBD2C00188CE9 /* EDJLevelInsTableViewCell.h */,
+				88435E81208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m */,
+				88435E83208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib */,
+				88435E8E208DC27E00188CE9 /* EDJTotayScoreTableViewCell.h */,
+				88435E8F208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m */,
+				88435E91208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		88435E85208DBDD000188CE9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				88435E86208DBDE400188CE9 /* EDJLevelInsModel.h */,
+				88435E87208DBDE400188CE9 /* EDJLevelInsModel.m */,
+				88435E8B208DC21700188CE9 /* EDJTotayScoreModel.h */,
+				88435E8C208DC21700188CE9 /* EDJTotayScoreModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		88435E93208DCE7B00188CE9 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+				88435E94208DD09500188CE9 /* UCPartyMemberStageController.h */,
+				88435E95208DD09500188CE9 /* UCPartyMemberStageController.m */,
+				88435E98208DD2A200188CE9 /* model */,
+				88435E97208DD29D00188CE9 /* view */,
+			);
+			path = sub;
+			sourceTree = "<group>";
+		};
+		88435E97208DD29D00188CE9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88435E9C208DD33900188CE9 /* UCPartyMemberStageCell.h */,
+				88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		88435E98208DD2A200188CE9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				88435E99208DD2DB00188CE9 /* UCPartyMemberStageModel.h */,
+				88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		88A47106207DB9FF002F93E0 /* BuileCell */ = {
@@ -912,7 +1018,6 @@
 		88A4713E207F5170002F93E0 /* userMain */ = {
 			isa = PBXGroup;
 			children = (
-				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				88D033852079EB8600665D2F /* EDJUserCenterViewController.h */,
 				88D033862079EB8600665D2F /* EDJUserCenterViewController.m */,
 				88A47131207EF5EB002F93E0 /* EDJUserCenterHomePageModel.h */,
@@ -928,6 +1033,7 @@
 		88A4713F207F51BF002F93E0 /* userPersonInfo */ = {
 			isa = PBXGroup;
 			children = (
+				88435E7C208DBBF500188CE9 /* sub */,
 				88A47140207F5242002F93E0 /* UCPersonInfoViewController.h */,
 				88A47141207F5242002F93E0 /* UCPersonInfoViewController.m */,
 				88397812207F56D700F3D131 /* UCPersonInfoModel.h */,
@@ -1069,13 +1175,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				88A47110207DBE26002F93E0 /* EDJMicroBuildOneImgCell.xib in Resources */,
+				88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */,
+				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
 				88A47137207F06D3002F93E0 /* UserCenterHomeForm.plist in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
+				88435E84208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib in Resources */,
 				88A4712A207E02D4002F93E0 /* UserCenter.storyboard in Resources */,
 				884312AB2086F2D400321F84 /* EDJLeverInfoHeader.xib in Resources */,
 				88A4711A207DDCCA002F93E0 /* EDJMicroPartyLessonHeaderCell.xib in Resources */,
+				88435E7B208DB43800188CE9 /* LevelBonusRules.plist in Resources */,
 				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
+				88435E92208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib in Resources */,
 				88435E75208D6DF400188CE9 /* UCQuestionTableViewCell.xib in Resources */,
 				884312D620873B6900321F84 /* UCSetting.plist in Resources */,
 				88A4710B207DBE08002F93E0 /* EDJMicroBuildNoImgCell.xib in Resources */,
@@ -1290,6 +1401,7 @@
 				884312E6208987F100321F84 /* UCHelpFadebackModel.m in Sources */,
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				881C94E12068ED10009D6A52 /* LIGNetworkConfig.m in Sources */,
+				88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */,
 				884312E32089879C00321F84 /* UCHelpFadebackTableViewCell.m in Sources */,
 				88A470FD207C8CBD002F93E0 /* EDJMicroPSCellHeader.m in Sources */,
 				884312C8208737EF00321F84 /* UCMsgModel.m in Sources */,
@@ -1307,13 +1419,17 @@
 				8835B2CA20720B0200722010 /* EDJDiscoveryController.m in Sources */,
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
 				881C94D02068ECF3009D6A52 /* NSString+Extension.m in Sources */,
+				88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */,
 				8835B2C420720A2700722010 /* LGBaseModel.m in Sources */,
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
 				8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */,
 				8835B36B20732DB900722010 /* EDJDigitalReadViewController.m in Sources */,
 				884312C5208737BF00321F84 /* UCMsgTableViewController.m in Sources */,
 				884312CB2087380700321F84 /* UCMsgTableViewCell.m in Sources */,
+				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
+				88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
+				88435E82208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m in Sources */,
 				8835B2EC20720D6000722010 /* EDJHomeViewController.m in Sources */,
 				8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
@@ -1322,6 +1438,8 @@
 				8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */,
 				884312F92089C82800321F84 /* UCUploadViewController.m in Sources */,
 				881C94DF2068ED10009D6A52 /* LIGBaseRequest.m in Sources */,
+				88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */,
+				88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,

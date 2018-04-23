@@ -9,6 +9,12 @@
 #import "EDJLeverInfoHeaderView.h"
 
 @interface EDJLeverInfoHeaderView ()
+@property (weak, nonatomic) IBOutlet UILabel *levelTitle;
+@property (weak, nonatomic) IBOutlet UILabel *levelNum;
+@property (weak, nonatomic) IBOutlet UILabel *curScore;
+@property (weak, nonatomic) IBOutlet UILabel *needScore;
+
+
 
 @property (weak, nonatomic) IBOutlet UILabel *torayScoreLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *todayScoreArrow;
@@ -19,6 +25,14 @@
 @end
 
 @implementation EDJLeverInfoHeaderView
+
+- (void)setModel:(NSObject *)model{
+    _model = model;
+    _levelTitle.text = @"先锋党员x级";
+    _levelNum.text = @"LV2";
+    _curScore.text = @"40";
+    _needScore.text = @"20";
+}
 
 - (IBAction)todayScore:(UIButton *)sender {
     /// MARK: 今日加分
@@ -41,6 +55,7 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     [self customConfig];
+    
 }
 
 - (void)customConfig{

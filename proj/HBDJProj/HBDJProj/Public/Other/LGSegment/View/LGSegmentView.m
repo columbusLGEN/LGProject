@@ -24,8 +24,10 @@ static CGFloat flyW = 50;
 }
 
 - (void)buttonClick:(UIButton *)button{
-    NSLog(@"button.tag -- %ld",button.tag);
     [self setFlyLocationWithIndex:button.tag];
+    if ([self.delegate respondsToSelector:@selector(segmentView:click:)]) {
+        [self.delegate segmentView:self click:button.tag];
+    }
 }
 
 - (void)setFlyLocationWithIndex:(NSInteger)index{

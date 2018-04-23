@@ -10,5 +10,6 @@
 
 @interface LGSegmentViewController : LGBaseViewController
 @property (strong,nonatomic) NSArray *segmentItems;
-
+@property (weak,nonatomic) UIScrollView *scrollView;
+@property (assign,nonatomic) CGFloat segmentHeight;
 @end
