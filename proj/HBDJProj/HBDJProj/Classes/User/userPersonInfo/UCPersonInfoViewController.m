@@ -24,21 +24,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configUI];
     
-    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:10];
-    for (int i = 0;i < 11; i++) {
-        UCPersonInfoModel *model = [UCPersonInfoModel new];
-        if (i == 0 || i == 5) {
-            model.iconUrl = @"11";
-        }
-        if (i == 3) {
-            model.itemName = @"密码";
-        }else{
-            model.itemName = @"其他";
-        }
-        [arr addObject:model];
-    }
-    _array = arr.copy;
+}
+
+- (void)configUI{
+    self.title = @"个人信息";
+    _array = [UCPersonInfoModel loadLocalPlistWithPlistName:@"userInfoConfig"];
     [self.tableView reloadData];
 }
 
@@ -66,8 +58,8 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    ///  
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 46;
 }
 
 

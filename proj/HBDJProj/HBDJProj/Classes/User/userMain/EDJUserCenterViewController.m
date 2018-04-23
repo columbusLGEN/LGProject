@@ -103,7 +103,9 @@ UITableViewDataSource>
 - (void)headerButtonCick:(UIButton *)sender{
     switch (sender.tag) {
         case 0:{
-            NSLog(@"提问");
+            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
+                                            controllerId:@"UCMyQuestionViewController"
+                                                animated:YES];
         }
             break;
         case 1:{

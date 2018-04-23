@@ -28,11 +28,14 @@
 + (UIColor *)EDJGrayscale_C6{
     return [self colorWithHexString:@"C6C6C6"];
 }
-+ (UIColor *)EDJGrayscale_33{
++ (UIColor *)EDJGrayscale_33{/// 51,51,51
     return [self colorWithHexString:@"333333"];
 }
 + (UIColor *)EDJColor_9B1212{
     return [self colorWithHexString:@"9B1212"];
+}
++ (UIColor *)EDJColor_A2562C{/// 163,86,44
+    return [self colorWithHexString:@"A2562C"];
 }
 
 @end

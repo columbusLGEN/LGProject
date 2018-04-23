@@ -11,6 +11,8 @@
 
 @interface UCSettingTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *itemName;
+@property (weak, nonatomic) IBOutlet UISwitch *onOff;
+@property (weak, nonatomic) IBOutlet UILabel *info;
 
 
 @end
@@ -20,11 +22,18 @@
 - (void)setModel:(UCSettingModel *)model{
     _model = model;
     _itemName.text = model.itemName;
+    if (model.contentType) {
+        _info.hidden = YES;
+    }else{
+        _onOff.hidden = YES;
+        _info.text = model.content;
+    }
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    _onOff.onTintColor = [UIColor EDJMainColor];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

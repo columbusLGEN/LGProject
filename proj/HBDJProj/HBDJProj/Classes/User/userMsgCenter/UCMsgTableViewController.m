@@ -59,7 +59,7 @@ static NSString * const msgCell = @"UCMsgTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 86;
+    return 80;
 }
 
 

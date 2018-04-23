@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIView *iconBg;
 @property (weak, nonatomic) IBOutlet UILabel *item;
 @property (weak, nonatomic) IBOutlet UILabel *content;
+@property (weak, nonatomic) IBOutlet UIView *line_icon_cell;
+@property (weak, nonatomic) IBOutlet UIView *line_label_cell;
 
 
 @end
@@ -23,19 +25,16 @@
 
 - (void)setModel:(UCPersonInfoModel *)model{
     _model = model;
-    if (model.iconUrl) {
-        _itemIconCell.text = @"头像";
-    }else{
-        _item.text = model.itemName;
-        _content.text = @"孙悟空";
-    }
+    _itemIconCell.text = model.itemName;
+    _item.text = model.itemName;
+    _content.text = model.content;
 }
 
 + (NSString *)cellReuseIdWithModel:(UCPersonInfoModel *)model{
-    if (model.iconUrl) {
-        return @"UCPersonInfoTableViewIconCell";
-    }else{
+    if ([model.iconUrl isEqualToString:@""] || model.iconUrl == nil) {
         return @"UCPersonInfoTableViewNormalCell";
+    }else{
+        return @"UCPersonInfoTableViewIconCell";
     }
 }
 

@@ -67,6 +67,11 @@
 		884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312EF2089C25600321F84 /* LGSegmentViewController.m */; };
 		884312F62089C58000321F84 /* LGSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312F52089C58000321F84 /* LGSegmentView.m */; };
 		884312F92089C82800321F84 /* UCUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312F82089C82800321F84 /* UCUploadViewController.m */; };
+		88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E6C208D65C600188CE9 /* UCMyQuestionViewController.m */; };
+		88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E6F208D68A400188CE9 /* UCQuestionTableViewCell.m */; };
+		88435E73208D68D700188CE9 /* UCQuestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E72208D68D700188CE9 /* UCQuestionModel.m */; };
+		88435E75208D6DF400188CE9 /* UCQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435E74208D6DF400188CE9 /* UCQuestionTableViewCell.xib */; };
+		88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88435E76208D84E000188CE9 /* userInfoConfig.plist */; };
 		88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */; };
 		88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F1207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m */; };
 		88A470FA207C8615002F93E0 /* LGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F9207C8615002F93E0 /* LGImageView.m */; };
@@ -240,6 +245,14 @@
 		884312F52089C58000321F84 /* LGSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSegmentView.m; sourceTree = "<group>"; };
 		884312F72089C82800321F84 /* UCUploadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadViewController.h; sourceTree = "<group>"; };
 		884312F82089C82800321F84 /* UCUploadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadViewController.m; sourceTree = "<group>"; };
+		88435E6B208D65C600188CE9 /* UCMyQuestionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCMyQuestionViewController.h; sourceTree = "<group>"; };
+		88435E6C208D65C600188CE9 /* UCMyQuestionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCMyQuestionViewController.m; sourceTree = "<group>"; };
+		88435E6E208D68A400188CE9 /* UCQuestionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCQuestionTableViewCell.h; sourceTree = "<group>"; };
+		88435E6F208D68A400188CE9 /* UCQuestionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCQuestionTableViewCell.m; sourceTree = "<group>"; };
+		88435E71208D68D700188CE9 /* UCQuestionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCQuestionModel.h; sourceTree = "<group>"; };
+		88435E72208D68D700188CE9 /* UCQuestionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCQuestionModel.m; sourceTree = "<group>"; };
+		88435E74208D6DF400188CE9 /* UCQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UCQuestionTableViewCell.xib; sourceTree = "<group>"; };
+		88435E76208D84E000188CE9 /* userInfoConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfoConfig.plist; sourceTree = "<group>"; };
 		88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EDJColor.h"; sourceTree = "<group>"; };
 		88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EDJColor.m"; sourceTree = "<group>"; };
 		88A470F0207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeDigitalsFlowLayout.h; sourceTree = "<group>"; };
@@ -408,7 +421,6 @@
 		881C94BF2068EC6D009D6A52 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8835B2ED20720F3500722010 /* Other */,
 				881C94E52068EF81009D6A52 /* Main */,
 				881C94EA2068F362009D6A52 /* Home */,
 				881C94EC2068F380009D6A52 /* Discovery */,
@@ -459,6 +471,8 @@
 		881C94C42068ECB4009D6A52 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */,
+				88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */,
 				884312F22089C54300321F84 /* LGSegment */,
 			);
 			path = Other;
@@ -610,6 +624,7 @@
 				884312C22087379100321F84 /* userMsgCenter */,
 				884312CE20873AB300321F84 /* userSetting */,
 				884312DD2089781600321F84 /* userHelpFadeback */,
+				88435E6A208D658500188CE9 /* userQuestion */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -699,15 +714,6 @@
 			children = (
 				8835B2E720720CD800722010 /* LIGObject.h */,
 				8835B2E820720CD800722010 /* LIGObject.m */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		8835B2ED20720F3500722010 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */,
-				88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -849,6 +855,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		88435E6A208D658500188CE9 /* userQuestion */ = {
+			isa = PBXGroup;
+			children = (
+				88435E6B208D65C600188CE9 /* UCMyQuestionViewController.h */,
+				88435E6C208D65C600188CE9 /* UCMyQuestionViewController.m */,
+				88435E6E208D68A400188CE9 /* UCQuestionTableViewCell.h */,
+				88435E6F208D68A400188CE9 /* UCQuestionTableViewCell.m */,
+				88435E74208D6DF400188CE9 /* UCQuestionTableViewCell.xib */,
+				88435E71208D68D700188CE9 /* UCQuestionModel.h */,
+				88435E72208D68D700188CE9 /* UCQuestionModel.m */,
+			);
+			path = userQuestion;
+			sourceTree = "<group>";
+		};
 		88A47106207DB9FF002F93E0 /* BuileCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -922,6 +942,7 @@
 				88397813207F56D700F3D131 /* UCPersonInfoModel.m */,
 				88397815207F592700F3D131 /* UCPersonInfoTableViewCell.h */,
 				88397816207F592700F3D131 /* UCPersonInfoTableViewCell.m */,
+				88435E76208D84E000188CE9 /* userInfoConfig.plist */,
 			);
 			path = userPersonInfo;
 			sourceTree = "<group>";
@@ -1062,6 +1083,8 @@
 				88A4712A207E02D4002F93E0 /* UserCenter.storyboard in Resources */,
 				884312AB2086F2D400321F84 /* EDJLeverInfoHeader.xib in Resources */,
 				88A4711A207DDCCA002F93E0 /* EDJMicroPartyLessonHeaderCell.xib in Resources */,
+				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
+				88435E75208D6DF400188CE9 /* UCQuestionTableViewCell.xib in Resources */,
 				884312D620873B6900321F84 /* UCSetting.plist in Resources */,
 				88A4710B207DBE08002F93E0 /* EDJMicroBuildNoImgCell.xib in Resources */,
 				88A47115207DBE3B002F93E0 /* EDJMicroBuildThreeImgCell.xib in Resources */,
@@ -1311,9 +1334,12 @@
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,
 				884312D920873C1B00321F84 /* UCSettingTableViewCell.m in Sources */,
+				88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */,
 				88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */,
+				88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */,
 				884312B2208721F400321F84 /* LGBaseTableViewController.m in Sources */,
 				884312B52087222600321F84 /* EDJLevelInsTableViewController.m in Sources */,
+				88435E73208D68D700188CE9 /* UCQuestionModel.m in Sources */,
 				8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */,
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,

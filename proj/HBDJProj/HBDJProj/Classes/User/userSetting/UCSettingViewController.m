@@ -11,8 +11,10 @@
 #import "UCSettingTableViewCell.h"
 
 static NSString * const settingCell = @"UCSettingTableViewCell";
+static CGFloat cellHeight = 59;
 
-@interface UCSettingViewController ()
+@interface UCSettingViewController ()<
+UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak,nonatomic) UIButton *logOut;
 @property (strong,nonatomic) NSArray *array;
@@ -38,21 +40,24 @@ static NSString * const settingCell = @"UCSettingTableViewCell";
     
     // UCSetting.pilst
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 200, 0)];
+    self.array = [UCSettingModel loadLocalPlist];
+    
     CGFloat buttonHeight = 40;
     CGFloat buttonWidth = 313;
     UIButton *logOut = [[UIButton alloc] initWithFrame:
                         CGRectMake((kScreenWidth - buttonWidth) * 0.5,
-                                   CGRectGetMaxY(_tableView.frame) -  buttonHeight,
+                                   _array.count * cellHeight + 20,
                                    buttonWidth,
                                    buttonHeight)];
-    [_tableView addSubview:logOut];
+    [logOut cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:buttonHeight * 0.5];
+    [logOut setBackgroundColor:[UIColor EDJMainColor]];
     [logOut setTitle:@"退出登录" forState:UIControlStateNormal];
-    [logOut setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    logOut.titleLabel.font = [UIFont systemFontOfSize:24];
+    [logOut setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    logOut.titleLabel.font = [UIFont systemFontOfSize:14];
     [logOut addTarget:self action:@selector(logOut:) forControlEvents:UIControlEventTouchUpInside];
+    [_tableView addSubview:logOut];
     _logOut = logOut;
     
-    self.array = [UCSettingModel loadLocalPlist];
     
     [self.tableView reloadData];
     
@@ -60,10 +65,7 @@ static NSString * const settingCell = @"UCSettingTableViewCell";
 - (void)logOut:(id)sender{
     NSLog(@"退出邓丽 -- ");
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -77,6 +79,10 @@ static NSString * const settingCell = @"UCSettingTableViewCell";
     cell.model = model;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return cellHeight;
 }
 
 

@@ -20,6 +20,14 @@
 	</dict>
 	<dict>
 		<key>itemName</key>
+		<string>字体大小</string>
+		<key>contentType</key>
+		<integer>0</integer>
+		<key>content</key>
+		<string>中</string>
+	</dict>
+	<dict>
+		<key>itemName</key>
 		<string>检查版本</string>
 		<key>contentType</key>
 		<integer>0</integer>
