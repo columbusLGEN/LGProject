@@ -408,7 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				88A4713A207F31E1002F93E0 /* specific */,
-				881C94C52068ECB9009D6A52 /* ThirdParty */,
 				881C94C42068ECB4009D6A52 /* Other */,
 				881C94C32068ECA5009D6A52 /* BaseObject */,
 				881C94C22068EC96009D6A52 /* Catagory */,
@@ -476,13 +475,6 @@
 				884312F22089C54300321F84 /* LGSegment */,
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		881C94C52068ECB9009D6A52 /* ThirdParty */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		881C94C62068ECF3009D6A52 /* NSCatagory */ = {
