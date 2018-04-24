@@ -9,18 +9,25 @@
 #import "EDJConfirmPwdViewController.h"
 
 @interface EDJConfirmPwdViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *pwd;
-@property (weak, nonatomic) IBOutlet UILabel *confirmPwd;
+@property (weak, nonatomic) IBOutlet UITextField *pwd;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPwd;
 @property (weak, nonatomic) IBOutlet UIButton *confirm;
 
 @end
 
 @implementation EDJConfirmPwdViewController
 
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [_confirm cutBorderWithBorderWidth:1 borderColor:[UIColor EDJMainColor] cornerRadius:_confirm.height * 0.5];
+    [_confirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_confirm setBackgroundColor:[UIColor EDJMainColor]];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"确认密码";
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

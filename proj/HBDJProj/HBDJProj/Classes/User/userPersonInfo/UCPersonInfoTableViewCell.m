@@ -28,6 +28,14 @@
     _itemIconCell.text = model.itemName;
     _item.text = model.itemName;
     _content.text = model.content;
+    if (model.canChangePwd) {
+        /// 安全显示密码
+        NSMutableString *secureText = [NSMutableString new];
+        for (NSInteger i = 0; i < model.content.length; i++) {
+            [secureText appendString:@"*"];
+        }
+        _content.text = secureText;
+    }
 }
 
 + (NSString *)cellReuseIdWithModel:(UCPersonInfoModel *)model{

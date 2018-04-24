@@ -33,7 +33,6 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"_array.count -- %ld",_array.count);
     return _array.count;
 }
 
