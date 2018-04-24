@@ -17,9 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavLeftBackItem];
-    
+    [self otherConfig];
 }
 
+- (void)otherConfig{
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
