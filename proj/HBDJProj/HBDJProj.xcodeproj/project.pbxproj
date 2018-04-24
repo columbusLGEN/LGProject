@@ -84,6 +84,11 @@
 		88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E95208DD09500188CE9 /* UCPartyMemberStageController.m */; };
 		88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */; };
 		88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */; };
+		88435EA4208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA3208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m */; };
+		88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */; };
+		88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */; };
+		88435EAC208F061400188CE9 /* EDJSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAB208F061400188CE9 /* EDJSearchViewController.m */; };
+		88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAE208F140C00188CE9 /* LGNavSearchView.m */; };
 		88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */; };
 		88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F1207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m */; };
 		88A470FA207C8615002F93E0 /* LGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F9207C8615002F93E0 /* LGImageView.m */; };
@@ -284,6 +289,15 @@
 		88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageModel.m; sourceTree = "<group>"; };
 		88435E9C208DD33900188CE9 /* UCPartyMemberStageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPartyMemberStageCell.h; sourceTree = "<group>"; };
 		88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageCell.m; sourceTree = "<group>"; };
+		88435EA2208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPartyLessionSubModel.h; sourceTree = "<group>"; };
+		88435EA3208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJMicroPartyLessionSubModel.m; sourceTree = "<group>"; };
+		88435EA5208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPartyLessonSubCell.h; sourceTree = "<group>"; };
+		88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJMicroPartyLessonSubCell.m; sourceTree = "<group>"; };
+		88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJMicroPartyLessonSubCell.xib; sourceTree = "<group>"; };
+		88435EAA208F061400188CE9 /* EDJSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJSearchViewController.h; sourceTree = "<group>"; };
+		88435EAB208F061400188CE9 /* EDJSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJSearchViewController.m; sourceTree = "<group>"; };
+		88435EAD208F140C00188CE9 /* LGNavSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNavSearchView.h; sourceTree = "<group>"; };
+		88435EAE208F140C00188CE9 /* LGNavSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNavSearchView.m; sourceTree = "<group>"; };
 		88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EDJColor.h"; sourceTree = "<group>"; };
 		88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EDJColor.m"; sourceTree = "<group>"; };
 		88A470F0207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeDigitalsFlowLayout.h; sourceTree = "<group>"; };
@@ -606,10 +620,8 @@
 		881C94EA2068F362009D6A52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				88A47124207DF7CC002F93E0 /* Other */,
-				8835B2BE207209F600722010 /* Model */,
-				8835B2BD207209EF00722010 /* Controller */,
-				8835B2BC207209EA00722010 /* View */,
+				88435EB1208F15A900188CE9 /* main */,
+				88435EB0208F158100188CE9 /* search */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -683,6 +695,8 @@
 			children = (
 				88A470FE207DA161002F93E0 /* EDJMicroBuildModel.h */,
 				88A470FF207DA161002F93E0 /* EDJMicroBuildModel.m */,
+				88435EA2208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.h */,
+				88435EA3208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -752,6 +766,9 @@
 				88A470FC207C8CBD002F93E0 /* EDJMicroPSCellHeader.m */,
 				8835B30C2072143300722010 /* EDJMicroPartyLessonCell.h */,
 				8835B30D2072143300722010 /* EDJMicroPartyLessonCell.m */,
+				88435EA5208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.h */,
+				88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */,
+				88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */,
 				8835B303207213B000722010 /* EDJMicroPSCellFooter.h */,
 				8835B304207213B000722010 /* EDJMicroPSCellFooter.m */,
 				88A47106207DB9FF002F93E0 /* BuileCell */,
@@ -965,6 +982,28 @@
 				88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		88435EB0208F158100188CE9 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				88435EAA208F061400188CE9 /* EDJSearchViewController.h */,
+				88435EAB208F061400188CE9 /* EDJSearchViewController.m */,
+				88435EAD208F140C00188CE9 /* LGNavSearchView.h */,
+				88435EAE208F140C00188CE9 /* LGNavSearchView.m */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		88435EB1208F15A900188CE9 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				88A47124207DF7CC002F93E0 /* Other */,
+				8835B2BE207209F600722010 /* Model */,
+				8835B2BD207209EF00722010 /* Controller */,
+				8835B2BC207209EA00722010 /* View */,
+			);
+			path = main;
 			sourceTree = "<group>";
 		};
 		88A47106207DB9FF002F93E0 /* BuileCell */ = {
@@ -1187,6 +1226,7 @@
 				88435E7B208DB43800188CE9 /* LevelBonusRules.plist in Resources */,
 				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
 				88435E92208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib in Resources */,
+				88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */,
 				88435E75208D6DF400188CE9 /* UCQuestionTableViewCell.xib in Resources */,
 				884312D620873B6900321F84 /* UCSetting.plist in Resources */,
 				88A4710B207DBE08002F93E0 /* EDJMicroBuildNoImgCell.xib in Resources */,
@@ -1395,6 +1435,7 @@
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
 				88A47133207EF5EB002F93E0 /* EDJUserCenterHomePageModel.m in Sources */,
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
+				88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */,
 				88A4710E207DBE1F002F93E0 /* EDJMicroBuildOneImgCell.m in Sources */,
 				88397814207F56D700F3D131 /* UCPersonInfoModel.m in Sources */,
 				884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */,
@@ -1441,9 +1482,11 @@
 				88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */,
 				88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
+				88435EA4208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m in Sources */,
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,
 				884312D920873C1B00321F84 /* UCSettingTableViewCell.m in Sources */,
+				88435EAC208F061400188CE9 /* EDJSearchViewController.m in Sources */,
 				88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */,
 				88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */,
 				88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */,
@@ -1453,6 +1496,7 @@
 				8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */,
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,
+				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,
 				8835B3172072189D00722010 /* LGBaseButton.m in Sources */,

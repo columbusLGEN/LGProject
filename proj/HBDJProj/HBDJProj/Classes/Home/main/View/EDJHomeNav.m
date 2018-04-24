@@ -1,0 +1,130 @@
+//
+//  ECRHomeTitleView.m
+//  EasyChineseReading-ios
+//
+//  Created by lee on 2017/8/30.
+//  Copyright © 2017年 lee. All rights reserved.
+//
+
+#import "EDJHomeNav.h"
+
+static CGFloat buttonHeight = 30;
+
+@interface EDJHomeNav ()
+
+/** 导航栏左按钮 */
+@property (strong,nonatomic) UIButton *leftButton;
+/** 导航栏右按钮 */
+//@property (strong,nonatomic) UIButton *rightButton;
+/** 搜索按钮 */
+@property (strong,nonatomic) UIButton *fakeSearch;
+/** 搜搜框右按钮 */
+@property (strong,nonatomic) UIButton *searchRightButton;
+
+@end
+
+@implementation EDJHomeNav
+
+/// MARK: 设置导航栏的背景色状态
+- (void)setBgdsState:(NavState)bgdsState{
+    _bgdsState = bgdsState;
+    switch (bgdsState) {
+        case NavStateDefault:{
+        }
+            break;
+        case NavStateSolid:{
+        }
+            break;
+    }
+}
+
+/// MARK: 点击搜索
+- (void)searchClick:(UIButton *)bsender{
+    NSLog(@"nav -- %@",self);
+    if ([self.delegate respondsToSelector:@selector(navSearchClick:)]) {
+        [self.delegate navSearchClick:self];
+    }
+}
+/// MARK: 点击语音助手
+//- (void)
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+        [self addSubview:self.leftButton];
+        [self addSubview:self.fakeSearch];
+        [self addSubview:self.searchRightButton];
+        
+        [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left).offset(marginFive);
+            make.width.mas_equalTo(35);
+            make.bottom.equalTo(self.fakeSearch.mas_bottom);
+            make.height.mas_equalTo(35);
+        }];
+        [self.fakeSearch mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(-marginEight);
+            make.left.equalTo(self.leftButton.mas_right).offset(marginEight);
+            make.right.equalTo(self.mas_right).offset(-marginTen);
+            make.height.mas_equalTo(buttonHeight);
+        }];
+        [self.searchRightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.fakeSearch.mas_right).offset(-marginEight);
+            make.centerY.equalTo(self.fakeSearch.mas_centerY);
+        }];
+    
+    }
+    return self;
+}
+
+- (UIButton *)leftButton{
+    if (_leftButton == nil) {
+        _leftButton = [[UIButton alloc] init];
+        [_leftButton setBackgroundImage:[UIImage imageNamed:@"home_nav_logo"] forState:UIControlStateNormal];
+        _leftButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _leftButton;
+}
+- (UIButton *)fakeSearch{
+    if (_fakeSearch == nil) {
+        _fakeSearch = [[UIButton alloc] init];
+        _fakeSearch.highlighted = NO;
+        _fakeSearch.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_fakeSearch setTitleColor:[UIColor EDJGrayscale_88] forState:UIControlStateNormal];
+        [_fakeSearch setTitle:@"搜索你想要的" forState:UIControlStateNormal];
+        [_fakeSearch setBackgroundColor:[UIColor EDJGrayscale_F4]];
+        [_fakeSearch setImage:[UIImage imageNamed:@"home_nav_search"]
+                     forState:UIControlStateNormal];
+        _fakeSearch.layer.cornerRadius = buttonHeight * 0.5;
+        _fakeSearch.layer.masksToBounds = YES;
+        /// 控制器文字内容位置
+//        [_fakeSearch setContentEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 20)];
+        /// 控制器图标位置
+        [_fakeSearch setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
+        [_fakeSearch addTarget:self
+                        action:@selector(searchClick:)
+              forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _fakeSearch;
+}
+- (UIButton *)searchRightButton{
+    if (_searchRightButton == nil) {
+        _searchRightButton = [[UIButton alloc] init];
+        [_searchRightButton setBackgroundImage:[UIImage imageNamed:@"home_nav_voice"]
+                                      forState:UIControlStateNormal];
+    }
+    return _searchRightButton;
+}
+
+CGFloat navHeight(){
+    /// 判断 iPhone X,暂时用屏幕高度做设备唯一性判断,如果还有其他好的方法,则替换
+    if (kScreenHeight == 812) {/// iPhone X 屏幕像素尺寸为 1125*2436
+        return 88;
+    }
+    
+    return 64;
+}
+
+@end
+
+
+

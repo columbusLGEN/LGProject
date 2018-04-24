@@ -10,7 +10,7 @@
 
 @interface EDJModifiPwdViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumber;
-@property (weak, nonatomic) IBOutlet UILabel *pwd;
+@property (weak, nonatomic) IBOutlet UITextField *verCodeText;
 @property (weak, nonatomic) IBOutlet UIButton *verCodeButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
@@ -18,27 +18,25 @@
 
 @implementation EDJModifiPwdViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [_verCodeButton cutBorderWithBorderWidth:1 borderColor:[UIColor EDJMainColor] cornerRadius:_verCodeButton.height * 0.5];
+    [_verCodeButton setTitleColor:[UIColor EDJMainColor] forState:UIControlStateNormal];
+    
+    [_nextButton cutBorderWithBorderWidth:1 borderColor:[UIColor EDJMainColor] cornerRadius:_nextButton.height * 0.5];
+    [_nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_nextButton setBackgroundColor:[UIColor EDJMainColor]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+
 }
+
 - (IBAction)verClick:(id)sender {
     NSLog(@"验证码获取 -- ");
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

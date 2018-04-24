@@ -1,51 +1,87 @@
 //
-//  UCPartyMemberStageController.m
+//  EDJSearchViewController.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/4/23.
+//  Created by Peanut Lee on 2018/4/24.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "UCPartyMemberStageController.h"
-#import "model/UCPartyMemberStageModel.h"
-#import "view/UCPartyMemberStageCell.h"
+#import "EDJSearchViewController.h"
+#import "LGNavSearchView.h"
+/// header
+/// model
+/// cell
 
-@interface UCPartyMemberStageController ()
-@property (strong,nonatomic) NSArray *array;
+static CGFloat insetTop = 44;
+
+@interface EDJSearchViewController ()<
+UITableViewDelegate,
+UITableViewDataSource,
+LGNavSearchViewDelegate>
+
+@property (strong,nonatomic) LGNavSearchView *fakeNav;
+@property (strong,nonatomic) UITableView *tableView;
 @end
 
-@implementation UCPartyMemberStageController
+@implementation EDJSearchViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
+    
 }
+
 - (void)configUI{
-    NSMutableArray *arrMu = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
-        UCPartyMemberStageModel *model = [UCPartyMemberStageModel new];
-        [arrMu addObject:model];
-    }
-    _array = arrMu.copy;
-    [self.tableView reloadData];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.fakeNav];
+    
+    
+}
+
+#pragma mark - Nav delegate
+- (void)navSearchViewBack:(LGNavSearchView *)navSearchView{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _array.count;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UCPartyMemberStageModel *model = _array[indexPath.row];
-    UCPartyMemberStageCell *cell = [tableView dequeueReusableCellWithIdentifier:[UCPartyMemberStageCell cellReuseIdWithModel:model]];
-    NSLog(@"cell -- %@",cell);
-    cell.model = model;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.textLabel.text = [NSString stringWithFormat:@"第%ld行",indexPath.row];
     return cell;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 229;
+    return 50;
+}
+
+/// MARK: lazy load
+- (LGNavSearchView *)fakeNav{
+    if (_fakeNav == nil) {
+        _fakeNav = [[LGNavSearchView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kNavHeight)];
+        _fakeNav.delegate = self;
+    }
+    return _fakeNav;
+}
+- (UITableView *)tableView{
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [_tableView setContentInset:UIEdgeInsetsMake(insetTop, 0, 0, 0)];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    }
+    return _tableView;
 }
 
 

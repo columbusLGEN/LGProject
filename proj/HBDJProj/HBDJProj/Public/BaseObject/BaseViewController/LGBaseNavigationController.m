@@ -23,6 +23,7 @@
 }
 
 - (void)commonSettins{
+    
     self.view.backgroundColor = [UIColor whiteColor];
     /// MARK: 设置tintColor (按钮颜色)
     self.navigationBar.tintColor = [UIColor blackColor];
@@ -38,14 +39,14 @@
 }
 
 /// MARK: 重写push 方法 改变默认 push时底部tabBar的显示与隐藏
-//- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-//    if (self.viewControllers.count) {
-//        /// 当退出到根控制器时 显示底部 tabBar
-//        /// TODO: 登录注册控制器需要单独处理
-//        viewController.hidesBottomBarWhenPushed = YES;
-//    }
-//    [super pushViewController:viewController animated:animated];
-//}
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.viewControllers.count) {
+        /// 当退出到根控制器时 显示底部 tabBar
+        /// TODO: 登录注册控制器需要单独处理
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    [super pushViewController:viewController animated:animated];
+}
 
 
 @end
