@@ -21,7 +21,7 @@
 }
 
 - (void)otherConfig{
-    
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {

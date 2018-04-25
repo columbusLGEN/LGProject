@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>三会一课</string>
+		<key>imgName</key>
+		<string>ol_three_meets_one_lession</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>主题党日</string>
+		<key>imgName</key>
+		<string>ol_theme_party_day</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>思想汇报</string>
+		<key>imgName</key>
+		<string>ol_mind_report</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>知识测试</string>
+		<key>imgName</key>
+		<string>ol_knowleage_test</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>更多</string>
+		<key>imgName</key>
+		<string>ol_home_icon_more</string>
+	</dict>
+</array>
+</plist>

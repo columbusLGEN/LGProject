@@ -40,7 +40,6 @@ static CGFloat buttonHeight = 30;
 
 /// MARK: 点击搜索
 - (void)searchClick:(UIButton *)bsender{
-    NSLog(@"nav -- %@",self);
     if ([self.delegate respondsToSelector:@selector(navSearchClick:)]) {
         [self.delegate navSearchClick:self];
     }

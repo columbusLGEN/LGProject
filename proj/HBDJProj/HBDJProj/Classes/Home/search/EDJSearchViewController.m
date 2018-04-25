@@ -9,18 +9,31 @@
 #import "EDJSearchViewController.h"
 #import "LGNavSearchView.h"
 /// header
-/// model
-/// cell
+#import "EDJSearchTagCollectionViewFlowLayout.h"
+#import "EDJSearchTagModel.h"
+#import "EDJSearchTagHistoryCell.h"
+#import "EDJSearchTagHotCell.h"
 
+#import "EDJSearchTagHeader.h"
+#import "EDJSearchTagHeaderModel.h"
+
+static NSString * const historyCell = @"EDJSearchTagHistoryCell";
+static NSString * const hotCell = @"EDJSearchTagHotCell";
+
+static NSString * const reuseHeaderID = @"EDJSearchTagHeader";
 static CGFloat insetTop = 44;
 
 @interface EDJSearchViewController ()<
-UITableViewDelegate,
-UITableViewDataSource,
+UICollectionViewDelegate,
+UICollectionViewDataSource,
 LGNavSearchViewDelegate>
+///UICollectionViewDelegateFlowLayout,/// 此处不遵守该协议,代理方法也能被调用,那么在哪里遵守了该协议?
 
 @property (strong,nonatomic) LGNavSearchView *fakeNav;
-@property (strong,nonatomic) UITableView *tableView;
+@property (strong,nonatomic) UICollectionView  *collectionView;
+@property (strong,nonatomic) EDJSearchTagCollectionViewFlowLayout *flowLayout;
+@property (strong,nonatomic) NSArray *headerModels;
+@property (strong,nonatomic) NSArray *cellModels;
 @end
 
 @implementation EDJSearchViewController
@@ -35,10 +48,11 @@ LGNavSearchViewDelegate>
 - (void)configUI{
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.collectionView];
     [self.view addSubview:self.fakeNav];
     
-    
+    _headerModels = [EDJSearchTagHeaderModel loadLocalPlistWithPlistName:@"EDJSearchTagHeaderClasses"];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - Nav delegate
@@ -47,22 +61,41 @@ LGNavSearchViewDelegate>
 }
 
 #pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return _headerModels.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if (section == 0) {
+        return 4;
+    }
+    if (section == 1) {
+        return 20;
+    }
+    return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.text = [NSString stringWithFormat:@"第%ld行",indexPath.row];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    EDJSearchTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[EDJSearchTagCollectionViewCell cellIdWithIndexPath:indexPath] forIndexPath:indexPath];
+    
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    EDJSearchTagHeaderModel *headerModel = _headerModels[indexPath.section];
+    EDJSearchTagHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:reuseHeaderID forIndexPath:indexPath];
+    header.model = headerModel;
+    return header;
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(kScreenWidth, 40);
+}
+
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
 }
 
 /// MARK: lazy load
@@ -73,15 +106,30 @@ LGNavSearchViewDelegate>
     }
     return _fakeNav;
 }
-- (UITableView *)tableView{
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [_tableView setContentInset:UIEdgeInsetsMake(insetTop, 0, 0, 0)];
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+- (UICollectionView *)collectionView{
+    if (_collectionView == nil) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) collectionViewLayout:self.flowLayout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        [_collectionView setContentInset:UIEdgeInsetsMake(insetTop, 0, 0, 0)];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        [_collectionView registerNib:[UINib nibWithNibName:reuseHeaderID bundle:nil]
+          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                 withReuseIdentifier:reuseHeaderID];
+        
+//        [_collectionView registerNib:[UINib nibWithNibName:reuseID bundle:nil] forCellWithReuseIdentifier:reuseID];
+        [_collectionView registerNib:[UINib nibWithNibName:hotCell bundle:nil] forCellWithReuseIdentifier:hotCell];
+        [_collectionView registerNib:[UINib nibWithNibName:historyCell bundle:nil]
+          forCellWithReuseIdentifier:historyCell];
+        
     }
-    return _tableView;
+    return _collectionView;
+}
+- (EDJSearchTagCollectionViewFlowLayout *)flowLayout{
+    if (_flowLayout == nil) {
+        _flowLayout = [EDJSearchTagCollectionViewFlowLayout new];
+    }
+    return _flowLayout;
 }
 
 

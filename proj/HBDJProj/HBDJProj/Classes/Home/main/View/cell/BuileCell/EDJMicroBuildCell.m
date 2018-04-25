@@ -15,10 +15,6 @@
     return [tableView dequeueReusableCellWithIdentifier:[self cellIdentifierWithModel:model]];
 }
 
-+ (instancetype)mircoBuildCell{
-    return [[[NSBundle mainBundle] loadNibNamed:@"EDJMicroPartyLessonCell" owner:nil options:nil]lastObject];
-}
-
 + (NSString *)cellIdentifierWithModel:(EDJMicroBuildModel *)model{
     if (model.imgs.count == 0) {/// 没有图
         return @"EDJMicroBuildNoImgCell";

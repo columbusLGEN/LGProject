@@ -9,10 +9,13 @@
 #import "EDJDigitalReadViewController.h"
 #import "EDJHomeDigitalsFlowLayout.h"
 #import "EDJHomeHeaderView.h"
+#import "EDJDigitalCell.h"
+#import "EDJDigitalModel.h"
 
-static NSString * const testCell = @"testCell";
+static NSString * const digitalCell = @"EDJDigitalCell";
 
 @interface EDJDigitalReadViewController ()
+
 
 @end
 
@@ -22,7 +25,8 @@ static NSString * const testCell = @"testCell";
     if (self = [super init]) {
         _digitalModels  = [NSMutableArray array];
         for (int i = 0; i < 10; i++) {
-            [_digitalModels addObject:@"B"];
+            EDJDigitalModel *model = [EDJDigitalModel new];
+            [_digitalModels addObject:model];
         }
         [self.collectionView reloadData];
     }
@@ -34,8 +38,9 @@ static NSString * const testCell = @"testCell";
     return _digitalModels.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:testCell forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor randomColor];
+    EDJDigitalModel *model = _digitalModels[indexPath.item];
+    EDJDigitalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:digitalCell forIndexPath:indexPath];
+    cell.model = model;
     return cell;
 }
 
@@ -45,10 +50,10 @@ static NSString * const testCell = @"testCell";
         if (@available(iOS 11.0,*)) {
             _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
-        
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.dataSource = self;
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:testCell];
+        [_collectionView registerNib:[UINib nibWithNibName:digitalCell bundle:nil]
+          forCellWithReuseIdentifier:digitalCell];
         UIEdgeInsets insets = UIEdgeInsetsMake([self headerHeight], 0, kTabBarHeight, 0);
         [_collectionView setContentInset:insets];
         _collectionView.scrollIndicatorInsets = insets;

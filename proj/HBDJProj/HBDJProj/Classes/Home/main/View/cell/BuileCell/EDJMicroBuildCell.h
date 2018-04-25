@@ -12,6 +12,5 @@
 
 @interface EDJMicroBuildCell : LGBaseTableViewCell
 
-+ (instancetype)mircoBuildCell;
 + (instancetype)cellWithTableView:(UITableView *)tableView model:(EDJMicroBuildModel *)model;
 @end

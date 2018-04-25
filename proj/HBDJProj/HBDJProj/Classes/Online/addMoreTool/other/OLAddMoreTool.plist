@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>述职述廉</string>
+		<key>imgName</key>
+		<string>ol_report_cheap</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>党费缴纳</string>
+		<key>imgName</key>
+		<string>ol_party_fee_payment</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>在线投票</string>
+		<key>imgName</key>
+		<string>ol_vote_online</string>
+	</dict>
+</array>
+</plist>

@@ -8,24 +8,27 @@
 
 #import "EDJOnlineController.h"
 #import "EDJOnlineFlowLayout.h"
+#import "OLHomeModel.h"
+#import "OLHomeCollectionCell.h"
 
-static NSString * const onlinCell = @"onlineCell";
+static NSString * const onlinCell = @"OLHomeCollectionCell";
 
-@interface EDJOnlineController ()<UICollectionViewDataSource>
+@interface EDJOnlineController ()<
+UICollectionViewDataSource>
 
 @end
 
 @implementation EDJOnlineController
 
+- (void)getDataWithPlistName:(NSString *)plistName{
+    _onlineModels  = [OLHomeModel loadLocalPlistWithPlistName:plistName];
+    [self.collectionView reloadData];
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        _onlineModels  = [NSMutableArray array];
-        for (int i = 0; i < 10; i++) {
-            [_onlineModels addObject:@"B"];
-        }
-        [self.collectionView reloadData];
     }
     return self;
 }
@@ -35,10 +38,14 @@ static NSString * const onlinCell = @"onlineCell";
     return _onlineModels.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:onlinCell forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor randomColor];
+    OLHomeModel *model = _onlineModels[indexPath.item];
+    OLHomeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:onlinCell forIndexPath:indexPath];
+    cell.model = model;
     return cell;
 }
+
+#pragma mark - UICollectionViewDelegate
+
 
 - (UICollectionView *)collectionView{
     if (_collectionView == nil) {
@@ -46,14 +53,14 @@ static NSString * const onlinCell = @"onlineCell";
         _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:self.flowLayout];
         if (@available(iOS 11.0,*)) {
             _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            NSLog(@"never");
         }
         
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        _collectionView.dataSource = self;
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:onlinCell];
         UIEdgeInsets insets = UIEdgeInsetsMake([[self class] headerHeight], 0, kTabBarHeight, 0);
         [_collectionView setContentInset:insets];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.dataSource = self;
+        
+        [_collectionView registerNib:[UINib nibWithNibName:onlinCell bundle:nil] forCellWithReuseIdentifier:onlinCell];
         _collectionView.scrollIndicatorInsets = insets;
     }
     return _collectionView;

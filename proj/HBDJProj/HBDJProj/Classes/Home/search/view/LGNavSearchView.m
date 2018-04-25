@@ -23,6 +23,11 @@ UITextFieldDelegate>
 
 @implementation LGNavSearchView
 
+#pragma mark - notification
+//- (void)textFieldDidEndEditingNoti:(NSNotification *)notification{
+//
+//}
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     self.leftIcon.hidden = YES;
@@ -31,6 +36,10 @@ UITextFieldDelegate>
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"结束编辑 -- ");
+    self.leftIcon.hidden = NO;
 }
 
 - (void)backBtnClick:(id)sender{
@@ -80,6 +89,7 @@ UITextFieldDelegate>
         make.height.mas_equalTo(containerBtnHeight);
     }];
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidEndEditingNoti:) name:UITextFieldTextDidEndEditingNotification object:nil];
 }
 - (UIButton *)backBtn{
     if (_backBtn == nil) {

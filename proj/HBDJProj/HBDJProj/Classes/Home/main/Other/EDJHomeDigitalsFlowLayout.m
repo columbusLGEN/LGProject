@@ -12,8 +12,10 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.itemSize = CGSizeMake(102, 133);
+        self.itemSize = CGSizeMake(kScreenWidth / 3, 133 + 48);
         self.scrollDirection = UICollectionViewScrollDirectionVertical;
+        self.minimumLineSpacing = 0;
+        self.minimumInteritemSpacing = 0;
     }
     return self;
 }
