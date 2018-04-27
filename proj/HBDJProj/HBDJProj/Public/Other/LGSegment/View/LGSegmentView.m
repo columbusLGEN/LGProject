@@ -7,6 +7,7 @@
 //
 
 #import "LGSegmentView.h"
+#import "LGSegmentViewController.h"
 
 static CGFloat flyW = 50;
 
@@ -18,8 +19,13 @@ static CGFloat flyW = 50;
 
 @implementation LGSegmentView
 
-- (instancetype)initWithSegmentItems:(NSArray<NSString *> *)items{
-    self.segmentItems = items;
+- (instancetype)initWithSegmentItems:(NSArray<NSDictionary *> *)items{
+    NSMutableArray *itemStrings = [NSMutableArray array];
+    [items enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *itemName = obj[LGSegmentItemNameKey];
+        [itemStrings addObject:itemName];
+    }];
+    self.segmentItems = itemStrings;
     return [self init];
 }
 

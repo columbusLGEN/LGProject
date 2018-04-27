@@ -27,7 +27,7 @@
 }
 
 - (void)setupUI{
-    self.backgroundColor = [UIColor randomColor];
+    self.backgroundColor = [UIColor whiteColor];
     /// MARK: 搜索框
 //    [self addSubview:self.nav];
 //    [self.nav mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -59,9 +59,9 @@
     }
     return self;
 }
-- (EDJHomeNav *)nav{
+- (LGNavigationSearchBar *)nav{
     if (_nav == nil) {
-        _nav = [[EDJHomeNav alloc] init];
+        _nav = [[LGNavigationSearchBar alloc] init];
     }
     return _nav;
 }

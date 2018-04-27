@@ -13,7 +13,6 @@
 UIScrollViewDelegate,
 LGSegmentViewDelegate
 >
-@property (weak,nonatomic) LGSegmentView *segment;
 
 @end
 
@@ -26,10 +25,10 @@ LGSegmentViewDelegate
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self uiConfig];
+    [self configUI];
     
 }
-- (void)uiConfig{
+- (void)configUI{
     self.view.backgroundColor = [UIColor EDJGrayscale_F3];
     LGSegmentView *segment = [[LGSegmentView alloc] initWithSegmentItems:self.segmentItems];
     [self.view addSubview:segment];
@@ -38,7 +37,7 @@ LGSegmentViewDelegate
         make.right.equalTo(self.view.mas_right);
         make.height.mas_equalTo(self.segmentHeight);
         make.width.mas_equalTo(kScreenWidth);
-        make.top.equalTo(self.view.mas_topMargin).offset(marginTen);
+        make.top.equalTo(self.view.mas_topMargin).offset(self.segmentTopMargin);
     }];
     segment.delegate = self;
     _segment = segment;
@@ -55,35 +54,48 @@ LGSegmentViewDelegate
     }];
     _scrollView = scrollView;
     
+    [self.segmentItems enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIViewController *vc;
+        NSString *viewControllerClassString = obj[LGSegmentItemViewControllerClassKey];
+        /// TODO: 类型判断,确保 viewControllerClassString 是 UIViewController 类对象或者派生类对象
+        
+        if ([obj[LGSegmentItemViewControllerInitTypeKey] isEqualToString:LGSegmentVcInitTypeStoryboard]) {
+            vc = [self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:viewControllerClassString];
+        }else{
+            vc = [[NSClassFromString(viewControllerClassString) alloc] init];
+        }
+        
+        [self addChildViewController:vc];
+        CGFloat x = kScreenWidth * idx;
+        vc.view.frame = CGRectMake(x, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
+        [self.scrollView addSubview:vc.view];
+    }];
+    [self.scrollView setContentSize:CGSizeMake(self.segmentItems.count * kScreenWidth, 0)];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-}
+#pragma mark - scroll view delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSInteger index = scrollView.contentOffset.x / kScreenWidth;
     [_segment setFlyLocationWithIndex:index];
+    [self viewSwitched:index];
 }
 
 #pragma mark - segment view delegate
 - (void)segmentView:(LGSegmentView *)segmentView click:(NSInteger)click{
     CGFloat contentOffsetX = click * kScreenWidth;
     [self.scrollView setContentOffset:CGPointMake(contentOffsetX, 0) animated:YES];
+    [self viewSwitched:click];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewSwitched:(NSInteger)index{
+    
 }
-*/
+
 - (CGFloat)segmentHeight{
     return 40;
 }
-
+- (CGFloat)segmentTopMargin{
+    return marginTen;
+}
 
 @end

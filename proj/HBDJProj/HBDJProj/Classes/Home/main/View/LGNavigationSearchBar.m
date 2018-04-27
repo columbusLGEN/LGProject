@@ -6,25 +6,26 @@
 //  Copyright © 2017年 lee. All rights reserved.
 //
 
-#import "EDJHomeNav.h"
+#import "LGNavigationSearchBar.h"
 
 static CGFloat buttonHeight = 30;
 
-@interface EDJHomeNav ()
+@interface LGNavigationSearchBar ()
 
 /** 导航栏左按钮 */
 @property (strong,nonatomic) UIButton *leftButton;
 /** 导航栏右按钮 */
-//@property (strong,nonatomic) UIButton *rightButton;
+@property (strong,nonatomic) UIButton *rightButton;
 /** 搜索按钮 */
 @property (strong,nonatomic) UIButton *fakeSearch;
-/** 搜搜框右按钮 */
-@property (strong,nonatomic) UIButton *searchRightButton;
+/** 搜搜框右按钮,例如:语音搜索按钮,放在fakesearch之上的 */
+@property (strong,nonatomic) UIButton *searchRightBtn;
 
 @end
 
-@implementation EDJHomeNav
+@implementation LGNavigationSearchBar
 
+#pragma mark - target
 /// MARK: 设置导航栏的背景色状态
 - (void)setBgdsState:(NavState)bgdsState{
     _bgdsState = bgdsState;
@@ -46,13 +47,54 @@ static CGFloat buttonHeight = 30;
 }
 /// MARK: 点击语音助手
 //- (void)
+/// MARK: 点击右按钮
+- (void)rightButtonClick:(UIButton *)sender{
+    NSLog(@"点击导航栏右按钮 -- ");
+}
+
+#pragma mark - setter
+- (void)setIsShowRightBtn:(BOOL)isShowRightBtn{
+    _isShowRightBtn = isShowRightBtn;
+    if (isShowRightBtn) {
+        [self.fakeSearch mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(-marginEight);
+            make.left.equalTo(self.leftButton.mas_right).offset(marginEight);
+            make.height.mas_equalTo(buttonHeight);
+        }];
+        if (_rightButton == nil) {
+            [self addSubview:self.rightButton];
+        }
+        [self.rightButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.fakeSearch.mas_right).offset(marginFifteen);
+            make.right.equalTo(self.mas_right).offset(-marginFifteen);
+            make.centerY.equalTo(self.fakeSearch.mas_centerY);
+            make.width.mas_equalTo(40);
+        }];
+    }else{
+        /// 先移除 rightButton,再remake fakeSearch 的约束,否则报约束警告
+        [self.rightButton removeFromSuperview];
+        _rightButton = nil;
+        [self.fakeSearch mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(-marginEight);
+            make.left.equalTo(self.leftButton.mas_right).offset(marginEight);
+            make.right.equalTo(self.mas_right).offset(-marginTen);
+            make.height.mas_equalTo(buttonHeight);
+        }];
+    }
+}
+- (void)setRightButtonTitle:(NSString *)rightButtonTitle{
+    _rightButtonTitle = rightButtonTitle;
+    [_rightButton setTitle:rightButtonTitle forState:UIControlStateNormal];
+    [_rightButton setTitleColor:[UIColor EDJGrayscale_33] forState:UIControlStateNormal];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.leftButton];
         [self addSubview:self.fakeSearch];
-        [self addSubview:self.searchRightButton];
+        [self addSubview:self.searchRightBtn];
+        [self addSubview:self.rightButton];
         
         [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(marginFive);
@@ -66,7 +108,7 @@ static CGFloat buttonHeight = 30;
             make.right.equalTo(self.mas_right).offset(-marginTen);
             make.height.mas_equalTo(buttonHeight);
         }];
-        [self.searchRightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.searchRightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.fakeSearch.mas_right).offset(-marginEight);
             make.centerY.equalTo(self.fakeSearch.mas_centerY);
         }];
@@ -75,6 +117,7 @@ static CGFloat buttonHeight = 30;
     return self;
 }
 
+#pragma mark - getter
 - (UIButton *)leftButton{
     if (_leftButton == nil) {
         _leftButton = [[UIButton alloc] init];
@@ -105,13 +148,21 @@ static CGFloat buttonHeight = 30;
     }
     return _fakeSearch;
 }
-- (UIButton *)searchRightButton{
-    if (_searchRightButton == nil) {
-        _searchRightButton = [[UIButton alloc] init];
-        [_searchRightButton setBackgroundImage:[UIImage imageNamed:@"home_nav_voice"]
+- (UIButton *)searchRightBtn{
+    if (_searchRightBtn == nil) {
+        _searchRightBtn = [[UIButton alloc] init];
+        [_searchRightBtn setBackgroundImage:[UIImage imageNamed:@"home_nav_voice"]
                                       forState:UIControlStateNormal];
     }
-    return _searchRightButton;
+    return _searchRightBtn;
+}
+- (UIButton *)rightButton{
+    if (_rightButton == nil) {
+        _rightButton = [UIButton new];
+//        _rightButton.backgroundColor = [UIColor randomColor];
+        [_rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _rightButton;
 }
 
 CGFloat navHeight(){

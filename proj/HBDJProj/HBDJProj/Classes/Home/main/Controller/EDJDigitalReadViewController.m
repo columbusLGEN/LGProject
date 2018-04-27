@@ -56,7 +56,7 @@ static NSString * const digitalCell = @"EDJDigitalCell";
           forCellWithReuseIdentifier:digitalCell];
         UIEdgeInsets insets = UIEdgeInsetsMake([self headerHeight], 0, kTabBarHeight, 0);
         [_collectionView setContentInset:insets];
-        _collectionView.scrollIndicatorInsets = insets;
+//        _collectionView.scrollIndicatorInsets = insets;
     }
     return _collectionView;
 }

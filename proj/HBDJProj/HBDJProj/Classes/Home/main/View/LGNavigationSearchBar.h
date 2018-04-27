@@ -8,7 +8,7 @@
 
 #import "LGBaseView.h"
 
-@class EDJHomeNav;
+@class LGNavigationSearchBar;
 
 typedef NS_ENUM(NSUInteger, NavState) {
     NavStateDefault,/// 透明状态
@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, NavState) {
 
  @param titleView self
  */
-- (void)navSearchClick:(EDJHomeNav *)titleView;
+- (void)navSearchClick:(LGNavigationSearchBar *)titleView;
 
 /**
  点击 语音助手
@@ -34,11 +34,14 @@ typedef NS_ENUM(NSUInteger, NavState) {
 
 @end
 
-@interface EDJHomeNav : LGBaseView
+@interface LGNavigationSearchBar : LGBaseView
 
 @property (assign,nonatomic) NavState bgdsState;
 
 @property (weak,nonatomic) id<EDJHomeNavDelelgate> delegate;
+
+@property (assign,nonatomic) BOOL isShowRightBtn;
+@property (copy,nonatomic) NSString *rightButtonTitle;
 
 CGFloat navHeight(void);
 

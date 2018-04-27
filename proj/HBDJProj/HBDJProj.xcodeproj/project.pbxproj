@@ -22,6 +22,14 @@
 		881C94E02068ED10009D6A52 /* LIGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94DC2068ED10009D6A52 /* LIGNetworkAgent.m */; };
 		881C94E12068ED10009D6A52 /* LIGNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94DE2068ED10009D6A52 /* LIGNetworkConfig.m */; };
 		881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94E72068EFAA009D6A52 /* LIGMainTabBarController.m */; };
+		8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */; };
+		8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E14B2092F699001D038E /* LGThreeRightButtonView.m */; };
+		8831E1512092FE22001D038E /* LGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1502092FE22001D038E /* LGButton.m */; };
+		8831E15420931090001D038E /* DCSubPartStateBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E15320931090001D038E /* DCSubPartStateBaseCell.m */; };
+		8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E158209310BD001D038E /* DCSubPartStateModel.m */; };
+		8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E15E20931211001D038E /* DCSubPartStateWithoutImgCell.m */; };
+		8831E16220931332001D038E /* DCSubPartStateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E16120931332001D038E /* DCSubPartStateTableViewController.m */; };
+		8831E16420931496001D038E /* DCSubPartStateWithoutImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E16320931496001D038E /* DCSubPartStateWithoutImgCell.xib */; };
 		8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2A22071FBE000722010 /* LGBaseViewController.m */; };
 		8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2A52071FBFB00722010 /* LGBaseNavigationController.m */; };
 		8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2AB207201DD00722010 /* LGBaseTabBarController.m */; };
@@ -34,7 +42,7 @@
 		8835B2F0207211B200722010 /* EDJHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2EF207211B200722010 /* EDJHomeHeaderView.m */; };
 		8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B304207213B000722010 /* EDJMicroPSCellFooter.m */; };
 		8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B30D2072143300722010 /* EDJMicroPartyLessonCell.m */; };
-		8835B314207216DB00722010 /* EDJHomeNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B312207216DA00722010 /* EDJHomeNav.m */; };
+		8835B314207216DB00722010 /* LGNavigationSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B312207216DA00722010 /* LGNavigationSearchBar.m */; };
 		8835B3172072189D00722010 /* LGBaseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B3162072189D00722010 /* LGBaseButton.m */; };
 		8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B36420732D9C00722010 /* EDJMicroPartyLessionViewController.m */; };
 		8835B36B20732DB900722010 /* EDJDigitalReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B36A20732DB900722010 /* EDJDigitalReadViewController.m */; };
@@ -198,6 +206,21 @@
 		881C94E62068EFAA009D6A52 /* LIGMainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGMainTabBarController.h; sourceTree = "<group>"; };
 		881C94E72068EFAA009D6A52 /* LIGMainTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGMainTabBarController.m; sourceTree = "<group>"; };
 		881C94E92068F071009D6A52 /* HbdjPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HbdjPrefixHeader.pch; sourceTree = "<group>"; };
+		8831E1472092F292001D038E /* DCQuestionCommunityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCQuestionCommunityViewController.h; sourceTree = "<group>"; };
+		8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCQuestionCommunityViewController.m; sourceTree = "<group>"; };
+		8831E14A2092F699001D038E /* LGThreeRightButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGThreeRightButtonView.h; sourceTree = "<group>"; };
+		8831E14B2092F699001D038E /* LGThreeRightButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGThreeRightButtonView.m; sourceTree = "<group>"; };
+		8831E14F2092FE22001D038E /* LGButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
+		8831E1502092FE22001D038E /* LGButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGButton.m; sourceTree = "<group>"; };
+		8831E15220931090001D038E /* DCSubPartStateBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateBaseCell.h; sourceTree = "<group>"; };
+		8831E15320931090001D038E /* DCSubPartStateBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateBaseCell.m; sourceTree = "<group>"; };
+		8831E157209310BD001D038E /* DCSubPartStateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateModel.h; sourceTree = "<group>"; };
+		8831E158209310BD001D038E /* DCSubPartStateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateModel.m; sourceTree = "<group>"; };
+		8831E15D20931211001D038E /* DCSubPartStateWithoutImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateWithoutImgCell.h; sourceTree = "<group>"; };
+		8831E15E20931211001D038E /* DCSubPartStateWithoutImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateWithoutImgCell.m; sourceTree = "<group>"; };
+		8831E16020931332001D038E /* DCSubPartStateTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateTableViewController.h; sourceTree = "<group>"; };
+		8831E16120931332001D038E /* DCSubPartStateTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateTableViewController.m; sourceTree = "<group>"; };
+		8831E16320931496001D038E /* DCSubPartStateWithoutImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCSubPartStateWithoutImgCell.xib; sourceTree = "<group>"; };
 		8835B2A02071F8DE00722010 /* LGDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGDefines.h; sourceTree = "<group>"; };
 		8835B2A12071FBE000722010 /* LGBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGBaseViewController.h; sourceTree = "<group>"; };
 		8835B2A22071FBE000722010 /* LGBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGBaseViewController.m; sourceTree = "<group>"; };
@@ -223,8 +246,8 @@
 		8835B304207213B000722010 /* EDJMicroPSCellFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJMicroPSCellFooter.m; sourceTree = "<group>"; };
 		8835B30C2072143300722010 /* EDJMicroPartyLessonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPartyLessonCell.h; sourceTree = "<group>"; };
 		8835B30D2072143300722010 /* EDJMicroPartyLessonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJMicroPartyLessonCell.m; sourceTree = "<group>"; };
-		8835B312207216DA00722010 /* EDJHomeNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDJHomeNav.m; sourceTree = "<group>"; };
-		8835B313207216DA00722010 /* EDJHomeNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDJHomeNav.h; sourceTree = "<group>"; };
+		8835B312207216DA00722010 /* LGNavigationSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNavigationSearchBar.m; sourceTree = "<group>"; };
+		8835B313207216DA00722010 /* LGNavigationSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNavigationSearchBar.h; sourceTree = "<group>"; };
 		8835B3152072189D00722010 /* LGBaseButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGBaseButton.h; sourceTree = "<group>"; };
 		8835B3162072189D00722010 /* LGBaseButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGBaseButton.m; sourceTree = "<group>"; };
 		8835B31B2072256A00722010 /* LBCConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBCConstant.h; sourceTree = "<group>"; };
@@ -709,11 +732,10 @@
 		881C94EC2068F380009D6A52 /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
-				8835B2C820720B0200722010 /* EDJDiscoveryController.h */,
-				8835B2C920720B0200722010 /* EDJDiscoveryController.m */,
-				8835B2D820720B6500722010 /* Controller */,
-				8835B2D720720B6500722010 /* Model */,
-				8835B2D420720B6500722010 /* View */,
+				8831E1422092F20B001D038E /* main */,
+				8831E1432092F221001D038E /* QA */,
+				8831E1442092F230001D038E /* subPart */,
+				8831E1452092F23E001D038E /* stage */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -734,13 +756,73 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		8831E1422092F20B001D038E /* main */ = {
+			isa = PBXGroup;
+			children = (
+				8835B2C820720B0200722010 /* EDJDiscoveryController.h */,
+				8835B2C920720B0200722010 /* EDJDiscoveryController.m */,
+				8835B2D820720B6500722010 /* Controller */,
+				8835B2D720720B6500722010 /* Model */,
+				8835B2D420720B6500722010 /* View */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		8831E1432092F221001D038E /* QA */ = {
+			isa = PBXGroup;
+			children = (
+				8831E1472092F292001D038E /* DCQuestionCommunityViewController.h */,
+				8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */,
+			);
+			path = QA;
+			sourceTree = "<group>";
+		};
+		8831E1442092F230001D038E /* subPart */ = {
+			isa = PBXGroup;
+			children = (
+				8831E16020931332001D038E /* DCSubPartStateTableViewController.h */,
+				8831E16120931332001D038E /* DCSubPartStateTableViewController.m */,
+				8831E156209310A6001D038E /* model */,
+				8831E15520931096001D038E /* view */,
+			);
+			path = subPart;
+			sourceTree = "<group>";
+		};
+		8831E1452092F23E001D038E /* stage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = stage;
+			sourceTree = "<group>";
+		};
+		8831E15520931096001D038E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8831E15220931090001D038E /* DCSubPartStateBaseCell.h */,
+				8831E15320931090001D038E /* DCSubPartStateBaseCell.m */,
+				8831E15D20931211001D038E /* DCSubPartStateWithoutImgCell.h */,
+				8831E15E20931211001D038E /* DCSubPartStateWithoutImgCell.m */,
+				8831E16320931496001D038E /* DCSubPartStateWithoutImgCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8831E156209310A6001D038E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8831E157209310BD001D038E /* DCSubPartStateModel.h */,
+				8831E158209310BD001D038E /* DCSubPartStateModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		8835B2BC207209EA00722010 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				8835B2EE207211B200722010 /* EDJHomeHeaderView.h */,
 				8835B2EF207211B200722010 /* EDJHomeHeaderView.m */,
-				8835B313207216DA00722010 /* EDJHomeNav.h */,
-				8835B312207216DA00722010 /* EDJHomeNav.m */,
+				8835B313207216DA00722010 /* LGNavigationSearchBar.h */,
+				8835B312207216DA00722010 /* LGNavigationSearchBar.m */,
 				8835B2FD2072131800722010 /* cell */,
 			);
 			path = View;
@@ -1118,6 +1200,10 @@
 			children = (
 				88A4713B207F320F002F93E0 /* LGSpecificButton.h */,
 				88A4713C207F320F002F93E0 /* LGSpecificButton.m */,
+				8831E14A2092F699001D038E /* LGThreeRightButtonView.h */,
+				8831E14B2092F699001D038E /* LGThreeRightButtonView.m */,
+				8831E14F2092FE22001D038E /* LGButton.h */,
+				8831E1502092FE22001D038E /* LGButton.m */,
 			);
 			path = specific;
 			sourceTree = "<group>";
@@ -1436,6 +1522,7 @@
 				88A4710B207DBE08002F93E0 /* EDJMicroBuildNoImgCell.xib in Resources */,
 				88D13C4F2090349800A32236 /* EDJSearchTagHotCell.xib in Resources */,
 				88A47115207DBE3B002F93E0 /* EDJMicroBuildThreeImgCell.xib in Resources */,
+				8831E16420931496001D038E /* DCSubPartStateWithoutImgCell.xib in Resources */,
 				88A47139207F0C74002F93E0 /* EDJUserCenterHomePageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1630,6 +1717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				881C94D32068ECF3009D6A52 /* UIView+Extension.m in Sources */,
+				8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */,
 				884312C1208733F400321F84 /* EDJConfirmPwdViewController.m in Sources */,
 				88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */,
 				88A47113207DBE33002F93E0 /* EDJMicroBuildThreeImgCell.m in Sources */,
@@ -1648,6 +1736,7 @@
 				88397814207F56D700F3D131 /* UCPersonInfoModel.m in Sources */,
 				884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */,
 				88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */,
+				8831E16220931332001D038E /* DCSubPartStateTableViewController.m in Sources */,
 				884312E6208987F100321F84 /* UCHelpFadebackModel.m in Sources */,
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				881C94E12068ED10009D6A52 /* LIGNetworkConfig.m in Sources */,
@@ -1663,6 +1752,7 @@
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
 				88A470FA207C8615002F93E0 /* LGImageView.m in Sources */,
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
+				8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */,
 				881C94D22068ECF3009D6A52 /* UIImage+Extension.m in Sources */,
 				88D13C412090253200A32236 /* EDJSearchTagHeaderModel.m in Sources */,
 				8835B2F0207211B200722010 /* EDJHomeHeaderView.m in Sources */,
@@ -1701,10 +1791,13 @@
 				88435EA4208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m in Sources */,
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,
+				8831E15420931090001D038E /* DCSubPartStateBaseCell.m in Sources */,
 				884312D920873C1B00321F84 /* UCSettingTableViewCell.m in Sources */,
 				88435EAC208F061400188CE9 /* EDJSearchViewController.m in Sources */,
 				88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */,
+				8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */,
 				88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */,
+				8831E1512092FE22001D038E /* LGButton.m in Sources */,
 				88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */,
 				884312B2208721F400321F84 /* LGBaseTableViewController.m in Sources */,
 				884312B52087222600321F84 /* EDJLevelInsTableViewController.m in Sources */,
@@ -1715,6 +1808,7 @@
 				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
+				8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,
 				8835B3172072189D00722010 /* LGBaseButton.m in Sources */,
@@ -1729,7 +1823,7 @@
 				88A47123207DF342002F93E0 /* EDJOnlineViewController.m in Sources */,
 				884312A82086ED1200321F84 /* EDJLevelInfoFlowLayout.m in Sources */,
 				8835B2E920720CD800722010 /* LIGObject.m in Sources */,
-				8835B314207216DB00722010 /* EDJHomeNav.m in Sources */,
+				8835B314207216DB00722010 /* LGNavigationSearchBar.m in Sources */,
 				88D13C3C209022EF00A32236 /* EDJSearchTagHeader.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,
 			);

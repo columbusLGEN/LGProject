@@ -43,6 +43,8 @@ UITableViewDelegate
 
 - (instancetype)init{
     if (self = [super init]) {
+        
+        /// 微党课模拟数据
         _microModels  = [NSMutableArray array];
         for (int i = 0; i < 4; i++) {
             EDJMicroBuildModel *model = [EDJMicroBuildModel new];
@@ -51,12 +53,12 @@ UITableViewDelegate
             }
             [_microModels addObject:model];
         }
-        _array = _microModels.copy;
-        [self.tableView reloadData];
         
+        /// 党建要闻模拟数据
         _buildModels = [NSMutableArray new];
         for (int i = 0; i < 20; i++) {
             EDJMicroBuildModel *model = [EDJMicroBuildModel new];
+            model.showInteractionView = YES;
             NSMutableArray *imgs = [NSMutableArray new];
             int k = arc4random_uniform(3);
             if (k == 2) {
@@ -69,7 +71,7 @@ UITableViewDelegate
             [_buildModels addObject:model];
         }
         
-        /// testcode
+        /// TODO: 添加上下拉刷新
 //        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //                [self.tableView.mj_header endRefreshing];
@@ -101,6 +103,7 @@ UITableViewDelegate
     EDJMicroBuildModel *model = _array[indexPath.row];
     if (_dataType == EDJHomeDataTypeBuild) {
         EDJMicroBuildCell *cell = [EDJMicroBuildCell cellWithTableView:tableView model:model];
+        cell.model = model;
         return cell;
     }else if (_dataType == EDJHomeDataTypeMicro){
         EDJMicroPartyLessonCell *cell = [EDJMicroPartyLessonCell cellWithTableView:tableView model:model];
@@ -121,7 +124,7 @@ UITableViewDelegate
         _tableView.dataSource = self;
         UIEdgeInsets insets = UIEdgeInsetsMake([EDJHomeHeaderView headerHeight], 0, kTabBarHeight, 0);
         [_tableView setContentInset:insets];
-        _tableView.scrollIndicatorInsets = insets;
+//        _tableView.scrollIndicatorInsets = insets;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[EDJMicroPartyLessonCell class] forCellReuseIdentifier:microCell];
         [_tableView registerNib:[UINib nibWithNibName:microHeaderCell bundle:nil] forCellReuseIdentifier:microHeaderCell];

@@ -7,7 +7,7 @@
 //
 
 #import "EDJOnlineViewController.h"
-#import "EDJHomeNav.h"
+#import "LGNavigationSearchBar.h"
 #import "EDJOnlineController.h"
 #import <Online/addMoreTool/controller/OLAddMoreToolViewController.h>
 
@@ -33,7 +33,7 @@ static CGFloat headLineHeight = 233;
     [self.view addSubview:self.onlineController.collectionView];
     self.onlineController.collectionView.delegate = self;
     
-    EDJHomeNav *nav = [[EDJHomeNav alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
+    LGNavigationSearchBar *nav = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
     [self.view addSubview:nav];
     [self.onlineController.collectionView addSubview:self.headLine];
     

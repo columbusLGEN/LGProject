@@ -16,6 +16,6 @@ typedef NS_ENUM(NSUInteger, LGBaseViewControllerPushWay) {
 @interface LGBaseViewController : UIViewController
 
 @property (assign,nonatomic) LGBaseViewControllerPushWay pushWay;
-
+- (void)setNavLeftBackItem;
 
 @end

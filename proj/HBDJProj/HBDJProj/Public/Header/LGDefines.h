@@ -22,8 +22,12 @@
 #define kUserDefaults [NSUserDefaults standardUserDefaults]
 ///MARK:通知中心 （单例对象）
 #define kNotificationCenter [NSNotificationCenter defaultCenter]
-///MARK:导航栏高度
+///MARK:导航栏高度(包括状态栏)
 #define kNavHeight (([[UIScreen mainScreen] bounds].size.height == 812) ? 88 : 64)
+///MARK:导航栏高度(不包括状态栏)
+#define kNavSingleBarHeight 44
+///MARK:状态栏高度
+#define kStatusBarHeight (([[UIScreen mainScreen] bounds].size.height == 812) ? 44 : 20)
 /// MARK:tabBar 高度
 #define kTabBarHeight (([[UIScreen mainScreen] bounds].size.height == 812) ? 83 : 49)
 ///MARK:RELEASE模式不打印

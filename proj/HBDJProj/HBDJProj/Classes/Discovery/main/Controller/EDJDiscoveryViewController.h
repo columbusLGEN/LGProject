@@ -6,8 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGBaseViewController.h"
+#import "LGSegmentViewController.h"
 
-@interface EDJDiscoveryViewController : LGBaseViewController
+@interface EDJDiscoveryViewController : LGSegmentViewController
 
 @end

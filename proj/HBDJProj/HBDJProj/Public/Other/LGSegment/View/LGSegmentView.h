@@ -10,7 +10,7 @@
 @protocol LGSegmentViewDelegate;
 
 @interface LGSegmentView : LGBaseView
-- (instancetype)initWithSegmentItems:(NSArray<NSString *> *)items;
+- (instancetype)initWithSegmentItems:(NSArray<NSDictionary *> *)items;
 - (void)setFlyLocationWithIndex:(NSInteger)index;
 @property (weak,nonatomic) id<LGSegmentViewDelegate> delegate;
 @end

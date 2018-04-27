@@ -13,4 +13,5 @@
 @interface EDJMicroBuildCell : LGBaseTableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView model:(EDJMicroBuildModel *)model;
+@property (strong,nonatomic) EDJMicroBuildModel *model;
 @end

@@ -7,18 +7,26 @@
 //
 
 #import "EDJMicroBuildNoImgCell.h"
+#import "EDJMicroBuildModel.h"
+
+@interface EDJMicroBuildNoImgCell ()
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (strong,nonatomic) EDJMicroBuildModel *subModel;
+
+@end
 
 @implementation EDJMicroBuildNoImgCell
 
+- (void)setModel:(EDJMicroBuildModel *)model{
+    _subModel = model;
+    
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

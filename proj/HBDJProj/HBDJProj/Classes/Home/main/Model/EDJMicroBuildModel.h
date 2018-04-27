@@ -15,6 +15,6 @@
 
 @property (strong,nonatomic) NSArray *imgs;
 @property (strong,nonatomic) NSArray<EDJMicroPartyLessionSubModel *> *subNews;
-
+@property (assign,nonatomic) BOOL showInteractionView;
 
 @end

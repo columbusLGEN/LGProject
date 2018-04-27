@@ -44,7 +44,6 @@
 }
 - (void)setModel:(UCPartyMemberStageModel *)model{
     _model = model;
-    NSLog(@"model.imgcoutn -- %ld",model.imgCount);
 }
 - (void)setupUI{
     

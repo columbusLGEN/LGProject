@@ -7,13 +7,13 @@
 //
 
 #import "LGBaseView.h"
-#import "EDJHomeNav.h"
+#import "LGNavigationSearchBar.h"
 @class LGSegmentControl;
 
 @interface EDJHomeHeaderView : LGBaseView
 
 + (CGFloat)headerHeight;
-@property (strong,nonatomic) EDJHomeNav *nav;
+@property (strong,nonatomic) LGNavigationSearchBar *nav;
 @property (nonatomic) NSArray<NSString *> *imgURLStrings;
 @property (strong,nonatomic) LGSegmentControl *segment;
 
