@@ -15,15 +15,16 @@ typedef NS_ENUM(NSUInteger, NavState) {
     NavStateSolid,/// 不透明状态
 };
 
-@protocol EDJHomeNavDelelgate <NSObject>
+@protocol LGNavigationSearchBarDelelgate <NSObject>
 
 @optional
 /**
  开始搜索
 
- @param titleView self
+ @param navigationSearchBar self
  */
-- (void)navSearchClick:(LGNavigationSearchBar *)titleView;
+- (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar;
+- (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar;
 
 /**
  点击 语音助手
@@ -38,7 +39,7 @@ typedef NS_ENUM(NSUInteger, NavState) {
 
 @property (assign,nonatomic) NavState bgdsState;
 
-@property (weak,nonatomic) id<EDJHomeNavDelelgate> delegate;
+@property (weak,nonatomic) id<LGNavigationSearchBarDelelgate> delegate;
 
 @property (assign,nonatomic) BOOL isShowRightBtn;
 @property (copy,nonatomic) NSString *rightButtonTitle;

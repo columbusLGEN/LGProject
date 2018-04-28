@@ -41,6 +41,9 @@
 + (UIColor *)EDJColor_FC774E{/// 252,119,78
     return [self colorWithHexString:@"FC774E"];
 }
++ (UIColor *)EDJColor_E0B5B1{/// 224,181,177
+    return [self colorWithHexString:@"FC774E"];
+}
 
 
 

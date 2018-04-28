@@ -10,4 +10,23 @@
 
 @implementation DCSubPartStateModel
 
+- (CGFloat)cellHeight{
+    CGFloat defaultHeight = 96;
+    switch (self.imgCount) {
+        case 0:
+            return defaultHeight;
+            break;
+        case 1:
+            return 144;
+            break;
+        case 3:
+            return 201;
+            break;
+        default:
+            return defaultHeight;
+            break;
+    }
+}
+
+
 @end

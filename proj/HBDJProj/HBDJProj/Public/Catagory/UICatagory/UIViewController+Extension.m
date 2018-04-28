@@ -10,7 +10,7 @@
 
 @implementation UIViewController (Extension)
 
-- (instancetype)lgInstantiateViewControllerWithStoryboardName:(NSString *)name controllerId:(NSString *)controllerId{
+- (UIViewController *)lgInstantiateViewControllerWithStoryboardName:(NSString *)name controllerId:(NSString *)controllerId{
     return [[UIStoryboard storyboardWithName:name bundle:nil] instantiateViewControllerWithIdentifier:controllerId];
 }
 

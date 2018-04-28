@@ -49,7 +49,9 @@ static CGFloat buttonHeight = 30;
 //- (void)
 /// MARK: 点击右按钮
 - (void)rightButtonClick:(UIButton *)sender{
-    NSLog(@"点击导航栏右按钮 -- ");
+    if ([self.delegate respondsToSelector:@selector(navRightButtonClick:)]) {
+        [self.delegate navRightButtonClick:self];
+    }
 }
 
 #pragma mark - setter

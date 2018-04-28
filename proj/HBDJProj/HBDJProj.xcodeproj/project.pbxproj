@@ -30,6 +30,27 @@
 		8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E15E20931211001D038E /* DCSubPartStateWithoutImgCell.m */; };
 		8831E16220931332001D038E /* DCSubPartStateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E16120931332001D038E /* DCSubPartStateTableViewController.m */; };
 		8831E16420931496001D038E /* DCSubPartStateWithoutImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E16320931496001D038E /* DCSubPartStateWithoutImgCell.xib */; };
+		8831E1672094012A001D038E /* DCSubPartStateOneImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1662094012A001D038E /* DCSubPartStateOneImgCell.m */; };
+		8831E16920940131001D038E /* DCSubPartStateOneImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E16820940131001D038E /* DCSubPartStateOneImgCell.xib */; };
+		8831E16C2094019D001D038E /* DCSubPartStateThreeImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E16B2094019D001D038E /* DCSubPartStateThreeImgCell.m */; };
+		8831E16E209401A3001D038E /* DCSubPartStateThreeImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E16D209401A3001D038E /* DCSubPartStateThreeImgCell.xib */; };
+		8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E17020941590001D038E /* DCSubStageTableviewController.m */; };
+		8831E17620941674001D038E /* DCSubStageBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E17520941674001D038E /* DCSubStageBaseTableViewCell.m */; };
+		8831E17E20941768001D038E /* DCSubStageWithoutImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E17D20941768001D038E /* DCSubStageWithoutImgCell.m */; };
+		8831E18120941797001D038E /* DCSubStageOneImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E18020941797001D038E /* DCSubStageOneImgCell.m */; };
+		8831E184209417AD001D038E /* DCSubStageFourImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E183209417AD001D038E /* DCSubStageFourImgCell.m */; };
+		8831E18720941985001D038E /* DCSubStageThreeImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E18620941985001D038E /* DCSubStageThreeImgCell.m */; };
+		8831E18920941998001D038E /* DCSubStageThreeImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E18820941998001D038E /* DCSubStageThreeImgCell.xib */; };
+		8831E18D20941A78001D038E /* DCSubStageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E18C20941A78001D038E /* DCSubStageModel.m */; };
+		8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E19220944BD7001D038E /* DCWriteQuestionViewController.m */; };
+		8831E196209450B7001D038E /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E195209450B7001D038E /* UITextView+Extension.m */; };
+		8831E19A2094639E001D038E /* UCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1992094639E001D038E /* UCLoginViewController.m */; };
+		8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1A320947000001D038E /* HPPointNewsTableViewController.m */; };
+		8831E1A72094701C001D038E /* HPPointNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1A62094701C001D038E /* HPPointNewsTableViewCell.m */; };
+		8831E1A920947024001D038E /* HPPointNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E1A820947024001D038E /* HPPointNewsTableViewCell.xib */; };
+		8831E1AC20947040001D038E /* HPPointNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1AB20947040001D038E /* HPPointNewsModel.m */; };
+		8831E1AF20947079001D038E /* HPPointNewsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1AE20947079001D038E /* HPPointNewsHeader.m */; };
+		8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E1B02094708A001D038E /* HPPointNewsHeader.xib */; };
 		8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2A22071FBE000722010 /* LGBaseViewController.m */; };
 		8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2A52071FBFB00722010 /* LGBaseNavigationController.m */; };
 		8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2AB207201DD00722010 /* LGBaseTabBarController.m */; };
@@ -221,6 +242,43 @@
 		8831E16020931332001D038E /* DCSubPartStateTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateTableViewController.h; sourceTree = "<group>"; };
 		8831E16120931332001D038E /* DCSubPartStateTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateTableViewController.m; sourceTree = "<group>"; };
 		8831E16320931496001D038E /* DCSubPartStateWithoutImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCSubPartStateWithoutImgCell.xib; sourceTree = "<group>"; };
+		8831E1652094012A001D038E /* DCSubPartStateOneImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateOneImgCell.h; sourceTree = "<group>"; };
+		8831E1662094012A001D038E /* DCSubPartStateOneImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateOneImgCell.m; sourceTree = "<group>"; };
+		8831E16820940131001D038E /* DCSubPartStateOneImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCSubPartStateOneImgCell.xib; sourceTree = "<group>"; };
+		8831E16A2094019D001D038E /* DCSubPartStateThreeImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateThreeImgCell.h; sourceTree = "<group>"; };
+		8831E16B2094019D001D038E /* DCSubPartStateThreeImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateThreeImgCell.m; sourceTree = "<group>"; };
+		8831E16D209401A3001D038E /* DCSubPartStateThreeImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCSubPartStateThreeImgCell.xib; sourceTree = "<group>"; };
+		8831E16F20941590001D038E /* DCSubStageTableviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageTableviewController.h; sourceTree = "<group>"; };
+		8831E17020941590001D038E /* DCSubStageTableviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageTableviewController.m; sourceTree = "<group>"; };
+		8831E17420941674001D038E /* DCSubStageBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageBaseTableViewCell.h; sourceTree = "<group>"; };
+		8831E17520941674001D038E /* DCSubStageBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageBaseTableViewCell.m; sourceTree = "<group>"; };
+		8831E17C20941768001D038E /* DCSubStageWithoutImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageWithoutImgCell.h; sourceTree = "<group>"; };
+		8831E17D20941768001D038E /* DCSubStageWithoutImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageWithoutImgCell.m; sourceTree = "<group>"; };
+		8831E17F20941797001D038E /* DCSubStageOneImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageOneImgCell.h; sourceTree = "<group>"; };
+		8831E18020941797001D038E /* DCSubStageOneImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageOneImgCell.m; sourceTree = "<group>"; };
+		8831E182209417AD001D038E /* DCSubStageFourImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageFourImgCell.h; sourceTree = "<group>"; };
+		8831E183209417AD001D038E /* DCSubStageFourImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageFourImgCell.m; sourceTree = "<group>"; };
+		8831E18520941985001D038E /* DCSubStageThreeImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageThreeImgCell.h; sourceTree = "<group>"; };
+		8831E18620941985001D038E /* DCSubStageThreeImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageThreeImgCell.m; sourceTree = "<group>"; };
+		8831E18820941998001D038E /* DCSubStageThreeImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCSubStageThreeImgCell.xib; sourceTree = "<group>"; };
+		8831E18B20941A78001D038E /* DCSubStageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageModel.h; sourceTree = "<group>"; };
+		8831E18C20941A78001D038E /* DCSubStageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageModel.m; sourceTree = "<group>"; };
+		8831E19120944BD7001D038E /* DCWriteQuestionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCWriteQuestionViewController.h; sourceTree = "<group>"; };
+		8831E19220944BD7001D038E /* DCWriteQuestionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCWriteQuestionViewController.m; sourceTree = "<group>"; };
+		8831E194209450B7001D038E /* UITextView+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
+		8831E195209450B7001D038E /* UITextView+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
+		8831E1982094639E001D038E /* UCLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCLoginViewController.h; sourceTree = "<group>"; };
+		8831E1992094639E001D038E /* UCLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCLoginViewController.m; sourceTree = "<group>"; };
+		8831E1A220947000001D038E /* HPPointNewsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsTableViewController.h; sourceTree = "<group>"; };
+		8831E1A320947000001D038E /* HPPointNewsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsTableViewController.m; sourceTree = "<group>"; };
+		8831E1A52094701C001D038E /* HPPointNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsTableViewCell.h; sourceTree = "<group>"; };
+		8831E1A62094701C001D038E /* HPPointNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsTableViewCell.m; sourceTree = "<group>"; };
+		8831E1A820947024001D038E /* HPPointNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPPointNewsTableViewCell.xib; sourceTree = "<group>"; };
+		8831E1AA20947040001D038E /* HPPointNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsModel.h; sourceTree = "<group>"; };
+		8831E1AB20947040001D038E /* HPPointNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsModel.m; sourceTree = "<group>"; };
+		8831E1AD20947079001D038E /* HPPointNewsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsHeader.h; sourceTree = "<group>"; };
+		8831E1AE20947079001D038E /* HPPointNewsHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsHeader.m; sourceTree = "<group>"; };
+		8831E1B02094708A001D038E /* HPPointNewsHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPPointNewsHeader.xib; sourceTree = "<group>"; };
 		8835B2A02071F8DE00722010 /* LGDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGDefines.h; sourceTree = "<group>"; };
 		8835B2A12071FBE000722010 /* LGBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGBaseViewController.h; sourceTree = "<group>"; };
 		8835B2A22071FBE000722010 /* LGBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGBaseViewController.m; sourceTree = "<group>"; };
@@ -634,6 +692,8 @@
 				881C94CF2068ECF3009D6A52 /* UIView+Extension.m */,
 				88A4712B207EEB91002F93E0 /* UIViewController+Extension.h */,
 				88A4712C207EEB91002F93E0 /* UIViewController+Extension.m */,
+				8831E194209450B7001D038E /* UITextView+Extension.h */,
+				8831E195209450B7001D038E /* UITextView+Extension.m */,
 			);
 			path = UICatagory;
 			sourceTree = "<group>";
@@ -716,6 +776,7 @@
 			children = (
 				88435EB1208F15A900188CE9 /* main */,
 				88435EB0208F158100188CE9 /* search */,
+				8831E19D20946F6E001D038E /* pointNews */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -744,6 +805,7 @@
 			isa = PBXGroup;
 			children = (
 				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
+				8831E19720946383001D038E /* userLogin */,
 				88A4713E207F5170002F93E0 /* userMain */,
 				884312ED2089C15000321F84 /* userUpload */,
 				88A4713F207F51BF002F93E0 /* userPersonInfo */,
@@ -773,6 +835,8 @@
 			children = (
 				8831E1472092F292001D038E /* DCQuestionCommunityViewController.h */,
 				8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */,
+				8831E19120944BD7001D038E /* DCWriteQuestionViewController.h */,
+				8831E19220944BD7001D038E /* DCWriteQuestionViewController.m */,
 			);
 			path = QA;
 			sourceTree = "<group>";
@@ -791,6 +855,10 @@
 		8831E1452092F23E001D038E /* stage */ = {
 			isa = PBXGroup;
 			children = (
+				8831E16F20941590001D038E /* DCSubStageTableviewController.h */,
+				8831E17020941590001D038E /* DCSubStageTableviewController.m */,
+				8831E18A209419D0001D038E /* model */,
+				8831E17320941657001D038E /* view */,
 			);
 			path = stage;
 			sourceTree = "<group>";
@@ -803,6 +871,12 @@
 				8831E15D20931211001D038E /* DCSubPartStateWithoutImgCell.h */,
 				8831E15E20931211001D038E /* DCSubPartStateWithoutImgCell.m */,
 				8831E16320931496001D038E /* DCSubPartStateWithoutImgCell.xib */,
+				8831E1652094012A001D038E /* DCSubPartStateOneImgCell.h */,
+				8831E1662094012A001D038E /* DCSubPartStateOneImgCell.m */,
+				8831E16820940131001D038E /* DCSubPartStateOneImgCell.xib */,
+				8831E16A2094019D001D038E /* DCSubPartStateThreeImgCell.h */,
+				8831E16B2094019D001D038E /* DCSubPartStateThreeImgCell.m */,
+				8831E16D209401A3001D038E /* DCSubPartStateThreeImgCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -814,6 +888,91 @@
 				8831E158209310BD001D038E /* DCSubPartStateModel.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		8831E17320941657001D038E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8831E17420941674001D038E /* DCSubStageBaseTableViewCell.h */,
+				8831E17520941674001D038E /* DCSubStageBaseTableViewCell.m */,
+				8831E17C20941768001D038E /* DCSubStageWithoutImgCell.h */,
+				8831E17D20941768001D038E /* DCSubStageWithoutImgCell.m */,
+				8831E17F20941797001D038E /* DCSubStageOneImgCell.h */,
+				8831E18020941797001D038E /* DCSubStageOneImgCell.m */,
+				8831E182209417AD001D038E /* DCSubStageFourImgCell.h */,
+				8831E183209417AD001D038E /* DCSubStageFourImgCell.m */,
+				8831E18520941985001D038E /* DCSubStageThreeImgCell.h */,
+				8831E18620941985001D038E /* DCSubStageThreeImgCell.m */,
+				8831E18820941998001D038E /* DCSubStageThreeImgCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8831E18A209419D0001D038E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8831E18B20941A78001D038E /* DCSubStageModel.h */,
+				8831E18C20941A78001D038E /* DCSubStageModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		8831E19720946383001D038E /* userLogin */ = {
+			isa = PBXGroup;
+			children = (
+				8831E1982094639E001D038E /* UCLoginViewController.h */,
+				8831E1992094639E001D038E /* UCLoginViewController.m */,
+			);
+			path = userLogin;
+			sourceTree = "<group>";
+		};
+		8831E19D20946F6E001D038E /* pointNews */ = {
+			isa = PBXGroup;
+			children = (
+				8831E1A120946FCB001D038E /* other */,
+				8831E19E20946FBD001D038E /* controller */,
+				8831E1A020946FC8001D038E /* view */,
+				8831E19F20946FC3001D038E /* model */,
+			);
+			path = pointNews;
+			sourceTree = "<group>";
+		};
+		8831E19E20946FBD001D038E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				8831E1A220947000001D038E /* HPPointNewsTableViewController.h */,
+				8831E1A320947000001D038E /* HPPointNewsTableViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		8831E19F20946FC3001D038E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8831E1AA20947040001D038E /* HPPointNewsModel.h */,
+				8831E1AB20947040001D038E /* HPPointNewsModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		8831E1A020946FC8001D038E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8831E1A52094701C001D038E /* HPPointNewsTableViewCell.h */,
+				8831E1A62094701C001D038E /* HPPointNewsTableViewCell.m */,
+				8831E1A820947024001D038E /* HPPointNewsTableViewCell.xib */,
+				8831E1AD20947079001D038E /* HPPointNewsHeader.h */,
+				8831E1AE20947079001D038E /* HPPointNewsHeader.m */,
+				8831E1B02094708A001D038E /* HPPointNewsHeader.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8831E1A120946FCB001D038E /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
 			sourceTree = "<group>";
 		};
 		8835B2BC207209EA00722010 /* View */ = {
@@ -1149,9 +1308,9 @@
 		88435EB1208F15A900188CE9 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				8835B2BD207209EF00722010 /* Controller */,
 				88A47124207DF7CC002F93E0 /* Other */,
 				8835B2BE207209F600722010 /* Model */,
-				8835B2BD207209EF00722010 /* Controller */,
 				8835B2BC207209EA00722010 /* View */,
 			);
 			path = main;
@@ -1499,7 +1658,9 @@
 				88A47110207DBE26002F93E0 /* EDJMicroBuildOneImgCell.xib in Resources */,
 				88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */,
 				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
+				8831E16920940131001D038E /* DCSubPartStateOneImgCell.xib in Resources */,
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
+				8831E18920941998001D038E /* DCSubStageThreeImgCell.xib in Resources */,
 				88D13C3E209022F900A32236 /* EDJSearchTagHeader.xib in Resources */,
 				88A47137207F06D3002F93E0 /* UserCenterHomeForm.plist in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
@@ -1509,8 +1670,10 @@
 				88A4711A207DDCCA002F93E0 /* EDJMicroPartyLessonHeaderCell.xib in Resources */,
 				88435E7B208DB43800188CE9 /* LevelBonusRules.plist in Resources */,
 				88D13C562090443500A32236 /* EDJDigitalCell.xib in Resources */,
+				8831E1A920947024001D038E /* HPPointNewsTableViewCell.xib in Resources */,
 				88D13C612090586900A32236 /* OLHomeCollectionCell.xib in Resources */,
 				88D13C352090145100A32236 /* EDJSearchTagHistoryCell.xib in Resources */,
+				8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */,
 				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
 				88435E92208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib in Resources */,
 				88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */,
@@ -1518,6 +1681,7 @@
 				88D13C432090261400A32236 /* EDJSearchTagHeaderClasses.plist in Resources */,
 				884312D620873B6900321F84 /* UCSetting.plist in Resources */,
 				88D13C6C20906EBC00A32236 /* OLAddMoreTool.plist in Resources */,
+				8831E16E209401A3001D038E /* DCSubPartStateThreeImgCell.xib in Resources */,
 				88D13C632090597F00A32236 /* OLHomeItems.plist in Resources */,
 				88A4710B207DBE08002F93E0 /* EDJMicroBuildNoImgCell.xib in Resources */,
 				88D13C4F2090349800A32236 /* EDJSearchTagHotCell.xib in Resources */,
@@ -1723,6 +1887,7 @@
 				88A47113207DBE33002F93E0 /* EDJMicroBuildThreeImgCell.m in Sources */,
 				8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */,
 				8835B2C120720A1800722010 /* LGBaseView.m in Sources */,
+				8831E1A72094701C001D038E /* HPPointNewsTableViewCell.m in Sources */,
 				88A4713D207F320F002F93E0 /* LGSpecificButton.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
@@ -1731,13 +1896,18 @@
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
 				88D13C39209015C100A32236 /* EDJSearchTagCollectionViewFlowLayout.m in Sources */,
+				8831E1AC20947040001D038E /* HPPointNewsModel.m in Sources */,
 				88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */,
 				88A4710E207DBE1F002F93E0 /* EDJMicroBuildOneImgCell.m in Sources */,
 				88397814207F56D700F3D131 /* UCPersonInfoModel.m in Sources */,
+				8831E18120941797001D038E /* DCSubStageOneImgCell.m in Sources */,
 				884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */,
+				8831E17E20941768001D038E /* DCSubStageWithoutImgCell.m in Sources */,
 				88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */,
+				8831E1672094012A001D038E /* DCSubPartStateOneImgCell.m in Sources */,
 				8831E16220931332001D038E /* DCSubPartStateTableViewController.m in Sources */,
 				884312E6208987F100321F84 /* UCHelpFadebackModel.m in Sources */,
+				8831E17620941674001D038E /* DCSubStageBaseTableViewCell.m in Sources */,
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				881C94E12068ED10009D6A52 /* LIGNetworkConfig.m in Sources */,
 				88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */,
@@ -1751,13 +1921,16 @@
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
 				88A470FA207C8615002F93E0 /* LGImageView.m in Sources */,
+				8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */,
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
+				8831E16C2094019D001D038E /* DCSubPartStateThreeImgCell.m in Sources */,
 				8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */,
 				881C94D22068ECF3009D6A52 /* UIImage+Extension.m in Sources */,
 				88D13C412090253200A32236 /* EDJSearchTagHeaderModel.m in Sources */,
 				8835B2F0207211B200722010 /* EDJHomeHeaderView.m in Sources */,
 				88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */,
 				884312D420873B2800321F84 /* UCSettingViewController.m in Sources */,
+				8831E18720941985001D038E /* DCSubStageThreeImgCell.m in Sources */,
 				8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */,
 				8835B2CA20720B0200722010 /* EDJDiscoveryController.m in Sources */,
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
@@ -1767,6 +1940,7 @@
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
 				8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */,
 				8835B36B20732DB900722010 /* EDJDigitalReadViewController.m in Sources */,
+				8831E18D20941A78001D038E /* DCSubStageModel.m in Sources */,
 				884312C5208737BF00321F84 /* UCMsgTableViewController.m in Sources */,
 				884312CB2087380700321F84 /* UCMsgTableViewCell.m in Sources */,
 				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
@@ -1778,18 +1952,23 @@
 				8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
 				881C94D12068ECF3009D6A52 /* UIColor+Extension.m in Sources */,
+				8831E1AF20947079001D038E /* HPPointNewsHeader.m in Sources */,
 				88A47118207DDCC3002F93E0 /* EDJMicroPartyLessonHeaderCell.m in Sources */,
 				8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */,
 				884312F92089C82800321F84 /* UCUploadViewController.m in Sources */,
 				881C94DF2068ED10009D6A52 /* LIGBaseRequest.m in Sources */,
+				8831E184209417AD001D038E /* DCSubStageFourImgCell.m in Sources */,
 				88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */,
 				88D13C542090442F00A32236 /* EDJDigitalCell.m in Sources */,
 				88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */,
+				8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */,
 				88D13C5C2090583D00A32236 /* OLHomeModel.m in Sources */,
+				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				88D13C5F2090585F00A32236 /* OLHomeCollectionCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
 				88435EA4208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m in Sources */,
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
+				8831E19A2094639E001D038E /* UCLoginViewController.m in Sources */,
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,
 				8831E15420931090001D038E /* DCSubPartStateBaseCell.m in Sources */,
 				884312D920873C1B00321F84 /* UCSettingTableViewCell.m in Sources */,
@@ -1814,6 +1993,7 @@
 				8835B3172072189D00722010 /* LGBaseButton.m in Sources */,
 				88D033872079EB8600665D2F /* EDJUserCenterViewController.m in Sources */,
 				88D13C2A2090138100A32236 /* EDJSearchTagModel.m in Sources */,
+				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
 				884312EC2089BC7D00321F84 /* UCMyFeedbackViewController.m in Sources */,
 				88D13C30209013EB00A32236 /* LGBaseCollectionViewCell.m in Sources */,

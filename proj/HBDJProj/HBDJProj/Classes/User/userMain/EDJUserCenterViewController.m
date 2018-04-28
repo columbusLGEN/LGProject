@@ -100,6 +100,11 @@ UITableViewDataSource>
     }
 }
 
+- (IBAction)headerIconClick:(id)sender {
+    [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCLoginViewController" animated:YES];
+}
+
+
 - (void)headerButtonCick:(UIButton *)sender{
     switch (sender.tag) {
         case 0:{

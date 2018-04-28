@@ -23,10 +23,19 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:withoutImgCell bundle:nil]
          forCellReuseIdentifier:withoutImgCell];
+    [self.tableView registerNib:[UINib nibWithNibName:oneImgCell bundle:nil]
+         forCellReuseIdentifier:oneImgCell];
+    [self.tableView registerNib:[UINib nibWithNibName:threeImgCell bundle:nil]
+         forCellReuseIdentifier:threeImgCell];
     
     NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
     for (NSInteger i = 0; i < 20; i++) {
         DCSubPartStateModel *model = [DCSubPartStateModel new];
+        NSInteger num = arc4random_uniform(3) + 1;/// 1 2 3
+        if (num == 2) {
+            num -= 2;/// 2 --> 0
+        }
+        model.imgCount = num;
         [arrMu addObject:model];
     }
     self.dataArray = arrMu.copy;
@@ -42,16 +51,20 @@
 
     return self.dataArray.count;
 }
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DCSubPartStateBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DCSubPartStateBaseCell cellReuseIdWithModel:nil]];
-
-    
+    DCSubPartStateModel *model = self.dataArray[indexPath.row];
+    DCSubPartStateBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DCSubPartStateBaseCell cellReuseIdWithModel:model]];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(DCSubPartStateBaseCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    DCSubPartStateModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 89;
+    DCSubPartStateModel *model = self.dataArray[indexPath.row];
+    return model.cellHeight;
 }
 
 

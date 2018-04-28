@@ -15,15 +15,17 @@
 #import "EDJMicroPartyLessonCell.h"
 #import "LGNavigationSearchBar.h"
 #import "EDJSearchViewController.h"
+#import "HPPointNewsTableViewController.h"
 
 @interface EDJHomeViewController ()<
-EDJHomeNavDelelgate,
+LGNavigationSearchBarDelelgate,
 UITableViewDelegate,
 UICollectionViewDelegate,
-LGSegmentControlDelegate
+LGSegmentControlDelegate,
+EDJHomeHeaderViewDelegate
 >
 
-@property (strong,nonatomic) EDJHomeHeaderView *header;
+@property (strong,nonatomic) EDJHomeHeaderView *homeHeader;
 /** 微党课&党建要闻控制器 */
 @property (strong,nonatomic) EDJMicroPartyLessionViewController *microPLViewController;
 /** 数字阅读控制器 */
@@ -47,7 +49,7 @@ LGSegmentControlDelegate
     _lastContentOffset = CGPointMake(0, -[self headerHeight]);
     
     /// 设置header轮播图数据
-    self.header.imgURLStrings = @[
+    self.homeHeader.imgURLStrings = @[
                                   @"https://goss.vcg.com/creative/vcg/800/version23/VCG21gic13374057.jpg",
                                   @"http://dl.bizhi.sogou.com/images/2013/12/19/458657.jpg",
                                   @"https://goss3.vcg.com/creative/vcg/800/version23/VCG21gic19568254.jpg"];
@@ -72,6 +74,12 @@ LGSegmentControlDelegate
     [self.view addGestureRecognizer:swipeLeft];
 }
 
+- (void)headerImgLoopClick:(EDJHomeHeaderView *)header didSelectItemAtIndex:(NSInteger)index{
+    NSLog(@"index -- %ld",index);
+    HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 /// switch 语句中的两个分支,加载同一个控制器,但是数据需要分别处理,如何简化代码?
 #pragma mark - LGSegmentControlDelegate
 - (void)segmentControl:(LGSegmentControl *)sender didClick:(NSInteger)click{
@@ -81,7 +89,7 @@ LGSegmentControlDelegate
             [self.microPLViewController.tableView removeFromSuperview];
             self.digitalController.collectionView.delegate = self;
             [self.view addSubview:self.digitalController.collectionView];
-            [self.digitalController.collectionView addSubview:_header];
+            [self.digitalController.collectionView addSubview:_homeHeader];
             [self.digitalController.collectionView setContentOffset:_lastContentOffset animated:NO];
         }else{
             /// micro party lession
@@ -96,7 +104,7 @@ LGSegmentControlDelegate
     self.microPLViewController.dataType = segment;
     self.microPLViewController.tableView.delegate = self;
     [self.view addSubview:self.microPLViewController.tableView];
-    [self.microPLViewController.tableView addSubview:_header];
+    [self.microPLViewController.tableView addSubview:_homeHeader];
     [self.microPLViewController.tableView setContentOffset:_lastContentOffset animated:NO];
 }
 
@@ -139,14 +147,14 @@ LGSegmentControlDelegate
                 break;
             case 1:{
                 [self segmentControl:nil didClick:0];
-                [self.header.segment elfAnimateWithIndex:0];
+                [self.homeHeader.segment elfAnimateWithIndex:0];
                 _currentSegment = 0;
                 
             }
                 break;
             case 2:{
                 [self segmentControl:nil didClick:1];
-                [self.header.segment elfAnimateWithIndex:1];
+                [self.homeHeader.segment elfAnimateWithIndex:1];
                 _currentSegment = 1;
                 
             }
@@ -158,13 +166,13 @@ LGSegmentControlDelegate
         switch (_currentSegment) {
             case 0:{
                 [self segmentControl:nil didClick:1];
-                [self.header.segment elfAnimateWithIndex:1];
+                [self.homeHeader.segment elfAnimateWithIndex:1];
                 _currentSegment = 1;
             }
                 break;
             case 1:{
                 [self segmentControl:nil didClick:2];
-                [self.header.segment elfAnimateWithIndex:2];
+                [self.homeHeader.segment elfAnimateWithIndex:2];
                 _currentSegment = 2;
                 
             }
@@ -180,17 +188,18 @@ LGSegmentControlDelegate
 
 
 #pragma mark - getter
-- (EDJHomeHeaderView *)header{
-    if (_header == nil) {
+- (EDJHomeHeaderView *)homeHeader{
+    if (_homeHeader == nil) {
         /// frame
         CGFloat headerHeight = [self headerHeight];
         CGRect headerFrame = CGRectMake(0, - headerHeight, kScreenWidth,headerHeight);
         
         /// header
-        _header = [[EDJHomeHeaderView alloc] initWithFrame:headerFrame];
-        _header.segment.delegate = self;
+        _homeHeader = [[EDJHomeHeaderView alloc] initWithFrame:headerFrame];
+        _homeHeader.segment.delegate = self;
+        _homeHeader.delegate = self;
     }
-    return _header;
+    return _homeHeader;
 }
 - (EDJMicroPartyLessionViewController *)microPLViewController{
     if (_microPLViewController == nil) {

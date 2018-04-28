@@ -10,17 +10,19 @@
 #import <SDCycleScrollView/SDCycleScrollView.h>
 #import "LGSegmentControl.h"
 
-@interface EDJHomeHeaderView ()
+@interface EDJHomeHeaderView ()<
+SDCycleScrollViewDelegate>
 @property (strong,nonatomic) SDCycleScrollView *imgLoop;
 
 @end
 
 @implementation EDJHomeHeaderView
 
-//- (void)layoutSubviews{
-//    [super layoutSubviews];
-//    NSLog(@"self.segment -- %@",self.segment);
-//}
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    if ([self.delegate respondsToSelector:@selector(headerImgLoopClick:didSelectItemAtIndex:)]) {
+        [self.delegate headerImgLoopClick:self didSelectItemAtIndex:index];
+    }
+}
 
 - (void)setImgURLStrings:(NSArray<NSString *> *)imgURLStrings{
     _imgLoop.imageURLStringsGroup = imgURLStrings;
@@ -70,6 +72,7 @@
         _imgLoop = [[SDCycleScrollView alloc] initWithFrame:CGRectZero];
         _imgLoop.placeholderImage = nil;
         _imgLoop.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _imgLoop.delegate = self;
     }
     return _imgLoop;
 }

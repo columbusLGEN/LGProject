@@ -10,4 +10,6 @@
 
 @interface UCWriteFeedbackViewController : LGBaseViewController
 
+@property (copy,nonatomic) NSString *textViewPlaceHolder;
+
 @end

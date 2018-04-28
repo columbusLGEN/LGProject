@@ -10,6 +10,8 @@
 @class DCSubPartStateModel;
 
 static NSString * const withoutImgCell = @"DCSubPartStateWithoutImgCell";
+static NSString * const oneImgCell = @"DCSubPartStateOneImgCell";
+static NSString * const threeImgCell = @"DCSubPartStateThreeImgCell";
 
 @interface DCSubPartStateBaseCell : LGBaseTableViewCell
 @property (strong,nonatomic) DCSubPartStateModel *model;

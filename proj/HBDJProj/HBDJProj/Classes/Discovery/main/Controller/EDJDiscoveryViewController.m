@@ -8,6 +8,8 @@
 
 #import "EDJDiscoveryViewController.h"
 #import "LGNavigationSearchBar.h"
+#import "LGBaseNavigationController.h"
+#import "QA/DCWriteQuestionViewController.h"
 
 typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
     DiscoveryChannelQuestionCommunity,
@@ -15,7 +17,8 @@ typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
     DiscoveryChannelMemberStage,
 };
 
-@interface EDJDiscoveryViewController ()
+@interface EDJDiscoveryViewController ()<
+LGNavigationSearchBarDelelgate>
 @property (weak,nonatomic) LGNavigationSearchBar *fakeNavgationBar;
 /** 0:学习问答,1:支部动态,2:党员舞台 */
 @property (assign,nonatomic) NSInteger currentChannel;
@@ -31,7 +34,7 @@ typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
 }
 - (void)configUI{
     [super configUI];
@@ -39,10 +42,18 @@ typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
     LGNavigationSearchBar *fakeNavgationBar = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
     fakeNavgationBar.isShowRightBtn = YES;
     fakeNavgationBar.rightButtonTitle = @"提问";
+    fakeNavgationBar.delegate = self;
     [self.view addSubview:fakeNavgationBar];
     _fakeNavgationBar = fakeNavgationBar;
-    
+
 }
+#pragma mark - LGNavigationSearchBarDelelgate
+- (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
+    DCWriteQuestionViewController *question = [DCWriteQuestionViewController new];
+    [self.navigationController pushViewController:question animated:YES];
+
+}
+
 
 - (void)viewSwitched:(NSInteger)index{
     if (index == 0) {
@@ -57,6 +68,11 @@ typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
 }
 
 - (NSArray<NSDictionary *> *)segmentItems{
+    /**
+     DCQuestionCommunityViewController
+     DCSubPartStateTableViewController
+     DCSubStageTableviewController
+     */
     return @[@{LGSegmentItemNameKey:@"学习问答",
                LGSegmentItemViewControllerClassKey:@"DCQuestionCommunityViewController",
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
@@ -66,7 +82,7 @@ typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"党员舞台",
-               LGSegmentItemViewControllerClassKey:@"UIViewController",
+               LGSegmentItemViewControllerClassKey:@"DCSubStageTableviewController",
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                }];
 }

@@ -36,11 +36,14 @@ static NSString * const cellID = @"UCQuestionTableViewCell";
     return _array.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UCQuestionModel *model = _array[indexPath.row];
     UCQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    cell.model = model;
     return cell;
 }
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UCQuestionTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    UCQuestionModel *model = _array[indexPath.row];
+    cell.model = model;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 187;
 }

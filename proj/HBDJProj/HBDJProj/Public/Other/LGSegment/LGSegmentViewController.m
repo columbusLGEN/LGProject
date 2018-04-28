@@ -18,15 +18,22 @@ LGSegmentViewDelegate
 
 @implementation LGSegmentViewController
 
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    NSLog(@"viewDidLayoutSubviews -- ");
+}
+
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
+
 }
 - (void)configUI{
     self.view.backgroundColor = [UIColor EDJGrayscale_F3];
@@ -41,7 +48,7 @@ LGSegmentViewDelegate
     }];
     segment.delegate = self;
     _segment = segment;
-    
+
     UIScrollView *scrollView = [UIScrollView new];
     scrollView.delegate = self;
     scrollView.pagingEnabled = YES;
@@ -54,21 +61,23 @@ LGSegmentViewDelegate
     }];
     _scrollView = scrollView;
     
+    /// TODO: 默认只加载第一个视图,视图发生滑动或者点击2,3事件,再加载后面的视图
+
     [self.segmentItems enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIViewController *vc;
         NSString *viewControllerClassString = obj[LGSegmentItemViewControllerClassKey];
         /// TODO: 类型判断,确保 viewControllerClassString 是 UIViewController 类对象或者派生类对象
-        
+
         if ([obj[LGSegmentItemViewControllerInitTypeKey] isEqualToString:LGSegmentVcInitTypeStoryboard]) {
             vc = [self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:viewControllerClassString];
         }else{
             vc = [[NSClassFromString(viewControllerClassString) alloc] init];
         }
-        
-        [self addChildViewController:vc];
+
         CGFloat x = kScreenWidth * idx;
         vc.view.frame = CGRectMake(x, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
         [self.scrollView addSubview:vc.view];
+        [self addChildViewController:vc];
     }];
     [self.scrollView setContentSize:CGSizeMake(self.segmentItems.count * kScreenWidth, 0)];
 }

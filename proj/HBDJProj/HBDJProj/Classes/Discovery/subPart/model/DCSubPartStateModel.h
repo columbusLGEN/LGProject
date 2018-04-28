@@ -10,4 +10,12 @@
 
 @interface DCSubPartStateModel : LGBaseModel
 
+@property (assign,nonatomic) NSInteger imgCount;
+
+@property (assign,nonatomic) CGFloat cellHeight;
+
+/// -----------------------
+
+@property (copy,nonatomic) NSString *title;
+
 @end

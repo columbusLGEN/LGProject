@@ -8,6 +8,7 @@
 
 #import "UCWriteFeedbackViewController.h"
 #import <objc/runtime.h>
+#import "UITextView+Extension.h"
 
 @interface UCWriteFeedbackViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -54,15 +55,17 @@
     [_cancel cutBorderWithBorderWidth:1 borderColor:[UIColor EDJMainColor] cornerRadius:cornerRadius];
     
     _textView.text = nil;
-    [_textView cutBorderWithBorderWidth:0.5 borderColor:[UIColor EDJMainColor] cornerRadius:0];
     
-    UILabel *placeHolder = [UILabel new];
-    placeHolder.text = @"请写下您的意见或建议";
-    placeHolder.textColor = [UIColor EDJMainColor];
-    placeHolder.font = [UIFont systemFontOfSize:15];
-    [placeHolder sizeToFit];
-    [_textView addSubview:placeHolder];
-    [_textView setValue:placeHolder forKey:@"_placeholderLabel"];
+    [_textView cutBorderWithBorderWidth:0.5 borderColor:[UIColor EDJColor_E0B5B1] cornerRadius:0];
+    [_textView lg_setplaceHolderTextWithText:self.textViewPlaceHolder textColor:[UIColor EDJColor_E0B5B1] font:15];
+    NSLog(@"textview -- %@",_textView);
+}
+
+- (NSString *)textViewPlaceHolder{
+    if (_textViewPlaceHolder == nil) {
+        _textViewPlaceHolder = @"请写下您的意见或建议";
+    }
+    return _textViewPlaceHolder;
 }
 
 /*

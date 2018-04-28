@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DCSubStageThreeImgCell" rowHeight="194" id="Lll-u9-Pp2" customClass="DCSubStageThreeImgCell">
+            <rect key="frame" x="0.0" y="0.0" width="460" height="194"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lll-u9-Pp2" id="ENM-Mk-1tK">
+                <rect key="frame" x="0.0" y="0.0" width="460" height="193.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oed-YP-3aK">
+                        <rect key="frame" x="162.5" y="102" width="135" height="67"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1dg-4p-TTe">
+                        <rect key="frame" x="310.5" y="102" width="135.5" height="67"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="67" id="NMH-hu-ec4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="省委省直机关赶赴三里屯开展党的十九大精神宣讲春节前走访慰问活动" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdP-di-j1p">
+                        <rect key="frame" x="11" y="53" width="434" height="36"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="常小江" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9Y-NW-rQe">
+                        <rect key="frame" x="11" y="16" width="52" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xjj-Uf-W8g">
+                        <rect key="frame" x="14" y="102" width="135.5" height="67"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="fdP-di-j1p" secondAttribute="trailing" constant="15" id="70f-PG-lPa"/>
+                    <constraint firstItem="Xjj-Uf-W8g" firstAttribute="centerY" secondItem="1dg-4p-TTe" secondAttribute="centerY" id="9VG-UU-6Yg"/>
+                    <constraint firstItem="V9Y-NW-rQe" firstAttribute="top" secondItem="ENM-Mk-1tK" secondAttribute="top" constant="16" id="BZ4-Ig-ahi"/>
+                    <constraint firstItem="Oed-YP-3aK" firstAttribute="centerY" secondItem="1dg-4p-TTe" secondAttribute="centerY" id="LTj-Wt-gBR"/>
+                    <constraint firstItem="1dg-4p-TTe" firstAttribute="leading" secondItem="Oed-YP-3aK" secondAttribute="trailing" constant="13" id="Oli-D9-Jiq"/>
+                    <constraint firstItem="fdP-di-j1p" firstAttribute="leading" secondItem="ENM-Mk-1tK" secondAttribute="leading" constant="11" id="UbV-Bw-Ngb"/>
+                    <constraint firstAttribute="trailing" secondItem="1dg-4p-TTe" secondAttribute="trailing" constant="14" id="WJg-5m-9bq"/>
+                    <constraint firstItem="Oed-YP-3aK" firstAttribute="width" secondItem="1dg-4p-TTe" secondAttribute="width" id="WYe-m6-AAm"/>
+                    <constraint firstItem="Oed-YP-3aK" firstAttribute="height" secondItem="1dg-4p-TTe" secondAttribute="height" id="cpD-hl-MtS"/>
+                    <constraint firstItem="1dg-4p-TTe" firstAttribute="top" secondItem="fdP-di-j1p" secondAttribute="bottom" constant="13" id="cpk-6x-xDi"/>
+                    <constraint firstItem="Xjj-Uf-W8g" firstAttribute="leading" secondItem="ENM-Mk-1tK" secondAttribute="leading" constant="14" id="ecO-ly-ugU"/>
+                    <constraint firstItem="fdP-di-j1p" firstAttribute="top" secondItem="V9Y-NW-rQe" secondAttribute="bottom" constant="16" id="kug-dj-kJc"/>
+                    <constraint firstItem="Oed-YP-3aK" firstAttribute="leading" secondItem="Xjj-Uf-W8g" secondAttribute="trailing" constant="13" id="l4o-9s-f6V"/>
+                    <constraint firstItem="V9Y-NW-rQe" firstAttribute="leading" secondItem="fdP-di-j1p" secondAttribute="leading" id="m86-of-Tex"/>
+                    <constraint firstItem="Xjj-Uf-W8g" firstAttribute="width" secondItem="1dg-4p-TTe" secondAttribute="width" id="n5e-yh-KaA"/>
+                    <constraint firstItem="Xjj-Uf-W8g" firstAttribute="height" secondItem="1dg-4p-TTe" secondAttribute="height" id="tvy-4v-EdH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="content" destination="fdP-di-j1p" id="uZc-n5-l1X"/>
+                <outlet property="leftImg" destination="Xjj-Uf-W8g" id="6PG-dd-8ak"/>
+                <outlet property="midImg" destination="Oed-YP-3aK" id="2fx-k6-uhX"/>
+                <outlet property="nick" destination="V9Y-NW-rQe" id="b4H-6g-GwT"/>
+                <outlet property="rightImg" destination="1dg-4p-TTe" id="5Uf-Na-ZJ1"/>
+            </connections>
+            <point key="canvasLocation" x="69" y="46"/>
+        </tableViewCell>
+    </objects>
+</document>

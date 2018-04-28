@@ -74,6 +74,7 @@
 }
 
 - (void)setupUI{
+    self.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.line];
     [self addSubview:self.leftBtn];
     [self addSubview:self.midBtn];

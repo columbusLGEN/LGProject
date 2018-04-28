@@ -10,11 +10,21 @@
 #import "LGNavigationSearchBar.h"
 @class LGSegmentControl;
 
+@protocol EDJHomeHeaderViewDelegate;
+
 @interface EDJHomeHeaderView : LGBaseView
 
 + (CGFloat)headerHeight;
 @property (strong,nonatomic) LGNavigationSearchBar *nav;
 @property (nonatomic) NSArray<NSString *> *imgURLStrings;
 @property (strong,nonatomic) LGSegmentControl *segment;
+@property (weak,nonatomic) id<EDJHomeHeaderViewDelegate> delegate;
 
 @end
+
+@protocol EDJHomeHeaderViewDelegate <NSObject>
+@optional
+- (void)headerImgLoopClick:(EDJHomeHeaderView *)header didSelectItemAtIndex:(NSInteger)index;
+
+@end
+

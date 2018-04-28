@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HPPointNewsTableViewCell" rowHeight="166" id="y2a-W0-1cQ" customClass="HPPointNewsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="519" height="166"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y2a-W0-1cQ" id="XRG-ju-Btv">
+                <rect key="frame" x="0.0" y="0.0" width="519" height="165.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李克强:创新造福人民,也是全民的共同事业造福人民,也是全民的共同事业" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BC-fz-T0F">
+                        <rect key="frame" x="11" y="15" width="363" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="Xo4-pa-Fok">
+                        <rect key="frame" x="389" y="10" width="119" height="67"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="67" id="Z6j-lF-UFo"/>
+                            <constraint firstAttribute="width" constant="119" id="hh6-LG-uqQ"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPf-Mf-sgE">
+                        <rect key="frame" x="10" y="164.5" width="499" height="1"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="i13-j0-lC4"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人民网" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1a-mD-kQu">
+                        <rect key="frame" x="11" y="61" width="40" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Xo4-pa-Fok" firstAttribute="top" secondItem="XRG-ju-Btv" secondAttribute="top" constant="10" id="3tJ-Rr-8KK"/>
+                    <constraint firstAttribute="trailing" secondItem="Xo4-pa-Fok" secondAttribute="trailing" constant="11" id="5Pu-sP-u08"/>
+                    <constraint firstItem="NPf-Mf-sgE" firstAttribute="bottom" secondItem="XRG-ju-Btv" secondAttribute="bottom" id="C2Y-U5-7YC"/>
+                    <constraint firstAttribute="trailing" secondItem="NPf-Mf-sgE" secondAttribute="trailing" constant="10" id="EHc-dk-miV"/>
+                    <constraint firstItem="s1a-mD-kQu" firstAttribute="leading" secondItem="3BC-fz-T0F" secondAttribute="leading" id="F4v-lW-zV6"/>
+                    <constraint firstItem="NPf-Mf-sgE" firstAttribute="leading" secondItem="XRG-ju-Btv" secondAttribute="leading" constant="10" id="IdL-hd-F2p"/>
+                    <constraint firstItem="s1a-mD-kQu" firstAttribute="bottom" secondItem="Xo4-pa-Fok" secondAttribute="bottom" id="cUh-c0-7DF"/>
+                    <constraint firstItem="Xo4-pa-Fok" firstAttribute="leading" secondItem="3BC-fz-T0F" secondAttribute="trailing" constant="15" id="oHy-rq-QVA"/>
+                    <constraint firstItem="3BC-fz-T0F" firstAttribute="top" secondItem="Xo4-pa-Fok" secondAttribute="top" constant="5" id="qtv-uB-sh2"/>
+                    <constraint firstItem="3BC-fz-T0F" firstAttribute="leading" secondItem="XRG-ju-Btv" secondAttribute="leading" constant="11" id="xTu-R6-LvC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-1.5" y="146"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="party_history" width="550" height="309"/>
+    </resources>
+</document>

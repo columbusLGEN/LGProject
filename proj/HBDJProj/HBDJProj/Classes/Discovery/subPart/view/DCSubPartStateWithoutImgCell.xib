@@ -25,25 +25,16 @@
                         <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLI-oI-a88" customClass="LGThreeRightButtonView">
-                        <rect key="frame" x="0.0" y="99.5" width="540" height="45"/>
-                        <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="45" id="Qyz-oO-4jw"/>
-                        </constraints>
-                    </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="ZOG-CF-1O6" firstAttribute="leading" secondItem="gCH-Kz-uvR" secondAttribute="leading" constant="16" id="0AV-fF-2SR"/>
-                    <constraint firstAttribute="bottom" secondItem="cLI-oI-a88" secondAttribute="bottom" id="7qt-ok-QpO"/>
-                    <constraint firstItem="cLI-oI-a88" firstAttribute="leading" secondItem="gCH-Kz-uvR" secondAttribute="leading" id="aT0-5H-UlK"/>
                     <constraint firstItem="ZOG-CF-1O6" firstAttribute="top" secondItem="gCH-Kz-uvR" secondAttribute="topMargin" constant="6" id="efp-UJ-ojq"/>
                     <constraint firstAttribute="trailing" secondItem="ZOG-CF-1O6" secondAttribute="trailing" constant="16" id="rV3-Wx-EQR"/>
-                    <constraint firstAttribute="trailing" secondItem="cLI-oI-a88" secondAttribute="trailing" id="wPN-Ou-wn6"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="boInterView" destination="cLI-oI-a88" id="Pm4-5S-sOF"/>
+                <outlet property="contentLabel" destination="ZOG-CF-1O6" id="a68-BS-S8F"/>
             </connections>
             <point key="canvasLocation" x="-284" y="-88.5"/>
         </tableViewCell>
