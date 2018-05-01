@@ -38,9 +38,14 @@ EDJHomeHeaderViewDelegate
 
 @implementation EDJHomeViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)loadView{
     [super loadView];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
 }
 
 - (void)viewDidLoad {
