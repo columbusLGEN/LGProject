@@ -2,12 +2,12 @@
 //  UCUploadViewController.h
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/4/20.
+//  Created by Peanut Lee on 2018/5/2.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGSegmentViewController.h"
+#import "LGBaseViewController.h"
 
-@interface UCUploadViewController : LGSegmentViewController
+@interface UCUploadViewController : LGBaseViewController
 
 @end

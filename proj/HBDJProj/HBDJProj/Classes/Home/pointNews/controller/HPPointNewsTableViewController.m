@@ -12,7 +12,6 @@
 #import "HPPointNewsModel.h"
 
 static NSString * const cellID = @"HPPointNewsTableViewCell";
-static NSString * const headerID = @"HPPointNewsHeader";
 
 @interface HPPointNewsTableViewController ()
 
@@ -28,8 +27,12 @@ static NSString * const headerID = @"HPPointNewsHeader";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    HPPointNewsHeader *header = [HPPointNewsHeader pointNewsHeader];
+    /// TODO: 设置header 数据
+    self.tableView.tableHeaderView = header;
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 272);
+    
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
-    [self.tableView registerNib:[UINib nibWithNibName:headerID bundle:nil] forHeaderFooterViewReuseIdentifier:headerID];
     
     NSMutableArray *arrMu = [NSMutableArray new];
     for (NSInteger i = 0; i < 20; i++) {
@@ -54,6 +57,7 @@ static NSString * const headerID = @"HPPointNewsHeader";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 87;
 }
+
 
 
 /*

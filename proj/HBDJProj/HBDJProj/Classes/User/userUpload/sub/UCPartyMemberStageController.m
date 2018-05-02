@@ -8,7 +8,7 @@
 
 #import "UCPartyMemberStageController.h"
 #import "model/UCPartyMemberStageModel.h"
-#import "view/UCPartyMemberStageCell.h"
+#import "view/cell/UCPartyMemberStageCell.h"
 
 @interface UCPartyMemberStageController ()
 @property (strong,nonatomic) NSArray *array;

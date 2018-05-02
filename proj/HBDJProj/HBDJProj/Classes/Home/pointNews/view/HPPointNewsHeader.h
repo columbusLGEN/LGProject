@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HPPointNewsHeader : UITableViewHeaderFooterView
++ (instancetype)pointNewsHeader;
 
 @end

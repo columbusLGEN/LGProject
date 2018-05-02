@@ -16,6 +16,7 @@
 #import "LGNavigationSearchBar.h"
 #import "EDJSearchViewController.h"
 #import "HPPointNewsTableViewController.h"
+#import "HPBookInfoViewController.h"
 
 @interface EDJHomeViewController ()<
 LGNavigationSearchBarDelelgate,
@@ -133,6 +134,11 @@ EDJHomeHeaderViewDelegate
         return [EDJMicroBuildCell cellHeightWithModel:self.microPLViewController.buildModels[indexPath.row]];
     }
     return 0;
+}
+#pragma mark - UICollectionViewDelegaet
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    HPBookInfoViewController *vc = [HPBookInfoViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

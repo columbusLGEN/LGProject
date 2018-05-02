@@ -20,6 +20,7 @@ static const CGFloat homeSegmentContentWidth = 38;
 static const CGFloat tabBarHeight = 49;
 
 static NSString * const UserCenterStoryboardName = @"UserCenter";
+static NSString * const textBold = @"Helvetica-Bold";
 
 
 

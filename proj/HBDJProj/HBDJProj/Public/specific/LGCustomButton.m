@@ -6,16 +6,13 @@
 //  Copyright © 2017年 retech. All rights reserved.
 //
 
-#import "LGSpecificButton.h"
+#import "LGCustomButton.h"
 
-@interface LGSpecificButton ()
-
-@property (strong,nonatomic) UIImageView *img;//
-@property (strong,nonatomic) UILabel *label;//
+@interface LGCustomButton ()
 
 @end
 
-@implementation LGSpecificButton
+@implementation LGCustomButton
 
 - (void)modifyTextColorWithColorString:(NSString *)colorString iconName:(NSString *)iconName{
     [self.label setTextColor:[UIColor colorWithHexString:colorString]];
@@ -36,7 +33,6 @@
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents{
     [self.button addTarget:target action:action forControlEvents:controlEvents];
 }
-
 
 - (void)setupUI{
     self.backgroundColor = [UIColor whiteColor];
@@ -60,7 +56,6 @@
         make.bottom.equalTo(self.mas_bottom);
         make.right.equalTo(self.mas_right);
     }];
-    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -76,10 +71,11 @@
     return self;
 }
 
+#pragma mark - getter
 - (UIImageView *)img{
     if (_img == nil) {
         _img = [UIImageView new];
-        _img.contentMode = UIViewContentModeScaleAspectFill;
+        _img.contentMode = UIViewContentModeScaleAspectFit;
         _img.clipsToBounds = YES;
     }
     return _img;

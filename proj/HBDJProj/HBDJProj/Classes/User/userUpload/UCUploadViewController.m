@@ -2,15 +2,19 @@
 //  UCUploadViewController.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/4/20.
+//  Created by Peanut Lee on 2018/5/2.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
 #import "UCUploadViewController.h"
-#import "UCPartyMemberStageController.h"
-#import "UCPartyMemberStageModel.h"
+#import "UCUploadCollectionViewFlowLayout.h"
 
-@interface UCUploadViewController ()
+@interface UCUploadViewController ()<
+UICollectionViewDelegate,
+UICollectionViewDataSource>
+@property (strong,nonatomic) UICollectionView *collectionView;
+@property (strong,nonatomic) UCUploadCollectionViewFlowLayout *flowLayout;
+@property (strong,nonatomic) NSArray *array;
 
 @end
 
@@ -18,35 +22,62 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configUI];
     
-    self.title = @"我的上传";
+}
+- (void)configUI{
     
-//    [self.segmentItems enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//        UCPartyMemberStageController *vc = (UCPartyMemberStageController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPartyMemberStageController"];
-//        [self addChildViewController:vc];
-//        CGFloat x = kScreenWidth * idx;
-//        vc.view.frame = CGRectMake(x, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
-//        [self.scrollView addSubview:vc.tableView];
-//
-//    }];
-//    [self.scrollView setContentSize:CGSizeMake(self.segmentItems.count * kScreenWidth, 0)];
+    /// 导航部分
+    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancelClick)];
+    self.navigationItem.leftBarButtonItem = cancel;
+    
+    UIButton *sendButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    [sendButton setTitle:@"发送" forState:UIControlStateNormal];
+    [sendButton setTitleColor:[UIColor EDJMainColor] forState:UIControlStateNormal];
+    sendButton.titleLabel.font = [UIFont fontWithName:textBold size:17];/// 加粗
+    UIBarButtonItem *send = [[UIBarButtonItem alloc] initWithCustomView:sendButton];
+    
+    self.navigationItem.rightBarButtonItem = send;
+    
+    /// 视图部分
+    [self.view addSubview:self.collectionView];
     
 }
 
-- (NSArray<NSDictionary *> *)segmentItems{
-    return @[@{LGSegmentItemNameKey:@"党员舞台",
-               LGSegmentItemViewControllerClassKey:@"UCPartyMemberStageController",
-               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeStoryboard
-               },
-             @{LGSegmentItemNameKey:@"思想汇报",
-               LGSegmentItemViewControllerClassKey:@"UCPartyMemberStageController",
-               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeStoryboard
-               },
-             @{LGSegmentItemNameKey:@"述廉报告",
-               LGSegmentItemViewControllerClassKey:@"UCPartyMemberStageController",
-               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeStoryboard
-               }];
+#pragma mark - delegaet & data source
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 5;//_array.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor randomColor];
+    return cell;
+}
+
+#pragma mark - target
+- (void)cancelClick{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)sendClick{
+    NSLog(@"发送 -- ");
+}
+
+#pragma mark - getter
+- (UICollectionView *)collectionView{
+    if (_collectionView == nil) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.flowLayout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    }
+    return _collectionView;
+}
+- (UCUploadCollectionViewFlowLayout *)flowLayout{
+    if (_flowLayout == nil) {
+        _flowLayout = [UCUploadCollectionViewFlowLayout new];
+    }
+    return _flowLayout;
 }
 
 @end

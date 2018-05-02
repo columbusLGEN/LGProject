@@ -13,11 +13,46 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="SGj-d1-7wK" customClass="HPPointNewsHeader">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="509" height="305"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="GG6-3X-ShB">
+                    <rect key="frame" x="0.0" y="0.0" width="509" height="305"/>
+                </imageView>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nm7-Sv-2C6">
+                    <rect key="frame" x="0.0" y="266" width="509" height="39"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国梦、我的梦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIJ-1Q-PrQ">
+                            <rect key="frame" x="20" y="10.5" width="107.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="rIJ-1Q-PrQ" firstAttribute="leading" secondItem="nm7-Sv-2C6" secondAttribute="leading" constant="20" id="Ary-oy-KzO"/>
+                        <constraint firstAttribute="height" constant="39" id="icd-yd-YdC"/>
+                        <constraint firstItem="rIJ-1Q-PrQ" firstAttribute="centerY" secondItem="nm7-Sv-2C6" secondAttribute="centerY" id="pkR-Oz-FPs"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="YJL-L5-Nc4" firstAttribute="bottom" secondItem="GG6-3X-ShB" secondAttribute="bottom" id="1Ae-6j-Tgn"/>
+                <constraint firstItem="GG6-3X-ShB" firstAttribute="top" secondItem="YJL-L5-Nc4" secondAttribute="top" id="4il-4X-jKn"/>
+                <constraint firstItem="nm7-Sv-2C6" firstAttribute="leading" secondItem="YJL-L5-Nc4" secondAttribute="leading" id="74v-Np-iy6"/>
+                <constraint firstItem="YJL-L5-Nc4" firstAttribute="trailing" secondItem="nm7-Sv-2C6" secondAttribute="trailing" id="7tQ-hH-Ym1"/>
+                <constraint firstItem="YJL-L5-Nc4" firstAttribute="trailing" secondItem="GG6-3X-ShB" secondAttribute="trailing" id="TtM-ke-jXZ"/>
+                <constraint firstItem="GG6-3X-ShB" firstAttribute="leading" secondItem="YJL-L5-Nc4" secondAttribute="leading" id="rCJ-x9-UIv"/>
+                <constraint firstItem="YJL-L5-Nc4" firstAttribute="bottom" secondItem="nm7-Sv-2C6" secondAttribute="bottom" id="yZm-vU-BW6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="YJL-L5-Nc4"/>
-            <point key="canvasLocation" x="-45" y="-54"/>
+            <point key="canvasLocation" x="21.5" y="-235.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="party_history" width="283" height="194"/>
+    </resources>
 </document>

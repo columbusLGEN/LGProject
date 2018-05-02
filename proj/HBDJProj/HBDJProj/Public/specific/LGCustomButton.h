@@ -7,25 +7,26 @@
 //
 
 // 详情页面底部自定义按钮
+/// UI结构：上imageView 下文字
 
 #import <UIKit/UIKit.h>
 
-@interface LGSpecificButton : UIView
+@interface LGCustomButton : UIView
 
-NS_ASSUME_NONNULL_BEGIN
+@property (strong,nonatomic) UIImageView *img;
+@property (strong,nonatomic) UILabel *label;
 
+/// 初始化
 - (void)setupWithImgName:(NSString *)imgName labelText:(NSString *)labelText labelTextColor:(NSString *)labelTextColor;
 
 /// button
 - (void)addTarget:(nullable id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
-@property (weak,nonatomic) NSString *bgColorStr;//
-
 - (void)modifyTextColorWithColorString:(NSString *)colorString iconName:(NSString *)iconName;
 
-NS_ASSUME_NONNULL_END
 
-@property (strong,nonatomic) UIButton *button;//
+@property (weak,nonatomic) NSString *bgColorStr;
+@property (strong,nonatomic) UIButton *button;
 @property (assign,nonatomic) NSInteger index;
 
 

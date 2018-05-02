@@ -9,7 +9,7 @@
 #import "EDJUserCenterViewController.h"
 #import "EDJUserCenterHomePageModel.h"
 #import "EDJUserCenterHomePageCell.h"
-#import "LGSpecificButton.h"
+#import "LGCustomButton.h"
 
 static NSString * const uchpCellReuseId = @"EDJUserCenterHomePageCell";
 
@@ -25,10 +25,10 @@ UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *userNick;
 @property (weak, nonatomic) IBOutlet UILabel *level;
 @property (weak, nonatomic) IBOutlet UIView *separatLine;
-@property (weak, nonatomic) IBOutlet LGSpecificButton *headerQuestion;
-@property (weak, nonatomic) IBOutlet LGSpecificButton *headerCollect;
-@property (weak, nonatomic) IBOutlet LGSpecificButton *headerUpload;
-@property (weak, nonatomic) IBOutlet LGSpecificButton *headerMsg;
+@property (weak, nonatomic) IBOutlet LGCustomButton *headerQuestion;
+@property (weak, nonatomic) IBOutlet LGCustomButton *headerCollect;
+@property (weak, nonatomic) IBOutlet LGCustomButton *headerUpload;
+@property (weak, nonatomic) IBOutlet LGCustomButton *headerMsg;
 
 
 @end
@@ -118,7 +118,7 @@ UITableViewDataSource>
         }
             break;
         case 2:{
-            [self lgPushViewControllerWithClassName:@"UCUploadViewController"];
+            [self lgPushViewControllerWithClassName:@"UCUploadHomePageViewController"];
         }
             break;
         case 3:{

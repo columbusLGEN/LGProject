@@ -1,5 +1,5 @@
 //
-//  UCUploadViewController.m
+//  LGSegmentViewController.m
 //  HBDJProj
 //
 //  Created by Peanut Lee on 2018/4/20.

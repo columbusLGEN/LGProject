@@ -10,6 +10,7 @@
 // MARK: 第三方
 #import <AFNetworking.h>
 #import <Masonry/Masonry.h>
+#import <UIImageView+WebCache.h>
 
 // MARK: LG
 #import "LGDefines.h"
