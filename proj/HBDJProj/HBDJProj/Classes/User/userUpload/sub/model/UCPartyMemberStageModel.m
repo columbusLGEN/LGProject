@@ -11,6 +11,6 @@
 @implementation UCPartyMemberStageModel
 
 - (NSInteger)imgCount{
-    return arc4random_uniform(3) + 1;
+    return 3;///arc4random_uniform(3) + 1;
 }
 @end

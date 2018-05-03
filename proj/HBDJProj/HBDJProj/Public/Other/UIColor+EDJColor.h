@@ -17,6 +17,8 @@
 + (UIColor *)EDJGrayscale_F3;
 + (UIColor *)EDJGrayscale_C6;
 + (UIColor *)EDJGrayscale_33;
++ (UIColor *)EDJGrayscale_66;
+
 + (UIColor *)EDJColor_9B1212;
 + (UIColor *)EDJColor_A2562C;
 + (UIColor *)EDJColor_FC774E;

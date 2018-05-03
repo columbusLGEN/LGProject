@@ -34,7 +34,7 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
-    self.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0];
+    self.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0];
     self.containerView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
 }
 

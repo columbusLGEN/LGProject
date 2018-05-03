@@ -8,10 +8,14 @@
 
 #import "UCUploadViewController.h"
 #import "UCUploadCollectionViewFlowLayout.h"
+#import "UCUploadHeaderFooterView.h"
+#import "UCUploadCollectionCell.h"
+#import "UCUploadModel.h"
 
 @interface UCUploadViewController ()<
 UICollectionViewDelegate,
-UICollectionViewDataSource>
+UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout>
 @property (strong,nonatomic) UICollectionView *collectionView;
 @property (strong,nonatomic) UCUploadCollectionViewFlowLayout *flowLayout;
 @property (strong,nonatomic) NSArray *array;
@@ -42,17 +46,73 @@ UICollectionViewDataSource>
     /// 视图部分
     [self.view addSubview:self.collectionView];
     
+    NSMutableArray *arrMu = [NSMutableArray new];
+    for (NSInteger i = 0; i < 5; i++) {
+        UCUploadModel *model = [UCUploadModel new];
+        model.additional = NO;
+        [arrMu addObject:model];
+    }
+    UCUploadModel *model = [UCUploadModel new];
+    model.additional = YES;
+    
+    [arrMu addObject:model];
+    
+    _array = arrMu.copy;
+    NSLog(@"viewdidlaod -- ");
+    [self.collectionView reloadData];
+    
 }
 
 #pragma mark - delegaet & data source
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 5;//_array.count;
+    return _array.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor randomColor];
+    UCUploadModel *model = _array[indexPath.row];
+    UCUploadCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    cell.model = model;
     return cell;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"添加或者更换图片 -- ");
+}
+
+/// MARK: collection view header & footer
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        UCUploadHeaderFooterView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerFooterID forIndexPath:indexPath];
+        if (self.uploadType == UploadTyleMemberStage) {
+            header.titleText = @"你的描述内容是";
+        }else{
+            header.titleText = @"你的标题是";
+        }
+        return header;
+    }
+    if (!(self.uploadType == UploadTyleMemberStage)) {
+        if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+            UCUploadHeaderFooterView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerFooterID forIndexPath:indexPath];
+            if (self.uploadType == UploadTyleMindReport) {
+                footer.titleText = @"你的思想汇报内容是";
+            }else{
+                footer.titleText = @"你的述职述廉内容是";
+            }
+            return footer;
+        }
+    }
+    return nil;
+}
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(kScreenWidth, 77);
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    if (!(self.uploadType == UploadTyleMemberStage)) {
+        return CGSizeMake(kScreenWidth, 77);
+    }
+    return CGSizeZero;
+}
+
+
 
 #pragma mark - target
 - (void)cancelClick{
@@ -69,7 +129,9 @@ UICollectionViewDataSource>
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        [_collectionView registerClass:[UCUploadHeaderFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerFooterID];
+        [_collectionView registerClass:[UCUploadHeaderFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:headerFooterID];
+        [_collectionView registerClass:[UCUploadCollectionCell class] forCellWithReuseIdentifier:cellID];
     }
     return _collectionView;
 }

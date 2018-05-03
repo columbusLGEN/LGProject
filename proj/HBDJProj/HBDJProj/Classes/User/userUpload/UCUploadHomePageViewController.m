@@ -58,17 +58,17 @@ UCMemberStageTransitionViewDelegate
             }
             mstView.frame = CGRectMake(0, -kStatusBarHeight, kScreenWidth, mstH);
 //            [self.view addSubview:mstView];
-            /// TODO: 暂时加到 keywindow上，不是最优解，最好还是加到 self.view 上
+            /// TODO:添加到self.view上 无法遮挡导航栏，所以 暂时加到 keywindow上，不是最优解
             [[UIApplication sharedApplication].keyWindow addSubview:mstView];
 
         }
             break;
         case UploadTransitionActionMindReport:{
-            NSLog(@"思想汇报 -- ");
+            [self editToUploadWithType:UploadTyleMindReport];
         }
             break;
         case UploadTransitionActionSpeakCheap:{
-            NSLog(@"述职述廉 -- ");
+            [self editToUploadWithType:UploadTyleSpeakCheap];
         }
             break;
         
@@ -84,11 +84,8 @@ UCMemberStageTransitionViewDelegate
     NSLog(@"action -- %ld",action);
     [mstView removeFromSuperview];
     mstView = nil;
-    UCUploadViewController *upvc = [UCUploadViewController new];
-    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:upvc];
-    [self presentViewController:nav animated:YES completion:nil];
+    [self editToUploadWithType:UploadTyleMemberStage];
 }
-
 
 #pragma mark - target
 - (void)navDeleteClick{
@@ -119,6 +116,14 @@ UCMemberStageTransitionViewDelegate
                LGSegmentItemViewControllerClassKey:@"UCPartyMemberStageController",
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeStoryboard
                }];
+}
+
+#pragma mark - 私有方法
+- (void)editToUploadWithType:(UploadTyle)uploadType{
+    UCUploadViewController *upvc = [UCUploadViewController new];
+    upvc.uploadType = uploadType;
+    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:upvc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 @end

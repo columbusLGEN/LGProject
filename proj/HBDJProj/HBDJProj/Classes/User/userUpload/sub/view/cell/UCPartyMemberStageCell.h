@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 该cell位于 storyboard中
+
 #import "LGBaseTableViewCell.h"
 @class UCPartyMemberStageModel;
 

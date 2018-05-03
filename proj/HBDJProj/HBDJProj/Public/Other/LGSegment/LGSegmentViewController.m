@@ -18,12 +18,6 @@ LGSegmentViewDelegate
 
 @implementation LGSegmentViewController
 
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    NSLog(@"viewDidLayoutSubviews -- ");
-}
-
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];

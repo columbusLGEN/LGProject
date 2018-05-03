@@ -8,6 +8,13 @@
 
 #import "LGBaseViewController.h"
 
+typedef NS_ENUM(NSUInteger, UploadTyle) {
+    UploadTyleMemberStage,
+    UploadTyleMindReport,
+    UploadTyleSpeakCheap,
+};
+
 @interface UCUploadViewController : LGBaseViewController
+@property (assign,nonatomic) UploadTyle uploadType;
 
 @end

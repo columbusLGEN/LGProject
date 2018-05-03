@@ -184,6 +184,9 @@
 		88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */; };
 		88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */; };
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
+		88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */; };
+		88FE6899209AA26B008C28A0 /* UCUploadCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6898209AA26B008C28A0 /* UCUploadCollectionCell.m */; };
+		88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE689B209AA604008C28A0 /* UCUploadModel.m */; };
 		C0720625B915A7E18499AE5F /* Pods_HBDJProjTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF050835017E753BB5C873ED /* Pods_HBDJProjTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -531,6 +534,12 @@
 		88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolHeader.m; sourceTree = "<group>"; };
 		88D13C7420907A3700A32236 /* OLAddMoreToolFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreToolFooter.h; sourceTree = "<group>"; };
 		88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolFooter.m; sourceTree = "<group>"; };
+		88FE6891209A9B76008C28A0 /* UCUploadHeaderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadHeaderFooterView.h; sourceTree = "<group>"; };
+		88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadHeaderFooterView.m; sourceTree = "<group>"; };
+		88FE6897209AA26B008C28A0 /* UCUploadCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadCollectionCell.h; sourceTree = "<group>"; };
+		88FE6898209AA26B008C28A0 /* UCUploadCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadCollectionCell.m; sourceTree = "<group>"; };
+		88FE689A209AA604008C28A0 /* UCUploadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadModel.h; sourceTree = "<group>"; };
+		88FE689B209AA604008C28A0 /* UCUploadModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadModel.m; sourceTree = "<group>"; };
 		A115F1196D08C530AC251368 /* Pods_HBDJProjUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HBDJProjUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF050835017E753BB5C873ED /* Pods_HBDJProjTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HBDJProjTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1208,8 +1217,8 @@
 				884312F82089C82800321F84 /* UCUploadHomePageViewController.m */,
 				889E7DC72099B19F00BB9084 /* UCUploadViewController.h */,
 				889E7DC82099B19F00BB9084 /* UCUploadViewController.m */,
-				889E7DCA2099BAF400BB9084 /* other */,
 				889E7DCE2099BC0F00BB9084 /* uploadView&Model */,
+				889E7DCA2099BAF400BB9084 /* other */,
 				88435E93208DCE7B00188CE9 /* sub */,
 			);
 			path = userUpload;
@@ -1387,6 +1396,12 @@
 		889E7DCE2099BC0F00BB9084 /* uploadView&Model */ = {
 			isa = PBXGroup;
 			children = (
+				88FE6891209A9B76008C28A0 /* UCUploadHeaderFooterView.h */,
+				88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */,
+				88FE6897209AA26B008C28A0 /* UCUploadCollectionCell.h */,
+				88FE6898209AA26B008C28A0 /* UCUploadCollectionCell.m */,
+				88FE689A209AA604008C28A0 /* UCUploadModel.h */,
+				88FE689B209AA604008C28A0 /* UCUploadModel.m */,
 			);
 			path = "uploadView&Model";
 			sourceTree = "<group>";
@@ -2008,6 +2023,7 @@
 				884312C1208733F400321F84 /* EDJConfirmPwdViewController.m in Sources */,
 				88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */,
 				88A47113207DBE33002F93E0 /* EDJMicroBuildThreeImgCell.m in Sources */,
+				88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */,
 				8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */,
 				8835B2C120720A1800722010 /* LGBaseView.m in Sources */,
 				8831E1A72094701C001D038E /* HPPointNewsTableViewCell.m in Sources */,
@@ -2056,6 +2072,7 @@
 				884312D420873B2800321F84 /* UCSettingViewController.m in Sources */,
 				8831E18720941985001D038E /* DCSubStageThreeImgCell.m in Sources */,
 				8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */,
+				88FE6899209AA26B008C28A0 /* UCUploadCollectionCell.m in Sources */,
 				8835B2CA20720B0200722010 /* EDJDiscoveryController.m in Sources */,
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
 				881C94D02068ECF3009D6A52 /* NSString+Extension.m in Sources */,
@@ -2074,6 +2091,7 @@
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
 				88435E82208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m in Sources */,
 				8835B2EC20720D6000722010 /* EDJHomeViewController.m in Sources */,
+				88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */,
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,
 				8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
