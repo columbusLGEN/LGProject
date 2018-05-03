@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OLPayPartyChargeTableViewCell" rowHeight="132" id="khx-g5-WCH" customClass="OLPayPartyChargeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="477" height="132"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="khx-g5-WCH" id="VOB-w7-lR4">
+                <rect key="frame" x="0.0" y="0.0" width="477" height="131.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已交" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sch-Sd-YzM">
+                        <rect key="frame" x="427" y="55" width="35" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ol_pay_party_fee" translatesAutoresizingMaskIntoConstraints="NO" id="353-mV-w4s">
+                        <rect key="frame" x="15" y="53.5" width="26" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="4NV-24-kCO"/>
+                            <constraint firstAttribute="width" constant="26" id="PfF-xH-ouV"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdJ-KW-h1c">
+                        <rect key="frame" x="0.0" y="130.5" width="477" height="1"/>
+                        <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="8eU-ba-Ic9"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018年3月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TM0-rM-Ih0">
+                        <rect key="frame" x="51" y="55" width="83.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="sdJ-KW-h1c" secondAttribute="bottom" id="7Rz-TF-OLN"/>
+                    <constraint firstAttribute="trailing" secondItem="Sch-Sd-YzM" secondAttribute="trailing" constant="15" id="EAh-Ma-gOj"/>
+                    <constraint firstItem="Sch-Sd-YzM" firstAttribute="centerY" secondItem="VOB-w7-lR4" secondAttribute="centerY" id="ENO-Oc-2NY"/>
+                    <constraint firstAttribute="trailing" secondItem="sdJ-KW-h1c" secondAttribute="trailing" id="VoV-Pi-eDc"/>
+                    <constraint firstItem="TM0-rM-Ih0" firstAttribute="centerY" secondItem="Sch-Sd-YzM" secondAttribute="centerY" id="bTd-Rl-Erx"/>
+                    <constraint firstItem="353-mV-w4s" firstAttribute="leading" secondItem="VOB-w7-lR4" secondAttribute="leading" constant="15" id="c4h-De-1nE"/>
+                    <constraint firstItem="353-mV-w4s" firstAttribute="centerY" secondItem="Sch-Sd-YzM" secondAttribute="centerY" id="hOn-50-eTd"/>
+                    <constraint firstItem="TM0-rM-Ih0" firstAttribute="leading" secondItem="353-mV-w4s" secondAttribute="trailing" constant="10" id="mEe-Zq-Tog"/>
+                    <constraint firstItem="sdJ-KW-h1c" firstAttribute="leading" secondItem="VOB-w7-lR4" secondAttribute="leading" id="rRg-J5-dnU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="status" destination="Sch-Sd-YzM" id="rY0-QZ-Rdz"/>
+                <outlet property="time" destination="TM0-rM-Ih0" id="yI5-J1-bTb"/>
+            </connections>
+            <point key="canvasLocation" x="-103.5" y="18"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ol_pay_party_fee" width="25" height="23"/>
+    </resources>
+</document>

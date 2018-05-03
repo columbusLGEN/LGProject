@@ -8,8 +8,19 @@
 
 #import "LGBaseModel.h"
 
+typedef NS_ENUM(NSUInteger, OnlineModelType) {
+    OnlineModelTypeThreeMeetings,
+    OnlineModelTypeThemePartyDay,
+    OnlineModelTypeMindReport,
+    OnlineModelTypeKnowleageTest,
+    OnlineModelTypeSpeakCheap,
+    OnlineModelTypePayPartyFee,
+    OnlineModelTypeVote
+};
+
 @interface OLHomeModel : LGBaseModel
 @property (copy,nonatomic) NSString *imgName;
 @property (copy,nonatomic) NSString *title;
+@property (assign,nonatomic) OnlineModelType modelType;
 
 @end

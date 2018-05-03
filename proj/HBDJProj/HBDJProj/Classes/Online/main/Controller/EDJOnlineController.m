@@ -45,8 +45,6 @@ UICollectionViewDataSource>
 }
 
 #pragma mark - UICollectionViewDelegate
-
-
 - (UICollectionView *)collectionView{
     if (_collectionView == nil) {
         CGRect frame = CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - kNavHeight);

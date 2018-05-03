@@ -10,6 +10,9 @@
 #import "LGNavigationSearchBar.h"
 #import "EDJOnlineController.h"
 #import <Online/addMoreTool/controller/OLAddMoreToolViewController.h>
+#import "OLMindReportViewController.h"
+#import "OLHomeModel.h"
+#import "OLSkipObject.h"
 
 static CGFloat headLineHeight = 233;
 
@@ -39,15 +42,20 @@ static CGFloat headLineHeight = 233;
     
 }
 
+#pragma mark - delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    OLHomeModel *model = self.onlineController.onlineModels[indexPath.row];
     if (indexPath.item == self.onlineController.onlineModels.count - 1) {
         /// 跳转至 添加更多工具
         OLAddMoreToolViewController *vc = [OLAddMoreToolViewController new];
-        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;/// 保留当前的上下文.即半透明看到父控制器效果
+        vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
         vc.pushWay = LGBaseViewControllerPushWayModal;
         [self presentViewController:vc animated:YES completion:nil];
-        
     }else{
+//        OLMindReportViewController *vc = [OLMindReportViewController new];
+//        vc.title = model.title;
+//        [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController pushViewController:[OLSkipObject viewControllerWithOLHomeModelType:model] animated:YES];
         
     }
 }

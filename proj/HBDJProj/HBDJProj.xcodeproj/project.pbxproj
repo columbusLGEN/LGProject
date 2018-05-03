@@ -187,6 +187,19 @@
 		88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */; };
 		88FE6899209AA26B008C28A0 /* UCUploadCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6898209AA26B008C28A0 /* UCUploadCollectionCell.m */; };
 		88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE689B209AA604008C28A0 /* UCUploadModel.m */; };
+		88FE68A0209ABD0A008C28A0 /* OLMindReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE689F209ABD0A008C28A0 /* OLMindReportViewController.m */; };
+		88FE68A3209ABD31008C28A0 /* OLMindReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68A2209ABD31008C28A0 /* OLMindReportTableViewCell.m */; };
+		88FE68A5209ABD39008C28A0 /* OLMindReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FE68A4209ABD39008C28A0 /* OLMindReportTableViewCell.xib */; };
+		88FE68A8209ABD60008C28A0 /* OLMindReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68A7209ABD60008C28A0 /* OLMindReportModel.m */; };
+		88FE68AB209AF777008C28A0 /* OLSkipObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68AA209AF777008C28A0 /* OLSkipObject.m */; };
+		88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68AE209AFAE3008C28A0 /* OLPayPartyChargeViewController.m */; };
+		88FE68B2209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68B1209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m */; };
+		88FE68B4209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FE68B3209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib */; };
+		88FE68B7209AFB40008C28A0 /* OLPayPartyChargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68B6209AFB40008C28A0 /* OLPayPartyChargeModel.m */; };
+		88FE68BC209B05F5008C28A0 /* OLVoteListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68BB209B05F5008C28A0 /* OLVoteListController.m */; };
+		88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68BE209B0628008C28A0 /* OLVoteListModel.m */; };
+		88FE68C2209B0690008C28A0 /* OLVoteListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68C1209B0690008C28A0 /* OLVoteListTableViewCell.m */; };
+		88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FE68C3209B0696008C28A0 /* OLVoteListTableViewCell.xib */; };
 		C0720625B915A7E18499AE5F /* Pods_HBDJProjTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF050835017E753BB5C873ED /* Pods_HBDJProjTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -540,6 +553,29 @@
 		88FE6898209AA26B008C28A0 /* UCUploadCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadCollectionCell.m; sourceTree = "<group>"; };
 		88FE689A209AA604008C28A0 /* UCUploadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadModel.h; sourceTree = "<group>"; };
 		88FE689B209AA604008C28A0 /* UCUploadModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadModel.m; sourceTree = "<group>"; };
+		88FE689E209ABD0A008C28A0 /* OLMindReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLMindReportViewController.h; sourceTree = "<group>"; };
+		88FE689F209ABD0A008C28A0 /* OLMindReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLMindReportViewController.m; sourceTree = "<group>"; };
+		88FE68A1209ABD31008C28A0 /* OLMindReportTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLMindReportTableViewCell.h; sourceTree = "<group>"; };
+		88FE68A2209ABD31008C28A0 /* OLMindReportTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLMindReportTableViewCell.m; sourceTree = "<group>"; };
+		88FE68A4209ABD39008C28A0 /* OLMindReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLMindReportTableViewCell.xib; sourceTree = "<group>"; };
+		88FE68A6209ABD60008C28A0 /* OLMindReportModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLMindReportModel.h; sourceTree = "<group>"; };
+		88FE68A7209ABD60008C28A0 /* OLMindReportModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLMindReportModel.m; sourceTree = "<group>"; };
+		88FE68A9209AF777008C28A0 /* OLSkipObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLSkipObject.h; sourceTree = "<group>"; };
+		88FE68AA209AF777008C28A0 /* OLSkipObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLSkipObject.m; sourceTree = "<group>"; };
+		88FE68AD209AFAE3008C28A0 /* OLPayPartyChargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLPayPartyChargeViewController.h; sourceTree = "<group>"; };
+		88FE68AE209AFAE3008C28A0 /* OLPayPartyChargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLPayPartyChargeViewController.m; sourceTree = "<group>"; };
+		88FE68B0209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLPayPartyChargeTableViewCell.h; sourceTree = "<group>"; };
+		88FE68B1209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLPayPartyChargeTableViewCell.m; sourceTree = "<group>"; };
+		88FE68B3209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLPayPartyChargeTableViewCell.xib; sourceTree = "<group>"; };
+		88FE68B5209AFB40008C28A0 /* OLPayPartyChargeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLPayPartyChargeModel.h; sourceTree = "<group>"; };
+		88FE68B6209AFB40008C28A0 /* OLPayPartyChargeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLPayPartyChargeModel.m; sourceTree = "<group>"; };
+		88FE68BA209B05F5008C28A0 /* OLVoteListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteListController.h; sourceTree = "<group>"; };
+		88FE68BB209B05F5008C28A0 /* OLVoteListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteListController.m; sourceTree = "<group>"; };
+		88FE68BD209B0628008C28A0 /* OLVoteListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteListModel.h; sourceTree = "<group>"; };
+		88FE68BE209B0628008C28A0 /* OLVoteListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteListModel.m; sourceTree = "<group>"; };
+		88FE68C0209B0690008C28A0 /* OLVoteListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteListTableViewCell.h; sourceTree = "<group>"; };
+		88FE68C1209B0690008C28A0 /* OLVoteListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteListTableViewCell.m; sourceTree = "<group>"; };
+		88FE68C3209B0696008C28A0 /* OLVoteListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLVoteListTableViewCell.xib; sourceTree = "<group>"; };
 		A115F1196D08C530AC251368 /* Pods_HBDJProjUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HBDJProjUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF050835017E753BB5C873ED /* Pods_HBDJProjTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HBDJProjTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -832,6 +868,9 @@
 		881C94EB2068F36D009D6A52 /* Online */ = {
 			isa = PBXGroup;
 			children = (
+				88FE68B8209B05BD008C28A0 /* vote */,
+				88FE68AC209AFAA7008C28A0 /* payPartyCharge */,
+				88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */,
 				88D13C652090635F00A32236 /* addMoreTool */,
 				88D13C642090634C00A32236 /* main */,
 			);
@@ -1440,6 +1479,8 @@
 				88A47126207DF94C002F93E0 /* EDJOnlineFlowLayout.h */,
 				88A47127207DF94C002F93E0 /* EDJOnlineFlowLayout.m */,
 				88D13C622090597F00A32236 /* OLHomeItems.plist */,
+				88FE68A9209AF777008C28A0 /* OLSkipObject.h */,
+				88FE68AA209AF777008C28A0 /* OLSkipObject.m */,
 			);
 			path = Ohter;
 			sourceTree = "<group>";
@@ -1659,6 +1700,56 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */ = {
+			isa = PBXGroup;
+			children = (
+				88FE689E209ABD0A008C28A0 /* OLMindReportViewController.h */,
+				88FE689F209ABD0A008C28A0 /* OLMindReportViewController.m */,
+				88FE68A1209ABD31008C28A0 /* OLMindReportTableViewCell.h */,
+				88FE68A2209ABD31008C28A0 /* OLMindReportTableViewCell.m */,
+				88FE68A4209ABD39008C28A0 /* OLMindReportTableViewCell.xib */,
+				88FE68A6209ABD60008C28A0 /* OLMindReportModel.h */,
+				88FE68A7209ABD60008C28A0 /* OLMindReportModel.m */,
+			);
+			path = "mindRepotr&themeParty";
+			sourceTree = "<group>";
+		};
+		88FE68AC209AFAA7008C28A0 /* payPartyCharge */ = {
+			isa = PBXGroup;
+			children = (
+				88FE68AD209AFAE3008C28A0 /* OLPayPartyChargeViewController.h */,
+				88FE68AE209AFAE3008C28A0 /* OLPayPartyChargeViewController.m */,
+				88FE68B0209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.h */,
+				88FE68B1209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m */,
+				88FE68B3209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib */,
+				88FE68B5209AFB40008C28A0 /* OLPayPartyChargeModel.h */,
+				88FE68B6209AFB40008C28A0 /* OLPayPartyChargeModel.m */,
+			);
+			path = payPartyCharge;
+			sourceTree = "<group>";
+		};
+		88FE68B8209B05BD008C28A0 /* vote */ = {
+			isa = PBXGroup;
+			children = (
+				88FE68B9209B05CA008C28A0 /* list */,
+			);
+			path = vote;
+			sourceTree = "<group>";
+		};
+		88FE68B9209B05CA008C28A0 /* list */ = {
+			isa = PBXGroup;
+			children = (
+				88FE68BA209B05F5008C28A0 /* OLVoteListController.h */,
+				88FE68BB209B05F5008C28A0 /* OLVoteListController.m */,
+				88FE68BD209B0628008C28A0 /* OLVoteListModel.h */,
+				88FE68BE209B0628008C28A0 /* OLVoteListModel.m */,
+				88FE68C0209B0690008C28A0 /* OLVoteListTableViewCell.h */,
+				88FE68C1209B0690008C28A0 /* OLVoteListTableViewCell.m */,
+				88FE68C3209B0696008C28A0 /* OLVoteListTableViewCell.xib */,
+			);
+			path = list;
+			sourceTree = "<group>";
+		};
 		DE454A27ADB38385BB3B899B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1792,6 +1883,7 @@
 				88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */,
 				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
 				8831E16920940131001D038E /* DCSubPartStateOneImgCell.xib in Resources */,
+				88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */,
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
 				8831E18920941998001D038E /* DCSubStageThreeImgCell.xib in Resources */,
 				88D13C3E209022F900A32236 /* EDJSearchTagHeader.xib in Resources */,
@@ -1799,6 +1891,7 @@
 				88A47137207F06D3002F93E0 /* UserCenterHomeForm.plist in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
 				88435E84208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib in Resources */,
+				88FE68B4209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib in Resources */,
 				88A4712A207E02D4002F93E0 /* UserCenter.storyboard in Resources */,
 				884312AB2086F2D400321F84 /* EDJLeverInfoHeader.xib in Resources */,
 				88A4711A207DDCCA002F93E0 /* EDJMicroPartyLessonHeaderCell.xib in Resources */,
@@ -1812,6 +1905,7 @@
 				8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */,
 				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
 				889E7DBD20998DD200BB9084 /* UCUploadTransitionView.xib in Resources */,
+				88FE68A5209ABD39008C28A0 /* OLMindReportTableViewCell.xib in Resources */,
 				88435E92208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib in Resources */,
 				88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */,
 				88435E75208D6DF400188CE9 /* UCQuestionTableViewCell.xib in Resources */,
@@ -2034,6 +2128,7 @@
 				88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */,
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
+				88FE68A0209ABD0A008C28A0 /* OLMindReportViewController.m in Sources */,
 				88D13C39209015C100A32236 /* EDJSearchTagCollectionViewFlowLayout.m in Sources */,
 				8831E1AC20947040001D038E /* HPPointNewsModel.m in Sources */,
 				88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */,
@@ -2050,6 +2145,7 @@
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				881C94E12068ED10009D6A52 /* LIGNetworkConfig.m in Sources */,
 				88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */,
+				88FE68BC209B05F5008C28A0 /* OLVoteListController.m in Sources */,
 				884312E32089879C00321F84 /* UCHelpFadebackTableViewCell.m in Sources */,
 				88A470FD207C8CBD002F93E0 /* EDJMicroPSCellHeader.m in Sources */,
 				884312C8208737EF00321F84 /* UCMsgModel.m in Sources */,
@@ -2059,6 +2155,7 @@
 				884312DC2087402200321F84 /* UCSettingModel.m in Sources */,
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
+				88FE68B2209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m in Sources */,
 				88A470FA207C8615002F93E0 /* LGImageView.m in Sources */,
 				8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */,
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
@@ -2086,6 +2183,7 @@
 				884312C5208737BF00321F84 /* UCMsgTableViewController.m in Sources */,
 				889E7DC02099969A00BB9084 /* UCMemberStageTransitionView.m in Sources */,
 				884312CB2087380700321F84 /* UCMsgTableViewCell.m in Sources */,
+				88FE68A8209ABD60008C28A0 /* OLMindReportModel.m in Sources */,
 				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
 				88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
@@ -2095,6 +2193,7 @@
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,
 				8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
+				88FE68AB209AF777008C28A0 /* OLSkipObject.m in Sources */,
 				881C94D12068ECF3009D6A52 /* UIColor+Extension.m in Sources */,
 				8831E1AF20947079001D038E /* HPPointNewsHeader.m in Sources */,
 				88A47118207DDCC3002F93E0 /* EDJMicroPartyLessonHeaderCell.m in Sources */,
@@ -2107,6 +2206,7 @@
 				88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */,
 				8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */,
 				88D13C5C2090583D00A32236 /* OLHomeModel.m in Sources */,
+				88FE68B7209AFB40008C28A0 /* OLPayPartyChargeModel.m in Sources */,
 				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				88D13C5F2090585F00A32236 /* OLHomeCollectionCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
@@ -2137,6 +2237,7 @@
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
 				8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */,
+				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,
 				8835B3172072189D00722010 /* LGBaseButton.m in Sources */,
@@ -2144,6 +2245,7 @@
 				88D13C2A2090138100A32236 /* EDJSearchTagModel.m in Sources */,
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
+				88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */,
 				884312EC2089BC7D00321F84 /* UCMyFeedbackViewController.m in Sources */,
 				88D13C30209013EB00A32236 /* LGBaseCollectionViewCell.m in Sources */,
 				884311F12084B80C00321F84 /* LGSegmentControl.m in Sources */,
@@ -2153,9 +2255,11 @@
 				88A47123207DF342002F93E0 /* EDJOnlineViewController.m in Sources */,
 				884312A82086ED1200321F84 /* EDJLevelInfoFlowLayout.m in Sources */,
 				8835B2E920720CD800722010 /* LIGObject.m in Sources */,
+				88FE68C2209B0690008C28A0 /* OLVoteListTableViewCell.m in Sources */,
 				8835B314207216DB00722010 /* LGNavigationSearchBar.m in Sources */,
 				88D13C3C209022EF00A32236 /* EDJSearchTagHeader.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,
+				88FE68A3209ABD31008C28A0 /* OLMindReportTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

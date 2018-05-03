@@ -3,18 +3,24 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>modelType</key>
+		<integer>4</integer>
 		<key>title</key>
 		<string>述职述廉</string>
 		<key>imgName</key>
 		<string>ol_report_cheap</string>
 	</dict>
 	<dict>
+		<key>modelType</key>
+		<integer>5</integer>
 		<key>title</key>
 		<string>党费缴纳</string>
 		<key>imgName</key>
 		<string>ol_party_fee_payment</string>
 	</dict>
 	<dict>
+		<key>modelType</key>
+		<integer>6</integer>
 		<key>title</key>
 		<string>在线投票</string>
 		<key>imgName</key>

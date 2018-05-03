@@ -12,6 +12,8 @@
 #import "OLHomeModel.h"
 #import "OLAddMoreToolHeader.h"
 #import "OLAddMoreToolFooter.h"
+#import "OLSkipObject.h"
+#import "LGBaseNavigationController.h"/// testcode
 
 static NSString * const onlinCell = @"OLHomeCollectionCell";
 static NSString * const headerReuseID = @"OLAddMoreToolHeader";
@@ -60,7 +62,6 @@ UICollectionViewDelegateFlowLayout>
 - (void)configUI{
     self.view.backgroundColor = [UIColor clearColor];
     
-    
     [self.view addSubview:self.midView];
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.fakeFooter];
@@ -93,7 +94,7 @@ UICollectionViewDelegateFlowLayout>
         make.height.mas_equalTo(footerHeight);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-kTabBarHeight);
+        make.bottom.equalTo(self.view.mas_bottom);///.offset(-kTabBarHeight);
     }];
     
     _array = [OLHomeModel loadLocalPlistWithPlistName:@"OLAddMoreTool"];
@@ -110,6 +111,13 @@ UICollectionViewDelegateFlowLayout>
     cell.model = model;
     return cell;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    OLHomeModel *model = self.array[indexPath.row];
+    LGBaseViewController *vc = (LGBaseViewController *)[OLSkipObject viewControllerWithOLHomeModelType:model];
+    vc.pushWay = LGBaseViewControllerPushWayModal;
+    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:vc];
+    [self showViewController:nav sender:nil];
+}
 
 #pragma mark - header & footer
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -117,10 +125,10 @@ UICollectionViewDelegateFlowLayout>
         OLAddMoreToolHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseID forIndexPath:indexPath];
         return header;
     }
-    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+//    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
 //        OLAddMoreToolFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerReuseID forIndexPath:indexPath];
 //        return footer;
-    }
+//    }
     return nil;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
@@ -171,7 +179,6 @@ UICollectionViewDelegateFlowLayout>
         _collectionView.dataSource = self;
         [_collectionView registerNib:[UINib nibWithNibName:onlinCell bundle:nil] forCellWithReuseIdentifier:onlinCell];
         [_collectionView registerClass:[OLAddMoreToolHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseID];
-//        [_collectionView registerClass:[OLAddMoreToolFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerReuseID];
     }
     return _collectionView;
 }
@@ -184,6 +191,7 @@ UICollectionViewDelegateFlowLayout>
 - (OLAddMoreToolFooter *)fakeFooter{
     if (_fakeFooter == nil) {
         _fakeFooter = [OLAddMoreToolFooter new];
+        _fakeFooter.backgroundColor = [UIColor whiteColor];
     }
     return _fakeFooter;
 }
