@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OLVoteDetailVotedTableViewCell" rowHeight="117" id="z1e-e3-4ar" customClass="OLVoteDetailVotedTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="464" height="117"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z1e-e3-4ar" id="auk-8x-VeD">
+                <rect key="frame" x="0.0" y="0.0" width="464" height="116.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;争当八先锋&quot;主题教育活动" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoM-E7-n6t">
+                        <rect key="frame" x="15" y="20" width="369" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6UK-ZG-0Vr">
+                        <rect key="frame" x="15" y="78" width="369" height="8"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="8" id="jmZ-qS-XWW"/>
+                        </constraints>
+                    </progressView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSI-GD-qTY">
+                        <rect key="frame" x="417.5" y="73" width="31.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnL-F4-NnL">
+                        <rect key="frame" x="0.0" y="111.5" width="464" height="5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="9SX-qa-ciA"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gSI-GD-qTY" secondAttribute="trailing" constant="15" id="BiT-zA-6p7"/>
+                    <constraint firstItem="LoM-E7-n6t" firstAttribute="leading" secondItem="auk-8x-VeD" secondAttribute="leading" constant="15" id="Hti-7c-2He"/>
+                    <constraint firstAttribute="bottom" secondItem="vnL-F4-NnL" secondAttribute="bottom" id="WhI-m7-rgS"/>
+                    <constraint firstItem="LoM-E7-n6t" firstAttribute="top" secondItem="auk-8x-VeD" secondAttribute="top" constant="20" id="cON-gl-2fu"/>
+                    <constraint firstItem="gSI-GD-qTY" firstAttribute="centerY" secondItem="6UK-ZG-0Vr" secondAttribute="centerY" id="gNt-V2-R3f"/>
+                    <constraint firstItem="6UK-ZG-0Vr" firstAttribute="trailing" secondItem="LoM-E7-n6t" secondAttribute="trailing" id="oLh-0d-QhT"/>
+                    <constraint firstItem="6UK-ZG-0Vr" firstAttribute="leading" secondItem="LoM-E7-n6t" secondAttribute="leading" id="pVi-in-LWs"/>
+                    <constraint firstItem="vnL-F4-NnL" firstAttribute="centerX" secondItem="auk-8x-VeD" secondAttribute="centerX" id="s6c-Jm-o6c"/>
+                    <constraint firstItem="vnL-F4-NnL" firstAttribute="width" secondItem="auk-8x-VeD" secondAttribute="width" id="uYO-E8-Bif"/>
+                    <constraint firstAttribute="trailing" secondItem="LoM-E7-n6t" secondAttribute="trailing" constant="80" id="un6-j0-cVZ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="6UK-ZG-0Vr" secondAttribute="bottom" constant="20" id="xpE-tL-5dh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="content" destination="LoM-E7-n6t" id="JV8-Y6-syM"/>
+                <outlet property="voteCount" destination="gSI-GD-qTY" id="Gwb-lV-6K7"/>
+                <outlet property="voteRate" destination="6UK-ZG-0Vr" id="Olb-jJ-kx9"/>
+            </connections>
+            <point key="canvasLocation" x="12" y="23.5"/>
+        </tableViewCell>
+    </objects>
+</document>

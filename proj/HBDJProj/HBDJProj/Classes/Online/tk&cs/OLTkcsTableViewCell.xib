@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OLTkcsTableViewCell" rowHeight="81" id="N3P-kH-c1I" customClass="OLTkcsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="523" height="81"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N3P-kH-c1I" id="jci-nk-5Jj">
+                <rect key="frame" x="0.0" y="0.0" width="523" height="80.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSk-vy-fyF">
+                        <rect key="frame" x="44" y="30" width="38.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="277" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIJ-3y-emY">
+                        <rect key="frame" x="479" y="30" width="29" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ol_tkcs_cell_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-Cb-2vo">
+                        <rect key="frame" x="15" y="28.5" width="19" height="24"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCK-Gk-Zl7">
+                        <rect key="frame" x="15" y="79" width="493" height="1"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="VPo-5g-XPa"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="MIJ-3y-emY" secondAttribute="trailing" constant="15" id="09f-H1-1Zr"/>
+                    <constraint firstItem="HCK-Gk-Zl7" firstAttribute="width" secondItem="jci-nk-5Jj" secondAttribute="width" constant="-30" id="7C7-Ja-lC2"/>
+                    <constraint firstItem="XSk-vy-fyF" firstAttribute="centerY" secondItem="jci-nk-5Jj" secondAttribute="centerY" id="As0-oS-l5e"/>
+                    <constraint firstItem="MIJ-3y-emY" firstAttribute="centerY" secondItem="jci-nk-5Jj" secondAttribute="centerY" id="BKH-uO-teo"/>
+                    <constraint firstAttribute="bottom" secondItem="HCK-Gk-Zl7" secondAttribute="bottom" id="QvO-p6-xEN"/>
+                    <constraint firstItem="mtr-Cb-2vo" firstAttribute="centerY" secondItem="jci-nk-5Jj" secondAttribute="centerY" id="UFH-ie-elX"/>
+                    <constraint firstItem="XSk-vy-fyF" firstAttribute="leading" secondItem="mtr-Cb-2vo" secondAttribute="trailing" constant="10" id="grD-db-ry1"/>
+                    <constraint firstItem="mtr-Cb-2vo" firstAttribute="leading" secondItem="jci-nk-5Jj" secondAttribute="leading" constant="15" id="nbd-dk-71r"/>
+                    <constraint firstItem="HCK-Gk-Zl7" firstAttribute="centerX" secondItem="jci-nk-5Jj" secondAttribute="centerX" id="nka-HZ-mbi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="count" destination="MIJ-3y-emY" id="PkQ-ks-T39"/>
+                <outlet property="title" destination="XSk-vy-fyF" id="iHu-o0-g7K"/>
+            </connections>
+            <point key="canvasLocation" x="-103.5" y="107.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ol_tkcs_cell_icon" width="19" height="24"/>
+    </resources>
+</document>

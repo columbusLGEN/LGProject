@@ -22,7 +22,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     
     NSMutableArray *arrMu = [NSMutableArray new];
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < 20; i++) {
         OLPayPartyChargeModel *model = [OLPayPartyChargeModel new];
         model.testTime = [NSString stringWithFormat:@"2017年%ld月",i + arc4random_uniform(3)];
         model.isPay = (arc4random_uniform(2) == 1);

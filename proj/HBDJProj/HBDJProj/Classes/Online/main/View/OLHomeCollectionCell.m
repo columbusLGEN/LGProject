@@ -20,7 +20,11 @@
 
 - (void)setModel:(OLHomeModel *)model{
     _model = model;
-    _img.image = [UIImage imageNamed:model.imgName];
+    if (model.limit) {
+        _img.image = [UIImage imageNamed:model.imgName_haveLimit];
+    }else{
+        _img.image = [UIImage imageNamed:model.imgName_noLimit];
+    }
     _title.text = model.title;
 }
 

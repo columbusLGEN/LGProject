@@ -40,6 +40,12 @@
 + (UIColor *)EDJGrayscale_DA{/// 218
     return [self colorWithHexString:@"DADADA"];
 }
++ (UIColor *)EDJGrayscale_B0{/// 176
+    return [self colorWithHexString:@"B0B0B0"];
+}
++ (UIColor *)EDJGrayscale_FA{/// 247
+    return [self colorWithHexString:@"FAFAFA"];
+}
 
 + (UIColor *)EDJColor_9B1212{
     return [self colorWithHexString:@"9B1212"];
@@ -55,6 +61,9 @@
 }
 + (UIColor *)EDJColor_57C6FF{/// 87,198,255
     return [self colorWithHexString:@"57C6FF"];
+}
++ (UIColor *)EDJColor_0D96F6{
+    return [self colorWithHexString:@"0D96F6"];
 }
 
 

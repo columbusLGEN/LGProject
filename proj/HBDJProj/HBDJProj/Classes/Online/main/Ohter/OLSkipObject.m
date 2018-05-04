@@ -11,18 +11,25 @@
 
 @implementation OLSkipObject
 + (UIViewController *)viewControllerWithOLHomeModelType:(OLHomeModel *)model{
-    NSString *controllerClass = controllerClassWithModelType(model.modelType);
-    /// TODO: 需要对 controllerClass 代表的类型做判断，需要判断 对不是控制器类型及其派生类 的情况 进行处理
-    UIViewController *vc = [NSClassFromString(controllerClass) new];
-    vc.title = model.title;
-    
-    return vc;
+    if (model.controllerInitType == ControllerInitTypeCode) {
+        NSString *controllerClass = controllerClassWithModelType(model.modelType);
+        /// TODO: 需要对 controllerClass 代表的类型做判断，需要判断 对不是控制器类型及其派生类 的情况 进行处理
+        UIViewController *vc = [NSClassFromString(controllerClass) new];
+        vc.title = model.title;
+        
+        return vc;
+    }else{
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:model.storyboardName bundle:nil];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:model.controllerID];
+        vc.title = model.title;
+        return vc;
+    }
 }
 
 NSString *controllerClassWithModelType(OnlineModelType modelType){
     switch (modelType) {
         case OnlineModelTypeThreeMeetings:{
-            return @"OLMindReportViewController";
+            return @"OLThreeMeetingsViewController";
         }
             break;
         case OnlineModelTypeThemePartyDay:{

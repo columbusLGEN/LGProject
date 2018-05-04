@@ -15,11 +15,12 @@
     self.layer.borderWidth = width;
     self.layer.borderColor = borderColor.CGColor;
     self.layer.cornerRadius = cornerRadius;
+    self.layer.masksToBounds = YES;
 }
 
 /// MARK: 切圆形
 - (void)cutToCycle{
-    self.layer.cornerRadius = self.width * 0.5;
+    self.layer.cornerRadius = self.height * 0.5;
     self.layer.masksToBounds = YES;
 }
 

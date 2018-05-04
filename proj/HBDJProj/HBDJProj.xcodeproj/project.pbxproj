@@ -151,6 +151,8 @@
 		88A47139207F0C74002F93E0 /* EDJUserCenterHomePageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A47138207F0C74002F93E0 /* EDJUserCenterHomePageCell.xib */; };
 		88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A4713C207F320F002F93E0 /* LGCustomButton.m */; };
 		88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A47141207F5242002F93E0 /* UCPersonInfoViewController.m */; };
+		88BB64D7209BEC1400FE6103 /* OLKnowleageTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB64D6209BEC1400FE6103 /* OLKnowleageTestController.m */; };
+		88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BB64D8209BEC4F00FE6103 /* Online.storyboard */; };
 		88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD73962099592A00E80058 /* HPBookInfoViewController.m */; };
 		88CD739A209959FD00E80058 /* HPBookInfoBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD7399209959FD00E80058 /* HPBookInfoBaseCell.m */; };
 		88CD739D20995A1400E80058 /* HPBookInfoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD739C20995A1400E80058 /* HPBookInfoHeaderCell.m */; };
@@ -184,6 +186,24 @@
 		88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */; };
 		88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */; };
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
+		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
+		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
+		88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD811C209BFFB800F297D6 /* OLTkcsTableViewCell.m */; };
+		88DD811F209BFFC000F297D6 /* OLTkcsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD811E209BFFC000F297D6 /* OLTkcsTableViewCell.xib */; };
+		88DD8123209C0A4900F297D6 /* OLVoteDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8122209C0A4900F297D6 /* OLVoteDetailController.m */; };
+		88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8125209C0B4E00F297D6 /* OLVoteDetailModel.m */; };
+		88DD812F209C0D6100F297D6 /* OLVoteDetailNormalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD812E209C0D6100F297D6 /* OLVoteDetailNormalTableViewCell.xib */; };
+		88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8131209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m */; };
+		88DD8135209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8134209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m */; };
+		88DD8137209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD8136209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib */; };
+		88DD813A209C0DA300F297D6 /* OLVoteDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8139209C0DA300F297D6 /* OLVoteDetailTableViewCell.m */; };
+		88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD813E209C239400F297D6 /* OLVoteDetailHeaderModel.m */; };
+		88DD8142209C246B00F297D6 /* OLVoteDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8141209C246B00F297D6 /* OLVoteDetailHeaderView.m */; };
+		88DD8144209C24D200F297D6 /* OLVoteDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD8143209C24D200F297D6 /* OLVoteDetailHeaderView.xib */; };
+		88DD8147209C296A00F297D6 /* OLVoteDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8146209C296A00F297D6 /* OLVoteDetailFooterView.m */; };
+		88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD8148209C298600F297D6 /* OLVoteDetailFooterView.xib */; };
+		88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */; };
+		88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */; };
 		88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */; };
 		88FE6899209AA26B008C28A0 /* UCUploadCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6898209AA26B008C28A0 /* UCUploadCollectionCell.m */; };
 		88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE689B209AA604008C28A0 /* UCUploadModel.m */; };
@@ -491,6 +511,9 @@
 		88A4713C207F320F002F93E0 /* LGCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGCustomButton.m; sourceTree = "<group>"; };
 		88A47140207F5242002F93E0 /* UCPersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPersonInfoViewController.h; sourceTree = "<group>"; };
 		88A47141207F5242002F93E0 /* UCPersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPersonInfoViewController.m; sourceTree = "<group>"; };
+		88BB64D5209BEC1400FE6103 /* OLKnowleageTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLKnowleageTestController.h; sourceTree = "<group>"; };
+		88BB64D6209BEC1400FE6103 /* OLKnowleageTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLKnowleageTestController.m; sourceTree = "<group>"; };
+		88BB64D8209BEC4F00FE6103 /* Online.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Online.storyboard; sourceTree = "<group>"; };
 		88CD73952099592A00E80058 /* HPBookInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPBookInfoViewController.h; sourceTree = "<group>"; };
 		88CD73962099592A00E80058 /* HPBookInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPBookInfoViewController.m; sourceTree = "<group>"; };
 		88CD7398209959FD00E80058 /* HPBookInfoBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPBookInfoBaseCell.h; sourceTree = "<group>"; };
@@ -547,6 +570,37 @@
 		88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolHeader.m; sourceTree = "<group>"; };
 		88D13C7420907A3700A32236 /* OLAddMoreToolFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreToolFooter.h; sourceTree = "<group>"; };
 		88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolFooter.m; sourceTree = "<group>"; };
+		88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewController.h; sourceTree = "<group>"; };
+		88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTkcsTableViewController.m; sourceTree = "<group>"; };
+		88DD8118209BFF7B00F297D6 /* OLTkcsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsModel.h; sourceTree = "<group>"; };
+		88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTkcsModel.m; sourceTree = "<group>"; };
+		88DD811B209BFFB800F297D6 /* OLTkcsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewCell.h; sourceTree = "<group>"; };
+		88DD811C209BFFB800F297D6 /* OLTkcsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTkcsTableViewCell.m; sourceTree = "<group>"; };
+		88DD811E209BFFC000F297D6 /* OLTkcsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLTkcsTableViewCell.xib; sourceTree = "<group>"; };
+		88DD8121209C0A4900F297D6 /* OLVoteDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailController.h; sourceTree = "<group>"; };
+		88DD8122209C0A4900F297D6 /* OLVoteDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailController.m; sourceTree = "<group>"; };
+		88DD8124209C0B4E00F297D6 /* OLVoteDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailModel.h; sourceTree = "<group>"; };
+		88DD8125209C0B4E00F297D6 /* OLVoteDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailModel.m; sourceTree = "<group>"; };
+		88DD812E209C0D6100F297D6 /* OLVoteDetailNormalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLVoteDetailNormalTableViewCell.xib; sourceTree = "<group>"; };
+		88DD8130209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailNormalTableViewCell.h; sourceTree = "<group>"; };
+		88DD8131209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailNormalTableViewCell.m; sourceTree = "<group>"; };
+		88DD8133209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailVotedTableViewCell.h; sourceTree = "<group>"; };
+		88DD8134209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailVotedTableViewCell.m; sourceTree = "<group>"; };
+		88DD8136209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLVoteDetailVotedTableViewCell.xib; sourceTree = "<group>"; };
+		88DD8138209C0DA300F297D6 /* OLVoteDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailTableViewCell.h; sourceTree = "<group>"; };
+		88DD8139209C0DA300F297D6 /* OLVoteDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailTableViewCell.m; sourceTree = "<group>"; };
+		88DD813D209C239400F297D6 /* OLVoteDetailHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailHeaderModel.h; sourceTree = "<group>"; };
+		88DD813E209C239400F297D6 /* OLVoteDetailHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailHeaderModel.m; sourceTree = "<group>"; };
+		88DD8140209C246B00F297D6 /* OLVoteDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailHeaderView.h; sourceTree = "<group>"; };
+		88DD8141209C246B00F297D6 /* OLVoteDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailHeaderView.m; sourceTree = "<group>"; };
+		88DD8143209C24D200F297D6 /* OLVoteDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLVoteDetailHeaderView.xib; sourceTree = "<group>"; };
+		88DD8145209C296A00F297D6 /* OLVoteDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailFooterView.h; sourceTree = "<group>"; };
+		88DD8146209C296A00F297D6 /* OLVoteDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailFooterView.m; sourceTree = "<group>"; };
+		88DD8148209C298600F297D6 /* OLVoteDetailFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLVoteDetailFooterView.xib; sourceTree = "<group>"; };
+		88DD814B209C3C3E00F297D6 /* OLTestResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTestResultViewController.h; sourceTree = "<group>"; };
+		88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestResultViewController.m; sourceTree = "<group>"; };
+		88DD814F209C4A1600F297D6 /* OLThreeMeetingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLThreeMeetingsViewController.h; sourceTree = "<group>"; };
+		88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLThreeMeetingsViewController.m; sourceTree = "<group>"; };
 		88FE6891209A9B76008C28A0 /* UCUploadHeaderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadHeaderFooterView.h; sourceTree = "<group>"; };
 		88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadHeaderFooterView.m; sourceTree = "<group>"; };
 		88FE6897209AA26B008C28A0 /* UCUploadCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadCollectionCell.h; sourceTree = "<group>"; };
@@ -868,11 +922,16 @@
 		881C94EB2068F36D009D6A52 /* Online */ = {
 			isa = PBXGroup;
 			children = (
+				88DD814E209C49E500F297D6 /* ThreeMeetings */,
+				88DD814A209C3C1300F297D6 /* testResult */,
+				88DD8114209BFF3800F297D6 /* tk&cs */,
+				88BB64D4209BEB4100FE6103 /* knowleageTest */,
 				88FE68B8209B05BD008C28A0 /* vote */,
 				88FE68AC209AFAA7008C28A0 /* payPartyCharge */,
 				88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */,
 				88D13C652090635F00A32236 /* addMoreTool */,
 				88D13C642090634C00A32236 /* main */,
+				88BB64D8209BEC4F00FE6103 /* Online.storyboard */,
 			);
 			path = Online;
 			sourceTree = "<group>";
@@ -1528,6 +1587,15 @@
 			path = userPersonInfo;
 			sourceTree = "<group>";
 		};
+		88BB64D4209BEB4100FE6103 /* knowleageTest */ = {
+			isa = PBXGroup;
+			children = (
+				88BB64D5209BEC1400FE6103 /* OLKnowleageTestController.h */,
+				88BB64D6209BEC1400FE6103 /* OLKnowleageTestController.m */,
+			);
+			path = knowleageTest;
+			sourceTree = "<group>";
+		};
 		88CD7391209958D500E80058 /* bookInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1700,6 +1768,89 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		88DD8114209BFF3800F297D6 /* tk&cs */ = {
+			isa = PBXGroup;
+			children = (
+				88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */,
+				88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */,
+				88DD8118209BFF7B00F297D6 /* OLTkcsModel.h */,
+				88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */,
+				88DD811B209BFFB800F297D6 /* OLTkcsTableViewCell.h */,
+				88DD811C209BFFB800F297D6 /* OLTkcsTableViewCell.m */,
+				88DD811E209BFFC000F297D6 /* OLTkcsTableViewCell.xib */,
+			);
+			path = "tk&cs";
+			sourceTree = "<group>";
+		};
+		88DD8120209C09A800F297D6 /* voteDetail */ = {
+			isa = PBXGroup;
+			children = (
+				88DD8121209C0A4900F297D6 /* OLVoteDetailController.h */,
+				88DD8122209C0A4900F297D6 /* OLVoteDetailController.m */,
+				88DD813C209C237B00F297D6 /* model */,
+				88DD813B209C235800F297D6 /* cell&header&footer */,
+			);
+			path = voteDetail;
+			sourceTree = "<group>";
+		};
+		88DD813B209C235800F297D6 /* cell&header&footer */ = {
+			isa = PBXGroup;
+			children = (
+				88DD8138209C0DA300F297D6 /* OLVoteDetailTableViewCell.h */,
+				88DD8139209C0DA300F297D6 /* OLVoteDetailTableViewCell.m */,
+				88DD8130209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.h */,
+				88DD8131209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m */,
+				88DD812E209C0D6100F297D6 /* OLVoteDetailNormalTableViewCell.xib */,
+				88DD8133209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.h */,
+				88DD8134209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m */,
+				88DD8136209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib */,
+				88DD8140209C246B00F297D6 /* OLVoteDetailHeaderView.h */,
+				88DD8141209C246B00F297D6 /* OLVoteDetailHeaderView.m */,
+				88DD8143209C24D200F297D6 /* OLVoteDetailHeaderView.xib */,
+				88DD8145209C296A00F297D6 /* OLVoteDetailFooterView.h */,
+				88DD8146209C296A00F297D6 /* OLVoteDetailFooterView.m */,
+				88DD8148209C298600F297D6 /* OLVoteDetailFooterView.xib */,
+			);
+			path = "cell&header&footer";
+			sourceTree = "<group>";
+		};
+		88DD813C209C237B00F297D6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				88DD8124209C0B4E00F297D6 /* OLVoteDetailModel.h */,
+				88DD8125209C0B4E00F297D6 /* OLVoteDetailModel.m */,
+				88DD813D209C239400F297D6 /* OLVoteDetailHeaderModel.h */,
+				88DD813E209C239400F297D6 /* OLVoteDetailHeaderModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		88DD814A209C3C1300F297D6 /* testResult */ = {
+			isa = PBXGroup;
+			children = (
+				88DD814B209C3C3E00F297D6 /* OLTestResultViewController.h */,
+				88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */,
+			);
+			path = testResult;
+			sourceTree = "<group>";
+		};
+		88DD814E209C49E500F297D6 /* ThreeMeetings */ = {
+			isa = PBXGroup;
+			children = (
+				88DD814F209C4A1600F297D6 /* OLThreeMeetingsViewController.h */,
+				88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */,
+				88DD8152209C4A7E00F297D6 /* sub */,
+			);
+			path = ThreeMeetings;
+			sourceTree = "<group>";
+		};
+		88DD8152209C4A7E00F297D6 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = sub;
+			sourceTree = "<group>";
+		};
 		88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -1731,6 +1882,7 @@
 		88FE68B8209B05BD008C28A0 /* vote */ = {
 			isa = PBXGroup;
 			children = (
+				88DD8120209C09A800F297D6 /* voteDetail */,
 				88FE68B9209B05CA008C28A0 /* list */,
 			);
 			path = vote;
@@ -1887,6 +2039,8 @@
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
 				8831E18920941998001D038E /* DCSubStageThreeImgCell.xib in Resources */,
 				88D13C3E209022F900A32236 /* EDJSearchTagHeader.xib in Resources */,
+				88DD812F209C0D6100F297D6 /* OLVoteDetailNormalTableViewCell.xib in Resources */,
+				88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */,
 				88CD73A420995A5A00E80058 /* HPBookInfoBriefCell.xib in Resources */,
 				88A47137207F06D3002F93E0 /* UserCenterHomeForm.plist in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
@@ -1902,6 +2056,7 @@
 				88D13C612090586900A32236 /* OLHomeCollectionCell.xib in Resources */,
 				88D13C352090145100A32236 /* EDJSearchTagHistoryCell.xib in Resources */,
 				889E7DC2209996A100BB9084 /* UCMemberStageTransitionView.xib in Resources */,
+				88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */,
 				8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */,
 				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
 				889E7DBD20998DD200BB9084 /* UCUploadTransitionView.xib in Resources */,
@@ -1913,10 +2068,13 @@
 				884312D620873B6900321F84 /* UCSetting.plist in Resources */,
 				88D13C6C20906EBC00A32236 /* OLAddMoreTool.plist in Resources */,
 				8831E16E209401A3001D038E /* DCSubPartStateThreeImgCell.xib in Resources */,
+				88DD8137209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib in Resources */,
 				88D13C632090597F00A32236 /* OLHomeItems.plist in Resources */,
 				88A4710B207DBE08002F93E0 /* EDJMicroBuildNoImgCell.xib in Resources */,
 				88D13C4F2090349800A32236 /* EDJSearchTagHotCell.xib in Resources */,
+				88DD8144209C24D200F297D6 /* OLVoteDetailHeaderView.xib in Resources */,
 				88A47115207DBE3B002F93E0 /* EDJMicroBuildThreeImgCell.xib in Resources */,
+				88DD811F209BFFC000F297D6 /* OLTkcsTableViewCell.xib in Resources */,
 				8831E16420931496001D038E /* DCSubPartStateWithoutImgCell.xib in Resources */,
 				88A47139207F0C74002F93E0 /* EDJUserCenterHomePageCell.xib in Resources */,
 			);
@@ -2120,6 +2278,7 @@
 				88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */,
 				8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */,
 				8835B2C120720A1800722010 /* LGBaseView.m in Sources */,
+				88DD8123209C0A4900F297D6 /* OLVoteDetailController.m in Sources */,
 				8831E1A72094701C001D038E /* HPPointNewsTableViewCell.m in Sources */,
 				88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,
@@ -2127,6 +2286,7 @@
 				88A47133207EF5EB002F93E0 /* EDJUserCenterHomePageModel.m in Sources */,
 				88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */,
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
+				88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
 				88FE68A0209ABD0A008C28A0 /* OLMindReportViewController.m in Sources */,
 				88D13C39209015C100A32236 /* EDJSearchTagCollectionViewFlowLayout.m in Sources */,
@@ -2144,11 +2304,13 @@
 				8831E17620941674001D038E /* DCSubStageBaseTableViewCell.m in Sources */,
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				881C94E12068ED10009D6A52 /* LIGNetworkConfig.m in Sources */,
+				88DD8142209C246B00F297D6 /* OLVoteDetailHeaderView.m in Sources */,
 				88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */,
 				88FE68BC209B05F5008C28A0 /* OLVoteListController.m in Sources */,
 				884312E32089879C00321F84 /* UCHelpFadebackTableViewCell.m in Sources */,
 				88A470FD207C8CBD002F93E0 /* EDJMicroPSCellHeader.m in Sources */,
 				884312C8208737EF00321F84 /* UCMsgModel.m in Sources */,
+				88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */,
 				88D13C592090560E00A32236 /* EDJDigitalModel.m in Sources */,
 				881C94E02068ED10009D6A52 /* LIGNetworkAgent.m in Sources */,
 				8843124F2085ED6300321F84 /* UIViewController+LGBaseSettings.m in Sources */,
@@ -2159,6 +2321,7 @@
 				88A470FA207C8615002F93E0 /* LGImageView.m in Sources */,
 				8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */,
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
+				88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */,
 				8831E16C2094019D001D038E /* DCSubPartStateThreeImgCell.m in Sources */,
 				8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */,
 				88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */,
@@ -2191,8 +2354,10 @@
 				8835B2EC20720D6000722010 /* EDJHomeViewController.m in Sources */,
 				88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */,
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,
+				88DD8135209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m in Sources */,
 				8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
+				88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */,
 				88FE68AB209AF777008C28A0 /* OLSkipObject.m in Sources */,
 				881C94D12068ECF3009D6A52 /* UIColor+Extension.m in Sources */,
 				8831E1AF20947079001D038E /* HPPointNewsHeader.m in Sources */,
@@ -2205,7 +2370,9 @@
 				88D13C542090442F00A32236 /* EDJDigitalCell.m in Sources */,
 				88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */,
 				8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */,
+				88DD813A209C0DA300F297D6 /* OLVoteDetailTableViewCell.m in Sources */,
 				88D13C5C2090583D00A32236 /* OLHomeModel.m in Sources */,
+				88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */,
 				88FE68B7209AFB40008C28A0 /* OLPayPartyChargeModel.m in Sources */,
 				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				88D13C5F2090585F00A32236 /* OLHomeCollectionCell.m in Sources */,
@@ -2236,7 +2403,9 @@
 				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
+				88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */,
 				8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */,
+				88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */,
 				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,
@@ -2245,6 +2414,7 @@
 				88D13C2A2090138100A32236 /* EDJSearchTagModel.m in Sources */,
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
+				88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */,
 				88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */,
 				884312EC2089BC7D00321F84 /* UCMyFeedbackViewController.m in Sources */,
 				88D13C30209013EB00A32236 /* LGBaseCollectionViewCell.m in Sources */,
@@ -2259,6 +2429,8 @@
 				8835B314207216DB00722010 /* LGNavigationSearchBar.m in Sources */,
 				88D13C3C209022EF00A32236 /* EDJSearchTagHeader.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,
+				88DD8147209C296A00F297D6 /* OLVoteDetailFooterView.m in Sources */,
+				88BB64D7209BEC1400FE6103 /* OLKnowleageTestController.m in Sources */,
 				88FE68A3209ABD31008C28A0 /* OLMindReportTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

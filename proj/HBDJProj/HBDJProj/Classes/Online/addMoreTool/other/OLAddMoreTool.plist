@@ -7,24 +7,36 @@
 		<integer>4</integer>
 		<key>title</key>
 		<string>述职述廉</string>
-		<key>imgName</key>
-		<string>ol_report_cheap</string>
+		<key>imgName_noLimit</key>
+		<string>ol_hp_szsl_no_limit</string>
+		<key>imgName_haveLimit</key>
+		<string>ol_hp_szsl_have_limit</string>
+		<key>limit</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>modelType</key>
 		<integer>5</integer>
 		<key>title</key>
 		<string>党费缴纳</string>
-		<key>imgName</key>
-		<string>ol_party_fee_payment</string>
+		<key>imgName_noLimit</key>
+		<string>ol_hp_dfjn_no_limit</string>
+		<key>imgName_haveLimit</key>
+		<string>ol_hp_dfjn_have_limit</string>
+		<key>limit</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>modelType</key>
 		<integer>6</integer>
 		<key>title</key>
 		<string>在线投票</string>
-		<key>imgName</key>
-		<string>ol_vote_online</string>
+		<key>imgName_noLimit</key>
+		<string>ol_hp_zxtp_no_limit</string>
+		<key>imgName_haveLimit</key>
+		<string>ol_hp_zxtp_have_limit</string>
+		<key>limit</key>
+		<false/>
 	</dict>
 </array>
 </plist>

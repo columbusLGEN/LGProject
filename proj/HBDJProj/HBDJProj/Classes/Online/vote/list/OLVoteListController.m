@@ -9,6 +9,7 @@
 #import "OLVoteListController.h"
 #import "OLVoteListTableViewCell.h"
 #import "OLVoteListModel.h"
+#import "OLVoteDetailController.h"
 
 @interface OLVoteListController ()
 
@@ -44,7 +45,10 @@
     cell.model = model;
     return cell;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    OLVoteDetailController *vc = [OLVoteDetailController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

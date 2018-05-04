@@ -20,11 +20,14 @@
 + (UIColor *)EDJGrayscale_66;
 + (UIColor *)EDJGrayscale_C2;
 + (UIColor *)EDJGrayscale_DA;
++ (UIColor *)EDJGrayscale_B0;
++ (UIColor *)EDJGrayscale_FA;
 
 + (UIColor *)EDJColor_9B1212;
 + (UIColor *)EDJColor_A2562C;
 + (UIColor *)EDJColor_FC774E;
 + (UIColor *)EDJColor_E0B5B1;
 + (UIColor *)EDJColor_57C6FF;
++ (UIColor *)EDJColor_0D96F6;
 
 @end

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OLVoteDetailNormalTableViewCell" rowHeight="161" id="EkY-Lx-h2B" customClass="OLVoteDetailNormalTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="487" height="161"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EkY-Lx-h2B" id="5Vh-ft-545">
+                <rect key="frame" x="0.0" y="0.0" width="487" height="160.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgu-3x-EUZ">
+                        <rect key="frame" x="20" y="70" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="33C-zU-hnY"/>
+                            <constraint firstAttribute="height" constant="20" id="Riv-9X-YOv"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <action selector="voteClick:" destination="EkY-Lx-h2B" eventType="touchUpInside" id="UC8-Ed-6z5"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="“红色之旅”爱国主义主题教育活动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhZ-iq-FSg">
+                        <rect key="frame" x="48" y="70" width="424" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Tgu-3x-EUZ" firstAttribute="centerY" secondItem="5Vh-ft-545" secondAttribute="centerY" id="9AR-eV-sDv"/>
+                    <constraint firstItem="Tgu-3x-EUZ" firstAttribute="leading" secondItem="5Vh-ft-545" secondAttribute="leading" constant="20" id="FHP-eB-Faj"/>
+                    <constraint firstItem="dhZ-iq-FSg" firstAttribute="centerY" secondItem="5Vh-ft-545" secondAttribute="centerY" id="UeZ-7B-Mg4"/>
+                    <constraint firstAttribute="trailing" secondItem="dhZ-iq-FSg" secondAttribute="trailing" constant="15" id="c9O-AX-9FA"/>
+                    <constraint firstItem="dhZ-iq-FSg" firstAttribute="leading" secondItem="Tgu-3x-EUZ" secondAttribute="trailing" constant="8" id="hhJ-mT-E1H"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="content" destination="dhZ-iq-FSg" id="sJ4-Tb-UlQ"/>
+                <outlet property="voteBtn" destination="Tgu-3x-EUZ" id="1pK-CM-4K1"/>
+            </connections>
+            <point key="canvasLocation" x="-32.5" y="101.5"/>
+        </tableViewCell>
+    </objects>
+</document>

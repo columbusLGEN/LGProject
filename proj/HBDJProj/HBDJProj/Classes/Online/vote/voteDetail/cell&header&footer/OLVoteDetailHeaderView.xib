@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="BAK-uP-59H" customClass="OLVoteDetailHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="517" height="241"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年度党建活动评选" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmT-N9-lJr">
+                    <rect key="frame" x="15" y="19" width="487" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-1-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7u-hg-HPm">
+                    <rect key="frame" x="15" y="63" width="58" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单选(匿名投票)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDx-yh-qlt">
+                    <rect key="frame" x="93" y="63.5" width="96.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgK-Qc-Zp3">
+                    <rect key="frame" x="0.0" y="236" width="517" height="5"/>
+                    <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="41M-NE-a0F"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共38票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOY-r2-kSV">
+                    <rect key="frame" x="456" y="64" width="46" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="KmT-N9-lJr" firstAttribute="leading" secondItem="nB9-Cl-845" secondAttribute="leading" constant="15" id="4WH-cF-zaK"/>
+                <constraint firstItem="pOY-r2-kSV" firstAttribute="centerY" secondItem="oDx-yh-qlt" secondAttribute="centerY" id="8qQ-OM-iz7"/>
+                <constraint firstItem="oDx-yh-qlt" firstAttribute="centerY" secondItem="K7u-hg-HPm" secondAttribute="centerY" id="95u-TT-ZDw"/>
+                <constraint firstItem="nB9-Cl-845" firstAttribute="trailing" secondItem="pOY-r2-kSV" secondAttribute="trailing" constant="15" id="A2w-vH-uOD"/>
+                <constraint firstItem="PgK-Qc-Zp3" firstAttribute="width" secondItem="BAK-uP-59H" secondAttribute="width" id="HqC-Pu-hF3"/>
+                <constraint firstItem="K7u-hg-HPm" firstAttribute="leading" secondItem="KmT-N9-lJr" secondAttribute="leading" id="JFW-Nf-H6a"/>
+                <constraint firstItem="KmT-N9-lJr" firstAttribute="top" secondItem="nB9-Cl-845" secondAttribute="top" constant="19" id="Wr8-p1-4aM"/>
+                <constraint firstItem="nB9-Cl-845" firstAttribute="trailing" secondItem="KmT-N9-lJr" secondAttribute="trailing" constant="15" id="eTl-0J-6XI"/>
+                <constraint firstItem="K7u-hg-HPm" firstAttribute="top" secondItem="KmT-N9-lJr" secondAttribute="bottom" constant="20" id="hSW-Rg-WTr"/>
+                <constraint firstItem="nB9-Cl-845" firstAttribute="bottom" secondItem="PgK-Qc-Zp3" secondAttribute="bottom" id="jsi-mM-cRK"/>
+                <constraint firstItem="oDx-yh-qlt" firstAttribute="leading" secondItem="K7u-hg-HPm" secondAttribute="trailing" constant="20" id="s9w-pO-c8I"/>
+                <constraint firstItem="PgK-Qc-Zp3" firstAttribute="centerX" secondItem="BAK-uP-59H" secondAttribute="centerX" id="vcI-cg-5u0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="nB9-Cl-845"/>
+            <connections>
+                <outlet property="time" destination="K7u-hg-HPm" id="NIJ-Oi-foB"/>
+                <outlet property="title" destination="KmT-N9-lJr" id="mka-WD-qxn"/>
+                <outlet property="totalVotes" destination="pOY-r2-kSV" id="fxW-GO-NVw"/>
+                <outlet property="voteDes" destination="oDx-yh-qlt" id="hYw-T6-48F"/>
+            </connections>
+            <point key="canvasLocation" x="110.5" y="-170.5"/>
+        </view>
+    </objects>
+</document>
