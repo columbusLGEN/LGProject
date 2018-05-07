@@ -75,11 +75,6 @@ OLTestResultViewControllerDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(turnQuestion:) name:OLExamTurnQuestionNotification object:nil];
 }
 
-#pragma mark - test result vc delegate
-- (void)testResultVcBack:(OLTestResultViewController *)trvc{
-    _bottomBar.backLook = YES;
-}
-
 #pragma mark - notification
 - (void)turnQuestion:(NSNotification *)notification{
     NSDictionary *userInfo = notification.userInfo;
@@ -96,8 +91,8 @@ OLTestResultViewControllerDelegate
         if (index == self.dataArray.count) {
             /// 测试结果页面
             OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-            trvc.delegate = self;
             [self.navigationController pushViewController:trvc animated:YES];
+            
             
             return;
         }else{
