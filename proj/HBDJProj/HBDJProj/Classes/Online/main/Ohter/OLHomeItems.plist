@@ -10,7 +10,7 @@
 		<key>imgName_haveLimit</key>
 		<string>ol_hp_shyk_have_limit</string>
 		<key>imgName_noLimit</key>
-		<string></string>
+		<string>ol_hp_shyk_no_limit</string>
 		<key>limit</key>
 		<true/>
 	</dict>

@@ -65,6 +65,9 @@
 + (UIColor *)EDJColor_0D96F6{
     return [self colorWithHexString:@"0D96F6"];
 }
++ (UIColor *)EDJColor_30A5E1{
+    return [self colorWithHexString:@"30A5E1"];
+}
 
 
 

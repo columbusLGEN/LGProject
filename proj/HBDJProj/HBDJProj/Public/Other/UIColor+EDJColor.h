@@ -29,5 +29,6 @@
 + (UIColor *)EDJColor_E0B5B1;
 + (UIColor *)EDJColor_57C6FF;
 + (UIColor *)EDJColor_0D96F6;
++ (UIColor *)EDJColor_30A5E1;
 
 @end

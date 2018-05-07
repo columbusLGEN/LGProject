@@ -8,6 +8,14 @@
 
 #import "LGBaseViewController.h"
 
+@class OLTestResultViewController;
+
+@protocol OLTestResultViewControllerDelegate <NSObject>
+- (void)testResultVcBack:(OLTestResultViewController *)trvc;
+
+@end
+
 @interface OLTestResultViewController : LGBaseViewController
+@property (weak,nonatomic) id<OLTestResultViewControllerDelegate> delegate;
 
 @end

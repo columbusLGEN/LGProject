@@ -53,8 +53,10 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self lgPushViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController" animated:YES];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{    
+    /// 进入测试页面
+    [self lgPushViewControllerWithClassName:@"OLExamViewController"];
+
 }
 
 

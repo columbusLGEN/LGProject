@@ -204,6 +204,21 @@
 		88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD8148209C298600F297D6 /* OLVoteDetailFooterView.xib */; };
 		88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */; };
 		88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */; };
+		88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF006209FE2CC0071A98A /* OLExamViewController.m */; };
+		88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */; };
+		88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF056209FED480071A98A /* OLExamSingleModel.m */; };
+		88ECF05A209FF5050071A98A /* OLExamSingleLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF059209FF5050071A98A /* OLExamSingleLineModel.m */; };
+		88ECF05D209FF53A0071A98A /* OLExamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF05C209FF53A0071A98A /* OLExamModel.m */; };
+		88ECF060209FF6D30071A98A /* OLExamSingleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF05F209FF6D30071A98A /* OLExamSingleTableViewCell.m */; };
+		88ECF063209FF7B40071A98A /* OLExamSingleStemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF062209FF7B40071A98A /* OLExamSingleStemCell.m */; };
+		88ECF065209FF7D00071A98A /* OLExamSingleStemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ECF064209FF7D00071A98A /* OLExamSingleStemCell.xib */; };
+		88ECF068209FF8280071A98A /* OLExamSingleOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF067209FF8280071A98A /* OLExamSingleOptionCell.m */; };
+		88ECF06A209FF8300071A98A /* OLExamSingleOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ECF069209FF8300071A98A /* OLExamSingleOptionCell.xib */; };
+		88ECF07220A01F290071A98A /* OLExamSingleFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF07120A01F290071A98A /* OLExamSingleFooterView.m */; };
+		88ECF07420A020560071A98A /* OLExamSingleFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ECF07320A020560071A98A /* OLExamSingleFooterView.xib */; };
+		88ECF07720A032340071A98A /* OLExamViewBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF07620A032340071A98A /* OLExamViewBottomBar.m */; };
+		88ECF07920A032540071A98A /* OLExamViewBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ECF07820A032540071A98A /* OLExamViewBottomBar.xib */; };
+		88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF07B20A03FE00071A98A /* OLExamCollectionViewCell.m */; };
 		88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */; };
 		88FE6899209AA26B008C28A0 /* UCUploadCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6898209AA26B008C28A0 /* UCUploadCollectionCell.m */; };
 		88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE689B209AA604008C28A0 /* UCUploadModel.m */; };
@@ -601,6 +616,32 @@
 		88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestResultViewController.m; sourceTree = "<group>"; };
 		88DD814F209C4A1600F297D6 /* OLThreeMeetingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLThreeMeetingsViewController.h; sourceTree = "<group>"; };
 		88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLThreeMeetingsViewController.m; sourceTree = "<group>"; };
+		88ECF005209FE2CC0071A98A /* OLExamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewController.h; sourceTree = "<group>"; };
+		88ECF006209FE2CC0071A98A /* OLExamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewController.m; sourceTree = "<group>"; };
+		88ECF009209FE3340071A98A /* OLExamSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleViewController.h; sourceTree = "<group>"; };
+		88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamSingleViewController.m; sourceTree = "<group>"; };
+		88ECF055209FED480071A98A /* OLExamSingleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleModel.h; sourceTree = "<group>"; };
+		88ECF056209FED480071A98A /* OLExamSingleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamSingleModel.m; sourceTree = "<group>"; };
+		88ECF058209FF5050071A98A /* OLExamSingleLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleLineModel.h; sourceTree = "<group>"; };
+		88ECF059209FF5050071A98A /* OLExamSingleLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamSingleLineModel.m; sourceTree = "<group>"; };
+		88ECF05B209FF53A0071A98A /* OLExamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamModel.h; sourceTree = "<group>"; };
+		88ECF05C209FF53A0071A98A /* OLExamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamModel.m; sourceTree = "<group>"; };
+		88ECF05E209FF6D30071A98A /* OLExamSingleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleTableViewCell.h; sourceTree = "<group>"; };
+		88ECF05F209FF6D30071A98A /* OLExamSingleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamSingleTableViewCell.m; sourceTree = "<group>"; };
+		88ECF061209FF7B40071A98A /* OLExamSingleStemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleStemCell.h; sourceTree = "<group>"; };
+		88ECF062209FF7B40071A98A /* OLExamSingleStemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamSingleStemCell.m; sourceTree = "<group>"; };
+		88ECF064209FF7D00071A98A /* OLExamSingleStemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLExamSingleStemCell.xib; sourceTree = "<group>"; };
+		88ECF066209FF8280071A98A /* OLExamSingleOptionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleOptionCell.h; sourceTree = "<group>"; };
+		88ECF067209FF8280071A98A /* OLExamSingleOptionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamSingleOptionCell.m; sourceTree = "<group>"; };
+		88ECF069209FF8300071A98A /* OLExamSingleOptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLExamSingleOptionCell.xib; sourceTree = "<group>"; };
+		88ECF07020A01F290071A98A /* OLExamSingleFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleFooterView.h; sourceTree = "<group>"; };
+		88ECF07120A01F290071A98A /* OLExamSingleFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamSingleFooterView.m; sourceTree = "<group>"; };
+		88ECF07320A020560071A98A /* OLExamSingleFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLExamSingleFooterView.xib; sourceTree = "<group>"; };
+		88ECF07520A032340071A98A /* OLExamViewBottomBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewBottomBar.h; sourceTree = "<group>"; };
+		88ECF07620A032340071A98A /* OLExamViewBottomBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewBottomBar.m; sourceTree = "<group>"; };
+		88ECF07820A032540071A98A /* OLExamViewBottomBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLExamViewBottomBar.xib; sourceTree = "<group>"; };
+		88ECF07A20A03FE00071A98A /* OLExamCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamCollectionViewCell.h; sourceTree = "<group>"; };
+		88ECF07B20A03FE00071A98A /* OLExamCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamCollectionViewCell.m; sourceTree = "<group>"; };
 		88FE6891209A9B76008C28A0 /* UCUploadHeaderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadHeaderFooterView.h; sourceTree = "<group>"; };
 		88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadHeaderFooterView.m; sourceTree = "<group>"; };
 		88FE6897209AA26B008C28A0 /* UCUploadCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadCollectionCell.h; sourceTree = "<group>"; };
@@ -1771,6 +1812,7 @@
 		88DD8114209BFF3800F297D6 /* tk&cs */ = {
 			isa = PBXGroup;
 			children = (
+				88ECF004209FE2670071A98A /* exam */,
 				88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */,
 				88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */,
 				88DD8118209BFF7B00F297D6 /* OLTkcsModel.h */,
@@ -1849,6 +1891,71 @@
 			children = (
 			);
 			path = sub;
+			sourceTree = "<group>";
+		};
+		88ECF004209FE2670071A98A /* exam */ = {
+			isa = PBXGroup;
+			children = (
+				88ECF053209FED050071A98A /* model */,
+				88ECF008209FE3000071A98A /* single */,
+				88ECF005209FE2CC0071A98A /* OLExamViewController.h */,
+				88ECF006209FE2CC0071A98A /* OLExamViewController.m */,
+				88ECF07A20A03FE00071A98A /* OLExamCollectionViewCell.h */,
+				88ECF07B20A03FE00071A98A /* OLExamCollectionViewCell.m */,
+				88ECF07520A032340071A98A /* OLExamViewBottomBar.h */,
+				88ECF07620A032340071A98A /* OLExamViewBottomBar.m */,
+				88ECF07820A032540071A98A /* OLExamViewBottomBar.xib */,
+			);
+			path = exam;
+			sourceTree = "<group>";
+		};
+		88ECF008209FE3000071A98A /* single */ = {
+			isa = PBXGroup;
+			children = (
+				88ECF058209FF5050071A98A /* OLExamSingleLineModel.h */,
+				88ECF059209FF5050071A98A /* OLExamSingleLineModel.m */,
+				88ECF009209FE3340071A98A /* OLExamSingleViewController.h */,
+				88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */,
+				88ECF06B209FF9260071A98A /* cell */,
+				88ECF06C20A01EFF0071A98A /* view */,
+			);
+			path = single;
+			sourceTree = "<group>";
+		};
+		88ECF053209FED050071A98A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				88ECF05B209FF53A0071A98A /* OLExamModel.h */,
+				88ECF05C209FF53A0071A98A /* OLExamModel.m */,
+				88ECF055209FED480071A98A /* OLExamSingleModel.h */,
+				88ECF056209FED480071A98A /* OLExamSingleModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		88ECF06B209FF9260071A98A /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				88ECF05E209FF6D30071A98A /* OLExamSingleTableViewCell.h */,
+				88ECF05F209FF6D30071A98A /* OLExamSingleTableViewCell.m */,
+				88ECF061209FF7B40071A98A /* OLExamSingleStemCell.h */,
+				88ECF062209FF7B40071A98A /* OLExamSingleStemCell.m */,
+				88ECF064209FF7D00071A98A /* OLExamSingleStemCell.xib */,
+				88ECF066209FF8280071A98A /* OLExamSingleOptionCell.h */,
+				88ECF067209FF8280071A98A /* OLExamSingleOptionCell.m */,
+				88ECF069209FF8300071A98A /* OLExamSingleOptionCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		88ECF06C20A01EFF0071A98A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88ECF07020A01F290071A98A /* OLExamSingleFooterView.h */,
+				88ECF07120A01F290071A98A /* OLExamSingleFooterView.m */,
+				88ECF07320A020560071A98A /* OLExamSingleFooterView.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */ = {
@@ -2040,9 +2147,11 @@
 				8831E18920941998001D038E /* DCSubStageThreeImgCell.xib in Resources */,
 				88D13C3E209022F900A32236 /* EDJSearchTagHeader.xib in Resources */,
 				88DD812F209C0D6100F297D6 /* OLVoteDetailNormalTableViewCell.xib in Resources */,
+				88ECF07920A032540071A98A /* OLExamViewBottomBar.xib in Resources */,
 				88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */,
 				88CD73A420995A5A00E80058 /* HPBookInfoBriefCell.xib in Resources */,
 				88A47137207F06D3002F93E0 /* UserCenterHomeForm.plist in Resources */,
+				88ECF06A209FF8300071A98A /* OLExamSingleOptionCell.xib in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
 				88435E84208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib in Resources */,
 				88FE68B4209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib in Resources */,
@@ -2055,7 +2164,9 @@
 				8831E1A920947024001D038E /* HPPointNewsTableViewCell.xib in Resources */,
 				88D13C612090586900A32236 /* OLHomeCollectionCell.xib in Resources */,
 				88D13C352090145100A32236 /* EDJSearchTagHistoryCell.xib in Resources */,
+				88ECF065209FF7D00071A98A /* OLExamSingleStemCell.xib in Resources */,
 				889E7DC2209996A100BB9084 /* UCMemberStageTransitionView.xib in Resources */,
+				88ECF07420A020560071A98A /* OLExamSingleFooterView.xib in Resources */,
 				88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */,
 				8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */,
 				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
@@ -2320,16 +2431,19 @@
 				88FE68B2209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m in Sources */,
 				88A470FA207C8615002F93E0 /* LGImageView.m in Sources */,
 				8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */,
+				88ECF060209FF6D30071A98A /* OLExamSingleTableViewCell.m in Sources */,
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
 				88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */,
 				8831E16C2094019D001D038E /* DCSubPartStateThreeImgCell.m in Sources */,
 				8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */,
+				88ECF063209FF7B40071A98A /* OLExamSingleStemCell.m in Sources */,
 				88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */,
 				881C94D22068ECF3009D6A52 /* UIImage+Extension.m in Sources */,
 				88D13C412090253200A32236 /* EDJSearchTagHeaderModel.m in Sources */,
 				8835B2F0207211B200722010 /* EDJHomeHeaderView.m in Sources */,
 				88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */,
 				884312D420873B2800321F84 /* UCSettingViewController.m in Sources */,
+				88ECF07220A01F290071A98A /* OLExamSingleFooterView.m in Sources */,
 				8831E18720941985001D038E /* DCSubStageThreeImgCell.m in Sources */,
 				8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */,
 				88FE6899209AA26B008C28A0 /* UCUploadCollectionCell.m in Sources */,
@@ -2349,9 +2463,11 @@
 				88FE68A8209ABD60008C28A0 /* OLMindReportModel.m in Sources */,
 				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
 				88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */,
+				88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
 				88435E82208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m in Sources */,
 				8835B2EC20720D6000722010 /* EDJHomeViewController.m in Sources */,
+				88ECF05A209FF5050071A98A /* OLExamSingleLineModel.m in Sources */,
 				88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */,
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,
 				88DD8135209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m in Sources */,
@@ -2378,6 +2494,7 @@
 				88D13C5F2090585F00A32236 /* OLHomeCollectionCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
 				889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */,
+				88ECF07720A032340071A98A /* OLExamViewBottomBar.m in Sources */,
 				889E7DCD2099BB0A00BB9084 /* UCUploadCollectionViewFlowLayout.m in Sources */,
 				88435EA4208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m in Sources */,
 				88CD739D20995A1400E80058 /* HPBookInfoHeaderCell.m in Sources */,
@@ -2393,6 +2510,7 @@
 				8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */,
 				88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */,
 				8831E1512092FE22001D038E /* LGButton.m in Sources */,
+				88ECF05D209FF53A0071A98A /* OLExamModel.m in Sources */,
 				88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */,
 				884312B2208721F400321F84 /* LGBaseTableViewController.m in Sources */,
 				884312B52087222600321F84 /* EDJLevelInsTableViewController.m in Sources */,
@@ -2404,6 +2522,7 @@
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
 				88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */,
+				88ECF068209FF8280071A98A /* OLExamSingleOptionCell.m in Sources */,
 				8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */,
 				88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */,
 				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,
@@ -2415,6 +2534,7 @@
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
 				88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */,
+				88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */,
 				88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */,
 				884312EC2089BC7D00321F84 /* UCMyFeedbackViewController.m in Sources */,
 				88D13C30209013EB00A32236 /* LGBaseCollectionViewCell.m in Sources */,
@@ -2424,8 +2544,10 @@
 				889E7DC92099B19F00BB9084 /* UCUploadViewController.m in Sources */,
 				88A47123207DF342002F93E0 /* EDJOnlineViewController.m in Sources */,
 				884312A82086ED1200321F84 /* EDJLevelInfoFlowLayout.m in Sources */,
+				88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */,
 				8835B2E920720CD800722010 /* LIGObject.m in Sources */,
 				88FE68C2209B0690008C28A0 /* OLVoteListTableViewCell.m in Sources */,
+				88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */,
 				8835B314207216DB00722010 /* LGNavigationSearchBar.m in Sources */,
 				88D13C3C209022EF00A32236 /* EDJSearchTagHeader.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,

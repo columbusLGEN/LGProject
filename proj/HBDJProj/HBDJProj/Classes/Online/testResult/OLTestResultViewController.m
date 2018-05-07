@@ -49,7 +49,10 @@
 }
 
 - (IBAction)backLookClick:(UIButton *)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(testResultVcBack:)]) {
+        [self.delegate testResultVcBack:self];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
