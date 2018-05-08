@@ -71,7 +71,6 @@
 		88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88397816207F592700F3D131 /* UCPersonInfoTableViewCell.m */; };
 		884311F12084B80C00321F84 /* LGSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 884311F02084B80C00321F84 /* LGSegmentControl.m */; };
 		8843124C2085E60F00321F84 /* EDJLevelInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843124B2085E60F00321F84 /* EDJLevelInfoViewController.m */; };
-		8843124F2085ED6300321F84 /* UIViewController+LGBaseSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843124E2085ED6300321F84 /* UIViewController+LGBaseSettings.m */; };
 		884312A82086ED1200321F84 /* EDJLevelInfoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312A72086ED1200321F84 /* EDJLevelInfoFlowLayout.m */; };
 		884312AB2086F2D400321F84 /* EDJLeverInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884312AA2086F2D400321F84 /* EDJLeverInfoHeader.xib */; };
 		884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312AD2086F2EC00321F84 /* EDJLeverInfoHeaderView.m */; };
@@ -386,8 +385,6 @@
 		884311F02084B80C00321F84 /* LGSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSegmentControl.m; sourceTree = "<group>"; };
 		8843124A2085E60F00321F84 /* EDJLevelInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJLevelInfoViewController.h; sourceTree = "<group>"; };
 		8843124B2085E60F00321F84 /* EDJLevelInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJLevelInfoViewController.m; sourceTree = "<group>"; };
-		8843124D2085ED6300321F84 /* UIViewController+LGBaseSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LGBaseSettings.h"; sourceTree = "<group>"; };
-		8843124E2085ED6300321F84 /* UIViewController+LGBaseSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LGBaseSettings.m"; sourceTree = "<group>"; };
 		884312A62086ED1200321F84 /* EDJLevelInfoFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJLevelInfoFlowLayout.h; sourceTree = "<group>"; };
 		884312A72086ED1200321F84 /* EDJLevelInfoFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJLevelInfoFlowLayout.m; sourceTree = "<group>"; };
 		884312AA2086F2D400321F84 /* EDJLeverInfoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJLeverInfoHeader.xib; sourceTree = "<group>"; };
@@ -917,8 +914,6 @@
 				8835B2A52071FBFB00722010 /* LGBaseNavigationController.m */,
 				8835B2AA207201DD00722010 /* LGBaseTabBarController.h */,
 				8835B2AB207201DD00722010 /* LGBaseTabBarController.m */,
-				8843124D2085ED6300321F84 /* UIViewController+LGBaseSettings.h */,
-				8843124E2085ED6300321F84 /* UIViewController+LGBaseSettings.m */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -2424,7 +2419,6 @@
 				88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */,
 				88D13C592090560E00A32236 /* EDJDigitalModel.m in Sources */,
 				881C94E02068ED10009D6A52 /* LIGNetworkAgent.m in Sources */,
-				8843124F2085ED6300321F84 /* UIViewController+LGBaseSettings.m in Sources */,
 				884312DC2087402200321F84 /* UCSettingModel.m in Sources */,
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,

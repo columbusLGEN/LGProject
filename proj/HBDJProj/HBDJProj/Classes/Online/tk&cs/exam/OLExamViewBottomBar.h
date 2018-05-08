@@ -8,6 +8,8 @@
 
 #import "LGBaseView.h"
 
+@protocol OLExamViewBottomBarDelegate;
+
 @interface OLExamViewBottomBar : LGBaseView
 
 /** 是否是回看状态 */
@@ -16,5 +18,12 @@
 @property (assign,nonatomic) NSInteger alreadyCount;
 @property (assign,nonatomic) NSInteger totalCount;
 + (instancetype)examViewBottomBar;
+
+@property (weak,nonatomic) id<OLExamViewBottomBarDelegate> delegate;
+
+@end
+
+@protocol OLExamViewBottomBarDelegate <NSObject>
+- (void)examBottomBarClose:(OLExamViewBottomBar *)bottomBar;
 
 @end

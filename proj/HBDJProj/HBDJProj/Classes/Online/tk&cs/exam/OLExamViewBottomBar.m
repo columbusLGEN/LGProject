@@ -27,14 +27,18 @@
 - (void)setAlreadyCount:(NSInteger)alreadyCount{
     _alreadyCount = alreadyCount;
     _alreadyAnswer.text = [NSString stringWithFormat:@"%ld",alreadyCount];
+//    _alreadyAnswer.text = @"999";
 }
 - (void)setTotalCount:(NSInteger)totalCount{
     _totalCount = totalCount;
     _totalQuestions.text = [NSString stringWithFormat:@"/%ld",totalCount];
+//    _totalQuestions.text = @"/999";
 }
 
 - (IBAction)closeBackLook:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(examBottomBarClose:)]) {
+        [self.delegate examBottomBarClose:self];
+    }
 }
 
 - (void)layoutSubviews{

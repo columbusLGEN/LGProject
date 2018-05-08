@@ -7,6 +7,7 @@
 //
 
 #import "OLTestResultViewController.h"
+#import "OLExamViewController.h"
 
 @interface OLTestResultViewController ()
 /** 正确率 */
@@ -40,19 +41,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configUI];
     
+}
+
+- (void)configUI{
     [_totalCount setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.3]];
 }
 
 - (IBAction)close:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    /// MARK: 关闭
+    [self lg_dismissViewController];
 }
 
 - (IBAction)backLookClick:(UIButton *)sender {
-    if ([self.delegate respondsToSelector:@selector(testResultVcBack:)]) {
-        [self.delegate testResultVcBack:self];
-    }
-    [self.navigationController popViewControllerAnimated:YES];
+    /// 试题回看
+    /// 获取刚才试题的 id 重新打开
+    OLExamViewController *backLookExamVc = [OLExamViewController new];
+    backLookExamVc.backLook = YES;
+//    backLookExamVc.pushWay = self.pushWay;/// 如果打开此行代码，则关闭试题回看页面时，连同成绩页面一起关闭
+    [self.navigationController pushViewController:backLookExamVc animated:YES];
 }
 
 

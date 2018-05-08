@@ -13,6 +13,7 @@
 #import "OLExamSingleModel.h"
 #import "OLExamSingleFooterView.h"
 #import "OLTestResultViewController.h"
+#import "LGBaseNavigationController.h"
 
 static CGFloat bottomBarHeight = 60;
 static NSString * const cellID = @"OLExamCollectionViewCell";
@@ -20,7 +21,7 @@ static NSString * const cellID = @"OLExamCollectionViewCell";
 @interface OLExamViewController ()<
 UICollectionViewDelegate,
 UICollectionViewDataSource,
-OLTestResultViewControllerDelegate
+OLExamViewBottomBarDelegate
 >
 
 @property (strong,nonatomic) UICollectionView *collectionView;
@@ -56,16 +57,19 @@ OLTestResultViewControllerDelegate
     NSInteger questioTotalCount = 10;
     for (NSInteger i = 0; i < questioTotalCount; i++) {
         OLExamSingleModel *model = [OLExamSingleModel new];
+        model.backLook = self.backLook;
         model.index = i;
         model.contents;
         model.questioTotalCount = questioTotalCount;
         [arrMu addObject:model];
     }
+    
     self.dataArray = arrMu.copy;
     [self.collectionView reloadData];
     
     OLExamViewBottomBar *bottomBar = [OLExamViewBottomBar examViewBottomBar];
     _bottomBar = bottomBar;
+    bottomBar.delegate = self;
     bottomBar.backLook = self.backLook;
     bottomBar.frame = CGRectMake(0, self.view.height - bottomBarHeight, kScreenWidth, bottomBarHeight);
     bottomBar.alreadyCount = 1;
@@ -73,6 +77,13 @@ OLTestResultViewControllerDelegate
     [self.view addSubview:bottomBar];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(turnQuestion:) name:OLExamTurnQuestionNotification object:nil];
+    
+//    NSLog(@"self.navigationController.viewControllers -- %@",self.navigationController.viewControllers);
+}
+
+#pragma mark - bottom bar delegate
+- (void)examBottomBarClose:(OLExamViewBottomBar *)bottomBar{
+    [self lg_dismissViewController];
 }
 
 #pragma mark - notification
@@ -89,11 +100,16 @@ OLTestResultViewControllerDelegate
     }else{
         index++;
         if (index == self.dataArray.count) {
-            /// 测试结果页面
+            /// MARK: 交卷 提交成绩
+            
+            /// TODO: 将答题情况数据保存在本地
+            
             OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-            [self.navigationController pushViewController:trvc animated:YES];
+            trvc.pushWay = LGBaseViewControllerPushWayModal;
+            LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
             
-            
+            [self.navigationController presentViewController:nav animated:YES completion:nil];
+            [self.navigationController popViewControllerAnimated:YES];
             return;
         }else{
         }
@@ -103,6 +119,7 @@ OLTestResultViewControllerDelegate
 
 #pragma mark - collection view data source & delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+
     return self.dataArray.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

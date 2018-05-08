@@ -21,10 +21,11 @@
 - (void)setModel:(OLExamSingleModel *)model{
     _model = model;
     self.dataArray = model.contents;
-    NSLog(@"model.index -- %ld",model.index);
-    if (model.index == model.questioTotalCount - 1) {
-        NSLog(@"此视图为最后一题 -- ");
-        _footer.isLast = YES;                     
+    if (!model.backLook) {        
+        if (model.index == model.questioTotalCount - 1) {
+            /// 最后一题
+            _footer.isLast = YES;
+        }
     }
     _footer.currenIndex = self.model.index;
     [self.tableView reloadData];
@@ -45,6 +46,9 @@
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (!self.model.backLook) {
+        return self.dataArray.count - 1;
+    }
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,23 +59,32 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     OLExamSingleLineModel *questionModel = self.dataArray[0];
-    if (questionModel.isChoiceMutiple) {
+    __block BOOL isCorrect = NO;/// 是否回答正确
+    if (questionModel.choiceMutiple) {
+        /// TODO:多选题的正确性判断
         OLExamSingleLineModel *optionModel = self.dataArray[indexPath.row];
-        if (optionModel.isSelected) {
+        if (optionModel.selected) {
             optionModel.selected = NO;
         }else{
             optionModel.selected = YES;
+            /// textcode
+            if (optionModel.repreAnswer == optionModel.belongTo.answer) {
+                isCorrect = YES;
+            }
         }
     }else{
         [self.dataArray enumerateObjectsUsingBlock:^(OLExamSingleLineModel   * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
             if (idx == indexPath.row) {
                 model.selected = YES;
+                if (model.repreAnswer == model.belongTo.answer) {
+                    isCorrect = YES;
+                }
             }else{
                 model.selected = NO;
             }
         }];
     }
-    
+
     [tableView reloadData];
 }
 

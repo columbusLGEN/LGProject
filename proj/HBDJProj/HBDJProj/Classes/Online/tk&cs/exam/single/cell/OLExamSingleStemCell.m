@@ -20,8 +20,9 @@
 
 - (void)setModel:(OLExamSingleLineModel *)model{
     _subModel = model;
-    [self optionStateWithMutiple:model.isChoiceMutiple];
+    [self optionStateWithMutiple:model.choiceMutiple];
     _content.text = model.questionContent;
+    
 }
 
 - (void)awakeFromNib {
