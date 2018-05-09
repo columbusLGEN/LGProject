@@ -18,7 +18,7 @@
         make.width.mas_equalTo((kScreenWidth - 100) / 4);
         make.height.mas_equalTo(91);
     }];
-    self.label.font = [UIFont systemFontOfSize:19];
+    [self.textButton.titleLabel setFont:[UIFont systemFontOfSize:19]];
 }
 
 @end

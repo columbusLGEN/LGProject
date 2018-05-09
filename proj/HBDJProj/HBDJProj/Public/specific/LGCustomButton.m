@@ -14,8 +14,13 @@
 
 @implementation LGCustomButton
 
+- (void)setSelected:(BOOL)selected{
+    _selected = selected;
+    self.button.selected = selected;
+}
+
 - (void)modifyTextColorWithColorString:(NSString *)colorString iconName:(NSString *)iconName{
-    [self.label setTextColor:[UIColor colorWithHexString:colorString]];
+    [self.textButton setTitleColor:[UIColor colorWithHexString:colorString] forState:UIControlStateNormal];
     [self.img setImage:[UIImage imageNamed:iconName]];
     self.button.hidden = YES;
 }
@@ -26,10 +31,10 @@
 
 - (void)setupWithImgName:(NSString *)imgName labelText:(NSString *)labelText labelTextColor:(NSString *)labelTextColor{
     [self.img setImage:[UIImage imageNamed:imgName]];
-    [self.label setTextColor:[UIColor colorWithHexString:labelTextColor]];
-    [self.label setText:labelText];
-    
+    [self.textButton setTitleColor:[UIColor colorWithHexString:labelTextColor] forState:UIControlStateNormal];
+    [self.textButton setTitle:labelText forState:UIControlStateNormal];
 }
+
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents{
     [self.button addTarget:target action:action forControlEvents:controlEvents];
 }
@@ -37,7 +42,7 @@
 - (void)setupUI{
     self.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.img];
-    [self addSubview:self.label];
+    [self addSubview:self.textButton];
     [self addSubview:self.button];
     
     [self.img mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -46,7 +51,7 @@
         make.width.mas_equalTo(23);
         make.height.mas_equalTo(23);
     }];
-    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.textButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.img.mas_centerX);
         make.top.equalTo(self.img.mas_bottom).offset(self.marginMid);
     }];
@@ -80,12 +85,12 @@
     }
     return _img;
 }
-- (UILabel *)label{
-    if (_label == nil) {
-        _label = [UILabel new];
-        _label.font = [UIFont systemFontOfSize:self.lbFont];
+- (UIButton *)textButton{
+    if (!_textButton) {
+        _textButton = [UIButton new];
+        [_textButton.titleLabel setFont:[UIFont systemFontOfSize:self.lbFont]];
     }
-    return _label;
+    return _textButton;
 }
 - (UIButton *)button{
     if (_button == nil) {

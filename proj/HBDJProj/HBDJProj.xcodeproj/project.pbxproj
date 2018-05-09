@@ -218,6 +218,9 @@
 		88ECF07720A032340071A98A /* OLExamViewBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF07620A032340071A98A /* OLExamViewBottomBar.m */; };
 		88ECF07920A032540071A98A /* OLExamViewBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ECF07820A032540071A98A /* OLExamViewBottomBar.xib */; };
 		88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF07B20A03FE00071A98A /* OLExamCollectionViewCell.m */; };
+		88ECF0C920A19E6A0071A98A /* DCSubPartStateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF0C820A19E6A0071A98A /* DCSubPartStateDetailViewController.m */; };
+		88ECF0CD20A19EFE0071A98A /* DCSubPartBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF0CC20A19EFE0071A98A /* DCSubPartBottomView.m */; };
+		88ECF0CF20A19F040071A98A /* DCSubPartBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ECF0CE20A19F040071A98A /* DCSubPartBottomView.xib */; };
 		88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */; };
 		88FE6899209AA26B008C28A0 /* UCUploadCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE6898209AA26B008C28A0 /* UCUploadCollectionCell.m */; };
 		88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE689B209AA604008C28A0 /* UCUploadModel.m */; };
@@ -639,6 +642,11 @@
 		88ECF07820A032540071A98A /* OLExamViewBottomBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLExamViewBottomBar.xib; sourceTree = "<group>"; };
 		88ECF07A20A03FE00071A98A /* OLExamCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamCollectionViewCell.h; sourceTree = "<group>"; };
 		88ECF07B20A03FE00071A98A /* OLExamCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamCollectionViewCell.m; sourceTree = "<group>"; };
+		88ECF0C720A19E6A0071A98A /* DCSubPartStateDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateDetailViewController.h; sourceTree = "<group>"; };
+		88ECF0C820A19E6A0071A98A /* DCSubPartStateDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateDetailViewController.m; sourceTree = "<group>"; };
+		88ECF0CB20A19EFE0071A98A /* DCSubPartBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartBottomView.h; sourceTree = "<group>"; };
+		88ECF0CC20A19EFE0071A98A /* DCSubPartBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartBottomView.m; sourceTree = "<group>"; };
+		88ECF0CE20A19F040071A98A /* DCSubPartBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCSubPartBottomView.xib; sourceTree = "<group>"; };
 		88FE6891209A9B76008C28A0 /* UCUploadHeaderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadHeaderFooterView.h; sourceTree = "<group>"; };
 		88FE6892209A9B76008C28A0 /* UCUploadHeaderFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadHeaderFooterView.m; sourceTree = "<group>"; };
 		88FE6897209AA26B008C28A0 /* UCUploadCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadCollectionCell.h; sourceTree = "<group>"; };
@@ -1026,6 +1034,7 @@
 		8831E1442092F230001D038E /* subPart */ = {
 			isa = PBXGroup;
 			children = (
+				88ECF0C620A19E330071A98A /* subPartDetail */,
 				8831E16020931332001D038E /* DCSubPartStateTableViewController.h */,
 				8831E16120931332001D038E /* DCSubPartStateTableViewController.m */,
 				8831E156209310A6001D038E /* model */,
@@ -1953,6 +1962,26 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		88ECF0C620A19E330071A98A /* subPartDetail */ = {
+			isa = PBXGroup;
+			children = (
+				88ECF0CA20A19EDF0071A98A /* view */,
+				88ECF0C720A19E6A0071A98A /* DCSubPartStateDetailViewController.h */,
+				88ECF0C820A19E6A0071A98A /* DCSubPartStateDetailViewController.m */,
+			);
+			path = subPartDetail;
+			sourceTree = "<group>";
+		};
+		88ECF0CA20A19EDF0071A98A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88ECF0CB20A19EFE0071A98A /* DCSubPartBottomView.h */,
+				88ECF0CC20A19EFE0071A98A /* DCSubPartBottomView.m */,
+				88ECF0CE20A19F040071A98A /* DCSubPartBottomView.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -2145,6 +2174,7 @@
 				88ECF07920A032540071A98A /* OLExamViewBottomBar.xib in Resources */,
 				88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */,
 				88CD73A420995A5A00E80058 /* HPBookInfoBriefCell.xib in Resources */,
+				88ECF0CF20A19F040071A98A /* DCSubPartBottomView.xib in Resources */,
 				88A47137207F06D3002F93E0 /* UserCenterHomeForm.plist in Resources */,
 				88ECF06A209FF8300071A98A /* OLExamSingleOptionCell.xib in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
@@ -2441,6 +2471,7 @@
 				8831E18720941985001D038E /* DCSubStageThreeImgCell.m in Sources */,
 				8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */,
 				88FE6899209AA26B008C28A0 /* UCUploadCollectionCell.m in Sources */,
+				88ECF0C920A19E6A0071A98A /* DCSubPartStateDetailViewController.m in Sources */,
 				8835B2CA20720B0200722010 /* EDJDiscoveryController.m in Sources */,
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
 				881C94D02068ECF3009D6A52 /* NSString+Extension.m in Sources */,
@@ -2465,6 +2496,7 @@
 				88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */,
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,
 				88DD8135209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m in Sources */,
+				88ECF0CD20A19EFE0071A98A /* DCSubPartBottomView.m in Sources */,
 				8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
 				88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */,
