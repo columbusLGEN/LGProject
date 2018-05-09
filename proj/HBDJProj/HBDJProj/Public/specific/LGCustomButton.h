@@ -14,7 +14,7 @@
 @interface LGCustomButton : UIView
 
 @property (strong,nonatomic) UIImageView *img;
-@property (strong,nonatomic) UIButton *textButton;
+@property (strong,nonatomic) UILabel *label;
 
 /// 初始化
 - (void)setupWithImgName:(NSString *)imgName labelText:(NSString *)labelText labelTextColor:(NSString *)labelTextColor;
@@ -28,8 +28,6 @@
 @property (weak,nonatomic) NSString *bgColorStr;
 @property (strong,nonatomic) UIButton *button;
 @property (assign,nonatomic) NSInteger index;
-
-@property (assign,nonatomic) BOOL selected;
 
 
 @end
