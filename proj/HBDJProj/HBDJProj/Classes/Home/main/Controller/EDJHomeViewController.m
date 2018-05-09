@@ -17,6 +17,7 @@
 #import "EDJSearchViewController.h"
 #import "HPPointNewsTableViewController.h"
 #import "HPBookInfoViewController.h"
+#import "HPPartyBuildDetailViewController.h"
 
 @interface EDJHomeViewController ()<
 LGNavigationSearchBarDelelgate,
@@ -135,6 +136,12 @@ EDJHomeHeaderViewDelegate
     }
     return 0;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"点击了党建要闻cell -- ");
+    HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+    [self.navigationController pushViewController:dvc animated:YES];
+}
+
 #pragma mark - UICollectionViewDelegaet
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     HPBookInfoViewController *vc = [HPBookInfoViewController new];

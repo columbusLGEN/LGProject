@@ -7,33 +7,47 @@
 //
 
 #import "DCSubPartBottomView.h"
-#import "LGCustomButton.h"
 
 @interface DCSubPartBottomView ()
 @property (weak, nonatomic) IBOutlet UITextField *txtField;
-@property (weak, nonatomic) IBOutlet LGCustomButton *like;
-@property (weak, nonatomic) IBOutlet LGCustomButton *collect;
+@property (weak, nonatomic) IBOutlet UIButton *like;
+@property (weak, nonatomic) IBOutlet UIButton *collect;
 
 
 @end
 
 @implementation DCSubPartBottomView
 
-- (void)likeClick{
-    
+- (IBAction)click:(UIButton *)sender {
+    if (sender.selected) {
+        sender.selected = NO;
+    }else{
+        sender.selected = YES;
+    }
+    SubPartyBottomAction action;
+    if (sender.tag == 1) {
+        /// 收藏
+        action = SubPartyBottomActionCollect;
+    }else{
+        /// 点赞
+        action = SubPartyBottomActionLike;
+    }
+    if ([self.delegate respondsToSelector:@selector(sbBottomActionClick:action:)]) {
+        [self.delegate sbBottomActionClick:self action:action];
+    }
 }
 
 - (void)awakeFromNib{
     [super awakeFromNib];
-
-//    [_like setupWithImgName:@""
-//                       text:@"点赞"
-//            textColorNormal:[UIColor whiteColor]
-//          textColorSelected:[UIColor whiteColor]];
     
-    [_like addTarget:self
-                        action:@selector(likeClick)
-              forControlEvents:UIControlEventTouchUpInside];
+    UIView *leftRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 50)];
+    leftRect.backgroundColor = [UIColor clearColor];
+    self.txtField.leftView = leftRect;
+    self.txtField.leftViewMode = UITextFieldViewModeAlways;
+}
+
++ (instancetype)sbBottom{
+    return [[[NSBundle mainBundle] loadNibNamed:@"DCSubPartBottomView" owner:nil options:nil] lastObject];
 }
 
 @end

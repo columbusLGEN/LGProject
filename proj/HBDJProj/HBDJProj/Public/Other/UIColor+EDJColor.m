@@ -68,7 +68,12 @@
 + (UIColor *)EDJColor_30A5E1{
     return [self colorWithHexString:@"30A5E1"];
 }
-
++ (UIColor *)EDJColor_6CBEFC{/// 点赞蓝
+    return [self colorWithHexString:@"6CBEFC"];
+}
++ (UIColor *)EDJColor_8BCA32{/// 分享绿
+    return [self colorWithHexString:@"8BCA32"];
+}
 
 
 @end

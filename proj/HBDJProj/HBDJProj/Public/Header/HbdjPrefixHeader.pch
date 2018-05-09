@@ -19,6 +19,7 @@
 #import "UIView+Extension.h"
 #import "UIColor+EDJColor.h"
 #import "UIViewController+Extension.h"
+#import "LGDevice.h"
 
 //#import <UIKit/UIKit.h>
 

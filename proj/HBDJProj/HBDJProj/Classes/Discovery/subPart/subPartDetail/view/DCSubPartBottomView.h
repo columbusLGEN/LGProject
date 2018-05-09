@@ -8,6 +8,21 @@
 
 #import "LGBaseView.h"
 
+typedef NS_ENUM(NSUInteger, SubPartyBottomAction) {
+    SubPartyBottomActionLike,
+    SubPartyBottomActionCollect,
+};
+
+@protocol DCSubPartBottomViewDelegate;
+
 @interface DCSubPartBottomView : LGBaseView
+
+@property (weak,nonatomic) id<DCSubPartBottomViewDelegate> delegate;
++ (instancetype)sbBottom;
+
+@end
+
+@protocol DCSubPartBottomViewDelegate <NSObject>
+- (void)sbBottomActionClick:(DCSubPartBottomView *)sbBottom action:(SubPartyBottomAction)action;
 
 @end

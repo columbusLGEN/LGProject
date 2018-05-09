@@ -10,6 +10,7 @@
 #import "DCSubPartStateModel.h"
 #import "DCSubPartStateBaseCell.h"
 #import "DCSubPartStateWithoutImgCell.h"
+#import "DCSubPartStateDetailViewController.h"
 
 @interface DCSubPartStateTableViewController ()
 
@@ -65,6 +66,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     DCSubPartStateModel *model = self.dataArray[indexPath.row];
     return model.cellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 

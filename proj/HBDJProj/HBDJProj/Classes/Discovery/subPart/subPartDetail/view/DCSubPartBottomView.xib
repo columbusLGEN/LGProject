@@ -16,48 +16,81 @@
             <rect key="frame" x="0.0" y="0.0" width="566" height="65"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="写评论" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7su-J8-Le5">
-                    <rect key="frame" x="15" y="17.5" width="446" height="30"/>
-                    <nil key="textColor"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="写评论" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7su-J8-Le5">
+                    <rect key="frame" x="8" y="9" width="433" height="48"/>
+                    <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xvJ-uV-JtZ" customClass="LGCustomButton">
-                    <rect key="frame" x="516" y="8" width="20" height="49"/>
-                    <color key="backgroundColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5a-l1-KT8">
+                    <rect key="frame" x="501" y="28" width="50" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="20" id="FyY-rG-itS"/>
+                        <constraint firstAttribute="width" constant="50" id="UMv-Nc-7jd"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kS7-lx-YcE" customClass="LGCustomButton">
-                    <rect key="frame" x="476" y="8" width="20" height="49"/>
-                    <color key="backgroundColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="titleEdgeInsets" minX="-20" minY="20" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="15" minY="-25" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="收藏" image="uc_icon_shouc_gray">
+                        <color key="titleColor" red="0.50196078430000002" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="收藏" image="uc_icon_shouc_yellow">
+                        <color key="titleColor" red="1" green="0.81176470590000005" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="click:" destination="5ee-qV-VSS" eventType="touchUpInside" id="p2Y-QK-6i4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01f-hg-tJg">
+                    <rect key="frame" x="446" y="28" width="50" height="22"/>
+                    <inset key="titleEdgeInsets" minX="-20" minY="20" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="15" minY="-25" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="点赞" image="dc_like_normal">
+                        <color key="titleColor" red="0.50196078430000002" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="点赞" image="dc_like_selected">
+                        <color key="titleColor" red="0.42352941176470588" green="0.74509803921568629" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="click:" destination="5ee-qV-VSS" eventType="touchUpInside" id="Xgj-7s-k0j"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpW-Kk-WY0">
+                    <rect key="frame" x="0.0" y="0.0" width="566" height="1"/>
+                    <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="20" id="e3B-80-d4i"/>
+                        <constraint firstAttribute="height" constant="1" id="cGF-Yh-uKB"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="n75-TV-9qr" firstAttribute="bottom" secondItem="xvJ-uV-JtZ" secondAttribute="bottom" constant="8" id="LKv-4Z-yu4"/>
-                <constraint firstItem="xvJ-uV-JtZ" firstAttribute="leading" secondItem="kS7-lx-YcE" secondAttribute="trailing" constant="20" id="Q3T-BL-ovB"/>
-                <constraint firstItem="kS7-lx-YcE" firstAttribute="height" secondItem="xvJ-uV-JtZ" secondAttribute="height" id="Toi-VB-SOh"/>
-                <constraint firstItem="kS7-lx-YcE" firstAttribute="centerY" secondItem="xvJ-uV-JtZ" secondAttribute="centerY" id="TvV-MY-wb0"/>
-                <constraint firstItem="xvJ-uV-JtZ" firstAttribute="top" secondItem="n75-TV-9qr" secondAttribute="top" constant="8" id="Ykn-io-pcK"/>
-                <constraint firstItem="kS7-lx-YcE" firstAttribute="width" secondItem="xvJ-uV-JtZ" secondAttribute="width" id="eoM-ID-Kw6"/>
-                <constraint firstItem="kS7-lx-YcE" firstAttribute="leading" secondItem="7su-J8-Le5" secondAttribute="trailing" constant="15" id="i7g-gL-GbF"/>
-                <constraint firstItem="7su-J8-Le5" firstAttribute="centerY" secondItem="kS7-lx-YcE" secondAttribute="centerY" id="jbQ-gP-Jp3"/>
-                <constraint firstItem="7su-J8-Le5" firstAttribute="leading" secondItem="n75-TV-9qr" secondAttribute="leading" constant="15" id="uPP-X0-zNq"/>
-                <constraint firstItem="n75-TV-9qr" firstAttribute="trailing" secondItem="xvJ-uV-JtZ" secondAttribute="trailing" constant="30" id="ybV-bx-EH1"/>
+                <constraint firstItem="mpW-Kk-WY0" firstAttribute="top" secondItem="n75-TV-9qr" secondAttribute="top" id="71r-Dc-UDa"/>
+                <constraint firstItem="Y5a-l1-KT8" firstAttribute="leading" secondItem="01f-hg-tJg" secondAttribute="trailing" constant="5" id="KJy-Tm-dBY"/>
+                <constraint firstItem="n75-TV-9qr" firstAttribute="bottom" secondItem="Y5a-l1-KT8" secondAttribute="bottom" constant="15" id="LyN-ao-hMt"/>
+                <constraint firstItem="01f-hg-tJg" firstAttribute="centerY" secondItem="Y5a-l1-KT8" secondAttribute="centerY" id="Ro7-9L-cWn"/>
+                <constraint firstItem="mpW-Kk-WY0" firstAttribute="width" secondItem="5ee-qV-VSS" secondAttribute="width" id="UDc-eY-2Ws"/>
+                <constraint firstItem="01f-hg-tJg" firstAttribute="leading" secondItem="7su-J8-Le5" secondAttribute="trailing" constant="5" id="Uw1-mQ-uvl"/>
+                <constraint firstItem="7su-J8-Le5" firstAttribute="leading" secondItem="n75-TV-9qr" secondAttribute="leading" constant="8" id="hbU-G9-2Y2"/>
+                <constraint firstItem="7su-J8-Le5" firstAttribute="top" secondItem="mpW-Kk-WY0" secondAttribute="bottom" constant="8" id="iCL-5X-bot"/>
+                <constraint firstItem="01f-hg-tJg" firstAttribute="width" secondItem="Y5a-l1-KT8" secondAttribute="width" id="iRP-wu-brg"/>
+                <constraint firstItem="n75-TV-9qr" firstAttribute="bottom" secondItem="7su-J8-Le5" secondAttribute="bottom" constant="8" id="iv2-Yr-deb"/>
+                <constraint firstItem="mpW-Kk-WY0" firstAttribute="centerX" secondItem="5ee-qV-VSS" secondAttribute="centerX" id="kCk-GU-WX7"/>
+                <constraint firstItem="n75-TV-9qr" firstAttribute="trailing" secondItem="Y5a-l1-KT8" secondAttribute="trailing" constant="15" id="sSQ-ZH-qBT"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="n75-TV-9qr"/>
             <connections>
-                <outlet property="collect" destination="kS7-lx-YcE" id="t72-dv-VmZ"/>
-                <outlet property="like" destination="xvJ-uV-JtZ" id="1Nq-H8-BD0"/>
+                <outlet property="collect" destination="Y5a-l1-KT8" id="jWj-6u-yzS"/>
+                <outlet property="like" destination="01f-hg-tJg" id="JvY-Qh-lhZ"/>
                 <outlet property="txtField" destination="7su-J8-Le5" id="eaF-vV-tlU"/>
             </connections>
-            <point key="canvasLocation" x="62" y="-269.5"/>
+            <point key="canvasLocation" x="-15" y="-268.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="dc_like_normal" width="22" height="22"/>
+        <image name="dc_like_selected" width="22" height="22"/>
+        <image name="uc_icon_shouc_gray" width="22" height="22"/>
+        <image name="uc_icon_shouc_yellow" width="22" height="22"/>
+    </resources>
 </document>

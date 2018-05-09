@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="7hi-EK-oN2" customClass="PBDBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="643" height="459"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13V-U4-v9d">
+                    <rect key="frame" x="0.0" y="0.0" width="643" height="1"/>
+                    <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="ded-Q1-33y"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E90-hZ-tJr">
+                    <rect key="frame" x="569" y="422" width="59" height="22"/>
+                    <inset key="titleEdgeInsets" minX="-20" minY="20" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="20" minY="-25" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="点赞" image="dc_like_normal">
+                        <color key="titleColor" red="0.50196078430000002" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="点赞" image="dc_like_selected">
+                        <color key="titleColor" red="0.42352941179999998" green="0.74509803919999995" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="click:" destination="7hi-EK-oN2" eventType="touchUpInside" id="xOP-bR-6Np"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGo-rb-Gtb">
+                    <rect key="frame" x="431" y="422" width="59" height="22"/>
+                    <inset key="titleEdgeInsets" minX="-20" minY="20" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="20" minY="-25" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="分享" image="uc_icon_fenxiang_gray">
+                        <color key="titleColor" red="0.50196078430000002" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="分享" image="uc_icon_fenxiang_green">
+                        <color key="titleColor" red="0.54509803921568623" green="0.792156862745098" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="click:" destination="7hi-EK-oN2" eventType="touchUpInside" id="wqf-4D-Rsy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4C6-dj-od1">
+                    <rect key="frame" x="500" y="422" width="59" height="22"/>
+                    <inset key="titleEdgeInsets" minX="-20" minY="20" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="20" minY="-25" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="收藏" image="uc_icon_shouc_gray">
+                        <color key="titleColor" red="0.50196078430000002" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="收藏" image="uc_icon_shouc_yellow">
+                        <color key="titleColor" red="1" green="0.81176470590000005" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="click:" destination="7hi-EK-oN2" eventType="touchUpInside" id="iep-4b-DwH"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Pf0-P5-ceh" firstAttribute="trailing" secondItem="E90-hZ-tJr" secondAttribute="trailing" constant="15" id="02h-kW-6gd"/>
+                <constraint firstItem="13V-U4-v9d" firstAttribute="top" secondItem="Pf0-P5-ceh" secondAttribute="top" id="HwW-ce-t7o"/>
+                <constraint firstItem="13V-U4-v9d" firstAttribute="width" secondItem="7hi-EK-oN2" secondAttribute="width" id="JEn-d3-rab"/>
+                <constraint firstItem="Pf0-P5-ceh" firstAttribute="bottom" secondItem="E90-hZ-tJr" secondAttribute="bottom" constant="15" id="Lz1-5A-cDg"/>
+                <constraint firstItem="E90-hZ-tJr" firstAttribute="leading" secondItem="4C6-dj-od1" secondAttribute="trailing" constant="10" id="TLT-Bq-dwz"/>
+                <constraint firstItem="4C6-dj-od1" firstAttribute="centerY" secondItem="E90-hZ-tJr" secondAttribute="centerY" id="djA-it-KSc"/>
+                <constraint firstItem="4C6-dj-od1" firstAttribute="leading" secondItem="bGo-rb-Gtb" secondAttribute="trailing" constant="10" id="doo-7Z-N7X"/>
+                <constraint firstItem="bGo-rb-Gtb" firstAttribute="centerY" secondItem="E90-hZ-tJr" secondAttribute="centerY" id="hU7-1X-gUc"/>
+                <constraint firstItem="13V-U4-v9d" firstAttribute="centerX" secondItem="7hi-EK-oN2" secondAttribute="centerX" id="znz-6l-x8U"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Pf0-P5-ceh"/>
+            <point key="canvasLocation" x="214.5" y="-36.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dc_like_normal" width="22" height="22"/>
+        <image name="dc_like_selected" width="22" height="22"/>
+        <image name="uc_icon_fenxiang_gray" width="22" height="22"/>
+        <image name="uc_icon_fenxiang_green" width="22" height="22"/>
+        <image name="uc_icon_shouc_gray" width="22" height="22"/>
+        <image name="uc_icon_shouc_yellow" width="22" height="22"/>
+    </resources>
+</document>

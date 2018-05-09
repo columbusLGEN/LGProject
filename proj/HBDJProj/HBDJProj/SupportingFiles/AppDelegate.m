@@ -15,11 +15,9 @@
 
 @implementation AppDelegate
 
-
+#pragma mark - UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
-    self.window.rootViewController = [LIGMainTabBarController new];
-    [self.window makeKeyAndVisible];
+    [self baseConfigWithApplication:application launchOptions:launchOptions];
     return YES;
 }
 
@@ -48,6 +46,15 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - 私有方法
+- (void)baseConfigWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions{
+    self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
+    self.window.rootViewController = [LIGMainTabBarController new];
+    [self.window makeKeyAndVisible];
+    
+    [[LGDevice sharedInstance] lg_currentDeviceType];
 }
 
 

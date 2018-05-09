@@ -30,5 +30,9 @@
 + (UIColor *)EDJColor_57C6FF;
 + (UIColor *)EDJColor_0D96F6;
 + (UIColor *)EDJColor_30A5E1;
+/** 点赞蓝 */
++ (UIColor *)EDJColor_6CBEFC;
+/** 分享绿 */
++ (UIColor *)EDJColor_8BCA32;
 
 @end

@@ -117,6 +117,10 @@
 		88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */; };
 		88435EAC208F061400188CE9 /* EDJSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAB208F061400188CE9 /* EDJSearchViewController.m */; };
 		88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAE208F140C00188CE9 /* LGNavSearchView.m */; };
+		8885D23120A2917800DC06A1 /* LGDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885D23020A2917800DC06A1 /* LGDevice.m */; };
+		8885D23520A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885D23420A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m */; };
+		8885D23920A2BCB000DC06A1 /* PBDBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885D23820A2BCB000DC06A1 /* PBDBottomView.m */; };
+		8885D23B20A2BCB800DC06A1 /* PBDBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8885D23A20A2BCB800DC06A1 /* PBDBottomView.xib */; };
 		889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889E7DB62099685000BB9084 /* HPBookInfoModel.m */; };
 		889E7DBB20998D5100BB9084 /* UCUploadTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889E7DBA20998D5100BB9084 /* UCUploadTransitionView.m */; };
 		889E7DBD20998DD200BB9084 /* UCUploadTransitionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889E7DBC20998DD200BB9084 /* UCUploadTransitionView.xib */; };
@@ -469,6 +473,13 @@
 		88435EAB208F061400188CE9 /* EDJSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJSearchViewController.m; sourceTree = "<group>"; };
 		88435EAD208F140C00188CE9 /* LGNavSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNavSearchView.h; sourceTree = "<group>"; };
 		88435EAE208F140C00188CE9 /* LGNavSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNavSearchView.m; sourceTree = "<group>"; };
+		8885D22F20A2917800DC06A1 /* LGDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGDevice.h; sourceTree = "<group>"; };
+		8885D23020A2917800DC06A1 /* LGDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGDevice.m; sourceTree = "<group>"; };
+		8885D23320A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPartyBuildDetailViewController.h; sourceTree = "<group>"; };
+		8885D23420A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPartyBuildDetailViewController.m; sourceTree = "<group>"; };
+		8885D23720A2BCB000DC06A1 /* PBDBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDBottomView.h; sourceTree = "<group>"; };
+		8885D23820A2BCB000DC06A1 /* PBDBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDBottomView.m; sourceTree = "<group>"; };
+		8885D23A20A2BCB800DC06A1 /* PBDBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PBDBottomView.xib; sourceTree = "<group>"; };
 		889E7DB52099685000BB9084 /* HPBookInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPBookInfoModel.h; sourceTree = "<group>"; };
 		889E7DB62099685000BB9084 /* HPBookInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPBookInfoModel.m; sourceTree = "<group>"; };
 		889E7DB920998D5100BB9084 /* UCUploadTransitionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadTransitionView.h; sourceTree = "<group>"; };
@@ -819,6 +830,8 @@
 			isa = PBXGroup;
 			children = (
 				881C94D72068ED10009D6A52 /* Manager */,
+				8885D22F20A2917800DC06A1 /* LGDevice.h */,
+				8885D23020A2917800DC06A1 /* LGDevice.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1120,6 +1133,7 @@
 		8831E19D20946F6E001D038E /* pointNews */ = {
 			isa = PBXGroup;
 			children = (
+				8885D23220A2BBE600DC06A1 /* detail */,
 				8831E1A120946FCB001D038E /* other */,
 				8831E19E20946FBD001D038E /* controller */,
 				8831E1A020946FC8001D038E /* view */,
@@ -1516,6 +1530,26 @@
 				8835B2BC207209EA00722010 /* View */,
 			);
 			path = main;
+			sourceTree = "<group>";
+		};
+		8885D23220A2BBE600DC06A1 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				8885D23620A2BC1F00DC06A1 /* view */,
+				8885D23320A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.h */,
+				8885D23420A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		8885D23620A2BC1F00DC06A1 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8885D23720A2BCB000DC06A1 /* PBDBottomView.h */,
+				8885D23820A2BCB000DC06A1 /* PBDBottomView.m */,
+				8885D23A20A2BCB800DC06A1 /* PBDBottomView.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		889E7DB820998C2A00BB9084 /* cell */ = {
@@ -2166,6 +2200,7 @@
 				88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */,
 				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
 				8831E16920940131001D038E /* DCSubPartStateOneImgCell.xib in Resources */,
+				8885D23B20A2BCB800DC06A1 /* PBDBottomView.xib in Resources */,
 				88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */,
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
 				8831E18920941998001D038E /* DCSubStageThreeImgCell.xib in Resources */,
@@ -2421,6 +2456,7 @@
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
 				88A47133207EF5EB002F93E0 /* EDJUserCenterHomePageModel.m in Sources */,
 				88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */,
+				8885D23920A2BCB000DC06A1 /* PBDBottomView.m in Sources */,
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
 				88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
@@ -2429,6 +2465,7 @@
 				8831E1AC20947040001D038E /* HPPointNewsModel.m in Sources */,
 				88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */,
 				88A4710E207DBE1F002F93E0 /* EDJMicroBuildOneImgCell.m in Sources */,
+				8885D23520A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m in Sources */,
 				88397814207F56D700F3D131 /* UCPersonInfoModel.m in Sources */,
 				8831E18120941797001D038E /* DCSubStageOneImgCell.m in Sources */,
 				884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */,
@@ -2509,6 +2546,7 @@
 				881C94DF2068ED10009D6A52 /* LIGBaseRequest.m in Sources */,
 				8831E184209417AD001D038E /* DCSubStageFourImgCell.m in Sources */,
 				88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */,
+				8885D23120A2917800DC06A1 /* LGDevice.m in Sources */,
 				88D13C542090442F00A32236 /* EDJDigitalCell.m in Sources */,
 				88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */,
 				8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */,

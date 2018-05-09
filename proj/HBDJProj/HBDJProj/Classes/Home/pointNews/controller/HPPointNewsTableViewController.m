@@ -10,6 +10,7 @@
 #import "HPPointNewsTableViewCell.h"
 #import "HPPointNewsHeader.h"
 #import "HPPointNewsModel.h"
+#import "HPPartyBuildDetailViewController.h"
 
 static NSString * const cellID = @"HPPointNewsTableViewCell";
 
@@ -57,7 +58,10 @@ static NSString * const cellID = @"HPPointNewsTableViewCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 87;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+    [self.navigationController pushViewController:dvc animated:YES];
+}
 
 
 /*
