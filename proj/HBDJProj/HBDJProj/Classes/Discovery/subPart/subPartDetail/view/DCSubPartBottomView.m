@@ -20,11 +20,7 @@
 @implementation DCSubPartBottomView
 
 - (void)likeClick{
-    if (_like.selected) {
-        _like.selected = NO;
-    }else{
-        _like.selected = YES;
-    }
+    
 }
 
 - (void)awakeFromNib{
