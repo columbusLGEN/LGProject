@@ -15,6 +15,9 @@ typedef NS_ENUM(NSUInteger, LGDeviecType) {
 
 @interface LGDevice : NSObject
 
+/** 当前设备是否iPhone X */
++ (BOOL)isiPhoneX;
+/// 当前设备类型，启动时获取一次，然后记录在该属性里
 @property (assign,nonatomic,readonly) LGDeviecType currentDeviceType;
 
 - (void)lg_currentDeviceType;

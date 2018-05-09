@@ -15,6 +15,10 @@
 
 @implementation LGDevice
 
++ (BOOL)isiPhoneX{
+    return ([LGDevice sharedInstance].currentDeviceType == LGDeviecType_iPhoneX);
+}
+
 - (void)lg_currentDeviceType{
     if (kScreenHeight == 812) {
         _currentDeviceType = LGDeviecType_iPhoneX;

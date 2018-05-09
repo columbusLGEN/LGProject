@@ -18,6 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *tiCellImgRight;
 @property (weak, nonatomic) IBOutlet UILabel *tiCellTime;
 /// ---------------------three img---------------------
+/** 编辑状态，选中展示按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *editSelectButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLeftConstraint;
+
 
 @end
 
@@ -41,6 +45,34 @@
 }
 /// ---------------------three img---------------------
 
+
+- (void)setModel:(UCPartyMemberStageModel *)model{
+    _model = model;
+    if (model.state == PartyMemberModelStateDefault) {
+        /// 默认状态
+        _editSelectButton.hidden = YES;
+        _nameLeftConstraint.constant = 20;
+    }else if (model.state == PartyMemberModelStateEditNormal){
+        /// 编辑常规状态
+        _editSelectButton.hidden = NO;
+        _nameLeftConstraint.constant = 40;
+        _editSelectButton.selected = NO;
+    }else{
+        /// 编辑选中状态
+        _editSelectButton.hidden = NO;
+        _nameLeftConstraint.constant = 40;
+        _editSelectButton.selected = YES;
+    }
+}
+- (void)setupUI{
+    _editSelectButton.hidden = YES;
+}
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupUI];
+    }
+    return self;
+}
 + (NSString *)cellReuseIdWithModel:(UCPartyMemberStageModel *)model{
     if (model.imgCount == 1) {
         
@@ -53,22 +85,5 @@
     }
     return nil;
 }
-- (void)setModel:(UCPartyMemberStageModel *)model{
-    _model = model;
-}
-- (void)setupUI{
-    
-}
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self setupUI];
-}
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setupUI];
-    }
-    return self;
-}
-
 
 @end

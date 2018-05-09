@@ -18,9 +18,6 @@
 		881C94D12068ECF3009D6A52 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94CB2068ECF3009D6A52 /* UIColor+Extension.m */; };
 		881C94D22068ECF3009D6A52 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94CD2068ECF3009D6A52 /* UIImage+Extension.m */; };
 		881C94D32068ECF3009D6A52 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94CF2068ECF3009D6A52 /* UIView+Extension.m */; };
-		881C94DF2068ED10009D6A52 /* LIGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94DA2068ED10009D6A52 /* LIGBaseRequest.m */; };
-		881C94E02068ED10009D6A52 /* LIGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94DC2068ED10009D6A52 /* LIGNetworkAgent.m */; };
-		881C94E12068ED10009D6A52 /* LIGNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94DE2068ED10009D6A52 /* LIGNetworkConfig.m */; };
 		881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94E72068EFAA009D6A52 /* LIGMainTabBarController.m */; };
 		8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */; };
 		8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E14B2092F699001D038E /* LGThreeRightButtonView.m */; };
@@ -121,6 +118,8 @@
 		8885D23520A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885D23420A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m */; };
 		8885D23920A2BCB000DC06A1 /* PBDBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885D23820A2BCB000DC06A1 /* PBDBottomView.m */; };
 		8885D23B20A2BCB800DC06A1 /* PBDBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8885D23A20A2BCB800DC06A1 /* PBDBottomView.xib */; };
+		8885D23E20A2EC7600DC06A1 /* LGSegmentBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885D23D20A2EC7600DC06A1 /* LGSegmentBottomView.m */; };
+		8885D24020A2EC8500DC06A1 /* LGSegmentBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8885D23F20A2EC8500DC06A1 /* LGSegmentBottomView.xib */; };
 		889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889E7DB62099685000BB9084 /* HPBookInfoModel.m */; };
 		889E7DBB20998D5100BB9084 /* UCUploadTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889E7DBA20998D5100BB9084 /* UCUploadTransitionView.m */; };
 		889E7DBD20998DD200BB9084 /* UCUploadTransitionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889E7DBC20998DD200BB9084 /* UCUploadTransitionView.xib */; };
@@ -289,12 +288,6 @@
 		881C94CD2068ECF3009D6A52 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		881C94CE2068ECF3009D6A52 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		881C94CF2068ECF3009D6A52 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
-		881C94D92068ED10009D6A52 /* LIGBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIGBaseRequest.h; sourceTree = "<group>"; };
-		881C94DA2068ED10009D6A52 /* LIGBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIGBaseRequest.m; sourceTree = "<group>"; };
-		881C94DB2068ED10009D6A52 /* LIGNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIGNetworkAgent.h; sourceTree = "<group>"; };
-		881C94DC2068ED10009D6A52 /* LIGNetworkAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIGNetworkAgent.m; sourceTree = "<group>"; };
-		881C94DD2068ED10009D6A52 /* LIGNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIGNetworkConfig.h; sourceTree = "<group>"; };
-		881C94DE2068ED10009D6A52 /* LIGNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIGNetworkConfig.m; sourceTree = "<group>"; };
 		881C94E62068EFAA009D6A52 /* LIGMainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGMainTabBarController.h; sourceTree = "<group>"; };
 		881C94E72068EFAA009D6A52 /* LIGMainTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGMainTabBarController.m; sourceTree = "<group>"; };
 		881C94E92068F071009D6A52 /* HbdjPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HbdjPrefixHeader.pch; sourceTree = "<group>"; };
@@ -480,6 +473,9 @@
 		8885D23720A2BCB000DC06A1 /* PBDBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBDBottomView.h; sourceTree = "<group>"; };
 		8885D23820A2BCB000DC06A1 /* PBDBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBDBottomView.m; sourceTree = "<group>"; };
 		8885D23A20A2BCB800DC06A1 /* PBDBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PBDBottomView.xib; sourceTree = "<group>"; };
+		8885D23C20A2EC7600DC06A1 /* LGSegmentBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSegmentBottomView.h; sourceTree = "<group>"; };
+		8885D23D20A2EC7600DC06A1 /* LGSegmentBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSegmentBottomView.m; sourceTree = "<group>"; };
+		8885D23F20A2EC8500DC06A1 /* LGSegmentBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LGSegmentBottomView.xib; sourceTree = "<group>"; };
 		889E7DB52099685000BB9084 /* HPBookInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPBookInfoModel.h; sourceTree = "<group>"; };
 		889E7DB62099685000BB9084 /* HPBookInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPBookInfoModel.m; sourceTree = "<group>"; };
 		889E7DB920998D5100BB9084 /* UCUploadTransitionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadTransitionView.h; sourceTree = "<group>"; };
@@ -897,22 +893,16 @@
 		881C94D72068ED10009D6A52 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				881C94D82068ED10009D6A52 /* LIGNetwork */,
+				881C94D82068ED10009D6A52 /* LGNetwork */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		881C94D82068ED10009D6A52 /* LIGNetwork */ = {
+		881C94D82068ED10009D6A52 /* LGNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				881C94D92068ED10009D6A52 /* LIGBaseRequest.h */,
-				881C94DA2068ED10009D6A52 /* LIGBaseRequest.m */,
-				881C94DB2068ED10009D6A52 /* LIGNetworkAgent.h */,
-				881C94DC2068ED10009D6A52 /* LIGNetworkAgent.m */,
-				881C94DD2068ED10009D6A52 /* LIGNetworkConfig.h */,
-				881C94DE2068ED10009D6A52 /* LIGNetworkConfig.m */,
 			);
-			path = LIGNetwork;
+			path = LGNetwork;
 			sourceTree = "<group>";
 		};
 		881C94E22068EDC7009D6A52 /* BaseModel */ = {
@@ -1396,6 +1386,9 @@
 			children = (
 				884312F42089C58000321F84 /* LGSegmentView.h */,
 				884312F52089C58000321F84 /* LGSegmentView.m */,
+				8885D23C20A2EC7600DC06A1 /* LGSegmentBottomView.h */,
+				8885D23D20A2EC7600DC06A1 /* LGSegmentBottomView.m */,
+				8885D23F20A2EC8500DC06A1 /* LGSegmentBottomView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2204,6 +2197,7 @@
 				88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */,
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
 				8831E18920941998001D038E /* DCSubStageThreeImgCell.xib in Resources */,
+				8885D24020A2EC8500DC06A1 /* LGSegmentBottomView.xib in Resources */,
 				88D13C3E209022F900A32236 /* EDJSearchTagHeader.xib in Resources */,
 				88DD812F209C0D6100F297D6 /* OLVoteDetailNormalTableViewCell.xib in Resources */,
 				88ECF07920A032540071A98A /* OLExamViewBottomBar.xib in Resources */,
@@ -2476,16 +2470,15 @@
 				884312E6208987F100321F84 /* UCHelpFadebackModel.m in Sources */,
 				8831E17620941674001D038E /* DCSubStageBaseTableViewCell.m in Sources */,
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
-				881C94E12068ED10009D6A52 /* LIGNetworkConfig.m in Sources */,
 				88DD8142209C246B00F297D6 /* OLVoteDetailHeaderView.m in Sources */,
 				88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */,
+				8885D23E20A2EC7600DC06A1 /* LGSegmentBottomView.m in Sources */,
 				88FE68BC209B05F5008C28A0 /* OLVoteListController.m in Sources */,
 				884312E32089879C00321F84 /* UCHelpFadebackTableViewCell.m in Sources */,
 				88A470FD207C8CBD002F93E0 /* EDJMicroPSCellHeader.m in Sources */,
 				884312C8208737EF00321F84 /* UCMsgModel.m in Sources */,
 				88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */,
 				88D13C592090560E00A32236 /* EDJDigitalModel.m in Sources */,
-				881C94E02068ED10009D6A52 /* LIGNetworkAgent.m in Sources */,
 				884312DC2087402200321F84 /* UCSettingModel.m in Sources */,
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
@@ -2543,7 +2536,6 @@
 				88A47118207DDCC3002F93E0 /* EDJMicroPartyLessonHeaderCell.m in Sources */,
 				8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */,
 				884312F92089C82800321F84 /* UCUploadHomePageViewController.m in Sources */,
-				881C94DF2068ED10009D6A52 /* LIGBaseRequest.m in Sources */,
 				8831E184209417AD001D038E /* DCSubStageFourImgCell.m in Sources */,
 				88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */,
 				8885D23120A2917800DC06A1 /* LGDevice.m in Sources */,

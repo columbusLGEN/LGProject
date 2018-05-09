@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ZBv-ZR-EIW" customClass="LGSegmentBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="544" height="222"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3z-b3-ovM">
+                    <rect key="frame" x="0.0" y="0.0" width="544" height="1"/>
+                    <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="J2G-cF-wib"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImD-6Y-IDz">
+                    <rect key="frame" x="20" y="100" width="52" height="22"/>
+                    <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="全选" image="uc_icon_upload_edit_normal">
+                        <color key="titleColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="全选" image="uc_icon_upload_edit_selected"/>
+                    <connections>
+                        <action selector="allSelect:" destination="ZBv-ZR-EIW" eventType="touchUpInside" id="RMq-fF-byw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7CR-b3-vmV">
+                    <rect key="frame" x="444" y="96" width="80" height="30"/>
+                    <color key="backgroundColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="rvQ-0u-s6F"/>
+                    </constraints>
+                    <state key="normal" title="删除">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="delete:" destination="ZBv-ZR-EIW" eventType="touchUpInside" id="BZj-i0-bEn"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ImD-6Y-IDz" firstAttribute="leading" secondItem="WEb-k0-Dge" secondAttribute="leading" constant="20" id="JYu-c6-7cp"/>
+                <constraint firstItem="WEb-k0-Dge" firstAttribute="trailing" secondItem="7CR-b3-vmV" secondAttribute="trailing" constant="20" id="NeM-tY-11g"/>
+                <constraint firstItem="ImD-6Y-IDz" firstAttribute="centerY" secondItem="ZBv-ZR-EIW" secondAttribute="centerY" id="Xwl-bw-chS"/>
+                <constraint firstItem="f3z-b3-ovM" firstAttribute="centerX" secondItem="ZBv-ZR-EIW" secondAttribute="centerX" id="bsK-hE-DhQ"/>
+                <constraint firstItem="7CR-b3-vmV" firstAttribute="centerY" secondItem="ImD-6Y-IDz" secondAttribute="centerY" id="cCn-fO-2cx"/>
+                <constraint firstItem="f3z-b3-ovM" firstAttribute="width" secondItem="ZBv-ZR-EIW" secondAttribute="width" id="jWq-At-xr6"/>
+                <constraint firstItem="f3z-b3-ovM" firstAttribute="top" secondItem="WEb-k0-Dge" secondAttribute="top" id="viB-Nv-t0m"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="WEb-k0-Dge"/>
+            <connections>
+                <outlet property="allSelect" destination="ImD-6Y-IDz" id="BBx-4Y-kMN"/>
+                <outlet property="delete" destination="7CR-b3-vmV" id="6Ae-hk-zZU"/>
+            </connections>
+            <point key="canvasLocation" x="133" y="-540"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="uc_icon_upload_edit_normal" width="15" height="15"/>
+        <image name="uc_icon_upload_edit_selected" width="15" height="15"/>
+    </resources>
+</document>

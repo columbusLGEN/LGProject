@@ -13,11 +13,15 @@
 #import "UCMemberStageTransitionView.h"
 #import "UCUploadViewController.h"
 #import "LGBaseNavigationController.h"
+#import "LGSegmentBottomView.h"
 
 @interface UCUploadHomePageViewController ()<
 UCUploadTransitionViewDelegate,
-UCMemberStageTransitionViewDelegate
+UCMemberStageTransitionViewDelegate,
+LGSegmentBottomViewDelegate
 >
+/** 是否是编辑状态，默认为no */
+@property (assign,nonatomic) BOOL isEditState;
 
 @end
 
@@ -25,12 +29,14 @@ UCMemberStageTransitionViewDelegate
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configUI];
+
     
 }
 - (void)configUI{
     [super configUI];
     self.title = @"我的上传";
+    
+    _isEditState = NO;
     
     /// 导航栏 右按钮
 
@@ -81,16 +87,41 @@ UCMemberStageTransitionViewDelegate
     mstView = nil;
 }
 - (void)mstView:(UCMemberStageTransitionView *)mstView action:(UCMemberStageTransitionViewAction)action{
-    NSLog(@"action -- %ld",action);
     [mstView removeFromSuperview];
     mstView = nil;
     [self editToUploadWithType:UploadTyleMemberStage];
 }
 
 #pragma mark - target
+/// MARK: 进入编辑状态
 - (void)navDeleteClick{
+    /// TODO: 判断当前位置，党员舞台，思想汇报，述廉报告 分别处理
+    if (!_isEditState) {
+        _isEditState = YES;
+        self.isEdit = YES;/// 父类属性
+        [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj startEdit];
+        }];
+    }else{
+        _isEditState = NO;
+        self.isEdit = NO;
+        [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj endEdit];
+        }];
+    }
+}
+
+#pragma mark - LGSegmentBottomViewDelegate
+- (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
+    [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj allSelect];
+    }];
     
 }
+- (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
+    NSLog(@"子类删除 -- ");
+}
+
 - (void)navUploadClick{
     UCUploadTransitionView *utv = [UCUploadTransitionView uploadTransitionView];
     utv.delegate = self;
@@ -100,6 +131,13 @@ UCMemberStageTransitionViewDelegate
 
 - (void)viewSwitched:(NSInteger)index{
     NSLog(@"index -- %ld",index);
+    /// TODO: 切换分页，或者刷新的时候 恢复默认状态
+    if (_isEditState) {
+        _isEditState = NO;
+        [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj endEdit];
+        }];
+    }
 }
 
 #pragma mark - getter

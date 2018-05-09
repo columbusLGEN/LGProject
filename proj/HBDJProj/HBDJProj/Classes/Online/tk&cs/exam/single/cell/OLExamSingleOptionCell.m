@@ -63,12 +63,14 @@
 
 - (void)optionStateWithSelected:(BOOL)isSelected{
     if (isSelected) {
+        /// 选中
         self.backgroundColor = [UIColor EDJGrayscale_FA];
-        _icon.image = [UIImage imageNamed:@"home_segment_icon2"];
+        _icon.image = [UIImage imageNamed:@"ol_test_option_icon_correct"];
         _optionContent.textColor = [UIColor EDJColor_30A5E1];
     }else{
+        /// 未选中
         self.backgroundColor = [UIColor whiteColor];
-        _icon.image = [UIImage imageNamed:@"home_segment_icon0"];
+        _icon.image = [UIImage imageNamed:@"ol_test_option_icon_normal"];
         _optionContent.textColor = [UIColor EDJGrayscale_33];
     }
     
@@ -82,13 +84,13 @@
             break;
         case ExamSingleRespondStateCorrect:{
             self.backgroundColor = [UIColor EDJGrayscale_FA];
-            _icon.image = [UIImage imageNamed:@"home_segment_icon2"];
+            _icon.image = [UIImage imageNamed:@"ol_test_option_icon_correct"];
             _optionContent.textColor = [UIColor EDJColor_30A5E1];
         }
             break;
         case ExamSingleRespondStateWrong:{
             self.backgroundColor = [UIColor whiteColor];
-            _icon.image = [UIImage imageNamed:@"home_segment_icon0"];
+            _icon.image = [UIImage imageNamed:@"ol_test_option_icon_user_wrong"];
             _optionContent.textColor = [UIColor EDJMainColor];
         }
             break;

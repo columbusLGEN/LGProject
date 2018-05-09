@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,8 +41,8 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_diamond_big" translatesAutoresizingMaskIntoConstraints="NO" id="vBR-Sm-wGZ">
                             <rect key="frame" x="182" y="15" width="50" height="51"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_nav_voice" translatesAutoresizingMaskIntoConstraints="NO" id="00I-wv-tog">
-                            <rect key="frame" x="72" y="118" width="10" height="15"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_v" translatesAutoresizingMaskIntoConstraints="NO" id="00I-wv-tog">
+                            <rect key="frame" x="70" y="121" width="12" height="9"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaj-lh-Cds">
                             <rect key="frame" x="131.5" y="115" width="55.5" height="21"/>
@@ -127,7 +127,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="52.5"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_left_black" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-et-nh7">
-                                    <rect key="frame" x="373" y="13.5" width="26" height="26"/>
+                                    <rect key="frame" x="390" y="19" width="9" height="15"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_today_score" translatesAutoresizingMaskIntoConstraints="NO" id="tuc-Zb-25w">
                                     <rect key="frame" x="15" y="16.5" width="20" height="20"/>
@@ -164,7 +164,7 @@
                             <rect key="frame" x="0.0" y="52.5" width="414" height="52.5"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_left_black" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-Fr-YFf">
-                                    <rect key="frame" x="373" y="13.5" width="26" height="26"/>
+                                    <rect key="frame" x="390" y="19" width="9" height="15"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_diamond_level" translatesAutoresizingMaskIntoConstraints="NO" id="hdz-hi-7yh">
                                     <rect key="frame" x="15" y="16.5" width="20" height="20"/>
@@ -240,10 +240,10 @@
         </view>
     </objects>
     <resources>
-        <image name="home_nav_voice" width="10" height="15"/>
-        <image name="icon_arrow_left_black" width="26" height="26"/>
+        <image name="icon_arrow_left_black" width="9" height="15"/>
         <image name="uc_icon_diamond_big" width="50" height="51"/>
         <image name="uc_icon_diamond_level" width="20" height="20"/>
         <image name="uc_icon_today_score" width="20" height="20"/>
+        <image name="uc_icon_v" width="12" height="9"/>
     </resources>
 </document>

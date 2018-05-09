@@ -29,4 +29,7 @@ static NSString *LGSegmentVcInitTypeCode = @"LGSegmentVcInitTypeCode";
 /// 子类重写该方法,以便在切换时获取到当前index
 - (void)viewSwitched:(NSInteger)index;
 
+/** 管理控制器的编辑状态 */
+@property (assign,nonatomic) BOOL isEdit;
+
 @end

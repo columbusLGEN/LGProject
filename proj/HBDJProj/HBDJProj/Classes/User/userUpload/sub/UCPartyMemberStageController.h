@@ -9,5 +9,9 @@
 #import "LGBaseTableViewController.h"
 
 @interface UCPartyMemberStageController : LGBaseTableViewController
+- (void)startEdit;
+- (void)endEdit;
+
+- (void)allSelect;
 
 @end

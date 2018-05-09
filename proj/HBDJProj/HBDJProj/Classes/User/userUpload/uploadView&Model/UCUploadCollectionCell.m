@@ -20,9 +20,9 @@
 - (void)setModel:(UCUploadModel *)model{
     _model = model;
     if (model.additional) {
-        [_img setImage:[UIImage imageNamed:@"icon_applePay"]];
+        [_img setImage:[UIImage imageNamed:@"uc_icon_upload_add"]];
     }
-//    _img sd_setImageWithURL:<#(nullable NSURL *)#> placeholderImage:<#(nullable UIImage *)#>
+
 }
 
 - (void)setupUI{
