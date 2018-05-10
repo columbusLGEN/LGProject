@@ -103,13 +103,14 @@ OLExamViewBottomBarDelegate
             /// MARK: 交卷 提交成绩
             
             /// TODO: 将答题情况数据保存在本地
-            
-            OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-            trvc.pushWay = LGBaseViewControllerPushWayModal;
-            LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
-            
-            [self.navigationController presentViewController:nav animated:YES completion:nil];
-            [self.navigationController popViewControllerAnimated:YES];
+            if (!self.backLook) {                
+                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+                trvc.pushWay = LGBaseViewControllerPushWayModal;
+                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
+                
+                [self.navigationController presentViewController:nav animated:YES completion:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
             return;
         }else{
         }
