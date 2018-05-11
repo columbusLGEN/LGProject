@@ -206,6 +206,9 @@
 		88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD8148209C298600F297D6 /* OLVoteDetailFooterView.xib */; };
 		88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */; };
 		88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */; };
+		88EA12F720A55B5E007AB886 /* LGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA12F420A55B5E007AB886 /* LGBaseRequest.m */; };
+		88EA12F820A55B5E007AB886 /* LGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA12F620A55B5E007AB886 /* LGNetworkAgent.m */; };
+		88EA12FB20A55B75007AB886 /* TestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA12FA20A55B74007AB886 /* TestRequest.m */; };
 		88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF006209FE2CC0071A98A /* OLExamViewController.m */; };
 		88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */; };
 		88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF056209FED480071A98A /* OLExamSingleModel.m */; };
@@ -623,6 +626,12 @@
 		88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestResultViewController.m; sourceTree = "<group>"; };
 		88DD814F209C4A1600F297D6 /* OLThreeMeetingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLThreeMeetingsViewController.h; sourceTree = "<group>"; };
 		88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLThreeMeetingsViewController.m; sourceTree = "<group>"; };
+		88EA12F320A55B5E007AB886 /* LGBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseRequest.h; sourceTree = "<group>"; };
+		88EA12F420A55B5E007AB886 /* LGBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseRequest.m; sourceTree = "<group>"; };
+		88EA12F520A55B5E007AB886 /* LGNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNetworkAgent.h; sourceTree = "<group>"; };
+		88EA12F620A55B5E007AB886 /* LGNetworkAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkAgent.m; sourceTree = "<group>"; };
+		88EA12F920A55B74007AB886 /* TestRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequest.h; sourceTree = "<group>"; };
+		88EA12FA20A55B74007AB886 /* TestRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequest.m; sourceTree = "<group>"; };
 		88ECF005209FE2CC0071A98A /* OLExamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewController.h; sourceTree = "<group>"; };
 		88ECF006209FE2CC0071A98A /* OLExamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewController.m; sourceTree = "<group>"; };
 		88ECF009209FE3340071A98A /* OLExamSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleViewController.h; sourceTree = "<group>"; };
@@ -893,16 +902,9 @@
 		881C94D72068ED10009D6A52 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				881C94D82068ED10009D6A52 /* LGNetwork */,
+				88EA12F220A55B5E007AB886 /* LGNetworking */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		881C94D82068ED10009D6A52 /* LGNetwork */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LGNetwork;
 			sourceTree = "<group>";
 		};
 		881C94E22068EDC7009D6A52 /* BaseModel */ = {
@@ -1924,6 +1926,19 @@
 			path = sub;
 			sourceTree = "<group>";
 		};
+		88EA12F220A55B5E007AB886 /* LGNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				88EA12F920A55B74007AB886 /* TestRequest.h */,
+				88EA12FA20A55B74007AB886 /* TestRequest.m */,
+				88EA12F320A55B5E007AB886 /* LGBaseRequest.h */,
+				88EA12F420A55B5E007AB886 /* LGBaseRequest.m */,
+				88EA12F520A55B5E007AB886 /* LGNetworkAgent.h */,
+				88EA12F620A55B5E007AB886 /* LGNetworkAgent.m */,
+			);
+			path = LGNetworking;
+			sourceTree = "<group>";
+		};
 		88ECF004209FE2670071A98A /* exam */ = {
 			isa = PBXGroup;
 			children = (
@@ -2479,6 +2494,7 @@
 				884312C8208737EF00321F84 /* UCMsgModel.m in Sources */,
 				88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */,
 				88D13C592090560E00A32236 /* EDJDigitalModel.m in Sources */,
+				88EA12F820A55B5E007AB886 /* LGNetworkAgent.m in Sources */,
 				884312DC2087402200321F84 /* UCSettingModel.m in Sources */,
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
@@ -2575,12 +2591,14 @@
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,
 				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
+				88EA12F720A55B5E007AB886 /* LGBaseRequest.m in Sources */,
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
 				88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */,
 				88ECF068209FF8280071A98A /* OLExamSingleOptionCell.m in Sources */,
 				8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */,
 				88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */,
+				88EA12FB20A55B75007AB886 /* TestRequest.m in Sources */,
 				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,
