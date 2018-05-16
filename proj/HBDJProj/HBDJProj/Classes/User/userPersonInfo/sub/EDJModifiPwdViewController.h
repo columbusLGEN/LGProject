@@ -6,8 +6,17 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 找回密码 & 重置密码 公共控制器
+
+typedef NS_ENUM(NSUInteger, CodeOperationType) {
+    CodeOperationTypeSendVerCode,/// 找回密码页面
+    CodeOperationTypeConfirmPwd,/// 重置密码页面
+};
+
 #import "LGBaseViewController.h"
 
 @interface EDJModifiPwdViewController : LGBaseViewController
+
+@property (assign,nonatomic) CodeOperationType coType;
 
 @end

@@ -16,6 +16,7 @@
 + (UIColor *)EDJGrayscale_88;
 + (UIColor *)EDJGrayscale_F3;
 + (UIColor *)EDJGrayscale_C6;
++ (UIColor *)EDJGrayscale_C4;
 + (UIColor *)EDJGrayscale_33;
 + (UIColor *)EDJGrayscale_66;
 + (UIColor *)EDJGrayscale_C2;
@@ -34,5 +35,11 @@
 + (UIColor *)EDJColor_6CBEFC;
 /** 分享绿 */
 + (UIColor *)EDJColor_8BCA32;
+/** 评论紫 */
++ (UIColor *)EDJColor_CEB0E7;
+/** 收藏黄 */
++ (UIColor *)EDJColor_FDBF2D;
+/** 感谢红 */
++ (UIColor *)EDJColor_FC4E45;
 
 @end

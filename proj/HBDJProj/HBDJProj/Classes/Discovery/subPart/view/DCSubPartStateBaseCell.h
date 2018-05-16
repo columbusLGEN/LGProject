@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 发现  支部动态 单元格
+
 #import "LGBaseTableViewCell.h"
 @class DCSubPartStateModel;
 

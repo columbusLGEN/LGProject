@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,19 +19,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李克强: 创新造福人名也是全体人民共同事业创新造福人名也是全体人民共同事业" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjQ-NX-nnn">
-                        <rect key="frame" x="12" y="60.5" width="457" height="21"/>
+                        <rect key="frame" x="12" y="10" width="457" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="省直机关" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKj-c1-57x">
+                        <rect key="frame" x="12" y="58.5" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="LjQ-NX-nnn" firstAttribute="centerY" secondItem="iHr-w8-mpv" secondAttribute="centerY" id="Qjr-4D-fWa"/>
+                    <constraint firstItem="KKj-c1-57x" firstAttribute="top" secondItem="LjQ-NX-nnn" secondAttribute="bottom" constant="8" id="20W-WP-s2G"/>
+                    <constraint firstItem="KKj-c1-57x" firstAttribute="leading" secondItem="LjQ-NX-nnn" secondAttribute="leading" id="Cnr-J3-dFA"/>
+                    <constraint firstItem="LjQ-NX-nnn" firstAttribute="top" secondItem="iHr-w8-mpv" secondAttribute="top" constant="10" id="Ec6-q6-9Th"/>
                     <constraint firstItem="LjQ-NX-nnn" firstAttribute="leading" secondItem="iHr-w8-mpv" secondAttribute="leading" constant="12" id="fKi-4a-QRi"/>
                     <constraint firstAttribute="trailing" secondItem="LjQ-NX-nnn" secondAttribute="trailing" constant="12" id="hTk-aK-8UO"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="sub_title" destination="KKj-c1-57x" id="sGf-ir-M7Q"/>
                 <outlet property="title" destination="LjQ-NX-nnn" id="v1Y-cO-uPH"/>
             </connections>
             <point key="canvasLocation" x="70.5" y="-133"/>

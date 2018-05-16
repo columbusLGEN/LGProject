@@ -32,6 +32,10 @@
 - (IBAction)login:(id)sender {
     
 }
+/// 账号激活
+- (IBAction)acountHit:(UIButton *)sender {
+    NSLog(@"账号激活 -- ");
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

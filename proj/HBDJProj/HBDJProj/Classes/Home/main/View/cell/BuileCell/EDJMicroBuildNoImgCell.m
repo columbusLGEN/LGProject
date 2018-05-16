@@ -12,6 +12,7 @@
 @interface EDJMicroBuildNoImgCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (strong,nonatomic) EDJMicroBuildModel *subModel;
+@property (weak, nonatomic) IBOutlet UILabel *sub_title;
 
 @end
 

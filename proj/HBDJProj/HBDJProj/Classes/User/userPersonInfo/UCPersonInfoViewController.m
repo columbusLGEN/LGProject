@@ -9,6 +9,7 @@
 #import "UCPersonInfoViewController.h"
 #import "UCPersonInfoModel.h"
 #import "UCPersonInfoTableViewCell.h"
+#import "EDJModifiPwdViewController.h"
 
 @interface UCPersonInfoViewController ()
 @property (strong,nonatomic) NSArray *array;
@@ -53,8 +54,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UCPersonInfoModel *model = _array[indexPath.row];
     if (model.canChangePwd) {
-        /// 修改密码
-        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"EDJModifiPwdViewController" animated:YES];
+        /// 找回密码
+        
+        EDJModifiPwdViewController *vc = (EDJModifiPwdViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"EDJModifiPwdViewController"];
+        vc.coType = CodeOperationTypeSendVerCode;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

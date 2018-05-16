@@ -14,9 +14,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        self.imageEdgeInsets = UIEdgeInsetsMake(-2, -10, 0, 0);
         self.titleLabel.font = [UIFont systemFontOfSize:12];
-        [self setTitleColor:[UIColor EDJGrayscale_33] forState:UIControlStateNormal];
+//        [self setTitleColor:[UIColor EDJGrayscale_33] forState:UIControlStateNormal];
     }
     return self;
 }

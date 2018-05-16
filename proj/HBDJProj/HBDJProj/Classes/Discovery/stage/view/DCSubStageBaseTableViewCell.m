@@ -47,17 +47,23 @@
 - (LGThreeRightButtonView *)boInterView{
     if (_boInterView == nil) {
         _boInterView = [LGThreeRightButtonView new];
-        [_boInterView setBtnConfigs:@[@{TRConfigTitleKey:@"收藏",
-                                        TRConfigImgNameKey:@"uc_icon_shouc_gray",
-                                        TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow"
-                                        },
-                                      @{TRConfigTitleKey:@"点赞",
+        [_boInterView setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
                                         TRConfigImgNameKey:@"dc_like_normal",
-                                        TRConfigSelectedImgNameKey:@"dc_like_selected"
+                                        TRConfigSelectedImgNameKey:@"dc_like_selected",
+                                        TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                        TRConfigTitleColorSelectedKey:[UIColor EDJColor_6CBEFC]
                                         },
-                                      @{TRConfigTitleKey:@"评论",
+                                      @{TRConfigTitleKey:@"99+",
+                                        TRConfigImgNameKey:@"uc_icon_shouc_gray",
+                                        TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow",
+                                        TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                        TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
+                                        },
+                                      @{TRConfigTitleKey:@"99+",
                                         TRConfigImgNameKey:@"dc_discuss_normal",
-                                        TRConfigSelectedImgNameKey:@"dc_discuss_selected"
+                                        TRConfigSelectedImgNameKey:@"dc_discuss_selected",
+                                        TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                        TRConfigTitleColorSelectedKey:[UIColor EDJColor_CEB0E7]
                                         }]];
     }
     return _boInterView;

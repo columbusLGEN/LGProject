@@ -81,6 +81,7 @@ EDJHomeHeaderViewDelegate
     [self.view addGestureRecognizer:swipeLeft];
 }
 
+/// MARK: 点击了轮播图
 - (void)headerImgLoopClick:(EDJHomeHeaderView *)header didSelectItemAtIndex:(NSInteger)index{
     NSLog(@"index -- %ld",index);
     HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
@@ -132,6 +133,7 @@ EDJHomeHeaderViewDelegate
     if (_currentSegment == 0) {
         return [EDJMicroPartyLessonCell cellHeightWithModel:self.microPLViewController.microModels[indexPath.row]];
     }else if (_currentSegment == 1){
+        /// 党建
         return [EDJMicroBuildCell cellHeightWithModel:self.microPLViewController.buildModels[indexPath.row]];
     }
     return 0;

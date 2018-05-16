@@ -75,7 +75,6 @@
 		884312B52087222600321F84 /* EDJLevelInsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312B42087222600321F84 /* EDJLevelInsTableViewController.m */; };
 		884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312BA208725C900321F84 /* EDJTodayScoreViewController.m */; };
 		884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312BD20872ED400321F84 /* EDJModifiPwdViewController.m */; };
-		884312C1208733F400321F84 /* EDJConfirmPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312C0208733F400321F84 /* EDJConfirmPwdViewController.m */; };
 		884312C5208737BF00321F84 /* UCMsgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312C4208737BF00321F84 /* UCMsgTableViewController.m */; };
 		884312C8208737EF00321F84 /* UCMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312C7208737EF00321F84 /* UCMsgModel.m */; };
 		884312CB2087380700321F84 /* UCMsgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312CA2087380700321F84 /* UCMsgTableViewCell.m */; };
@@ -206,9 +205,10 @@
 		88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD8148209C298600F297D6 /* OLVoteDetailFooterView.xib */; };
 		88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */; };
 		88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */; };
-		88EA12F720A55B5E007AB886 /* LGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA12F420A55B5E007AB886 /* LGBaseRequest.m */; };
-		88EA12F820A55B5E007AB886 /* LGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA12F620A55B5E007AB886 /* LGNetworkAgent.m */; };
-		88EA12FB20A55B75007AB886 /* TestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA12FA20A55B74007AB886 /* TestRequest.m */; };
+		88EA130320ABBAF4007AB886 /* LGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA12FE20ABBAF4007AB886 /* LGBaseRequest.m */; };
+		88EA130420ABBAF4007AB886 /* LGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA130020ABBAF4007AB886 /* LGNetworkAgent.m */; };
+		88EA130520ABBAF4007AB886 /* TestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA130220ABBAF4007AB886 /* TestRequest.m */; };
+		88EA130920ABC6E2007AB886 /* RegisterBottomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA130820ABC6E2007AB886 /* RegisterBottomInfoView.m */; };
 		88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF006209FE2CC0071A98A /* OLExamViewController.m */; };
 		88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */; };
 		88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF056209FED480071A98A /* OLExamSingleModel.m */; };
@@ -401,8 +401,6 @@
 		884312BA208725C900321F84 /* EDJTodayScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJTodayScoreViewController.m; sourceTree = "<group>"; };
 		884312BC20872ED400321F84 /* EDJModifiPwdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJModifiPwdViewController.h; sourceTree = "<group>"; };
 		884312BD20872ED400321F84 /* EDJModifiPwdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJModifiPwdViewController.m; sourceTree = "<group>"; };
-		884312BF208733F400321F84 /* EDJConfirmPwdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJConfirmPwdViewController.h; sourceTree = "<group>"; };
-		884312C0208733F400321F84 /* EDJConfirmPwdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJConfirmPwdViewController.m; sourceTree = "<group>"; };
 		884312C3208737BF00321F84 /* UCMsgTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCMsgTableViewController.h; sourceTree = "<group>"; };
 		884312C4208737BF00321F84 /* UCMsgTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCMsgTableViewController.m; sourceTree = "<group>"; };
 		884312C6208737EF00321F84 /* UCMsgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCMsgModel.h; sourceTree = "<group>"; };
@@ -626,12 +624,14 @@
 		88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestResultViewController.m; sourceTree = "<group>"; };
 		88DD814F209C4A1600F297D6 /* OLThreeMeetingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLThreeMeetingsViewController.h; sourceTree = "<group>"; };
 		88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLThreeMeetingsViewController.m; sourceTree = "<group>"; };
-		88EA12F320A55B5E007AB886 /* LGBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseRequest.h; sourceTree = "<group>"; };
-		88EA12F420A55B5E007AB886 /* LGBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseRequest.m; sourceTree = "<group>"; };
-		88EA12F520A55B5E007AB886 /* LGNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNetworkAgent.h; sourceTree = "<group>"; };
-		88EA12F620A55B5E007AB886 /* LGNetworkAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkAgent.m; sourceTree = "<group>"; };
-		88EA12F920A55B74007AB886 /* TestRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequest.h; sourceTree = "<group>"; };
-		88EA12FA20A55B74007AB886 /* TestRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequest.m; sourceTree = "<group>"; };
+		88EA12FD20ABBAF4007AB886 /* LGBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseRequest.h; sourceTree = "<group>"; };
+		88EA12FE20ABBAF4007AB886 /* LGBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseRequest.m; sourceTree = "<group>"; };
+		88EA12FF20ABBAF4007AB886 /* LGNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNetworkAgent.h; sourceTree = "<group>"; };
+		88EA130020ABBAF4007AB886 /* LGNetworkAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkAgent.m; sourceTree = "<group>"; };
+		88EA130120ABBAF4007AB886 /* TestRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequest.h; sourceTree = "<group>"; };
+		88EA130220ABBAF4007AB886 /* TestRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequest.m; sourceTree = "<group>"; };
+		88EA130720ABC6E2007AB886 /* RegisterBottomInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterBottomInfoView.h; sourceTree = "<group>"; };
+		88EA130820ABC6E2007AB886 /* RegisterBottomInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterBottomInfoView.m; sourceTree = "<group>"; };
 		88ECF005209FE2CC0071A98A /* OLExamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewController.h; sourceTree = "<group>"; };
 		88ECF006209FE2CC0071A98A /* OLExamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewController.m; sourceTree = "<group>"; };
 		88ECF009209FE3340071A98A /* OLExamSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleViewController.h; sourceTree = "<group>"; };
@@ -902,7 +902,7 @@
 		881C94D72068ED10009D6A52 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				88EA12F220A55B5E007AB886 /* LGNetworking */,
+				88EA12FC20ABBAF4007AB886 /* LGNetworking */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -999,6 +999,7 @@
 		881C94ED2068F3B0009D6A52 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				88EA130620ABC68A007AB886 /* serviceView */,
 				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				8831E19720946383001D038E /* userLogin */,
 				88A4713E207F5170002F93E0 /* userMain */,
@@ -1414,8 +1415,6 @@
 			children = (
 				884312BC20872ED400321F84 /* EDJModifiPwdViewController.h */,
 				884312BD20872ED400321F84 /* EDJModifiPwdViewController.m */,
-				884312BF208733F400321F84 /* EDJConfirmPwdViewController.h */,
-				884312C0208733F400321F84 /* EDJConfirmPwdViewController.m */,
 			);
 			path = sub;
 			sourceTree = "<group>";
@@ -1926,17 +1925,27 @@
 			path = sub;
 			sourceTree = "<group>";
 		};
-		88EA12F220A55B5E007AB886 /* LGNetworking */ = {
+		88EA12FC20ABBAF4007AB886 /* LGNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				88EA12F920A55B74007AB886 /* TestRequest.h */,
-				88EA12FA20A55B74007AB886 /* TestRequest.m */,
-				88EA12F320A55B5E007AB886 /* LGBaseRequest.h */,
-				88EA12F420A55B5E007AB886 /* LGBaseRequest.m */,
-				88EA12F520A55B5E007AB886 /* LGNetworkAgent.h */,
-				88EA12F620A55B5E007AB886 /* LGNetworkAgent.m */,
+				88EA12FD20ABBAF4007AB886 /* LGBaseRequest.h */,
+				88EA12FE20ABBAF4007AB886 /* LGBaseRequest.m */,
+				88EA12FF20ABBAF4007AB886 /* LGNetworkAgent.h */,
+				88EA130020ABBAF4007AB886 /* LGNetworkAgent.m */,
+				88EA130120ABBAF4007AB886 /* TestRequest.h */,
+				88EA130220ABBAF4007AB886 /* TestRequest.m */,
 			);
-			path = LGNetworking;
+			name = LGNetworking;
+			path = "../../../../../../../../网络_201805/NetDemo/NetDemo/LGNetworking";
+			sourceTree = "<group>";
+		};
+		88EA130620ABC68A007AB886 /* serviceView */ = {
+			isa = PBXGroup;
+			children = (
+				88EA130720ABC6E2007AB886 /* RegisterBottomInfoView.h */,
+				88EA130820ABC6E2007AB886 /* RegisterBottomInfoView.m */,
+			);
+			path = serviceView;
 			sourceTree = "<group>";
 		};
 		88ECF004209FE2670071A98A /* exam */ = {
@@ -2452,7 +2461,6 @@
 				881C94D32068ECF3009D6A52 /* UIView+Extension.m in Sources */,
 				8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */,
 				889E7DBB20998D5100BB9084 /* UCUploadTransitionView.m in Sources */,
-				884312C1208733F400321F84 /* EDJConfirmPwdViewController.m in Sources */,
 				88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */,
 				88A47113207DBE33002F93E0 /* EDJMicroBuildThreeImgCell.m in Sources */,
 				88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */,
@@ -2494,7 +2502,7 @@
 				884312C8208737EF00321F84 /* UCMsgModel.m in Sources */,
 				88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */,
 				88D13C592090560E00A32236 /* EDJDigitalModel.m in Sources */,
-				88EA12F820A55B5E007AB886 /* LGNetworkAgent.m in Sources */,
+				88EA130420ABBAF4007AB886 /* LGNetworkAgent.m in Sources */,
 				884312DC2087402200321F84 /* UCSettingModel.m in Sources */,
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
@@ -2573,6 +2581,7 @@
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
 				88CD739A209959FD00E80058 /* HPBookInfoBaseCell.m in Sources */,
 				8831E19A2094639E001D038E /* UCLoginViewController.m in Sources */,
+				88EA130920ABC6E2007AB886 /* RegisterBottomInfoView.m in Sources */,
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,
 				8831E15420931090001D038E /* DCSubPartStateBaseCell.m in Sources */,
 				884312D920873C1B00321F84 /* UCSettingTableViewCell.m in Sources */,
@@ -2591,14 +2600,14 @@
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,
 				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
-				88EA12F720A55B5E007AB886 /* LGBaseRequest.m in Sources */,
+				88EA130320ABBAF4007AB886 /* LGBaseRequest.m in Sources */,
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
 				88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */,
 				88ECF068209FF8280071A98A /* OLExamSingleOptionCell.m in Sources */,
 				8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */,
 				88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */,
-				88EA12FB20A55B75007AB886 /* TestRequest.m in Sources */,
+				88EA130520ABBAF4007AB886 /* TestRequest.m in Sources */,
 				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,

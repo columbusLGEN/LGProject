@@ -27,7 +27,27 @@
 }
 
 + (CGFloat)cellHeightWithModel:(EDJMicroBuildModel *)model{
-    return 100;
+    if (model.imgs.count == 0) {/// 没有图
+        return 85;
+    }else if (model.imgs.count == 1){/// 有一张图
+        return 90;
+    }else if (model.imgs.count == 3){/// 有三张图
+        return 120;
+    }
+    return 120;
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    UIView *line = [[UIView alloc] init];
+    line.backgroundColor = [UIColor EDJGrayscale_F3];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(marginTen);
+        make.right.equalTo(self.mas_right).offset(-marginTen);
+        make.bottom.equalTo(self.mas_bottom);
+        make.height.mas_equalTo(1);
+    }];
 }
 
 @end

@@ -7,10 +7,10 @@
 //
 
 #import "HPPartyBuildDetailViewController.h"
-#import "PBDBottomView.h"
+//#import "LGThreeRightButtonView.h"
+#import "LGThreeRightButtonView.h"
 
-@interface HPPartyBuildDetailViewController ()<
-PBDBottomViewDelegate>
+@interface HPPartyBuildDetailViewController ()
 
 @end
 
@@ -28,32 +28,37 @@ PBDBottomViewDelegate>
 }
 
 - (void)configUI{
-    PBDBottomView *pbdBottom = [PBDBottomView pbdBottom];
-    pbdBottom.delegate = self;
     CGFloat bottomHeight = 60;
     BOOL isiPhoneX = ([LGDevice sharedInstance].currentDeviceType == LGDeviecType_iPhoneX);
     if (isiPhoneX) {
-        bottomHeight = 90;
+//        bottomHeight = 90;
     }
-    pbdBottom.frame = CGRectMake(0, kScreenHeight - bottomHeight, kScreenWidth, bottomHeight);
+    LGThreeRightButtonView *pbdBottom = [[LGThreeRightButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight - bottomHeight, kScreenWidth, bottomHeight)];
+    
+    [pbdBottom setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
+                                    TRConfigImgNameKey:@"dc_like_normal",
+                                    TRConfigSelectedImgNameKey:@"dc_like_selected",
+                                    TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                    TRConfigTitleColorSelectedKey:[UIColor EDJColor_6CBEFC]
+                                    },
+                                  @{TRConfigTitleKey:@"99+",
+                                    TRConfigImgNameKey:@"uc_icon_shouc_gray",
+                                    TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow",
+                                    TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                    TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
+                                    },
+                               @{TRConfigTitleKey:@"",
+                                 TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
+                                 TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
+                                 TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                 TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
+                                 }]];
+    
     [self.view addSubview:pbdBottom];
 }
 
-#pragma mark - PBDBottomViewDelegate
-- (void)pbdBottomClick:(PBDBottomView *)bottomView action:(PBDBottomAction)action {
-    switch (action) {
-        case PBDBottomActionLike:
-            NSLog(@"点赞 -- ");
-            break;
-        case PBDBottomActionCollect:
-            NSLog(@"收藏 -- ");
-            break;
-        case PBDBottomActionShare:
-            NSLog(@"分享 -- ");
-            break;
-            
-    }
-}
+#pragma mark - LGThreeRightButtonViewDelegate
+
 
 
 @end

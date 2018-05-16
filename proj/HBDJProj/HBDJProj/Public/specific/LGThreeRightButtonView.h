@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 static NSString * const TRConfigTitleKey = @"TRConfigTitleKey";
+static NSString * const TRConfigTitleColorNormalKey = @"TRConfigTitleColorNormalKey";
+static NSString * const TRConfigTitleColorSelectedKey = @"TRConfigTitleColorSelectedKey";
 static NSString * const TRConfigImgNameKey = @"TRConfigImgNameKey";
 static NSString * const TRConfigSelectedImgNameKey = @"TRConfigSelectedImgNameKey";
 

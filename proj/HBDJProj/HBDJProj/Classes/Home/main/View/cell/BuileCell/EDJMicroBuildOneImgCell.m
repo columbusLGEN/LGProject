@@ -8,6 +8,15 @@
 
 #import "EDJMicroBuildOneImgCell.h"
 
+@interface EDJMicroBuildOneImgCell ()
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *sub_title;
+@property (weak, nonatomic) IBOutlet UIImageView *img;
+
+
+
+@end
+
 @implementation EDJMicroBuildOneImgCell
 
 - (void)awakeFromNib {

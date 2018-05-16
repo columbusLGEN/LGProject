@@ -28,6 +28,9 @@
 + (UIColor *)EDJGrayscale_C6{/// 198
     return [self colorWithHexString:@"C6C6C6"];
 }
++ (UIColor *)EDJGrayscale_C4{/// 196
+    return [self colorWithHexString:@"C4C4C4"];
+}
 + (UIColor *)EDJGrayscale_33{/// 51
     return [self colorWithHexString:@"333333"];
 }
@@ -73,6 +76,15 @@
 }
 + (UIColor *)EDJColor_8BCA32{/// 分享绿
     return [self colorWithHexString:@"8BCA32"];
+}
++ (UIColor *)EDJColor_CEB0E7{/// 评论紫
+    return [self colorWithHexString:@"CEB0E7"];
+}
++ (UIColor *)EDJColor_FDBF2D{/// 收藏黄
+    return [self colorWithHexString:@"FDBF2D"];
+}
++ (UIColor *)EDJColor_FC4E45{/// 感谢红
+    return [self colorWithHexString:@"FC4E45"];
 }
 
 

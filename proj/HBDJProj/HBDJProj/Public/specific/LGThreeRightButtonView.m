@@ -49,23 +49,31 @@
         NSString *title = obj[TRConfigTitleKey];
         NSString *imgName = obj[TRConfigImgNameKey];
         NSString *selectedImgName = obj[TRConfigSelectedImgNameKey];
+        UIColor *textColorNormal = obj[TRConfigTitleColorNormalKey];
+        UIColor *textColorSelected = obj[TRConfigTitleColorSelectedKey];
         switch (idx) {
             case 0:{
                 [_leftBtn setTitle:title forState:UIControlStateNormal];
                 [_leftBtn setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
                 [_leftBtn setImage:[UIImage imageNamed:selectedImgName] forState:UIControlStateSelected];
+                [_leftBtn setTitleColor:textColorNormal forState:UIControlStateNormal];
+                [_leftBtn setTitleColor:textColorSelected forState:UIControlStateSelected];
             }
                 break;
             case 1:{
                 [_midBtn setTitle:title forState:UIControlStateNormal];
                 [_midBtn setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
                 [_midBtn setImage:[UIImage imageNamed:selectedImgName] forState:UIControlStateSelected];
+                [_midBtn setTitleColor:textColorNormal forState:UIControlStateNormal];
+                [_midBtn setTitleColor:textColorSelected forState:UIControlStateSelected];
             }
                 break;
             case 2:{
                 [_rightBtn setTitle:title forState:UIControlStateNormal];
                 [_rightBtn setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
                 [_rightBtn setImage:[UIImage imageNamed:selectedImgName] forState:UIControlStateSelected];
+                [_rightBtn setTitleColor:textColorNormal forState:UIControlStateNormal];
+                [_rightBtn setTitleColor:textColorSelected forState:UIControlStateSelected];
             }
                 break;
             
@@ -82,28 +90,28 @@
     
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
+        make.left.equalTo(self.mas_left).offset(marginFifteen);
+        make.right.equalTo(self.mas_right).offset(-marginFifteen);
         make.height.mas_equalTo(1);
     }];
-    CGFloat buttonW = 60;
+//    CGFloat buttonW = 60;
     CGFloat buttonH = 30;
     [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(marginEight);
         make.right.equalTo(self.midBtn.mas_left).offset(-marginEight);
         make.centerY.equalTo(self.rightBtn.mas_centerY);
-        make.width.mas_equalTo(buttonW);
         make.height.mas_equalTo(buttonH);
     }];
     [self.midBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.rightBtn.mas_left).offset(-marginEight);
         make.centerY.equalTo(self.rightBtn.mas_centerY);
-        make.width.mas_equalTo(buttonW);
+        make.width.mas_equalTo(self.leftBtn.mas_width);
         make.height.mas_equalTo(buttonH);
     }];
     [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(-marginFifteen);
         make.centerY.equalTo(self.mas_centerY);
-        make.width.mas_equalTo(buttonW);
+        make.width.mas_equalTo(self.leftBtn.mas_width);
         make.height.mas_equalTo(buttonH);
     }];
 }
@@ -147,6 +155,5 @@
     }
     return self;
 }
-
 
 @end
