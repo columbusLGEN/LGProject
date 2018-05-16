@@ -109,8 +109,9 @@
         make.height.mas_equalTo(buttonH);
     }];
     [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).offset(marginEight);
         make.right.equalTo(self.mas_right).offset(-marginFifteen);
-        make.centerY.equalTo(self.mas_centerY);
+//        make.centerY.equalTo(self.mas_centerY);
         make.width.mas_equalTo(self.leftBtn.mas_width);
         make.height.mas_equalTo(buttonH);
     }];

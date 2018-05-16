@@ -7,12 +7,10 @@
 //
 
 #import "HPPointNewsTableViewController.h"
-#import "HPPointNewsTableViewCell.h"
-#import "HPPointNewsHeader.h"
-#import "HPPointNewsModel.h"
 #import "HPPartyBuildDetailViewController.h"
-
-static NSString * const cellID = @"HPPointNewsTableViewCell";
+#import "HPPointNewsHeader.h"
+#import "EDJMicroBuildCell.h"
+#import "EDJMicroBuildModel.h"
 
 @interface HPPointNewsTableViewController ()
 
@@ -33,11 +31,23 @@ static NSString * const cellID = @"HPPointNewsTableViewCell";
     self.tableView.tableHeaderView = header;
     self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 272);
     
-    [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellNoImg bundle:nil] forCellReuseIdentifier:buildCellNoImg];
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellOneImg bundle:nil] forCellReuseIdentifier:buildCellOneImg];
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellThreeImg bundle:nil] forCellReuseIdentifier:buildCellThreeImg];
     
     NSMutableArray *arrMu = [NSMutableArray new];
-    for (NSInteger i = 0; i < 20; i++) {
-        HPPointNewsModel *model = [HPPointNewsModel new];
+    for (int i = 0; i < 20; i++) {
+        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
+        model.showInteractionView = YES;
+        NSMutableArray *imgs = [NSMutableArray new];
+        int k = arc4random_uniform(3);
+        if (k == 2) {
+            k++;
+        }
+        for (int j = 0;j < k; j++) {
+            [imgs addObject:@"build"];
+        }
+        model.imgs = imgs.copy;
         [arrMu addObject:model];
     }
     self.dataArray = arrMu.copy;
@@ -50,13 +60,14 @@ static NSString * const cellID = @"HPPointNewsTableViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HPPointNewsModel *model = self.dataArray[indexPath.row];
-    HPPointNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    EDJMicroBuildCell *cell = [EDJMicroBuildCell cellWithTableView:tableView model:model];
     cell.model = model;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 87;
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    return [EDJMicroBuildCell cellHeightWithModel:model];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];

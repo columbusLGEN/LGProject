@@ -43,9 +43,6 @@
 		8831E196209450B7001D038E /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E195209450B7001D038E /* UITextView+Extension.m */; };
 		8831E19A2094639E001D038E /* UCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1992094639E001D038E /* UCLoginViewController.m */; };
 		8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1A320947000001D038E /* HPPointNewsTableViewController.m */; };
-		8831E1A72094701C001D038E /* HPPointNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1A62094701C001D038E /* HPPointNewsTableViewCell.m */; };
-		8831E1A920947024001D038E /* HPPointNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E1A820947024001D038E /* HPPointNewsTableViewCell.xib */; };
-		8831E1AC20947040001D038E /* HPPointNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1AB20947040001D038E /* HPPointNewsModel.m */; };
 		8831E1AF20947079001D038E /* HPPointNewsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1AE20947079001D038E /* HPPointNewsHeader.m */; };
 		8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E1B02094708A001D038E /* HPPointNewsHeader.xib */; };
 		8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2A22071FBE000722010 /* LGBaseViewController.m */; };
@@ -338,11 +335,6 @@
 		8831E1992094639E001D038E /* UCLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCLoginViewController.m; sourceTree = "<group>"; };
 		8831E1A220947000001D038E /* HPPointNewsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsTableViewController.h; sourceTree = "<group>"; };
 		8831E1A320947000001D038E /* HPPointNewsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsTableViewController.m; sourceTree = "<group>"; };
-		8831E1A52094701C001D038E /* HPPointNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsTableViewCell.h; sourceTree = "<group>"; };
-		8831E1A62094701C001D038E /* HPPointNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsTableViewCell.m; sourceTree = "<group>"; };
-		8831E1A820947024001D038E /* HPPointNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPPointNewsTableViewCell.xib; sourceTree = "<group>"; };
-		8831E1AA20947040001D038E /* HPPointNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsModel.h; sourceTree = "<group>"; };
-		8831E1AB20947040001D038E /* HPPointNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsModel.m; sourceTree = "<group>"; };
 		8831E1AD20947079001D038E /* HPPointNewsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsHeader.h; sourceTree = "<group>"; };
 		8831E1AE20947079001D038E /* HPPointNewsHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsHeader.m; sourceTree = "<group>"; };
 		8831E1B02094708A001D038E /* HPPointNewsHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPPointNewsHeader.xib; sourceTree = "<group>"; };
@@ -1130,7 +1122,6 @@
 				8831E1A120946FCB001D038E /* other */,
 				8831E19E20946FBD001D038E /* controller */,
 				8831E1A020946FC8001D038E /* view */,
-				8831E19F20946FC3001D038E /* model */,
 			);
 			path = pointNews;
 			sourceTree = "<group>";
@@ -1144,21 +1135,9 @@
 			path = controller;
 			sourceTree = "<group>";
 		};
-		8831E19F20946FC3001D038E /* model */ = {
-			isa = PBXGroup;
-			children = (
-				8831E1AA20947040001D038E /* HPPointNewsModel.h */,
-				8831E1AB20947040001D038E /* HPPointNewsModel.m */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
 		8831E1A020946FC8001D038E /* view */ = {
 			isa = PBXGroup;
 			children = (
-				8831E1A52094701C001D038E /* HPPointNewsTableViewCell.h */,
-				8831E1A62094701C001D038E /* HPPointNewsTableViewCell.m */,
-				8831E1A820947024001D038E /* HPPointNewsTableViewCell.xib */,
 				8831E1AD20947079001D038E /* HPPointNewsHeader.h */,
 				8831E1AE20947079001D038E /* HPPointNewsHeader.m */,
 				8831E1B02094708A001D038E /* HPPointNewsHeader.xib */,
@@ -2239,7 +2218,6 @@
 				88CD739F20995A1B00E80058 /* HPBookInfoHeaderCell.xib in Resources */,
 				88435E7B208DB43800188CE9 /* LevelBonusRules.plist in Resources */,
 				88D13C562090443500A32236 /* EDJDigitalCell.xib in Resources */,
-				8831E1A920947024001D038E /* HPPointNewsTableViewCell.xib in Resources */,
 				88D13C612090586900A32236 /* OLHomeCollectionCell.xib in Resources */,
 				88D13C352090145100A32236 /* EDJSearchTagHistoryCell.xib in Resources */,
 				88ECF065209FF7D00071A98A /* OLExamSingleStemCell.xib in Resources */,
@@ -2467,7 +2445,6 @@
 				8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */,
 				8835B2C120720A1800722010 /* LGBaseView.m in Sources */,
 				88DD8123209C0A4900F297D6 /* OLVoteDetailController.m in Sources */,
-				8831E1A72094701C001D038E /* HPPointNewsTableViewCell.m in Sources */,
 				88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
@@ -2479,7 +2456,6 @@
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
 				88FE68A0209ABD0A008C28A0 /* OLMindReportViewController.m in Sources */,
 				88D13C39209015C100A32236 /* EDJSearchTagCollectionViewFlowLayout.m in Sources */,
-				8831E1AC20947040001D038E /* HPPointNewsModel.m in Sources */,
 				88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */,
 				88A4710E207DBE1F002F93E0 /* EDJMicroBuildOneImgCell.m in Sources */,
 				8885D23520A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m in Sources */,

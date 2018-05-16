@@ -15,9 +15,6 @@
 
 static NSString * const microCell = @"EDJMicroPartyLessonCell";
 static NSString * const microHeaderCell = @"EDJMicroPartyLessonHeaderCell";
-static NSString * const buildCellNoImg = @"EDJMicroBuildNoImgCell";
-static NSString * const buildCellOneImg = @"EDJMicroBuildOneImgCell";
-static NSString * const buildCellThreeImg = @"EDJMicroBuildThreeImgCell";
 
 @interface EDJMicroPartyLessionViewController ()<
 UITableViewDataSource,

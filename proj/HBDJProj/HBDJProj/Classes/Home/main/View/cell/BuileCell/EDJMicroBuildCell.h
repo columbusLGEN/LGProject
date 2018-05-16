@@ -8,6 +8,10 @@
 
 #import "LGBaseTableViewCell.h"
 
+static NSString * const buildCellNoImg = @"EDJMicroBuildNoImgCell";
+static NSString * const buildCellOneImg = @"EDJMicroBuildOneImgCell";
+static NSString * const buildCellThreeImg = @"EDJMicroBuildThreeImgCell";
+
 @class EDJMicroBuildModel;
 
 @interface EDJMicroBuildCell : LGBaseTableViewCell
