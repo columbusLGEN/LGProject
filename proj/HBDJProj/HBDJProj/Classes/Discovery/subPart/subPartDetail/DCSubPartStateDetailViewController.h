@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 支部动态详情页面
+
 #import "LGBaseViewController.h"
 
 @interface DCSubPartStateDetailViewController : LGBaseViewController

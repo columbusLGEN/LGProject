@@ -11,7 +11,6 @@
 
 @interface NSString (Extension)
 
-
 /**
  @return 当前时间戳
  */

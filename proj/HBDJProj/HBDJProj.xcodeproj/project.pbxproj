@@ -213,6 +213,14 @@
 		88EA131B20AD18F1007AB886 /* UCAccountHit.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EA131A20AD18F0007AB886 /* UCAccountHit.plist */; };
 		88EA131E20AD2096007AB886 /* UCAccountHitSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA131D20AD2096007AB886 /* UCAccountHitSuccessView.m */; };
 		88EA132020AD2FC7007AB886 /* DCWriteQuestionTagHead.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EA131F20AD2FC7007AB886 /* DCWriteQuestionTagHead.plist */; };
+		88EA132420AD4727007AB886 /* DCSubPartStateDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA132320AD4727007AB886 /* DCSubPartStateDetailHeader.m */; };
+		88EA132720AD4979007AB886 /* DCStateCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA132620AD4979007AB886 /* DCStateCommentsTableViewCell.m */; };
+		88EA132920AD497F007AB886 /* DCStateCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88EA132820AD497F007AB886 /* DCStateCommentsTableViewCell.xib */; };
+		88EA132C20AD4BDE007AB886 /* DCStateCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA132B20AD4BDE007AB886 /* DCStateCommentsModel.m */; };
+		88EA132F20AD5314007AB886 /* LGHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA132E20AD5314007AB886 /* LGHTMLParser.m */; };
+		88EA133220AD533D007AB886 /* detaiTtest.html in Resources */ = {isa = PBXBuildFile; fileRef = 88EA133120AD533C007AB886 /* detaiTtest.html */; };
+		88EA133920AD5571007AB886 /* DCStateContentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA133820AD5571007AB886 /* DCStateContentsCell.m */; };
+		88EA133C20AD5E31007AB886 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */; };
 		88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF006209FE2CC0071A98A /* OLExamViewController.m */; };
 		88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */; };
 		88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF056209FED480071A98A /* OLExamSingleModel.m */; };
@@ -640,6 +648,20 @@
 		88EA131C20AD2096007AB886 /* UCAccountHitSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCAccountHitSuccessView.h; sourceTree = "<group>"; };
 		88EA131D20AD2096007AB886 /* UCAccountHitSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCAccountHitSuccessView.m; sourceTree = "<group>"; };
 		88EA131F20AD2FC7007AB886 /* DCWriteQuestionTagHead.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DCWriteQuestionTagHead.plist; sourceTree = "<group>"; };
+		88EA132220AD4727007AB886 /* DCSubPartStateDetailHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DCSubPartStateDetailHeader.h; path = HBDJProj/Classes/Discovery/subPart/subPartDetail/view/DCSubPartStateDetailHeader.h; sourceTree = SOURCE_ROOT; };
+		88EA132320AD4727007AB886 /* DCSubPartStateDetailHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DCSubPartStateDetailHeader.m; path = HBDJProj/Classes/Discovery/subPart/subPartDetail/view/DCSubPartStateDetailHeader.m; sourceTree = SOURCE_ROOT; };
+		88EA132520AD4979007AB886 /* DCStateCommentsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DCStateCommentsTableViewCell.h; path = HBDJProj/Classes/Discovery/subPart/subPartDetail/view/DCStateCommentsTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		88EA132620AD4979007AB886 /* DCStateCommentsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DCStateCommentsTableViewCell.m; path = HBDJProj/Classes/Discovery/subPart/subPartDetail/view/DCStateCommentsTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		88EA132820AD497F007AB886 /* DCStateCommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DCStateCommentsTableViewCell.xib; path = HBDJProj/Classes/Discovery/subPart/subPartDetail/view/DCStateCommentsTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		88EA132A20AD4BDE007AB886 /* DCStateCommentsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DCStateCommentsModel.h; path = HBDJProj/Classes/Discovery/subPart/subPartDetail/view/DCStateCommentsModel.h; sourceTree = SOURCE_ROOT; };
+		88EA132B20AD4BDE007AB886 /* DCStateCommentsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DCStateCommentsModel.m; path = HBDJProj/Classes/Discovery/subPart/subPartDetail/view/DCStateCommentsModel.m; sourceTree = SOURCE_ROOT; };
+		88EA132D20AD5314007AB886 /* LGHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGHTMLParser.h; sourceTree = "<group>"; };
+		88EA132E20AD5314007AB886 /* LGHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGHTMLParser.m; sourceTree = "<group>"; };
+		88EA133120AD533C007AB886 /* detaiTtest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = detaiTtest.html; sourceTree = "<group>"; };
+		88EA133720AD5571007AB886 /* DCStateContentsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DCStateContentsCell.h; path = "HBDJProj/Public/图文混排测试/DCStateContentsCell.h"; sourceTree = SOURCE_ROOT; };
+		88EA133820AD5571007AB886 /* DCStateContentsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DCStateContentsCell.m; path = "HBDJProj/Public/图文混排测试/DCStateContentsCell.m"; sourceTree = SOURCE_ROOT; };
+		88EA133A20AD5E31007AB886 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
+		88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
 		88ECF005209FE2CC0071A98A /* OLExamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewController.h; sourceTree = "<group>"; };
 		88ECF006209FE2CC0071A98A /* OLExamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewController.m; sourceTree = "<group>"; };
 		88ECF009209FE3340071A98A /* OLExamSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleViewController.h; sourceTree = "<group>"; };
@@ -792,6 +814,7 @@
 		881C94BD2068EA6E009D6A52 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				88EA133020AD5332007AB886 /* test */,
 				881C948B2068EA5A009D6A52 /* AppDelegate.h */,
 				881C948C2068EA5A009D6A52 /* AppDelegate.m */,
 				881C94942068EA5A009D6A52 /* Assets.xcassets */,
@@ -839,9 +862,9 @@
 		881C94C12068EC8D009D6A52 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				88EA132D20AD5314007AB886 /* LGHTMLParser.h */,
+				88EA132E20AD5314007AB886 /* LGHTMLParser.m */,
 				881C94D72068ED10009D6A52 /* Manager */,
-				8885D22F20A2917800DC06A1 /* LGDevice.h */,
-				8885D23020A2917800DC06A1 /* LGDevice.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -869,6 +892,8 @@
 		881C94C42068ECB4009D6A52 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				8885D22F20A2917800DC06A1 /* LGDevice.h */,
+				8885D23020A2917800DC06A1 /* LGDevice.m */,
 				88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */,
 				88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */,
 				884312F22089C54300321F84 /* LGSegment */,
@@ -881,6 +906,8 @@
 			children = (
 				881C94C72068ECF3009D6A52 /* NSString+Extension.h */,
 				881C94C82068ECF3009D6A52 /* NSString+Extension.m */,
+				88EA133A20AD5E31007AB886 /* NSAttributedString+Extension.h */,
+				88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */,
 				88D13C4420902BF000A32236 /* NSObject+Extension.h */,
 				88D13C4520902BF000A32236 /* NSObject+Extension.m */,
 			);
@@ -1959,6 +1986,31 @@
 			path = "accountHit view & model";
 			sourceTree = "<group>";
 		};
+		88EA132120AD45C2007AB886 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88EA132220AD4727007AB886 /* DCSubPartStateDetailHeader.h */,
+				88EA132320AD4727007AB886 /* DCSubPartStateDetailHeader.m */,
+				88EA133720AD5571007AB886 /* DCStateContentsCell.h */,
+				88EA133820AD5571007AB886 /* DCStateContentsCell.m */,
+				88EA132520AD4979007AB886 /* DCStateCommentsTableViewCell.h */,
+				88EA132620AD4979007AB886 /* DCStateCommentsTableViewCell.m */,
+				88EA132820AD497F007AB886 /* DCStateCommentsTableViewCell.xib */,
+				88EA132A20AD4BDE007AB886 /* DCStateCommentsModel.h */,
+				88EA132B20AD4BDE007AB886 /* DCStateCommentsModel.m */,
+			);
+			name = view;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		88EA133020AD5332007AB886 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				88EA133120AD533C007AB886 /* detaiTtest.html */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		88ECF004209FE2670071A98A /* exam */ = {
 			isa = PBXGroup;
 			children = (
@@ -2027,6 +2079,7 @@
 		88ECF0C620A19E330071A98A /* subPartDetail */ = {
 			isa = PBXGroup;
 			children = (
+				88EA132120AD45C2007AB886 /* view */,
 				88ECF0C720A19E6A0071A98A /* DCSubPartStateDetailViewController.h */,
 				88ECF0C820A19E6A0071A98A /* DCSubPartStateDetailViewController.m */,
 			);
@@ -2242,9 +2295,11 @@
 				88D13C562090443500A32236 /* EDJDigitalCell.xib in Resources */,
 				88D13C612090586900A32236 /* OLHomeCollectionCell.xib in Resources */,
 				88D13C352090145100A32236 /* EDJSearchTagHistoryCell.xib in Resources */,
+				88EA133220AD533D007AB886 /* detaiTtest.html in Resources */,
 				88ECF065209FF7D00071A98A /* OLExamSingleStemCell.xib in Resources */,
 				88EA131B20AD18F1007AB886 /* UCAccountHit.plist in Resources */,
 				889E7DC2209996A100BB9084 /* UCMemberStageTransitionView.xib in Resources */,
+				88EA132920AD497F007AB886 /* DCStateCommentsTableViewCell.xib in Resources */,
 				88ECF07420A020560071A98A /* OLExamSingleFooterView.xib in Resources */,
 				88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */,
 				8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */,
@@ -2473,6 +2528,7 @@
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
 				88A47133207EF5EB002F93E0 /* EDJUserCenterHomePageModel.m in Sources */,
 				88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */,
+				88EA132720AD4979007AB886 /* DCStateCommentsTableViewCell.m in Sources */,
 				8885D23920A2BCB000DC06A1 /* PBDBottomView.m in Sources */,
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
 				88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */,
@@ -2498,6 +2554,7 @@
 				8885D23E20A2EC7600DC06A1 /* LGSegmentBottomView.m in Sources */,
 				88FE68BC209B05F5008C28A0 /* OLVoteListController.m in Sources */,
 				884312E32089879C00321F84 /* UCHelpFadebackTableViewCell.m in Sources */,
+				88EA132420AD4727007AB886 /* DCSubPartStateDetailHeader.m in Sources */,
 				88A470FD207C8CBD002F93E0 /* EDJMicroPSCellHeader.m in Sources */,
 				884312C8208737EF00321F84 /* UCMsgModel.m in Sources */,
 				88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */,
@@ -2535,6 +2592,7 @@
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
 				8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */,
 				8835B36B20732DB900722010 /* EDJDigitalReadViewController.m in Sources */,
+				88EA132F20AD5314007AB886 /* LGHTMLParser.m in Sources */,
 				8831E18D20941A78001D038E /* DCSubStageModel.m in Sources */,
 				88EA131020AD144C007AB886 /* UCAccountHitViewController.m in Sources */,
 				884312C5208737BF00321F84 /* UCMsgTableViewController.m in Sources */,
@@ -2570,6 +2628,7 @@
 				88D13C5C2090583D00A32236 /* OLHomeModel.m in Sources */,
 				88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */,
 				88FE68B7209AFB40008C28A0 /* OLPayPartyChargeModel.m in Sources */,
+				88EA132C20AD4BDE007AB886 /* DCStateCommentsModel.m in Sources */,
 				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				88D13C5F2090585F00A32236 /* OLHomeCollectionCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
@@ -2586,12 +2645,14 @@
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,
 				8831E15420931090001D038E /* DCSubPartStateBaseCell.m in Sources */,
 				88EA131420AD1766007AB886 /* UCAccountHitTableViewCell.m in Sources */,
+				88EA133C20AD5E31007AB886 /* NSAttributedString+Extension.m in Sources */,
 				884312D920873C1B00321F84 /* UCSettingTableViewCell.m in Sources */,
 				88435EAC208F061400188CE9 /* EDJSearchViewController.m in Sources */,
 				88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */,
 				889E7DC52099A45500BB9084 /* UCMemberStageTransitionButton.m in Sources */,
 				8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */,
 				88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */,
+				88EA133920AD5571007AB886 /* DCStateContentsCell.m in Sources */,
 				8831E1512092FE22001D038E /* LGButton.m in Sources */,
 				88ECF05D209FF53A0071A98A /* OLExamModel.m in Sources */,
 				88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */,
