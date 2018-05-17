@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 @class EDJSearchTagHeaderModel;
+
+static NSString * const reuseHeaderID = @"EDJSearchTagHeader";
+
 @interface EDJSearchTagHeader : UICollectionReusableView
 @property (strong,nonatomic) EDJSearchTagHeaderModel *model;
 @end

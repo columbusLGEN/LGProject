@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>lineType</key>
+		<integer>0</integer>
+		<key>iconName</key>
+		<string>uc_icon_login_username_prefix</string>
+		<key>placeholder</key>
+		<string>请输入手机号</string>
+	</dict>
+	<dict>
+		<key>lineType</key>
+		<integer>1</integer>
+		<key>iconName</key>
+		<string>uc_icon_login_pwd_prefix</string>
+		<key>placeholder</key>
+		<string>请输入原密码</string>
+	</dict>
+	<dict>
+		<key>lineType</key>
+		<integer>2</integer>
+		<key>iconName</key>
+		<string>uc_icon_login_pwd_prefix</string>
+		<key>placeholder</key>
+		<string>请输入新密码</string>
+	</dict>
+	<dict>
+		<key>lineType</key>
+		<integer>3</integer>
+		<key>iconName</key>
+		<string>uc_icon_login_pwd_prefix</string>
+		<key>placeholder</key>
+		<string>请确认新密码</string>
+	</dict>
+</array>
+</plist>

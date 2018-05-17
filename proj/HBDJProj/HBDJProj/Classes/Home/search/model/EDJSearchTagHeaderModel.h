@@ -9,7 +9,8 @@
 #import "LGBaseModel.h"
 
 @interface EDJSearchTagHeaderModel : LGBaseModel
-@property (assign,nonatomic) BOOL isHot;/// 是否是热门标签
+/** 用于判断是否隐藏 header 右侧的删除按钮 */
+@property (assign,nonatomic) BOOL isHot;
 @property (copy,nonatomic) NSString *itemName;
 
 @end

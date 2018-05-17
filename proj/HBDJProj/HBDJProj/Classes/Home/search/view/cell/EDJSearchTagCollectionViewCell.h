@@ -9,6 +9,9 @@
 #import "LGBaseCollectionViewCell.h"
 @class EDJSearchTagModel;
 
+static NSString * const historyCell = @"EDJSearchTagHistoryCell";
+static NSString * const hotCell = @"EDJSearchTagHotCell";
+
 @interface EDJSearchTagCollectionViewCell : LGBaseCollectionViewCell
 
 + (NSString *)cellIdWithIndexPath:(NSIndexPath *)indexPath;

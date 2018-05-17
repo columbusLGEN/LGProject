@@ -17,5 +17,7 @@ static NSString * const TRConfigSelectedImgNameKey = @"TRConfigSelectedImgNameKe
 @interface LGThreeRightButtonView : UIView
 
 @property (weak,nonatomic) NSArray<NSDictionary *> *btnConfigs;
+/** 分割线是否顶头 */
+@property (assign,nonatomic) BOOL bothSidesClose;
 
 @end

@@ -7,11 +7,10 @@
 //
 
 #import "DCSubPartStateDetailViewController.h"
-#import "DCSubPartBottomView.h"
+#import "LGThreeRightButtonView.h"
 
-@interface DCSubPartStateDetailViewController ()<
-DCSubPartBottomViewDelegate>
-@property (weak,nonatomic) DCSubPartBottomView *bottom;
+@interface DCSubPartStateDetailViewController ()
+@property (strong,nonatomic) LGThreeRightButtonView *bottom;
 
 @end
 
@@ -30,17 +29,19 @@ DCSubPartBottomViewDelegate>
 }
 
 - (void)configUI{
-    /// bottom
-    DCSubPartBottomView *sbBottom = [DCSubPartBottomView sbBottom];
-    sbBottom.delegate = self;
-    CGFloat sbbHeight = 60;
-    BOOL isiPhoneX = ([LGDevice sharedInstance].currentDeviceType == LGDeviecType_iPhoneX);
-    if (isiPhoneX) {
-        sbbHeight = 90;
+    
+    CGFloat bottomHeight = 50;
+    if ([LGDevice isiPhoneX]) {
+        bottomHeight = 70;
     }
-    sbBottom.frame = CGRectMake(0, kScreenHeight - sbbHeight, kScreenWidth, sbbHeight);
-    [self.view addSubview:sbBottom];
-    _bottom = sbBottom;
+    [self.view addSubview:self.bottom];
+    [self.bottom mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(bottomHeight);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    
     
     /// 注册键盘相关通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -71,19 +72,6 @@ DCSubPartBottomViewDelegate>
 //    NSLog(@"didchangeframe.y -- %f",offsetY);
 }
 
-#pragma mark - DCSubPartBottomViewDelegate
-- (void)sbBottomActionClick:(DCSubPartBottomView *)sbBottom action:(SubPartyBottomAction)action{
-    switch (action) {
-        case SubPartyBottomActionLike:
-            NSLog(@"点赞 -- ");
-            break;
-        case SubPartyBottomActionCollect:
-            NSLog(@"收藏 -- ");
-            break;
-
-    }
-}
-
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -91,6 +79,32 @@ DCSubPartBottomViewDelegate>
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+}
+
+- (LGThreeRightButtonView *)bottom{
+    if (!_bottom) {
+        _bottom = [LGThreeRightButtonView new];
+        _bottom.bothSidesClose = YES;
+        [_bottom setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
+                                        TRConfigImgNameKey:@"dc_like_normal",
+                                        TRConfigSelectedImgNameKey:@"dc_like_selected",
+                                        TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                        TRConfigTitleColorSelectedKey:[UIColor EDJColor_6CBEFC]
+                                        },
+                                      @{TRConfigTitleKey:@"99+",
+                                        TRConfigImgNameKey:@"uc_icon_shouc_gray",
+                                        TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow",
+                                        TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                        TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
+                                        },
+                                      @{TRConfigTitleKey:@"99+",
+                                        TRConfigImgNameKey:@"dc_discuss_normal",
+                                        TRConfigSelectedImgNameKey:@"dc_discuss_selected",
+                                        TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                        TRConfigTitleColorSelectedKey:[UIColor EDJColor_CEB0E7]
+                                        }]];
+    }
+    return _bottom;
 }
 
 @end

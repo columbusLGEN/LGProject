@@ -50,8 +50,9 @@ LGNavigationSearchBarDelelgate>
 #pragma mark - LGNavigationSearchBarDelelgate
 - (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
     DCWriteQuestionViewController *question = [DCWriteQuestionViewController new];
-    [self.navigationController pushViewController:question animated:YES];
-
+    question.pushWay = LGBaseViewControllerPushWayModal;
+    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:question];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 

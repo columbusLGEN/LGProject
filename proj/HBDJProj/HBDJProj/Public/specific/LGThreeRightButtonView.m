@@ -20,6 +20,18 @@
 
 @implementation LGThreeRightButtonView
 
+- (void)setBothSidesClose:(BOOL)bothSidesClose{
+    _bothSidesClose = bothSidesClose;
+    if (bothSidesClose) {
+        [self.line mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top);
+            make.left.equalTo(self.mas_left);
+            make.right.equalTo(self.mas_right);
+            make.height.mas_equalTo(1);
+        }];
+    }
+}
+
 - (void)leftClick:(UIButton *)sender {
     if (sender.isSelected) {
         sender.selected = NO;

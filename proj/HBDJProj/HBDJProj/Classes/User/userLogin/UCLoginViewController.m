@@ -34,7 +34,7 @@
 }
 /// 账号激活
 - (IBAction)acountHit:(UIButton *)sender {
-    NSLog(@"账号激活 -- ");
+    [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCAccountHitViewController" animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

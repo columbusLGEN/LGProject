@@ -17,10 +17,6 @@
 #import "EDJSearchTagHeader.h"
 #import "EDJSearchTagHeaderModel.h"
 
-static NSString * const historyCell = @"EDJSearchTagHistoryCell";
-static NSString * const hotCell = @"EDJSearchTagHotCell";
-
-static NSString * const reuseHeaderID = @"EDJSearchTagHeader";
 static CGFloat insetTop = 44;
 
 @interface EDJSearchViewController ()<
