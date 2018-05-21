@@ -20,4 +20,7 @@ static NSString * const TRConfigSelectedImgNameKey = @"TRConfigSelectedImgNameKe
 /** 分割线是否顶头 */
 @property (assign,nonatomic) BOOL bothSidesClose;
 
+/** 隐藏 上分割线 */
+@property (assign,nonatomic) BOOL hideTopLine;
+
 @end

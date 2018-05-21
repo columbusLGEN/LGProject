@@ -8,34 +8,44 @@
 
 #import "DCSubStageThreeImgCell.h"
 #import "DCSubStageModel.h"
+#import "LGNineImgView.h"
+
 @interface DCSubStageThreeImgCell ()
 @property (strong,nonatomic) DCSubStageModel *subModel;
-@property (weak, nonatomic) IBOutlet UILabel *nick;
-@property (weak, nonatomic) IBOutlet UILabel *content;
-@property (weak, nonatomic) IBOutlet UIImageView *leftImg;
-@property (weak, nonatomic) IBOutlet UIImageView *midImg;
-@property (weak, nonatomic) IBOutlet UIImageView *rightImg;
+@property (weak,nonatomic) LGNineImgView *nineImg;
 
 @end
 
 @implementation DCSubStageThreeImgCell
 
 - (void)setModel:(DCSubStageModel *)model{
+    [super setModel:model];
     _subModel = model;
-    UIImage *testImg = [UIImage imageNamed:@"party_history"];
-    [_leftImg setImage:testImg];
-    [_midImg setImage:testImg];
-    [_rightImg setImage:testImg];
+    
+    if (_nineImg) {
+        [_nineImg removeFromSuperview];
+    }
+    
+    /// nine.y = contentTopOffset + model.content.height + 10
+    LGNineImgView *nine = [[LGNineImgView alloc] initWithFrame:CGRectMake(leftOffset, contentTopOffset + model.heightForContent + 10, kScreenWidth, model.nineImgViewHeight)];
+    [self.contentView addSubview:nine];
+    _nineImg = nine;
+    nine.dataSource = model.imgs;
+    
+    /// 九宫格点击回调
+    nine.tapBlock = ^(NSInteger index, NSArray *dataSource) {
+        NSLog(@"idnex -- %ld",index);
+    };
 }
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    
-}
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = [UIColor whiteColor];
+
+        
+    }
+    return self;
 }
 
 
