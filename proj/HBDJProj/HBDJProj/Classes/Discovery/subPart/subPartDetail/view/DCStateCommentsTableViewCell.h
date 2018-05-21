@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 详情页 评论 cell
+
 #import "LGBaseTableViewCell.h"
 @class DCStateCommentsModel;
 static NSString *cellID = @"DCStateCommentsTableViewCell";

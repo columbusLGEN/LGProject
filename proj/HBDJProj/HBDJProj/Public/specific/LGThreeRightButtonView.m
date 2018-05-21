@@ -20,6 +20,12 @@
 
 @implementation LGThreeRightButtonView
 
+- (void)setHideTopLine:(BOOL)hideTopLine{
+    if (hideTopLine) {
+        [self.line removeFromSuperview];
+    }
+}
+
 - (void)setBothSidesClose:(BOOL)bothSidesClose{
     _bothSidesClose = bothSidesClose;
     if (bothSidesClose) {

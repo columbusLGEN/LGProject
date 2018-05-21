@@ -25,6 +25,9 @@
 + (UIColor *)EDJGrayscale_F3{/// 243
     return [self colorWithHexString:@"F3F3F3"];
 }
++ (UIColor *)EDJGrayscale_F5{/// 245
+    return [self colorWithHexString:@"F5F5F5"];
+}
 + (UIColor *)EDJGrayscale_C6{/// 198
     return [self colorWithHexString:@"C6C6C6"];
 }
@@ -33,6 +36,9 @@
 }
 + (UIColor *)EDJGrayscale_33{/// 51
     return [self colorWithHexString:@"333333"];
+}
++ (UIColor *)EDJGrayscale_11{/// 17,17,17
+    return [self colorWithHexString:@"111111"];
 }
 + (UIColor *)EDJGrayscale_66{/// 102
     return [self colorWithHexString:@"666666"];
