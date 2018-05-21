@@ -202,9 +202,6 @@
 		88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DD8148209C298600F297D6 /* OLVoteDetailFooterView.xib */; };
 		88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */; };
 		88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */; };
-		88EA130320ABBAF4007AB886 /* LGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA12FE20ABBAF4007AB886 /* LGBaseRequest.m */; };
-		88EA130420ABBAF4007AB886 /* LGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA130020ABBAF4007AB886 /* LGNetworkAgent.m */; };
-		88EA130520ABBAF4007AB886 /* TestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA130220ABBAF4007AB886 /* TestRequest.m */; };
 		88EA130920ABC6E2007AB886 /* RegisterBottomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA130820ABC6E2007AB886 /* RegisterBottomInfoView.m */; };
 		88EA131020AD144C007AB886 /* UCAccountHitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA130F20AD144C007AB886 /* UCAccountHitViewController.m */; };
 		88EA131420AD1766007AB886 /* UCAccountHitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA131320AD1766007AB886 /* UCAccountHitTableViewCell.m */; };
@@ -629,12 +626,6 @@
 		88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestResultViewController.m; sourceTree = "<group>"; };
 		88DD814F209C4A1600F297D6 /* OLThreeMeetingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLThreeMeetingsViewController.h; sourceTree = "<group>"; };
 		88DD8150209C4A1600F297D6 /* OLThreeMeetingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLThreeMeetingsViewController.m; sourceTree = "<group>"; };
-		88EA12FD20ABBAF4007AB886 /* LGBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseRequest.h; sourceTree = "<group>"; };
-		88EA12FE20ABBAF4007AB886 /* LGBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseRequest.m; sourceTree = "<group>"; };
-		88EA12FF20ABBAF4007AB886 /* LGNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNetworkAgent.h; sourceTree = "<group>"; };
-		88EA130020ABBAF4007AB886 /* LGNetworkAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkAgent.m; sourceTree = "<group>"; };
-		88EA130120ABBAF4007AB886 /* TestRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequest.h; sourceTree = "<group>"; };
-		88EA130220ABBAF4007AB886 /* TestRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequest.m; sourceTree = "<group>"; };
 		88EA130720ABC6E2007AB886 /* RegisterBottomInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterBottomInfoView.h; sourceTree = "<group>"; };
 		88EA130820ABC6E2007AB886 /* RegisterBottomInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterBottomInfoView.m; sourceTree = "<group>"; };
 		88EA130E20AD144C007AB886 /* UCAccountHitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCAccountHitViewController.h; sourceTree = "<group>"; };
@@ -934,7 +925,6 @@
 		881C94D72068ED10009D6A52 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				88EA12FC20ABBAF4007AB886 /* LGNetworking */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1948,20 +1938,6 @@
 			path = sub;
 			sourceTree = "<group>";
 		};
-		88EA12FC20ABBAF4007AB886 /* LGNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				88EA12FD20ABBAF4007AB886 /* LGBaseRequest.h */,
-				88EA12FE20ABBAF4007AB886 /* LGBaseRequest.m */,
-				88EA12FF20ABBAF4007AB886 /* LGNetworkAgent.h */,
-				88EA130020ABBAF4007AB886 /* LGNetworkAgent.m */,
-				88EA130120ABBAF4007AB886 /* TestRequest.h */,
-				88EA130220ABBAF4007AB886 /* TestRequest.m */,
-			);
-			name = LGNetworking;
-			path = "../../../../../../../../网络_201805/NetDemo/NetDemo/LGNetworking";
-			sourceTree = "<group>";
-		};
 		88EA130620ABC68A007AB886 /* serviceView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2559,7 +2535,6 @@
 				884312C8208737EF00321F84 /* UCMsgModel.m in Sources */,
 				88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */,
 				88D13C592090560E00A32236 /* EDJDigitalModel.m in Sources */,
-				88EA130420ABBAF4007AB886 /* LGNetworkAgent.m in Sources */,
 				884312DC2087402200321F84 /* UCSettingModel.m in Sources */,
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
@@ -2663,14 +2638,12 @@
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,
 				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
-				88EA130320ABBAF4007AB886 /* LGBaseRequest.m in Sources */,
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
 				88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */,
 				88ECF068209FF8280071A98A /* OLExamSingleOptionCell.m in Sources */,
 				8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */,
 				88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */,
-				88EA130520ABBAF4007AB886 /* TestRequest.m in Sources */,
 				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,
