@@ -43,7 +43,6 @@ UITableViewDataSource>
     
     _comments = model.comments;
     [_tbvForComments reloadData];
-    NSLog(@"%@ -- %ld",model.nick,model.comments.count);
     
     if (_comments.count) {
         _bottomRect.hidden = YES;
