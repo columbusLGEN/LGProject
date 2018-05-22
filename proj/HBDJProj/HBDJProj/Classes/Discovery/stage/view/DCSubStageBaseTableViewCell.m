@@ -11,6 +11,8 @@
 #import "DCSubStageModel.h"
 #import "DCSubStageCommentsModel.h"
 #import "DCSubStageCommentsCell.h"
+#import "LGTriangleView.h"
+
 @interface DCSubStageBaseTableViewCell ()<
 UITableViewDelegate,
 UITableViewDataSource>
@@ -24,6 +26,8 @@ UITableViewDataSource>
 
 @property (strong,nonatomic) UITableView *tbvForComments;
 @property (strong,nonatomic) NSArray *comments;
+
+@property (weak,nonatomic) LGTriangleView *triangle;
 
 @end
 
@@ -39,47 +43,37 @@ UITableViewDataSource>
     
     _comments = model.comments;
     [_tbvForComments reloadData];
+    NSLog(@"%@ -- %ld",model.nick,model.comments.count);
+    
     if (_comments.count) {
         _bottomRect.hidden = YES;
-        [self.boInterView mas_updateConstraints:^(MASConstraintMaker *make) {
-           make.bottom.equalTo(self.tbvForComments.mas_top);
+        _triangle.hidden = NO;
+        
+        [self.boInterView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.tbvForComments.mas_top);
+            make.left.equalTo(self.time.mas_right).offset(-marginTen);
+            make.right.equalTo(self.mas_right);
+            make.height.mas_equalTo(45);
         }];
         [self.tbvForComments mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(model.commentsTbvHeight);
         }];
     }else{
-        [self.boInterView mas_updateConstraints:^(MASConstraintMaker *make) {
+        _bottomRect.hidden = NO;
+        _triangle.hidden = YES;
+        
+        [self.tbvForComments mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+        [self.boInterView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.bottomRect.mas_top);
+            make.left.equalTo(self.time.mas_right).offset(-marginTen);
+            make.right.equalTo(self.mas_right);
+            make.height.mas_equalTo(45);
         }];
     }
+    
 }
-
-+ (NSString *)cellReuseIdWithModel:(DCSubStageModel *)model{
-    switch (model.modelType) {
-        case StageModelTypeDefault:
-        case StageModelTypeMoreImg:
-            return threeImgCell;
-            break;
-        case StageModelTypeAImg:{
-            return oneImgCell;
-        }
-            break;
-        case StageModelTypeAudio:
-            return audioCell;
-            break;
-        case StageModelTypeVideo:
-            return oneImgCell;
-            break;
-    }
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self configUI];
-    }
-    return self;
-}
-
 - (void)configUI {
     
     [self.contentView addSubview:self.icon];
@@ -120,6 +114,7 @@ UITableViewDataSource>
         make.width.mas_equalTo(110);
     }];
     [self.boInterView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.bottomRect.mas_top);
         make.left.equalTo(self.time.mas_right).offset(-marginTen);
         make.right.equalTo(self.mas_right);
         make.height.mas_equalTo(45);
@@ -136,6 +131,16 @@ UITableViewDataSource>
         make.right.equalTo(self.mas_right).offset(-30);
         make.bottom.equalTo(self.mas_bottom);
     }];
+    
+    LGTriangleView *triangle = [LGTriangleView new];
+    [self.contentView addSubview:triangle];
+    [triangle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.tbvForComments.mas_top);
+        make.right.equalTo(self.tbvForComments.mas_right).offset(-36);
+        make.width.mas_equalTo(marginTwelve);
+        make.height.mas_equalTo(marginEight);
+    }];
+    _triangle = triangle;
     
 }
 
@@ -221,5 +226,32 @@ UITableViewDataSource>
     cell.model = model;
     return cell;
 }
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self configUI];
+    }
+    return self;
+}
+
++ (NSString *)cellReuseIdWithModel:(DCSubStageModel *)model{
+    switch (model.modelType) {
+        case StageModelTypeDefault:
+        case StageModelTypeMoreImg:
+            return threeImgCell;
+            break;
+        case StageModelTypeAImg:{
+            return oneImgCell;
+        }
+            break;
+        case StageModelTypeAudio:
+            return audioCell;
+            break;
+        case StageModelTypeVideo:
+            return oneImgCell;
+            break;
+    }
+}
+
 
 @end
