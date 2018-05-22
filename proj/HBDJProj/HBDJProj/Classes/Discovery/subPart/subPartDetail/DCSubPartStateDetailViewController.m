@@ -136,7 +136,7 @@ DTLazyImageViewDelegate>
         
         [_cellCache setObject:cell forKey:key];
         
-        /// MARK: 富文本cell顶部信息cell
+        /// MARK: 富文本cell顶部信息view
         DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
         [cell.contentView addSubview:topInfoView];
         [topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -159,7 +159,7 @@ DTLazyImageViewDelegate>
         [cell.contentView bringSubviewToFront:infoView];
     }
     
-    /// 设置富文本数据
+    /// TODO: 设置富文本数据
     [cell setHTMLString:[[[LGHTMLParser alloc] init] HTMLStringWithPlistName:@"detaiTtest"]];
     
     /// 为每个占位图设置大小

@@ -23,14 +23,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-1-22  11：20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-B8-MeA">
-                    <rect key="frame" x="10" y="50" width="143" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="10" y="50" width="127.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源：人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQF-RF-I5d">
-                    <rect key="frame" x="163" y="50" width="122" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="147.5" y="50" width="107.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看次数: 999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzL-fR-bhH">
+                    <rect key="frame" x="263" y="50" width="97.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -39,8 +45,10 @@
             <constraints>
                 <constraint firstItem="bJh-B8-MeA" firstAttribute="leading" secondItem="ZQL-kh-JZ3" secondAttribute="leading" id="DKN-0z-YIq"/>
                 <constraint firstItem="ZQL-kh-JZ3" firstAttribute="top" secondItem="JtG-ou-HrK" secondAttribute="top" constant="10" id="KOl-a5-3Hy"/>
+                <constraint firstItem="tzL-fR-bhH" firstAttribute="centerY" secondItem="jQF-RF-I5d" secondAttribute="centerY" id="Kns-9m-791"/>
                 <constraint firstItem="ZQL-kh-JZ3" firstAttribute="leading" secondItem="JtG-ou-HrK" secondAttribute="leading" constant="10" id="cdG-DV-hwU"/>
                 <constraint firstItem="jQF-RF-I5d" firstAttribute="centerY" secondItem="bJh-B8-MeA" secondAttribute="centerY" id="etv-ry-Utw"/>
+                <constraint firstItem="tzL-fR-bhH" firstAttribute="leading" secondItem="jQF-RF-I5d" secondAttribute="trailing" constant="8" id="h6o-yp-iMA"/>
                 <constraint firstItem="bJh-B8-MeA" firstAttribute="top" secondItem="ZQL-kh-JZ3" secondAttribute="bottom" constant="10" id="ih6-ql-d69"/>
                 <constraint firstItem="JtG-ou-HrK" firstAttribute="trailing" secondItem="ZQL-kh-JZ3" secondAttribute="trailing" constant="10" id="nyX-Kg-bKN"/>
                 <constraint firstItem="jQF-RF-I5d" firstAttribute="leading" secondItem="bJh-B8-MeA" secondAttribute="trailing" constant="10" id="zsh-Ub-Ly7"/>
@@ -48,6 +56,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="JtG-ou-HrK"/>
             <connections>
+                <outlet property="counts" destination="tzL-fR-bhH" id="COF-nb-4AZ"/>
                 <outlet property="source" destination="jQF-RF-I5d" id="Mas-lQ-wAN"/>
                 <outlet property="time" destination="bJh-B8-MeA" id="qCN-tf-zai"/>
                 <outlet property="title" destination="ZQL-kh-JZ3" id="nt7-lF-BeB"/>

@@ -71,6 +71,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+    dvc.coreTextViewType = LGCoreTextViewTypePoint;
     [self.navigationController pushViewController:dvc animated:YES];
 }
 

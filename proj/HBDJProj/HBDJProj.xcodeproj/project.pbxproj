@@ -137,6 +137,17 @@
 		889FCD1B20B3E6560045746D /* DCRichTextBottomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD1A20B3E6560045746D /* DCRichTextBottomInfoView.xib */; };
 		889FCD1E20B3EAFC0045746D /* DCRichTextTopInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD1D20B3EAFC0045746D /* DCRichTextTopInfoView.m */; };
 		889FCD2020B3EB040045746D /* DCRichTextTopInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD1F20B3EB040045746D /* DCRichTextTopInfoView.xib */; };
+		889FCD2520B3FA8A0045746D /* HPAudioVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */; };
+		889FCD2E20B3FD540045746D /* HPAudioPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD2D20B3FD540045746D /* HPAudioPlayerCell.m */; };
+		889FCD3120B3FD660045746D /* HPVideoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD3020B3FD660045746D /* HPVideoPlayerCell.m */; };
+		889FCD3420B3FD8A0045746D /* HPAudioVideoInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD3320B3FD8A0045746D /* HPAudioVideoInfoCell.m */; };
+		889FCD3720B3FD970045746D /* HPAudioVideoContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD3620B3FD970045746D /* HPAudioVideoContentCell.m */; };
+		889FCD3920B3FDC00045746D /* HPAudioVideoInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3820B3FDC00045746D /* HPAudioVideoInfoCell.xib */; };
+		889FCD3B20B3FE440045746D /* HPVideoPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3A20B3FE440045746D /* HPVideoPlayerCell.xib */; };
+		889FCD3D20B3FE4E0045746D /* HPAudioVideoContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3C20B3FE4E0045746D /* HPAudioVideoContentCell.xib */; };
+		889FCD3F20B3FE560045746D /* HPAudioPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3E20B3FE560045746D /* HPAudioPlayerCell.xib */; };
+		889FCD4220B400B60045746D /* HPAudioVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD4120B400B60045746D /* HPAudioVideoModel.m */; };
+		889FCD4520B40D5C0045746D /* LGVideoInterfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */; };
 		88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */; };
 		88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F1207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m */; };
 		88A470FA207C8615002F93E0 /* LGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F9207C8615002F93E0 /* LGImageView.m */; };
@@ -526,6 +537,24 @@
 		889FCD1C20B3EAFC0045746D /* DCRichTextTopInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCRichTextTopInfoView.h; sourceTree = "<group>"; };
 		889FCD1D20B3EAFC0045746D /* DCRichTextTopInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCRichTextTopInfoView.m; sourceTree = "<group>"; };
 		889FCD1F20B3EB040045746D /* DCRichTextTopInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCRichTextTopInfoView.xib; sourceTree = "<group>"; };
+		889FCD2320B3FA8A0045746D /* HPAudioVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioVideoViewController.h; sourceTree = "<group>"; };
+		889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoViewController.m; sourceTree = "<group>"; };
+		889FCD2C20B3FD540045746D /* HPAudioPlayerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioPlayerCell.h; sourceTree = "<group>"; };
+		889FCD2D20B3FD540045746D /* HPAudioPlayerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioPlayerCell.m; sourceTree = "<group>"; };
+		889FCD2F20B3FD660045746D /* HPVideoPlayerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPVideoPlayerCell.h; sourceTree = "<group>"; };
+		889FCD3020B3FD660045746D /* HPVideoPlayerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPVideoPlayerCell.m; sourceTree = "<group>"; };
+		889FCD3220B3FD8A0045746D /* HPAudioVideoInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioVideoInfoCell.h; sourceTree = "<group>"; };
+		889FCD3320B3FD8A0045746D /* HPAudioVideoInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoInfoCell.m; sourceTree = "<group>"; };
+		889FCD3520B3FD970045746D /* HPAudioVideoContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioVideoContentCell.h; sourceTree = "<group>"; };
+		889FCD3620B3FD970045746D /* HPAudioVideoContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoContentCell.m; sourceTree = "<group>"; };
+		889FCD3820B3FDC00045746D /* HPAudioVideoInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioVideoInfoCell.xib; sourceTree = "<group>"; };
+		889FCD3A20B3FE440045746D /* HPVideoPlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPVideoPlayerCell.xib; sourceTree = "<group>"; };
+		889FCD3C20B3FE4E0045746D /* HPAudioVideoContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioVideoContentCell.xib; sourceTree = "<group>"; };
+		889FCD3E20B3FE560045746D /* HPAudioPlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioPlayerCell.xib; sourceTree = "<group>"; };
+		889FCD4020B400B60045746D /* HPAudioVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioVideoModel.h; sourceTree = "<group>"; };
+		889FCD4120B400B60045746D /* HPAudioVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoModel.m; sourceTree = "<group>"; };
+		889FCD4320B40D5C0045746D /* LGVideoInterfaceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGVideoInterfaceView.h; sourceTree = "<group>"; };
+		889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGVideoInterfaceView.m; sourceTree = "<group>"; };
 		88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EDJColor.h"; sourceTree = "<group>"; };
 		88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EDJColor.m"; sourceTree = "<group>"; };
 		88A470F0207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeDigitalsFlowLayout.h; sourceTree = "<group>"; };
@@ -843,7 +872,7 @@
 		881C94BE2068EC61009D6A52 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				889FCC7720B2587D0045746D /* 图文混排测试 */,
+				889FCC7720B2587D0045746D /* LGCoreText */,
 				88A4713A207F31E1002F93E0 /* specific */,
 				881C94C42068ECB4009D6A52 /* Other */,
 				881C94C32068ECA5009D6A52 /* BaseObject */,
@@ -992,6 +1021,7 @@
 		881C94EA2068F362009D6A52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				889FCD2120B3FA430045746D /* audio&video */,
 				88CD7391209958D500E80058 /* bookInfo */,
 				88435EB1208F15A900188CE9 /* main */,
 				88435EB0208F158100188CE9 /* search */,
@@ -1634,13 +1664,13 @@
 			path = LGNetworking;
 			sourceTree = "<group>";
 		};
-		889FCC7720B2587D0045746D /* 图文混排测试 */ = {
+		889FCC7720B2587D0045746D /* LGCoreText */ = {
 			isa = PBXGroup;
 			children = (
 				889FCC7820B2587D0045746D /* DCStateContentsCell.h */,
 				889FCC7920B2587D0045746D /* DCStateContentsCell.m */,
 			);
-			path = "图文混排测试";
+			path = LGCoreText;
 			sourceTree = "<group>";
 		};
 		889FCD0C20B3B12E0045746D /* Recovered References */ = {
@@ -1658,6 +1688,63 @@
 				889FCD1320B3B3850045746D /* LGBaseModel.m */,
 			);
 			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		889FCD2120B3FA430045746D /* audio&video */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD2820B3FA980045746D /* other */,
+				889FCD2720B3FA940045746D /* model */,
+				889FCD2620B3FA8F0045746D /* view */,
+				889FCD2220B3FA4C0045746D /* controller */,
+			);
+			path = "audio&video";
+			sourceTree = "<group>";
+		};
+		889FCD2220B3FA4C0045746D /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD2320B3FA8A0045746D /* HPAudioVideoViewController.h */,
+				889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		889FCD2620B3FA8F0045746D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD2C20B3FD540045746D /* HPAudioPlayerCell.h */,
+				889FCD2D20B3FD540045746D /* HPAudioPlayerCell.m */,
+				889FCD3E20B3FE560045746D /* HPAudioPlayerCell.xib */,
+				889FCD2F20B3FD660045746D /* HPVideoPlayerCell.h */,
+				889FCD3020B3FD660045746D /* HPVideoPlayerCell.m */,
+				889FCD3A20B3FE440045746D /* HPVideoPlayerCell.xib */,
+				889FCD4320B40D5C0045746D /* LGVideoInterfaceView.h */,
+				889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */,
+				889FCD3220B3FD8A0045746D /* HPAudioVideoInfoCell.h */,
+				889FCD3320B3FD8A0045746D /* HPAudioVideoInfoCell.m */,
+				889FCD3820B3FDC00045746D /* HPAudioVideoInfoCell.xib */,
+				889FCD3520B3FD970045746D /* HPAudioVideoContentCell.h */,
+				889FCD3620B3FD970045746D /* HPAudioVideoContentCell.m */,
+				889FCD3C20B3FE4E0045746D /* HPAudioVideoContentCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		889FCD2720B3FA940045746D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD4020B400B60045746D /* HPAudioVideoModel.h */,
+				889FCD4120B400B60045746D /* HPAudioVideoModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		889FCD2820B3FA980045746D /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
 			sourceTree = "<group>";
 		};
 		88A47106207DB9FF002F93E0 /* BuileCell */ = {
@@ -2298,12 +2385,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				88EA132020AD2FC7007AB886 /* DCWriteQuestionTagHead.plist in Resources */,
+				889FCD3F20B3FE560045746D /* HPAudioPlayerCell.xib in Resources */,
 				88A47110207DBE26002F93E0 /* EDJMicroBuildOneImgCell.xib in Resources */,
 				88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */,
 				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
 				8831E16920940131001D038E /* DCSubPartStateOneImgCell.xib in Resources */,
 				8885D23B20A2BCB800DC06A1 /* PBDBottomView.xib in Resources */,
 				88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */,
+				889FCD3B20B3FE440045746D /* HPVideoPlayerCell.xib in Resources */,
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
 				88EA131620AD176E007AB886 /* UCAccountHitTableViewCell.xib in Resources */,
 				8885D24020A2EC8500DC06A1 /* LGSegmentBottomView.xib in Resources */,
@@ -2329,6 +2418,7 @@
 				88EA133220AD533D007AB886 /* detaiTtest.html in Resources */,
 				88ECF065209FF7D00071A98A /* OLExamSingleStemCell.xib in Resources */,
 				88EA131B20AD18F1007AB886 /* UCAccountHit.plist in Resources */,
+				889FCD3920B3FDC00045746D /* HPAudioVideoInfoCell.xib in Resources */,
 				889E7DC2209996A100BB9084 /* UCMemberStageTransitionView.xib in Resources */,
 				88ECF07420A020560071A98A /* OLExamSingleFooterView.xib in Resources */,
 				88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */,
@@ -2347,6 +2437,7 @@
 				88DD8137209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib in Resources */,
 				88D13C632090597F00A32236 /* OLHomeItems.plist in Resources */,
 				88A4710B207DBE08002F93E0 /* EDJMicroBuildNoImgCell.xib in Resources */,
+				889FCD3D20B3FE4E0045746D /* HPAudioVideoContentCell.xib in Resources */,
 				88D13C4F2090349800A32236 /* EDJSearchTagHotCell.xib in Resources */,
 				88DD8144209C24D200F297D6 /* OLVoteDetailHeaderView.xib in Resources */,
 				88A47115207DBE3B002F93E0 /* EDJMicroBuildThreeImgCell.xib in Resources */,
@@ -2567,6 +2658,7 @@
 				88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
 				88FE68A0209ABD0A008C28A0 /* OLMindReportViewController.m in Sources */,
+				889FCD3720B3FD970045746D /* HPAudioVideoContentCell.m in Sources */,
 				88D13C39209015C100A32236 /* EDJSearchTagCollectionViewFlowLayout.m in Sources */,
 				88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */,
 				88A4710E207DBE1F002F93E0 /* EDJMicroBuildOneImgCell.m in Sources */,
@@ -2633,6 +2725,7 @@
 				88FE68A8209ABD60008C28A0 /* OLMindReportModel.m in Sources */,
 				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
 				88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */,
+				889FCD4220B400B60045746D /* HPAudioVideoModel.m in Sources */,
 				88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
 				88435E82208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m in Sources */,
@@ -2640,6 +2733,7 @@
 				88ECF05A209FF5050071A98A /* OLExamSingleLineModel.m in Sources */,
 				88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */,
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,
+				889FCD2520B3FA8A0045746D /* HPAudioVideoViewController.m in Sources */,
 				88DD8135209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m in Sources */,
 				8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
@@ -2650,6 +2744,7 @@
 				88A47118207DDCC3002F93E0 /* EDJMicroPartyLessonHeaderCell.m in Sources */,
 				8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */,
 				884312F92089C82800321F84 /* UCUploadHomePageViewController.m in Sources */,
+				889FCD3120B3FD660045746D /* HPVideoPlayerCell.m in Sources */,
 				88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */,
 				8885D23120A2917800DC06A1 /* LGDevice.m in Sources */,
 				88D13C542090442F00A32236 /* EDJDigitalCell.m in Sources */,
@@ -2710,6 +2805,7 @@
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
 				88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */,
+				889FCD2E20B3FD540045746D /* HPAudioPlayerCell.m in Sources */,
 				88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */,
 				889FCD0B20B3A78B0045746D /* LGTriangleView.m in Sources */,
 				88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */,
@@ -2733,6 +2829,8 @@
 				889FCC7A20B2587D0045746D /* DCStateContentsCell.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,
 				88DD8147209C296A00F297D6 /* OLVoteDetailFooterView.m in Sources */,
+				889FCD4520B40D5C0045746D /* LGVideoInterfaceView.m in Sources */,
+				889FCD3420B3FD8A0045746D /* HPAudioVideoInfoCell.m in Sources */,
 				88BB64D7209BEC1400FE6103 /* OLKnowleageTestController.m in Sources */,
 				88FE68A3209ABD31008C28A0 /* OLMindReportTableViewCell.m in Sources */,
 				889FCD1920B3E6050045746D /* DCRichTextBottomInfoView.m in Sources */,

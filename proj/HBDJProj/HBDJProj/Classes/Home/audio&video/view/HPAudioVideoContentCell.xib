@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HPAudioVideoContentCell" rowHeight="190" id="i98-IU-zSa" customClass="HPAudioVideoContentCell">
+            <rect key="frame" x="0.0" y="0.0" width="536" height="190"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i98-IU-zSa" id="QZw-Iq-YG1">
+                <rect key="frame" x="0.0" y="0.0" width="536" height="189.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="课程文稿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrT-A9-YaC">
+                        <rect key="frame" x="15" y="15" width="70" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="5ee-CR-X5s"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jm-DL-ip7">
+                        <rect key="frame" x="15" y="76" width="506" height="98.5"/>
+                        <mutableString key="text">1.祖国是人民最坚实的依靠，英雄是民族最闪亮的坐标。
+
+——2016年11月30日，在中国文联十大、中国作协九大开幕式上的讲话
+
+2.对中华民族的英雄，要心怀崇敬，浓墨重彩记录英雄、塑造英雄，让英雄在文艺作品中得到传扬，引导人民树立正确的历史观、民族观、国家观、文化观，绝不做亵渎祖先、亵渎经典、亵渎英雄的事情。
+
+——2016年11月30日，在中国文联十大、中国作协九大开幕式上的讲话
+
+3.理想之光不灭，信念之光不灭。我们一定要铭记烈士们的遗愿，永志不忘他们为之流血牺牲的伟大理想。
+
+——2016年7月1日，在庆祝中国共产党成立95周年大会上的讲话
+
+4.一个有希望的民族不能没有英雄，一个有前途的国家不能没有先锋。
+
+——2015年9月2日，在颁发“中国人民抗日战争胜利70周年”纪念章仪式上的讲话
+
+5.包括抗战英雄在内的一切民族英雄，都是中华民族的脊梁，他们的事迹和精神都是激励我们前行的强大力量。
+
+——2015年9月2日，在颁发“中国人民抗日战争胜利70周年”纪念章仪式上的讲话
+
+6.我们要铭记一切为中华民族和中国人民作出贡献的英雄们，崇尚英雄，捍卫英雄，学习英雄，关爱英雄，戮力同心为实现“两个一百年”奋斗目标、实现中华民族伟大复兴的中国梦而努力奋斗！
+
+——2015年9月2日，在颁发“中国人民抗日战争胜利70周年”纪念章仪式上的讲话
+
+7.有些人刻意抹黑我们的英雄人物，歪曲我们的光辉历史，要引起我们高度警觉。
+
+——2014年10月31日，在全军政治工作会议上的讲话
+
+8.历史不能忘记，军人的英勇牺牲行为永远值得尊重和纪念。
+
+——2014年10月31日，在全军政治工作会议上的讲话
+
+9.我们要在全社会树立崇尚英雄、缅怀先烈的良好风尚。对为国牺牲、为民牺牲的英雄烈士，我们要永远怀念他们，给予他们极大的荣誉和敬仰，不然谁愿意为国家和人民牺牲呢？
+
+——2014年10月31日，在全军政治工作会议上的讲话
+
+10.我呼吁，全党全军全国各族人民，海内外所有中华儿女，更加紧密地团结起来，肩负起历史重任，以中华民族伟大复兴不断前行的新成就，告慰为中国人民抗日战争和世界反法西斯战争胜利献出生命的所有先烈，告慰近代以来为中华民族独立、中国人民解放献出生命的所有英灵，这是我们对中国人民抗日战争和世界反法西斯战争胜利最好的纪念！</mutableString>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同志们：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itf-Vp-Z6P">
+                        <rect key="frame" x="15" y="46" width="61.5" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="Unz-pA-szV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="LrT-A9-YaC" firstAttribute="top" secondItem="QZw-Iq-YG1" secondAttribute="top" constant="15" id="JKu-5c-GBH"/>
+                    <constraint firstItem="6jm-DL-ip7" firstAttribute="top" secondItem="Itf-Vp-Z6P" secondAttribute="bottom" constant="8" id="R1r-Xo-g4g"/>
+                    <constraint firstItem="6jm-DL-ip7" firstAttribute="leading" secondItem="LrT-A9-YaC" secondAttribute="leading" id="XAe-j0-WOf"/>
+                    <constraint firstItem="Itf-Vp-Z6P" firstAttribute="leading" secondItem="LrT-A9-YaC" secondAttribute="leading" id="hvc-tx-Nfz"/>
+                    <constraint firstItem="LrT-A9-YaC" firstAttribute="leading" secondItem="QZw-Iq-YG1" secondAttribute="leading" constant="15" id="in3-Ga-zdm"/>
+                    <constraint firstAttribute="bottom" secondItem="6jm-DL-ip7" secondAttribute="bottom" constant="15" id="j05-34-ALY"/>
+                    <constraint firstItem="Itf-Vp-Z6P" firstAttribute="top" secondItem="LrT-A9-YaC" secondAttribute="bottom" constant="10" id="pnf-iV-bGi"/>
+                    <constraint firstAttribute="trailing" secondItem="6jm-DL-ip7" secondAttribute="trailing" constant="15" id="uzd-Fb-jGB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="content" destination="6jm-DL-ip7" id="n2l-G8-TLL"/>
+                <outlet property="guys" destination="Itf-Vp-Z6P" id="umV-sQ-LO4"/>
+                <outlet property="title" destination="LrT-A9-YaC" id="Utz-OP-YcX"/>
+            </connections>
+            <point key="canvasLocation" x="-11" y="71"/>
+        </tableViewCell>
+    </objects>
+</document>
