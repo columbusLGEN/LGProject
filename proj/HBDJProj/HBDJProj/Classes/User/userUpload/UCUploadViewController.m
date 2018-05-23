@@ -11,6 +11,7 @@
 #import "UCUploadHeaderFooterView.h"
 #import "UCUploadCollectionCell.h"
 #import "UCUploadModel.h"
+#import "LGPhotoManager.h"
 
 @interface UCUploadViewController ()<
 UICollectionViewDelegate,
@@ -75,6 +76,7 @@ UICollectionViewDelegateFlowLayout>
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"添加或者更换图片 -- ");
+    [LGPhotoManager beforeModalImgPickerWithViewController:self];
 }
 
 /// MARK: collection view header & footer

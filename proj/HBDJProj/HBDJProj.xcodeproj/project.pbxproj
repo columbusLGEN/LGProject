@@ -148,6 +148,7 @@
 		889FCD3F20B3FE560045746D /* HPAudioPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3E20B3FE560045746D /* HPAudioPlayerCell.xib */; };
 		889FCD4220B400B60045746D /* HPAudioVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD4120B400B60045746D /* HPAudioVideoModel.m */; };
 		889FCD4520B40D5C0045746D /* LGVideoInterfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */; };
+		889FCD4B20B532750045746D /* LGPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD4A20B532750045746D /* LGPhotoManager.m */; };
 		88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */; };
 		88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F1207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m */; };
 		88A470FA207C8615002F93E0 /* LGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F9207C8615002F93E0 /* LGImageView.m */; };
@@ -555,6 +556,8 @@
 		889FCD4120B400B60045746D /* HPAudioVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoModel.m; sourceTree = "<group>"; };
 		889FCD4320B40D5C0045746D /* LGVideoInterfaceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGVideoInterfaceView.h; sourceTree = "<group>"; };
 		889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGVideoInterfaceView.m; sourceTree = "<group>"; };
+		889FCD4920B532750045746D /* LGPhotoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGPhotoManager.h; sourceTree = "<group>"; };
+		889FCD4A20B532750045746D /* LGPhotoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGPhotoManager.m; sourceTree = "<group>"; };
 		88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EDJColor.h"; sourceTree = "<group>"; };
 		88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EDJColor.m"; sourceTree = "<group>"; };
 		88A470F0207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeDigitalsFlowLayout.h; sourceTree = "<group>"; };
@@ -872,6 +875,7 @@
 		881C94BE2068EC61009D6A52 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				889FCD4820B532090045746D /* photoManager */,
 				889FCC7720B2587D0045746D /* LGCoreText */,
 				88A4713A207F31E1002F93E0 /* specific */,
 				881C94C42068ECB4009D6A52 /* Other */,
@@ -1747,6 +1751,15 @@
 			path = other;
 			sourceTree = "<group>";
 		};
+		889FCD4820B532090045746D /* photoManager */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD4920B532750045746D /* LGPhotoManager.h */,
+				889FCD4A20B532750045746D /* LGPhotoManager.m */,
+			);
+			path = photoManager;
+			sourceTree = "<group>";
+		};
 		88A47106207DB9FF002F93E0 /* BuileCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2280,7 +2293,6 @@
 				881C94852068EA5A009D6A52 /* Frameworks */,
 				881C94862068EA5A009D6A52 /* Resources */,
 				939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */,
-				C8F34875A03DAA67EEC5A119 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2299,8 +2311,6 @@
 				881C949C2068EA5A009D6A52 /* Sources */,
 				881C949D2068EA5A009D6A52 /* Frameworks */,
 				881C949E2068EA5A009D6A52 /* Resources */,
-				B079A81ABAF501E728AAA1A3 /* [CP] Embed Pods Frameworks */,
-				3AB67DEA69EC9615B59DFA30 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2320,8 +2330,6 @@
 				881C94A72068EA5A009D6A52 /* Sources */,
 				881C94A82068EA5A009D6A52 /* Frameworks */,
 				881C94A92068EA5A009D6A52 /* Resources */,
-				5B153870249C9E8C4C75B5E9 /* [CP] Embed Pods Frameworks */,
-				A19D8C51202D0431E923EDAA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2465,36 +2473,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3AB67DEA69EC9615B59DFA30 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProjTests/Pods-HBDJProjTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5B153870249C9E8C4C75B5E9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProjUITests/Pods-HBDJProjUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2505,6 +2483,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework",
 				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/HXWeiboPhotoPicker/HXWeiboPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -2518,6 +2497,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCoreText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HXWeiboPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -2529,21 +2509,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A19D8C51202D0431E923EDAA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProjUITests/Pods-HBDJProjUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A923FDD12A0F16DBE5295F23 /* [CP] Check Pods Manifest.lock */ = {
@@ -2564,21 +2529,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B079A81ABAF501E728AAA1A3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProjTests/Pods-HBDJProjTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C4585AAAA2617150C6D26952 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2595,21 +2545,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C8F34875A03DAA67EEC5A119 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DB2A04A0D23C4CC4C35CFA60 /* [CP] Check Pods Manifest.lock */ = {
@@ -2754,6 +2689,7 @@
 				88D13C5C2090583D00A32236 /* OLHomeModel.m in Sources */,
 				88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */,
 				88FE68B7209AFB40008C28A0 /* OLPayPartyChargeModel.m in Sources */,
+				889FCD4B20B532750045746D /* LGPhotoManager.m in Sources */,
 				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				889FCC6920B255080045746D /* DCStateCommentsModel.m in Sources */,
 				889FCD1420B3B3850045746D /* LGBaseModel.m in Sources */,
@@ -2986,15 +2922,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33C939949Y;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -3007,15 +2943,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33C939949Y;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

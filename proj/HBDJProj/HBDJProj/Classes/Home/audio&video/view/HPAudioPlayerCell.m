@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet LGAudioPlayerView *audioPlayer;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImg;
 
-
 @end
 
 @implementation HPAudioPlayerCell
@@ -30,13 +29,17 @@
     
     [_iconBg addSubview:effectView];
     [_iconBg bringSubviewToFront:_icon];
+    
 }
+
+/// TODO: bgImg 和 icon 设置同一张图片
+//- setmodel
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [_icon setShadowWithShadowColor:[UIColor blackColor] shadowOffset:CGSizeMake(10, 10) shadowOpacity:1 shadowRadius:10];
     [_icon cutBorderWithBorderWidth:0.5 borderColor:[UIColor whiteColor] cornerRadius:0];
+    [_icon setShadowWithShadowColor:[UIColor blackColor] shadowOffset:CGSizeZero shadowOpacity:0.8 shadowRadius:15];
 }
 
 

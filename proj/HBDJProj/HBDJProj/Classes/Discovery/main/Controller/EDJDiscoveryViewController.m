@@ -9,7 +9,7 @@
 #import "EDJDiscoveryViewController.h"
 #import "LGNavigationSearchBar.h"
 #import "LGBaseNavigationController.h"
-#import "QA/DCWriteQuestionViewController.h"
+#import "DCWriteQuestionViewController.h"
 
 typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
     DiscoveryChannelQuestionCommunity,

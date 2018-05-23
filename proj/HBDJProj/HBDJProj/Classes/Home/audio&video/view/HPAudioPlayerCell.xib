@@ -22,8 +22,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vx6-oY-Cxg">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="269"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-3A-Tqd">
-                                <rect key="frame" x="100" y="40.5" width="300" height="188"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-3A-Tqd">
+                                <rect key="frame" x="100" y="54" width="300" height="161"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="22u-Du-eG1">
                                 <rect key="frame" x="0.0" y="0.0" width="500" height="269"/>
@@ -33,7 +33,7 @@
                         <constraints>
                             <constraint firstItem="0ig-3A-Tqd" firstAttribute="centerY" secondItem="Vx6-oY-Cxg" secondAttribute="centerY" id="9Ph-Fv-MaB"/>
                             <constraint firstItem="22u-Du-eG1" firstAttribute="centerX" secondItem="Vx6-oY-Cxg" secondAttribute="centerX" id="CXO-3v-CgT"/>
-                            <constraint firstItem="0ig-3A-Tqd" firstAttribute="height" secondItem="Vx6-oY-Cxg" secondAttribute="height" multiplier="0.7" id="CnL-KB-9aY"/>
+                            <constraint firstItem="0ig-3A-Tqd" firstAttribute="height" secondItem="Vx6-oY-Cxg" secondAttribute="height" multiplier="0.6" id="CnL-KB-9aY"/>
                             <constraint firstAttribute="height" constant="269" id="Y4X-Xf-nRE"/>
                             <constraint firstItem="0ig-3A-Tqd" firstAttribute="width" secondItem="Vx6-oY-Cxg" secondAttribute="width" multiplier="0.6" id="bAe-sR-VMp"/>
                             <constraint firstItem="22u-Du-eG1" firstAttribute="centerY" secondItem="Vx6-oY-Cxg" secondAttribute="centerY" id="dND-Me-pQQ"/>

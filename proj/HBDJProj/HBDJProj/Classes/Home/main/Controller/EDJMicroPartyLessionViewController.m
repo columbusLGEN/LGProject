@@ -8,7 +8,7 @@
 
 #import "EDJMicroPartyLessionViewController.h"
 #import "EDJHomeHeaderView.h"
-#import <MJRefresh.h>
+#import "MJRefresh.h"
 #import "EDJMicroPartyLessonCell.h"
 #import "EDJMicroBuildModel.h"
 #import "EDJMicroBuildCell.h"
