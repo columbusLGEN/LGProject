@@ -936,16 +936,6 @@
 			path = UICatagory;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		881C94D72068ED10009D6A52 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-=======
->>>>>>> 7c3bc4a2b3ff31a094be2bba19bedde759e3f63e
 		881C94E22068EDC7009D6A52 /* BaseModel */ = {
 			isa = PBXGroup;
 			children = (
