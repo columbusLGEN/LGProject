@@ -18,6 +18,7 @@
 #import "HPPointNewsTableViewController.h"
 #import "HPBookInfoViewController.h"
 #import "HPPartyBuildDetailViewController.h"
+#import "HPAudioVideoViewController.h"
 
 @interface EDJHomeViewController ()<
 LGNavigationSearchBarDelelgate,
@@ -138,10 +139,24 @@ EDJHomeHeaderViewDelegate
     }
     return 0;
 }
+/// MARK: 点击了党建要闻cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"点击了党建要闻cell -- ");
-    HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-    [self.navigationController pushViewController:dvc animated:YES];
+    if (indexPath.row == 0) {
+        /// 用于测试，第一个cell，打开视频详情
+        HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+        avc.contentType = HPAudioVideoTypeVideo;
+        [self.navigationController pushViewController:avc animated:YES];
+    }else if (indexPath.row == 1){
+        HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+        avc.contentType = HPAudioVideoTypeAudio;
+        [self.navigationController pushViewController:avc animated:YES];
+    }
+    else{
+        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+        [self.navigationController pushViewController:dvc animated:YES];
+    }
+    
 }
 
 #pragma mark - UICollectionViewDelegaet

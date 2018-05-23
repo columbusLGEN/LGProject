@@ -8,7 +8,7 @@
 
 #import "HPBookInfoViewController.h"
 #import "HPBookInfoBaseCell.h"
-#import "model/HPBookInfoModel.h"
+#import "HPBookInfoModel.h"
 
 static NSString * const bookInfoHeaderCell = @"HPBookInfoHeaderCell";
 static NSString * const bookInfoBriefCell = @"HPBookInfoBriefCell";

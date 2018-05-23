@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="lAO-PZ-jvd" customClass="DCRichTextTopInfoView">
+            <rect key="frame" x="0.0" y="0.0" width="488" height="228"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="习近平集体会见波罗的海国家议长" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQL-kh-JZ3">
+                    <rect key="frame" x="10" y="10" width="468" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-1-22  11：20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-B8-MeA">
+                    <rect key="frame" x="10" y="50" width="127.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源：人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQF-RF-I5d">
+                    <rect key="frame" x="147.5" y="50" width="107.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看次数: 999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzL-fR-bhH">
+                    <rect key="frame" x="263" y="50" width="97.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="bJh-B8-MeA" firstAttribute="leading" secondItem="ZQL-kh-JZ3" secondAttribute="leading" id="DKN-0z-YIq"/>
+                <constraint firstItem="ZQL-kh-JZ3" firstAttribute="top" secondItem="JtG-ou-HrK" secondAttribute="top" constant="10" id="KOl-a5-3Hy"/>
+                <constraint firstItem="tzL-fR-bhH" firstAttribute="centerY" secondItem="jQF-RF-I5d" secondAttribute="centerY" id="Kns-9m-791"/>
+                <constraint firstItem="ZQL-kh-JZ3" firstAttribute="leading" secondItem="JtG-ou-HrK" secondAttribute="leading" constant="10" id="cdG-DV-hwU"/>
+                <constraint firstItem="jQF-RF-I5d" firstAttribute="centerY" secondItem="bJh-B8-MeA" secondAttribute="centerY" id="etv-ry-Utw"/>
+                <constraint firstItem="tzL-fR-bhH" firstAttribute="leading" secondItem="jQF-RF-I5d" secondAttribute="trailing" constant="8" id="h6o-yp-iMA"/>
+                <constraint firstItem="bJh-B8-MeA" firstAttribute="top" secondItem="ZQL-kh-JZ3" secondAttribute="bottom" constant="10" id="ih6-ql-d69"/>
+                <constraint firstItem="JtG-ou-HrK" firstAttribute="trailing" secondItem="ZQL-kh-JZ3" secondAttribute="trailing" constant="10" id="nyX-Kg-bKN"/>
+                <constraint firstItem="jQF-RF-I5d" firstAttribute="leading" secondItem="bJh-B8-MeA" secondAttribute="trailing" constant="10" id="zsh-Ub-Ly7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="JtG-ou-HrK"/>
+            <connections>
+                <outlet property="counts" destination="tzL-fR-bhH" id="COF-nb-4AZ"/>
+                <outlet property="source" destination="jQF-RF-I5d" id="Mas-lQ-wAN"/>
+                <outlet property="time" destination="bJh-B8-MeA" id="qCN-tf-zai"/>
+                <outlet property="title" destination="ZQL-kh-JZ3" id="nt7-lF-BeB"/>
+            </connections>
+            <point key="canvasLocation" x="107" y="-470"/>
+        </view>
+    </objects>
+</document>

@@ -20,35 +20,43 @@ static CGFloat progressHeight = 5;
 
 @implementation LGAudioPlayerView
 
+- (void)configUI{
+    [self addSubview:self.play];
+    [self addSubview:self.progress];
+    [self addSubview:self.currentTime];
+    [self addSubview:self.totalTime];
+    
+    [self.play mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).offset(9);
+        make.left.equalTo(self.mas_left).offset(9);
+        make.width.mas_equalTo(30);
+        make.height.mas_equalTo(30);
+    }];
+    [self.progress mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.play.mas_centerY);
+        make.left.equalTo(self.play.mas_right).offset(marginTen);
+        make.right.equalTo(self.mas_right).offset(-marginTen);
+        make.height.mas_equalTo(progressHeight);
+    }];
+    [self.currentTime mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.progress.mas_left);
+        make.top.equalTo(self.progress.mas_bottom).offset(marginTen);
+    }];
+    [self.totalTime mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.progress.mas_right);
+        make.centerY.equalTo(self.currentTime.mas_centerY);
+    }];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self configUI];
+    }
+    return self;
+}
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        
-        [self addSubview:self.play];
-        [self addSubview:self.progress];
-        [self addSubview:self.currentTime];
-        [self addSubview:self.totalTime];
-        
-        [self.play mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(9);
-            make.left.equalTo(self.mas_left).offset(9);
-            make.width.mas_equalTo(30);
-            make.height.mas_equalTo(30);
-        }];
-        [self.progress mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.play.mas_centerY);
-            make.left.equalTo(self.play.mas_right).offset(marginTen);
-            make.right.equalTo(self.mas_right).offset(-marginTen);
-            make.height.mas_equalTo(progressHeight);
-        }];
-        [self.currentTime mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.progress.mas_left);
-            make.top.equalTo(self.progress.mas_bottom).offset(marginTen);
-        }];
-        [self.totalTime mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.progress.mas_right);
-            make.centerY.equalTo(self.currentTime.mas_centerY);
-        }];
-        
+        [self configUI];
     }
     return self;
 }

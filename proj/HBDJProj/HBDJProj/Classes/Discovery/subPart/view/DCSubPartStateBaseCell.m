@@ -7,7 +7,7 @@
 //
 
 #import "DCSubPartStateBaseCell.h"
-#import "model/DCSubPartStateModel.h"
+#import "DCSubPartStateModel.h"
 #import "LGThreeRightButtonView.h"
 
 @interface DCSubPartStateBaseCell ()

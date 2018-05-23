@@ -46,7 +46,6 @@
 		8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2A52071FBFB00722010 /* LGBaseNavigationController.m */; };
 		8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2AB207201DD00722010 /* LGBaseTabBarController.m */; };
 		8835B2C120720A1800722010 /* LGBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2C020720A1800722010 /* LGBaseView.m */; };
-		8835B2C420720A2700722010 /* LGBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2C320720A2700722010 /* LGBaseModel.m */; };
 		8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2CC20720B1500722010 /* EDJOnlineController.m */; };
 		8835B2E920720CD800722010 /* LIGObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2E820720CD800722010 /* LIGObject.m */; };
 		8835B2EC20720D6000722010 /* EDJHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2EB20720D6000722010 /* EDJHomeViewController.m */; };
@@ -123,7 +122,6 @@
 		889FCC6920B255080045746D /* DCStateCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC6320B255080045746D /* DCStateCommentsModel.m */; };
 		889FCC6A20B255080045746D /* DCStateCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC6520B255080045746D /* DCStateCommentsTableViewCell.m */; };
 		889FCC6B20B255080045746D /* DCStateCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCC6620B255080045746D /* DCStateCommentsTableViewCell.xib */; };
-		889FCC6C20B255080045746D /* DCSubPartStateDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC6820B255080045746D /* DCSubPartStateDetailHeader.m */; };
 		889FCC7420B255430045746D /* LGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC6F20B255430045746D /* LGBaseRequest.m */; };
 		889FCC7520B255430045746D /* LGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC7120B255430045746D /* LGNetworkAgent.m */; };
 		889FCC7620B255430045746D /* TestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC7320B255430045746D /* TestRequest.m */; };
@@ -133,6 +131,24 @@
 		889FCCC420B2A86B0045746D /* LGAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCCC320B2A86B0045746D /* LGAudioPlayerView.m */; };
 		889FCCC720B2B81F0045746D /* DCSubStageCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCCC620B2B81F0045746D /* DCSubStageCommentsModel.m */; };
 		889FCCCA20B2BA9E0045746D /* DCSubStageCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCCC920B2BA9E0045746D /* DCSubStageCommentsCell.m */; };
+		889FCD0B20B3A78B0045746D /* LGTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD0A20B3A78B0045746D /* LGTriangleView.m */; };
+		889FCD1420B3B3850045746D /* LGBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD1320B3B3850045746D /* LGBaseModel.m */; };
+		889FCD1920B3E6050045746D /* DCRichTextBottomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD1820B3E6050045746D /* DCRichTextBottomInfoView.m */; };
+		889FCD1B20B3E6560045746D /* DCRichTextBottomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD1A20B3E6560045746D /* DCRichTextBottomInfoView.xib */; };
+		889FCD1E20B3EAFC0045746D /* DCRichTextTopInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD1D20B3EAFC0045746D /* DCRichTextTopInfoView.m */; };
+		889FCD2020B3EB040045746D /* DCRichTextTopInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD1F20B3EB040045746D /* DCRichTextTopInfoView.xib */; };
+		889FCD2520B3FA8A0045746D /* HPAudioVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */; };
+		889FCD2E20B3FD540045746D /* HPAudioPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD2D20B3FD540045746D /* HPAudioPlayerCell.m */; };
+		889FCD3120B3FD660045746D /* HPVideoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD3020B3FD660045746D /* HPVideoPlayerCell.m */; };
+		889FCD3420B3FD8A0045746D /* HPAudioVideoInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD3320B3FD8A0045746D /* HPAudioVideoInfoCell.m */; };
+		889FCD3720B3FD970045746D /* HPAudioVideoContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD3620B3FD970045746D /* HPAudioVideoContentCell.m */; };
+		889FCD3920B3FDC00045746D /* HPAudioVideoInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3820B3FDC00045746D /* HPAudioVideoInfoCell.xib */; };
+		889FCD3B20B3FE440045746D /* HPVideoPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3A20B3FE440045746D /* HPVideoPlayerCell.xib */; };
+		889FCD3D20B3FE4E0045746D /* HPAudioVideoContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3C20B3FE4E0045746D /* HPAudioVideoContentCell.xib */; };
+		889FCD3F20B3FE560045746D /* HPAudioPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCD3E20B3FE560045746D /* HPAudioPlayerCell.xib */; };
+		889FCD4220B400B60045746D /* HPAudioVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD4120B400B60045746D /* HPAudioVideoModel.m */; };
+		889FCD4520B40D5C0045746D /* LGVideoInterfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */; };
+		889FCD4B20B532750045746D /* LGPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCD4A20B532750045746D /* LGPhotoManager.m */; };
 		88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */; };
 		88A470F2207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F1207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m */; };
 		88A470FA207C8615002F93E0 /* LGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A470F9207C8615002F93E0 /* LGImageView.m */; };
@@ -356,7 +372,6 @@
 		8835B2AB207201DD00722010 /* LGBaseTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGBaseTabBarController.m; sourceTree = "<group>"; };
 		8835B2BF20720A1800722010 /* LGBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGBaseView.h; sourceTree = "<group>"; };
 		8835B2C020720A1800722010 /* LGBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGBaseView.m; sourceTree = "<group>"; };
-		8835B2C220720A2700722010 /* LGBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGBaseModel.h; sourceTree = "<group>"; };
 		8835B2C320720A2700722010 /* LGBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGBaseModel.m; sourceTree = "<group>"; };
 		8835B2CB20720B1500722010 /* EDJOnlineController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJOnlineController.h; sourceTree = "<group>"; };
 		8835B2CC20720B1500722010 /* EDJOnlineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJOnlineController.m; sourceTree = "<group>"; };
@@ -495,8 +510,6 @@
 		889FCC6420B255080045746D /* DCStateCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStateCommentsTableViewCell.h; sourceTree = "<group>"; };
 		889FCC6520B255080045746D /* DCStateCommentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStateCommentsTableViewCell.m; sourceTree = "<group>"; };
 		889FCC6620B255080045746D /* DCStateCommentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCStateCommentsTableViewCell.xib; sourceTree = "<group>"; };
-		889FCC6720B255080045746D /* DCSubPartStateDetailHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateDetailHeader.h; sourceTree = "<group>"; };
-		889FCC6820B255080045746D /* DCSubPartStateDetailHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateDetailHeader.m; sourceTree = "<group>"; };
 		889FCC6E20B255430045746D /* LGBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseRequest.h; sourceTree = "<group>"; };
 		889FCC6F20B255430045746D /* LGBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseRequest.m; sourceTree = "<group>"; };
 		889FCC7020B255430045746D /* LGNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNetworkAgent.h; sourceTree = "<group>"; };
@@ -515,6 +528,36 @@
 		889FCCC620B2B81F0045746D /* DCSubStageCommentsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageCommentsModel.m; sourceTree = "<group>"; };
 		889FCCC820B2BA9E0045746D /* DCSubStageCommentsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageCommentsCell.h; sourceTree = "<group>"; };
 		889FCCC920B2BA9E0045746D /* DCSubStageCommentsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageCommentsCell.m; sourceTree = "<group>"; };
+		889FCD0920B3A78B0045746D /* LGTriangleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTriangleView.h; sourceTree = "<group>"; };
+		889FCD0A20B3A78B0045746D /* LGTriangleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTriangleView.m; sourceTree = "<group>"; };
+		889FCD1220B3B3850045746D /* LGBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseModel.h; sourceTree = "<group>"; };
+		889FCD1320B3B3850045746D /* LGBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseModel.m; sourceTree = "<group>"; };
+		889FCD1720B3E6050045746D /* DCRichTextBottomInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCRichTextBottomInfoView.h; sourceTree = "<group>"; };
+		889FCD1820B3E6050045746D /* DCRichTextBottomInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCRichTextBottomInfoView.m; sourceTree = "<group>"; };
+		889FCD1A20B3E6560045746D /* DCRichTextBottomInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCRichTextBottomInfoView.xib; sourceTree = "<group>"; };
+		889FCD1C20B3EAFC0045746D /* DCRichTextTopInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCRichTextTopInfoView.h; sourceTree = "<group>"; };
+		889FCD1D20B3EAFC0045746D /* DCRichTextTopInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCRichTextTopInfoView.m; sourceTree = "<group>"; };
+		889FCD1F20B3EB040045746D /* DCRichTextTopInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCRichTextTopInfoView.xib; sourceTree = "<group>"; };
+		889FCD2320B3FA8A0045746D /* HPAudioVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioVideoViewController.h; sourceTree = "<group>"; };
+		889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoViewController.m; sourceTree = "<group>"; };
+		889FCD2C20B3FD540045746D /* HPAudioPlayerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioPlayerCell.h; sourceTree = "<group>"; };
+		889FCD2D20B3FD540045746D /* HPAudioPlayerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioPlayerCell.m; sourceTree = "<group>"; };
+		889FCD2F20B3FD660045746D /* HPVideoPlayerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPVideoPlayerCell.h; sourceTree = "<group>"; };
+		889FCD3020B3FD660045746D /* HPVideoPlayerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPVideoPlayerCell.m; sourceTree = "<group>"; };
+		889FCD3220B3FD8A0045746D /* HPAudioVideoInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioVideoInfoCell.h; sourceTree = "<group>"; };
+		889FCD3320B3FD8A0045746D /* HPAudioVideoInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoInfoCell.m; sourceTree = "<group>"; };
+		889FCD3520B3FD970045746D /* HPAudioVideoContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioVideoContentCell.h; sourceTree = "<group>"; };
+		889FCD3620B3FD970045746D /* HPAudioVideoContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoContentCell.m; sourceTree = "<group>"; };
+		889FCD3820B3FDC00045746D /* HPAudioVideoInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioVideoInfoCell.xib; sourceTree = "<group>"; };
+		889FCD3A20B3FE440045746D /* HPVideoPlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPVideoPlayerCell.xib; sourceTree = "<group>"; };
+		889FCD3C20B3FE4E0045746D /* HPAudioVideoContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioVideoContentCell.xib; sourceTree = "<group>"; };
+		889FCD3E20B3FE560045746D /* HPAudioPlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioPlayerCell.xib; sourceTree = "<group>"; };
+		889FCD4020B400B60045746D /* HPAudioVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioVideoModel.h; sourceTree = "<group>"; };
+		889FCD4120B400B60045746D /* HPAudioVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioVideoModel.m; sourceTree = "<group>"; };
+		889FCD4320B40D5C0045746D /* LGVideoInterfaceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGVideoInterfaceView.h; sourceTree = "<group>"; };
+		889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGVideoInterfaceView.m; sourceTree = "<group>"; };
+		889FCD4920B532750045746D /* LGPhotoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGPhotoManager.h; sourceTree = "<group>"; };
+		889FCD4A20B532750045746D /* LGPhotoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGPhotoManager.m; sourceTree = "<group>"; };
 		88A470EC207B0CF2002F93E0 /* UIColor+EDJColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+EDJColor.h"; sourceTree = "<group>"; };
 		88A470ED207B0CF2002F93E0 /* UIColor+EDJColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EDJColor.m"; sourceTree = "<group>"; };
 		88A470F0207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeDigitalsFlowLayout.h; sourceTree = "<group>"; };
@@ -774,6 +817,7 @@
 				881C94892068EA5A009D6A52 /* Products */,
 				DE454A27ADB38385BB3B899B /* Pods */,
 				43C6D71BB68173153DFCB4B3 /* Frameworks */,
+				889FCD0C20B3B12E0045746D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -831,7 +875,8 @@
 		881C94BE2068EC61009D6A52 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				889FCC7720B2587D0045746D /* 图文混排测试 */,
+				889FCD4820B532090045746D /* photoManager */,
+				889FCC7720B2587D0045746D /* LGCoreText */,
 				88A4713A207F31E1002F93E0 /* specific */,
 				881C94C42068ECB4009D6A52 /* Other */,
 				881C94C32068ECA5009D6A52 /* BaseObject */,
@@ -886,8 +931,8 @@
 		881C94C32068ECA5009D6A52 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
+				889FCD1120B3B3850045746D /* BaseModel */,
 				8835B2E620720C7100722010 /* Other */,
-				881C94E22068EDC7009D6A52 /* BaseModel */,
 				881C94E42068EDC7009D6A52 /* BaseView */,
 				881C94E32068EDC7009D6A52 /* BaseViewController */,
 			);
@@ -989,6 +1034,7 @@
 		881C94EA2068F362009D6A52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				889FCD2120B3FA430045746D /* audio&video */,
 				88CD7391209958D500E80058 /* bookInfo */,
 				88435EB1208F15A900188CE9 /* main */,
 				88435EB0208F158100188CE9 /* search */,
@@ -1120,6 +1166,8 @@
 			children = (
 				8831E17420941674001D038E /* DCSubStageBaseTableViewCell.h */,
 				8831E17520941674001D038E /* DCSubStageBaseTableViewCell.m */,
+				889FCD0920B3A78B0045746D /* LGTriangleView.h */,
+				889FCD0A20B3A78B0045746D /* LGTriangleView.m */,
 				8831E17F20941797001D038E /* DCSubStageOneImgCell.h */,
 				8831E18020941797001D038E /* DCSubStageOneImgCell.m */,
 				8831E18520941985001D038E /* DCSubStageThreeImgCell.h */,
@@ -1606,8 +1654,12 @@
 				889FCC6420B255080045746D /* DCStateCommentsTableViewCell.h */,
 				889FCC6520B255080045746D /* DCStateCommentsTableViewCell.m */,
 				889FCC6620B255080045746D /* DCStateCommentsTableViewCell.xib */,
-				889FCC6720B255080045746D /* DCSubPartStateDetailHeader.h */,
-				889FCC6820B255080045746D /* DCSubPartStateDetailHeader.m */,
+				889FCD1C20B3EAFC0045746D /* DCRichTextTopInfoView.h */,
+				889FCD1D20B3EAFC0045746D /* DCRichTextTopInfoView.m */,
+				889FCD1F20B3EB040045746D /* DCRichTextTopInfoView.xib */,
+				889FCD1720B3E6050045746D /* DCRichTextBottomInfoView.h */,
+				889FCD1820B3E6050045746D /* DCRichTextBottomInfoView.m */,
+				889FCD1A20B3E6560045746D /* DCRichTextBottomInfoView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1625,13 +1677,96 @@
 			path = LGNetworking;
 			sourceTree = "<group>";
 		};
-		889FCC7720B2587D0045746D /* 图文混排测试 */ = {
+		889FCC7720B2587D0045746D /* LGCoreText */ = {
 			isa = PBXGroup;
 			children = (
 				889FCC7820B2587D0045746D /* DCStateContentsCell.h */,
 				889FCC7920B2587D0045746D /* DCStateContentsCell.m */,
 			);
-			path = "图文混排测试";
+			path = LGCoreText;
+			sourceTree = "<group>";
+		};
+		889FCD0C20B3B12E0045746D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				8835B2C320720A2700722010 /* LGBaseModel.m */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		889FCD1120B3B3850045746D /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD1220B3B3850045746D /* LGBaseModel.h */,
+				889FCD1320B3B3850045746D /* LGBaseModel.m */,
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		889FCD2120B3FA430045746D /* audio&video */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD2820B3FA980045746D /* other */,
+				889FCD2720B3FA940045746D /* model */,
+				889FCD2620B3FA8F0045746D /* view */,
+				889FCD2220B3FA4C0045746D /* controller */,
+			);
+			path = "audio&video";
+			sourceTree = "<group>";
+		};
+		889FCD2220B3FA4C0045746D /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD2320B3FA8A0045746D /* HPAudioVideoViewController.h */,
+				889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		889FCD2620B3FA8F0045746D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD2C20B3FD540045746D /* HPAudioPlayerCell.h */,
+				889FCD2D20B3FD540045746D /* HPAudioPlayerCell.m */,
+				889FCD3E20B3FE560045746D /* HPAudioPlayerCell.xib */,
+				889FCD2F20B3FD660045746D /* HPVideoPlayerCell.h */,
+				889FCD3020B3FD660045746D /* HPVideoPlayerCell.m */,
+				889FCD3A20B3FE440045746D /* HPVideoPlayerCell.xib */,
+				889FCD4320B40D5C0045746D /* LGVideoInterfaceView.h */,
+				889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */,
+				889FCD3220B3FD8A0045746D /* HPAudioVideoInfoCell.h */,
+				889FCD3320B3FD8A0045746D /* HPAudioVideoInfoCell.m */,
+				889FCD3820B3FDC00045746D /* HPAudioVideoInfoCell.xib */,
+				889FCD3520B3FD970045746D /* HPAudioVideoContentCell.h */,
+				889FCD3620B3FD970045746D /* HPAudioVideoContentCell.m */,
+				889FCD3C20B3FE4E0045746D /* HPAudioVideoContentCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		889FCD2720B3FA940045746D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD4020B400B60045746D /* HPAudioVideoModel.h */,
+				889FCD4120B400B60045746D /* HPAudioVideoModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		889FCD2820B3FA980045746D /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		889FCD4820B532090045746D /* photoManager */ = {
+			isa = PBXGroup;
+			children = (
+				889FCD4920B532750045746D /* LGPhotoManager.h */,
+				889FCD4A20B532750045746D /* LGPhotoManager.m */,
+			);
+			path = photoManager;
 			sourceTree = "<group>";
 		};
 		88A47106207DB9FF002F93E0 /* BuileCell */ = {
@@ -2167,7 +2302,6 @@
 				881C94852068EA5A009D6A52 /* Frameworks */,
 				881C94862068EA5A009D6A52 /* Resources */,
 				939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */,
-				C8F34875A03DAA67EEC5A119 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2186,8 +2320,6 @@
 				881C949C2068EA5A009D6A52 /* Sources */,
 				881C949D2068EA5A009D6A52 /* Frameworks */,
 				881C949E2068EA5A009D6A52 /* Resources */,
-				B079A81ABAF501E728AAA1A3 /* [CP] Embed Pods Frameworks */,
-				3AB67DEA69EC9615B59DFA30 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2207,8 +2339,6 @@
 				881C94A72068EA5A009D6A52 /* Sources */,
 				881C94A82068EA5A009D6A52 /* Frameworks */,
 				881C94A92068EA5A009D6A52 /* Resources */,
-				5B153870249C9E8C4C75B5E9 /* [CP] Embed Pods Frameworks */,
-				A19D8C51202D0431E923EDAA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2272,12 +2402,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				88EA132020AD2FC7007AB886 /* DCWriteQuestionTagHead.plist in Resources */,
+				889FCD3F20B3FE560045746D /* HPAudioPlayerCell.xib in Resources */,
 				88A47110207DBE26002F93E0 /* EDJMicroBuildOneImgCell.xib in Resources */,
 				88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */,
 				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
 				8831E16920940131001D038E /* DCSubPartStateOneImgCell.xib in Resources */,
 				8885D23B20A2BCB800DC06A1 /* PBDBottomView.xib in Resources */,
 				88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */,
+				889FCD3B20B3FE440045746D /* HPVideoPlayerCell.xib in Resources */,
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
 				88EA131620AD176E007AB886 /* UCAccountHitTableViewCell.xib in Resources */,
 				8885D24020A2EC8500DC06A1 /* LGSegmentBottomView.xib in Resources */,
@@ -2290,6 +2422,7 @@
 				88ECF06A209FF8300071A98A /* OLExamSingleOptionCell.xib in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
 				88435E84208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib in Resources */,
+				889FCD1B20B3E6560045746D /* DCRichTextBottomInfoView.xib in Resources */,
 				88FE68B4209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib in Resources */,
 				88A4712A207E02D4002F93E0 /* UserCenter.storyboard in Resources */,
 				884312AB2086F2D400321F84 /* EDJLeverInfoHeader.xib in Resources */,
@@ -2302,6 +2435,7 @@
 				88EA133220AD533D007AB886 /* detaiTtest.html in Resources */,
 				88ECF065209FF7D00071A98A /* OLExamSingleStemCell.xib in Resources */,
 				88EA131B20AD18F1007AB886 /* UCAccountHit.plist in Resources */,
+				889FCD3920B3FDC00045746D /* HPAudioVideoInfoCell.xib in Resources */,
 				889E7DC2209996A100BB9084 /* UCMemberStageTransitionView.xib in Resources */,
 				88ECF07420A020560071A98A /* OLExamSingleFooterView.xib in Resources */,
 				88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */,
@@ -2320,12 +2454,14 @@
 				88DD8137209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib in Resources */,
 				88D13C632090597F00A32236 /* OLHomeItems.plist in Resources */,
 				88A4710B207DBE08002F93E0 /* EDJMicroBuildNoImgCell.xib in Resources */,
+				889FCD3D20B3FE4E0045746D /* HPAudioVideoContentCell.xib in Resources */,
 				88D13C4F2090349800A32236 /* EDJSearchTagHotCell.xib in Resources */,
 				88DD8144209C24D200F297D6 /* OLVoteDetailHeaderView.xib in Resources */,
 				88A47115207DBE3B002F93E0 /* EDJMicroBuildThreeImgCell.xib in Resources */,
 				88DD811F209BFFC000F297D6 /* OLTkcsTableViewCell.xib in Resources */,
 				8831E16420931496001D038E /* DCSubPartStateWithoutImgCell.xib in Resources */,
 				88A47139207F0C74002F93E0 /* EDJUserCenterHomePageCell.xib in Resources */,
+				889FCD2020B3EB040045746D /* DCRichTextTopInfoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2346,36 +2482,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3AB67DEA69EC9615B59DFA30 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProjTests/Pods-HBDJProjTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5B153870249C9E8C4C75B5E9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProjUITests/Pods-HBDJProjUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2386,6 +2492,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework",
 				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/HXWeiboPhotoPicker/HXWeiboPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -2399,6 +2506,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCoreText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HXWeiboPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -2410,21 +2518,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A19D8C51202D0431E923EDAA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProjUITests/Pods-HBDJProjUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A923FDD12A0F16DBE5295F23 /* [CP] Check Pods Manifest.lock */ = {
@@ -2445,21 +2538,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B079A81ABAF501E728AAA1A3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProjTests/Pods-HBDJProjTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C4585AAAA2617150C6D26952 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2476,21 +2554,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C8F34875A03DAA67EEC5A119 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DB2A04A0D23C4CC4C35CFA60 /* [CP] Check Pods Manifest.lock */ = {
@@ -2539,6 +2602,7 @@
 				88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
 				88FE68A0209ABD0A008C28A0 /* OLMindReportViewController.m in Sources */,
+				889FCD3720B3FD970045746D /* HPAudioVideoContentCell.m in Sources */,
 				88D13C39209015C100A32236 /* EDJSearchTagCollectionViewFlowLayout.m in Sources */,
 				88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */,
 				88A4710E207DBE1F002F93E0 /* EDJMicroBuildOneImgCell.m in Sources */,
@@ -2548,6 +2612,7 @@
 				884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */,
 				88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */,
 				8831E1672094012A001D038E /* DCSubPartStateOneImgCell.m in Sources */,
+				889FCD1E20B3EAFC0045746D /* DCRichTextTopInfoView.m in Sources */,
 				8831E16220931332001D038E /* DCSubPartStateTableViewController.m in Sources */,
 				884312E6208987F100321F84 /* UCHelpFadebackModel.m in Sources */,
 				88EA131E20AD2096007AB886 /* UCAccountHitSuccessView.m in Sources */,
@@ -2590,7 +2655,6 @@
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
 				881C94D02068ECF3009D6A52 /* NSString+Extension.m in Sources */,
 				88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */,
-				8835B2C420720A2700722010 /* LGBaseModel.m in Sources */,
 				889FCC7620B255430045746D /* TestRequest.m in Sources */,
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
@@ -2605,6 +2669,7 @@
 				88FE68A8209ABD60008C28A0 /* OLMindReportModel.m in Sources */,
 				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
 				88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */,
+				889FCD4220B400B60045746D /* HPAudioVideoModel.m in Sources */,
 				88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
 				88435E82208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m in Sources */,
@@ -2612,6 +2677,7 @@
 				88ECF05A209FF5050071A98A /* OLExamSingleLineModel.m in Sources */,
 				88FE6893209A9B76008C28A0 /* UCUploadHeaderFooterView.m in Sources */,
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,
+				889FCD2520B3FA8A0045746D /* HPAudioVideoViewController.m in Sources */,
 				88DD8135209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m in Sources */,
 				8835B36520732D9C00722010 /* EDJMicroPartyLessionViewController.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
@@ -2622,6 +2688,7 @@
 				88A47118207DDCC3002F93E0 /* EDJMicroPartyLessonHeaderCell.m in Sources */,
 				8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */,
 				884312F92089C82800321F84 /* UCUploadHomePageViewController.m in Sources */,
+				889FCD3120B3FD660045746D /* HPVideoPlayerCell.m in Sources */,
 				88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */,
 				8885D23120A2917800DC06A1 /* LGDevice.m in Sources */,
 				88D13C542090442F00A32236 /* EDJDigitalCell.m in Sources */,
@@ -2631,8 +2698,10 @@
 				88D13C5C2090583D00A32236 /* OLHomeModel.m in Sources */,
 				88DD814D209C3C3E00F297D6 /* OLTestResultViewController.m in Sources */,
 				88FE68B7209AFB40008C28A0 /* OLPayPartyChargeModel.m in Sources */,
+				889FCD4B20B532750045746D /* LGPhotoManager.m in Sources */,
 				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				889FCC6920B255080045746D /* DCStateCommentsModel.m in Sources */,
+				889FCD1420B3B3850045746D /* LGBaseModel.m in Sources */,
 				88D13C5F2090585F00A32236 /* OLHomeCollectionCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
 				889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */,
@@ -2681,13 +2750,14 @@
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
 				88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */,
+				889FCD2E20B3FD540045746D /* HPAudioPlayerCell.m in Sources */,
 				88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */,
+				889FCD0B20B3A78B0045746D /* LGTriangleView.m in Sources */,
 				88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */,
 				884312EC2089BC7D00321F84 /* UCMyFeedbackViewController.m in Sources */,
 				88D13C30209013EB00A32236 /* LGBaseCollectionViewCell.m in Sources */,
 				884311F12084B80C00321F84 /* LGSegmentControl.m in Sources */,
 				88A47130207EF58B002F93E0 /* EDJUserCenterHomePageCell.m in Sources */,
-				889FCC6C20B255080045746D /* DCSubPartStateDetailHeader.m in Sources */,
 				8843124C2085E60F00321F84 /* EDJLevelInfoViewController.m in Sources */,
 				889E7DC92099B19F00BB9084 /* UCUploadViewController.m in Sources */,
 				88A47123207DF342002F93E0 /* EDJOnlineViewController.m in Sources */,
@@ -2704,8 +2774,11 @@
 				889FCC7A20B2587D0045746D /* DCStateContentsCell.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,
 				88DD8147209C296A00F297D6 /* OLVoteDetailFooterView.m in Sources */,
+				889FCD4520B40D5C0045746D /* LGVideoInterfaceView.m in Sources */,
+				889FCD3420B3FD8A0045746D /* HPAudioVideoInfoCell.m in Sources */,
 				88BB64D7209BEC1400FE6103 /* OLKnowleageTestController.m in Sources */,
 				88FE68A3209ABD31008C28A0 /* OLMindReportTableViewCell.m in Sources */,
+				889FCD1920B3E6050045746D /* DCRichTextBottomInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2858,15 +2931,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33C939949Y;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -2879,15 +2952,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33C939949Y;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
