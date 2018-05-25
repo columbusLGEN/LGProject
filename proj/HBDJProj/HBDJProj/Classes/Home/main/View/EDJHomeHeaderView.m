@@ -29,7 +29,7 @@ SDCycleScrollViewDelegate>
 }
 
 - (void)setupUI{
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
     /// MARK: 搜索框
 //    [self addSubview:self.nav];
 //    [self.nav mas_makeConstraints:^(MASConstraintMaker *make) {

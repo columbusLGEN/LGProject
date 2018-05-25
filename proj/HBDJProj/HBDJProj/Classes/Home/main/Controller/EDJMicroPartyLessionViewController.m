@@ -31,8 +31,17 @@ UITableViewDelegate
     _dataType = dataType;
     if (dataType == EDJHomeDataTypeMicro) {
         _array = _microModels.copy;
+
     }else if (dataType == EDJHomeDataTypeBuild){
         _array = _buildModels.copy;
+        /// 给党建要闻添加上拉刷新
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.tableView.mj_footer endRefreshing];
+            });
+            
+        }];
+        
     }
     
     [self.tableView reloadData];
@@ -69,22 +78,12 @@ UITableViewDelegate
         }
         
         /// TODO: 添加上下拉刷新
-//        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [self.tableView.mj_header endRefreshing];
-//            });
-//        }];
-//
-//        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-////            for (int i = 0; i < 5; i++) {
-////                [_microOrBuildModels addObject:@"a"];
-////            }
-////            [_tableView reloadData];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [self.tableView.mj_footer endRefreshing];
-//            });
-//
-//        }];
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.tableView.mj_header endRefreshing];
+            });
+        }];
+        self.tableView.mj_header.ignoredScrollViewContentInsetTop = [EDJHomeHeaderView headerHeight] - navHeight();
         
     }
     return self;

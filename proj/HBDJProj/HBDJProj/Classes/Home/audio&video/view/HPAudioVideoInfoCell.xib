@@ -51,7 +51,7 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wA-6I-nZu">
                         <rect key="frame" x="10" y="96" width="577" height="150.5"/>
-                        <mutableString key="text">1.祖国是人民最坚实的依靠，英雄是民族最闪亮的坐标。
+                        <string key="text">1.祖国是人民最坚实的依靠，英雄是民族最闪亮的坐标。
 ——2016年11月30日，在中国文联十大、中国作协九大开幕式上的讲话
 2.对中华民族的英雄，要心怀崇敬，浓墨重彩记录英雄、塑造英雄，让英雄在文艺作品中得到传扬，引导人民树立正确的历史观、民族观、国家观、文化观，绝不做亵渎祖先、亵渎经典、亵渎英雄的事情。
 
@@ -85,7 +85,7 @@
 
 ——2014年10月31日，在全军政治工作会议上的讲话
 
-10.我呼吁，全党全军全国各族人民，海内外所有中华儿女，更加紧密地团结起来，肩负起历史重任，以中华民族伟大复兴不断前行的新成就，告慰为中国人民抗日战争和世界反法西斯战争胜利献出生命的所有先烈，告慰近代以来为中华民族独立、中国人民解放献出生命的所有英灵，这是我们对中国人民抗日战争和世界反法西斯战争胜利最好的纪念！</mutableString>
+10.我呼吁，全党全军全国各族人民，海内外所有中华儿女，更加紧密地团结起来，肩负起历史重任，以中华民族伟大复兴不断前行的新成就，告慰为中国人民抗日战争和世界反法西斯战争胜利献出生命的所有先烈，告慰近代以来为中华民族独立、中国人民解放献出生命的所有英灵，这是我们对中国人民抗日战争和世界反法西斯战争胜利最好的纪念！</string>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -98,16 +98,16 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-gq-QE4">
-                        <rect key="frame" x="550" y="256.5" width="27" height="22"/>
+                        <rect key="frame" x="530" y="256.5" width="47" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Knf-hZ-099"/>
                         </constraints>
-                        <inset key="contentEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <inset key="imageEdgeInsets" minX="58" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="titleEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="55" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="展开" image="home_digital_book_info_arrow_down">
                             <color key="titleColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
-                        <state key="selected" title="展开" image="home_digital_book_info_arrow_up"/>
+                        <state key="selected" title="收起" image="home_digital_book_info_arrow_up"/>
                         <connections>
                             <action selector="open:" destination="xPp-GS-1Xa" eventType="touchUpInside" id="glA-Ra-DUH"/>
                         </connections>

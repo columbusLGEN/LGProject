@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Uqg-lT-8s5" customClass="HPAudioPlayerView">
+            <rect key="frame" x="0.0" y="0.0" width="508" height="318"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9BM-Tk-gDK">
+                    <rect key="frame" x="0.0" y="0.0" width="508" height="255"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="ail-UE-cp8">
+                            <rect key="frame" x="0.0" y="0.0" width="508" height="255"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="cLv-Zu-ZhZ">
+                            <rect key="frame" x="123.5" y="54.5" width="261" height="147"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="261" id="rA1-pg-7iu"/>
+                                <constraint firstAttribute="height" constant="147" id="z9a-si-8Ci"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="cLv-Zu-ZhZ" firstAttribute="centerX" secondItem="9BM-Tk-gDK" secondAttribute="centerX" id="0gd-IF-K8o"/>
+                        <constraint firstItem="ail-UE-cp8" firstAttribute="leading" secondItem="9BM-Tk-gDK" secondAttribute="leading" id="1nI-Bn-fvh"/>
+                        <constraint firstItem="ail-UE-cp8" firstAttribute="top" secondItem="9BM-Tk-gDK" secondAttribute="top" id="CGQ-KR-nr0"/>
+                        <constraint firstAttribute="bottom" secondItem="ail-UE-cp8" secondAttribute="bottom" id="Xz5-O9-1Xq"/>
+                        <constraint firstItem="cLv-Zu-ZhZ" firstAttribute="centerY" secondItem="9BM-Tk-gDK" secondAttribute="centerY" id="cMo-xu-6Mp"/>
+                        <constraint firstAttribute="trailing" secondItem="ail-UE-cp8" secondAttribute="trailing" id="dT8-FO-hZU"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JMZ-FK-ze6">
+                    <rect key="frame" x="0.0" y="310" width="508" height="8"/>
+                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="ImT-1M-o0v"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5R-Rj-nkH" customClass="LGAudioPlayerView">
+                    <rect key="frame" x="0.0" y="255" width="508" height="55"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="dnr-8e-Gk5"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="l5R-Rj-nkH" firstAttribute="top" secondItem="9BM-Tk-gDK" secondAttribute="bottom" id="1LZ-BA-uOj"/>
+                <constraint firstItem="l5R-Rj-nkH" firstAttribute="leading" secondItem="Uqg-lT-8s5" secondAttribute="leading" id="1wc-Xo-89j"/>
+                <constraint firstItem="yIz-AN-tEC" firstAttribute="trailing" secondItem="9BM-Tk-gDK" secondAttribute="trailing" id="8qz-UR-53t"/>
+                <constraint firstItem="9BM-Tk-gDK" firstAttribute="top" secondItem="Uqg-lT-8s5" secondAttribute="top" id="UD2-Ut-6Ng"/>
+                <constraint firstItem="9BM-Tk-gDK" firstAttribute="leading" secondItem="Uqg-lT-8s5" secondAttribute="leading" id="WxM-QB-IEE"/>
+                <constraint firstAttribute="bottom" secondItem="JMZ-FK-ze6" secondAttribute="bottom" id="Yuq-73-Hp8"/>
+                <constraint firstItem="JMZ-FK-ze6" firstAttribute="leading" secondItem="Uqg-lT-8s5" secondAttribute="leading" id="jRZ-xf-41Y"/>
+                <constraint firstAttribute="trailing" secondItem="JMZ-FK-ze6" secondAttribute="trailing" id="nyI-5s-Zlz"/>
+                <constraint firstItem="yIz-AN-tEC" firstAttribute="trailing" secondItem="l5R-Rj-nkH" secondAttribute="trailing" id="q4h-TC-J9N"/>
+                <constraint firstItem="JMZ-FK-ze6" firstAttribute="top" secondItem="l5R-Rj-nkH" secondAttribute="bottom" id="xqV-jq-1uq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="yIz-AN-tEC"/>
+            <connections>
+                <outlet property="audioPlayer" destination="l5R-Rj-nkH" id="gyI-1p-gEI"/>
+                <outlet property="bgImg" destination="ail-UE-cp8" id="jJ3-65-WaS"/>
+                <outlet property="icon" destination="cLv-Zu-ZhZ" id="jAf-z2-eym"/>
+                <outlet property="iconBg" destination="9BM-Tk-gDK" id="yHp-k7-0NB"/>
+            </connections>
+            <point key="canvasLocation" x="486" y="-734"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="party_history" width="283" height="194"/>
+    </resources>
+</document>

@@ -46,11 +46,6 @@ EDJHomeHeaderViewDelegate
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)loadView{
-    [super loadView];
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     /// 设置 _lastContentOffset 的默认值,防止在一开始没有滑动的时候直接点击造成的错位

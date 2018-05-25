@@ -48,7 +48,7 @@ UICollectionViewDelegateFlowLayout>
     [self.view addSubview:self.collectionView];
     
     NSMutableArray *arrMu = [NSMutableArray new];
-    for (NSInteger i = 0; i < 5; i++) {
+    for (NSInteger i = 0; i < 9; i++) {
         UCUploadModel *model = [UCUploadModel new];
         model.additional = NO;
         [arrMu addObject:model];

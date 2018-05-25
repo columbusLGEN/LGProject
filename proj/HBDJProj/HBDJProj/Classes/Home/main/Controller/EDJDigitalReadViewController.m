@@ -11,6 +11,7 @@
 #import "EDJHomeHeaderView.h"
 #import "EDJDigitalCell.h"
 #import "EDJDigitalModel.h"
+#import "MJRefresh.h"
 
 static NSString * const digitalCell = @"EDJDigitalCell";
 
@@ -29,6 +30,20 @@ static NSString * const digitalCell = @"EDJDigitalCell";
             [_digitalModels addObject:model];
         }
         [self.collectionView reloadData];
+        
+        self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.collectionView.mj_header endRefreshing];
+            });
+        }];
+        self.collectionView.mj_header.ignoredScrollViewContentInsetTop = [EDJHomeHeaderView headerHeight] - navHeight();
+//        self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [self.collectionView.mj_footer endRefreshing];
+//            });
+//            
+//        }];
+        
     }
     return self;
 }

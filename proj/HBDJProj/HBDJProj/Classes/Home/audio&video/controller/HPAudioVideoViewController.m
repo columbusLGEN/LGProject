@@ -18,8 +18,11 @@
 #import "HPAudioVideoContentCell.h"
 #import "HPAudioVideoModel.h"
 #import "HPAudioVideoInfoCell.h"
-#import "HPVideoPlayerCell.h"
-#import "HPAudioPlayerCell.h"
+#import "HPAudioPlayerView.h"
+#import "HPVideoPlayerView.h"
+
+static CGFloat videoInsets = 233;
+static CGFloat audioInsets = 296;
 
 @interface HPAudioVideoViewController ()<
 UITableViewDelegate,
@@ -77,13 +80,25 @@ HPAudioVideoInfoCellDelegate>
     [self.view addSubview:pbdBottom];
     
     NSMutableArray *arr = [NSMutableArray array];
-    for (NSInteger i = 0; i < 3; i++) {
+    for (NSInteger i = 0; i < 2; i++) {
         HPAudioVideoModel *model = [HPAudioVideoModel new];
         model.isopen = NO;
         [arr addObject:model];
     }
     self.array = arr.copy;
     [self.tableView reloadData];
+    
+    if (self.contentType == HPAudioVideoTypeVideo) {
+        /// MARK: 视频播放器
+        HPVideoPlayerView *vpv = [HPVideoPlayerView videoPlayerView];
+        vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
+        [self.view addSubview:vpv];
+    }else{
+        /// MARK: 音频播放器
+        HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
+        apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
+        [self.view addSubview:apv];
+    }
     
 }
 
@@ -95,15 +110,6 @@ HPAudioVideoInfoCellDelegate>
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        if (self.contentType == HPAudioVideoTypeVideo) {
-            HPVideoPlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:videoPlayerCell];
-            return cell;
-        }else{
-            HPAudioPlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:audioPlayerCell];
-            return cell;
-        }
-    }
-    if (indexPath.row == 1) {
         HPAudioVideoInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:avInfoCell];
         cell.delegate = self;
         return cell;
@@ -118,7 +124,7 @@ HPAudioVideoInfoCellDelegate>
 - (void)avInfoCellOpen:(HPAudioVideoInfoCell *)cell isOpen:(BOOL)isOpen{
     [self.tableView reloadData];
     if (!isOpen) {
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
     }
     
 }
@@ -132,8 +138,13 @@ HPAudioVideoInfoCellDelegate>
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerNib:[UINib nibWithNibName:avContentCell bundle:nil] forCellReuseIdentifier:avContentCell];
         [_tableView registerNib:[UINib nibWithNibName:avInfoCell bundle:nil] forCellReuseIdentifier:avInfoCell];
-        [_tableView registerNib:[UINib nibWithNibName:videoPlayerCell bundle:nil] forCellReuseIdentifier:videoPlayerCell];
-        [_tableView registerNib:[UINib nibWithNibName:audioPlayerCell bundle:nil] forCellReuseIdentifier:audioPlayerCell];
+        if (self.contentType == HPAudioVideoTypeVideo) {
+            /// 视频
+            _tableView.contentInset = UIEdgeInsetsMake(videoInsets, 0, 0, 0);
+        }else{
+            /// 音频
+            _tableView.contentInset = UIEdgeInsetsMake(audioInsets, 0, 0, 0);
+        }
         
     }
     return _tableView;

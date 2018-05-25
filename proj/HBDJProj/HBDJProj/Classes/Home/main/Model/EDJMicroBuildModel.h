@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-/// 党建要闻cell
+/// 党建要闻模型
 
 #import "LGBaseModel.h"
 @class EDJMicroPartyLessionSubModel;
