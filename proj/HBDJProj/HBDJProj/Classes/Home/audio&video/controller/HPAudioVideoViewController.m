@@ -20,6 +20,8 @@
 #import "HPAudioVideoInfoCell.h"
 #import "HPAudioPlayerView.h"
 #import "HPVideoPlayerView.h"
+#import "LGVideoInterfaceView.h"
+#import "LGPlayer.h"
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -27,7 +29,8 @@ static CGFloat audioInsets = 296;
 @interface HPAudioVideoViewController ()<
 UITableViewDelegate,
 UITableViewDataSource,
-HPAudioVideoInfoCellDelegate>
+HPAudioVideoInfoCellDelegate,
+LGVideoInterfaceViewDelegate>
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray *array;
 
@@ -91,6 +94,7 @@ HPAudioVideoInfoCellDelegate>
     if (self.contentType == HPAudioVideoTypeVideo) {
         /// MARK: 视频播放器
         HPVideoPlayerView *vpv = [HPVideoPlayerView videoPlayerView];
+        vpv.bottomInterface.delegate = self;
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
         [self.view addSubview:vpv];
     }else{
@@ -99,6 +103,8 @@ HPAudioVideoInfoCellDelegate>
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
     }
+    
+    
     
 }
 
@@ -128,6 +134,11 @@ HPAudioVideoInfoCellDelegate>
     }
     
 }
+#pragma mark - LGVideoInterfaceViewDelegate
+- (void)userDragProgress:(LGVideoInterfaceView *)videoInterfaceView value:(float)value{
+    NSLog(@"用户拖动进度value -- %f",value);
+    [LGPlayer seekToProgress:value];
+}
 
 - (UITableView *)tableView{
     if (!_tableView) {
@@ -153,5 +164,8 @@ HPAudioVideoInfoCellDelegate>
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+- (void)dealloc{
+    [LGPlayer lg_stop_play];
 }
 @end

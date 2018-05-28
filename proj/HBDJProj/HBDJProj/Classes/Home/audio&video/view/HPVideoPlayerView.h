@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LGVideoInterfaceView;
 
 @interface HPVideoPlayerView : UIView
 
+@property (weak, nonatomic) IBOutlet LGVideoInterfaceView *bottomInterface;
 + (instancetype)videoPlayerView;
 @end

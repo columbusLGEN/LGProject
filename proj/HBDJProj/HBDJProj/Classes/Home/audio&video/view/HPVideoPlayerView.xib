@@ -29,6 +29,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MV-t2-Tsw">
                     <rect key="frame" x="232" y="67" width="71" height="71"/>
                     <state key="normal" image="home_video_play_icon"/>
+                    <state key="selected" image="home_video_pause_icon"/>
                     <connections>
                         <action selector="play:" destination="Lc0-hP-dYq" eventType="touchUpInside" id="KAQ-WN-Abi"/>
                     </connections>
@@ -57,6 +58,7 @@
         </view>
     </objects>
     <resources>
+        <image name="home_video_pause_icon" width="71" height="71"/>
         <image name="home_video_play_icon" width="71" height="71"/>
         <image name="party_history" width="283" height="194"/>
     </resources>

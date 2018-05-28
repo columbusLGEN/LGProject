@@ -10,6 +10,27 @@
 
 @implementation UIImage (Extension)
 
++ (UIImage *)rectImageWithSize:(CGSize)size color:(UIColor *)color{
+    
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    
+    UIGraphicsBeginImageContext(rect.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    
+    
+    return image;
+}
+
 - (UIImage *)changeImgColor:(UIColor *)color{
     UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
