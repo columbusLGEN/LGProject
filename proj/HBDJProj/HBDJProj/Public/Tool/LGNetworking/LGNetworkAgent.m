@@ -9,6 +9,8 @@
 #import "LGNetworkAgent.h"
 #import "AFNetworking.h"
 #import "LGBaseRequest.h"
+#import "LGResponseModel.h"
+#import <MJExtension/MJExtension.h>
 
 @interface LGNetworkAgent ()
 @property (strong,nonatomic) AFHTTPSessionManager *manager;
@@ -37,7 +39,7 @@
 
     switch (method) {
         case LGRequestMethodPOST:
-            return [self dataTaskWithHTTPMethod:@"POST" requestSerializer:serializer URLString:URLString param:param error:error];
+            return [self dataTaskWithHTTPMethod:@"POST" requestSerializer:serializer URLString:URLString param:param error:error lg_request:request];
             break;
         case LGRequestMethodGET:
             return nil;
@@ -45,37 +47,27 @@
     }
 }
 
-- (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method requestSerializer:(AFHTTPRequestSerializer *)requestSerializer URLString:(NSString *)URLString param:(id)param error:(NSError *)error{
+- (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method requestSerializer:(AFHTTPRequestSerializer *)requestSerializer URLString:(NSString *)URLString param:(id)param error:(NSError *)error lg_request:(LGBaseRequest *)lg_request{
     
     NSMutableURLRequest *request = [requestSerializer requestWithMethod:method URLString:URLString parameters:param error:&error];
     
     NSURLSessionDataTask *dataTask = nil;
-    
     dataTask = [self.manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        [self handleRequestResult:dataTask responseObject:responseObject error:error];
+        [self handleRequestResult:dataTask responseObject:responseObject error:error lg_request:lg_request];
     }];
     
     return dataTask;
 }
 
-- (void)handleRequestResult:(NSURLSessionTask *)dataTask responseObject:(id)responseObject error:(NSError *)error{
-    /// TODO: 如何统一处理返回值，分发数据？
-    NSLog(@"responseObject -- %@",responseObject);
-    NSLog(@"error -- %@",error);
-//    id jsonObject = [self.jsonResponseSerializer responseObjectForResponse:dataTask.response data:responseObject error:&error];
-//    NSLog(@"jsonobject -- %@",jsonObject);
-    
-    //        NSError *serializerError;
-    //        AFHTTPResponseSerializer *serializer = [AFHTTPResponseSerializer serializer];
-    //        id object = [serializer responseObjectForResponse:task.response data:responseObject error:&serializerError];
-    //        if (serializerError) {
-    //            NSLog(@"error -- %@",serializerError);
-    //        }else{
-    //            NSLog(@"解析后 -- %@ CLASS: %@",object,[object class]);
-    //        }
-    
-    //        if (request.networkFailure) request.networkFailure(error);
-    
+- (void)handleRequestResult:(NSURLSessionTask *)dataTask responseObject:(id)responseObject error:(NSError *)error lg_request:(LGBaseRequest *)lg_request{
+    /// TODO: 统一处理返回值，分发数据？
+    LGResponseModel *model = [LGResponseModel mj_objectWithKeyValues:responseObject];
+    if (model.result == 0) {/// 成功
+        if (lg_request.requestSuccess) lg_request.requestSuccess(model.returnJson);
+    }else{
+        /// model.result == 1 表示请求失败
+        if (lg_request.requestFailure) lg_request.requestFailure(model.msg);
+    }
 }
 
 - (NSString *)buildRequestUrl:(LGBaseRequest *)request{
@@ -162,8 +154,9 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
+        /// http://192.168.10.108:8080/APMKAFService/frontIndex/index
 //        self.baseUrl = @"http://202.112.197.44:8080";
-        self.baseUrl = @"http://192.168.10.110:8080";
+        self.baseUrl = @"http://192.168.10.108:8080";
     }
     return self;
 }

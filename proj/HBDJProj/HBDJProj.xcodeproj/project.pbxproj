@@ -124,7 +124,6 @@
 		889FCC6B20B255080045746D /* DCStateCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCC6620B255080045746D /* DCStateCommentsTableViewCell.xib */; };
 		889FCC7420B255430045746D /* LGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC6F20B255430045746D /* LGBaseRequest.m */; };
 		889FCC7520B255430045746D /* LGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC7120B255430045746D /* LGNetworkAgent.m */; };
-		889FCC7620B255430045746D /* TestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC7320B255430045746D /* TestRequest.m */; };
 		889FCC7A20B2587D0045746D /* DCStateContentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC7920B2587D0045746D /* DCStateContentsCell.m */; };
 		889FCCBE20B273E30045746D /* LGNineImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCCBC20B273E30045746D /* LGNineImgView.m */; };
 		889FCCC120B2A7840045746D /* DCSubStageAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCCC020B2A7840045746D /* DCSubStageAudioCell.m */; };
@@ -227,6 +226,12 @@
 		88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */; };
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
 		88D5C61120BBF68E00E353DB /* LGPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C61020BBF68E00E353DB /* LGPlayerView.m */; };
+		88D5C61520BE3B3600E353DB /* LGResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C61420BE3B3600E353DB /* LGResponseModel.m */; };
+		88D5C61920BE765200E353DB /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */; };
+		88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61A20BE768500E353DB /* libxml2.2.tbd */; };
+		88D5C61C20BE776400E353DB /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */; };
+		88D5C61D20BE776400E353DB /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		88D5C62320BE8A0700E353DB /* EDJHomeIndexRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C62220BE8A0700E353DB /* EDJHomeIndexRequest.m */; };
 		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
 		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
 		88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD811C209BFFB800F297D6 /* OLTkcsTableViewCell.m */; };
@@ -307,6 +312,20 @@
 			remoteInfo = HBDJProj;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88D5C61E20BE776400E353DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				88D5C61D20BE776400E353DB /* YMEpubReaderKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0AD183953D101913C0C4D08C /* Pods-HBDJProjUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBDJProjUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HBDJProjUITests/Pods-HBDJProjUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -532,8 +551,6 @@
 		889FCC6F20B255430045746D /* LGBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseRequest.m; sourceTree = "<group>"; };
 		889FCC7020B255430045746D /* LGNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNetworkAgent.h; sourceTree = "<group>"; };
 		889FCC7120B255430045746D /* LGNetworkAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkAgent.m; sourceTree = "<group>"; };
-		889FCC7220B255430045746D /* TestRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequest.h; sourceTree = "<group>"; };
-		889FCC7320B255430045746D /* TestRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequest.m; sourceTree = "<group>"; };
 		889FCC7820B2587D0045746D /* DCStateContentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStateContentsCell.h; sourceTree = "<group>"; };
 		889FCC7920B2587D0045746D /* DCStateContentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStateContentsCell.m; sourceTree = "<group>"; };
 		889FCCBC20B273E30045746D /* LGNineImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNineImgView.m; sourceTree = "<group>"; };
@@ -701,6 +718,13 @@
 		88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolFooter.m; sourceTree = "<group>"; };
 		88D5C60F20BBF68E00E353DB /* LGPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGPlayerView.h; sourceTree = "<group>"; };
 		88D5C61020BBF68E00E353DB /* LGPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGPlayerView.m; sourceTree = "<group>"; };
+		88D5C61320BE3B3600E353DB /* LGResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGResponseModel.h; sourceTree = "<group>"; };
+		88D5C61420BE3B3600E353DB /* LGResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGResponseModel.m; sourceTree = "<group>"; };
+		88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
+		88D5C61A20BE768500E353DB /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		88D5C61F20BE781C00E353DB /* huamulan.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = huamulan.epub; sourceTree = "<group>"; };
+		88D5C62120BE8A0700E353DB /* EDJHomeIndexRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeIndexRequest.h; sourceTree = "<group>"; };
+		88D5C62220BE8A0700E353DB /* EDJHomeIndexRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJHomeIndexRequest.m; sourceTree = "<group>"; };
 		88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewController.h; sourceTree = "<group>"; };
 		88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTkcsTableViewController.m; sourceTree = "<group>"; };
 		88DD8118209BFF7B00F297D6 /* OLTkcsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsModel.h; sourceTree = "<group>"; };
@@ -816,6 +840,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D5C61920BE765200E353DB /* YMEpubReaderKit.framework in Frameworks */,
+				88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */,
+				88D5C61C20BE776400E353DB /* YMEpubReaderKit.framework in Frameworks */,
 				88C5F15F20B7F2050075D5F2 /* libz.tbd in Frameworks */,
 				88C5F15D20B7F1FE0075D5F2 /* libbz2.tbd in Frameworks */,
 				88C5F15B20B7F1F00075D5F2 /* AudioToolbox.framework in Frameworks */,
@@ -855,6 +882,7 @@
 		43C6D71BB68173153DFCB4B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88D5C61A20BE768500E353DB /* libxml2.2.tbd */,
 				88C5F15E20B7F2050075D5F2 /* libz.tbd */,
 				88C5F15C20B7F1FE0075D5F2 /* libbz2.tbd */,
 				88C5F15A20B7F1F00075D5F2 /* AudioToolbox.framework */,
@@ -901,6 +929,7 @@
 		881C948A2068EA5A009D6A52 /* HBDJProj */ = {
 			isa = PBXGroup;
 			children = (
+				88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */,
 				881C94BF2068EC6D009D6A52 /* Classes */,
 				881C94BE2068EC61009D6A52 /* Public */,
 				881C94BD2068EA6E009D6A52 /* SupportingFiles */,
@@ -942,6 +971,7 @@
 		881C94BE2068EC61009D6A52 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				88D5C62020BE7EAA00E353DB /* LGLocalFileManager */,
 				889FCD4820B532090045746D /* photoManager */,
 				889FCC7720B2587D0045746D /* LGCoreText */,
 				88A4713A207F31E1002F93E0 /* specific */,
@@ -1732,12 +1762,12 @@
 		889FCC6D20B255430045746D /* LGNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				88D5C61320BE3B3600E353DB /* LGResponseModel.h */,
+				88D5C61420BE3B3600E353DB /* LGResponseModel.m */,
 				889FCC6E20B255430045746D /* LGBaseRequest.h */,
 				889FCC6F20B255430045746D /* LGBaseRequest.m */,
 				889FCC7020B255430045746D /* LGNetworkAgent.h */,
 				889FCC7120B255430045746D /* LGNetworkAgent.m */,
-				889FCC7220B255430045746D /* TestRequest.h */,
-				889FCC7320B255430045746D /* TestRequest.m */,
 			);
 			path = LGNetworking;
 			sourceTree = "<group>";
@@ -1858,6 +1888,8 @@
 				884311E82084B75400321F84 /* LGPageView */,
 				88A470F0207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.h */,
 				88A470F1207B5557002F93E0 /* EDJHomeDigitalsFlowLayout.m */,
+				88D5C62120BE8A0700E353DB /* EDJHomeIndexRequest.h */,
+				88D5C62220BE8A0700E353DB /* EDJHomeIndexRequest.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -2111,6 +2143,13 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		88D5C62020BE7EAA00E353DB /* LGLocalFileManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LGLocalFileManager;
+			sourceTree = "<group>";
+		};
 		88DD8114209BFF3800F297D6 /* tk&cs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2222,6 +2261,7 @@
 		88EA133020AD5332007AB886 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				88D5C61F20BE781C00E353DB /* huamulan.epub */,
 				88EA133120AD533C007AB886 /* detaiTtest.html */,
 			);
 			path = test;
@@ -2378,6 +2418,7 @@
 				881C94852068EA5A009D6A52 /* Frameworks */,
 				881C94862068EA5A009D6A52 /* Resources */,
 				939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */,
+				88D5C61E20BE776400E353DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2678,6 +2719,7 @@
 				8885D23920A2BCB000DC06A1 /* PBDBottomView.m in Sources */,
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
 				88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */,
+				88D5C61520BE3B3600E353DB /* LGResponseModel.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
 				88FE68A0209ABD0A008C28A0 /* OLMindReportViewController.m in Sources */,
 				889FCD3720B3FD970045746D /* HPAudioVideoContentCell.m in Sources */,
@@ -2734,7 +2776,6 @@
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
 				881C94D02068ECF3009D6A52 /* NSString+Extension.m in Sources */,
 				88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */,
-				889FCC7620B255430045746D /* TestRequest.m in Sources */,
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
 				8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */,
@@ -2832,6 +2873,7 @@
 				88D13C2A2090138100A32236 /* EDJSearchTagModel.m in Sources */,
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
 				88C5F16220B7FB7A0075D5F2 /* HPVideoPlayerView.m in Sources */,
+				88D5C62320BE8A0700E353DB /* EDJHomeIndexRequest.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
 				88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */,
 				88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */,
@@ -3014,6 +3056,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33C939949Y;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HBDJProj",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
@@ -3097,6 +3143,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33C939949Y;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HBDJProj",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";

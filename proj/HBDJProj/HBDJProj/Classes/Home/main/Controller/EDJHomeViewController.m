@@ -20,6 +20,12 @@
 #import "HPPartyBuildDetailViewController.h"
 #import "HPAudioVideoViewController.h"
 
+#import "EDJHomeIndexRequest.h"
+#import "EDJHomeModel.h"
+#import "EDJHomeImageLoopModel.h"
+#import "EDJMicroLessionAlbumModel.h"
+#import "EDJMicroPartyLessionSubModel.h"
+
 @interface EDJHomeViewController ()<
 LGNavigationSearchBarDelelgate,
 UITableViewDelegate,
@@ -37,6 +43,9 @@ EDJHomeHeaderViewDelegate
 @property (assign,nonatomic) CGPoint lastContentOffset;
 @property (strong,nonatomic) LGNavigationSearchBar *fakeNav;
 
+/** 图片轮播模型 */
+@property (strong,nonatomic) NSArray *imageLoops;
+
 @end
 
 @implementation EDJHomeViewController
@@ -48,6 +57,23 @@ EDJHomeHeaderViewDelegate
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    /// TODO: 接口调试
+    EDJHomeIndexRequest *request = [[EDJHomeIndexRequest alloc] initWithSuccess:^(id responseObject) {
+        NSLog(@"indexsuccess -- %@",responseObject);
+        EDJHomeModel *model = [EDJHomeModel modelWithResponseObject:responseObject];
+        self.imageLoops = model.imageLoops;
+        model.microLessons;
+        model.pointNews;
+        model.digitals;
+        
+    } failure:^(id faillureObject) {
+        NSLog(@"indexfailue -- %@",faillureObject);
+    } networkFailure:^(NSError *error) {
+        NSLog(@"neterror -- %@",error);
+    }];
+    [request start];
+    
     /// 设置 _lastContentOffset 的默认值,防止在一开始没有滑动的时候直接点击造成的错位
     _lastContentOffset = CGPointMake(0, -[self headerHeight]);
     
@@ -60,7 +86,6 @@ EDJHomeHeaderViewDelegate
     /// 默认加载微党课
     [self configMOBVcWithSegment:0];
     
-    /// TODO: 希望: 系统版本小于11.0,编译此处
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     /// 添加自定义导航栏
@@ -79,9 +104,28 @@ EDJHomeHeaderViewDelegate
 
 /// MARK: 点击了轮播图
 - (void)headerImgLoopClick:(EDJHomeHeaderView *)header didSelectItemAtIndex:(NSInteger)index{
-    NSLog(@"index -- %ld",index);
-    HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
+    /// TODO: 轮播图跳转
+    EDJHomeImageLoopModel *imageLoopModel = self.imageLoops[index];
+    if (imageLoopModel.classid == BaseClassesIdMicroLessons) {
+        /// 进入 微党课详情
+//        imageLoopModel.newsid;
+        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+        [self.navigationController pushViewController:dvc animated:YES];
+        
+    }else if (imageLoopModel.classid == BaseClassesIdBuildPointNews){
+        /// 进入 党建要闻详情
+//        imageLoopModel.newsid;
+        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+        [self.navigationController pushViewController:dvc animated:YES];
+        
+    }else{
+        /// 进入 习近平要闻列表
+        HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
+//        imageLoopModel.classid;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 /// switch 语句中的两个分支,加载同一个控制器,但是数据需要分别处理,如何简化代码?

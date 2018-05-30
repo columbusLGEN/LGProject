@@ -11,7 +11,16 @@
 @interface EDJHomeImageLoopModel : LGBaseModel
 /** 图片地址 */
 @property (strong,nonatomic) NSString *classimg;
-/** 分类id */
-@property (assign,nonatomic) NSInteger classid;
+/** BaseClassesId */
+@property (assign,nonatomic) BaseClassesId classid;
+/** classname */
+@property (strong,nonatomic) NSString *classname;
+/** newsid: 如果有值，表示详情；否则表示习近平要闻列表 */
+@property (assign,nonatomic) NSObject *newsid;
+
+/** parentclassid */
+@property (assign,nonatomic) NSInteger parentclassid;
+/** classdescription */
+@property (strong,nonatomic) NSString *classdescription;
 
 @end

@@ -1,0 +1,6 @@
+framework module YMEpubReaderKit {
+  umbrella header "YMEpubReaderKit.h"
+
+  export *
+  module * { export * }
+}

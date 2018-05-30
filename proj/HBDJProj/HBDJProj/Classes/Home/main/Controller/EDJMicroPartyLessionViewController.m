@@ -31,7 +31,8 @@ UITableViewDelegate
     _dataType = dataType;
     if (dataType == EDJHomeDataTypeMicro) {
         _array = _microModels.copy;
-
+        self.tableView.mj_footer = nil;
+        
     }else if (dataType == EDJHomeDataTypeBuild){
         _array = _buildModels.copy;
         /// 给党建要闻添加上拉刷新
@@ -77,7 +78,6 @@ UITableViewDelegate
             [_buildModels addObject:model];
         }
         
-        /// TODO: 添加上下拉刷新
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.tableView.mj_header endRefreshing];

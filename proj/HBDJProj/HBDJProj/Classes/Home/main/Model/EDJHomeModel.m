@@ -12,7 +12,7 @@
 
 + (NSDictionary *)mj_objectClassInArray{
     return @{@"imageLoops"  :@"EDJHomeImageLoopModel",
-             @"microLessons":@"EDJMicroPartyLessionSubModel",
+             @"microLessons":@"EDJMicroLessionAlbumModel",
              @"pointNews"   :@"EDJMicroBuildModel",
              @"digitals"    :@"EDJDigitalModel"
              };
