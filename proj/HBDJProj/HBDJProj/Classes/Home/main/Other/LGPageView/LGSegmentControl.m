@@ -26,10 +26,15 @@
 @property (strong,nonatomic) UILabel *label;
 @property (strong,nonatomic) UIButton *button;
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
+@property (nonatomic) UIColor *labelColor;
 
 @end
 
 @implementation LGSegmentSingleView
+
+- (void)setLabelColor:(UIColor *)labelColor{
+    self.label.textColor = labelColor;
+}
 
 - (void)setImageName:(NSString *)imageName{
     _imageName = imageName;
@@ -38,7 +43,6 @@
 - (void)setTitle:(NSString *)title{
     _title = title;
     [self.label setText:title];
-
 }
 - (void)setTag:(NSInteger)tag{
     [super setTag:tag];
@@ -53,6 +57,7 @@
     [self addSubview:self.button];
     
 }
+
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
@@ -111,6 +116,14 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.elf.frame = tmpFrame;
     }];
+    [self.subSingleViews enumerateObjectsUsingBlock:^(LGSegmentSingleView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (index == idx) {
+            obj.labelColor = [UIColor EDJMainColor];
+        }else{
+            obj.labelColor = [UIColor EDJGrayscale_11];
+        }
+    }];
+
 }
 
 - (void)segmentClick:(UIButton *)sender{
@@ -154,6 +167,9 @@
         singleView.imageName = obj.imageName;
         singleView.textFont = _textFont;
         singleView.title = obj.title;
+        if (idx == 0) {
+            singleView.labelColor = [UIColor EDJMainColor];
+        }
         
         [singleView addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:singleView];
