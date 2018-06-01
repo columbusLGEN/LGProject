@@ -10,5 +10,6 @@
 #import "LGBaseTableViewController.h"
 
 @interface DCSubPartStateTableViewController : LGBaseTableViewController
+//@property (assign,nonatomic) BOOL isSearchResult;
 
 @end

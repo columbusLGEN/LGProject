@@ -14,11 +14,11 @@
 #import "EDJMicroBuildCell.h"
 #import "EDJMicroPartyLessonCell.h"
 #import "LGNavigationSearchBar.h"
-#import "EDJSearchViewController.h"
 #import "HPPointNewsTableViewController.h"
 #import "HPBookInfoViewController.h"
 #import "HPPartyBuildDetailViewController.h"
 #import "HPAudioVideoViewController.h"
+#import "HPSearchViewController.h"
 
 #import "EDJHomeIndexRequest.h"
 #import "EDJHomeModel.h"
@@ -207,7 +207,7 @@ EDJHomeHeaderViewDelegate
 
 #pragma mark - EDJHomeNavDelelgate
 - (void)navSearchClick:(LGNavigationSearchBar *)titleView{
-    EDJSearchViewController *searchVc = [EDJSearchViewController new];
+    HPSearchViewController *searchVc = [HPSearchViewController new];
     [self.navigationController pushViewController:searchVc animated:YES];
 }
 
@@ -290,4 +290,5 @@ EDJHomeHeaderViewDelegate
 - (CGFloat)headerHeight{
     return [EDJHomeHeaderView headerHeight];
 }
+
 @end

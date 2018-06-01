@@ -7,7 +7,11 @@
 //
 
 #import "LGBaseTableViewCell.h"
+
+static NSString * const microPartyLessonSubCell = @"EDJMicroPartyLessonSubCell";
+
 @class EDJMicroPartyLessionSubModel;
+
 @interface EDJMicroPartyLessonSubCell : LGBaseTableViewCell
 @property (strong,nonatomic) EDJMicroPartyLessionSubModel *model;
 

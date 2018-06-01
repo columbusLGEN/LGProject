@@ -88,7 +88,7 @@ static CGFloat flyW = 50;
 }
 
 - (CGFloat)buttonW{
-    return kScreenWidth / 3;
+    return kScreenWidth / self.segmentItems.count;
 }
 
 @end
