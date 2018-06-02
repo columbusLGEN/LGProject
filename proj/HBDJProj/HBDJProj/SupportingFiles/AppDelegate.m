@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LIGMainTabBarController.h"
+#import <iflyMSC/iflyMSC.h>
 
 @interface AppDelegate ()
 
@@ -59,6 +60,11 @@
     self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
     self.window.rootViewController = [LIGMainTabBarController new];
     [self.window makeKeyAndVisible];
+    
+    [IFlySetting showLogcat:NO];
+    //Appid是应用的身份信息，具有唯一性，初始化时必须要传入Appid。
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@", iFlyAppid];
+    [IFlySpeechUtility createUtility:initString];
     
     [[LGDevice sharedInstance] lg_currentDeviceType];
 }

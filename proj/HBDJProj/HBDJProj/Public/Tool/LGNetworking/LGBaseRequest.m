@@ -45,6 +45,7 @@
 - (NSMutableDictionary *)subParams{
     NSDictionary *dict = @{@"imei":@"imei"
                            ,@"imsi":@"imsi"
+                           ,@"userid":@"0"
                            };
     NSMutableDictionary *subParams = [NSMutableDictionary dictionaryWithDictionary:dict];
     return subParams;

@@ -24,18 +24,21 @@ typedef NS_ENUM(NSUInteger, NavState) {
  @param navigationSearchBar self
  */
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar;
+/** 点击最有边的按钮 */
 - (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar;
-
-/**
- 点击 语音助手
-
- @param titlView self
- @param param 预留参数
- */
+/** 点击最左边的按钮 */
+- (void)leftButtonClick:(LGNavigationSearchBar *)navigationSearchBar;
+/** 点击语音搜索 */
+- (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar;
 
 @end
 
 @interface LGNavigationSearchBar : LGBaseView
+
+/** 是否处于搜索内容输入状态 */
+@property (assign,nonatomic) BOOL isEditing;
+/** 搜索按钮 */
+@property (strong,nonatomic) UIButton *fakeSearch;
 
 @property (assign,nonatomic) NavState bgdsState;
 
@@ -43,6 +46,8 @@ typedef NS_ENUM(NSUInteger, NavState) {
 
 @property (assign,nonatomic) BOOL isShowRightBtn;
 @property (copy,nonatomic) NSString *rightButtonTitle;
+
+@property (weak,nonatomic) NSString *leftImgName;
 
 CGFloat navHeight(void);
 

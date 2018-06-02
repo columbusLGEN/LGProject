@@ -11,6 +11,14 @@
 
 @implementation LGBaseModel
 
+- (NSString *)cover{
+    if ([_cover componentsSeparatedByString:@","].count == 1) {
+        return [[_cover componentsSeparatedByString:@","] firstObject];
+    }else{
+        return _cover;
+    }
+}
+
 + (NSArray *)arrayWithResponseObject:(id)object{
     
     return nil;
