@@ -9,9 +9,6 @@
 #import "LGSegmentControl.h"
 #import "UIColor+Extension.h"
 
-@implementation LGSegmentControlModel
-@end
-
 /// ------------------------------------------------------------------------
 @interface LGSegmentSingleView: UIView
 @property (copy,nonatomic) NSString *imageName;
@@ -209,4 +206,7 @@
     _elf.backgroundColor = elfColor;
 }
 
+@end
+
+@implementation LGSegmentControlModel
 @end

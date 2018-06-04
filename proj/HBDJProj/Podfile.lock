@@ -45,6 +45,7 @@ PODS:
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
+  - SwipeTableView (0.2.6)
   - YYText (1.0.7)
 
 DEPENDENCIES:
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - PLPlayerKit
   - SDCycleScrollView
   - SDWebImage (~> 4.0)
+  - SwipeTableView
   - YYText
 
 SPEC REPOS:
@@ -73,6 +75,7 @@ SPEC REPOS:
     - PLPlayerKit
     - SDCycleScrollView
     - SDWebImage
+    - SwipeTableView
     - YYText
 
 SPEC CHECKSUMS:
@@ -87,8 +90,9 @@ SPEC CHECKSUMS:
   PLPlayerKit: 63a9c6a7661f497591c84121e854e8e6ac003256
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SwipeTableView: 67d8a2e6e18bd38c188fd4fabda0b278eaa08d2f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: c98dffa81e28ad89399f1a17ec7d61ca96da0bb8
+PODFILE CHECKSUM: 05a99504f71fb74bc3169d511806c3fd9778d759
 
 COCOAPODS: 1.5.2

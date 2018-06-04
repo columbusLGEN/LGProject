@@ -63,9 +63,9 @@ EDJHomeHeaderViewDelegate
         NSLog(@"indexsuccess -- %@",responseObject);
         EDJHomeModel *model = [EDJHomeModel modelWithResponseObject:responseObject];
         self.imageLoops = model.imageLoops;
-        model.microLessons;
-        model.pointNews;
-        model.digitals;
+//        model.microLessons;
+//        model.pointNews;
+//        model.digitals;
         
     } failure:^(id faillureObject) {
         NSLog(@"indexfailue -- %@",faillureObject);

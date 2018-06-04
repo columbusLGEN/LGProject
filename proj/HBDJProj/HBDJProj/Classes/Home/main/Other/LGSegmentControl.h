@@ -12,13 +12,8 @@
     
  */
 
-@interface LGSegmentControlModel: NSObject
-@property (copy,nonatomic) NSString *imageName;
-@property (copy,nonatomic) NSString *title;
-@end
-
 #import <UIKit/UIKit.h>
-@class LGSegmentControl;
+@class LGSegmentControl,LGSegmentControlModel;
 @protocol LGSegmentControlDelegate;
 
 @interface LGSegmentControl : UIView
@@ -47,4 +42,9 @@
  */
 - (void)segmentControl:(LGSegmentControl *)sender didClick:(NSInteger)click;
 
+@end
+
+@interface LGSegmentControlModel: NSObject
+@property (copy,nonatomic) NSString *imageName;
+@property (copy,nonatomic) NSString *title;
 @end
