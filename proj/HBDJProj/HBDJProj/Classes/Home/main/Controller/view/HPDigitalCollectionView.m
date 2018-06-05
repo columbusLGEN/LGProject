@@ -10,6 +10,8 @@
 #import "EDJDigitalModel.h"
 #import "EDJDigitalCell.h"
 
+#import "LGDidSelectedNotification.h"
+
 @interface HPDigitalCollectionView ()<
 UICollectionViewDelegate
 ,UICollectionViewDataSource>
@@ -36,6 +38,13 @@ UICollectionViewDelegate
     EDJDigitalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:digitalCell forIndexPath:indexPath];
     cell.model = model;
     return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    EDJDigitalModel *model = self.dataArray[indexPath.row];
+    NSDictionary *dict = @{LGDidSelectedModelKey:model,
+                           LGDidSelectedSkipTypeKey:@(LGDidSelectedSkipTypeDigitalBook)
+                           };
+    [[NSNotificationCenter defaultCenter] postNotificationName:LGDidSelectedNotification object:nil userInfo:dict];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout{

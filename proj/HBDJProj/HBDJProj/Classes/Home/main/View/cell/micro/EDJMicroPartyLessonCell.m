@@ -14,6 +14,8 @@
 #import "EDJMicroPartyLessonSubCell.h"
 #import "EDJMicroPartyLessionSubModel.h"
 
+#import "LGDidSelectedNotification.h"
+
 static NSString * const subCellID = @"EDJMicroPartyLessonSubCell";
 
 @interface EDJMicroPartyLessonCell ()<
@@ -112,6 +114,7 @@ UITableViewDataSource>
         _contentTableView.scrollEnabled = NO;
         _contentTableView.dataSource = self;
         _contentTableView.delegate = self;
+        _contentTableView.estimatedRowHeight = 90;
         _contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_contentTableView registerNib:[UINib nibWithNibName:subCellID bundle:nil] forCellReuseIdentifier:subCellID];
     }
@@ -129,8 +132,13 @@ UITableViewDataSource>
     cell.model = model;
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 90;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    EDJMicroPartyLessionSubModel *model = _model.subNews[indexPath.row];
+    NSDictionary *dict = @{LGDidSelectedModelKey:model,
+                           LGDidSelectedSkipTypeKey:@(LGDidSelectedSkipTypeMicrolessonSingle),
+                           LGDidSelectedIndexKey:@(indexPath.row)
+                           };
+    [[NSNotificationCenter defaultCenter] postNotificationName:LGDidSelectedNotification object:nil userInfo:dict];
 }
 
 @end

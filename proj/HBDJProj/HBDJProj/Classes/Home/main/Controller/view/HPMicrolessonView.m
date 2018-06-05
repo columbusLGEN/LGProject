@@ -10,6 +10,8 @@
 #import "EDJMicroBuildModel.h"
 #import "EDJMicroPartyLessonCell.h"
 
+#import "LGDidSelectedNotification.h"
+
 static NSString * const microCell = @"EDJMicroPartyLessonCell";
 static NSString * const microHeaderCell = @"EDJMicroPartyLessonHeaderCell";
 
@@ -43,6 +45,20 @@ UITableViewDataSource
     CGFloat height = [EDJMicroPartyLessonCell cellHeightWithModel:self.dataArray[indexPath.row]];
     return height;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    EDJMicroBuildModel *model = nil;
+    if (indexPath.row == 0) {
+        NSLog(@"头部专辑 -- ");
+        /// TODO: 如何从头部2选1？
+    }else{
+        NSLog(@"其他专辑 -- ");
+        model = self.dataArray[indexPath.row];
+    }
+    NSDictionary *dict = @{LGDidSelectedModelKey:model?model:[NSObject new],
+                           LGDidSelectedSkipTypeKey:@(LGDidSelectedSkipTypeMicrolessonAlbum)
+                           };
+    [[NSNotificationCenter defaultCenter] postNotificationName:LGDidSelectedNotification object:nil userInfo:dict];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     if (self = [super initWithFrame:frame style:style]) {
@@ -60,6 +76,7 @@ UITableViewDataSource
 //                });
 //            }];
 //        }];
+        
     }
     return self;
 }

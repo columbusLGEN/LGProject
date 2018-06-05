@@ -50,7 +50,6 @@
 		8835B2C120720A1800722010 /* LGBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2C020720A1800722010 /* LGBaseView.m */; };
 		8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2CC20720B1500722010 /* EDJOnlineController.m */; };
 		8835B2E920720CD800722010 /* LIGObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2E820720CD800722010 /* LIGObject.m */; };
-		8835B2F0207211B200722010 /* EDJHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2EF207211B200722010 /* EDJHomeHeaderView.m */; };
 		8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B304207213B000722010 /* EDJMicroPSCellFooter.m */; };
 		8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B30D2072143300722010 /* EDJMicroPartyLessonCell.m */; };
 		8835B314207216DB00722010 /* LGNavigationSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B312207216DA00722010 /* LGNavigationSearchBar.m */; };
@@ -195,6 +194,9 @@
 		88BCEDD720C65EC200B5C1DB /* HPBuildTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDD020C65EC200B5C1DB /* HPBuildTableView.m */; };
 		88BCEDD820C65EC200B5C1DB /* HPDigitalCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDD220C65EC200B5C1DB /* HPDigitalCollectionView.m */; };
 		88BCEDD920C65EC200B5C1DB /* HPMicrolessonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDD420C65EC200B5C1DB /* HPMicrolessonView.m */; };
+		88BCEDDD20C665ED00B5C1DB /* HPAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDDC20C665ED00B5C1DB /* HPAlbumTableViewController.m */; };
+		88BCEDE520C67D6C00B5C1DB /* HPAlbumHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDE420C67D6C00B5C1DB /* HPAlbumHeaderCell.m */; };
+		88BCEDE720C67D7500B5C1DB /* HPAlbumHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BCEDE620C67D7500B5C1DB /* HPAlbumHeaderCell.xib */; };
 		88C5F13B20B7DC280075D5F2 /* EDJHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F13A20B7DC280075D5F2 /* EDJHomeModel.m */; };
 		88C5F13E20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F13D20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.m */; };
 		88C5F14120B7E08D0075D5F2 /* EDJMicroLessionAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F14020B7E08D0075D5F2 /* EDJMicroLessionAlbumModel.m */; };
@@ -442,8 +444,6 @@
 		8835B2CC20720B1500722010 /* EDJOnlineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJOnlineController.m; sourceTree = "<group>"; };
 		8835B2E720720CD800722010 /* LIGObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGObject.h; sourceTree = "<group>"; };
 		8835B2E820720CD800722010 /* LIGObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGObject.m; sourceTree = "<group>"; };
-		8835B2EE207211B200722010 /* EDJHomeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeHeaderView.h; sourceTree = "<group>"; };
-		8835B2EF207211B200722010 /* EDJHomeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJHomeHeaderView.m; sourceTree = "<group>"; };
 		8835B303207213B000722010 /* EDJMicroPSCellFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPSCellFooter.h; sourceTree = "<group>"; };
 		8835B304207213B000722010 /* EDJMicroPSCellFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJMicroPSCellFooter.m; sourceTree = "<group>"; };
 		8835B30C2072143300722010 /* EDJMicroPartyLessonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPartyLessonCell.h; sourceTree = "<group>"; };
@@ -697,6 +697,12 @@
 		88BCEDD220C65EC200B5C1DB /* HPDigitalCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPDigitalCollectionView.m; sourceTree = "<group>"; };
 		88BCEDD320C65EC200B5C1DB /* HPMicrolessonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMicrolessonView.h; sourceTree = "<group>"; };
 		88BCEDD420C65EC200B5C1DB /* HPMicrolessonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMicrolessonView.m; sourceTree = "<group>"; };
+		88BCEDDB20C665ED00B5C1DB /* HPAlbumTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAlbumTableViewController.h; sourceTree = "<group>"; };
+		88BCEDDC20C665ED00B5C1DB /* HPAlbumTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAlbumTableViewController.m; sourceTree = "<group>"; };
+		88BCEDDF20C672DD00B5C1DB /* LGDidSelectedNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LGDidSelectedNotification.h; path = HBDJProj/Classes/Home/album/LGDidSelectedNotification.h; sourceTree = SOURCE_ROOT; };
+		88BCEDE320C67D6C00B5C1DB /* HPAlbumHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAlbumHeaderCell.h; sourceTree = "<group>"; };
+		88BCEDE420C67D6C00B5C1DB /* HPAlbumHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAlbumHeaderCell.m; sourceTree = "<group>"; };
+		88BCEDE620C67D7500B5C1DB /* HPAlbumHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAlbumHeaderCell.xib; sourceTree = "<group>"; };
 		88C5F13920B7DC280075D5F2 /* EDJHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeModel.h; sourceTree = "<group>"; };
 		88C5F13A20B7DC280075D5F2 /* EDJHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJHomeModel.m; sourceTree = "<group>"; };
 		88C5F13C20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeImageLoopModel.h; sourceTree = "<group>"; };
@@ -1208,9 +1214,10 @@
 		881C94EA2068F362009D6A52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				88BCEDDA20C665D100B5C1DB /* album */,
+				88435EB1208F15A900188CE9 /* main */,
 				889FCD2120B3FA430045746D /* audio&video */,
 				88CD7391209958D500E80058 /* bookInfo */,
-				88435EB1208F15A900188CE9 /* main */,
 				88435EB0208F158100188CE9 /* search */,
 				8831E19D20946F6E001D038E /* pointNews */,
 			);
@@ -1419,8 +1426,6 @@
 		8835B2BC207209EA00722010 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8835B2EE207211B200722010 /* EDJHomeHeaderView.h */,
-				8835B2EF207211B200722010 /* EDJHomeHeaderView.m */,
 				8835B313207216DA00722010 /* LGNavigationSearchBar.h */,
 				8835B312207216DA00722010 /* LGNavigationSearchBar.m */,
 				8835B2FD2072131800722010 /* cell */,
@@ -2059,6 +2064,7 @@
 		88BCEDC920C65EC200B5C1DB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				88BCEDDE20C672B300B5C1DB /* other */,
 				88BCEDCE20C65EC200B5C1DB /* view */,
 				88BCEDCA20C65EC200B5C1DB /* HPHomeViewController.h */,
 				88BCEDCB20C65EC200B5C1DB /* HPHomeViewController.m */,
@@ -2079,6 +2085,26 @@
 				88BCEDD420C65EC200B5C1DB /* HPMicrolessonView.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		88BCEDDA20C665D100B5C1DB /* album */ = {
+			isa = PBXGroup;
+			children = (
+				88BCEDDB20C665ED00B5C1DB /* HPAlbumTableViewController.h */,
+				88BCEDDC20C665ED00B5C1DB /* HPAlbumTableViewController.m */,
+				88BCEDE320C67D6C00B5C1DB /* HPAlbumHeaderCell.h */,
+				88BCEDE420C67D6C00B5C1DB /* HPAlbumHeaderCell.m */,
+				88BCEDE620C67D7500B5C1DB /* HPAlbumHeaderCell.xib */,
+			);
+			path = album;
+			sourceTree = "<group>";
+		};
+		88BCEDDE20C672B300B5C1DB /* other */ = {
+			isa = PBXGroup;
+			children = (
+				88BCEDDF20C672DD00B5C1DB /* LGDidSelectedNotification.h */,
+			);
+			path = other;
 			sourceTree = "<group>";
 		};
 		88C5F14220B7E0D40075D5F2 /* microLesson */ = {
@@ -2668,6 +2694,7 @@
 				889FCD1B20B3E6560045746D /* DCRichTextBottomInfoView.xib in Resources */,
 				88FE68B4209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib in Resources */,
 				88A4712A207E02D4002F93E0 /* UserCenter.storyboard in Resources */,
+				88BCEDE720C67D7500B5C1DB /* HPAlbumHeaderCell.xib in Resources */,
 				884312AB2086F2D400321F84 /* EDJLeverInfoHeader.xib in Resources */,
 				88A4711A207DDCCA002F93E0 /* EDJMicroPartyLessonHeaderCell.xib in Resources */,
 				88CD739F20995A1B00E80058 /* HPBookInfoHeaderCell.xib in Resources */,
@@ -2901,7 +2928,6 @@
 				88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */,
 				881C94D22068ECF3009D6A52 /* UIImage+Extension.m in Sources */,
 				88D13C412090253200A32236 /* EDJSearchTagHeaderModel.m in Sources */,
-				8835B2F0207211B200722010 /* EDJHomeHeaderView.m in Sources */,
 				88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */,
 				884312D420873B2800321F84 /* UCSettingViewController.m in Sources */,
 				88ECF07220A01F290071A98A /* OLExamSingleFooterView.m in Sources */,
@@ -2967,6 +2993,7 @@
 				889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */,
 				88ECF07720A032340071A98A /* OLExamViewBottomBar.m in Sources */,
 				889E7DCD2099BB0A00BB9084 /* UCUploadCollectionViewFlowLayout.m in Sources */,
+				88BCEDE520C67D6C00B5C1DB /* HPAlbumHeaderCell.m in Sources */,
 				88EA131920AD1780007AB886 /* UCAccountHitModel.m in Sources */,
 				88435EA4208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m in Sources */,
 				88CD739D20995A1400E80058 /* HPBookInfoHeaderCell.m in Sources */,
@@ -3042,6 +3069,7 @@
 				88D13C3C209022EF00A32236 /* EDJSearchTagHeader.m in Sources */,
 				889FCCCA20B2BA9E0045746D /* DCSubStageCommentsCell.m in Sources */,
 				889FCC7A20B2587D0045746D /* DCStateContentsCell.m in Sources */,
+				88BCEDDD20C665ED00B5C1DB /* HPAlbumTableViewController.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,
 				88DD8147209C296A00F297D6 /* OLVoteDetailFooterView.m in Sources */,
 				88BCEDA720C2A0CA00B5C1DB /* IATConfig.m in Sources */,

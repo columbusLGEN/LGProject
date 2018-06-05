@@ -10,6 +10,8 @@
 #import "EDJMicroBuildCell.h"
 #import "EDJMicroBuildModel.h"
 
+#import "LGDidSelectedNotification.h"
+
 @interface HPBuildTableView ()<
 UITableViewDataSource
 ,UITableViewDelegate>
@@ -39,6 +41,14 @@ UITableViewDataSource
     CGFloat height = [EDJMicroBuildCell cellHeightWithModel:self.dataArray[indexPath.row]];
     return height;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    NSDictionary *dict = @{LGDidSelectedModelKey:model,
+                           LGDidSelectedSkipTypeKey:@(LGDidSelectedSkipTypeBuildNews),
+                           LGDidSelectedIndexKey:@(indexPath.row)
+                           };
+    [[NSNotificationCenter defaultCenter] postNotificationName:LGDidSelectedNotification object:nil userInfo:dict];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     if (self = [super initWithFrame:frame style:style]) {
@@ -50,14 +60,7 @@ UITableViewDataSource
         [self registerNib:[UINib nibWithNibName:buildCellOneImg bundle:nil] forCellReuseIdentifier:buildCellOneImg];
         [self registerNib:[UINib nibWithNibName:buildCellThreeImg bundle:nil] forCellReuseIdentifier:buildCellThreeImg];
 
-        //        self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        //            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        //                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //                    [self.mj_header endRefreshing];
-        //                    [self reloadData];
-        //                });
-        //            }];
-        //        }];
+        
     }
     return self;
 }
