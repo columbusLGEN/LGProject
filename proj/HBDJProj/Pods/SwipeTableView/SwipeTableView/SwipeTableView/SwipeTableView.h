@@ -26,7 +26,7 @@
    `MJRefresh` 为 `MJRefreshHeaderHeight`，`SVPullToRefresh` 为 `SVPullToRefreshViewHeight`
  */
 /*****************************************************************************************************/
-//#define ST_PULLTOREFRESH_HEADER_HEIGHT  60.0
+//#define ST_PULLTOREFRESH_HEADER_HEIGHT  54.0
 
 /**
  *  自定义显示在swipeView顶端的headerView，可以通过setter方法动态设置

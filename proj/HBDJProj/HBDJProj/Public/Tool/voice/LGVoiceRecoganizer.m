@@ -46,8 +46,8 @@
 
     resultFromJson = [ISRDataHelper stringFromJson:resultString];
 
-    [_voiceString appendString:resultFromJson];
-    NSLog(@"_voiceString -- %@",_voiceString);
+    [self.voiceString appendString:resultFromJson];
+    NSLog(@"print_voiceString -- %@",_voiceString);
 }
 
 //识别会话结束返回代理
@@ -56,8 +56,9 @@
 }
 //停止录音回调
 - (void) onEndOfSpeech{
-    NSLog(@"结束识别 -- ");
-    
+    NSDictionary *dict = @{LGVoiceRecoganizerTextKey:_voiceString};
+    [[NSNotificationCenter defaultCenter] postNotificationName:LGVoiceRecoganizerEndOfSpeechNotification object:nil userInfo:dict];
+    _voiceString = nil;
 }
 //开始录音回调
 - (void) onBeginOfSpeech{
@@ -92,7 +93,6 @@
         [_iFlySpeechRecognizer setParameter: @"iat" forKey: [IFlySpeechConstant IFLY_DOMAIN]];
         //asr_audio_path 是录音文件名，设置value为nil或者为空取消保存，默认保存目录在Library/cache下。
         [_iFlySpeechRecognizer setParameter:@"iat.pcm" forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
-        _voiceString = [[NSMutableString alloc] init];
         
     }
     return self;
@@ -107,5 +107,12 @@
         instance = [self new];
     });
     return instance;
-} 
+}
+
+- (NSMutableString *)voiceString{
+    if (!_voiceString) {
+        _voiceString = [[NSMutableString alloc] initWithCapacity:10];
+    }
+    return _voiceString;
+}
 @end

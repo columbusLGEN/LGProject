@@ -16,10 +16,6 @@
 
 @implementation EDJMicroPSCellFooter
 
-- (void)cellFooterClick:(UIGestureRecognizer *)recognizer{
-    NSLog(@"进入胡在哪集 -- ");
-}
-
 - (void)setupUI{
 //    self.userInteractionEnabled = YES;
     UIColor *lineColor = [UIColor EDJGrayscale_EC];
@@ -63,8 +59,6 @@
         make.width.mas_equalTo(lineWidth);
     }];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellFooterClick:)];
-    [self addGestureRecognizer:tap];
     
 }
 - (instancetype)initWithFrame:(CGRect)frame{

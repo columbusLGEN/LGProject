@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import <Masonry/Masonry.h>
 #import "UIImageView+WebCache.h"
+#import <MJRefresh/MJRefresh.h>
 
 // MARK: LG
 #import "LGDefines.h"
@@ -20,8 +21,6 @@
 #import "UIColor+EDJColor.h"
 #import "UIViewController+Extension.h"
 #import "LGDevice.h"
-
-//#import <UIKit/UIKit.h>
 
 #define HbdjPrefixHeader_pch
 

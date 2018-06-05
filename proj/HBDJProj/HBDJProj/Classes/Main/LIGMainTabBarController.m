@@ -29,7 +29,6 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
 - (void)viewDidLoad {
     [super viewDidLoad];
     /// HPHomeViewController
-    /// EDJHomeViewController
     /// MARK: 配置自控制器
     NSArray<NSDictionary *> *childVcSettings = @[
   @{vcClassKey:@"HPHomeViewController",

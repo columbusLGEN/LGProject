@@ -1,41 +1,61 @@
 //
-//  HPMicroLessonTableViewController.m
+//  HPAlbumTableViewController.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/6/1.
+//  Created by Peanut Lee on 2018/6/5.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "HPMicroLessonTableViewController.h"
-#import "EDJMicroPartyLessonSubCell.h"
+#import "HPAlbumTableViewController.h"
+
 #import "EDJMicroPartyLessionSubModel.h"
 
-@interface HPMicroLessonTableViewController ()
+#import "EDJMicroPartyLessonSubCell.h"
+#import "HPAlbumHeaderCell.h"
+
+@interface HPAlbumTableViewController ()
 
 @end
 
-@implementation HPMicroLessonTableViewController
+@implementation HPAlbumTableViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 90;
+    [self.tableView registerNib:[UINib nibWithNibName:albumListHeaderCell bundle:nil] forCellReuseIdentifier:albumListHeaderCell];
     [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
-    NSMutableArray *arr = [NSMutableArray array];
-    for (int i = 0; i < 20; i++) {
+    self.tableView.estimatedRowHeight = 90;
+    
+    NSMutableArray *arrm = [NSMutableArray array];
+    for (int i = 0; i < 10; i++) {
         EDJMicroPartyLessionSubModel *model = [EDJMicroPartyLessionSubModel new];
-        [arr addObject:model];
+        
+        if (i == 0) {
+            /// 第一个模型为header模型
+        }
+        
+        [arrm addObject:model];
     }
-    self.dataArray = arr.copy;
+    self.dataArray = arrm.copy;
     [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EDJMicroPartyLessionSubModel *model = self.dataArray[indexPath.row];
+    if (indexPath.row == 0) {
+        HPAlbumHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:albumListHeaderCell];
+        return cell;
+    }
     EDJMicroPartyLessonSubCell *cell = [tableView dequeueReusableCellWithIdentifier:microPartyLessonSubCell forIndexPath:indexPath];
     cell.model = model;
     return cell;

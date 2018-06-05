@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HPAlbumHeaderCell" rowHeight="401" id="EiQ-4f-gB9" customClass="HPAlbumHeaderCell">
+            <rect key="frame" x="0.0" y="0.0" width="592" height="401"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EiQ-4f-gB9" id="RVR-OP-lma">
+                <rect key="frame" x="0.0" y="0.0" width="592" height="400.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="eXZ-cr-e7d">
+                        <rect key="frame" x="0.0" y="0.0" width="592" height="233"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="233" id="sNk-6l-vcI"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMH-2q-O0v">
+                        <rect key="frame" x="15" y="252" width="562" height="77.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Xp-A2-oM4">
+                        <rect key="frame" x="0.0" y="348.5" width="592" height="8"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="8" id="IsT-H1-ICI"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rE9-KL-YZR">
+                        <rect key="frame" x="15" y="370.5" width="67" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="a9f-yC-CkS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="时间排序" image="home_album_list_time_sort">
+                            <color key="titleColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="timeSort:" destination="EiQ-4f-gB9" eventType="touchUpInside" id="a9H-EL-1Ly"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gMH-2q-O0v" firstAttribute="top" secondItem="eXZ-cr-e7d" secondAttribute="bottom" constant="19" id="04c-u2-TuX"/>
+                    <constraint firstItem="eXZ-cr-e7d" firstAttribute="leading" secondItem="RVR-OP-lma" secondAttribute="leading" id="3AP-5o-JXB"/>
+                    <constraint firstItem="gMH-2q-O0v" firstAttribute="leading" secondItem="RVR-OP-lma" secondAttribute="leading" constant="15" id="7FI-4b-BdT"/>
+                    <constraint firstItem="5Xp-A2-oM4" firstAttribute="leading" secondItem="eXZ-cr-e7d" secondAttribute="leading" id="7eZ-us-01R"/>
+                    <constraint firstItem="5Xp-A2-oM4" firstAttribute="trailing" secondItem="eXZ-cr-e7d" secondAttribute="trailing" id="96B-GE-1qt"/>
+                    <constraint firstItem="eXZ-cr-e7d" firstAttribute="top" secondItem="RVR-OP-lma" secondAttribute="top" id="BRu-Wc-Yy0"/>
+                    <constraint firstAttribute="bottom" secondItem="rE9-KL-YZR" secondAttribute="bottom" constant="10" id="Pyh-4G-R0I"/>
+                    <constraint firstAttribute="trailing" secondItem="eXZ-cr-e7d" secondAttribute="trailing" id="QsE-eL-fF6"/>
+                    <constraint firstItem="5Xp-A2-oM4" firstAttribute="top" secondItem="gMH-2q-O0v" secondAttribute="bottom" constant="19" id="RUA-yx-weT"/>
+                    <constraint firstItem="rE9-KL-YZR" firstAttribute="top" secondItem="5Xp-A2-oM4" secondAttribute="bottom" constant="14" id="bvm-lY-lX3"/>
+                    <constraint firstItem="rE9-KL-YZR" firstAttribute="leading" secondItem="gMH-2q-O0v" secondAttribute="leading" id="k0g-ph-f4S"/>
+                    <constraint firstAttribute="trailing" secondItem="gMH-2q-O0v" secondAttribute="trailing" constant="15" id="yQb-i7-Awf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="img" destination="eXZ-cr-e7d" id="e2l-tR-9U0"/>
+                <outlet property="text" destination="gMH-2q-O0v" id="TtY-eI-fHM"/>
+            </connections>
+            <point key="canvasLocation" x="-178" y="160.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="home_album_list_time_sort" width="17" height="12"/>
+        <image name="party_history" width="283" height="194"/>
+    </resources>
+</document>

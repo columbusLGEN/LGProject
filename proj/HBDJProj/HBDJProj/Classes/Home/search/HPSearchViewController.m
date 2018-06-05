@@ -11,14 +11,19 @@
 #import "HPVoiceSearchView.h"
 #import "HPSearchRequest.h"
 
+#import "LGVoiceRecoganizer.h"
+
 @interface HPSearchViewController ()<
 LGNavigationSearchBarDelelgate,
 UITextFieldDelegate,
 HPVoiceSearchViewDelegate>
 @property (strong,nonatomic) LGNavigationSearchBar *fakeNavgationBar;
 @property (strong,nonatomic) UITextField *textField;
+/** 语音搜索页面 */
 @property (strong,nonatomic) HPVoiceSearchView *vsView;
 @property (strong,nonatomic) NSString *searchContent;
+
+@property (strong,nonatomic) NSMutableString *voiceString;
 
 @end
 
@@ -47,8 +52,16 @@ HPVoiceSearchViewDelegate>
     
     // TODO: 先加一个大白板，搜索到结果后，将大白板删除
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lg_endOfSpeech:) name:LGVoiceRecoganizerEndOfSpeechNotification object:nil];
+    
 }
 
+#pragma mark - notifications
+- (void)lg_endOfSpeech:(NSNotification *)notification{
+    NSDictionary *dict = notification.userInfo;
+    NSString *voiceString = dict[LGVoiceRecoganizerTextKey];
+    self.textField.text = [NSString stringWithFormat:@"%@%@",self.textField.text,voiceString];
+}
 - (void)textFieldTextDidChange:(NSNotification *)notification{
     UITextField *obj = notification.object;
     _searchContent = obj.text;
@@ -67,22 +80,14 @@ HPVoiceSearchViewDelegate>
 
 #pragma - LGNavigationSearchBarDelelgate
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
-
-    if (!_textField) {
-        navigationSearchBar.isEditing = YES;
-        [self.view addSubview:self.textField];
-        CGRect frame = navigationSearchBar.fakeSearch.frame;
-        frame.size.width -= 25;
-        self.textField.frame = frame;
-        [self.textField becomeFirstResponder];
-    }
+    [self addTextFieldToNav:navigationSearchBar];
+    
 }
 - (void)leftButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
     [self lg_dismissViewController];
 }
 - (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
-    // TODO: 添加语音搜索页面，获取到搜索文字内容之后添加 textField
-    NSLog(@"语音搜索 -- ");
+    [self addTextFieldToNav:navigationSearchBar];
     if (!_vsView) {
         [self.view addSubview:self.vsView];
     }
@@ -98,7 +103,7 @@ HPVoiceSearchViewDelegate>
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self endInput];
+    [self.view endEditing:YES];
 }
 /** 发送搜索请求 */
 - (void)sendSearchRequest{
@@ -163,6 +168,18 @@ HPVoiceSearchViewDelegate>
 - (CGFloat)segmentTopMargin{
     return kNavSingleBarHeight + marginTen;
 }
+
+- (void)addTextFieldToNav:(LGNavigationSearchBar *)navigationSearchBar{
+    if (!_textField) {
+        navigationSearchBar.isEditing = YES;
+        [self.view addSubview:self.textField];
+        CGRect frame = navigationSearchBar.fakeSearch.frame;
+        frame.size.width -= 25;
+        self.textField.frame = frame;
+        [self.textField becomeFirstResponder];
+    }
+}
+
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
