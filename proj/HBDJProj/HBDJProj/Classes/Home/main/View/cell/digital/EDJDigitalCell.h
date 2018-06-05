@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @class EDJDigitalModel;
 
+static NSString * const digitalCell = @"EDJDigitalCell";
+
 @interface EDJDigitalCell : UICollectionViewCell
 @property (strong,nonatomic) EDJDigitalModel *model;
 

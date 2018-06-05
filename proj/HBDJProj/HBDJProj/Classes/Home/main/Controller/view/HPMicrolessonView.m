@@ -17,10 +17,12 @@ static NSString * const microHeaderCell = @"EDJMicroPartyLessonHeaderCell";
 UITableViewDataSource
 ,UITableViewDelegate>
 
-
 @end
 
 @implementation HPMicrolessonView
+
+/// 如果想要重写父类属性的setter，需要添加该行代码
+@synthesize dataArray = _dataArray;
 
 - (void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
@@ -39,7 +41,6 @@ UITableViewDataSource
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = [EDJMicroPartyLessonCell cellHeightWithModel:self.dataArray[indexPath.row]];
-    NSLog(@"zhuanjiheight -- %f -- %ld",height,indexPath.row);
     return height;
 }
 
@@ -50,10 +51,14 @@ UITableViewDataSource
         
         [self registerClass:[EDJMicroPartyLessonCell class] forCellReuseIdentifier:microCell];
         [self registerNib:[UINib nibWithNibName:microHeaderCell bundle:nil] forCellReuseIdentifier:microHeaderCell];
-//        self.header = [STRefreshHeader headerWithRefreshingBlock:^(STRefreshHeader *header) {
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [header endRefreshing];
-//            });
+        
+//        self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{                
+//                    [self.mj_header endRefreshing];
+//                    [self reloadData];
+//                });
+//            }];
 //        }];
     }
     return self;

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "STHeaderView.h"
 
+/// 配置 swipeTableView 的刷新控件高度
+//#define ST_PULLTOREFRESH_HEADER_HEIGHT 54.0
+
 @protocol SwipeTableViewDataSource;
 @protocol SwipeTableViewDelegate;
 @interface SwipeTableView : UIView
