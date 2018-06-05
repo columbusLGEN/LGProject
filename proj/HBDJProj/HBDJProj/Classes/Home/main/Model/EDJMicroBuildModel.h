@@ -8,10 +8,10 @@
 
 /// 党建要闻模型
 
-#import "LGBaseModel.h"
+#import "EDJMicroPartyLessionSubModel.h"
 @class EDJMicroPartyLessionSubModel;
 
-@interface EDJMicroBuildModel : LGBaseModel
+@interface EDJMicroBuildModel : EDJMicroPartyLessionSubModel
 
 @property (strong,nonatomic) NSArray *imgs;
 @property (strong,nonatomic) NSArray<EDJMicroPartyLessionSubModel *> *subNews;

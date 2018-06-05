@@ -37,4 +37,6 @@
 //#define NSLog(...)
 //#endif
 
+#define iFlyAppid @"5b0d04ef"
+
 

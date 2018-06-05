@@ -10,4 +10,8 @@
 
 @implementation EDJMicroLessionAlbumModel
 
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"classlist":@"EDJMicroPartyLessionSubModel"};
+}
+
 @end

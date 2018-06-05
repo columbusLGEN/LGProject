@@ -21,7 +21,7 @@
 
 - (NSString *)requestUrl{
 //    return @"/user/selectCountry";
-    return @"/frontLabel/select";
+    return @"/frontIndex/index";
 //    return @"/carouselfigure/select";
 }
 

@@ -7,7 +7,7 @@
 		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>DTCoreText.xcscheme</key>
 		<dict>
@@ -69,10 +69,15 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
-		<key>YYText.xcscheme</key>
+		<key>SwipeTableView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>14</integer>
+		</dict>
+		<key>YYText.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
 		</dict>
 	</dict>
 </dict>

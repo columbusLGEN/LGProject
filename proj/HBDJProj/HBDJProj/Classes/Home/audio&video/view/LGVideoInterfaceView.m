@@ -7,16 +7,37 @@
 //
 
 #import "LGVideoInterfaceView.h"
+#import "UIImage+Extension.h"
 
 @interface LGVideoInterfaceView ()
 @property (strong,nonatomic) UILabel *currentTime;
-@property (strong,nonatomic) UIProgressView *progress;
 @property (strong,nonatomic) UILabel *totalTime;
 @property (strong,nonatomic) UIButton *allScreen;
 
 @end
 
 @implementation LGVideoInterfaceView
+
+- (void)setCurTimeStr:(NSString *)curTimeStr{
+    _curTimeStr = curTimeStr;
+    [_currentTime setText:curTimeStr];
+}
+- (void)setTotTimeStr:(NSString *)totTimeStr{
+    _totTimeStr = totTimeStr;
+    [_totalTime setText:totTimeStr];
+}
+
+- (void)fullScreenPlay:(UIButton *)sender{
+    if ([self.delegate_fullScreen respondsToSelector:@selector(videoInterfaceIViewFullScreenClick:)]) {
+        [self.delegate_fullScreen videoInterfaceIViewFullScreenClick:self];
+    }
+}
+
+- (void)progressValueChanged:(UISlider *)progress{
+    if ([self.delegate respondsToSelector:@selector(userDragProgress:value:)]) {
+        [self.delegate userDragProgress:self value:progress.value];
+    }
+}
 
 - (void)setupUI{
     [self addSubview:self.currentTime];
@@ -73,11 +94,15 @@
     }
     return _totalTime;
 }
-- (UIProgressView *)progress{
+- (UISlider *)progress{
     if (!_progress) {
-        _progress = [UIProgressView new];
+        _progress = [UISlider new];
         _progress.tintColor = [UIColor whiteColor];
-        _progress.progress = 0.7;
+        [_progress setThumbImage:[UIImage rectImageWithSize:CGSizeMake(2, 2)
+                                                      color:[UIColor whiteColor]]
+                        forState:UIControlStateNormal];
+        _progress.value = 0.0;
+        [_progress addTarget:self action:@selector(progressValueChanged:) forControlEvents:UIControlEventValueChanged];
         
     }
     return _progress;
@@ -85,7 +110,9 @@
 - (UIButton *)allScreen{
     if (!_allScreen) {
         _allScreen = [UIButton new];
-        [_allScreen setImage:[UIImage imageNamed:@"home_video_inte_all_screen"] forState:UIControlStateNormal];
+        [_allScreen setImage:[UIImage imageNamed:@"home_video_inte_all_screen"]
+                    forState:UIControlStateNormal];
+        [_allScreen addTarget:self action:@selector(fullScreenPlay:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _allScreen;
 }

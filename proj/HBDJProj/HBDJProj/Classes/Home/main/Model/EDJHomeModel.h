@@ -9,7 +9,7 @@
 #import "LGBaseModel.h"
 @class EDJHomeImageLoopModel,
 EDJMicroBuildModel,
-EDJMicroPartyLessionSubModel,
+EDJMicroLessionAlbumModel,
 EDJDigitalModel;
 
 @interface EDJHomeModel : LGBaseModel
@@ -17,7 +17,7 @@ EDJDigitalModel;
 /** 图片轮播 */
 @property (strong,nonatomic) NSArray<EDJHomeImageLoopModel *> *imageLoops;
 /** 微党课 */
-@property (strong,nonatomic) NSArray<EDJMicroPartyLessionSubModel *> *microLessons;
+@property (strong,nonatomic) NSArray<EDJMicroLessionAlbumModel *> *microLessons;
 /** 党建要闻 */
 @property (strong,nonatomic) NSArray<EDJMicroBuildModel *> *pointNews;
 /** 数字阅读 */

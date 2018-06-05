@@ -7,13 +7,29 @@
 //
 
 #import "LGBaseModel.h"
+#import <MJExtension/MJExtension.h>
 
 @implementation LGBaseModel
+
+- (NSString *)cover{
+    if ([_cover componentsSeparatedByString:@","].count == 1) {
+        return [[_cover componentsSeparatedByString:@","] firstObject];
+    }else{
+        return _cover;
+    }
+}
+
++ (NSArray *)arrayWithResponseObject:(id)object{
+    
+    return nil;
+}
++ (instancetype)modelWithResponseObject:(id)object{
+    return [self mj_objectWithKeyValues:object];
+}
 
 + (NSArray *)loadLocalPlist{
     return nil;
 }
-
 + (NSArray *)loadLocalPlistWithPlistName:(NSString *)plistName{
     NSString *path = [[NSBundle mainBundle] pathForResource:plistName ofType:@"plist"];
     NSArray *array = [NSArray arrayWithContentsOfFile:path];

@@ -16,22 +16,11 @@
 
 @implementation LGBaseRequest
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        /// TODO: 处理请求返回值
-        self.requestSuccess = ^(id responseObject) {
-            NSLog(@"base request responseObject -- %@",responseObject);
-            /// 请求成功
-                /// 请求接口情况
-            
-            
-        };
-        self.networkFailure = ^(NSError *error) {
-            /// 请求失败
-            NSLog(@"base request error -- %@",error);
-        };
+- (instancetype)initWithSuccess:(LGRequestSuccess)success failure:(LGRequestFailure)failure networkFailure:(NetworkFailure)networkFailure{
+    if (self = [super init]) {
+        self.requestSuccess = success;
+        self.requestFailure = failure;
+        self.networkFailure = networkFailure;
     }
     return self;
 }
@@ -48,12 +37,18 @@
 }
 - (id)requestArguments{
     /// TODO: 计算 params 的 md5
+//    NSLog(@"self.subParams -- %@",self.subParams);
     return @{@"md5":@"md5",
              @"params":self.subParams
              };
 }
-- (id)subParams{
-    return nil;
+- (NSMutableDictionary *)subParams{
+    NSDictionary *dict = @{@"imei":@"imei"
+                           ,@"imsi":@"imsi"
+                           ,@"userid":@"0"
+                           };
+    NSMutableDictionary *subParams = [NSMutableDictionary dictionaryWithDictionary:dict];
+    return subParams;
 }
 - (LGRequestSerializerType)requestSerializerType{
     /// 默认发送请求的 参数格式为 JSON

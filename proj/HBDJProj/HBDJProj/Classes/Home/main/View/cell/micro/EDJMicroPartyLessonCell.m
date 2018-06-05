@@ -120,6 +120,7 @@ UITableViewDataSource>
 
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    NSLog(@"_model.subNews.count -- %ld",_model.subNews.count);
     return _model.subNews.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -16,8 +16,6 @@ static CGFloat buttonHeight = 30;
 @property (strong,nonatomic) UIButton *leftButton;
 /** 导航栏右按钮 */
 @property (strong,nonatomic) UIButton *rightButton;
-/** 搜索按钮 */
-@property (strong,nonatomic) UIButton *fakeSearch;
 /** 搜搜框右按钮,例如:语音搜索按钮,放在fakesearch之上的 */
 @property (strong,nonatomic) UIButton *searchRightBtn;
 
@@ -26,6 +24,11 @@ static CGFloat buttonHeight = 30;
 @implementation LGNavigationSearchBar
 
 #pragma mark - target
+- (void)leftButtonClick:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(leftButtonClick:)]) {
+        [self.delegate leftButtonClick:self];
+    }
+}
 /// MARK: 设置导航栏的背景色状态
 - (void)setBgdsState:(NavState)bgdsState{
     _bgdsState = bgdsState;
@@ -38,7 +41,6 @@ static CGFloat buttonHeight = 30;
             break;
     }
 }
-
 /// MARK: 点击搜索
 - (void)searchClick:(UIButton *)bsender{
     if ([self.delegate respondsToSelector:@selector(navSearchClick:)]) {
@@ -46,7 +48,11 @@ static CGFloat buttonHeight = 30;
     }
 }
 /// MARK: 点击语音助手
-//- (void)
+- (void)voiceSearchClick:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(voiceButtonClick:)]) {
+        [self.delegate voiceButtonClick:self];
+    }
+}
 /// MARK: 点击右按钮
 - (void)rightButtonClick:(UIButton *)sender{
     if ([self.delegate respondsToSelector:@selector(navRightButtonClick:)]) {
@@ -89,6 +95,20 @@ static CGFloat buttonHeight = 30;
     [_rightButton setTitle:rightButtonTitle forState:UIControlStateNormal];
     [_rightButton setTitleColor:[UIColor EDJGrayscale_33] forState:UIControlStateNormal];
 }
+- (void)setLeftImgName:(NSString *)leftImgName{
+    [self.leftButton setImage:[UIImage imageNamed:leftImgName]
+                     forState:UIControlStateNormal];
+}
+- (void)setIsEditing:(BOOL)isEditing{
+    if (isEditing) {
+        [self.fakeSearch setTitle:nil forState:UIControlStateNormal];
+        [self.fakeSearch setImage:nil forState:UIControlStateNormal];
+    }else{
+        [self.fakeSearch setTitle:@"搜索你想要的" forState:UIControlStateNormal];
+        [self.fakeSearch setImage:[UIImage imageNamed:@"home_nav_search"]
+                         forState:UIControlStateNormal];
+    }
+}
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -123,8 +143,9 @@ static CGFloat buttonHeight = 30;
 - (UIButton *)leftButton{
     if (_leftButton == nil) {
         _leftButton = [[UIButton alloc] init];
-        [_leftButton setBackgroundImage:[UIImage imageNamed:@"home_nav_logo"] forState:UIControlStateNormal];
+        [_leftButton setImage:[UIImage imageNamed:@"home_nav_logo"] forState:UIControlStateNormal];
         _leftButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_leftButton addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftButton;
 }
@@ -155,6 +176,7 @@ static CGFloat buttonHeight = 30;
         _searchRightBtn = [[UIButton alloc] init];
         [_searchRightBtn setBackgroundImage:[UIImage imageNamed:@"home_nav_voice"]
                                       forState:UIControlStateNormal];
+        [_searchRightBtn addTarget:self action:@selector(voiceSearchClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchRightBtn;
 }

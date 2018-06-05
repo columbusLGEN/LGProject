@@ -30,14 +30,6 @@ SDCycleScrollViewDelegate>
 
 - (void)setupUI{
     self.backgroundColor = [UIColor clearColor];
-    /// MARK: 搜索框
-//    [self addSubview:self.nav];
-//    [self.nav mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.mas_top);
-//        make.left.equalTo(self.mas_left);
-//        make.width.equalTo(@(kScreenWidth));
-//        make.height.equalTo(@(navHeight()));
-//    }];
     /// MARK: 轮播图
     [self addSubview:self.imgLoop];
     [self.imgLoop mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,12 +53,7 @@ SDCycleScrollViewDelegate>
     }
     return self;
 }
-- (LGNavigationSearchBar *)nav{
-    if (_nav == nil) {
-        _nav = [[LGNavigationSearchBar alloc] init];
-    }
-    return _nav;
-}
+
 - (SDCycleScrollView *)imgLoop{
     if (_imgLoop == nil) {
         _imgLoop = [[SDCycleScrollView alloc] initWithFrame:CGRectZero];
