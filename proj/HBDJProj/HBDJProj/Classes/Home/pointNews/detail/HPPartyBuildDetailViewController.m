@@ -102,6 +102,13 @@ DTLazyImageViewDelegate>
                                  }]];
     
     [self.view addSubview:pbdBottom];
+    
+    /// 点赞收藏接口测试
+    [DJNetworkManager homeLikeSeqid:@"173" add:NO praisetype:1 success:^(id responseObj) {
+        NSLog(@"homeLikeSeqid -- %@",responseObj);
+    } failure:^(id failureObj) {
+        
+    } collect:NO];
 }
 
 #pragma mark - LGThreeRightButtonViewDelegate

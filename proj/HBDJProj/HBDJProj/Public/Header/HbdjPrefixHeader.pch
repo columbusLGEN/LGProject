@@ -13,7 +13,6 @@
 #import "UIImageView+WebCache.h"
 #import <MJRefresh/MJRefresh.h>
 
-// MARK: LG
 #import "LGDefines.h"
 #import "LBCConstant.h"
 #import "UIColor+Extension.h"
@@ -21,6 +20,7 @@
 #import "UIColor+EDJColor.h"
 #import "UIViewController+Extension.h"
 #import "LGDevice.h"
+#import "DJNetworkManager.h"
 
 #define HbdjPrefixHeader_pch
 

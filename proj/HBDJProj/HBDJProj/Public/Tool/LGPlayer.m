@@ -8,8 +8,9 @@
 
 #import "LGPlayer.h"
 
-static NSString * const testVideo = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsHf3GAVgJbAV8r1CUcVnM073.mp4";
-static NSString * const testAudio = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsHgSSAAvg8AHi9Md52w6k496.mp3";
+/// 音视频测试链接
+static NSString * const testVideo = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXS3WAMVzsAV8r1CUcVnM988.mp4";
+static NSString * const testAudio = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXSx2ARepGAHi9Md52w6k161.mp3";
 
 @interface LGPlayer ()<
 PLPlayerDelegate>

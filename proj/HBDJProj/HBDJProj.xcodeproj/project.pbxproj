@@ -197,6 +197,9 @@
 		88BCEDDD20C665ED00B5C1DB /* HPAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDDC20C665ED00B5C1DB /* HPAlbumTableViewController.m */; };
 		88BCEDE520C67D6C00B5C1DB /* HPAlbumHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDE420C67D6C00B5C1DB /* HPAlbumHeaderCell.m */; };
 		88BCEDE720C67D7500B5C1DB /* HPAlbumHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BCEDE620C67D7500B5C1DB /* HPAlbumHeaderCell.xib */; };
+		88BCEDEA20C7A5E600B5C1DB /* HPXzxPointNewsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDE920C7A5E500B5C1DB /* HPXzxPointNewsRequest.m */; };
+		88BCEDEE20C7A6E100B5C1DB /* LGNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDED20C7A6E100B5C1DB /* LGNetworkManager.m */; };
+		88BCEDF420C7B4DE00B5C1DB /* DJNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCEDF320C7B4DE00B5C1DB /* DJNetworkManager.m */; };
 		88C5F13B20B7DC280075D5F2 /* EDJHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F13A20B7DC280075D5F2 /* EDJHomeModel.m */; };
 		88C5F13E20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F13D20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.m */; };
 		88C5F14120B7E08D0075D5F2 /* EDJMicroLessionAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F14020B7E08D0075D5F2 /* EDJMicroLessionAlbumModel.m */; };
@@ -703,6 +706,12 @@
 		88BCEDE320C67D6C00B5C1DB /* HPAlbumHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAlbumHeaderCell.h; sourceTree = "<group>"; };
 		88BCEDE420C67D6C00B5C1DB /* HPAlbumHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAlbumHeaderCell.m; sourceTree = "<group>"; };
 		88BCEDE620C67D7500B5C1DB /* HPAlbumHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAlbumHeaderCell.xib; sourceTree = "<group>"; };
+		88BCEDE820C7A5E500B5C1DB /* HPXzxPointNewsRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPXzxPointNewsRequest.h; sourceTree = "<group>"; };
+		88BCEDE920C7A5E500B5C1DB /* HPXzxPointNewsRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPXzxPointNewsRequest.m; sourceTree = "<group>"; };
+		88BCEDEC20C7A6E100B5C1DB /* LGNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNetworkManager.h; sourceTree = "<group>"; };
+		88BCEDED20C7A6E100B5C1DB /* LGNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNetworkManager.m; sourceTree = "<group>"; };
+		88BCEDF220C7B4DE00B5C1DB /* DJNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJNetworkManager.h; sourceTree = "<group>"; };
+		88BCEDF320C7B4DE00B5C1DB /* DJNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJNetworkManager.m; sourceTree = "<group>"; };
 		88C5F13920B7DC280075D5F2 /* EDJHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeModel.h; sourceTree = "<group>"; };
 		88C5F13A20B7DC280075D5F2 /* EDJHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJHomeModel.m; sourceTree = "<group>"; };
 		88C5F13C20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeImageLoopModel.h; sourceTree = "<group>"; };
@@ -1091,6 +1100,7 @@
 		881C94C12068EC8D009D6A52 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				88BCEDEB20C7A6B200B5C1DB /* LGNetworkManager */,
 				887773FA20C0F7390011DFF3 /* LGLocalFileManage */,
 				889FCC6D20B255430045746D /* LGNetworking */,
 				88EA132D20AD5314007AB886 /* LGHTMLParser.h */,
@@ -1214,8 +1224,8 @@
 		881C94EA2068F362009D6A52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				88BCEDDA20C665D100B5C1DB /* album */,
 				88435EB1208F15A900188CE9 /* main */,
+				88BCEDDA20C665D100B5C1DB /* album */,
 				889FCD2120B3FA430045746D /* audio&video */,
 				88CD7391209958D500E80058 /* bookInfo */,
 				88435EB0208F158100188CE9 /* search */,
@@ -1390,7 +1400,6 @@
 			isa = PBXGroup;
 			children = (
 				8885D23220A2BBE600DC06A1 /* detail */,
-				8831E1A120946FCB001D038E /* other */,
 				8831E19E20946FBD001D038E /* controller */,
 				8831E1A020946FC8001D038E /* view */,
 			);
@@ -1402,6 +1411,8 @@
 			children = (
 				8831E1A220947000001D038E /* HPPointNewsTableViewController.h */,
 				8831E1A320947000001D038E /* HPPointNewsTableViewController.m */,
+				88BCEDE820C7A5E500B5C1DB /* HPXzxPointNewsRequest.h */,
+				88BCEDE920C7A5E500B5C1DB /* HPXzxPointNewsRequest.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1414,13 +1425,6 @@
 				8831E1B02094708A001D038E /* HPPointNewsHeader.xib */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		8831E1A120946FCB001D038E /* other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = other;
 			sourceTree = "<group>";
 		};
 		8835B2BC207209EA00722010 /* View */ = {
@@ -2064,12 +2068,12 @@
 		88BCEDC920C65EC200B5C1DB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				88BCEDDE20C672B300B5C1DB /* other */,
-				88BCEDCE20C65EC200B5C1DB /* view */,
 				88BCEDCA20C65EC200B5C1DB /* HPHomeViewController.h */,
 				88BCEDCB20C65EC200B5C1DB /* HPHomeViewController.m */,
 				88BCEDCC20C65EC200B5C1DB /* HPMicrolessonViewController.h */,
 				88BCEDCD20C65EC200B5C1DB /* HPMicrolessonViewController.m */,
+				88BCEDDE20C672B300B5C1DB /* other */,
+				88BCEDCE20C65EC200B5C1DB /* view */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2077,12 +2081,12 @@
 		88BCEDCE20C65EC200B5C1DB /* view */ = {
 			isa = PBXGroup;
 			children = (
+				88BCEDD320C65EC200B5C1DB /* HPMicrolessonView.h */,
+				88BCEDD420C65EC200B5C1DB /* HPMicrolessonView.m */,
 				88BCEDCF20C65EC200B5C1DB /* HPBuildTableView.h */,
 				88BCEDD020C65EC200B5C1DB /* HPBuildTableView.m */,
 				88BCEDD120C65EC200B5C1DB /* HPDigitalCollectionView.h */,
 				88BCEDD220C65EC200B5C1DB /* HPDigitalCollectionView.m */,
-				88BCEDD320C65EC200B5C1DB /* HPMicrolessonView.h */,
-				88BCEDD420C65EC200B5C1DB /* HPMicrolessonView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2105,6 +2109,17 @@
 				88BCEDDF20C672DD00B5C1DB /* LGDidSelectedNotification.h */,
 			);
 			path = other;
+			sourceTree = "<group>";
+		};
+		88BCEDEB20C7A6B200B5C1DB /* LGNetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				88BCEDEC20C7A6E100B5C1DB /* LGNetworkManager.h */,
+				88BCEDED20C7A6E100B5C1DB /* LGNetworkManager.m */,
+				88BCEDF220C7B4DE00B5C1DB /* DJNetworkManager.h */,
+				88BCEDF320C7B4DE00B5C1DB /* DJNetworkManager.m */,
+			);
+			path = LGNetworkManager;
 			sourceTree = "<group>";
 		};
 		88C5F14220B7E0D40075D5F2 /* microLesson */ = {
@@ -2899,6 +2914,7 @@
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				88DD8142209C246B00F297D6 /* OLVoteDetailHeaderView.m in Sources */,
 				88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */,
+				88BCEDEA20C7A5E600B5C1DB /* HPXzxPointNewsRequest.m in Sources */,
 				8885D23E20A2EC7600DC06A1 /* LGSegmentBottomView.m in Sources */,
 				88FE68BC209B05F5008C28A0 /* OLVoteListController.m in Sources */,
 				884312E32089879C00321F84 /* UCHelpFadebackTableViewCell.m in Sources */,
@@ -2918,6 +2934,7 @@
 				88A470FA207C8615002F93E0 /* LGImageView.m in Sources */,
 				88BCEDD920C65EC200B5C1DB /* HPMicrolessonView.m in Sources */,
 				8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */,
+				88BCEDEE20C7A6E100B5C1DB /* LGNetworkManager.m in Sources */,
 				88ECF060209FF6D30071A98A /* OLExamSingleTableViewCell.m in Sources */,
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
 				88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */,
@@ -2951,6 +2968,7 @@
 				884312CB2087380700321F84 /* UCMsgTableViewCell.m in Sources */,
 				88FE68A8209ABD60008C28A0 /* OLMindReportModel.m in Sources */,
 				88C5F14120B7E08D0075D5F2 /* EDJMicroLessionAlbumModel.m in Sources */,
+				88BCEDF420C7B4DE00B5C1DB /* DJNetworkManager.m in Sources */,
 				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
 				88C5F16720B7FF670075D5F2 /* HPAudioPlayerView.m in Sources */,
 				88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */,
@@ -3235,7 +3253,10 @@
 					"$(PROJECT_DIR)/HBDJProj",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PODS_ROOT)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3322,7 +3343,10 @@
 					"$(PROJECT_DIR)/HBDJProj",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PODS_ROOT)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

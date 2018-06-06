@@ -1,24 +1,22 @@
-
 //
-//  EDJHomeIndexRequest.m
+//  HPXzxPointNewsRequest.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/5/30.
+//  Created by Peanut Lee on 2018/6/6.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "EDJHomeIndexRequest.h"
+#import "HPXzxPointNewsRequest.h"
 
-@implementation EDJHomeIndexRequest
+@implementation HPXzxPointNewsRequest
 
 - (NSString *)requestUrl{
-    return @"/frontIndex/index";
+    return @"/frontNews/selectList";
 }
 
 - (NSMutableDictionary *)subParams{
     NSMutableDictionary *dict = [super subParams];
-    
-    
+//    dict[@"classid"] = @"";
     return dict;
 }
 

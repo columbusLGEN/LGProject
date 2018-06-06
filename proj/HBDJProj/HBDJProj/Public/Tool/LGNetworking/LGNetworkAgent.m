@@ -60,7 +60,6 @@
 }
 
 - (void)handleRequestResult:(NSURLSessionTask *)dataTask responseObject:(id)responseObject error:(NSError *)error lg_request:(LGBaseRequest *)lg_request{
-    /// TODO: 统一处理返回值，分发数据？
     LGResponseModel *model = [LGResponseModel mj_objectWithKeyValues:responseObject];
     if (model.result == 0) {/// 成功
         if (lg_request.requestSuccess) lg_request.requestSuccess(model.returnJson);

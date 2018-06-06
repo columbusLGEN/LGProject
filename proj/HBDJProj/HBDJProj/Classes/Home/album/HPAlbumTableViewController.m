@@ -43,6 +43,8 @@
     }
     self.dataArray = arrm.copy;
     [self.tableView reloadData];
+    
+    
 }
 
 #pragma mark - Table view data source

@@ -6,8 +6,9 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGBaseCollectionView.h"
+#import "STCollectionView.h"
 
-@interface HPDigitalCollectionView : LGBaseCollectionView
+@interface HPDigitalCollectionView : STCollectionView
+@property (strong,nonatomic) NSArray *dataArray;
 
 @end

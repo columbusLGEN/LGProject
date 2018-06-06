@@ -18,14 +18,13 @@
             // Fallback on earlier versions
         }
         
-//        self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    [self.mj_header endRefreshing];
-//                    [self reloadData];
-//                });
-//            }];
-//        }];
+        self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.mj_header endRefreshing];
+                });
+            }];
+        }];
     
     }
     return self;

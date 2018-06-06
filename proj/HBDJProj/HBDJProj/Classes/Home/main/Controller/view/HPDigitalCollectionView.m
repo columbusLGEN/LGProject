@@ -13,15 +13,12 @@
 #import "LGDidSelectedNotification.h"
 
 @interface HPDigitalCollectionView ()<
-UICollectionViewDelegate
-,UICollectionViewDataSource>
-
+STCollectionViewDelegate
+,STCollectionViewDataSource>
 
 @end
 
 @implementation HPDigitalCollectionView
-
-@synthesize dataArray = _dataArray;
 
 - (void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
@@ -29,16 +26,29 @@ UICollectionViewDelegate
     
 }
 
-#pragma mark - UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+#pragma mark - STCollectionViewDataSource
+- (NSInteger)stCollectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _dataArray.count;
 }
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)stCollectionView:(STCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     EDJDigitalModel *model = _dataArray[indexPath.item];
     EDJDigitalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:digitalCell forIndexPath:indexPath];
     cell.model = model;
     return cell;
 }
+#pragma mark - STCollectionViewFlowLayoutDelegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView layout:(STCollectionViewFlowLayout *)layout numberOfColumnsInSection:(NSInteger)section {
+    return 3;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(kScreenWidth / 3, 133 + 48);
+}
+#pragma mark - UICollectionViewDataSource
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+//}
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+//}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     EDJDigitalModel *model = self.dataArray[indexPath.row];
     NSDictionary *dict = @{LGDidSelectedModelKey:model,
@@ -47,14 +57,33 @@ UICollectionViewDelegate
     [[NSNotificationCenter defaultCenter] postNotificationName:LGDidSelectedNotification object:nil userInfo:dict];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout{
-    if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
-        self.dataSource = self;
-        self.delegate = self;
-        [self registerNib:[UINib nibWithNibName:digitalCell bundle:nil]
-          forCellWithReuseIdentifier:digitalCell];
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self commonInit];
     }
     return self;
 }
+- (void)commonInit{
+    self.backgroundColor = [UIColor whiteColor];
+    /// MARK: 修改layout的相关值
+    //    STCollectionViewFlowLayout * layout = self.st_collectionViewLayout;
+    //    layout.minimumInteritemSpacing = 5;
+    //    layout.minimumLineSpacing = 5;
+    //    layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    
+    self.stDelegate = self;
+    self.stDataSource = self;
+    
+    [self registerNib:[UINib nibWithNibName:digitalCell bundle:nil] forCellWithReuseIdentifier:digitalCell];
+    
+    self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.mj_header endRefreshing];
+            });
+        }];
+    }];
+}
+
 
 @end

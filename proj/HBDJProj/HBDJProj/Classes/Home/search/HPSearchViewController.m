@@ -60,7 +60,11 @@ HPVoiceSearchViewDelegate>
 - (void)lg_endOfSpeech:(NSNotification *)notification{
     NSDictionary *dict = notification.userInfo;
     NSString *voiceString = dict[LGVoiceRecoganizerTextKey];
-    self.textField.text = [NSString stringWithFormat:@"%@%@",self.textField.text,voiceString];
+    /// 去掉标点符号
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"。，@／：；（）¥「」＂、[]{}#%-*+=_\\|~＜＞$€^•'@#$%^&*()_+'\""];
+    NSString *trimmedString = [voiceString stringByTrimmingCharactersInSet:set];
+    
+    self.textField.text = [NSString stringWithFormat:@"%@%@",self.textField.text,trimmedString];
 }
 - (void)textFieldTextDidChange:(NSNotification *)notification{
     UITextField *obj = notification.object;
@@ -110,16 +114,32 @@ HPVoiceSearchViewDelegate>
     [self.view endEditing:YES];
     /// TODO: 发送搜索请求
 //    _searchContent
-    HPSearchRequest *searchRequest = [[HPSearchRequest alloc] initWithContent:_searchContent type:0 offset:@"0" length:@"1" success:^(id responseObject) {
-        NSLog(@"responseObject -- %@",responseObject);
+    
+    /** type: 默认传0
+     1:微党课
+     2:党建要闻
+     */
+    [DJNetworkManager homeSearchWithString:_searchContent type:0 offset:0 length:1 sort:0 success:^(id responseObj) {
         /// TODO: 刷新子可控制器视图
+
+        NSArray *classes = responseObj[@"classes"];
+        NSArray *news = responseObj[@"news"];
+        NSLog(@"lectureSearch_classes -- %@",classes);
+        NSLog(@"lectureSearch_news -- %@",news);
         
-    } failure:^(id faillureObject) {
-        NSLog(@"faillureObject -- %@",faillureObject);
-    } networkFailure:^(NSError *error) {
-        NSLog(@"error -- %@",error);
+    } failure:^(id failureObj) {
+        NSLog(@"faillureObject -- %@",failureObj);
+        
     }];
-    [searchRequest start];
+//    HPSearchRequest *searchRequest = [[HPSearchRequest alloc] initWithContent:_searchContent type:0 offset:@"0" length:@"1" success:^(id responseObject) {
+//
+//    } failure:^(id faillureObject) {
+//        
+//    } networkFailure:^(NSError *error) {
+//        NSLog(@"error -- %@",error);
+//    }];
+//    [searchRequest start];
+    
 }
 /** 退出输入状态 */
 - (void)endInput{

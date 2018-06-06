@@ -13,10 +13,10 @@
 
 #import <SDCycleScrollView/SDCycleScrollView.h>
 #import <SwipeTableView/SwipeTableView.h>
+
 #import "HPMicrolessonView.h"
 #import "HPBuildTableView.h"
 #import "HPDigitalCollectionView.h"
-#import "EDJHomeDigitalsFlowLayout.h"
 
 #import "EDJHomeModel.h"
 #import "EDJMicroBuildModel.h"
@@ -46,8 +46,6 @@ SwipeTableViewDataSource
 @property (strong,nonatomic) HPMicrolessonView *microlessonTableView;
 @property (strong,nonatomic) LGSegmentControl *segment;
 @property (weak,nonatomic) LGNavigationSearchBar *fakeNav;
-
-@property (strong,nonatomic) EDJHomeDigitalsFlowLayout *flowLayout;
 
 /** 图片轮播模型 */
 @property (strong,nonatomic) NSArray *imageLoops;
@@ -135,29 +133,141 @@ SwipeTableViewDataSource
         [self.swipeTableView reloadData];
     });
     
-    /// TODO: 接口调试
-    EDJHomeIndexRequest *request = [[EDJHomeIndexRequest alloc] initWithSuccess:^(id responseObject) {
-        NSLog(@"indexsuccess -- %@",responseObject);
-        EDJHomeModel *model = [EDJHomeModel modelWithResponseObject:responseObject];
-        self.imageLoops = model.imageLoops;
-        //        model.microLessons;
-        //        model.pointNews;
-        //        model.digitals;
+    /// TODO: 首页接口调试
+    [DJNetworkManager homeIndexWithSuccess:^(id responseObj) {
+       NSLog(@"homeindexsuccess -- %@",responseObj);
         
-    } failure:^(id faillureObject) {
-        NSLog(@"indexfailue -- %@",faillureObject);
-    } networkFailure:^(NSError *error) {
-        NSLog(@"neterror -- %@",error);
+    } failure:^(id failureObj) {
+       NSLog(@"homeindexfailure -- %@",failureObj);
+        
     }];
-    [request start];
+    /// TODO: 要闻列表加载更多???
+    /// TODO: 数字阅读加载更多???
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectedModel:) name:LGDidSelectedNotification object:nil];
 }
 
+#pragma mark - SwipeTableView M
+- (NSInteger)numberOfItemsInSwipeTableView:(SwipeTableView *)swipeView {
+    return 3;
+}
+- (UIScrollView *)swipeTableView:(SwipeTableView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIScrollView *)view {
+    CGRect rect = swipeView.bounds;
+    rect.size.height -= kTabBarHeight ;
+    if (index == 0) {
+        HPMicrolessonView *tableview = [[HPMicrolessonView alloc] initWithFrame:rect style:UITableViewStylePlain];
+        tableview.dataArray = self.microModels.copy;
+        view = tableview;
+        
+    }else if (index == 1) {
+        /// 返回党建要闻
+        HPBuildTableView *tableview = [[HPBuildTableView alloc] initWithFrame:rect style:UITableViewStylePlain];
+        tableview.dataArray = self.buildModels.copy;
+        view = tableview;
+        
+    }else{
+        /// 返回数字阅读
+        rect.origin.y += 10;
+        rect.size.height -= 10;
+        HPDigitalCollectionView *collectionView = [[HPDigitalCollectionView alloc] initWithFrame:rect];
+        
+        collectionView.dataArray = self.digitalModels.copy;
+        view = collectionView;
+        
+    }
+    [self configRefreshHeaderForItem:view];
+    return view;
+}
+- (void)swipeTableViewDidEndDecelerating:(SwipeTableView *)swipeView{
+    [self.segment elfAnimateWithIndex:swipeView.currentItemIndex];
+}
+/**
+ *  以下两个代理，在未定义宏 #define ST_PULLTOREFRESH_HEADER_HEIGHT，并自定义下拉刷新的时候，必须实现
+ *  如果设置了下拉刷新的宏，以下代理可根据需要实现即可
+ */
+- (BOOL)swipeTableView:(SwipeTableView *)swipeTableView shouldPullToRefreshAtIndex:(NSInteger)index {
+    return YES;
+}
+- (CGFloat)swipeTableView:(SwipeTableView *)swipeTableView heightForRefreshHeaderAtIndex:(NSInteger)index {
+    return MJRefreshHeaderHeight;
+}
+- (void)configRefreshHeaderForItem:(UIScrollView *)itemView {
+    MJRefreshHeader *header = itemView.mj_header;
+    if ([itemView isKindOfClass:[UICollectionView class]]) {
+        header.ignoredScrollViewContentInsetTop = self.topInsetHeight + 10;
+    }else{
+        header.ignoredScrollViewContentInsetTop = self.topInsetHeight;
+    }
+}
+
+#pragma mark - LGSegmentControlDelegate
+- (void)segmentControl:(LGSegmentControl *)sender didClick:(NSInteger)click{
+    [self.swipeTableView scrollToItemAtIndex:click animated:YES];
+    _currentIndex = click;
+}
+#pragma mark - LGNavigationSearchBarDelelgate
+- (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
+    HPSearchViewController *searchVc = [HPSearchViewController new];
+    [self.navigationController pushViewController:searchVc animated:YES];
+}
+#pragma mark - SDCycleScrollViewDelegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+//    EDJHomeImageLoopModel *imageLoopModel = self.imageLoops[index];
+//    if (imageLoopModel.classid == BaseClassesIdMicroLessons) {
+//        /// 进入 微党课详情
+//        //        imageLoopModel.newsid;
+//        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+//        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+//        [self.navigationController pushViewController:dvc animated:YES];
+//
+//    }else if (imageLoopModel.classid == BaseClassesIdBuildPointNews){
+//        /// 进入 党建要闻详情
+//        //        imageLoopModel.newsid;
+//        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+//        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+//        [self.navigationController pushViewController:dvc animated:YES];
+//
+//    }else{
+//        /// 进入 习近平要闻列表
+//        HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
+//        //        imageLoopModel.classid;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+    
+    /// testcode
+    switch (index) {
+        case 0:{
+            /// MARK: 进入习近平要闻列表
+            HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
+            //        imageLoopModel.classid;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:{
+            /// 进入 党建要闻详情
+            //        imageLoopModel.newsid;
+            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+            [self.navigationController pushViewController:dvc animated:YES];
+        }
+            break;
+        case 2:{
+            /// 进入 微党课详情
+            //        imageLoopModel.newsid;
+            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+            [self.navigationController pushViewController:dvc animated:YES];
+        }
+            break;
+    }
+}
+
+
 #pragma mark - notifications
 - (void)didSelectedModel:(NSNotification *)notification{
     NSDictionary *userInfo = notification.userInfo;
-//    id model = userInfo[LGDidSelectedModelKey];
+    //    id model = userInfo[LGDidSelectedModelKey];
     NSInteger skipType = [userInfo[LGDidSelectedSkipTypeKey] integerValue];
     NSInteger index = [userInfo[LGDidSelectedIndexKey] integerValue];
     
@@ -204,112 +314,13 @@ SwipeTableViewDataSource
         }
             break;
     }
-
-}
-
-#pragma mark - SwipeTableView M
-- (NSInteger)numberOfItemsInSwipeTableView:(SwipeTableView *)swipeView {
-    return 3;
-}
-
-- (UIScrollView *)swipeTableView:(SwipeTableView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIScrollView *)view {
-    CGRect rect = swipeView.bounds;
-    rect.size.height -= kTabBarHeight ;
-    if (index == 0) {
-        HPMicrolessonView *tableview = [[HPMicrolessonView alloc] initWithFrame:rect style:UITableViewStylePlain];
-        tableview.dataArray = self.microModels.copy;
-        view = tableview;
-        
-    }else if (index == 1) {
-        /// 返回党建要闻
-        HPBuildTableView *tableview = [[HPBuildTableView alloc] initWithFrame:rect style:UITableViewStylePlain];
-        tableview.dataArray = self.buildModels.copy;
-        view = tableview;
-        
-    }else{
-        /// 返回数字阅读
-        rect.origin.y += 10;
-        rect.size.height -= 10;
-        HPDigitalCollectionView *collectionView = [[HPDigitalCollectionView alloc] initWithFrame:rect collectionViewLayout:self.flowLayout];
-        
-        collectionView.dataArray = self.digitalModels.copy;
-        view = collectionView;
-        
-    }
-    return view;
-}
-
-- (void)swipeTableViewDidEndDecelerating:(SwipeTableView *)swipeView{
-    [self.segment elfAnimateWithIndex:swipeView.currentItemIndex];
-}
-
-#pragma mark - LGSegmentControlDelegate
-- (void)segmentControl:(LGSegmentControl *)sender didClick:(NSInteger)click{
-    [self.swipeTableView scrollToItemAtIndex:click animated:YES];
-    _currentIndex = click;
-}
-#pragma mark - LGNavigationSearchBarDelelgate
-- (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
-    HPSearchViewController *searchVc = [HPSearchViewController new];
-    [self.navigationController pushViewController:searchVc animated:YES];
-}
-#pragma mark - SDCycleScrollViewDelegate
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
-//    EDJHomeImageLoopModel *imageLoopModel = self.imageLoops[index];
-//    if (imageLoopModel.classid == BaseClassesIdMicroLessons) {
-//        /// 进入 微党课详情
-//        //        imageLoopModel.newsid;
-//        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-//        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-//        [self.navigationController pushViewController:dvc animated:YES];
-//
-//    }else if (imageLoopModel.classid == BaseClassesIdBuildPointNews){
-//        /// 进入 党建要闻详情
-//        //        imageLoopModel.newsid;
-//        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-//        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-//        [self.navigationController pushViewController:dvc animated:YES];
-//
-//    }else{
-//        /// 进入 习近平要闻列表
-//        HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
-//        //        imageLoopModel.classid;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-    
-    /// testcode
-    switch (index) {
-        case 0:{
-            /// 进入 习近平要闻列表
-            HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
-            //        imageLoopModel.classid;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-        case 1:{
-            /// 进入 党建要闻详情
-            //        imageLoopModel.newsid;
-            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-            [self.navigationController pushViewController:dvc animated:YES];
-        }
-            break;
-        case 2:{
-            /// 进入 微党课详情
-            //        imageLoopModel.newsid;
-            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-            [self.navigationController pushViewController:dvc animated:YES];
-        }
-            break;
-    }
 }
 
 #pragma mark - getter
 - (STHeaderView *)header{
     if (!_header) {
-        _header = [[STHeaderView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, 233)];
+        _header = [[STHeaderView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, homeImageLoopHeight)];
         [_header addSubview:self.imgLoop];
     }
     return _header;
@@ -343,11 +354,8 @@ SwipeTableViewDataSource
     }
     return _segment;
 }
-- (EDJHomeDigitalsFlowLayout *)flowLayout{
-    if (_flowLayout == nil) {
-        _flowLayout = [EDJHomeDigitalsFlowLayout new];
-    }
-    return _flowLayout;
+- (CGFloat)topInsetHeight{
+    return homeImageLoopHeight + homeSegmentHeight;
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

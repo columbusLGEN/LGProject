@@ -52,6 +52,14 @@
     }
     self.dataArray = arrMu.copy;
     [self.tableView reloadData];
+    
+    [DJNetworkManager homeChairmanPoineNewsClassid:@"4" offset:0 length:2 sort:0 success:^(id responseObj) {
+        NSLog(@"homeChairmanPoineNewsClassid -- %@",responseObj);
+        
+    } failure:^(id failureObj) {
+        NSLog(@"homeChairmanPoineNewsClassid -- %@",failureObj);
+        
+    }];
 }
 
 #pragma mark - Table view data source
