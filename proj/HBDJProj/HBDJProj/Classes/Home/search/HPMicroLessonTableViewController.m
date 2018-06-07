@@ -16,18 +16,29 @@
 
 @implementation HPMicroLessonTableViewController
 
+@synthesize dataArray = _dataArray;
+
+- (void)setDataArray:(NSArray *)dataArray{
+    _dataArray = dataArray;
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.tableView.estimatedRowHeight = 90;
     [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
-    NSMutableArray *arr = [NSMutableArray array];
-    for (int i = 0; i < 20; i++) {
-        EDJMicroPartyLessionSubModel *model = [EDJMicroPartyLessionSubModel new];
-        [arr addObject:model];
-    }
-    self.dataArray = arr.copy;
-    [self.tableView reloadData];
+    
+//    NSMutableArray *arr = [NSMutableArray array];
+//    for (int i = 0; i < 20; i++) {
+//        EDJMicroPartyLessionSubModel *model = [EDJMicroPartyLessionSubModel new];
+//        [arr addObject:model];
+//    }
+//    self.dataArray = arr.copy;
+//    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

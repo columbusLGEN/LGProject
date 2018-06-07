@@ -16,7 +16,12 @@
 }
 
 + (NSString *)cellIdentifierWithModel:(EDJMicroBuildModel *)model{
-    if (model.imgs.count == 0) {/// 没有图
+    NSLog(@"model.cover -- %@",model.cover);
+    if ([model.cover isEqualToString:@""] || model.cover == nil) {
+        /// 没有图
+        return @"EDJMicroBuildNoImgCell";
+    }
+    if (model.imgs.count == 0) {
         return @"EDJMicroBuildNoImgCell";
     }else if (model.imgs.count == 1){/// 有一张图
         return @"EDJMicroBuildOneImgCell";

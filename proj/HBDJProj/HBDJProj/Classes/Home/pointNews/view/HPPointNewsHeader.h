@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class EDJHomeImageLoopModel;
 @interface HPPointNewsHeader : UITableViewHeaderFooterView
+
+@property (strong,nonatomic) EDJHomeImageLoopModel *model;
 + (instancetype)pointNewsHeader;
 
 @end

@@ -11,12 +11,37 @@
 #import "HPPointNewsHeader.h"
 #import "EDJMicroBuildCell.h"
 #import "EDJMicroBuildModel.h"
+#import "EDJHomeImageLoopModel.h"
 
 @interface HPPointNewsTableViewController ()
 
 @end
 
 @implementation HPPointNewsTableViewController
+
+- (void)setModel:(EDJHomeImageLoopModel *)model{
+    HPPointNewsHeader *header = (HPPointNewsHeader *)self.tableView.tableHeaderView;
+    header.model = model;
+    
+    [DJNetworkManager homeChairmanPoineNewsClassid:model.seqid offset:0 length:10 sort:0 success:^(id responseObj) {
+        NSArray *array = responseObj;
+        NSMutableArray *arrmu = [NSMutableArray array];
+        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:obj];
+            [arrmu addObject:model];
+        }];
+        self.dataArray = arrmu.copy;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
+    } failure:^(id failureObj) {
+        NSLog(@"homeChairmanPoineNewsClassid -- %@",failureObj);
+        
+    }];
+    
+    
+}
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -29,37 +54,31 @@
     HPPointNewsHeader *header = [HPPointNewsHeader pointNewsHeader];
     /// TODO: 设置header 数据
     self.tableView.tableHeaderView = header;
-    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 272);
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 233);
     
     [self.tableView registerNib:[UINib nibWithNibName:buildCellNoImg bundle:nil] forCellReuseIdentifier:buildCellNoImg];
     [self.tableView registerNib:[UINib nibWithNibName:buildCellOneImg bundle:nil] forCellReuseIdentifier:buildCellOneImg];
     [self.tableView registerNib:[UINib nibWithNibName:buildCellThreeImg bundle:nil] forCellReuseIdentifier:buildCellThreeImg];
     
-    NSMutableArray *arrMu = [NSMutableArray new];
-    for (int i = 0; i < 20; i++) {
-        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
-        model.showInteractionView = YES;
-        NSMutableArray *imgs = [NSMutableArray new];
-        int k = arc4random_uniform(3);
-        if (k == 2) {
-            k++;
-        }
-        for (int j = 0;j < k; j++) {
-            [imgs addObject:@"build"];
-        }
-        model.imgs = imgs.copy;
-        [arrMu addObject:model];
-    }
-    self.dataArray = arrMu.copy;
-    [self.tableView reloadData];
+//    NSMutableArray *arrMu = [NSMutableArray new];
+//    for (int i = 0; i < 20; i++) {
+//        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
+//        model.showInteractionView = YES;
+//        NSMutableArray *imgs = [NSMutableArray new];
+//        int k = arc4random_uniform(3);
+//        if (k == 2) {
+//            k++;
+//        }
+//        for (int j = 0;j < k; j++) {
+//            [imgs addObject:@"build"];
+//        }
+//        model.imgs = imgs.copy;
+//        [arrMu addObject:model];
+//    }
+//    self.dataArray = arrMu.copy;
+//    [self.tableView reloadData];
     
-    [DJNetworkManager homeChairmanPoineNewsClassid:@"4" offset:0 length:2 sort:0 success:^(id responseObj) {
-        NSLog(@"homeChairmanPoineNewsClassid -- %@",responseObj);
-        
-    } failure:^(id failureObj) {
-        NSLog(@"homeChairmanPoineNewsClassid -- %@",failureObj);
-        
-    }];
+    
 }
 
 #pragma mark - Table view data source

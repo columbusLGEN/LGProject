@@ -27,7 +27,7 @@
 - (void)setModel:(HPBookInfoModel *)model{
     _subModel = model;
     
-//    [_bookCover sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:nil];
+    [_bookCover sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:DJPlaceholderImage];
     _bookName.text = model.bookName;
     _author.text = [NSString stringWithFormat:@"作者：%@",model.author];
     _press.text = [NSString stringWithFormat:@"出版社：%@",model.press];

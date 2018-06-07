@@ -11,6 +11,15 @@
 
 @implementation EDJMicroBuildModel
 
+@synthesize cover = _cover;
+
+- (NSArray *)imgs{
+    if (!_imgs) {
+        _imgs = [_cover componentsSeparatedByString:@","];
+    }
+    return _imgs;
+}
+
 + (NSDictionary *)mj_objectClassInArray{
     return @{@"subNews":@"EDJMicroPartyLessionSubModel"};
 }

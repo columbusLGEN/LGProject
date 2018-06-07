@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,19 +23,25 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-1-22  11：20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-B8-MeA">
-                    <rect key="frame" x="10" y="50" width="127.5" height="18"/>
+                    <rect key="frame" x="10" y="50" width="240" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源：人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQF-RF-I5d">
-                    <rect key="frame" x="147.5" y="50" width="107.5" height="18"/>
+                    <rect key="frame" x="260" y="50" width="110" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="zJN-kV-B7F"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看次数: 999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzL-fR-bhH">
-                    <rect key="frame" x="263" y="50" width="97.5" height="18"/>
+                    <rect key="frame" x="378" y="50" width="100" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="XvT-nv-dmZ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -43,6 +49,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="JtG-ou-HrK" firstAttribute="trailing" secondItem="tzL-fR-bhH" secondAttribute="trailing" constant="10" id="7zu-7K-o9j"/>
                 <constraint firstItem="bJh-B8-MeA" firstAttribute="leading" secondItem="ZQL-kh-JZ3" secondAttribute="leading" id="DKN-0z-YIq"/>
                 <constraint firstItem="ZQL-kh-JZ3" firstAttribute="top" secondItem="JtG-ou-HrK" secondAttribute="top" constant="10" id="KOl-a5-3Hy"/>
                 <constraint firstItem="tzL-fR-bhH" firstAttribute="centerY" secondItem="jQF-RF-I5d" secondAttribute="centerY" id="Kns-9m-791"/>

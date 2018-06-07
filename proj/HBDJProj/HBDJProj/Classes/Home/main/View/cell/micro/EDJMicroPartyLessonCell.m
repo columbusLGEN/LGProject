@@ -10,7 +10,7 @@
 #import "EDJMicroPSCellHeader.h"
 #import "EDJMicroPSCellFooter.h"
 #import "EDJMicroBuildCell.h"
-#import "EDJMicroBuildModel.h"
+#import "EDJMicroLessionAlbumModel.h"
 #import "EDJMicroPartyLessonSubCell.h"
 #import "EDJMicroPartyLessionSubModel.h"
 
@@ -29,9 +29,9 @@ UITableViewDataSource>
 
 @implementation EDJMicroPartyLessonCell
 
-- (void)setModel:(EDJMicroBuildModel *)model{
+- (void)setModel:(EDJMicroLessionAlbumModel *)model{
     _model = model;
-    
+    _header.titleText = model.classname;
     [_contentTableView reloadData];
 }
 
@@ -77,23 +77,20 @@ UITableViewDataSource>
     [super awakeFromNib];
     [self setupUI];
 }
-+ (CGFloat)cellHeightWithModel:(EDJMicroBuildModel *)model{
-    if (model.imgs.count == 2) {
++ (CGFloat)cellHeightWithIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
         return 128;
     }else{
         return 375;
     }
 }
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView model:(EDJMicroBuildModel *)model{
-    return [tableView dequeueReusableCellWithIdentifier:[self cellIdentifierWithModel:model]];
-}
-+ (NSString *)cellIdentifierWithModel:(EDJMicroBuildModel *)model{
-    if (model.imgs.count == 2) {
++ (NSString *)cellIdentifierWithIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
         return @"EDJMicroPartyLessonHeaderCell";
     }else {
         return @"EDJMicroPartyLessonCell";
-    } 
+    }
 }
 
 - (EDJMicroPSCellHeader *)header{
@@ -124,16 +121,16 @@ UITableViewDataSource>
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 //    NSLog(@"_model.subNews.count -- %ld",_model.subNews.count);
-    return _model.subNews.count;
+    return _model.classlist.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    EDJMicroPartyLessionSubModel *model = _model.subNews[indexPath.row];
+    EDJMicroPartyLessionSubModel *model = _model.classlist[indexPath.row];
     EDJMicroPartyLessonSubCell *cell = [tableView dequeueReusableCellWithIdentifier:subCellID];
     cell.model = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    EDJMicroPartyLessionSubModel *model = _model.subNews[indexPath.row];
+    EDJMicroPartyLessionSubModel *model = _model.classlist[indexPath.row];
     NSDictionary *dict = @{LGDidSelectedModelKey:model,
                            LGDidSelectedSkipTypeKey:@(LGDidSelectedSkipTypeMicrolessonSingle),
                            LGDidSelectedIndexKey:@(indexPath.row)

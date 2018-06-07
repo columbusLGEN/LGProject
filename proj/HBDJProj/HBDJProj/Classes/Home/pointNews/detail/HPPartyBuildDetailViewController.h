@@ -9,6 +9,7 @@
 /// 焦点图，要闻列表 的详情控制器
 
 #import "LGBaseViewController.h"
+@class EDJHomeImageLoopModel;
 
 typedef NS_ENUM(NSUInteger, LGCoreTextViewType) {
     LGCoreTextViewTypeDefault,
@@ -18,5 +19,8 @@ typedef NS_ENUM(NSUInteger, LGCoreTextViewType) {
 @interface HPPartyBuildDetailViewController : LGBaseViewController
 /** 展示内容的类型，有音频详情，视频详情，图文详情，其中图文详情分为普通 和 焦点图的图文详情 */
 @property (assign,nonatomic) LGCoreTextViewType coreTextViewType;
+
+@property (assign,nonatomic) DJDataPraisetype djDataType;
+@property (strong,nonatomic) EDJHomeImageLoopModel *imageLoopModel;
 
 @end

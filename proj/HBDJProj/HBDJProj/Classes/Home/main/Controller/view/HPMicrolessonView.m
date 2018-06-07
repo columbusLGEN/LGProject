@@ -7,7 +7,7 @@
 //
 
 #import "HPMicrolessonView.h"
-#import "EDJMicroBuildModel.h"
+#import "EDJMicroLessionAlbumModel.h"
 #import "EDJMicroPartyLessonCell.h"
 
 #import "LGDidSelectedNotification.h"
@@ -36,17 +36,17 @@ UITableViewDataSource
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
-    EDJMicroPartyLessonCell *cell = [EDJMicroPartyLessonCell cellWithTableView:tableView model:model];
+    EDJMicroLessionAlbumModel *model = self.dataArray[indexPath.row];
+    EDJMicroPartyLessonCell *cell = [tableView dequeueReusableCellWithIdentifier:[EDJMicroPartyLessonCell cellIdentifierWithIndexPath:indexPath]];
     cell.model = model;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat height = [EDJMicroPartyLessonCell cellHeightWithModel:self.dataArray[indexPath.row]];
+    CGFloat height = [EDJMicroPartyLessonCell cellHeightWithIndexPath:indexPath];
     return height;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    EDJMicroBuildModel *model = nil;
+    EDJMicroLessionAlbumModel *model = nil;
     if (indexPath.row == 0) {
         NSLog(@"头部专辑 -- ");
         /// TODO: 如何从头部2选1？

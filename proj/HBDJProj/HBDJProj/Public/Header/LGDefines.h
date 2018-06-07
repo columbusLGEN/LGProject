@@ -37,6 +37,8 @@
 //#define NSLog(...)
 //#endif
 
+#define DJPlaceholderImage [UIImage imageNamed:@"dj_placeholder"]
+
 #define iFlyAppid @"5b0d04ef"
 
 

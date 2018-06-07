@@ -7,6 +7,7 @@
 //
 
 #import "EDJMicroBuildOneImgCell.h"
+#import "EDJMicroBuildModel.h"
 
 @interface EDJMicroBuildOneImgCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -18,6 +19,15 @@
 @end
 
 @implementation EDJMicroBuildOneImgCell
+
+@synthesize model = _model;
+
+- (void)setModel:(EDJMicroBuildModel *)model{
+    _model = model;
+    _title.text = model.title;
+    _sub_title.text = model.source;
+    [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

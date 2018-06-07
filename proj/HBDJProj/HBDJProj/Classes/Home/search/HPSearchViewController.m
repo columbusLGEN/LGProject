@@ -8,10 +8,14 @@
 
 #import "HPSearchViewController.h"
 #import "LGNavigationSearchBar.h"
-#import "HPVoiceSearchView.h"
 #import "HPSearchRequest.h"
-
+#import "HPVoiceSearchView.h"
+#import "HPSearchHistoryView.h"
 #import "LGVoiceRecoganizer.h"
+#import "DCSubPartStateTableViewController.h"
+#import "HPMicroLessonTableViewController.h"
+#import "EDJMicroPartyLessionSubModel.h"
+#import "DCSubPartStateModel.h"
 
 @interface HPSearchViewController ()<
 LGNavigationSearchBarDelelgate,
@@ -24,6 +28,7 @@ HPVoiceSearchViewDelegate>
 @property (strong,nonatomic) NSString *searchContent;
 
 @property (strong,nonatomic) NSMutableString *voiceString;
+@property (weak,nonatomic) HPSearchHistoryView *searchHistory;
 
 @end
 
@@ -38,6 +43,7 @@ HPVoiceSearchViewDelegate>
     [super viewDidLoad];
     
     LGNavigationSearchBar *fakeNavgationBar = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
+//    LGNavigationSearchBar *fakeNavgationBar = [[LGNavigationSearchBar alloc] init];
     fakeNavgationBar.leftImgName = @"icon_arrow_left_black";
     fakeNavgationBar.isShowRightBtn = YES;
     fakeNavgationBar.rightButtonTitle = @"搜索";
@@ -51,9 +57,21 @@ HPVoiceSearchViewDelegate>
                                                object:nil];
     
     // TODO: 先加一个大白板，搜索到结果后，将大白板删除
+    HPSearchHistoryView *hisView = [[HPSearchHistoryView alloc] init];
+    hisView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:hisView];
+    [hisView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(fakeNavgationBar.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.right.equalTo(self.view.mas_right);
+    }];
+    _searchHistory = hisView;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lg_endOfSpeech:) name:LGVoiceRecoganizerEndOfSpeechNotification object:nil];
     
+    /// 默认进入页面自动响应输入
+    [self addTextFieldToNav:_fakeNavgationBar];
 }
 
 #pragma mark - notifications
@@ -85,7 +103,6 @@ HPVoiceSearchViewDelegate>
 #pragma - LGNavigationSearchBarDelelgate
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
     [self addTextFieldToNav:navigationSearchBar];
-    
 }
 - (void)leftButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
     [self lg_dismissViewController];
@@ -106,9 +123,6 @@ HPVoiceSearchViewDelegate>
     return YES;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
-}
 /** 发送搜索请求 */
 - (void)sendSearchRequest{
     [self.view endEditing:YES];
@@ -119,26 +133,36 @@ HPVoiceSearchViewDelegate>
      1:微党课
      2:党建要闻
      */
-    [DJNetworkManager homeSearchWithString:_searchContent type:0 offset:0 length:1 sort:0 success:^(id responseObj) {
+    [DJNetworkManager homeSearchWithString:_searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
         /// TODO: 刷新子可控制器视图
-
+        [_searchHistory removeFromSuperview];
+        _searchHistory = nil;
         NSArray *classes = responseObj[@"classes"];
         NSArray *news = responseObj[@"news"];
-        NSLog(@"lectureSearch_classes -- %@",classes);
-        NSLog(@"lectureSearch_news -- %@",news);
+//        NSLog(@"lectureSearch_classes -- %@",classes);
+//        NSLog(@"lectureSearch_news -- %@",news);
+        
+        NSMutableArray *microModels = [NSMutableArray array];
+        [classes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            EDJMicroPartyLessionSubModel *model = [EDJMicroPartyLessionSubModel mj_objectWithKeyValues:obj];
+            [microModels addObject:model];
+        }];
+        
+        HPMicroLessonTableViewController *microvc = self.childViewControllers[0];
+        microvc.dataArray = microModels.copy;
+        
+        NSMutableArray *partyModels = [NSMutableArray array];
+        [news enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:obj];
+            [partyModels addObject:model];
+        }];
+        DCSubPartStateTableViewController *partyvc = self.childViewControllers[1];
+        partyvc.dataArray = partyModels.copy;
         
     } failure:^(id failureObj) {
         NSLog(@"faillureObject -- %@",failureObj);
         
     }];
-//    HPSearchRequest *searchRequest = [[HPSearchRequest alloc] initWithContent:_searchContent type:0 offset:@"0" length:@"1" success:^(id responseObject) {
-//
-//    } failure:^(id faillureObject) {
-//        
-//    } networkFailure:^(NSError *error) {
-//        NSLog(@"error -- %@",error);
-//    }];
-//    [searchRequest start];
     
 }
 /** 退出输入状态 */
@@ -200,6 +224,9 @@ HPVoiceSearchViewDelegate>
     }
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

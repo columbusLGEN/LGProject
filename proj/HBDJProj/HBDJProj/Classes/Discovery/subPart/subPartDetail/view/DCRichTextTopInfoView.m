@@ -7,6 +7,7 @@
 //
 
 #import "DCRichTextTopInfoView.h"
+#import "EDJMicroBuildModel.h"
 
 @interface DCRichTextTopInfoView ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -19,6 +20,14 @@
 @end
 
 @implementation DCRichTextTopInfoView
+
+- (void)setModel:(EDJMicroBuildModel *)model{
+    _model = model;
+    _title.text = model.title;
+    _time.text = model.createdtime;
+    _source.text = [NSString stringWithFormat:@"来源: %@",model.source];
+    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",model.playcount];
+}
 
 - (void)setDisplayCounts:(BOOL)displayCounts{
     if (displayCounts) _counts.hidden = NO;

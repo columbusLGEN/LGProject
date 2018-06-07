@@ -28,7 +28,7 @@
 @property (strong,nonatomic) NSString *label;
 /** playcount */
 @property (assign,nonatomic) NSInteger playcount;
-/** content */
+/** 富文本字符串 */
 @property (strong,nonatomic) NSString *content;
 /** title */
 @property (strong,nonatomic) NSString *title;
@@ -40,7 +40,7 @@
 @property (strong,nonatomic) NSString *createdtime;
 /** praisecount */
 @property (assign,nonatomic) NSInteger praisecount;
-/** modaltype */
+/** 模板类型：1音频模板，2视频模板，3图文模板，4自由模板（包含音频、视频、图文） */
 @property (assign,nonatomic) NSInteger modaltype;
 /** contentvalidity */
 @property (strong,nonatomic) NSString *contentvalidity;

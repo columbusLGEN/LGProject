@@ -11,16 +11,17 @@
 
 @interface EDJMicroBuildNoImgCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
-@property (strong,nonatomic) EDJMicroBuildModel *subModel;
 @property (weak, nonatomic) IBOutlet UILabel *sub_title;
 
 @end
 
 @implementation EDJMicroBuildNoImgCell
 
+@synthesize model = _model;
 - (void)setModel:(EDJMicroBuildModel *)model{
-    _subModel = model;
-    
+    _model = model;
+    _title.text = model.title;
+    _sub_title.text = model.source;
 }
 
 - (void)awakeFromNib {
