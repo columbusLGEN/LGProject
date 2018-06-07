@@ -135,6 +135,8 @@ static CGFloat buttonHeight = 30;
             make.centerY.equalTo(self.fakeSearch.mas_centerY);
         }];
     
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
     }
     return self;
 }

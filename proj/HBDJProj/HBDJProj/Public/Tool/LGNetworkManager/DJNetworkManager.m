@@ -17,8 +17,16 @@
 
 @implementation DJNetworkManager
 
+/// MARK: 数字阅读图书详情
++ (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [[self sharedInstance] homeDigitalDetailWithId:id success:success failure:failure];
+}
+/// MARK: 党建要闻、微党课详情接口
++ (void)homePointNewsDetailWithId:(NSString *)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [[self sharedInstance] homePointNewsDetailWithId:id type:type success:success failure:failure];
+}
 /// MARK: 收藏/点赞接口
-+ (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(NSInteger)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
++ (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
     [[DJNetworkManager sharedInstance] homeLikeSeqid:seqid add:add praisetype:praisetype success:success failure:failure collect:collect];
 }
 /// MARK: 主席要闻列表,专辑列表
@@ -34,7 +42,18 @@
     [[DJNetworkManager sharedInstance] homeIndexWithSuccess:success failure:failure];
 }
 
-- (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(NSInteger)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
+/// MARK: -----分割线-----
+- (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"seqid":id};
+    [self sendPOSTRequestWithiName:@"/frontEbook/select" param:param success:success failure:failure];
+}
+- (void)homePointNewsDetailWithId:(NSString *)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"seqid":id,
+                            @"type":[NSString stringWithFormat:@"%ld",type]
+                            };
+    [self sendPOSTRequestWithiName:@"/frontNews/selectDetail" param:param success:success failure:failure];
+}
+- (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
     NSString *iName = nil;
     if (collect) {
         NSLog(@"收藏接口 -- ");
@@ -42,18 +61,6 @@
     }else{
         iName = @"/frontUserPraises/add";
     }
-    /**
-     addordel    String
-     0:添加
-     1:删除
-     */
-    /**
-     1新闻
-     2微党课
-     3学习问答
-     4支部动态
-     5党员舞台
-     */
     NSDictionary *dict = @{@"addordel":[NSString stringWithFormat:@"%d",add],
                            @"seqid":seqid,
                            @"praisetype":[NSString stringWithFormat:@"%ld",praisetype]};
@@ -113,19 +120,27 @@
         }else{
             NSInteger result = [responseObject[@"result"] integerValue];
             NSString *msg = responseObject[@"msg"];
-            NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
-            id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"jsonstring -- %@",responseObject[@"returnJson"]);
-            NSLog(@"returnJson_class -- %@",[returnJson class]);
-            if (result == 0) {/// 成功
-                if (success) success(returnJson);
+            
+            id jsonString = responseObject[@"returnJson"];
+            if ([jsonString isKindOfClass:[NSNull class]]) {
+                NSLog(@"returnJsonisNSNull ");
             }else{
-                NSDictionary *errorDict = @{@"msg":msg,
-                                            @"result":@(result),
-                                            @"json":returnJson
-                                            };
-                if (failure) failure(errorDict);
+                NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
+                id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                NSLog(@"jsonstring -- %@",responseObject[@"returnJson"]);
+                NSLog(@"returnJson_class -- %@",[returnJson class]);
+                if (result == 0) {/// 成功
+                    if (success) success(returnJson);
+                }else{
+                    NSDictionary *errorDict = @{@"msg":msg,
+                                                @"result":@(result),
+                                                @"json":returnJson
+                                                };
+                    if (failure) failure(errorDict);
+                }
             }
+            
+            
         }
     }];
 }

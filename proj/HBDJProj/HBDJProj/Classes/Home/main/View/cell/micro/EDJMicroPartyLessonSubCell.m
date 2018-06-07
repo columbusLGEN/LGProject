@@ -21,7 +21,11 @@
 @implementation EDJMicroPartyLessonSubCell
 - (void)setModel:(EDJMicroPartyLessionSubModel *)model{
     _model = model;
+    _title.text = model.title;
+    _time.text = model.createdtime;
+    _peopleCount.text = [NSString stringWithFormat:@"%ld",model.playcount];
     
+    [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

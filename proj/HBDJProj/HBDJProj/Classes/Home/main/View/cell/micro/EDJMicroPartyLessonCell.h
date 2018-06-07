@@ -8,10 +8,11 @@
 
 #import "LGBaseTableViewCell.h"
 
-@class EDJMicroBuildModel;
+@class EDJMicroLessionAlbumModel;
 
 @interface EDJMicroPartyLessonCell : LGBaseTableViewCell
-+ (instancetype)cellWithTableView:(UITableView *)tableView model:(EDJMicroBuildModel *)model;
-@property (strong,nonatomic) EDJMicroBuildModel *model;
++ (NSString *)cellIdentifierWithIndexPath:(NSIndexPath *)indexPath;
++ (CGFloat)cellHeightWithIndexPath:(NSIndexPath *)indexPath;
+@property (strong,nonatomic) EDJMicroLessionAlbumModel *model;
 
 @end

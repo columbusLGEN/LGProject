@@ -8,6 +8,7 @@
 
 #import "HPBookInfoViewController.h"
 #import "HPBookInfoBaseCell.h"
+#import "EDJDigitalModel.h"
 #import "HPBookInfoModel.h"
 
 static NSString * const bookInfoHeaderCell = @"HPBookInfoHeaderCell";
@@ -32,8 +33,69 @@ UITableViewDataSource>
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
 }
+
+- (void)setModel:(EDJDigitalModel *)model{
+    _model = model;
+    
+    NSMutableArray *arrMu = [NSMutableArray array];
+    for (NSInteger i = 0; i < 3; i++) {
+        HPBookInfoModel *lineModel = [HPBookInfoModel new];
+        lineModel.isHeader = !i;
+        if (i == 0) {
+            lineModel.coverUrl = model.cover;
+        }
+        
+//        lineModel.bookName = @"中国梦，我的梦";
+        lineModel.bookName = model.ebookname;
+//        lineModel.author = @"蔡国英";
+        lineModel.author = model.author;
+//        lineModel.press = @"阳光出版社";
+        lineModel.press = model.publisher;
+//        lineModel.testPressTime = @"出版时间：2015-07-07";
+        lineModel.testPressTime = [NSString stringWithFormat:@"出版时间: %@",model.pubdate];
+        lineModel.testProgress = @"上次阅读进度：7%";
+//        lineModel.testProgress = model;
+        
+        if (i == 1) {
+            lineModel.itemTitle = @"简介";
+//            lineModel.content = @"梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。";
+            lineModel.content = model.introduction;
+        }
+        if (i == 2) {
+            lineModel.itemTitle = @"目录";
+//            lineModel.content = @"第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n";
+            lineModel.content = model.catalog;
+        }
+        
+        [arrMu addObject:lineModel];
+    }
+    _array = arrMu.copy;
+    [self.tableView reloadData];
+
+//    [DJNetworkManager homeDigitalDetailWithId:model.seqid success:^(id responseObj) {
+//        NSLog(@"homeDigitalDetailWithId -- %@",responseObj);
+//        EDJDigitalModel *model = [EDJDigitalModel mj_objectWithKeyValues:responseObj];
+//
+//    } failure:^(id failureObj) {
+//
+//    }];
+}
+
+#pragma mark - data source & delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _array.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    HPBookInfoModel *model = _array[indexPath.row];
+    HPBookInfoBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[HPBookInfoBaseCell cellReuseIdWithModel:model]];
+    cell.model = model;
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 220;
+}
+
 - (void)configUI{
     self.title = @"图书详情";
     [self.view addSubview:self.tableView];
@@ -52,43 +114,6 @@ UITableViewDataSource>
         make.height.mas_equalTo(50);
     }];
     
-    NSMutableArray *arrMu = [NSMutableArray array];
-    for (NSInteger i = 0; i < 3; i++) {
-        HPBookInfoModel *model = [HPBookInfoModel new];
-        model.isHeader = !i;
-        model.bookName = @"中国梦，我的梦";
-        model.author = @"蔡国英";
-        model.press = @"阳光出版社";
-        model.testPressTime = @"出版时间：2015-07-07";
-        model.testProgress = @"上次阅读进度：7%";
-        
-        if (i == 1) {
-            model.itemTitle = @"简介";
-            model.content = @"梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。";
-        }
-        if (i == 2) {
-            model.itemTitle = @"目录";
-            model.content = @"第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n";
-        }
-        
-        [arrMu addObject:model];
-    }
-    _array = arrMu.copy;
-    [self.tableView reloadData];
-}
-
-#pragma mark - data source & delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _array.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    HPBookInfoModel *model = _array[indexPath.row];
-    HPBookInfoBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[HPBookInfoBaseCell cellReuseIdWithModel:model]];
-    cell.model = model;
-    return cell;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 220;
 }
 
 #pragma mark - getter

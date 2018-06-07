@@ -14,6 +14,8 @@ static NSString * const LGDidSelectedModelKey = @"LGDidSelectedModelKey";
 static NSString * const LGDidSelectedSkipTypeKey = @"LGDidSelectedSkipTypeKey";
 
 static NSString * const LGDidSelectedIndexKey = @"LGDidSelectedIndexKey";
+/** 专辑下的微党课indexkey */
+static NSString * const LGDidSelectedSubModelIndexKey = @"LGDidSelectedSubModelIndexKey";
 
 /// 微党课单条
 /// 微党课专辑

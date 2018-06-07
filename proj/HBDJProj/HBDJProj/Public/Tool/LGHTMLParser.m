@@ -16,50 +16,36 @@
 
 @implementation LGHTMLParser
 
-//#pragma mark - DTHTMLParserDelegate
-//- (void)parserDidStartDocument:(DTHTMLParser *)parser{
-//    NSLog(@"1.开始解析");
-//}
-//- (void)parser:(DTHTMLParser *)parser didStartElement:(NSString *)elementName attributes:(NSDictionary *)attributeDict{
-//    NSLog(@"2.didStartElement -- %@ \n attributeDict: %@",elementName,attributeDict);
-//}
-//- (void)parser:(DTHTMLParser *)parser foundComment:(NSString *)comment{
-//    NSLog(@"foundComment -- %@",comment);
-//}
-//- (void)parser:(DTHTMLParser *)parser foundCharacters:(NSString *)string{
-//    /// 获取标签内容
-//    NSLog(@"3.foundCharacters -- %@",string);
-//}
-//- (void)parser:(DTHTMLParser *)parser didEndElement:(NSString *)elementName{
-//    NSLog(@"4.didEndElement -- %@",elementName);
-//}
-//- (void)parserDidEndDocument:(DTHTMLParser *)parser{
-//    NSLog(@"5.结束解析");
-//}
-//- (void)parser:(DTHTMLParser *)parser parseErrorOccurred:(NSError *)parseError{
-//    NSLog(@"6.parseError -- %@",parseError);
-//}
++ (void)HTMLSaxWithHTMLString:(NSString *)HTMLString success:(ParseSuccess)success{
+    [[self sharedInstance] HTMLSaxWithHTMLString:HTMLString success:success];
+}
+- (void)HTMLSaxWithHTMLString:(NSString *)HTMLString success:(ParseSuccess)success{
+    NSData *HTMLData = [HTMLString dataUsingEncoding:NSUTF8StringEncoding];
+    DTHTMLAttributedStringBuilder *builder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:HTMLData options:nil documentAttributes:nil];
+    
+    NSAttributedString *attrString = [builder generatedAttributedString];
+    success(attrString);
+}
+
++ (instancetype)sharedInstance{
+    static id instance;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
 
 - (NSString *)HTMLStringWithPlistName:(NSString *)plistName{
     NSString *path = [[NSBundle mainBundle] pathForResource:plistName ofType:@"html"];
     return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 }
-
 - (void)HTMLSax:(ParseSuccess)success{
     _success = success;
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"detaiTtest" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData *htmlData = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
     
-    DTHTMLAttributedStringBuilder *builder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData options:nil documentAttributes:nil];
-    
-    NSAttributedString *attrString = [builder generatedAttributedString];
-    success(attrString);
-    
-//    DTHTMLParser *parser = [[DTHTMLParser alloc] initWithData:htmlData encoding:NSUTF8StringEncoding];
-//    parser.delegate = self;
-//    [parser parse];
+    [self HTMLSaxWithHTMLString:htmlString success:success];
 }
-
 @end

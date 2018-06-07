@@ -19,6 +19,16 @@
 
 @implementation DCSubPartStateTableViewController
 
+@synthesize dataArray = _dataArray;
+
+- (void)setDataArray:(NSArray *)dataArray{
+    _dataArray = dataArray;
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -29,18 +39,18 @@
     [self.tableView registerNib:[UINib nibWithNibName:threeImgCell bundle:nil]
          forCellReuseIdentifier:threeImgCell];
     
-    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
-    for (NSInteger i = 0; i < 20; i++) {
-        DCSubPartStateModel *model = [DCSubPartStateModel new];
-        NSInteger num = arc4random_uniform(3) + 1;/// 1 2 3
-        if (num == 2) {
-            num -= 2;/// 2 --> 0
-        }
-        model.imgCount = num;
-        [arrMu addObject:model];
-    }
-    self.dataArray = arrMu.copy;
-    [self.tableView reloadData];
+//    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
+//    for (NSInteger i = 0; i < 20; i++) {
+//        DCSubPartStateModel *model = [DCSubPartStateModel new];
+//        NSInteger num = arc4random_uniform(3) + 1;/// 1 2 3
+//        if (num == 2) {
+//            num -= 2;/// 2 --> 0
+//        }
+//        model.imgCount = num;
+//        [arrMu addObject:model];
+//    }
+//    self.dataArray = arrMu.copy;
+//    [self.tableView reloadData];
 
 }
 

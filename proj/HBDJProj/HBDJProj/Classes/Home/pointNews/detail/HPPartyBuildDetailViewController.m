@@ -10,14 +10,16 @@
 //#import "LGThreeRightButtonView.h"
 #import "LGThreeRightButtonView.h"
 #import "LGHTMLParser.h"
-
+#import "EDJHomeImageLoopModel.h"
 #import "DCRichTextTopInfoView.h"
+#import "EDJMicroBuildModel.h"
 
 static const CGFloat richTextTopInfoViewHeight = 100;
 
 @interface HPPartyBuildDetailViewController ()<
 DTAttributedTextContentViewDelegate,
-DTLazyImageViewDelegate>
+DTLazyImageViewDelegate,
+LGThreeRightButtonViewDelegate>
 
 /** 是否显示,查看次数,默认为NO，不显示 */
 @property (assign,nonatomic) BOOL displayCounts;
@@ -25,6 +27,9 @@ DTLazyImageViewDelegate>
 @property (strong,nonatomic) DTAttributedTextView *coreTextView;
 /** 图片尺寸缓存 */
 @property (nonatomic, strong) NSCache *imageSizeCache;
+@property (strong,nonatomic) LGThreeRightButtonView *pbdBottom;
+
+@property (strong,nonatomic) EDJMicroBuildModel *contentModel;
 
 @end
 
@@ -37,28 +42,51 @@ DTLazyImageViewDelegate>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configUI];
-    
-}
-
-- (void)configUI{
     
     _imageSizeCache = [[NSCache alloc] init];
     
-    CGFloat bottomHeight = 60;
-    BOOL isiPhoneX = ([LGDevice sharedInstance].currentDeviceType == LGDeviecType_iPhoneX);
-    if (isiPhoneX) {
-        bottomHeight = 90;
-    }
+    /// bottom
+    [self.view addSubview:self.pbdBottom];
     
-    /// core text
-    [[[LGHTMLParser alloc] init] HTMLSax:^(id objc) {
-        NSAttributedString *string = (NSAttributedString *)objc;
+}
+
+- (void)setImageLoopModel:(EDJHomeImageLoopModel *)imageLoopModel{
+    _imageLoopModel = imageLoopModel;
+    
+    /**
+     /// 测试数据
+     {"params":{"imei":"460030912121001","imsi":"460030912121001","seqid":"1","userid":"","type":"1"},
+     "md5":"654c01acaf40e0ce6d841a552fd3b96c"}
+     
+     */
+    [DJNetworkManager homePointNewsDetailWithId:@"1" type:1 success:^(id responseObj) {
+        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
+        EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
+        self.contentModel = model;
+    } failure:^(id failureObj) {
+        
+    }];
+    
+    /// 请求党建要闻详情数据
+    /// imageLoopModel.seqid
+//    [DJNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:self.djDataType success:^(id responseObj) {
+//        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
+//
+//    } failure:^(id failureObj) {
+//
+//    }];
+}
+- (void)setContentModel:(EDJMicroBuildModel *)contentModel{
+    _contentModel = contentModel;
+    
+    
+    [LGHTMLParser HTMLSaxWithHTMLString:contentModel.content success:^(NSAttributedString *attrString) {
+        NSAttributedString *string = attrString;
         
         /// 目标frame: 可以显示 string 的大小 --> 只需知道 string 的最大高度即可
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            DTAttributedTextView *textView = [[DTAttributedTextView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - bottomHeight - kNavHeight)];
+            DTAttributedTextView *textView = [[DTAttributedTextView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - self.bottomHeight - kNavHeight)];
             _coreTextView = textView;
             textView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
             textView.textDelegate = self;
@@ -67,6 +95,7 @@ DTLazyImageViewDelegate>
             
             /// MARK: 顶部信息view
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
+            topInfoView.model = contentModel;
             topInfoView.displayCounts = self.displayCounts;
             [textView addSubview:topInfoView];
             [topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,40 +107,28 @@ DTLazyImageViewDelegate>
             
         }];
     }];
-    
-    /// bottom
-    LGThreeRightButtonView *pbdBottom = [[LGThreeRightButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight - bottomHeight, kScreenWidth, bottomHeight)];
-    
-    [pbdBottom setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
-                                 TRConfigImgNameKey:@"dc_like_normal",
-                                 TRConfigSelectedImgNameKey:@"dc_like_selected",
-                                 TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
-                                 TRConfigTitleColorSelectedKey:[UIColor EDJColor_6CBEFC]
-                                 },
-                               @{TRConfigTitleKey:@"99+",
-                                 TRConfigImgNameKey:@"uc_icon_shouc_gray",
-                                 TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow",
-                                 TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
-                                 TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
-                                 },
-                               @{TRConfigTitleKey:@"",
-                                 TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
-                                 TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
-                                 TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
-                                 TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
-                                 }]];
-    
-    [self.view addSubview:pbdBottom];
-    
+}
+
+#pragma mark - LGThreeRightButtonViewDelegate
+/// 点在
+- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 点赞收藏接口测试
-    [DJNetworkManager homeLikeSeqid:@"173" add:NO praisetype:1 success:^(id responseObj) {
+    [DJNetworkManager homeLikeSeqid:@"173" add:NO praisetype:DJDataPraisetypeMicrolesson success:^(id responseObj) {
+        /// TODO: 返回搜藏id 或者 点赞id
         NSLog(@"homeLikeSeqid -- %@",responseObj);
+        
     } failure:^(id failureObj) {
         
     } collect:NO];
 }
-
-#pragma mark - LGThreeRightButtonViewDelegate
+/// 收藏
+- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    NSLog(@"收藏 -- ");
+}
+/// 分享
+- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    NSLog(@"分享 -- ");
+}
 
 #pragma mark - DTAttributedTextContentViewDelegate
 - (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame{
@@ -182,12 +199,47 @@ DTLazyImageViewDelegate>
 }
 
 #pragma mark - getter
+/// 显示查看次数
 - (BOOL)displayCounts{
     if (self.coreTextViewType == LGCoreTextViewTypePoint) {
         return NO;
     }else{
         return YES;
     }
+}
+- (CGFloat)bottomHeight{
+    CGFloat bottomHeight = 60;
+    BOOL isiPhoneX = ([LGDevice sharedInstance].currentDeviceType == LGDeviecType_iPhoneX);
+    if (isiPhoneX) {
+        bottomHeight = 90;
+    }
+    return bottomHeight;
+}
+- (LGThreeRightButtonView *)pbdBottom{
+    if (!_pbdBottom) {
+        LGThreeRightButtonView *pbdBottom = [[LGThreeRightButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight - self.bottomHeight, kScreenWidth, self.bottomHeight)];
+        pbdBottom.delegate = self;
+        _pbdBottom = pbdBottom;
+        [pbdBottom setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
+                                     TRConfigImgNameKey:@"dc_like_normal",
+                                     TRConfigSelectedImgNameKey:@"dc_like_selected",
+                                     TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                     TRConfigTitleColorSelectedKey:[UIColor EDJColor_6CBEFC]
+                                     },
+                                   @{TRConfigTitleKey:@"99+",
+                                     TRConfigImgNameKey:@"uc_icon_shouc_gray",
+                                     TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow",
+                                     TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                     TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
+                                     },
+                                   @{TRConfigTitleKey:@"",
+                                     TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
+                                     TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
+                                     TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                     TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
+                                     }]];
+    }
+    return _pbdBottom;
 }
 
 @end

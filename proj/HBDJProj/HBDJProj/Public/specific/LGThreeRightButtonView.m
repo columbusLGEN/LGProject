@@ -39,25 +39,42 @@
 }
 
 - (void)leftClick:(UIButton *)sender {
-    if (sender.isSelected) {
-        sender.selected = NO;
-    }else{
-        sender.selected = YES;
+    if ([self.delegate respondsToSelector:@selector(leftClick:success:failure:)]) {
+        [self.delegate leftClick:self success:^{
+            if (sender.isSelected) {
+                sender.selected = NO;
+            }else{
+                sender.selected = YES;
+            }
+        } failure:^{
+            
+        }];
     }
-    
 }
 - (void)midClick:(UIButton *)sender {
-    if (sender.isSelected) {
-        sender.selected = NO;
-    }else{
-        sender.selected = YES;
+    if ([self.delegate respondsToSelector:@selector(middleClick:success:failure:)]) {
+        [self.delegate middleClick:self success:^{
+            if (sender.isSelected) {
+                sender.selected = NO;
+            }else{
+                sender.selected = YES;
+            }
+        } failure:^{
+            
+        }];
     }
 }
 - (void)rightClick:(UIButton *)sender {
-    if (sender.isSelected) {
-        sender.selected = NO;
-    }else{
-        sender.selected = YES;
+    if ([self.delegate respondsToSelector:@selector(rightClick:success:failure:)]) {
+        [self.delegate rightClick:self success:^{
+            if (sender.isSelected) {
+                sender.selected = NO;
+            }else{
+                sender.selected = YES;
+            }
+        } failure:^{
+            
+        }];
     }
 }
 

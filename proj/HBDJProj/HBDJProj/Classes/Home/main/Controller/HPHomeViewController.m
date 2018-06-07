@@ -22,8 +22,8 @@
 #import "EDJMicroBuildModel.h"
 #import "EDJDigitalModel.h"
 #import "EDJHomeImageLoopModel.h"
+#import "EDJMicroLessionAlbumModel.h"
 
-#import "HPMicrolessonViewController.h"
 #import "HPSearchViewController.h"
 #import "HPPartyBuildDetailViewController.h"
 #import "HPPointNewsTableViewController.h"
@@ -93,49 +93,56 @@ SwipeTableViewDataSource
     [self.view addSubview:fakeNav];
     _fakeNav = fakeNav;
     
-    /// netdata
+    /// 模拟数据
     /// 微党课模拟数据
-    NSMutableArray *microModels  = [NSMutableArray array];
-    for (int i = 0; i < 4; i++) {
-        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
-        if (i == 0) {
-            model.imgs = @[@"",@""];
-        }
-        [microModels addObject:model];
-    }
-    /// 党建要闻模拟数据
-    NSMutableArray *buildModels = [NSMutableArray new];
-    for (int i = 0; i < 20; i++) {
-        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
-        model.showInteractionView = YES;
-        NSMutableArray *imgs = [NSMutableArray new];
-        int k = arc4random_uniform(3);
-        if (k == 2) {
-            k++;
-        }
-        for (int j = 0;j < k; j++) {
-            [imgs addObject:@"build"];
-        }
-        model.imgs = imgs.copy;
-        [buildModels addObject:model];
-    }
-    /// 数字阅读模拟数据
-    NSMutableArray *digitalModels  = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
-        EDJDigitalModel *model = [EDJDigitalModel new];
-        [digitalModels addObject:model];
-    }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.microModels = microModels.copy;
-        self.buildModels = buildModels.copy;
-        self.digitalModels = digitalModels.copy;
-        [self.swipeTableView reloadData];
-    });
+//    NSMutableArray *microModels  = [NSMutableArray array];
+//    for (int i = 0; i < 4; i++) {
+//        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
+//        if (i == 0) {
+//            model.imgs = @[@"",@""];
+//        }
+//        [microModels addObject:model];
+//    }
+//    /// 党建要闻模拟数据
+//    NSMutableArray *buildModels = [NSMutableArray new];
+//    for (int i = 0; i < 20; i++) {
+//        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
+//        model.showInteractionView = YES;
+//        NSMutableArray *imgs = [NSMutableArray new];
+//        int k = arc4random_uniform(3);
+//        if (k == 2) {
+//            k++;
+//        }
+//        for (int j = 0;j < k; j++) {
+//            [imgs addObject:@"build"];
+//        }
+//        model.imgs = imgs.copy;
+//        [buildModels addObject:model];
+//    }
+//    /// 数字阅读模拟数据
+//    NSMutableArray *digitalModels  = [NSMutableArray array];
+//    for (int i = 0; i < 10; i++) {
+//        EDJDigitalModel *model = [EDJDigitalModel new];
+//        [digitalModels addObject:model];
+//    }
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.microModels = microModels.copy;
+//        self.buildModels = buildModels.copy;
+//        self.digitalModels = digitalModels.copy;
+//        [self.swipeTableView reloadData];
+//    });
     
     /// TODO: 首页接口调试
     [DJNetworkManager homeIndexWithSuccess:^(id responseObj) {
-       NSLog(@"homeindexsuccess -- %@",responseObj);
+        EDJHomeModel *homeModel = [EDJHomeModel mj_objectWithKeyValues:responseObj];
+        self.imageLoops = homeModel.imageLoops;
+        self.microModels = homeModel.microLessons;
+        self.buildModels = homeModel.pointNews;
+        self.digitalModels = homeModel.digitals;
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.swipeTableView reloadData];
+        }];
         
     } failure:^(id failureObj) {
        NSLog(@"homeindexfailure -- %@",failureObj);
@@ -145,6 +152,24 @@ SwipeTableViewDataSource
     /// TODO: 数字阅读加载更多???
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectedModel:) name:LGDidSelectedNotification object:nil];
+}
+#pragma mark - setter
+- (void)setImageLoops:(NSArray *)imageLoops{
+    _imageLoops = imageLoops;
+//    _imgLoop.imageURLStringsGroup = @[
+//                                      @"https://goss.vcg.com/creative/vcg/800/version23/VCG21gic13374057.jpg",
+//                                      @"http://dl.bizhi.sogou.com/images/2013/12/19/458657.jpg",
+//                                      @"https://goss3.vcg.com/creative/vcg/800/version23/VCG21gic19568254.jpg"];
+//
+//    _imgLoop.imageURLStringsGroup = @[@"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png",
+//                                      @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png",
+//                                      @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png"];
+    NSMutableArray *imgUrls = [NSMutableArray array];
+    [imageLoops enumerateObjectsUsingBlock:^(EDJHomeImageLoopModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
+        [imgUrls addObject:model.classimg];
+        NSLog(@"imgloop.classimg -- %@",model.classimg);
+    }];
+    _imgLoop.imageURLStringsGroup = imgUrls.copy;
 }
 
 #pragma mark - SwipeTableView M
@@ -212,35 +237,13 @@ SwipeTableViewDataSource
 }
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
-//    EDJHomeImageLoopModel *imageLoopModel = self.imageLoops[index];
-//    if (imageLoopModel.classid == BaseClassesIdMicroLessons) {
-//        /// 进入 微党课详情
-//        //        imageLoopModel.newsid;
-//        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-//        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-//        [self.navigationController pushViewController:dvc animated:YES];
-//
-//    }else if (imageLoopModel.classid == BaseClassesIdBuildPointNews){
-//        /// 进入 党建要闻详情
-//        //        imageLoopModel.newsid;
-//        HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-//        dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-//        [self.navigationController pushViewController:dvc animated:YES];
-//
-//    }else{
-//        /// 进入 习近平要闻列表
-//        HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
-//        //        imageLoopModel.classid;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-    
-    /// testcode
+    EDJHomeImageLoopModel *model = self.imageLoops[index];
+    NSLog(@"model.classid -- %@",model.seqid);
     switch (index) {
         case 0:{
             /// MARK: 进入习近平要闻列表
             HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
-            //        imageLoopModel.classid;
+            vc.model = model;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -248,15 +251,18 @@ SwipeTableViewDataSource
             /// 进入 党建要闻详情
             //        imageLoopModel.newsid;
             HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+            dvc.djDataType = DJDataPraisetypeNews;
+            dvc.imageLoopModel = model;
             dvc.coreTextViewType = LGCoreTextViewTypeDefault;
             [self.navigationController pushViewController:dvc animated:YES];
         }
             break;
         case 2:{
             /// 进入 微党课详情
-            //        imageLoopModel.newsid;
-            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+            /// TODO: 进入微党课详情，需要知道是音频，还是视频
+            
+            HPAudioVideoViewController *dvc = [HPAudioVideoViewController new];
+            dvc.contentType = HPAudioVideoTypeVideo;
             [self.navigationController pushViewController:dvc animated:YES];
         }
             break;
@@ -271,8 +277,19 @@ SwipeTableViewDataSource
     NSInteger skipType = [userInfo[LGDidSelectedSkipTypeKey] integerValue];
     NSInteger index = [userInfo[LGDidSelectedIndexKey] integerValue];
     
+    
     switch (skipType) {
         case LGDidSelectedSkipTypeMicrolessonSingle:{
+            NSInteger subIndex = [userInfo[LGDidSelectedSubModelIndexKey] integerValue];
+            
+            /// 先获取专辑
+            EDJMicroLessionAlbumModel *alubm = self.microModels[index];
+            /// 再获取专辑单条微党课
+            EDJMicroPartyLessionSubModel *lesson = alubm.classlist[subIndex];
+            NSLog(@"EDJMicroPartyLessionSubModel -- %@",lesson);
+            /// TODO: 进入微党课详情
+            
+            /// MARK: 进入微党课单条详情
             if ((index % 2) == 0) {
                 /// 用于测试，第一个cell，打开视频详情
                 HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
@@ -286,6 +303,7 @@ SwipeTableViewDataSource
         }
             break;
         case LGDidSelectedSkipTypeMicrolessonAlbum:{
+            /// MARK: 进入专辑列表
             HPAlbumTableViewController *album = [HPAlbumTableViewController new];
             [self.navigationController pushViewController:album animated:YES];
         }
@@ -309,7 +327,9 @@ SwipeTableViewDataSource
         }
             break;
         case LGDidSelectedSkipTypeDigitalBook:{
+            EDJDigitalModel *digital = self.digitalModels[index];
             HPBookInfoViewController *vc = [HPBookInfoViewController new];
+            vc.model = digital;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -331,10 +351,7 @@ SwipeTableViewDataSource
         _imgLoop.placeholderImage = nil;
         _imgLoop.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _imgLoop.delegate = self;
-        _imgLoop.imageURLStringsGroup = @[
-                                          @"https://goss.vcg.com/creative/vcg/800/version23/VCG21gic13374057.jpg",
-                                          @"http://dl.bizhi.sogou.com/images/2013/12/19/458657.jpg",
-                                          @"https://goss3.vcg.com/creative/vcg/800/version23/VCG21gic19568254.jpg"];
+        
     }
     return _imgLoop;
 }

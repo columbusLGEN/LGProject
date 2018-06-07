@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,31 +30,31 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国梦，我的梦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RL0-UE-pj1">
-                        <rect key="frame" x="187" y="49" width="286" height="27.5"/>
+                        <rect key="frame" x="187" y="49" width="306" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出版社：阳光出版社" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYM-cp-Qms">
-                        <rect key="frame" x="187" y="119.5" width="286" height="18"/>
+                        <rect key="frame" x="187" y="119.5" width="306" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出版时间：2018-9-9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t41-5W-0hz">
-                        <rect key="frame" x="187" y="147.5" width="286" height="18"/>
+                        <rect key="frame" x="187" y="147.5" width="306" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上次阅读进度: 15%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zJ-Xs-P4P">
-                        <rect key="frame" x="187" y="175.5" width="286" height="18"/>
+                        <rect key="frame" x="187" y="175.5" width="306" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="1" green="0.81176470588235294" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作者：蔡国英" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQ4-cH-BqN">
-                        <rect key="frame" x="187" y="91.5" width="286" height="18"/>
+                        <rect key="frame" x="187" y="91.5" width="306" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -69,7 +69,7 @@
                     <constraint firstItem="7zJ-Xs-P4P" firstAttribute="trailing" secondItem="t41-5W-0hz" secondAttribute="trailing" id="FGl-nv-4uR"/>
                     <constraint firstItem="irC-zF-q9z" firstAttribute="top" secondItem="I82-NW-6aJ" secondAttribute="top" id="J9E-GM-o6f"/>
                     <constraint firstItem="t41-5W-0hz" firstAttribute="trailing" secondItem="SYM-cp-Qms" secondAttribute="trailing" id="LSI-SZ-PME"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="RL0-UE-pj1" secondAttribute="trailing" constant="15" id="NCL-he-wb9"/>
+                    <constraint firstAttribute="trailing" secondItem="RL0-UE-pj1" secondAttribute="trailing" constant="15" id="NCL-he-wb9"/>
                     <constraint firstItem="SYM-cp-Qms" firstAttribute="leading" secondItem="xQ4-cH-BqN" secondAttribute="leading" id="OGV-hn-Pjn"/>
                     <constraint firstAttribute="bottom" secondItem="irC-zF-q9z" secondAttribute="bottom" id="TAB-YI-vuk"/>
                     <constraint firstItem="RL0-UE-pj1" firstAttribute="top" secondItem="4e3-2z-zzW" secondAttribute="top" constant="8" id="TNa-WD-fsn"/>
@@ -93,7 +93,7 @@
                 <outlet property="pressTime" destination="t41-5W-0hz" id="QnP-Lf-t8L"/>
                 <outlet property="readProgress" destination="7zJ-Xs-P4P" id="Cwt-4n-f1o"/>
             </connections>
-            <point key="canvasLocation" x="-50" y="19"/>
+            <point key="canvasLocation" x="-50" y="18.5"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -13,6 +13,10 @@ typedef void(^ParseSuccess)(NSAttributedString *attrString);
 
 @interface LGHTMLParser : NSObject
 
++ (void)HTMLSaxWithHTMLString:(NSString *)HTMLString success:(ParseSuccess)success;
++ (instancetype)sharedInstance;
+
+/// 测试
 - (NSString *)HTMLStringWithPlistName:(NSString *)plistName;
 - (void)HTMLSax:(ParseSuccess)success;
 @end
