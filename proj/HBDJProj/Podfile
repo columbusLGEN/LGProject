@@ -16,6 +16,7 @@ pod 'SDCycleScrollView'#图片轮播器
 pod 'HXWeiboPhotoPicker', '~> 2.1.5'
 pod 'PLPlayerKit'
 pod 'SwipeTableView'
+pod 'XHNetworkCache'
 
   # Pods for HBDJProj
 

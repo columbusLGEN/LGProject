@@ -13,6 +13,7 @@
 
 @synthesize cover = _cover;
 
+
 - (NSArray *)imgs{
     if (!_imgs) {
         _imgs = [_cover componentsSeparatedByString:@","];
@@ -20,11 +21,9 @@
     return _imgs;
 }
 
-+ (NSDictionary *)mj_objectClassInArray{
-    return @{@"subNews":@"EDJMicroPartyLessionSubModel"};
-}
 
 /// testcode
+
 - (NSArray<EDJMicroPartyLessionSubModel *> *)subNews{
     return @[[EDJMicroPartyLessionSubModel new],[EDJMicroPartyLessionSubModel new],[EDJMicroPartyLessionSubModel new]];
 }

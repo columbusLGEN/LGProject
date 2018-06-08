@@ -8,6 +8,7 @@
 
 #import "HPBookInfoHeaderCell.h"
 #import "HPBookInfoModel.h"
+#import "LGGaussManager.h"
 
 @interface HPBookInfoHeaderCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *fuzzyBg;
@@ -28,6 +29,7 @@
     _subModel = model;
     
     [_bookCover sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:DJPlaceholderImage];
+    [_fuzzyBg sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:DJPlaceholderImage];
     _bookName.text = model.bookName;
     _author.text = [NSString stringWithFormat:@"作者：%@",model.author];
     _press.text = [NSString stringWithFormat:@"出版社：%@",model.press];
@@ -42,8 +44,15 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor grayColor];
+    self.backgroundColor = [UIColor whiteColor];
 }
-
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    UIVisualEffectView *effectView = [LGGaussManager gaussViewWithFrame:_fuzzyBg.frame style:UIBlurEffectStyleDark];
+    [self.contentView addSubview:effectView];
+    [self.contentView sendSubviewToBack:effectView];
+    [self.contentView sendSubviewToBack:_fuzzyBg];
+}
 
 @end

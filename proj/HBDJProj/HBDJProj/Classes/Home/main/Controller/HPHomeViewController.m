@@ -97,10 +97,13 @@ SwipeTableViewDataSource
     /// 微党课模拟数据
 //    NSMutableArray *microModels  = [NSMutableArray array];
 //    for (int i = 0; i < 4; i++) {
-//        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
+//        EDJMicroLessionAlbumModel *model = [EDJMicroLessionAlbumModel new];
 //        if (i == 0) {
-//            model.imgs = @[@"",@""];
+////            model.imgs = @[@"",@""];
 //        }
+//        model.classlist = @[[EDJMicroPartyLessionSubModel new],
+//                            [EDJMicroPartyLessionSubModel new],
+//                            [EDJMicroPartyLessionSubModel new]];
 //        [microModels addObject:model];
 //    }
 //    /// 党建要闻模拟数据
@@ -125,12 +128,10 @@ SwipeTableViewDataSource
 //        EDJDigitalModel *model = [EDJDigitalModel new];
 //        [digitalModels addObject:model];
 //    }
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        self.microModels = microModels.copy;
-//        self.buildModels = buildModels.copy;
-//        self.digitalModels = digitalModels.copy;
-//        [self.swipeTableView reloadData];
-//    });
+//    self.microModels = microModels.copy;
+//    self.buildModels = buildModels.copy;
+//    self.digitalModels = digitalModels.copy;
+//    [self.swipeTableView reloadData];
     
     /// TODO: 首页接口调试
     [DJNetworkManager homeIndexWithSuccess:^(id responseObj) {
@@ -139,14 +140,14 @@ SwipeTableViewDataSource
         self.microModels = homeModel.microLessons;
         self.buildModels = homeModel.pointNews;
         self.digitalModels = homeModel.digitals;
-        
+
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.swipeTableView reloadData];
         }];
-        
+
     } failure:^(id failureObj) {
        NSLog(@"homeindexfailure -- %@",failureObj);
-        
+
     }];
     /// TODO: 要闻列表加载更多???
     /// TODO: 数字阅读加载更多???
@@ -156,14 +157,7 @@ SwipeTableViewDataSource
 #pragma mark - setter
 - (void)setImageLoops:(NSArray *)imageLoops{
     _imageLoops = imageLoops;
-//    _imgLoop.imageURLStringsGroup = @[
-//                                      @"https://goss.vcg.com/creative/vcg/800/version23/VCG21gic13374057.jpg",
-//                                      @"http://dl.bizhi.sogou.com/images/2013/12/19/458657.jpg",
-//                                      @"https://goss3.vcg.com/creative/vcg/800/version23/VCG21gic19568254.jpg"];
-//
-//    _imgLoop.imageURLStringsGroup = @[@"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png",
-//                                      @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png",
-//                                      @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png"];
+    
     NSMutableArray *imgUrls = [NSMutableArray array];
     [imageLoops enumerateObjectsUsingBlock:^(EDJHomeImageLoopModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
         [imgUrls addObject:model.classimg];
@@ -238,7 +232,7 @@ SwipeTableViewDataSource
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     EDJHomeImageLoopModel *model = self.imageLoops[index];
-    NSLog(@"model.classid -- %@",model.seqid);
+    NSLog(@"model.classid -- %ld",model.seqid);
     switch (index) {
         case 0:{
             /// MARK: 进入习近平要闻列表
@@ -260,9 +254,9 @@ SwipeTableViewDataSource
         case 2:{
             /// 进入 微党课详情
             /// TODO: 进入微党课详情，需要知道是音频，还是视频
-            
             HPAudioVideoViewController *dvc = [HPAudioVideoViewController new];
-            dvc.contentType = HPAudioVideoTypeVideo;
+            dvc.imgLoopModel = model;
+            dvc.contentType = model.modaltype;
             [self.navigationController pushViewController:dvc animated:YES];
         }
             break;
@@ -293,11 +287,11 @@ SwipeTableViewDataSource
             if ((index % 2) == 0) {
                 /// 用于测试，第一个cell，打开视频详情
                 HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-                avc.contentType = HPAudioVideoTypeVideo;
+                avc.contentType = ModelMediaTypeVideo;
                 [self.navigationController pushViewController:avc animated:YES];
             }else{
                 HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-                avc.contentType = HPAudioVideoTypeAudio;
+                avc.contentType = ModelMediaTypeAudio;
                 [self.navigationController pushViewController:avc animated:YES];
             }
         }
@@ -309,21 +303,9 @@ SwipeTableViewDataSource
         }
             break;
         case LGDidSelectedSkipTypeBuildNews:{
-            if (index == 0) {
-                /// 用于测试，第一个cell，打开视频详情
-                HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-                avc.contentType = HPAudioVideoTypeVideo;
-                [self.navigationController pushViewController:avc animated:YES];
-            }else if (index == 1){
-                HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-                avc.contentType = HPAudioVideoTypeAudio;
-                [self.navigationController pushViewController:avc animated:YES];
-            }
-            else{
-                HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-                dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-                [self.navigationController pushViewController:dvc animated:YES];
-            }
+            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+            [self.navigationController pushViewController:dvc animated:YES];
         }
             break;
         case LGDidSelectedSkipTypeDigitalBook:{
@@ -351,6 +333,15 @@ SwipeTableViewDataSource
         _imgLoop.placeholderImage = nil;
         _imgLoop.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _imgLoop.delegate = self;
+        
+//            _imgLoop.imageURLStringsGroup = @[
+//                                              @"https://goss.vcg.com/creative/vcg/800/version23/VCG21gic13374057.jpg",
+//                                              @"http://dl.bizhi.sogou.com/images/2013/12/19/458657.jpg",
+//                                              @"https://goss3.vcg.com/creative/vcg/800/version23/VCG21gic19568254.jpg"];
+        /// testcode
+//        _imgLoop.imageURLStringsGroup = @[@"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png",
+//                                          @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png",
+//                                          @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsWHkuAOsPsAA2dBEpoyMs503.png"];
         
     }
     return _imgLoop;

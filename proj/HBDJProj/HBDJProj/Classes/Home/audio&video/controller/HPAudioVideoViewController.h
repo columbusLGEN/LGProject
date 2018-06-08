@@ -9,14 +9,17 @@
 /// 音视频 详情控制器
 
 #import "LGBaseViewController.h"
+#import "EDJMicroPartyLessionSubModel.h"
 
-typedef NS_ENUM(NSUInteger, HPAudioVideoType) {
-    HPAudioVideoTypeVideo,
-    HPAudioVideoTypeAudio,
-};
+@class EDJHomeImageLoopModel;
+//typedef NS_ENUM(NSUInteger, HPAudioVideoType) {
+//    HPAudioVideoTypeVideo,
+//    HPAudioVideoTypeAudio,
+//};
 
 @interface HPAudioVideoViewController : LGBaseViewController
 
-@property (assign,nonatomic) HPAudioVideoType contentType;
+@property (strong,nonatomic) EDJHomeImageLoopModel *imgLoopModel;
+@property (assign,nonatomic) ModelMediaType contentType;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "HPAudioPlayerView.h"
 #import "LGAudioPlayerView.h"
+#import "LGGaussManager.h"
 
 @interface HPAudioPlayerView ()
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
@@ -23,9 +24,7 @@
     [super layoutSubviews];
     
     /// 高斯背景
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-    effectView.frame = _iconBg.bounds;
+    UIVisualEffectView *effectView = [LGGaussManager gaussViewWithFrame:_iconBg.bounds style:UIBlurEffectStyleLight];
     
     [_iconBg addSubview:effectView];
     [_iconBg bringSubviewToFront:_icon];

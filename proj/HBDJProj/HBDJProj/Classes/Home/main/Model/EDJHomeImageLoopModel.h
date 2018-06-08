@@ -12,18 +12,18 @@
 /** 图片地址 */
 @property (strong,nonatomic) NSString *classimg;
 /** BaseClassesId */
-@property (assign,nonatomic) BaseClassesId classid;
+//@property (assign,nonatomic) BaseClassesId classid;
 
 
 /** classname */
-@property (strong,nonatomic) NSString *classname;
+//@property (strong,nonatomic) NSString *classname;
 /** newsid: 如果有值，表示详情；否则表示习近平要闻列表 */
 @property (assign,nonatomic) NSObject *newsid;
 
 /** parentclassid */
-@property (assign,nonatomic) NSInteger parentclassid;
+//@property (assign,nonatomic) NSInteger parentclassid;
 
 /** classdescription */
-@property (strong,nonatomic) NSString *classdescription;
+//@property (strong,nonatomic) NSString *classdescription;
 
 @end

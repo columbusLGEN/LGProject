@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @interface LGBaseModel : NSObject
 
 /** 绝大多数数据的主键 */
-@property (strong,nonatomic) NSString *seqid;
+@property (assign,nonatomic) NSInteger seqid;
 /** cover */
 @property (strong,nonatomic) NSString *cover;
 /** sort */

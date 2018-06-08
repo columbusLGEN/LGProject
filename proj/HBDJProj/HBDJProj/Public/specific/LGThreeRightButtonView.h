@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^ClickRequestSuccess)(void);
+typedef void(^ClickRequestSuccess)(NSInteger id);
 typedef void(^ClickRequestFailure)(void);
 
 @protocol LGThreeRightButtonViewDelegate;
@@ -20,6 +20,8 @@ static NSString * const TRConfigSelectedImgNameKey = @"TRConfigSelectedImgNameKe
 
 @interface LGThreeRightButtonView : UIView
 
+@property (assign,nonatomic) BOOL leftIsSelected;
+@property (assign,nonatomic) BOOL middleIsSelected;
 @property (weak,nonatomic) NSArray<NSDictionary *> *btnConfigs;
 /** 分割线是否顶头 */
 @property (assign,nonatomic) BOOL bothSidesClose;
@@ -33,6 +35,7 @@ static NSString * const TRConfigSelectedImgNameKey = @"TRConfigSelectedImgNameKe
 @end
 
 @protocol LGThreeRightButtonViewDelegate <NSObject>
+@optional
 - (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure;
 - (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure;
 - (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure;

@@ -14,6 +14,8 @@
 #import "DCRichTextTopInfoView.h"
 #import "EDJMicroBuildModel.h"
 
+#import "DJUserInteractionMgr.h"
+
 static const CGFloat richTextTopInfoViewHeight = 100;
 
 @interface HPPartyBuildDetailViewController ()<
@@ -57,12 +59,15 @@ LGThreeRightButtonViewDelegate>
      /// 测试数据
      {"params":{"imei":"460030912121001","imsi":"460030912121001","seqid":"1","userid":"","type":"1"},
      "md5":"654c01acaf40e0ce6d841a552fd3b96c"}
-     
      */
-    [DJNetworkManager homePointNewsDetailWithId:@"1" type:1 success:^(id responseObj) {
+    
+    [DJNetworkManager homePointNewsDetailWithId:1 type:1 success:^(id responseObj) {
         NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
         EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
         self.contentModel = model;
+//        model.collectionid;
+//        model.praiseid;
+        
     } failure:^(id failureObj) {
         
     }];
@@ -75,10 +80,12 @@ LGThreeRightButtonViewDelegate>
 //    } failure:^(id failureObj) {
 //
 //    }];
+    
 }
 - (void)setContentModel:(EDJMicroBuildModel *)contentModel{
     _contentModel = contentModel;
-    
+    _pbdBottom.leftIsSelected = !(contentModel.praiseid == 0);
+    _pbdBottom.middleIsSelected = !(contentModel.collectionid == 0);
     
     [LGHTMLParser HTMLSaxWithHTMLString:contentModel.content success:^(NSAttributedString *attrString) {
         NSAttributedString *string = attrString;
@@ -110,21 +117,31 @@ LGThreeRightButtonViewDelegate>
 }
 
 #pragma mark - LGThreeRightButtonViewDelegate
-/// 点在
+/// 点赞
 - (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    /// 点赞收藏接口测试
-    [DJNetworkManager homeLikeSeqid:@"173" add:NO praisetype:DJDataPraisetypeMicrolesson success:^(id responseObj) {
-        /// TODO: 返回搜藏id 或者 点赞id
-        NSLog(@"homeLikeSeqid -- %@",responseObj);
-        
-    } failure:^(id failureObj) {
-        
-    } collect:NO];
+    [self likeCollectWithSeqid:self.contentModel.seqid pcid:self.contentModel.praiseid clickSuccess:success collect:NO];
 }
 /// 收藏
 - (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    NSLog(@"收藏 -- ");
+    [self likeCollectWithSeqid:self.contentModel.seqid pcid:self.contentModel.collectionid clickSuccess:success collect:YES];
 }
+- (void)likeCollectWithSeqid:(NSInteger)seqid pcid:(NSInteger)pcid clickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
+    [DJUserInteractionMgr likeCollectWithSeqid:seqid pcid:pcid collect:collect type:DJDataPraisetypeNews success:^(id responseObj) {
+        NSDictionary *dict = responseObj;
+        if ([[[dict allKeys] firstObject] isEqualToString:@"praiseid"]) {
+            NSLog(@"点赞 -- %@",responseObj);
+            self.contentModel.praiseid = [responseObj[@"praiseid"] integerValue];
+            clickSuccess(self.contentModel.praiseid);
+        }else{
+            NSLog(@"收藏 -- %@",responseObj);
+            self.contentModel.collectionid = [responseObj[@"collectionid"] integerValue];
+            clickSuccess(self.contentModel.collectionid);
+        }
+    } failure:^(id failureObj) {
+        
+    }];
+}
+
 /// 分享
 - (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     NSLog(@"分享 -- ");

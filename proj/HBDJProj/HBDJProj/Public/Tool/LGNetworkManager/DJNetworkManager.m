@@ -8,6 +8,7 @@
 
 #import "DJNetworkManager.h"
 #import "LGNetworkManager.h"
+#import "LGNetworkCache.h"
 
 @interface DJNetworkManager ()
 @property (strong,nonatomic) NSString *baseUrl;
@@ -21,16 +22,16 @@
 + (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[self sharedInstance] homeDigitalDetailWithId:id success:success failure:failure];
 }
-/// MARK: 党建要闻、微党课详情接口
-+ (void)homePointNewsDetailWithId:(NSString *)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+
++ (void)homePointNewsDetailWithId:(NSInteger)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[self sharedInstance] homePointNewsDetailWithId:id type:type success:success failure:failure];
 }
-/// MARK: 收藏/点赞接口
+
 + (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
     [[DJNetworkManager sharedInstance] homeLikeSeqid:seqid add:add praisetype:praisetype success:success failure:failure collect:collect];
 }
 /// MARK: 主席要闻列表,专辑列表
-+ (void)homeChairmanPoineNewsClassid:(NSString *)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
++ (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[DJNetworkManager sharedInstance] homeChairmanPoineNewsClassid:classid offset:offset length:length sort:sort success:success failure:failure];
 }
 /// MARK: 搜索接口
@@ -47,8 +48,8 @@
     NSDictionary *param = @{@"seqid":id};
     [self sendPOSTRequestWithiName:@"/frontEbook/select" param:param success:success failure:failure];
 }
-- (void)homePointNewsDetailWithId:(NSString *)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"seqid":id,
+- (void)homePointNewsDetailWithId:(NSInteger)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"seqid":[NSString stringWithFormat:@"%ld",id],
                             @"type":[NSString stringWithFormat:@"%ld",type]
                             };
     [self sendPOSTRequestWithiName:@"/frontNews/selectDetail" param:param success:success failure:failure];
@@ -57,7 +58,7 @@
     NSString *iName = nil;
     if (collect) {
         NSLog(@"收藏接口 -- ");
-        iName = @"/frontUserPraises/add";
+        iName = @"/frontUserCollections/add";
     }else{
         iName = @"/frontUserPraises/add";
     }
@@ -66,8 +67,8 @@
                            @"praisetype":[NSString stringWithFormat:@"%ld",praisetype]};
     [self sendPOSTRequestWithiName:iName param:dict success:success failure:failure];
 }
-- (void)homeChairmanPoineNewsClassid:(NSString *)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *dict = @{@"classid":classid,
+- (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *dict = @{@"classid":[NSString stringWithFormat:@"%ld",classid],
                            };
     [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontNews/selectList" param:dict success:success failure:failure];
 }
@@ -99,7 +100,7 @@
     NSMutableDictionary *paramMutable = [NSMutableDictionary dictionaryWithDictionary:param];
     paramMutable[@"imei"] = @"imei";
     paramMutable[@"imsi"] = @"imsi";
-    paramMutable[@"userid"] = @"0";// 获取本地userid
+    paramMutable[@"userid"] = @"1";// 获取本地userid
     
     /// 拼接请求链接
     NSString *url = [NSString stringWithFormat:@"%@%@%@",self.baseUrl,self.pakageName,iName];
@@ -116,10 +117,13 @@
         NSLog(@"DJNetworkManager.responseObject -- %@",responseObject);
         
         if (error) {
-            if (failure) failure(error);
+//            if (failure) failure(error);
+            /// MARK: 回调缓存数据
+            [self callBackCacheJsonObjWithiName:iName argum:argum success:success failure:failure];
+
         }else{
             NSInteger result = [responseObject[@"result"] integerValue];
-            NSString *msg = responseObject[@"msg"];
+//            NSString *msg = responseObject[@"msg"];
             
             id jsonString = responseObject[@"returnJson"];
             if ([jsonString isKindOfClass:[NSNull class]]) {
@@ -129,14 +133,21 @@
                 id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 NSLog(@"jsonstring -- %@",responseObject[@"returnJson"]);
                 NSLog(@"returnJson_class -- %@",[returnJson class]);
+                
+                /// MARK: 写入缓存数据
+                [LGNetworkCache lg_save_asyncJsonToCacheFile:returnJson URLString:iName params:argum];
+                
                 if (result == 0) {/// 成功
                     if (success) success(returnJson);
                 }else{
-                    NSDictionary *errorDict = @{@"msg":msg,
-                                                @"result":@(result),
-                                                @"json":returnJson
-                                                };
-                    if (failure) failure(errorDict);
+                    
+//                    NSDictionary *errorDict = @{@"msg":msg,
+//                                                @"result":@(result),
+//                                                @"json":returnJson
+//                                                };
+//                    if (failure) failure(errorDict);
+                    /// MARK: 回调缓存数据
+                    [self callBackCacheJsonObjWithiName:iName argum:argum success:success failure:failure];
                 }
             }
             
@@ -144,11 +155,21 @@
         }
     }];
 }
+/// MARK: 获取缓存数据
+- (void)callBackCacheJsonObjWithiName:(NSString *)iName argum:(id)argum success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    id cacheJson = [LGNetworkCache lg_cache_jsonWithURLString:iName params:argum];
+    if (cacheJson) {
+        if (success) success(cacheJson);
+    }else{
+        if (failure) failure(@"获取缓存失败");
+    }
+}
 
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-        _baseUrl = @"http://192.168.10.108:8080/";
+//        _baseUrl = @"http://192.168.10.108:8080/";
+        _baseUrl = @"http://123.59.197.176:8080/";
     }
     return _baseUrl;
 }

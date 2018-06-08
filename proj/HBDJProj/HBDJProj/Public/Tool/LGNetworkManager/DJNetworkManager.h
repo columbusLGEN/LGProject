@@ -33,26 +33,25 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
 + (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /**
- 党建要闻详情接口
+ 党建要闻、微党课详情接口    
 
  @param id 数据id
  @param type 1新闻;2微党课;3学习问答;4支部动态;5党员舞台
  @param success success
  @param failure failure
  */
-+ (void)homePointNewsDetailWithId:(NSString *)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
++ (void)homePointNewsDetailWithId:(NSInteger)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**
  点赞/收藏
- 
-
- @param seqid 主键id
+ @param seqid 主键id -- 添加：传入模型的seqid; 删除：传入点赞id（praiseid）或者收藏id（collectionid）
  @param add 0:添加 1:删除
- @param praisetype 数据类型
+ @param praisetype 数据类型 1新闻;2微党课;3学习问答;4支部动态;5党员舞台
  @param collect 1：收藏。0：点赞
+ @param success 添加：返回点赞id 或者 收藏id；删除：返回0
  */
 + (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect;
 /// MARK: 主席要闻列表,专辑列表
-+ (void)homeChairmanPoineNewsClassid:(NSString *)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
++ (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /// MARK: 搜索接口
 + (void)homeSearchWithString:(NSString *)string type:(NSInteger)type offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /// MARK: 首页接口

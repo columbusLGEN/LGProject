@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BB24D77FDB49415BCE55F3C790F6A43E"
-               BlueprintName = "SwipeTableView"
+               BlueprintIdentifier = "62E56392D49B711D1FAB3ED64B9CB066"
+               BlueprintName = "XHNetworkCache"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SwipeTableView.framework">
+               BuildableName = "XHNetworkCache.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

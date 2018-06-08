@@ -23,6 +23,9 @@
 #import "LGVideoInterfaceView.h"
 #import "LGPlayer.h"
 
+#import "EDJHomeImageLoopModel.h"
+#import "DJUserInteractionMgr.h"
+
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
 
@@ -30,13 +33,28 @@ static CGFloat audioInsets = 296;
 UITableViewDelegate,
 UITableViewDataSource,
 HPAudioVideoInfoCellDelegate,
-LGVideoInterfaceViewDelegate>
+LGVideoInterfaceViewDelegate,
+LGThreeRightButtonViewDelegate>
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray *array;
+
+@property (weak,nonatomic) LGThreeRightButtonView *pbdBottom;
 
 @end
 
 @implementation HPAudioVideoViewController
+
+- (void)setImgLoopModel:(EDJHomeImageLoopModel *)imgLoopModel{
+    [DJNetworkManager homePointNewsDetailWithId:imgLoopModel.seqid type:2 success:^(id responseObj) {
+        NSLog(@"微党课responseobj -- %@",responseObj);
+        _imgLoopModel = [EDJHomeImageLoopModel mj_objectWithKeyValues:responseObj];
+        
+        
+        
+    } failure:^(id failureObj) {
+        
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,7 +78,8 @@ LGVideoInterfaceViewDelegate>
     
     /// bottom
     LGThreeRightButtonView *pbdBottom = [[LGThreeRightButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight - bottomHeight, kScreenWidth, bottomHeight)];
-    
+    pbdBottom.delegate = self;
+    _pbdBottom = pbdBottom;
     [pbdBottom setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
                                  TRConfigImgNameKey:@"dc_like_normal",
                                  TRConfigSelectedImgNameKey:@"dc_like_selected",
@@ -91,25 +110,53 @@ LGVideoInterfaceViewDelegate>
     self.array = arr.copy;
     [self.tableView reloadData];
     
-    if (self.contentType == HPAudioVideoTypeVideo) {
+    if (self.contentType == ModelMediaTypeVideo) {
         /// MARK: 视频播放器
         HPVideoPlayerView *vpv = [HPVideoPlayerView videoPlayerView];
         vpv.bottomInterface.delegate = self;
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
         [self.view addSubview:vpv];
-    }else{
+    }else if (self.contentType == ModelMediaTypeAudio){
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
+    }else{
+        /// 其他
     }
-    
-    
     
 }
 
 #pragma mark - LGThreeRightButtonViewDelegate
+- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 点赞
+    [self likeCollectWithSeqid:self.imgLoopModel.seqid pcid:self.imgLoopModel.praiseid clickSuccess:success collect:NO];
+}
+- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 收藏
+    [self likeCollectWithSeqid:self.imgLoopModel.seqid pcid:self.imgLoopModel.collectionid clickSuccess:success collect:YES];
+}
 
+- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 分享
+    
+}
+- (void)likeCollectWithSeqid:(NSInteger)seqid pcid:(NSInteger)pcid clickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
+    [DJUserInteractionMgr likeCollectWithSeqid:seqid pcid:pcid collect:collect type:DJDataPraisetypeMicrolesson success:^(id responseObj) {
+        NSDictionary *dict = responseObj;
+        if ([[[dict allKeys] firstObject] isEqualToString:@"praiseid"]) {
+            NSLog(@"点赞 -- %@",responseObj);
+            self.imgLoopModel.praiseid = [responseObj[@"praiseid"] integerValue];
+            clickSuccess(self.imgLoopModel.praiseid);
+        }else{
+            NSLog(@"收藏 -- %@",responseObj);
+            self.imgLoopModel.collectionid = [responseObj[@"collectionid"] integerValue];
+            clickSuccess(self.imgLoopModel.collectionid);
+        }
+    } failure:^(id failureObj) {
+        
+    }];
+}
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _array.count;
@@ -149,10 +196,10 @@ LGVideoInterfaceViewDelegate>
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerNib:[UINib nibWithNibName:avContentCell bundle:nil] forCellReuseIdentifier:avContentCell];
         [_tableView registerNib:[UINib nibWithNibName:avInfoCell bundle:nil] forCellReuseIdentifier:avInfoCell];
-        if (self.contentType == HPAudioVideoTypeVideo) {
+        if (self.contentType == ModelMediaTypeVideo) {
             /// 视频
             _tableView.contentInset = UIEdgeInsetsMake(videoInsets, 0, 0, 0);
-        }else{
+        }else if (self.contentType == ModelMediaTypeAudio) {
             /// 音频
             _tableView.contentInset = UIEdgeInsetsMake(audioInsets, 0, 0, 0);
         }

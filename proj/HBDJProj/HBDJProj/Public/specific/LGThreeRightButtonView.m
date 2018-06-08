@@ -20,6 +20,15 @@
 
 @implementation LGThreeRightButtonView
 
+- (void)setLeftIsSelected:(BOOL)leftIsSelected{
+    _leftIsSelected = leftIsSelected;
+    self.leftBtn.selected = leftIsSelected;
+}
+- (void)setMiddleIsSelected:(BOOL)middleIsSelected{
+    _middleIsSelected = middleIsSelected;
+    self.midBtn.selected = middleIsSelected;
+}
+
 - (void)setHideTopLine:(BOOL)hideTopLine{
     if (hideTopLine) {
         [self.line removeFromSuperview];
@@ -40,7 +49,8 @@
 
 - (void)leftClick:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(leftClick:success:failure:)]) {
-        [self.delegate leftClick:self success:^{
+        [self.delegate leftClick:self success:^(NSInteger id){
+            NSLog(@"left刷新UI -- id: %ld",id);
             if (sender.isSelected) {
                 sender.selected = NO;
             }else{
@@ -53,7 +63,8 @@
 }
 - (void)midClick:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(middleClick:success:failure:)]) {
-        [self.delegate middleClick:self success:^{
+        [self.delegate middleClick:self success:^(NSInteger id){
+            NSLog(@"mid刷新UI -- id: %ld",id);
             if (sender.isSelected) {
                 sender.selected = NO;
             }else{
@@ -66,7 +77,7 @@
 }
 - (void)rightClick:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(rightClick:success:failure:)]) {
-        [self.delegate rightClick:self success:^{
+        [self.delegate rightClick:self success:^(NSInteger id){
             if (sender.isSelected) {
                 sender.selected = NO;
             }else{

@@ -17,14 +17,15 @@ static NSString * const LGDidSelectedIndexKey = @"LGDidSelectedIndexKey";
 /** 专辑下的微党课indexkey */
 static NSString * const LGDidSelectedSubModelIndexKey = @"LGDidSelectedSubModelIndexKey";
 
-/// 微党课单条
-/// 微党课专辑
-/// 党建要闻单条
-/// 数字阅读单条
+/** 跳转类型 */
 typedef NS_ENUM(NSUInteger, LGDidSelectedSkipType) {
+    /** 微党课单条 */
     LGDidSelectedSkipTypeMicrolessonSingle,
+    /** 微党课专辑 */
     LGDidSelectedSkipTypeMicrolessonAlbum,
+    /** 党建要闻单条 */
     LGDidSelectedSkipTypeBuildNews,
+    /** 数字阅读单条 */
     LGDidSelectedSkipTypeDigitalBook,
 };
 
