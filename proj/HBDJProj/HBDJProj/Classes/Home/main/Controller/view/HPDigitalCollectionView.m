@@ -44,10 +44,6 @@ STCollectionViewDelegate
     return CGSizeMake(kScreenWidth / 3, 133 + 48);
 }
 #pragma mark - UICollectionViewDataSource
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-//}
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     EDJDigitalModel *model = self.dataArray[indexPath.row];
@@ -66,15 +62,20 @@ STCollectionViewDelegate
 - (void)commonInit{
     self.backgroundColor = [UIColor whiteColor];
     /// MARK: 修改layout的相关值
-    //    STCollectionViewFlowLayout * layout = self.st_collectionViewLayout;
+//        STCollectionViewFlowLayout * layout = self.st_collectionViewLayout;
     //    layout.minimumInteritemSpacing = 5;
     //    layout.minimumLineSpacing = 5;
-    //    layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
-    
+//        layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
     self.stDelegate = self;
     self.stDataSource = self;
     
     [self registerNib:[UINib nibWithNibName:digitalCell bundle:nil] forCellWithReuseIdentifier:digitalCell];
+    
+    if (@available(iOS 11.0, *)) {
+        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        // Fallback on earlier versions
+    }
     
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -83,6 +84,7 @@ STCollectionViewDelegate
             });
         }];
     }];
+    
 }
 
 

@@ -21,6 +21,7 @@
         self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    NSLog(@"tableview -- %@",self);
                     [self.mj_header endRefreshing];
                 });
             }];

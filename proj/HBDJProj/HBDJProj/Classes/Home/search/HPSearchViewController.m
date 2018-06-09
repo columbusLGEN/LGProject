@@ -17,6 +17,9 @@
 #import "EDJMicroPartyLessionSubModel.h"
 #import "DCSubPartStateModel.h"
 
+#import "LGLocalSearchRecord.h"
+#import "LGRecordButtonLoader.h"
+
 @interface HPSearchViewController ()<
 LGNavigationSearchBarDelelgate,
 UITextFieldDelegate,
@@ -29,6 +32,9 @@ HPVoiceSearchViewDelegate>
 
 @property (strong,nonatomic) NSMutableString *voiceString;
 @property (weak,nonatomic) HPSearchHistoryView *searchHistory;
+
+/** 本地搜索记录数组 */
+@property (strong,nonatomic) NSArray<NSString *> *records;
 
 @end
 
@@ -56,8 +62,26 @@ HPVoiceSearchViewDelegate>
                                                  name:UITextFieldTextDidChangeNotification
                                                object:nil];
     
-    // TODO: 先加一个大白板，搜索到结果后，将大白板删除
+    /// 搜索记录
+    self.records = [LGLocalSearchRecord getLocalRecordWithUserid:@"1" part:SearchRecordExePartHome];
     HPSearchHistoryView *hisView = [[HPSearchHistoryView alloc] init];
+    
+    NSMutableArray *buttonArray = [NSMutableArray array];
+//    [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        UIButton *button = [self buttonWith:obj frame:CGRectZero];
+//        [buttonArray addObject:button];
+//    }];
+    /// testcode
+    for (int i = 0; i<300; i++) {
+        UIButton *button = [LGRecordButtonLoader buttonWith:@"搜索历史" frame:CGRectZero];
+        [buttonArray addObject:button];
+    }
+    
+    [LGRecordButtonLoader addButtonTo:hisView.scrollv viewController:self array:buttonArray.copy action:@selector(recordClick:)];
+    
+    [hisView.deleteRecord addTarget:self
+                             action:@selector(deleteSearchRecord:)
+                   forControlEvents:UIControlEventTouchUpInside];
     hisView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:hisView];
     [hisView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,6 +96,16 @@ HPVoiceSearchViewDelegate>
     
     /// 默认进入页面自动响应输入
     [self addTextFieldToNav:_fakeNavgationBar];
+    
+    [LGLocalSearchRecord sharedInstance];
+}
+- (void)recordClick:(UIButton *)record{
+    
+    NSLog(@"clickrecord.title: %@",record.titleLabel.text);
+}
+- (void)deleteSearchRecord:(UIButton *)sender{
+    NSLog(@"删除历史记录: ");
+    
 }
 
 #pragma mark - notifications
@@ -133,6 +167,14 @@ HPVoiceSearchViewDelegate>
      1:微党课
      2:党建要闻
      */
+    
+    /// 写入搜索记录 测试数据，测试用户id：1，模块: home
+    [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartHome userid:@"1"];
+//    [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartDiscovery userid:@"1"];
+//
+//    [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartHome userid:@"2"];
+//    [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartDiscovery userid:@"2"];
+    
     [DJNetworkManager homeSearchWithString:_searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
         /// TODO: 刷新子可控制器视图
         [_searchHistory removeFromSuperview];

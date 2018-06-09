@@ -172,7 +172,7 @@ SwipeTableViewDataSource
 }
 - (UIScrollView *)swipeTableView:(SwipeTableView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIScrollView *)view {
     CGRect rect = swipeView.bounds;
-    rect.size.height -= kTabBarHeight ;
+    rect.size.height -= kTabBarHeight;
     if (index == 0) {
         HPMicrolessonView *tableview = [[HPMicrolessonView alloc] initWithFrame:rect style:UITableViewStylePlain];
         tableview.dataArray = self.microModels.copy;
@@ -182,6 +182,7 @@ SwipeTableViewDataSource
         /// 返回党建要闻
         HPBuildTableView *tableview = [[HPBuildTableView alloc] initWithFrame:rect style:UITableViewStylePlain];
         tableview.dataArray = self.buildModels.copy;
+        NSLog(@"tableview -- %@",tableview);
         view = tableview;
         
     }else{
@@ -189,7 +190,7 @@ SwipeTableViewDataSource
         rect.origin.y += 10;
         rect.size.height -= 10;
         HPDigitalCollectionView *collectionView = [[HPDigitalCollectionView alloc] initWithFrame:rect];
-        
+        NSLog(@"collectionView -- %@",collectionView);
         collectionView.dataArray = self.digitalModels.copy;
         view = collectionView;
         

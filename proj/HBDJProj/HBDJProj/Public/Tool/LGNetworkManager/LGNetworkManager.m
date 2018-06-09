@@ -37,7 +37,8 @@
 - (AFHTTPRequestSerializer *)requestSerializer{
     if (!_requestSerializer) {
         _requestSerializer = [AFJSONRequestSerializer serializer];
-        _requestSerializer.timeoutInterval = 10;
+        /// 超时时间
+        _requestSerializer.timeoutInterval = 1;
         /// 是否允许蜂窝数据
         _requestSerializer.allowsCellularAccess = YES;
         

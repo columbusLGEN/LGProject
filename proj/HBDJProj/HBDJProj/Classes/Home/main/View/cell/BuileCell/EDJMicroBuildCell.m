@@ -16,7 +16,7 @@
 }
 
 + (NSString *)cellIdentifierWithModel:(EDJMicroBuildModel *)model{
-    NSLog(@"model.cover -- %@",model.cover);
+//    NSLog(@"model.cover -- %@",model.cover);
     if ([model.cover isEqualToString:@""] || model.cover == nil) {
         /// 没有图
         return @"EDJMicroBuildNoImgCell";
