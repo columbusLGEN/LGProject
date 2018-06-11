@@ -6,6 +6,11 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/**
+    搜索记录文件数据结构：
+        [{key:value},{key:value}]
+ */
+
 #import "LGLocalSearchRecord.h"
 
 @interface LGLocalSearchRecord ()
@@ -28,10 +33,10 @@
     _currentExePart = part;
     _userid = userid;
     
-    NSDictionary *record = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
-    NSLog(@"userid: %@,:%@,lg_record: %@",userid,[self currentExePartWith:part],record.allValues);
+    NSArray *record = [NSArray arrayWithContentsOfFile:self.filePath];
+    NSLog(@"userid: %@,:%@,lg_record: %@",userid,[self currentExePartWith:part],record);
     
-    return record.allValues;
+    return record;
 }
 /**
  添加新的历史记录（向本地文件中）
@@ -51,21 +56,17 @@
     
     /// 2.写入数据
     /// 获取本地文件
-    NSDictionary *record = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
-    NSLog(@"写入之前record -- %@",record);
-    /// 建立新的字典
-    NSMutableDictionary *recordMutable = [NSMutableDictionary dictionaryWithDictionary:record];
-    /// 获取新内容的index
-    NSInteger index = record.allKeys.count;
-    /// 拼接新内容的key
-    NSString *key = [self recordKeyWithUserid:userid part:part index:index];
-    /// 赋值
-    recordMutable[key] = content;
+    NSArray *recordArray = [NSArray arrayWithContentsOfFile:self.filePath];
+    NSLog(@"写入之前record -- %@",recordArray);
+    /// 建立新的数组
+    NSMutableArray *recordMutable = [NSMutableArray arrayWithArray:recordArray];
+    /// 插入
+    [recordMutable insertObject:content atIndex:0];
     /// 写入
     BOOL write = [recordMutable writeToFile:self.filePath atomically:YES];
     if (write) {
-        NSDictionary *record = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
-        NSLog(@"写入成功 -- %d: %@",write,record);
+        NSArray *recordArray = [NSArray arrayWithContentsOfFile:self.filePath];
+        NSLog(@"写入成功 -- %d: %@",write,recordArray);
     }
 }
 

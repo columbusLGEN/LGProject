@@ -15,6 +15,7 @@
 #import "EDJMicroBuildModel.h"
 
 #import "DJUserInteractionMgr.h"
+#import "LGSocialShareManager.h"
 
 static const CGFloat richTextTopInfoViewHeight = 100;
 
@@ -61,7 +62,7 @@ LGThreeRightButtonViewDelegate>
      "md5":"654c01acaf40e0ce6d841a552fd3b96c"}
      */
     
-    [DJNetworkManager homePointNewsDetailWithId:1 type:1 success:^(id responseObj) {
+    [DJNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:1 success:^(id responseObj) {
         NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
         EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
         self.contentModel = model;
@@ -117,11 +118,11 @@ LGThreeRightButtonViewDelegate>
 }
 
 #pragma mark - LGThreeRightButtonViewDelegate
-/// 点赞
+/// MARK: 点赞
 - (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     [self likeCollectWithSeqid:self.contentModel.seqid pcid:self.contentModel.praiseid clickSuccess:success collect:NO];
 }
-/// 收藏
+/// MARK: 收藏
 - (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     [self likeCollectWithSeqid:self.contentModel.seqid pcid:self.contentModel.collectionid clickSuccess:success collect:YES];
 }
@@ -142,9 +143,9 @@ LGThreeRightButtonViewDelegate>
     }];
 }
 
-/// 分享
+/// MARK: 分享
 - (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    NSLog(@"分享 -- ");
+    [LGSocialShareManager showShareMenuWithThumbUrl:nil content:nil webpageUrl:nil];
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate

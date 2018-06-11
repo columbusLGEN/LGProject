@@ -23,4 +23,7 @@ EDJDigitalModel;
 /** 数字阅读 */
 @property (strong,nonatomic) NSArray<EDJDigitalModel *> *digitals;
 
+/** 党建要闻的classid，用于请求党建要闻列表数据 */
+@property (assign,nonatomic) NSInteger newsClassId;
+
 @end

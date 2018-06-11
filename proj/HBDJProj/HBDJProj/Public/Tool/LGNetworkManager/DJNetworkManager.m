@@ -30,7 +30,7 @@
 + (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
     [[DJNetworkManager sharedInstance] homeLikeSeqid:seqid add:add praisetype:praisetype success:success failure:failure collect:collect];
 }
-/// MARK: 主席要闻列表,专辑列表
+
 + (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[DJNetworkManager sharedInstance] homeChairmanPoineNewsClassid:classid offset:offset length:length sort:sort success:success failure:failure];
 }
@@ -56,15 +56,18 @@
 }
 - (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
     NSString *iName = nil;
+    NSString *type = nil;
     if (collect) {
         NSLog(@"收藏接口 -- ");
         iName = @"/frontUserCollections/add";
+        type = @"cellectiontype";
     }else{
         iName = @"/frontUserPraises/add";
+        type = @"praisetype";
     }
     NSDictionary *dict = @{@"addordel":[NSString stringWithFormat:@"%d",add],
                            @"seqid":seqid,
-                           @"praisetype":[NSString stringWithFormat:@"%ld",praisetype]};
+                           type:[NSString stringWithFormat:@"%ld",praisetype]};
     [self sendPOSTRequestWithiName:iName param:dict success:success failure:failure];
 }
 - (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
@@ -112,7 +115,7 @@
     argum[@"md5"] = @"md5";
 
     NSLog(@"arguments -- %@",argum);
-    
+    NSLog(@"requesturl: %@",url);
     [[LGNetworkManager sharedInstance] sendPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) { 
         NSLog(@"DJNetworkManager.responseObject -- %@",responseObject);
         
@@ -175,7 +178,7 @@
 }
 - (NSString *)pakageName{
     if (!_pakageName) {
-        _pakageName = @"APMKAFService/";
+        _pakageName = @"APMKAFService";
     }
     return _pakageName;
 }

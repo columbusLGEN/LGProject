@@ -36,6 +36,8 @@ HPVoiceSearchViewDelegate>
 /** 本地搜索记录数组 */
 @property (strong,nonatomic) NSArray<NSString *> *records;
 
+@property (strong,nonatomic) LGRecordButtonLoader *rbLoader;
+
 @end
 
 @implementation HPSearchViewController
@@ -63,21 +65,11 @@ HPVoiceSearchViewDelegate>
                                                object:nil];
     
     /// 搜索记录
-    self.records = [LGLocalSearchRecord getLocalRecordWithUserid:@"1" part:SearchRecordExePartHome];
+    
     HPSearchHistoryView *hisView = [[HPSearchHistoryView alloc] init];
+    _searchHistory = hisView;
     
-    NSMutableArray *buttonArray = [NSMutableArray array];
-//    [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        UIButton *button = [self buttonWith:obj frame:CGRectZero];
-//        [buttonArray addObject:button];
-//    }];
-    /// testcode
-    for (int i = 0; i<300; i++) {
-        UIButton *button = [LGRecordButtonLoader buttonWith:@"搜索历史" frame:CGRectZero];
-        [buttonArray addObject:button];
-    }
-    
-    [LGRecordButtonLoader addButtonTo:hisView.scrollv viewController:self array:buttonArray.copy action:@selector(recordClick:)];
+    [self getLocalRecord];
     
     [hisView.deleteRecord addTarget:self
                              action:@selector(deleteSearchRecord:)
@@ -90,7 +82,7 @@ HPVoiceSearchViewDelegate>
         make.bottom.equalTo(self.view.mas_bottom);
         make.right.equalTo(self.view.mas_right);
     }];
-    _searchHistory = hisView;
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lg_endOfSpeech:) name:LGVoiceRecoganizerEndOfSpeechNotification object:nil];
     
@@ -170,10 +162,9 @@ HPVoiceSearchViewDelegate>
     
     /// 写入搜索记录 测试数据，测试用户id：1，模块: home
     [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartHome userid:@"1"];
-//    [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartDiscovery userid:@"1"];
-//
-//    [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartHome userid:@"2"];
-//    [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartDiscovery userid:@"2"];
+    
+    /// 将新输入的内容添加到界面上
+    [self getLocalRecord];
     
     [DJNetworkManager homeSearchWithString:_searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
         /// TODO: 刷新子可控制器视图
@@ -251,10 +242,15 @@ HPVoiceSearchViewDelegate>
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                }];
 }
+- (LGRecordButtonLoader *)rbLoader{
+    if (!_rbLoader) {
+        _rbLoader = [[LGRecordButtonLoader alloc] init];
+    }
+    return _rbLoader;
+}
 - (CGFloat)segmentTopMargin{
     return kNavSingleBarHeight + marginTen;
 }
-
 - (void)addTextFieldToNav:(LGNavigationSearchBar *)navigationSearchBar{
     if (!_textField) {
         navigationSearchBar.isEditing = YES;
@@ -264,6 +260,17 @@ HPVoiceSearchViewDelegate>
         self.textField.frame = frame;
         [self.textField becomeFirstResponder];
     }
+}
+/** 获取本地搜索记录 */
+- (void)getLocalRecord{
+    /// TODO: 获取当前用户id
+    self.records = [LGLocalSearchRecord getLocalRecordWithUserid:@"1" part:SearchRecordExePartHome];
+    NSMutableArray *buttonArray = [NSMutableArray array];
+    [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *button = [self.rbLoader buttonWith:obj frame:CGRectZero];
+        [buttonArray addObject:button];
+    }];
+    [self.rbLoader addButtonTo:_searchHistory.scrollv viewController:self array:buttonArray.copy action:@selector(recordClick:)];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

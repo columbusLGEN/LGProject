@@ -35,17 +35,42 @@ PODS:
     - SDWebImage (~> 4.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
-  - MJExtension (3.0.13)
+  - MJExtension (3.0.15)
   - MJRefresh (3.1.15.3)
   - PLPlayerKit (3.3.1):
     - PLPlayerKit/iphoneos (= 3.3.1)
   - PLPlayerKit/iphoneos (3.3.1)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - SwipeTableView (0.2.6)
+  - UMCCommon (1.5.1)
+  - UMCSecurityPlugins (1.0.6)
+  - UMCShare/Core (6.9.3):
+    - UMCCommon
+  - UMCShare/Social/AlipayShare (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/DingDing (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Douban (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedQQ (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedSina (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedWeChat (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/UI (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
   - XHNetworkCache (1.4.0)
   - YYText (1.0.7)
 
@@ -61,6 +86,15 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage (~> 4.0)
   - SwipeTableView
+  - UMCCommon
+  - UMCSecurityPlugins
+  - UMCShare/Social/AlipayShare
+  - UMCShare/Social/DingDing
+  - UMCShare/Social/Douban
+  - UMCShare/Social/ReducedQQ
+  - UMCShare/Social/ReducedSina
+  - UMCShare/Social/ReducedWeChat
+  - UMCShare/UI
   - XHNetworkCache
   - YYText
 
@@ -78,6 +112,9 @@ SPEC REPOS:
     - SDCycleScrollView
     - SDWebImage
     - SwipeTableView
+    - UMCCommon
+    - UMCSecurityPlugins
+    - UMCShare
     - XHNetworkCache
     - YYText
 
@@ -88,15 +125,18 @@ SPEC CHECKSUMS:
   HXWeiboPhotoPicker: b389ed6a2f854270aa391c55591d0616a519c881
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJExtension: 3f039575db1b135a20699ad298713b26acec1528
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   PLPlayerKit: 63a9c6a7661f497591c84121e854e8e6ac003256
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SwipeTableView: 67d8a2e6e18bd38c188fd4fabda0b278eaa08d2f
+  UMCCommon: 16b674e9de0616d3a6128c551348a686d869c3c7
+  UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
+  UMCShare: 023886b10d11119331c9c46d8e8a0c31fe67c23e
   XHNetworkCache: 6050436268cb44be215ff5cbbe17b87901de649c
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 35bcea5731e3ce5e22e3ac40ed0e11547fe186b3
+PODFILE CHECKSUM: 107463ecccc9b651fe4179a86dcb336d0384ff17
 
 COCOAPODS: 1.5.2

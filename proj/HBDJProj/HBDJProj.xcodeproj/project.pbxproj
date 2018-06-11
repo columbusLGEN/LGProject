@@ -108,6 +108,7 @@
 		88435EAC208F061400188CE9 /* EDJSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAB208F061400188CE9 /* EDJSearchViewController.m */; };
 		88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAE208F140C00188CE9 /* LGNavSearchView.m */; };
 		886A1B6020CBDD2F0007AD63 /* LGRecordButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */; };
+		886A1B6320CE53220007AD63 /* LGSocialShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6220CE53220007AD63 /* LGSocialShareManager.m */; };
 		8877742220C0F7390011DFF3 /* ECRPDFRelateder.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */; };
 		8877742320C0F7390011DFF3 /* LGBookReaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FE20C0F7390011DFF3 /* LGBookReaderManager.m */; };
 		8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8877740220C0F7390011DFF3 /* LGDownloadManager.m */; };
@@ -558,6 +559,8 @@
 		88435EAE208F140C00188CE9 /* LGNavSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNavSearchView.m; sourceTree = "<group>"; };
 		886A1B5E20CBDD2F0007AD63 /* LGRecordButtonLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGRecordButtonLoader.h; sourceTree = "<group>"; };
 		886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGRecordButtonLoader.m; sourceTree = "<group>"; };
+		886A1B6120CE53220007AD63 /* LGSocialShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSocialShareManager.h; sourceTree = "<group>"; };
+		886A1B6220CE53220007AD63 /* LGSocialShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSocialShareManager.m; sourceTree = "<group>"; };
 		887773FB20C0F7390011DFF3 /* ECRPDFRelateder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRPDFRelateder.h; sourceTree = "<group>"; };
 		887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRPDFRelateder.m; sourceTree = "<group>"; };
 		887773FD20C0F7390011DFF3 /* LGBookReaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBookReaderManager.h; sourceTree = "<group>"; };
@@ -1128,6 +1131,8 @@
 				883E082120CA16C700BB62BA /* LGGaussManager.m */,
 				883E082920CA7DCB00BB62BA /* LGLocalSearchRecord.h */,
 				883E082A20CA7DCB00BB62BA /* LGLocalSearchRecord.m */,
+				886A1B6120CE53220007AD63 /* LGSocialShareManager.h */,
+				886A1B6220CE53220007AD63 /* LGSocialShareManager.m */,
 				88BCEDA120C29B8700B5C1DB /* voice */,
 			);
 			path = Tool;
@@ -2611,6 +2616,7 @@
 				881C94862068EA5A009D6A52 /* Resources */,
 				939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */,
 				88D5C61E20BE776400E353DB /* Embed Frameworks */,
+				3808717F2CE85B9902D1B14E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2794,6 +2800,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3808717F2CE85B9902D1B14E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh",
+				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2912,6 +2936,7 @@
 				88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */,
 				88BCEDF720C8FC0E00B5C1DB /* HPSearchHistoryView.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,
+				886A1B6320CE53220007AD63 /* LGSocialShareManager.m in Sources */,
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
 				88A47133207EF5EB002F93E0 /* EDJUserCenterHomePageModel.m in Sources */,
 				88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */,

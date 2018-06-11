@@ -47,11 +47,20 @@ SwipeTableViewDataSource
 @property (strong,nonatomic) LGSegmentControl *segment;
 @property (weak,nonatomic) LGNavigationSearchBar *fakeNav;
 
+@property (strong,nonatomic) HPMicrolessonView *lessonTableview;
+@property (strong,nonatomic) HPBuildTableView *buildTableview;
+@property (strong,nonatomic) HPDigitalCollectionView *digitalCollectionView;
+
+@property (strong,nonatomic) EDJHomeModel *homeModel;
+
 /** 图片轮播模型 */
 @property (strong,nonatomic) NSArray *imageLoops;
 @property (strong,nonatomic) NSArray *microModels;
+
 @property (strong,nonatomic) NSArray *buildModels;
+@property (assign,nonatomic) NSInteger buildOffset;
 @property (strong,nonatomic) NSArray *digitalModels;
+@property (assign,nonatomic) NSInteger digitalOffset;
 
 @property (assign,nonatomic) NSInteger currentIndex;
 
@@ -133,27 +142,70 @@ SwipeTableViewDataSource
 //    self.digitalModels = digitalModels.copy;
 //    [self.swipeTableView reloadData];
     
-    /// TODO: 首页接口调试
+    [self homeReloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectedModel:) name:LGDidSelectedNotification object:nil];
+    
+    _buildOffset = 0;
+    _digitalOffset = 0;
+}
+
+- (void)homeReloadData{
     [DJNetworkManager homeIndexWithSuccess:^(id responseObj) {
         EDJHomeModel *homeModel = [EDJHomeModel mj_objectWithKeyValues:responseObj];
+        _homeModel = homeModel;
         self.imageLoops = homeModel.imageLoops;
         self.microModels = homeModel.microLessons;
         self.buildModels = homeModel.pointNews;
         self.digitalModels = homeModel.digitals;
-
+        
+        _buildOffset = self.buildModels.count;
+        _digitalOffset = self.digitalModels.count;
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [_lessonTableview.mj_header endRefreshing];
+            [_buildTableview.mj_header endRefreshing];
+            [_digitalCollectionView.mj_header endRefreshing];
             [self.swipeTableView reloadData];
         }];
-
+        
     } failure:^(id failureObj) {
-       NSLog(@"homeindexfailure -- %@",failureObj);
-
+        NSLog(@"homeindexfailure -- %@",failureObj);
+        
     }];
-    /// TODO: 要闻列表加载更多???
-    /// TODO: 数字阅读加载更多???
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectedModel:) name:LGDidSelectedNotification object:nil];
 }
+
+/// MARK: 党建要闻加载更多数据
+- (void)buildPointNewsLoadMoreDatas{
+    
+    [DJNetworkManager homeChairmanPoineNewsClassid:_homeModel.newsClassId offset:_buildOffset length:1 sort:0 success:^(id responseObj) {
+        NSLog(@"党建要闻列表加载更多 : %@",responseObj);
+        NSArray *array = (NSArray *)responseObj;
+        NSMutableArray *buildArray = [NSMutableArray arrayWithArray:_buildTableview.dataArray];
+        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:obj];
+            [buildArray addObject:model];
+        }];
+        _buildOffset = buildArray.count;
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [_buildTableview.mj_footer endRefreshing];
+            _buildTableview.dataArray = buildArray;
+        }];
+    } failure:^(id failureObj) {
+        NSLog(@"党建要闻列表加载更多请求失败 : %@",failureObj);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [_buildTableview.mj_footer endRefreshing];
+        }];
+    }];
+}
+/// MARK: 数字阅读加载更多数据
+- (void)digitalLoadMoreDatas{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [_digitalCollectionView reloadData];
+    }];
+}
+
 #pragma mark - setter
 - (void)setImageLoops:(NSArray *)imageLoops{
     _imageLoops = imageLoops;
@@ -175,25 +227,29 @@ SwipeTableViewDataSource
     rect.size.height -= kTabBarHeight;
     if (index == 0) {
         HPMicrolessonView *tableview = [[HPMicrolessonView alloc] initWithFrame:rect style:UITableViewStylePlain];
+        _lessonTableview = tableview;
+        tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(homeReloadData)];
         tableview.dataArray = self.microModels.copy;
         view = tableview;
         
     }else if (index == 1) {
         /// 返回党建要闻
         HPBuildTableView *tableview = [[HPBuildTableView alloc] initWithFrame:rect style:UITableViewStylePlain];
+        tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(homeReloadData)];
+        tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(buildPointNewsLoadMoreDatas)];
         tableview.dataArray = self.buildModels.copy;
-        NSLog(@"tableview -- %@",tableview);
         view = tableview;
-        
+        _buildTableview = tableview;
     }else{
         /// 返回数字阅读
         rect.origin.y += 10;
         rect.size.height -= 10;
         HPDigitalCollectionView *collectionView = [[HPDigitalCollectionView alloc] initWithFrame:rect];
-        NSLog(@"collectionView -- %@",collectionView);
+        collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(homeReloadData)];
+        collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(digitalLoadMoreDatas)];
         collectionView.dataArray = self.digitalModels.copy;
         view = collectionView;
-        
+        _digitalCollectionView = collectionView;
     }
     [self configRefreshHeaderForItem:view];
     return view;

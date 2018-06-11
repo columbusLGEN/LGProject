@@ -50,7 +50,16 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
  @param success 添加：返回点赞id 或者 收藏id；删除：返回0
  */
 + (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect;
-/// MARK: 主席要闻列表,专辑列表
+/**
+ 1.焦点要闻列表/2.课程内容列表/3.党建要闻列表
+ 
+ @param classid 1.分类id/2.课程id/3.??id
+ @param offset 偏移量
+ @param length 返回数据条数
+ @param sort 排序，暂无用
+ @param success 成功回调
+ @param failure 失败回调
+ */
 + (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /// MARK: 搜索接口
 + (void)homeSearchWithString:(NSString *)string type:(NSInteger)type offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
