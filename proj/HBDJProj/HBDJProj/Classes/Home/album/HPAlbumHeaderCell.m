@@ -21,7 +21,7 @@
     
 }
 
-- (void)setModel:(EDJMicroPartyLessionSubModel *)model{
+- (void)setModel:(DJDataBaseModel *)model{
     _model = model;
     
 }

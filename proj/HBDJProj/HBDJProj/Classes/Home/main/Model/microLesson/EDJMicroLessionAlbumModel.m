@@ -11,7 +11,7 @@
 @implementation EDJMicroLessionAlbumModel
 
 + (NSDictionary *)mj_objectClassInArray{
-    return @{@"classlist":@"EDJMicroPartyLessionSubModel"};
+    return @{@"classlist":@"DJDataBaseModel"};
 }
 
 @end

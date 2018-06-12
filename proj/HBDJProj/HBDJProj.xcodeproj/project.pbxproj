@@ -102,7 +102,7 @@
 		88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E95208DD09500188CE9 /* UCPartyMemberStageController.m */; };
 		88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */; };
 		88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */; };
-		88435EA4208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA3208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m */; };
+		88435EA4208EFB0800188CE9 /* DJDataBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA3208EFB0800188CE9 /* DJDataBaseModel.m */; };
 		88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */; };
 		88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */; };
 		88435EAC208F061400188CE9 /* EDJSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAB208F061400188CE9 /* EDJSearchViewController.m */; };
@@ -548,8 +548,8 @@
 		88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageModel.m; sourceTree = "<group>"; };
 		88435E9C208DD33900188CE9 /* UCPartyMemberStageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPartyMemberStageCell.h; sourceTree = "<group>"; };
 		88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageCell.m; sourceTree = "<group>"; };
-		88435EA2208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPartyLessionSubModel.h; sourceTree = "<group>"; };
-		88435EA3208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJMicroPartyLessionSubModel.m; sourceTree = "<group>"; };
+		88435EA2208EFB0800188CE9 /* DJDataBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDataBaseModel.h; sourceTree = "<group>"; };
+		88435EA3208EFB0800188CE9 /* DJDataBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDataBaseModel.m; sourceTree = "<group>"; };
 		88435EA5208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPartyLessonSubCell.h; sourceTree = "<group>"; };
 		88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJMicroPartyLessonSubCell.m; sourceTree = "<group>"; };
 		88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJMicroPartyLessonSubCell.xib; sourceTree = "<group>"; };
@@ -2153,8 +2153,8 @@
 			children = (
 				88C5F13F20B7E08D0075D5F2 /* EDJMicroLessionAlbumModel.h */,
 				88C5F14020B7E08D0075D5F2 /* EDJMicroLessionAlbumModel.m */,
-				88435EA2208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.h */,
-				88435EA3208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m */,
+				88435EA2208EFB0800188CE9 /* DJDataBaseModel.h */,
+				88435EA3208EFB0800188CE9 /* DJDataBaseModel.m */,
 			);
 			path = microLesson;
 			sourceTree = "<group>";
@@ -3069,7 +3069,7 @@
 				889E7DCD2099BB0A00BB9084 /* UCUploadCollectionViewFlowLayout.m in Sources */,
 				88BCEDE520C67D6C00B5C1DB /* HPAlbumHeaderCell.m in Sources */,
 				88EA131920AD1780007AB886 /* UCAccountHitModel.m in Sources */,
-				88435EA4208EFB0800188CE9 /* EDJMicroPartyLessionSubModel.m in Sources */,
+				88435EA4208EFB0800188CE9 /* DJDataBaseModel.m in Sources */,
 				88CD739D20995A1400E80058 /* HPBookInfoHeaderCell.m in Sources */,
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
 				88CD739A209959FD00E80058 /* HPBookInfoBaseCell.m in Sources */,

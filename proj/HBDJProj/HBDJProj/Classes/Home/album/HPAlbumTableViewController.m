@@ -8,7 +8,7 @@
 
 #import "HPAlbumTableViewController.h"
 
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 
 #import "EDJMicroPartyLessonSubCell.h"
 #import "HPAlbumHeaderCell.h"
@@ -33,7 +33,7 @@
     
     NSMutableArray *arrm = [NSMutableArray array];
     for (int i = 0; i < 10; i++) {
-        EDJMicroPartyLessionSubModel *model = [EDJMicroPartyLessionSubModel new];
+        DJDataBaseModel *model = [DJDataBaseModel new];
         
         if (i == 0) {
             /// 第一个模型为header模型
@@ -53,7 +53,7 @@
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    EDJMicroPartyLessionSubModel *model = self.dataArray[indexPath.row];
+    DJDataBaseModel *model = self.dataArray[indexPath.row];
     if (indexPath.row == 0) {
         HPAlbumHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:albumListHeaderCell];
         return cell;

@@ -29,6 +29,9 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
 
 @interface DJNetworkManager : NSObject
 
+/// MARK: 数字阅读列表
++ (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort  success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
 /// MARK: 数字阅读图书详情
 + (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 

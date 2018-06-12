@@ -7,7 +7,7 @@
 //
 
 #import "LGBaseModel.h"
-@class EDJMicroPartyLessionSubModel;
+@class DJDataBaseModel;
 
 @interface EDJMicroLessionAlbumModel : LGBaseModel
 
@@ -20,7 +20,7 @@
 /** 专辑名 */
 @property (strong,nonatomic) NSString *classname;
 /** classlist */
-@property (strong,nonatomic) NSArray<EDJMicroPartyLessionSubModel *> *classlist;
+@property (strong,nonatomic) NSArray<DJDataBaseModel *> *classlist;
 
 ///
 /** 展示类型

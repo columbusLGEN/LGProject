@@ -8,7 +8,7 @@
 
 #import "HPMicroLessonTableViewController.h"
 #import "EDJMicroPartyLessonSubCell.h"
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 
 @interface HPMicroLessonTableViewController ()
 
@@ -26,7 +26,7 @@
     }];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     self.tableView.estimatedRowHeight = 90;
@@ -34,7 +34,7 @@
     
 //    NSMutableArray *arr = [NSMutableArray array];
 //    for (int i = 0; i < 20; i++) {
-//        EDJMicroPartyLessionSubModel *model = [EDJMicroPartyLessionSubModel new];
+//        DJDataBaseModel *model = [DJDataBaseModel new];
 //        [arr addObject:model];
 //    }
 //    self.dataArray = arr.copy;
@@ -46,7 +46,7 @@
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    EDJMicroPartyLessionSubModel *model = self.dataArray[indexPath.row];
+    DJDataBaseModel *model = self.dataArray[indexPath.row];
     EDJMicroPartyLessonSubCell *cell = [tableView dequeueReusableCellWithIdentifier:microPartyLessonSubCell forIndexPath:indexPath];
     cell.model = model;
     return cell;

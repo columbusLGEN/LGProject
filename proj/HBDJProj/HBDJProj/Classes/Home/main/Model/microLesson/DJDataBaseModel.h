@@ -5,7 +5,7 @@
 //  Created by Peanut Lee on 2018/4/24.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
-/// MARK: 微党课单条模型
+/// MARK: 党建 单条数据模型，微党课、要闻等
 #import "LGBaseModel.h"
 
 /** 微党课、要闻、数据模板类型 */
@@ -20,7 +20,26 @@ typedef NS_ENUM(NSUInteger, ModelMediaType) {
     ModelMediaTypeCustom
 };
 
-@interface EDJMicroPartyLessionSubModel : LGBaseModel
+/** 现有的classid */
+typedef NS_ENUM(NSUInteger, BaseClassesId) {
+    /** 习近平要闻列表 */
+    BaseClassesIdXJPPointNews           = 1,
+    /** 党建要闻 */
+    BaseClassesIdBuildPointNews         = 2,
+    /** 微党课 */
+    BaseClassesIdMicroLessons           = 3,
+    /** 习近平讲话原声解读 */
+    BaseClassesIdXJPOriginalVoice       = 4,
+    /** 党务工作大讲堂 */
+    BaseClassesIdPartyThingsBigLesson   = 5,
+    /** 党史故事100讲 */
+    BaseClassesIdPartyHistoryStory      = 6,
+    /** 十九大解读 */
+    BaseClassesIdNinteenBigReport       = 7
+    
+};
+
+@interface DJDataBaseModel : LGBaseModel
 
 @property (strong,nonatomic) NSNumber *peopleCount;
 @property (strong,nonatomic) NSNumber *time;

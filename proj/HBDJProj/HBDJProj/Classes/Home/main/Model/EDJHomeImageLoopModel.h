@@ -6,9 +6,9 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 
-@interface EDJHomeImageLoopModel : EDJMicroPartyLessionSubModel
+@interface EDJHomeImageLoopModel : DJDataBaseModel
 /** 图片地址 */
 @property (strong,nonatomic) NSString *classimg;
 /** BaseClassesId */

@@ -7,7 +7,7 @@
 //
 
 #import "EDJMicroPartyLessonSubCell.h"
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 
 @interface EDJMicroPartyLessonSubCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -19,7 +19,7 @@
 @end
 
 @implementation EDJMicroPartyLessonSubCell
-- (void)setModel:(EDJMicroPartyLessionSubModel *)model{
+- (void)setModel:(DJDataBaseModel *)model{
     _model = model;
     _title.text = model.title;
     _time.text = model.createdtime;

@@ -34,6 +34,8 @@
 #import "EDJHomeIndexRequest.h"
 #import "LGDidSelectedNotification.h"
 
+static NSInteger requestLength = 1;
+
 @interface HPHomeViewController ()<
 SwipeTableViewDataSource
 ,SwipeTableViewDelegate
@@ -110,9 +112,9 @@ SwipeTableViewDataSource
 //        if (i == 0) {
 ////            model.imgs = @[@"",@""];
 //        }
-//        model.classlist = @[[EDJMicroPartyLessionSubModel new],
-//                            [EDJMicroPartyLessionSubModel new],
-//                            [EDJMicroPartyLessionSubModel new]];
+//        model.classlist = @[[DJDataBaseModel new],
+//                            [DJDataBaseModel new],
+//                            [DJDataBaseModel new]];
 //        [microModels addObject:model];
 //    }
 //    /// 党建要闻模拟数据
@@ -178,8 +180,8 @@ SwipeTableViewDataSource
 /// MARK: 党建要闻加载更多数据
 - (void)buildPointNewsLoadMoreDatas{
     
-    [DJNetworkManager homeChairmanPoineNewsClassid:_homeModel.newsClassId offset:_buildOffset length:1 sort:0 success:^(id responseObj) {
-        NSLog(@"党建要闻列表加载更多 : %@",responseObj);
+    [DJNetworkManager homeChairmanPoineNewsClassid:_homeModel.newsClassId offset:_buildOffset length:requestLength sort:0 success:^(id responseObj) {
+        NSLog(@"buildpointnews_response : %@",responseObj);
         NSArray *array = (NSArray *)responseObj;
         NSMutableArray *buildArray = [NSMutableArray arrayWithArray:_buildTableview.dataArray];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -193,7 +195,7 @@ SwipeTableViewDataSource
             _buildTableview.dataArray = buildArray;
         }];
     } failure:^(id failureObj) {
-        NSLog(@"党建要闻列表加载更多请求失败 : %@",failureObj);
+        NSLog(@"buildpointnews_failure : %@",failureObj);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [_buildTableview.mj_footer endRefreshing];
         }];
@@ -201,9 +203,27 @@ SwipeTableViewDataSource
 }
 /// MARK: 数字阅读加载更多数据
 - (void)digitalLoadMoreDatas{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [_digitalCollectionView reloadData];
+    [DJNetworkManager homeDigitalListWithOffset:_digitalOffset length:requestLength sort:0 success:^(id responseObj) {
+        NSLog(@"digitallist_response: %@",responseObj);
+        NSArray *array = (NSArray *)responseObj;
+        NSMutableArray *digitalArray = [NSMutableArray arrayWithArray:_digitalCollectionView.dataArray];
+        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            EDJDigitalModel *model = [EDJDigitalModel mj_objectWithKeyValues:obj];
+            [digitalArray addObject:model];
+        }];
+        _digitalOffset = digitalArray.count;
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [_digitalCollectionView.mj_footer endRefreshing];
+            _digitalCollectionView.dataArray = digitalArray;
+        }];
+    } failure:^(id failureObj) {
+        NSLog(@"digitallist_failure: %@",failureObj);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [_digitalCollectionView.mj_footer endRefreshing];
+        }];
     }];
+    
 }
 
 #pragma mark - setter
@@ -336,8 +356,8 @@ SwipeTableViewDataSource
             /// 先获取专辑
             EDJMicroLessionAlbumModel *alubm = self.microModels[index];
             /// 再获取专辑单条微党课
-            EDJMicroPartyLessionSubModel *lesson = alubm.classlist[subIndex];
-            NSLog(@"EDJMicroPartyLessionSubModel -- %@",lesson);
+            DJDataBaseModel *lesson = alubm.classlist[subIndex];
+            NSLog(@"党课单条 -- %@",lesson);
             /// TODO: 进入微党课详情
             
             /// MARK: 进入微党课单条详情

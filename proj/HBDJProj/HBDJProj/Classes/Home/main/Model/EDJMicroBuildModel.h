@@ -8,10 +8,10 @@
 
 /// 党建要闻模型
 
-#import "EDJMicroPartyLessionSubModel.h"
-@class EDJMicroPartyLessionSubModel;
+#import "DJDataBaseModel.h"
+@class DJDataBaseModel;
 
-@interface EDJMicroBuildModel : EDJMicroPartyLessionSubModel
+@interface EDJMicroBuildModel : DJDataBaseModel
 
 @property (strong,nonatomic) NSArray *imgs;
 @property (assign,nonatomic) BOOL showInteractionView;

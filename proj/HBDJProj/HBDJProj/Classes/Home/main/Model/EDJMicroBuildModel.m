@@ -7,7 +7,7 @@
 //
 
 #import "EDJMicroBuildModel.h"
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 
 @implementation EDJMicroBuildModel
 
@@ -24,8 +24,8 @@
 
 /// testcode
 
-- (NSArray<EDJMicroPartyLessionSubModel *> *)subNews{
-    return @[[EDJMicroPartyLessionSubModel new],[EDJMicroPartyLessionSubModel new],[EDJMicroPartyLessionSubModel new]];
+- (NSArray<DJDataBaseModel *> *)subNews{
+    return @[[DJDataBaseModel new],[DJDataBaseModel new],[DJDataBaseModel new]];
 }
 
 @end

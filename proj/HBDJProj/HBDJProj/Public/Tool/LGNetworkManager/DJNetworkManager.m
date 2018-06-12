@@ -18,6 +18,10 @@
 
 @implementation DJNetworkManager
 
++ (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort  success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [[self sharedInstance] homeDigitalListWithOffset:offset length:length sort:sort success:success failure:failure];
+}
+
 /// MARK: 数字阅读图书详情
 + (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[self sharedInstance] homeDigitalDetailWithId:id success:success failure:failure];
@@ -44,6 +48,10 @@
 }
 
 /// MARK: -----分割线-----
+- (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort  success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{};
+    [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontEbook/selectList" param:param success:success failure:failure];
+}
 - (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"seqid":id};
     [self sendPOSTRequestWithiName:@"/frontEbook/select" param:param success:success failure:failure];

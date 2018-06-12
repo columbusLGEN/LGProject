@@ -12,7 +12,7 @@
 #import "EDJMicroBuildCell.h"
 #import "EDJMicroLessionAlbumModel.h"
 #import "EDJMicroPartyLessonSubCell.h"
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 
 #import "LGDidSelectedNotification.h"
 
@@ -123,13 +123,13 @@ UITableViewDataSource>
     return _model.classlist.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    EDJMicroPartyLessionSubModel *model = _model.classlist[indexPath.row];
+    DJDataBaseModel *model = _model.classlist[indexPath.row];
     EDJMicroPartyLessonSubCell *cell = [tableView dequeueReusableCellWithIdentifier:subCellID];
     cell.model = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    EDJMicroPartyLessionSubModel *model = _model.classlist[indexPath.row];
+    DJDataBaseModel *model = _model.classlist[indexPath.row];
     NSDictionary *dict = @{LGDidSelectedModelKey:model,
                            LGDidSelectedSkipTypeKey:@(LGDidSelectedSkipTypeMicrolessonSingle),
                            LGDidSelectedIndexKey:@(indexPath.row)

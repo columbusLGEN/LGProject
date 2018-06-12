@@ -14,7 +14,7 @@
 #import "LGVoiceRecoganizer.h"
 #import "DCSubPartStateTableViewController.h"
 #import "HPMicroLessonTableViewController.h"
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 #import "DCSubPartStateModel.h"
 
 #import "LGLocalSearchRecord.h"
@@ -177,7 +177,7 @@ HPVoiceSearchViewDelegate>
         
         NSMutableArray *microModels = [NSMutableArray array];
         [classes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            EDJMicroPartyLessionSubModel *model = [EDJMicroPartyLessionSubModel mj_objectWithKeyValues:obj];
+            DJDataBaseModel *model = [DJDataBaseModel mj_objectWithKeyValues:obj];
             [microModels addObject:model];
         }];
         

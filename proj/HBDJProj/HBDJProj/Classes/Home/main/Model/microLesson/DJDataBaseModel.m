@@ -6,9 +6,9 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 
-@implementation EDJMicroPartyLessionSubModel
+@implementation DJDataBaseModel
 
 
 @end

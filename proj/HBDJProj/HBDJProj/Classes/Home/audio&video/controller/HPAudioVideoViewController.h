@@ -9,7 +9,7 @@
 /// 音视频 详情控制器
 
 #import "LGBaseViewController.h"
-#import "EDJMicroPartyLessionSubModel.h"
+#import "DJDataBaseModel.h"
 
 @class EDJHomeImageLoopModel;
 //typedef NS_ENUM(NSUInteger, HPAudioVideoType) {

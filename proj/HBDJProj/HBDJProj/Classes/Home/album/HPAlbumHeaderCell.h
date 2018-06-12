@@ -7,10 +7,10 @@
 //
 
 #import "LGBaseTableViewCell.h"
-@class EDJMicroPartyLessionSubModel;
+@class DJDataBaseModel;
 
 static NSString * const albumListHeaderCell = @"HPAlbumHeaderCell";
 
 @interface HPAlbumHeaderCell : LGBaseTableViewCell
-@property (strong,nonatomic) EDJMicroPartyLessionSubModel *model;
+@property (strong,nonatomic) DJDataBaseModel *model;
 @end

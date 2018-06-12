@@ -10,9 +10,9 @@
 
 static NSString * const microPartyLessonSubCell = @"EDJMicroPartyLessonSubCell";
 
-@class EDJMicroPartyLessionSubModel;
+@class DJDataBaseModel;
 
 @interface EDJMicroPartyLessonSubCell : LGBaseTableViewCell
-@property (strong,nonatomic) EDJMicroPartyLessionSubModel *model;
+@property (strong,nonatomic) DJDataBaseModel *model;
 
 @end
