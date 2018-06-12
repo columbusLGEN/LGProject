@@ -12,10 +12,10 @@
 #import "HPVoiceSearchView.h"
 #import "HPSearchHistoryView.h"
 #import "LGVoiceRecoganizer.h"
-#import "DCSubPartStateTableViewController.h"
-#import "HPMicroLessonTableViewController.h"
 #import "DJDataBaseModel.h"
 #import "DCSubPartStateModel.h"
+#import "HPSearchLessonController.h"
+#import "HPSearchBuildPoineNewsController.h"
 
 #import "LGLocalSearchRecord.h"
 #import "LGRecordButtonLoader.h"
@@ -35,7 +35,6 @@ HPVoiceSearchViewDelegate>
 
 /** 本地搜索记录数组 */
 @property (strong,nonatomic) NSArray<NSString *> *records;
-
 @property (strong,nonatomic) LGRecordButtonLoader *rbLoader;
 
 @end
@@ -58,11 +57,6 @@ HPVoiceSearchViewDelegate>
     fakeNavgationBar.delegate = self;
     [self.view addSubview:fakeNavgationBar];
     _fakeNavgationBar = fakeNavgationBar;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textFieldTextDidChange:)
-                                                 name:UITextFieldTextDidChangeNotification
-                                               object:nil];
     
     /// 搜索记录
     
@@ -101,6 +95,7 @@ HPVoiceSearchViewDelegate>
 }
 
 #pragma mark - notifications
+/// MARK: 语音搜索结果回调
 - (void)lg_endOfSpeech:(NSNotification *)notification{
     NSDictionary *dict = notification.userInfo;
     NSString *voiceString = dict[LGVoiceRecoganizerTextKey];
@@ -109,10 +104,6 @@ HPVoiceSearchViewDelegate>
     NSString *trimmedString = [voiceString stringByTrimmingCharactersInSet:set];
     
     self.textField.text = [NSString stringWithFormat:@"%@%@",self.textField.text,trimmedString];
-}
-- (void)textFieldTextDidChange:(NSNotification *)notification{
-    UITextField *obj = notification.object;
-    _searchContent = obj.text;
 }
 
 #pragma mark - HPVoiceSearchViewDelegate
@@ -135,6 +126,7 @@ HPVoiceSearchViewDelegate>
 }
 - (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
     [self addTextFieldToNav:navigationSearchBar];
+    [self.view endEditing:YES];
     if (!_vsView) {
         [self.view addSubview:self.vsView];
     }
@@ -149,49 +141,64 @@ HPVoiceSearchViewDelegate>
     return YES;
 }
 
+- (void)setSearchContent:(NSString *)searchContent{
+    _searchContent = searchContent;
+    HPSearchLessonController *microvc = self.childViewControllers[0];
+    HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
+    microvc.searchContent = searchContent;
+    partyvc.searchContent = searchContent;
+}
+
 /** 发送搜索请求 */
 - (void)sendSearchRequest{
     [self.view endEditing:YES];
-    /// TODO: 发送搜索请求
-//    _searchContent
-    
     /** type: 默认传0
      1:微党课
      2:党建要闻
      */
     
+    self.searchContent = self.textField.text;
+    
     /// 写入搜索记录 测试数据，测试用户id：1，模块: home
-    [LGLocalSearchRecord addNewRecordWithContent:_searchContent part:SearchRecordExePartHome userid:@"1"];
+    [LGLocalSearchRecord addNewRecordWithContent:self.searchContent part:SearchRecordExePartHome];
     
     /// 将新输入的内容添加到界面上
     [self getLocalRecord];
     
-    [DJNetworkManager homeSearchWithString:_searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
-        /// TODO: 刷新子可控制器视图
+    [DJNetworkManager homeSearchWithString:self.searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
+        /// MARK: 刷新子可控制器视图
         [_searchHistory removeFromSuperview];
         _searchHistory = nil;
         NSArray *classes = responseObj[@"classes"];
         NSArray *news = responseObj[@"news"];
-//        NSLog(@"lectureSearch_classes -- %@",classes);
-//        NSLog(@"lectureSearch_news -- %@",news);
         
-        NSMutableArray *microModels = [NSMutableArray array];
-        [classes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            DJDataBaseModel *model = [DJDataBaseModel mj_objectWithKeyValues:obj];
-            [microModels addObject:model];
-        }];
-        
-        HPMicroLessonTableViewController *microvc = self.childViewControllers[0];
-        microvc.dataArray = microModels.copy;
-        
-        NSMutableArray *partyModels = [NSMutableArray array];
-        [news enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:obj];
-            [partyModels addObject:model];
-        }];
-        DCSubPartStateTableViewController *partyvc = self.childViewControllers[1];
-        partyvc.dataArray = partyModels.copy;
-        
+        if (classes == nil || classes.count == 0) {
+           NSLog(@"classes = nil: ");
+        }else{
+            NSMutableArray *microModels = [NSMutableArray array];
+            [classes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                DJDataBaseModel *model = [DJDataBaseModel mj_objectWithKeyValues:obj];
+                [microModels addObject:model];
+            }];
+            HPSearchLessonController *microvc = self.childViewControllers[0];
+            microvc.dataArray = microModels.copy;
+        }
+        if (news == nil || news.count == 0) {
+            NSLog(@"news = nil: ");
+        }else{
+            NSMutableArray *partyModels = [NSMutableArray array];
+            [news enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:obj];
+                [partyModels addObject:model];
+            }];
+            HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
+            partyvc.dataArray = partyModels.copy;
+        }
+        if (classes.count || news.count) {
+            [_vsView removeFromSuperview];
+            _vsView = nil;
+        }
+
     } failure:^(id failureObj) {
         NSLog(@"faillureObject -- %@",failureObj);
         
@@ -209,7 +216,6 @@ HPVoiceSearchViewDelegate>
 - (UITextField *)textField{
     if (!_textField) {
         _textField = [[UITextField alloc] init];
-//        _textField.backgroundColor = [UIColor orangeColor];
         _textField.borderStyle = UITextBorderStyleNone;
         _textField.delegate = self;
         UIView *margin = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
@@ -230,15 +236,15 @@ HPVoiceSearchViewDelegate>
 - (NSArray<NSDictionary *> *)segmentItems{
     /**
      DCQuestionCommunityViewController
-     DCSubPartStateTableViewController
-     DCSubStageTableviewController
+     HPSearchBuildPoineNewsController
+     
      */
     return @[@{LGSegmentItemNameKey:@"微党课",
-               LGSegmentItemViewControllerClassKey:@"HPMicroLessonTableViewController",
+               LGSegmentItemViewControllerClassKey:@"HPSearchLessonController",/// HPSearchLessonController
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"要闻",
-               LGSegmentItemViewControllerClassKey:@"DCSubPartStateTableViewController",
+               LGSegmentItemViewControllerClassKey:@"HPSearchBuildPoineNewsController",///
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                }];
 }
@@ -254,17 +260,17 @@ HPVoiceSearchViewDelegate>
 - (void)addTextFieldToNav:(LGNavigationSearchBar *)navigationSearchBar{
     if (!_textField) {
         navigationSearchBar.isEditing = YES;
-        [self.view addSubview:self.textField];
         CGRect frame = navigationSearchBar.fakeSearch.frame;
-        frame.size.width -= 25;
+        frame.size.width -= 35;
+        [self.view addSubview:self.textField];
         self.textField.frame = frame;
         [self.textField becomeFirstResponder];
+        
     }
 }
 /** 获取本地搜索记录 */
 - (void)getLocalRecord{
-    /// TODO: 获取当前用户id
-    self.records = [LGLocalSearchRecord getLocalRecordWithUserid:@"1" part:SearchRecordExePartHome];
+    self.records = [LGLocalSearchRecord getLocalRecordWithPart:SearchRecordExePartHome];
     NSMutableArray *buttonArray = [NSMutableArray array];
     [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *button = [self.rbLoader buttonWith:obj frame:CGRectZero];

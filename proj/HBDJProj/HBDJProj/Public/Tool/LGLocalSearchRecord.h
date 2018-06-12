@@ -24,13 +24,13 @@ typedef NS_ENUM(NSUInteger, SearchRecordExePart) {
  @param part 当前操作模块
  @return 目标数组(元素为字符串)
  */
-+ (NSArray *)getLocalRecordWithUserid:(NSString *)userid part:(SearchRecordExePart)part;
++ (NSArray *)getLocalRecordWithPart:(SearchRecordExePart)part;
 /**
  添加新的历史记录（向本地文件中）
  
  @param content 用户输入的内容
  @param part 当前模块，首页：home
  */
-+ (void)addNewRecordWithContent:(NSString *)content part:(SearchRecordExePart)part userid:(NSString *)userid;
++ (void)addNewRecordWithContent:(NSString *)content part:(SearchRecordExePart)part;
 + (instancetype)sharedInstance;
 @end

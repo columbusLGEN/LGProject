@@ -8,12 +8,12 @@
 //
 
 #import "LGBookReaderManager.h"
-//#import <YMEpubReaderKit/YMEpubReaderManager.h>
+#import <YMEpubReaderKit/YMEpubReaderManager.h>
 
-@interface LGBookReaderManager ()//<
-//YMEpubReaderManagerDelegate>
+@interface LGBookReaderManager ()<
+YMEpubReaderManagerDelegate>
 
-//@property (strong,nonatomic) YMEpubReaderManager *ymepubReader;//
+@property (strong,nonatomic) YMEpubReaderManager *ymepubReader;//
 
 /** 当前资源模型 */
 @property (strong,nonatomic) NSObject *currentBookModel;//
@@ -26,25 +26,14 @@
 
 @implementation LGBookReaderManager
 
-- (void)openBookWithModel:(id)model{
-    /// TODO: 先做判断，如果本地文件存在，直接打开，否则先下载再打开
-    ///
-//    switch (model.type) {
-//        case epub:
-    //            [self openEpub];
-//            break;
-//
-//        default:
-//            break;
-//    }
++ (void)openBookWithLocalUrl:(NSString *)localUrl{
+    [[self sharedInstance] openBookWithLocalUrl:localUrl];
+}
+- (void)openBookWithLocalUrl:(NSString *)localUrl{
+    /// TODO: 获取userid
+    [self.ymepubReader loadBookWithPath:localUrl userId:@"1" bookId:nil];
 }
 
-/// epub
-- (void)openEpub{
-    
-}
-/// pdf
-/// 超媒体
 
 #pragma mark - YMEpubReaderManagerDelegate
 // read controller 生命周期 回调
@@ -81,9 +70,23 @@
     
 }
 
-+ (void)openBookWithModel:(id)model{
-    [[LGBookReaderManager sharedInstance] openBookWithModel:model];
+- (void)didAddBookMark:(Bookmark *)bookMark {
+    
 }
+
+- (void)didAddDigest:(BookDigest *)digest {
+    
+}
+
+- (void)didDeleteBookMark:(Bookmark *)bookMark {
+    
+}
+
+- (void)didDeleteDigest:(BookDigest *)digest {
+    
+}
+
+
 + (instancetype)sharedInstance{
     static id instance;
     static dispatch_once_t once;
@@ -93,16 +96,14 @@
     return instance;
 }
 
-//- (YMEpubReaderManager *)ymepubReader{
-//    if (_ymepubReader == nil) {
-//        _ymepubReader = [YMEpubReaderManager shardInstance];
-//        _ymepubReader.delegate = self;
-//        /// TODO: 替换阅读器的包名
-//        _ymepubReader.hostIp = AppServerBaseURL;
-//        //        _ymepubReader.hostIp = @"http://192.168.10.113:8080";
-//    }
-//    return _ymepubReader;
-//}
+- (YMEpubReaderManager *)ymepubReader{
+    if (_ymepubReader == nil) {
+        _ymepubReader = [YMEpubReaderManager shardInstance];
+        _ymepubReader.delegate = self;
+        //        _ymepubReader.hostIp = @"http://192.168.10.113:8080";
+    }
+    return _ymepubReader;
+}
 
 
 @end

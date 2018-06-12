@@ -165,7 +165,6 @@
     // 如果将文件放在 documents 下，使用 NSDocumentDirectory
     NSString *libDir = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];
     return [libDir stringByAppendingPathComponent:oppsitePath];
-    //    return [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:oppsitePath];
 }
 /**
  解压文件
@@ -236,7 +235,8 @@
 /// MARK: getter
 - (NSString *)filePath{
     if (!_filePath) {
-        _filePath = @"file_hbdj_resource";
+        /// MARK: 党建项目资源文件存放路径
+        _filePath = [self absulotePathWithOppositePath:@"file_hbdj_resource"];
     }
     return _filePath;
 }

@@ -34,7 +34,9 @@
         _subModel.showAll = YES;
         _arrow.transform = CGAffineTransformIdentity;
     }
-    
+    if ([self.delegate respondsToSelector:@selector(bibCellShowAllButtonClick)]) {
+        [self.delegate bibCellShowAllButtonClick];
+    }
 }
 
 - (void)awakeFromNib {

@@ -23,38 +23,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="508" height="296.5"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="4e3-2z-zzW">
-                        <rect key="frame" x="45" y="41" width="122" height="164"/>
+                        <rect key="frame" x="25" y="41" width="122" height="164"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="164" id="JWY-jp-iHS"/>
                             <constraint firstAttribute="width" constant="122" id="tR4-Yd-2RI"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国梦，我的梦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RL0-UE-pj1">
-                        <rect key="frame" x="187" y="49" width="306" height="27.5"/>
+                        <rect key="frame" x="167" y="49" width="326" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出版社：阳光出版社" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYM-cp-Qms">
-                        <rect key="frame" x="187" y="119.5" width="306" height="18"/>
+                        <rect key="frame" x="167" y="119.5" width="326" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出版时间：2018-9-9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t41-5W-0hz">
-                        <rect key="frame" x="187" y="147.5" width="306" height="18"/>
+                        <rect key="frame" x="167" y="147.5" width="326" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上次阅读进度: 15%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zJ-Xs-P4P">
-                        <rect key="frame" x="187" y="175.5" width="306" height="18"/>
+                        <rect key="frame" x="167" y="175.5" width="326" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="1" green="0.81176470588235294" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作者：蔡国英" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQ4-cH-BqN">
-                        <rect key="frame" x="187" y="91.5" width="306" height="18"/>
+                        <rect key="frame" x="167" y="91.5" width="326" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                     <constraint firstItem="SYM-cp-Qms" firstAttribute="trailing" secondItem="xQ4-cH-BqN" secondAttribute="trailing" id="mSQ-pd-lC9"/>
                     <constraint firstItem="7zJ-Xs-P4P" firstAttribute="top" secondItem="t41-5W-0hz" secondAttribute="bottom" constant="10" id="osB-am-nUb"/>
                     <constraint firstItem="irC-zF-q9z" firstAttribute="leading" secondItem="I82-NW-6aJ" secondAttribute="leading" id="t3m-1H-4P4"/>
-                    <constraint firstItem="4e3-2z-zzW" firstAttribute="leading" secondItem="I82-NW-6aJ" secondAttribute="leadingMargin" constant="25" id="wok-uK-kIV"/>
+                    <constraint firstItem="4e3-2z-zzW" firstAttribute="leading" secondItem="I82-NW-6aJ" secondAttribute="leading" constant="25" id="wok-uK-kIV"/>
                     <constraint firstItem="t41-5W-0hz" firstAttribute="top" secondItem="SYM-cp-Qms" secondAttribute="bottom" constant="10" id="yQV-h9-HZV"/>
                 </constraints>
             </tableViewCellContentView>

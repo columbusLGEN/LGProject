@@ -53,8 +53,15 @@
     
     __weak typeof(self) weakSelf = self;
     
-    _dataTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-//        NSLog(@"下载完毕response -- %@",response);
+    _dataTask = [self.manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+//        NSLog(@"downloadProgress: %@",downloadProgress);
+        if (progress) {
+            progress(downloadProgress.fractionCompleted,0,0);
+        }
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSLog(@"下载完毕response -- %@",response);
         //            NSLog(@"dataTaskWithRequest");
         //        NSLog(@"error -- %@",error);
         if (error == nil) {
@@ -77,13 +84,13 @@
         // 关闭fileHandle
         [weakSelf.fileHandle closeFile];
         weakSelf.fileHandle = nil;
-        
+        NSLog(@"weakSelf.fileHandle == nil: ");
     }];
     
     [self.manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
         //            NSLog(@"NSURLSessionResponseDisposition");
-//        NSLog(@"%@ -- %ld",dataTask,dataTask.state);
-//        NSLog(@"__%@ -- %ld",weakSelf.dataTask,weakSelf.dataTask.state);
+//        NSLog(@"setDataTaskDidReceiveResponseBlock__%@ -- %ld",dataTask,dataTask.state);
+//        NSLog(@"setDataTaskDidReceiveResponseBlock__%@ -- %ld",weakSelf.dataTask,weakSelf.dataTask.state);
         
         // 获得下载文件的总长度：请求下载的文件长度 + 当前已经下载的文件长度
         weakSelf.fileLength = response.expectedContentLength + self.currentLength;
@@ -94,22 +101,24 @@
         // 创建一个空的文件到沙盒中
         NSFileManager *manager = [NSFileManager defaultManager];
         // 直接覆盖本地文件，省去删除
-        [manager createFileAtPath:fileName contents:nil attributes:nil];
-        
-        //                // 如果没有下载文件的话，就创建一个文件。如果有下载文件的话，则不用重新创建(不然会覆盖掉之前的文件)
-        //            if (![manager fileExistsAtPath:weakSelf.localURL]) {
-        //                [manager createFileAtPath:weakSelf.localURL contents:nil attributes:nil];
-        //            }
+        BOOL create = [manager createFileAtPath:fileName contents:nil attributes:nil];
+        NSLog(@"create: %d",create);
+        // 如果没有下载文件的话，就创建一个文件。如果有下载文件的话，则不用重新创建(不然会覆盖掉之前的文件)
+//        if (!create) {
+//            BOOL create1 = [manager createFileAtPath:fileName contents:nil attributes:nil];
+//            NSLog(@"create_1: %d",create1);
+//        }
         
         // 创建文件句柄
         weakSelf.fileHandle = [NSFileHandle fileHandleForWritingAtPath:fileName];
-        
+        NSLog(@"weakSelf.fileHandle: %@",weakSelf.fileHandle);
         // 允许处理服务器的响应，才会继续接收服务器返回的数据
         return NSURLSessionResponseAllow;
     }];
     
     [self.manager setDataTaskDidReceiveDataBlock:^(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSData * _Nonnull data) {
-    
+//        NSLog(@"setDataTaskDidReceiveDataBlock: ");
+//        NSLog(@"weakSelf.fileHandle: %@",weakSelf.fileHandle);
         if (!(weakSelf.fileHandle == nil)) {
             // 指定数据的写入位置 -- 文件内容的最后面
             [weakSelf.fileHandle seekToEndOfFile];
@@ -126,23 +135,22 @@
                 if (weakSelf.fileLength == 0) {
                     //                    weakSelf.progressView.progress = 0.0;
                     //                    weakSelf.progressLabel.text = [NSString stringWithFormat:@"当前下载进度:00.00%%"];
-                    if (progress) {
-                        progress(0.0,0,0);
-                    }
+//                    if (progress) {
+//                        progress(0.0,0,0);
+//                    }
                 } else {
                     //                    weakSelf.progressView.progress =  1.0 * weakSelf.currentLength / weakSelf.fileLength;
                     //                    weakSelf.progressLabel.text = [NSString stringWithFormat:@"当前下载进度:%.2f%%",100.0 * weakSelf.currentLength / weakSelf.fileLength];
-                    CGFloat progressNum = 100.0 * weakSelf.currentLength / weakSelf.fileLength;
-                    if (progress) {
-                        progress(progressNum,weakSelf.fileLength,weakSelf.currentLength);
-                    }
+//                    CGFloat progressNum = 100.0 * weakSelf.currentLength / weakSelf.fileLength;
+//                    if (progress) {
+//                        progress(progressNum,weakSelf.fileLength,weakSelf.currentLength);
+//                    }
                 }
                 
             }];
         }
         
     }];
-    
     [_dataTask resume];
     
 }
@@ -197,7 +205,7 @@
     static id instance;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        instance = [self new];
+        instance = [[self alloc] init];
     });
     return instance;
 }

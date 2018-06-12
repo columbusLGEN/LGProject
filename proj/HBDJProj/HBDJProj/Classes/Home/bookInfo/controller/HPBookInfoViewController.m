@@ -10,13 +10,15 @@
 #import "HPBookInfoBaseCell.h"
 #import "EDJDigitalModel.h"
 #import "HPBookInfoModel.h"
+#import "LGLocalFileProducer.h"
 
 static NSString * const bookInfoHeaderCell = @"HPBookInfoHeaderCell";
 static NSString * const bookInfoBriefCell = @"HPBookInfoBriefCell";
 
 @interface HPBookInfoViewController ()<
 UITableViewDelegate,
-UITableViewDataSource>
+UITableViewDataSource,
+HPBookInfoBriefCellDelegate>
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray *array;
 @property (strong,nonatomic) UIButton *button;
@@ -82,6 +84,23 @@ UITableViewDataSource>
 //    }];
 }
 
+- (void)readBook{
+    [LGLocalFileProducer openBookWithModel:self.model];
+    
+//    [LGLocalFileProducer downloadResourceWithUrl:self.model.ebookresource progressBlk:^(CGFloat progress) {
+//       NSLog(@"progress: %f",progress);
+//    } success:^(NSString *destiPath) {
+//        NSLog(@"destiPath: %@",destiPath);
+//    } failure:^(NSError *error) {
+//        NSLog(@"error: %@",error);
+//    }];
+}
+
+#pragma mark - HPBookInfoBriefCellDelegate
+- (void)bibCellShowAllButtonClick{
+    [self.tableView reloadData];
+}
+
 #pragma mark - data source & delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _array.count;
@@ -89,11 +108,13 @@ UITableViewDataSource>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HPBookInfoModel *model = _array[indexPath.row];
     HPBookInfoBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[HPBookInfoBaseCell cellReuseIdWithModel:model]];
+    cell.delegate = self;
     cell.model = model;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 220;
+    HPBookInfoModel *model = _array[indexPath.row];
+    return [HPBookInfoBaseCell cellHeightWithModel:model];
 }
 
 - (void)configUI{
@@ -135,6 +156,7 @@ UITableViewDataSource>
         [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _button.titleLabel.font = [UIFont systemFontOfSize:18];
         [_button setBackgroundColor:[UIColor EDJMainColor]];
+        [_button addTarget:self action:@selector(readBook) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button;
 }

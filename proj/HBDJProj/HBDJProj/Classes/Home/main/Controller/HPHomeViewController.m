@@ -306,6 +306,9 @@ SwipeTableViewDataSource
     HPSearchViewController *searchVc = [HPSearchViewController new];
     [self.navigationController pushViewController:searchVc animated:YES];
 }
+- (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
+    NSLog(@"home voice search: ");
+}
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     EDJHomeImageLoopModel *model = self.imageLoops[index];

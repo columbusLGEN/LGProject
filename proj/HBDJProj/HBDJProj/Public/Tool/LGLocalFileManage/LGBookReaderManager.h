@@ -15,8 +15,7 @@ typedef void(^ECRBookReadFailure)(id info);
 @interface LGBookReaderManager : NSObject
 
 /// 根据类型打开资源文件。参数：模型。内部：模型的资源类型，模型的本地资源链接
-+ (void)openBookWithModel:(id)model;
-
++ (void)openBookWithLocalUrl:(NSString *)localUrl;
 
 + (instancetype)sharedInstance;
 

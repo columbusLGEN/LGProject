@@ -20,7 +20,7 @@
 		881C94D32068ECF3009D6A52 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94CF2068ECF3009D6A52 /* UIView+Extension.m */; };
 		881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94E72068EFAA009D6A52 /* LIGMainTabBarController.m */; };
 		881F1A8320C125A7005D9261 /* HPSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F1A8220C125A7005D9261 /* HPSearchViewController.m */; };
-		881F1A8620C12915005D9261 /* HPMicroLessonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F1A8520C12915005D9261 /* HPMicroLessonTableViewController.m */; };
+		881F1A8620C12915005D9261 /* HPSearchLessonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F1A8520C12915005D9261 /* HPSearchLessonController.m */; };
 		8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */; };
 		8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E14B2092F699001D038E /* LGThreeRightButtonView.m */; };
 		8831E1512092FE22001D038E /* LGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1502092FE22001D038E /* LGButton.m */; };
@@ -109,6 +109,10 @@
 		88435EAF208F140C00188CE9 /* LGNavSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAE208F140C00188CE9 /* LGNavSearchView.m */; };
 		886A1B6020CBDD2F0007AD63 /* LGRecordButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */; };
 		886A1B6320CE53220007AD63 /* LGSocialShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6220CE53220007AD63 /* LGSocialShareManager.m */; };
+		886A1B6620CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6520CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m */; };
+		886A1B6820CFB4250007AD63 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886A1B6720CFB4240007AD63 /* YMEpubReaderKit.framework */; };
+		886A1B6920CFB77F0007AD63 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886A1B6720CFB4240007AD63 /* YMEpubReaderKit.framework */; };
+		886A1B6A20CFB77F0007AD63 /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 886A1B6720CFB4240007AD63 /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8877742220C0F7390011DFF3 /* ECRPDFRelateder.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */; };
 		8877742320C0F7390011DFF3 /* LGBookReaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FE20C0F7390011DFF3 /* LGBookReaderManager.m */; };
 		8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8877740220C0F7390011DFF3 /* LGDownloadManager.m */; };
@@ -262,10 +266,7 @@
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
 		88D5C61120BBF68E00E353DB /* LGPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C61020BBF68E00E353DB /* LGPlayerView.m */; };
 		88D5C61520BE3B3600E353DB /* LGResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C61420BE3B3600E353DB /* LGResponseModel.m */; };
-		88D5C61920BE765200E353DB /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */; };
 		88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61A20BE768500E353DB /* libxml2.2.tbd */; };
-		88D5C61C20BE776400E353DB /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */; };
-		88D5C61D20BE776400E353DB /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		88D5C62320BE8A0700E353DB /* EDJHomeIndexRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C62220BE8A0700E353DB /* EDJHomeIndexRequest.m */; };
 		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
 		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
@@ -355,7 +356,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				88D5C61D20BE776400E353DB /* YMEpubReaderKit.framework in Embed Frameworks */,
+				886A1B6A20CFB77F0007AD63 /* YMEpubReaderKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,8 +396,8 @@
 		881C94E92068F071009D6A52 /* HbdjPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HbdjPrefixHeader.pch; sourceTree = "<group>"; };
 		881F1A8120C125A7005D9261 /* HPSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPSearchViewController.h; sourceTree = "<group>"; };
 		881F1A8220C125A7005D9261 /* HPSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchViewController.m; sourceTree = "<group>"; };
-		881F1A8420C12915005D9261 /* HPMicroLessonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPMicroLessonTableViewController.h; sourceTree = "<group>"; };
-		881F1A8520C12915005D9261 /* HPMicroLessonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPMicroLessonTableViewController.m; sourceTree = "<group>"; };
+		881F1A8420C12915005D9261 /* HPSearchLessonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPSearchLessonController.h; sourceTree = "<group>"; };
+		881F1A8520C12915005D9261 /* HPSearchLessonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchLessonController.m; sourceTree = "<group>"; };
 		8831E1472092F292001D038E /* DCQuestionCommunityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCQuestionCommunityViewController.h; sourceTree = "<group>"; };
 		8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCQuestionCommunityViewController.m; sourceTree = "<group>"; };
 		8831E14A2092F699001D038E /* LGThreeRightButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGThreeRightButtonView.h; sourceTree = "<group>"; };
@@ -561,6 +562,9 @@
 		886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGRecordButtonLoader.m; sourceTree = "<group>"; };
 		886A1B6120CE53220007AD63 /* LGSocialShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSocialShareManager.h; sourceTree = "<group>"; };
 		886A1B6220CE53220007AD63 /* LGSocialShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSocialShareManager.m; sourceTree = "<group>"; };
+		886A1B6420CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPSearchBuildPoineNewsController.h; sourceTree = "<group>"; };
+		886A1B6520CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchBuildPoineNewsController.m; sourceTree = "<group>"; };
+		886A1B6720CFB4240007AD63 /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		887773FB20C0F7390011DFF3 /* ECRPDFRelateder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRPDFRelateder.h; sourceTree = "<group>"; };
 		887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRPDFRelateder.m; sourceTree = "<group>"; };
 		887773FD20C0F7390011DFF3 /* LGBookReaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBookReaderManager.h; sourceTree = "<group>"; };
@@ -817,7 +821,6 @@
 		88D5C61020BBF68E00E353DB /* LGPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGPlayerView.m; sourceTree = "<group>"; };
 		88D5C61320BE3B3600E353DB /* LGResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGResponseModel.h; sourceTree = "<group>"; };
 		88D5C61420BE3B3600E353DB /* LGResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGResponseModel.m; sourceTree = "<group>"; };
-		88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		88D5C61A20BE768500E353DB /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		88D5C61F20BE781C00E353DB /* huamulan.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = huamulan.epub; sourceTree = "<group>"; };
 		88D5C62120BE8A0700E353DB /* EDJHomeIndexRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJHomeIndexRequest.h; sourceTree = "<group>"; };
@@ -937,15 +940,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				886A1B6820CFB4250007AD63 /* YMEpubReaderKit.framework in Frameworks */,
 				88C5F14920B7F1900075D5F2 /* QuartzCore.framework in Frameworks */,
+				886A1B6920CFB77F0007AD63 /* YMEpubReaderKit.framework in Frameworks */,
 				88BCED5F20C289DC00B5C1DB /* SystemConfiguration.framework in Frameworks */,
 				88BCED5D20C289CE00B5C1DB /* Contacts.framework in Frameworks */,
 				88BCED5B20C289C100B5C1DB /* AddressBook.framework in Frameworks */,
 				88BCED5920C289B400B5C1DB /* CoreTelephony.framework in Frameworks */,
 				88BCED5720C289AA00B5C1DB /* CoreLocation.framework in Frameworks */,
-				88D5C61920BE765200E353DB /* YMEpubReaderKit.framework in Frameworks */,
 				88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */,
-				88D5C61C20BE776400E353DB /* YMEpubReaderKit.framework in Frameworks */,
 				88C5F15F20B7F2050075D5F2 /* libz.tbd in Frameworks */,
 				88C5F15D20B7F1FE0075D5F2 /* libbz2.tbd in Frameworks */,
 				88C5F15B20B7F1F00075D5F2 /* AudioToolbox.framework in Frameworks */,
@@ -1037,9 +1040,9 @@
 		881C948A2068EA5A009D6A52 /* HBDJProj */ = {
 			isa = PBXGroup;
 			children = (
+				886A1B6720CFB4240007AD63 /* YMEpubReaderKit.framework */,
 				881C94BD2068EA6E009D6A52 /* SupportingFiles */,
 				88BCED5420C2898C00B5C1DB /* iflyMSC.framework */,
-				88D5C61820BE765200E353DB /* YMEpubReaderKit.framework */,
 				881C94BE2068EC61009D6A52 /* Public */,
 				881C94BF2068EC6D009D6A52 /* Classes */,
 			);
@@ -1767,8 +1770,10 @@
 				881F1A8220C125A7005D9261 /* HPSearchViewController.m */,
 				88435EAA208F061400188CE9 /* EDJSearchViewController.h */,
 				88435EAB208F061400188CE9 /* EDJSearchViewController.m */,
-				881F1A8420C12915005D9261 /* HPMicroLessonTableViewController.h */,
-				881F1A8520C12915005D9261 /* HPMicroLessonTableViewController.m */,
+				881F1A8420C12915005D9261 /* HPSearchLessonController.h */,
+				881F1A8520C12915005D9261 /* HPSearchLessonController.m */,
+				886A1B6420CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.h */,
+				886A1B6520CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m */,
 				88D13C362090159300A32236 /* ohter */,
 				88D13C272090135400A32236 /* model */,
 				88D13C262090134500A32236 /* view */,
@@ -2972,6 +2977,7 @@
 				8885D23E20A2EC7600DC06A1 /* LGSegmentBottomView.m in Sources */,
 				88FE68BC209B05F5008C28A0 /* OLVoteListController.m in Sources */,
 				884312E32089879C00321F84 /* UCHelpFadebackTableViewCell.m in Sources */,
+				886A1B6620CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m in Sources */,
 				88BCED4E20C271D000B5C1DB /* HPVoiceSearchView.m in Sources */,
 				88BCEDBF20C63B1200B5C1DB /* LGBaseTableView.m in Sources */,
 				88A470FD207C8CBD002F93E0 /* EDJMicroPSCellHeader.m in Sources */,
@@ -3132,7 +3138,7 @@
 				88A47123207DF342002F93E0 /* EDJOnlineViewController.m in Sources */,
 				884312A82086ED1200321F84 /* EDJLevelInfoFlowLayout.m in Sources */,
 				88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */,
-				881F1A8620C12915005D9261 /* HPMicroLessonTableViewController.m in Sources */,
+				881F1A8620C12915005D9261 /* HPSearchLessonController.m in Sources */,
 				883E082820CA560900BB62BA /* DJUserInteractionMgr.m in Sources */,
 				8835B2E920720CD800722010 /* LIGObject.m in Sources */,
 				88FE68C2209B0690008C28A0 /* OLVoteListTableViewCell.m in Sources */,

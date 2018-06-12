@@ -64,7 +64,13 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
  @param failure 失败回调
  */
 + (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
-/// MARK: 搜索接口
+
+/**
+ 搜索接口
+
+ @param string 搜索内容
+ @param type 类型:1微党课。2党建要闻。0全部
+ */
 + (void)homeSearchWithString:(NSString *)string type:(NSInteger)type offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /// MARK: 首页接口
 + (void)homeIndexWithSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;

@@ -19,9 +19,12 @@
     }
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
++ (CGFloat)cellHeightWithModel:(HPBookInfoModel *)model{
+    if (model.isHeader) {
+        return 220;
+    }else{
+        return model.cellHeight;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

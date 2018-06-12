@@ -8,11 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^LGProducerProgress)(CGFloat progress);
+typedef void(^LGProducerSuccess)(NSString *destiPath);
+typedef void(^LGProducerFailure)(NSError *error);
+
+@class EDJDigitalModel;
+
 @interface LGLocalFileProducer : NSObject
 
 #pragma 阅读
++ (void)openBookWithModel:(EDJDigitalModel *)model;
 
-#pragma 下载 
+#pragma 下载
++ (void)downloadResourceWithUrl:(NSString *)url seqid:(NSInteger)seqid progressBlk:(LGProducerProgress)progressBlk success:(LGProducerSuccess)success failure:(LGProducerFailure)failure;
 
 #pragma 路径管理
 

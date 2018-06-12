@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,8 +24,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R88-em-mtX">
-                        <rect key="frame" x="21" y="56.5" width="428" height="49"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介内容" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R88-em-mtX">
+                        <rect key="frame" x="21" y="56.5" width="428" height="47"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -46,14 +46,14 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_digital_book_info_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="auA-uj-nCz">
-                        <rect key="frame" x="439" y="128.5" width="10" height="5"/>
+                        <rect key="frame" x="439" y="130" width="10" height="5"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dT-jN-eUE">
                         <rect key="frame" x="399" y="118.5" width="50" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="bVd-ge-VKu"/>
-                            <constraint firstAttribute="height" constant="20" id="rhQ-Oi-rYO"/>
+                            <constraint firstAttribute="height" constant="20" id="dvT-g6-gRH"/>
                         </constraints>
                         <inset key="titleEdgeInsets" minX="0.0" minY="8" maxX="10" maxY="0.0"/>
                         <state key="normal" title="展开">
@@ -65,20 +65,20 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="1dT-jN-eUE" secondAttribute="bottom" constant="10" id="0oF-e7-cLv"/>
+                    <constraint firstItem="auA-uj-nCz" firstAttribute="centerY" secondItem="1dT-jN-eUE" secondAttribute="centerY" constant="4" id="0bH-pU-Vic"/>
                     <constraint firstItem="fyz-Qe-Pxe" firstAttribute="leading" secondItem="fLL-1Y-6e6" secondAttribute="leading" id="4pD-ZF-Ir3"/>
                     <constraint firstItem="6RX-sG-t0q" firstAttribute="top" secondItem="fLL-1Y-6e6" secondAttribute="top" constant="20" id="7qu-fa-AYW"/>
                     <constraint firstItem="fyz-Qe-Pxe" firstAttribute="top" secondItem="fLL-1Y-6e6" secondAttribute="top" id="9To-4u-iNi"/>
                     <constraint firstItem="6RX-sG-t0q" firstAttribute="leading" secondItem="fLL-1Y-6e6" secondAttribute="leading" constant="12" id="Eer-3W-MvW"/>
                     <constraint firstItem="rIx-Pr-zyB" firstAttribute="leading" secondItem="6RX-sG-t0q" secondAttribute="trailing" constant="6" id="JBA-gD-dAa"/>
                     <constraint firstItem="rIx-Pr-zyB" firstAttribute="centerY" secondItem="6RX-sG-t0q" secondAttribute="centerY" id="JGj-uN-B7d"/>
-                    <constraint firstAttribute="bottom" secondItem="auA-uj-nCz" secondAttribute="bottom" constant="15" id="LNm-9O-dHJ"/>
                     <constraint firstItem="R88-em-mtX" firstAttribute="leading" secondItem="rIx-Pr-zyB" secondAttribute="leading" id="NZw-bO-p7d"/>
                     <constraint firstAttribute="trailing" secondItem="fyz-Qe-Pxe" secondAttribute="trailing" id="OBN-we-yPh"/>
+                    <constraint firstItem="1dT-jN-eUE" firstAttribute="top" secondItem="R88-em-mtX" secondAttribute="bottom" constant="15" id="OQo-Uy-upK"/>
                     <constraint firstItem="1dT-jN-eUE" firstAttribute="trailing" secondItem="auA-uj-nCz" secondAttribute="trailing" id="Sna-NL-174"/>
                     <constraint firstAttribute="trailing" secondItem="auA-uj-nCz" secondAttribute="trailing" constant="15" id="YK5-dv-gIF"/>
-                    <constraint firstItem="1dT-jN-eUE" firstAttribute="top" secondItem="R88-em-mtX" secondAttribute="bottom" constant="13" id="YRf-03-HrK"/>
                     <constraint firstItem="R88-em-mtX" firstAttribute="trailing" secondItem="1dT-jN-eUE" secondAttribute="trailing" id="lIl-ap-r8t"/>
+                    <constraint firstAttribute="bottom" secondItem="1dT-jN-eUE" secondAttribute="bottom" constant="10" id="mFS-QL-V7S"/>
                     <constraint firstItem="R88-em-mtX" firstAttribute="top" secondItem="rIx-Pr-zyB" secondAttribute="bottom" constant="16" id="tyx-wr-SbX"/>
                 </constraints>
             </tableViewCellContentView>

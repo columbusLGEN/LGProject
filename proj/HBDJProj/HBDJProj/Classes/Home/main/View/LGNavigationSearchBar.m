@@ -89,6 +89,8 @@ static CGFloat buttonHeight = 30;
             make.height.mas_equalTo(buttonHeight);
         }];
     }
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 - (void)setRightButtonTitle:(NSString *)rightButtonTitle{
     _rightButtonTitle = rightButtonTitle;
@@ -133,6 +135,8 @@ static CGFloat buttonHeight = 30;
         [self.searchRightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.fakeSearch.mas_right).offset(-marginEight);
             make.centerY.equalTo(self.fakeSearch.mas_centerY);
+            make.width.mas_equalTo(30);
+            make.height.mas_equalTo(44);
         }];
     
         [self setNeedsLayout];
@@ -176,7 +180,7 @@ static CGFloat buttonHeight = 30;
 - (UIButton *)searchRightBtn{
     if (_searchRightBtn == nil) {
         _searchRightBtn = [[UIButton alloc] init];
-        [_searchRightBtn setBackgroundImage:[UIImage imageNamed:@"home_nav_voice"]
+        [_searchRightBtn setImage:[UIImage imageNamed:@"home_nav_voice"]
                                       forState:UIControlStateNormal];
         [_searchRightBtn addTarget:self action:@selector(voiceSearchClick:) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -10,7 +10,13 @@
 
 @class HPBookInfoModel;
 
+@protocol HPBookInfoBriefCellDelegate <NSObject>
+- (void)bibCellShowAllButtonClick;
+
+@end
+
 @interface HPBookInfoBaseCell : LGBaseTableViewCell
 @property (strong,nonatomic) HPBookInfoModel *model;
+@property (weak,nonatomic) id<HPBookInfoBriefCellDelegate> delegate;
 
 @end

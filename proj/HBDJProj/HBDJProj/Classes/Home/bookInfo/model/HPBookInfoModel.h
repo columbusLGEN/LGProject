@@ -30,4 +30,6 @@
 /** 显示内容 */
 @property (copy,nonatomic) NSString *content;
 
+@property (assign,nonatomic) CGFloat cellHeight;
+
 @end

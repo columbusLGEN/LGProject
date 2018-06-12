@@ -19,22 +19,20 @@
 @property (strong,nonatomic) NSString *directoryPath;
 @property (strong,nonatomic) NSFileManager *manager;
 
-@property (strong,nonatomic) NSString *userid;
 @property (assign,nonatomic) SearchRecordExePart currentExePart;
 
 @end
 
 @implementation LGLocalSearchRecord
 
-+ (NSArray *)getLocalRecordWithUserid:(NSString *)userid part:(SearchRecordExePart)part{
-    return [[self sharedInstance] getLocalRecordWithUserid:userid part:part];
++ (NSArray *)getLocalRecordWithPart:(SearchRecordExePart)part{
+    return [[self sharedInstance] getLocalRecordWithPart:part];
 }
-- (NSArray *)getLocalRecordWithUserid:(NSString *)userid part:(SearchRecordExePart)part{
+- (NSArray *)getLocalRecordWithPart:(SearchRecordExePart)part{
     _currentExePart = part;
-    _userid = userid;
     
     NSArray *record = [NSArray arrayWithContentsOfFile:self.filePath];
-    NSLog(@"userid: %@,:%@,lg_record: %@",userid,[self currentExePartWith:part],record);
+    NSLog(@"userid: %@,:%@,lg_record: %@",self.userId,[self currentExePartWith:part],record);
     
     return record;
 }
@@ -44,12 +42,11 @@
  @param content 用户输入的内容
  @param part 当前模块，首页：home
  */
-+ (void)addNewRecordWithContent:(NSString *)content part:(SearchRecordExePart)part userid:(NSString *)userid{
-    [[self sharedInstance] addNewRecordWithContent:content part:part userid:userid];
++ (void)addNewRecordWithContent:(NSString *)content part:(SearchRecordExePart)part{
+    [[self sharedInstance] addNewRecordWithContent:content part:part];
 }
-- (void)addNewRecordWithContent:(NSString *)content part:(SearchRecordExePart)part userid:(NSString *)userid{
+- (void)addNewRecordWithContent:(NSString *)content part:(SearchRecordExePart)part{
     _currentExePart = part;
-    _userid = userid;
     
     /// 1.判断、创建目录 --> 判断、创建 文件
     [self createDirectoryPath];
@@ -107,7 +104,7 @@
 }
 /// directoryPath 和 filePath 可能会变化，所以不能懒加载，而是每次都生成新的值
 - (NSString *)directoryPath{
-    return [self.rootDirectory stringByAppendingString:[NSString stringWithFormat:@"/lg_search_record/%@",self.userid]];
+    return [self.rootDirectory stringByAppendingString:[NSString stringWithFormat:@"/lg_search_record/%@",self.userId]];
 }
 - (NSString *)filePath{
     /// 路径为：library/record/"userid"/home.plist 或者 library/record/"userid"/discovery.plist
@@ -148,6 +145,11 @@
 }
 - (BOOL)isExist:(NSString *)path{
     return [self.manager fileExistsAtPath:path];
+}
+
+- (NSString *)userId{
+    /// TODO: 获取userid
+    return @"1";
 }
 
 + (instancetype)sharedInstance{
