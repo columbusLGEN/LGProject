@@ -7,7 +7,15 @@
 //
 
 #import "EDJDigitalModel.h"
+#import "LGLocalFileManager.h"
 
 @implementation EDJDigitalModel
+
+- (NSString *)localUrl{
+    if (!_localUrl) {
+        _localUrl = [[LGLocalFileManager sharedLocalFileManager].filePath stringByAppendingString:[NSString stringWithFormat:@"/DJDigital_%@.epub",[NSString stringWithFormat:@"%ld",self.seqid]]];
+    }
+    return _localUrl;
+}
 
 @end

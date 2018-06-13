@@ -9,6 +9,7 @@
 
 #import "LGBookReaderManager.h"
 #import <YMEpubReaderKit/YMEpubReaderManager.h>
+//#import <YMEpubReaderKit/Bookmark.h>
 
 @interface LGBookReaderManager ()<
 YMEpubReaderManagerDelegate>
@@ -26,12 +27,13 @@ YMEpubReaderManagerDelegate>
 
 @implementation LGBookReaderManager
 
-+ (void)openBookWithLocalUrl:(NSString *)localUrl{
-    [[self sharedInstance] openBookWithLocalUrl:localUrl];
++ (void)openBookWithLocalUrl:(NSString *)localUrl bookId:(NSString *)bookId vc:(UIViewController *)vc{
+    [[self sharedInstance] openBookWithLocalUrl:localUrl bookId:(NSString *)bookId vc:vc];
 }
-- (void)openBookWithLocalUrl:(NSString *)localUrl{
+- (void)openBookWithLocalUrl:(NSString *)localUrl bookId:(NSString *)bookId vc:(UIViewController *)vc{
     /// TODO: 获取userid
-    [self.ymepubReader loadBookWithPath:localUrl userId:@"1" bookId:nil];
+    MyBook *book = [self.ymepubReader loadBookWithPath:localUrl userId:@"1" bookId:bookId];
+    [self.ymepubReader readBook:book fromController:vc];
 }
 
 

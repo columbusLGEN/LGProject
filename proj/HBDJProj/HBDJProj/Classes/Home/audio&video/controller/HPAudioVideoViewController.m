@@ -45,6 +45,7 @@ LGThreeRightButtonViewDelegate>
 @implementation HPAudioVideoViewController
 
 - (void)setImgLoopModel:(EDJHomeImageLoopModel *)imgLoopModel{
+    /// 从首页点击轮播图进入
     [DJNetworkManager homePointNewsDetailWithId:imgLoopModel.seqid type:2 success:^(id responseObj) {
         NSLog(@"微党课responseobj -- %@",responseObj);
         _imgLoopModel = [EDJHomeImageLoopModel mj_objectWithKeyValues:responseObj];
@@ -54,6 +55,12 @@ LGThreeRightButtonViewDelegate>
     } failure:^(id failureObj) {
         
     }];
+}
+
+- (void)setModel:(DJDataBaseModel *)model{
+    _model = model;
+    /// 从首页点击cell 进入
+    
 }
 
 - (void)viewDidLoad {
@@ -164,11 +171,13 @@ LGThreeRightButtonViewDelegate>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         HPAudioVideoInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:avInfoCell];
+        cell.model = self.model;
         cell.delegate = self;
         return cell;
     }
     if (indexPath.row == _array.count - 1) {
         HPAudioVideoContentCell *cell = [tableView dequeueReusableCellWithIdentifier:avContentCell];
+        cell.model = self.model;
         return cell;
     }
     return nil;

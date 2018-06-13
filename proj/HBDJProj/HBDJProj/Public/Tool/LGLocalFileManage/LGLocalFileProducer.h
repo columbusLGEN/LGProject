@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^LGProducerProgress)(CGFloat progress);
+typedef void(^LGProducerProgress)(CGFloat progress,CGFloat total,CGFloat current);
 typedef void(^LGProducerSuccess)(NSString *destiPath);
 typedef void(^LGProducerFailure)(NSError *error);
 
@@ -17,10 +17,12 @@ typedef void(^LGProducerFailure)(NSError *error);
 @interface LGLocalFileProducer : NSObject
 
 #pragma 阅读
-+ (void)openBookWithModel:(EDJDigitalModel *)model;
++ (void)openBookWithModel:(EDJDigitalModel *)model vc:(UIViewController *)vc;
 
 #pragma 下载
-+ (void)downloadResourceWithUrl:(NSString *)url seqid:(NSInteger)seqid progressBlk:(LGProducerProgress)progressBlk success:(LGProducerSuccess)success failure:(LGProducerFailure)failure;
++ (void)downloadResourceWithUrl:(NSString *)url localUrl:(NSString *)localUrl progressBlk:(LGProducerProgress)progressBlk success:(LGProducerSuccess)success failure:(LGProducerFailure)failure;
+/** 取消下载 */
++ (void)cancelDownloadAll;
 
 #pragma 路径管理
 

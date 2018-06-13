@@ -10,52 +10,76 @@
 #import "LGBookReaderManager.h"// 阅读
 #import "LGDownloadManager.h"// 下载
 #import "LGLocalFileManager.h"// 路径管理
-
 #import "EDJDigitalModel.h"
+
+@interface LGLocalFileProducer ()
+@property (weak,nonatomic) MBProgressHUD *progressBar;
+
+@end
 
 @implementation LGLocalFileProducer
 
-+ (void)openBookWithModel:(EDJDigitalModel *)model{
-    [[self sharedInstance] openBookWithModel:model];
++ (void)cancelDownloadAll{
+    [LGDownloadManager lg_cancelDownloadTask];
 }
-- (void)openBookWithModel:(EDJDigitalModel *)model{
+
++ (void)openBookWithModel:(EDJDigitalModel *)model vc:(UIViewController *)vc{
+    [[self sharedInstance] openBookWithModel:model vc:vc];
+}
+- (void)openBookWithModel:(EDJDigitalModel *)model vc:(UIViewController *)vc{
     
-    BOOL resourceExist = [LGLocalFileManager fileIsExist:model.localUrl];
-    if (resourceExist) {
-        /// 直接打开
-        [LGBookReaderManager openBookWithLocalUrl:model.localUrl];
-        NSLog(@"epubisalreadyexists_localurl: %@",model.localUrl);
-    }else{
-        NSLog(@"downloadurl_ebookresource: %@",model.ebookresource);
-        /// 先下载，再打开
-        [self downloadResourceWithUrl:model.ebookresource seqid:model.seqid progressBlk:^(CGFloat progress) {
-            NSLog(@"progress: %f",progress);
-        } success:^(NSString *destiPath) {
-            NSLog(@"destipath: %@",destiPath);
-            model.localUrl = destiPath;
-            [LGBookReaderManager openBookWithLocalUrl:destiPath];
-        } failure:^(NSError *error) {
-//            NSLog(@"downloadfailure: %@",error);
-        }];
-    }
+    MBProgressHUD *progressBar = [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
+    [vc.view addSubview:progressBar];
+    _progressBar = progressBar;
+    progressBar.mode = MBProgressHUDModeAnnularDeterminate;
+    progressBar.progress = 0.0;
+    
+    /// testcode 只下载
+    [self downloadResourceWithUrl:model.ebookresource localUrl:model.localUrl progressBlk:^(CGFloat progress,CGFloat total,CGFloat current) {
+        /// 该block 在主线程回调
+        _progressBar.progress = progress;
+//        NSLog(@"_progressBar.progress: %f",_progressBar.progress);
+        
+    } success:^(NSString *destiPath) {
+        [_progressBar hideAnimated:YES];
+        NSLog(@"destipath: %@",destiPath);
+        model.localUrl = destiPath;
+    } failure:^(NSError *error) {
+        [_progressBar hideAnimated:YES];
+        //            NSLog(@"downloadfailure: %@",error);
+    }];
+    
+    /// 正式代码
+//    BOOL resourceExist = [LGLocalFileManager fileIsExist:model.localUrl];
+//    NSString *bookId = [NSString stringWithFormat:@"%ld",model.seqid];
+//    if (resourceExist) {
+//        /// 直接打开
+//        [LGBookReaderManager openBookWithLocalUrl:model.localUrl bookId:bookId vc:vc];
+//
+//    }else{
+//
+//        /// 先下载，再打开
+//        [self downloadResourceWithUrl:model.ebookresource localUrl:model.localUrl progressBlk:^(CGFloat progress) {
+//            NSLog(@"progress: %f",progress);
+//        } success:^(NSString *destiPath) {
+//            NSLog(@"destipath: %@",destiPath);
+//            model.localUrl = destiPath;
+//            [LGBookReaderManager openBookWithLocalUrl:destiPath bookId:bookId vc:vc];
+//        } failure:^(NSError *error) {
+////            NSLog(@"downloadfailure: %@",error);
+//        }];
+//    }
     
 }
 
-+ (void)downloadResourceWithUrl:(NSString *)url seqid:(NSInteger)seqid progressBlk:(LGProducerProgress)progressBlk success:(LGProducerSuccess)success failure:(LGProducerFailure)failure{
-    [[self sharedInstance] downloadResourceWithUrl:url seqid:seqid progressBlk:progressBlk success:success failure:failure];
++ (void)downloadResourceWithUrl:(NSString *)url localUrl:(NSString *)localUrl progressBlk:(LGProducerProgress)progressBlk success:(LGProducerSuccess)success failure:(LGProducerFailure)failure{
+    [[self sharedInstance] downloadResourceWithUrl:url localUrl:localUrl progressBlk:progressBlk success:success failure:failure];
 }
-- (void)downloadResourceWithUrl:(NSString *)url seqid:(NSInteger)seqid progressBlk:(LGProducerProgress)progressBlk success:(LGProducerSuccess)success failure:(LGProducerFailure)failure{
+- (void)downloadResourceWithUrl:(NSString *)url localUrl:(NSString *)localUrl progressBlk:(LGProducerProgress)progressBlk success:(LGProducerSuccess)success failure:(LGProducerFailure)failure{
     
-    NSString *fileName = [[LGLocalFileManager sharedLocalFileManager].filePath stringByAppendingString:[NSString stringWithFormat:@"/DJDigital_%@.epub",[NSString stringWithFormat:@"%ld",seqid]]];
-    
-    [LGDownloadManager downloadWithURLString:url fileName:fileName progress:^(CGFloat progress, CGFloat total, CGFloat current) {
-//        NSLog(@"progress: %f",progress / 100);
-        if (progressBlk) progressBlk(progress);
-    } success:^(NSString *localURL) {
-//        NSLog(@"success_localurl: %@",localURL);
+    [LGDownloadManager downloadWithURLString:url fileName:localUrl progress:progressBlk success:^(NSString *localURL) {
         if (success) success(localURL);
     } failure:^(NSError *error) {
-//        NSLog(@"failure_error: %@",error);
         if (failure) failure(error);
     }];
 }

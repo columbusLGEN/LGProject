@@ -32,8 +32,6 @@ LGThreeRightButtonViewDelegate>
 @property (nonatomic, strong) NSCache *imageSizeCache;
 @property (strong,nonatomic) LGThreeRightButtonView *pbdBottom;
 
-@property (strong,nonatomic) EDJMicroBuildModel *contentModel;
-
 @end
 
 @implementation HPPartyBuildDetailViewController
@@ -53,36 +51,6 @@ LGThreeRightButtonViewDelegate>
     
 }
 
-- (void)setImageLoopModel:(EDJHomeImageLoopModel *)imageLoopModel{
-    _imageLoopModel = imageLoopModel;
-    
-    /**
-     /// 测试数据
-     {"params":{"imei":"460030912121001","imsi":"460030912121001","seqid":"1","userid":"","type":"1"},
-     "md5":"654c01acaf40e0ce6d841a552fd3b96c"}
-     */
-    
-    [DJNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:1 success:^(id responseObj) {
-        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
-        EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
-        self.contentModel = model;
-//        model.collectionid;
-//        model.praiseid;
-        
-    } failure:^(id failureObj) {
-        
-    }];
-    
-    /// 请求党建要闻详情数据
-    /// imageLoopModel.seqid
-//    [DJNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:self.djDataType success:^(id responseObj) {
-//        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
-//
-//    } failure:^(id failureObj) {
-//
-//    }];
-    
-}
 - (void)setContentModel:(EDJMicroBuildModel *)contentModel{
     _contentModel = contentModel;
     _pbdBottom.leftIsSelected = !(contentModel.praiseid == 0);
@@ -116,6 +84,38 @@ LGThreeRightButtonViewDelegate>
         }];
     }];
 }
+
+- (void)setImageLoopModel:(EDJHomeImageLoopModel *)imageLoopModel{
+    _imageLoopModel = imageLoopModel;
+    
+    /**
+     /// 测试数据
+     {"params":{"imei":"460030912121001","imsi":"460030912121001","seqid":"1","userid":"","type":"1"},
+     "md5":"654c01acaf40e0ce6d841a552fd3b96c"}
+     */
+    
+    [DJNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:1 success:^(id responseObj) {
+        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
+        EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
+        self.contentModel = model;
+//        model.collectionid;
+//        model.praiseid;
+        
+    } failure:^(id failureObj) {
+        
+    }];
+    
+    /// 请求党建要闻详情数据
+    /// imageLoopModel.seqid
+//    [DJNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:self.djDataType success:^(id responseObj) {
+//        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
+//
+//    } failure:^(id failureObj) {
+//
+//    }];
+    
+}
+
 
 #pragma mark - LGThreeRightButtonViewDelegate
 /// MARK: 点赞

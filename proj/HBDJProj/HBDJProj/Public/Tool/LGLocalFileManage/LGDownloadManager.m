@@ -56,10 +56,13 @@
     _dataTask = [self.manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
         
     } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
-//        NSLog(@"downloadProgress: %@",downloadProgress);
-        if (progress) {
-            progress(downloadProgress.fractionCompleted,0,0);
-        }
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            NSLog(@"downloadProgress: %f",downloadProgress.fractionCompleted);
+            if (progress) {
+                progress(downloadProgress.fractionCompleted,0,0);
+            }
+        }];
+        
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         NSLog(@"下载完毕response -- %@",response);
         //            NSLog(@"dataTaskWithRequest");
@@ -84,7 +87,7 @@
         // 关闭fileHandle
         [weakSelf.fileHandle closeFile];
         weakSelf.fileHandle = nil;
-        NSLog(@"weakSelf.fileHandle == nil: ");
+//        NSLog(@"weakSelf.fileHandle == nil: ");
     }];
     
     [self.manager setDataTaskDidReceiveResponseBlock:^NSURLSessionResponseDisposition(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSURLResponse * _Nonnull response) {
@@ -102,7 +105,7 @@
         NSFileManager *manager = [NSFileManager defaultManager];
         // 直接覆盖本地文件，省去删除
         BOOL create = [manager createFileAtPath:fileName contents:nil attributes:nil];
-        NSLog(@"create: %d",create);
+//        NSLog(@"create: %d",create);
         // 如果没有下载文件的话，就创建一个文件。如果有下载文件的话，则不用重新创建(不然会覆盖掉之前的文件)
 //        if (!create) {
 //            BOOL create1 = [manager createFileAtPath:fileName contents:nil attributes:nil];
@@ -111,7 +114,7 @@
         
         // 创建文件句柄
         weakSelf.fileHandle = [NSFileHandle fileHandleForWritingAtPath:fileName];
-        NSLog(@"weakSelf.fileHandle: %@",weakSelf.fileHandle);
+//        NSLog(@"weakSelf.fileHandle: %@",weakSelf.fileHandle);
         // 允许处理服务器的响应，才会继续接收服务器返回的数据
         return NSURLSessionResponseAllow;
     }];

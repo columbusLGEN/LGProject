@@ -7,6 +7,7 @@
 //
 
 #import "HPAudioVideoContentCell.h"
+#import "DJDataBaseModel.h"
 
 @interface HPAudioVideoContentCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -18,7 +19,10 @@
 
 @implementation HPAudioVideoContentCell
 
-
+- (void)setModel:(DJDataBaseModel *)model{
+    _model = model;
+    _content = model.content;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

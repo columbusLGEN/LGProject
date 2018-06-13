@@ -8,12 +8,15 @@
 
 #import "LGBaseTableViewCell.h"
 
+@class DJDataBaseModel;
+
 static NSString * const avInfoCell = @"HPAudioVideoInfoCell";
 
 @protocol HPAudioVideoInfoCellDelegate;
 
 @interface HPAudioVideoInfoCell : LGBaseTableViewCell
 
+@property (strong,nonatomic) DJDataBaseModel *model;
 @property (weak,nonatomic) id<HPAudioVideoInfoCellDelegate> delegate;
 
 @end

@@ -17,6 +17,7 @@
 #import "HPMicrolessonView.h"
 #import "HPBuildTableView.h"
 #import "HPDigitalCollectionView.h"
+#import "HPNetworkFailureView.h"
 
 #import "EDJHomeModel.h"
 #import "EDJMicroBuildModel.h"
@@ -41,7 +42,8 @@ SwipeTableViewDataSource
 ,SwipeTableViewDelegate
 ,SDCycleScrollViewDelegate
 ,LGNavigationSearchBarDelelgate
-,LGSegmentControlDelegate>
+,LGSegmentControlDelegate,
+HPNetworkFailureViewDelegate>
 @property (strong,nonatomic) SwipeTableView * swipeTableView;
 @property (strong,nonatomic) STHeaderView *header;
 @property (strong,nonatomic) SDCycleScrollView *imgLoop;
@@ -53,18 +55,22 @@ SwipeTableViewDataSource
 @property (strong,nonatomic) HPBuildTableView *buildTableview;
 @property (strong,nonatomic) HPDigitalCollectionView *digitalCollectionView;
 
+@property (strong,nonatomic) MBProgressHUD *HUD;
+
 @property (strong,nonatomic) EDJHomeModel *homeModel;
 
 /** 图片轮播模型 */
 @property (strong,nonatomic) NSArray *imageLoops;
 @property (strong,nonatomic) NSArray *microModels;
 
-@property (strong,nonatomic) NSArray *buildModels;
+@property (strong,nonatomic) NSArray<EDJMicroBuildModel *> *buildModels;
 @property (assign,nonatomic) NSInteger buildOffset;
 @property (strong,nonatomic) NSArray *digitalModels;
 @property (assign,nonatomic) NSInteger digitalOffset;
 
 @property (assign,nonatomic) NSInteger currentIndex;
+
+@property (weak,nonatomic) HPNetworkFailureView *emptyView;
 
 @end
 
@@ -153,7 +159,24 @@ SwipeTableViewDataSource
 }
 
 - (void)homeReloadData{
+
+    self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.HUD.backgroundColor = [UIColor clearColor];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.HUD.backgroundColor = [UIColor whiteColor];
+    });
+    if (!_HUD) {
+        [self.view addSubview:self.HUD];
+    }else{
+        [self.HUD showAnimated:YES];
+    }
+    self.HUD.mode = MBProgressHUDModeIndeterminate;
+    
     [DJNetworkManager homeIndexWithSuccess:^(id responseObj) {
+        [_emptyView removeFromSuperview];
+        _emptyView = nil;
+        [self.HUD hideAnimated:YES];
         EDJHomeModel *homeModel = [EDJHomeModel mj_objectWithKeyValues:responseObj];
         _homeModel = homeModel;
         self.imageLoops = homeModel.imageLoops;
@@ -172,9 +195,26 @@ SwipeTableViewDataSource
         }];
         
     } failure:^(id failureObj) {
-        NSLog(@"homeindexfailure -- %@",failureObj);
+        [self.HUD hideAnimated:YES];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self lg_addEmptyView];
+        }];
         
     }];
+}
+
+#pragma mark - HPNetworkFailureViewDelegate
+- (void)djemptyViewClick{
+    [self homeReloadData];
+}
+- (void)lg_addEmptyView{
+    if (!_emptyView) {    
+        HPNetworkFailureView *empty = [HPNetworkFailureView DJEmptyView];
+        empty.delegate = self;
+        empty.frame = CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight);
+        [self.view addSubview:empty];
+        _emptyView = empty;
+    }
 }
 
 /// MARK: 党建要闻加载更多数据
@@ -333,9 +373,9 @@ SwipeTableViewDataSource
             break;
         case 2:{
             /// 进入 微党课详情
-            /// TODO: 进入微党课详情，需要知道是音频，还是视频
             HPAudioVideoViewController *dvc = [HPAudioVideoViewController new];
             dvc.imgLoopModel = model;
+            /// 用于区分音视频
             dvc.contentType = model.modaltype;
             [self.navigationController pushViewController:dvc animated:YES];
         }
@@ -361,19 +401,28 @@ SwipeTableViewDataSource
             /// 再获取专辑单条微党课
             DJDataBaseModel *lesson = alubm.classlist[subIndex];
             NSLog(@"党课单条 -- %@",lesson);
-            /// TODO: 进入微党课详情
             
-            /// MARK: 进入微党课单条详情
+            /// TODO: 打开正式代码
+            /// MARK: 进入微党课正式代码
+//            if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
+//                NSLog(@"数据异常: ");
+//            }else{
+//                HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+//            avc.model = lesson;
+//                avc.contentType = lesson.modaltype;
+//                [self.navigationController pushViewController:avc animated:YES];
+//            }
+            /// 进入微党课单条详情
+            /// testcode 第一个cell，打开视频详情
+            HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
             if ((index % 2) == 0) {
-                /// 用于测试，第一个cell，打开视频详情
-                HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-                avc.contentType = ModelMediaTypeVideo;
-                [self.navigationController pushViewController:avc animated:YES];
-            }else{
-                HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
                 avc.contentType = ModelMediaTypeAudio;
-                [self.navigationController pushViewController:avc animated:YES];
+            }else{
+                avc.contentType = ModelMediaTypeVideo;
             }
+            avc.model = lesson;
+            [self.navigationController pushViewController:avc animated:YES];
+            
         }
             break;
         case LGDidSelectedSkipTypeMicrolessonAlbum:{
@@ -383,7 +432,9 @@ SwipeTableViewDataSource
         }
             break;
         case LGDidSelectedSkipTypeBuildNews:{
+            EDJMicroBuildModel *contentModel = self.buildModels[index];
             HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+            dvc.contentModel = contentModel;
             dvc.coreTextViewType = LGCoreTextViewTypeDefault;
             [self.navigationController pushViewController:dvc animated:YES];
         }

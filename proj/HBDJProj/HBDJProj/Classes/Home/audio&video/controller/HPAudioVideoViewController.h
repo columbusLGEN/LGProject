@@ -11,7 +11,7 @@
 #import "LGBaseViewController.h"
 #import "DJDataBaseModel.h"
 
-@class EDJHomeImageLoopModel;
+@class EDJHomeImageLoopModel,DJDataBaseModel;
 //typedef NS_ENUM(NSUInteger, HPAudioVideoType) {
 //    HPAudioVideoTypeVideo,
 //    HPAudioVideoTypeAudio,
@@ -21,5 +21,6 @@
 
 @property (strong,nonatomic) EDJHomeImageLoopModel *imgLoopModel;
 @property (assign,nonatomic) ModelMediaType contentType;
+@property (strong,nonatomic) DJDataBaseModel *model;
 
 @end

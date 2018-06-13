@@ -85,15 +85,9 @@ HPBookInfoBriefCellDelegate>
 }
 
 - (void)readBook{
-    [LGLocalFileProducer openBookWithModel:self.model];
-    
-//    [LGLocalFileProducer downloadResourceWithUrl:self.model.ebookresource progressBlk:^(CGFloat progress) {
-//       NSLog(@"progress: %f",progress);
-//    } success:^(NSString *destiPath) {
-//        NSLog(@"destiPath: %@",destiPath);
-//    } failure:^(NSError *error) {
-//        NSLog(@"error: %@",error);
-//    }];
+    /// TODO: 初步确定 无法打开epub3.0的资源文件,暂时
+    [LGLocalFileProducer openBookWithModel:self.model vc:self];
+    NSLog(@"初步确定 无法打开epub3.0的资源文件,暂时无法阅读: ");
 }
 
 #pragma mark - HPBookInfoBriefCellDelegate
@@ -161,5 +155,8 @@ HPBookInfoBriefCellDelegate>
     return _button;
 }
 
+- (void)dealloc{
+    [LGLocalFileProducer cancelDownloadAll];
+}
 
 @end
