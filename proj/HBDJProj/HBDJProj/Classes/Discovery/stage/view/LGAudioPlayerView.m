@@ -11,10 +11,7 @@
 static CGFloat progressHeight = 5;
 
 @interface LGAudioPlayerView ()
-@property (strong,nonatomic) UIButton *play;
-@property (strong,nonatomic) UIProgressView *progress;
-@property (strong,nonatomic) UILabel *currentTime;
-@property (strong,nonatomic) UILabel *totalTime;
+
 
 @end
 
@@ -65,6 +62,7 @@ static CGFloat progressHeight = 5;
     if (!_play) {
         UIButton *play = [UIButton new];
         [play setImage:[UIImage imageNamed:@"dc_stage_audio_play"] forState:UIControlStateNormal];
+        [play setImage:[UIImage imageNamed:@"home_audio_resume"] forState:UIControlStateSelected];
         
         _play = play;
     }

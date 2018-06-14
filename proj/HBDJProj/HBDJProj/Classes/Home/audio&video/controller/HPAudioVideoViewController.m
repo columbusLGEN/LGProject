@@ -19,7 +19,10 @@
 #import "HPAudioVideoModel.h"
 #import "HPAudioVideoInfoCell.h"
 #import "HPAudioPlayerView.h"
-#import "HPVideoPlayerView.h"
+
+//#import "HPVideoPlayerView.h"
+#import "HPVideoContainerView.h"
+
 #import "LGVideoInterfaceView.h"
 #import "LGPlayer.h"
 
@@ -39,6 +42,8 @@ LGThreeRightButtonViewDelegate>
 @property (strong,nonatomic) NSArray *array;
 
 @property (weak,nonatomic) LGThreeRightButtonView *pbdBottom;
+@property (weak,nonatomic) HPVideoContainerView *vpv;
+@property (weak,nonatomic) HPAudioPlayerView *apv;
 
 @end
 
@@ -55,12 +60,6 @@ LGThreeRightButtonViewDelegate>
     } failure:^(id failureObj) {
         
     }];
-}
-
-- (void)setModel:(DJDataBaseModel *)model{
-    _model = model;
-    /// 从首页点击cell 进入
-    
 }
 
 - (void)viewDidLoad {
@@ -119,15 +118,17 @@ LGThreeRightButtonViewDelegate>
     
     if (self.contentType == ModelMediaTypeVideo) {
         /// MARK: 视频播放器
-        HPVideoPlayerView *vpv = [HPVideoPlayerView videoPlayerView];
-        vpv.bottomInterface.delegate = self;
+        HPVideoContainerView *vpv = [[HPVideoContainerView alloc] init];
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
         [self.view addSubview:vpv];
+        vpv.model = self.model;
+        _vpv = vpv;
     }else if (self.contentType == ModelMediaTypeAudio){
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
+        _apv = apv;
     }else{
         /// 其他
     }
@@ -193,7 +194,7 @@ LGThreeRightButtonViewDelegate>
 #pragma mark - LGVideoInterfaceViewDelegate
 - (void)userDragProgress:(LGVideoInterfaceView *)videoInterfaceView value:(float)value{
     NSLog(@"用户拖动进度value -- %f",value);
-    [LGPlayer seekToProgress:value];
+    
 }
 
 - (UITableView *)tableView{
@@ -222,6 +223,7 @@ LGThreeRightButtonViewDelegate>
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 - (void)dealloc{
-    [LGPlayer lg_stop_play];
+    [_vpv stop];
+    [_apv audioStop];
 }
 @end

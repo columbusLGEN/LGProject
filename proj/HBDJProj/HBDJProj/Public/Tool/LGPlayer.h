@@ -21,17 +21,14 @@ typedef NS_ENUM(NSUInteger, LGPlayerState) {
 
 @interface LGPlayer : NSObject
 
-/** 进度跳转 */
-+ (void)seekToProgress:(float)progress;
-+ (void)lg_stop_play;
-+ (BOOL)lg_play;
-+ (void)lg_pause;
-+ (void)lg_resume;
-/** 初始化播放器 */
-+ (UIView *)playVideoWithUrl:(NSString *)urlString;
+- (void)seekToProgress:(float)progress;
+- (void)lg_stop_play;
+- (BOOL)lg_playWithUrl:(NSString *)url;
+- (void)lg_pause;
+- (void)lg_resume;
+
 
 @property (weak,nonatomic) id<LGPlayerDelegate> delegate;
-+ (instancetype)sharedInstance;
 
 @end
 

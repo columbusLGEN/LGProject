@@ -17,12 +17,14 @@ pod 'HXWeiboPhotoPicker', '~> 2.1.5'
 pod 'PLPlayerKit'
 pod 'SwipeTableView'
 pod 'XHNetworkCache'
+pod 'JGProgressHUD'
+pod 'MMMaterialDesignSpinner'
 
 pod 'UMCCommon'
-pod 'UMCSecurityPlugins'
-pod 'UMengSocial'
-pod 'UMengSocialCOM'
-pod 'UMengUShare'
+#pod 'UMCSecurityPlugins'
+#pod 'UMengSocial'
+#pod 'UMengSocialCOM'
+#pod 'UMengUShare'
 # U-Share SDK UI模块（分享面板，建议添加）
 pod 'UMCShare/UI'
 # 集成微信(精简版0.2M)
@@ -31,12 +33,7 @@ pod 'UMCShare/Social/ReducedWeChat'
 pod 'UMCShare/Social/ReducedQQ'
 # 集成新浪微博(精简版1M)
 pod 'UMCShare/Social/ReducedSina'
-# 集成支付宝
-pod 'UMCShare/Social/AlipayShare'
-# 集成钉钉
-pod 'UMCShare/Social/DingDing'
-# 集成豆瓣
-pod 'UMCShare/Social/Douban'
+
 # 集成微信(完整版14.4M)
 #pod 'UMCShare/Social/WeChat'
 # 集成QQ/QZone/TIM(完整版7.6M)

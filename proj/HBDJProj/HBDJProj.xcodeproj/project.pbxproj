@@ -21,6 +21,12 @@
 		881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94E72068EFAA009D6A52 /* LIGMainTabBarController.m */; };
 		881F1A8320C125A7005D9261 /* HPSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F1A8220C125A7005D9261 /* HPSearchViewController.m */; };
 		881F1A8620C12915005D9261 /* HPSearchLessonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F1A8520C12915005D9261 /* HPSearchLessonController.m */; };
+		882B118620D23D3400917374 /* NSObject+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B117D20D23D3300917374 /* NSObject+Auth.m */; };
+		882B118720D23D3400917374 /* PLMediaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B117F20D23D3300917374 /* PLMediaInfo.m */; };
+		882B118820D23D3400917374 /* PLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B118120D23D3300917374 /* PLPlayerView.m */; };
+		882B118920D23D3400917374 /* UIButton+Animate.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B118320D23D3300917374 /* UIButton+Animate.m */; };
+		882B118A20D23D3400917374 /* UIView+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B118520D23D3300917374 /* UIView+Alert.m */; };
+		882B118D20D24A2700917374 /* HPVideoContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B118C20D24A2700917374 /* HPVideoContainerView.m */; };
 		8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */; };
 		8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E14B2092F699001D038E /* LGThreeRightButtonView.m */; };
 		8831E1512092FE22001D038E /* LGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1502092FE22001D038E /* LGButton.m */; };
@@ -248,7 +254,6 @@
 		88C5F15D20B7F1FE0075D5F2 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C5F15C20B7F1FE0075D5F2 /* libbz2.tbd */; };
 		88C5F15F20B7F2050075D5F2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C5F15E20B7F2050075D5F2 /* libz.tbd */; };
 		88C5F16220B7FB7A0075D5F2 /* HPVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F16120B7FB7A0075D5F2 /* HPVideoPlayerView.m */; };
-		88C5F16420B7FBE90075D5F2 /* HPVideoPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C5F16320B7FBE90075D5F2 /* HPVideoPlayerView.xib */; };
 		88C5F16720B7FF670075D5F2 /* HPAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F16620B7FF670075D5F2 /* HPAudioPlayerView.m */; };
 		88C5F16920B7FF6D0075D5F2 /* HPAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C5F16820B7FF6D0075D5F2 /* HPAudioPlayerView.xib */; };
 		88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD73962099592A00E80058 /* HPBookInfoViewController.m */; };
@@ -418,6 +423,19 @@
 		881F1A8220C125A7005D9261 /* HPSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchViewController.m; sourceTree = "<group>"; };
 		881F1A8420C12915005D9261 /* HPSearchLessonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPSearchLessonController.h; sourceTree = "<group>"; };
 		881F1A8520C12915005D9261 /* HPSearchLessonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchLessonController.m; sourceTree = "<group>"; };
+		882B117B20D23D3300917374 /* MacroDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDefine.h; sourceTree = "<group>"; };
+		882B117C20D23D3300917374 /* NSObject+Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Auth.h"; sourceTree = "<group>"; };
+		882B117D20D23D3300917374 /* NSObject+Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Auth.m"; sourceTree = "<group>"; };
+		882B117E20D23D3300917374 /* PLMediaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaInfo.h; sourceTree = "<group>"; };
+		882B117F20D23D3300917374 /* PLMediaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaInfo.m; sourceTree = "<group>"; };
+		882B118020D23D3300917374 /* PLPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayerView.h; sourceTree = "<group>"; };
+		882B118120D23D3300917374 /* PLPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayerView.m; sourceTree = "<group>"; };
+		882B118220D23D3300917374 /* UIButton+Animate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Animate.h"; sourceTree = "<group>"; };
+		882B118320D23D3300917374 /* UIButton+Animate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Animate.m"; sourceTree = "<group>"; };
+		882B118420D23D3300917374 /* UIView+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Alert.h"; sourceTree = "<group>"; };
+		882B118520D23D3300917374 /* UIView+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Alert.m"; sourceTree = "<group>"; };
+		882B118B20D24A2700917374 /* HPVideoContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPVideoContainerView.h; sourceTree = "<group>"; };
+		882B118C20D24A2700917374 /* HPVideoContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPVideoContainerView.m; sourceTree = "<group>"; };
 		8831E1472092F292001D038E /* DCQuestionCommunityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCQuestionCommunityViewController.h; sourceTree = "<group>"; };
 		8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCQuestionCommunityViewController.m; sourceTree = "<group>"; };
 		8831E14A2092F699001D038E /* LGThreeRightButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGThreeRightButtonView.h; sourceTree = "<group>"; };
@@ -799,7 +817,6 @@
 		88C5F15E20B7F2050075D5F2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		88C5F16020B7FB7A0075D5F2 /* HPVideoPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPVideoPlayerView.h; sourceTree = "<group>"; };
 		88C5F16120B7FB7A0075D5F2 /* HPVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPVideoPlayerView.m; sourceTree = "<group>"; };
-		88C5F16320B7FBE90075D5F2 /* HPVideoPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPVideoPlayerView.xib; sourceTree = "<group>"; };
 		88C5F16520B7FF670075D5F2 /* HPAudioPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioPlayerView.h; sourceTree = "<group>"; };
 		88C5F16620B7FF670075D5F2 /* HPAudioPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioPlayerView.m; sourceTree = "<group>"; };
 		88C5F16820B7FF6D0075D5F2 /* HPAudioPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioPlayerView.xib; sourceTree = "<group>"; };
@@ -1178,6 +1195,7 @@
 				883E082A20CA7DCB00BB62BA /* LGLocalSearchRecord.m */,
 				886A1B6120CE53220007AD63 /* LGSocialShareManager.h */,
 				886A1B6220CE53220007AD63 /* LGSocialShareManager.m */,
+				882B117A20D23D3300917374 /* playerview */,
 				88BCEDA120C29B8700B5C1DB /* voice */,
 			);
 			path = Tool;
@@ -1347,6 +1365,24 @@
 				88435E6A208D658500188CE9 /* userQuestion */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		882B117A20D23D3300917374 /* playerview */ = {
+			isa = PBXGroup;
+			children = (
+				882B117B20D23D3300917374 /* MacroDefine.h */,
+				882B117C20D23D3300917374 /* NSObject+Auth.h */,
+				882B117D20D23D3300917374 /* NSObject+Auth.m */,
+				882B117E20D23D3300917374 /* PLMediaInfo.h */,
+				882B117F20D23D3300917374 /* PLMediaInfo.m */,
+				882B118020D23D3300917374 /* PLPlayerView.h */,
+				882B118120D23D3300917374 /* PLPlayerView.m */,
+				882B118220D23D3300917374 /* UIButton+Animate.h */,
+				882B118320D23D3300917374 /* UIButton+Animate.m */,
+				882B118420D23D3300917374 /* UIView+Alert.h */,
+				882B118520D23D3300917374 /* UIView+Alert.m */,
+			);
+			path = playerview;
 			sourceTree = "<group>";
 		};
 		8831E1422092F20B001D038E /* main */ = {
@@ -2051,7 +2087,8 @@
 				88C5F16820B7FF6D0075D5F2 /* HPAudioPlayerView.xib */,
 				88C5F16020B7FB7A0075D5F2 /* HPVideoPlayerView.h */,
 				88C5F16120B7FB7A0075D5F2 /* HPVideoPlayerView.m */,
-				88C5F16320B7FBE90075D5F2 /* HPVideoPlayerView.xib */,
+				882B118B20D24A2700917374 /* HPVideoContainerView.h */,
+				882B118C20D24A2700917374 /* HPVideoContainerView.m */,
 				889FCD4320B40D5C0045746D /* LGVideoInterfaceView.h */,
 				889FCD4420B40D5C0045746D /* LGVideoInterfaceView.m */,
 				889FCD3220B3FD8A0045746D /* HPAudioVideoInfoCell.h */,
@@ -2724,7 +2761,7 @@
 				881C94862068EA5A009D6A52 /* Resources */,
 				939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */,
 				88D5C61E20BE776400E353DB /* Embed Frameworks */,
-				3808717F2CE85B9902D1B14E /* [CP] Copy Pods Resources */,
+				B6552B8AA58CABB0F7B47340 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2826,7 +2863,6 @@
 			files = (
 				88EA132020AD2FC7007AB886 /* DCWriteQuestionTagHead.plist in Resources */,
 				88A47110207DBE26002F93E0 /* EDJMicroBuildOneImgCell.xib in Resources */,
-				88C5F16420B7FBE90075D5F2 /* HPVideoPlayerView.xib in Resources */,
 				886A1BEA20D0CB330007AD63 /* OWCoreText.xcassets in Resources */,
 				88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */,
 				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
@@ -2928,24 +2964,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3808717F2CE85B9902D1B14E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh",
-				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2957,9 +2975,11 @@
 				"${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework",
 				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
 				"${BUILT_PRODUCTS_DIR}/HXWeiboPhotoPicker/HXWeiboPhotoPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/MMMaterialDesignSpinner/MMMaterialDesignSpinner.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
@@ -2974,9 +2994,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCoreText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HXWeiboPhotoPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMMaterialDesignSpinner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLPlayerKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
@@ -3006,6 +3028,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6552B8AA58CABB0F7B47340 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh",
+				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C4585AAAA2617150C6D26952 /* [CP] Check Pods Manifest.lock */ = {
@@ -3111,6 +3151,7 @@
 				88D13C592090560E00A32236 /* EDJDigitalModel.m in Sources */,
 				884312DC2087402200321F84 /* UCSettingModel.m in Sources */,
 				88BCED5320C27B5300B5C1DB /* HPSearchRequest.m in Sources */,
+				882B118720D23D3400917374 /* PLMediaInfo.m in Sources */,
 				88BCEDA420C29B9100B5C1DB /* ISRDataHelper.m in Sources */,
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
@@ -3228,9 +3269,11 @@
 				8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */,
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,
+				882B118D20D24A2700917374 /* HPVideoContainerView.m in Sources */,
 				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
+				882B118A20D23D3400917374 /* UIView+Alert.m in Sources */,
 				881F1A8320C125A7005D9261 /* HPSearchViewController.m in Sources */,
 				88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */,
 				88ECF068209FF8280071A98A /* OLExamSingleOptionCell.m in Sources */,
@@ -3259,6 +3302,7 @@
 				8843124C2085E60F00321F84 /* EDJLevelInfoViewController.m in Sources */,
 				889E7DC92099B19F00BB9084 /* UCUploadViewController.m in Sources */,
 				88A47123207DF342002F93E0 /* EDJOnlineViewController.m in Sources */,
+				882B118620D23D3400917374 /* NSObject+Auth.m in Sources */,
 				884312A82086ED1200321F84 /* EDJLevelInfoFlowLayout.m in Sources */,
 				88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */,
 				881F1A8620C12915005D9261 /* HPSearchLessonController.m in Sources */,
@@ -3273,10 +3317,12 @@
 				88D13C3C209022EF00A32236 /* EDJSearchTagHeader.m in Sources */,
 				889FCCCA20B2BA9E0045746D /* DCSubStageCommentsCell.m in Sources */,
 				889FCC7A20B2587D0045746D /* DCStateContentsCell.m in Sources */,
+				882B118820D23D3400917374 /* PLPlayerView.m in Sources */,
 				88BCEDDD20C665ED00B5C1DB /* HPAlbumTableViewController.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,
 				88DD8147209C296A00F297D6 /* OLVoteDetailFooterView.m in Sources */,
 				88BCEDA720C2A0CA00B5C1DB /* IATConfig.m in Sources */,
+				882B118920D23D3400917374 /* UIButton+Animate.m in Sources */,
 				889FCD4520B40D5C0045746D /* LGVideoInterfaceView.m in Sources */,
 				889FCD3420B3FD8A0045746D /* HPAudioVideoInfoCell.m in Sources */,
 				88BB64D7209BEC1400FE6103 /* OLKnowleageTestController.m in Sources */,

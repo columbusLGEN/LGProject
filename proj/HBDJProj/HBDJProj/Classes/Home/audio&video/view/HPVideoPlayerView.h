@@ -12,5 +12,5 @@
 @interface HPVideoPlayerView : UIView
 
 @property (weak, nonatomic) IBOutlet LGVideoInterfaceView *bottomInterface;
-+ (instancetype)videoPlayerView;
+//+ (instancetype)videoPlayerView;
 @end

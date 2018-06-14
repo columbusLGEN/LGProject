@@ -8,13 +8,8 @@
 
 #import "LGPlayer.h"
 
-/// 音视频测试链接
-static NSString * const testVideo = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXS3WAMVzsAV8r1CUcVnM988.mp4";
-static NSString * const testAudio = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXSx2ARepGAHi9Md52w6k161.mp3";
-
 @interface LGPlayer ()<
 PLPlayerDelegate>
-@property (strong,nonatomic) PLPlayer *videoPlayer;
 @property (strong,nonatomic) PLPlayer *audioPlayer;
 @property (strong,nonatomic) NSTimer *playTimer;
 
@@ -27,48 +22,17 @@ PLPlayerDelegate>
     if (state == 10 || state == 8) {
         [self removeTimer];
     }
+    NSInteger lg_state = state;
+    NSLog(@"lg_state状态回调: %ld",lg_state);
     if ([self.delegate respondsToSelector:@selector(playerStateChanged:state:)]) {
-        [self.delegate playerStateChanged:self state:state];
+        [self.delegate playerStateChanged:self state:lg_state];
     }
 }
 
-- (UIView *)playVideoWithUrl:(NSString *)urlString{
-    /// test
-    urlString = testVideo;
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    // 初始化 PLPlayerOption 对象
-    PLPlayerOption *option = [PLPlayerOption defaultOption];
-    
-    // 更改需要修改的 option 属性键所对应的值
-    [option setOptionValue:@10 forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets];
-    //    [option setOptionValue:@2000 forKey:PLPlayerOptionKeyMaxL1BufferDuration];
-    //    [option setOptionValue:@1000 forKey:PLPlayerOptionKeyMaxL2BufferDuration];
-    //    [option setOptionValue:@(NO) forKey:PLPlayerOptionKeyVideoToolbox];
-    //    [option setOptionValue:@(kPLLogInfo) forKey:PLPlayerOptionKeyLogLevel];
-    
-    // 初始化 PLPlayer
-    self.videoPlayer = [[PLPlayer alloc] initWithURL:url option:option];
-    
-    // 设定代理 (optional)
-    self.videoPlayer.delegate = self;
-    
-    self.videoPlayer.playerView.contentMode = UIViewContentModeScaleToFill;
-    //    playerView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin
-    //    | UIViewAutoresizingFlexibleTopMargin
-    //    | UIViewAutoresizingFlexibleLeftMargin
-    //    | UIViewAutoresizingFlexibleRightMargin
-    //    | UIViewAutoresizingFlexibleWidth
-    //    | UIViewAutoresizingFlexibleHeight;
-    
-    return self.videoPlayer.playerView;
-    
-}
-
 - (void)seekToProgress:(float)progress{
-    float totalTime = CMTimeGetSeconds(self.videoPlayer.totalDuration);
+    float totalTime = CMTimeGetSeconds(self.audioPlayer.totalDuration);
     float destiTime = progress * totalTime;
-    [self.videoPlayer seekTo:CMTimeMake(destiTime * 1000, 1000)];
+    [self.audioPlayer seekTo:CMTimeMake(destiTime * 1000, 1000)];
 }
 
 /// MARK: timer相关,获取播放进度
@@ -83,8 +47,8 @@ PLPlayerDelegate>
     }
 }
 - (void)timerAction{
-    float currentTime = CMTimeGetSeconds(self.videoPlayer.currentTime);
-    float totalTime = CMTimeGetSeconds(self.videoPlayer.totalDuration);
+    float currentTime = CMTimeGetSeconds(self.audioPlayer.currentTime);
+    float totalTime = CMTimeGetSeconds(self.audioPlayer.totalDuration);
     
     float floorfCurrentTime = floorf(currentTime);
     float floorfTotalTime = floorf(totalTime);
@@ -103,52 +67,26 @@ PLPlayerDelegate>
                         currentTime:floorfCurrentTime
                           totalTime:floorfTotalTime];
     }
-    NSLog(@"progress -- %f",progress);
 }
 
 
-- (BOOL)lg_play{
+- (BOOL)lg_playWithUrl:(NSString *)url{
+    self.audioPlayer = [[PLPlayer alloc] initWithURL:[NSURL URLWithString:url] option:nil];
+    self.audioPlayer.delegate = self;
     [self addTimer];
-    /// TODO: 音频 play
-    return [self.videoPlayer play];
+    return [self.audioPlayer play];
 }
 - (void)lg_pause{
     /// 记录当前进度
-    [self.videoPlayer pause];
+    [self.audioPlayer pause];
 }
 - (void)lg_resume{
-    [self.videoPlayer resume];
+    [self.audioPlayer resume];
 }
 - (void)lg_stop_play{
     [self removeTimer];
-    [self.videoPlayer stop];
     [self.audioPlayer stop];
 }
 
-+ (void)seekToProgress:(float)progress{
-    [[self sharedInstance] seekToProgress:progress];
-}
-+ (void)lg_stop_play{
-    [[self sharedInstance] lg_stop_play];
-}
-+ (BOOL)lg_play{
-    return [[self sharedInstance] lg_play];
-}
-+ (void)lg_pause{
-    [[self sharedInstance] lg_pause];
-}
-+ (void)lg_resume{
-    [[self sharedInstance] lg_resume];
-}
-+ (UIView *)playVideoWithUrl:(NSString *)urlString{
-    return [[self sharedInstance] playVideoWithUrl:urlString];
-}
-+ (instancetype)sharedInstance{
-    static id instance;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        instance = [self new];
-    });
-    return instance;
-}
+
 @end

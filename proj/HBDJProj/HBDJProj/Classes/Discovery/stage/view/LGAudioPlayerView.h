@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface LGAudioPlayerView : UIView
+@property (strong,nonatomic) UIButton *play;
+@property (strong,nonatomic) UIProgressView *progress;
+@property (strong,nonatomic) UILabel *currentTime;
+@property (strong,nonatomic) UILabel *totalTime;
 
 @end

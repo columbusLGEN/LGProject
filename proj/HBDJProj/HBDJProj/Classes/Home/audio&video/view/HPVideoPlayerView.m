@@ -58,7 +58,6 @@ LGVideoInterfaceViewDelegate>
     if (state == 10) {
         _play.selected = NO;
         _played = NO;
-        [self animatedShowPlayViewWith:YES];
         
     }
 }
@@ -66,22 +65,22 @@ LGVideoInterfaceViewDelegate>
 - (IBAction)play:(UIButton *)sender {
     if (sender.isSelected) {
         sender.selected = NO;
-        [LGPlayer lg_pause];
+//        [LGPlayer lg_pause];
     }else{
         if (!_played) {
-            BOOL play = [LGPlayer lg_play];
-            _played = play;
-            if (play) {
-                sender.selected = YES;
-                /// 隐藏播放按钮
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if (!_hidePlayButton) {
-                        [self animatedShowPlayViewWith:NO];
-                    }
-                });
-            }
+//            BOOL play = [LGPlayer lg_play];
+//            _played = play;
+//            if (play) {
+//                sender.selected = YES;
+//                /// 隐藏播放按钮
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    if (!_hidePlayButton) {
+//                        [self animatedShowPlayViewWith:NO];
+//                    }
+//                });
+//            }
         }else{
-            [LGPlayer lg_resume];
+//            [LGPlayer lg_resume];
         }
     }
     
@@ -108,31 +107,31 @@ LGVideoInterfaceViewDelegate>
         self.bottomInterface.alpha = alpha;
     }];
 }
+//
+//- (void)layoutSubviews{
+//    [super layoutSubviews];
+//    UIView *playView = [LGPlayer playVideoWithUrl:nil];
+//    self.playView = playView;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPlayView:)];
+//    [playView addGestureRecognizer:tap];
+//
+//    playView.backgroundColor = [UIColor clearColor];
+//    playView.frame = self.img.bounds;
+//    [self addSubview:playView];
+//
+//
+//    [self bringSubviewToFront:self.play];
+//    [self bringSubviewToFront:self.bottomInterface];
+//}
+//
+//- (void)awakeFromNib{
+//    [super awakeFromNib];
+//    [LGPlayer sharedInstance].delegate = self;
+//    self.bottomInterface.delegate_fullScreen = self;
+//}
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    UIView *playView = [LGPlayer playVideoWithUrl:nil];
-    self.playView = playView;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPlayView:)];
-    [playView addGestureRecognizer:tap];
-    
-    playView.backgroundColor = [UIColor clearColor];
-    playView.frame = self.img.bounds;
-    [self addSubview:playView];
-    
-    
-    [self bringSubviewToFront:self.play];
-    [self bringSubviewToFront:self.bottomInterface];
-}
-
-- (void)awakeFromNib{
-    [super awakeFromNib];
-    [LGPlayer sharedInstance].delegate = self;
-    self.bottomInterface.delegate_fullScreen = self;
-}
-
-+ (instancetype)videoPlayerView{
-    return [[[NSBundle mainBundle] loadNibNamed:@"HPVideoPlayerView" owner:nil options:nil] lastObject];
-}
+//+ (instancetype)videoPlayerView{
+//    return [[[NSBundle mainBundle] loadNibNamed:@"HPVideoPlayerView" owner:nil options:nil] lastObject];
+//}
 
 @end
