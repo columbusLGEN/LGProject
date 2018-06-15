@@ -9,5 +9,6 @@
 #import "LGSegmentViewController.h"
 
 @interface HPSearchViewController : LGSegmentViewController
+@property (assign,nonatomic) BOOL voice;
 
 @end

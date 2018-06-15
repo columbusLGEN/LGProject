@@ -145,7 +145,7 @@ LGThreeRightButtonViewDelegate>
 
 /// MARK: 分享
 - (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    [LGSocialShareManager showShareMenuWithThumbUrl:nil content:nil webpageUrl:nil];
+    [LGSocialShareManager showShareMenuWithThumbUrl:nil content:nil webpageUrl:nil vc:self];
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate

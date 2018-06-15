@@ -28,47 +28,31 @@
 }
 - (void)openBookWithModel:(EDJDigitalModel *)model vc:(UIViewController *)vc{
     
-    MBProgressHUD *progressBar = [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
-    [vc.view addSubview:progressBar];
-    _progressBar = progressBar;
-    progressBar.mode = MBProgressHUDModeAnnularDeterminate;
-    progressBar.progress = 0.0;
-    
-    /// testcode 只下载
-    [self downloadResourceWithUrl:model.ebookresource localUrl:model.localUrl progressBlk:^(CGFloat progress,CGFloat total,CGFloat current) {
-        /// 该block 在主线程回调
-        _progressBar.progress = progress;
-//        NSLog(@"_progressBar.progress: %f",_progressBar.progress);
-        
-    } success:^(NSString *destiPath) {
-        [_progressBar hideAnimated:YES];
-        NSLog(@"destipath: %@",destiPath);
-        model.localUrl = destiPath;
-    } failure:^(NSError *error) {
-        [_progressBar hideAnimated:YES];
-        //            NSLog(@"downloadfailure: %@",error);
-    }];
-    
     /// 正式代码
-//    BOOL resourceExist = [LGLocalFileManager fileIsExist:model.localUrl];
-//    NSString *bookId = [NSString stringWithFormat:@"%ld",model.seqid];
-//    if (resourceExist) {
-//        /// 直接打开
-//        [LGBookReaderManager openBookWithLocalUrl:model.localUrl bookId:bookId vc:vc];
-//
-//    }else{
-//
-//        /// 先下载，再打开
-//        [self downloadResourceWithUrl:model.ebookresource localUrl:model.localUrl progressBlk:^(CGFloat progress) {
-//            NSLog(@"progress: %f",progress);
-//        } success:^(NSString *destiPath) {
-//            NSLog(@"destipath: %@",destiPath);
-//            model.localUrl = destiPath;
-//            [LGBookReaderManager openBookWithLocalUrl:destiPath bookId:bookId vc:vc];
-//        } failure:^(NSError *error) {
-////            NSLog(@"downloadfailure: %@",error);
-//        }];
-//    }
+    BOOL resourceExist = [LGLocalFileManager fileIsExist:model.localUrl];
+    NSString *bookId = [NSString stringWithFormat:@"%ld",model.seqid];
+    if (resourceExist) {
+        /// 直接打开
+        [LGBookReaderManager openBookWithLocalUrl:model.localUrl bookId:bookId vc:vc];
+    }else{
+        MBProgressHUD *progressBar = [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
+        [vc.view addSubview:progressBar];
+        _progressBar = progressBar;
+        progressBar.mode = MBProgressHUDModeAnnularDeterminate;
+        progressBar.progress = 0.0;
+        /// 先下载，再打开
+        [self downloadResourceWithUrl:model.ebookresource localUrl:model.localUrl progressBlk:^(CGFloat progress,CGFloat total, CGFloat current) {
+            _progressBar.progress = progress;
+        } success:^(NSString *destiPath) {
+            [_progressBar hideAnimated:YES];
+            NSLog(@"destipath: %@",destiPath);
+            model.localUrl = destiPath;
+            [LGBookReaderManager openBookWithLocalUrl:destiPath bookId:bookId vc:vc];
+        } failure:^(NSError *error) {
+            [_progressBar hideAnimated:YES];
+            NSLog(@"downloadfailure: %@",error);
+        }];
+    }
     
 }
 

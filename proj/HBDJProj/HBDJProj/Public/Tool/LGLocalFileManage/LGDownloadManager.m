@@ -57,7 +57,7 @@
         
     } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            NSLog(@"downloadProgress: %f",downloadProgress.fractionCompleted);
+//            NSLog(@"downloadProgress: %f",downloadProgress.fractionCompleted);
             if (progress) {
                 progress(downloadProgress.fractionCompleted,0,0);
             }

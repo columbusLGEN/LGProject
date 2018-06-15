@@ -58,6 +58,7 @@ PLPlayerDelegate>
     }
     
     float progress = floorfCurrentTime / floorfTotalTime;
+    
     if ([self.delegate respondsToSelector:@selector(playProgress:
                                                     progress:
                                                     currentTime:
@@ -69,12 +70,21 @@ PLPlayerDelegate>
     }
 }
 
-
-- (BOOL)lg_playWithUrl:(NSString *)url{
+- (void)initPlayerWithUrl:(NSString *)url{
     self.audioPlayer = [[PLPlayer alloc] initWithURL:[NSURL URLWithString:url] option:nil];
     self.audioPlayer.delegate = self;
     [self addTimer];
-    return [self.audioPlayer play];
+    /// 因为后台无法提供资源的时间数据，所以 为了获取到资源的总时间，在此先play，再pause。 虽然这种处理方法不是解决问题的方式，但是目前没有别的方法
+    [self.audioPlayer play];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.audioPlayer pause];
+    });
+    
+}
+- (void)lg_play{
+    /// 因为在init中已经play了，所以play方法直接调用resume即可
+//    return [self.audioPlayer play];
+    [self.audioPlayer resume];
 }
 - (void)lg_pause{
     /// 记录当前进度

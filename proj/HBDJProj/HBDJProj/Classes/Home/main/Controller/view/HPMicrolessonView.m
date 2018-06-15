@@ -64,6 +64,7 @@ UITableViewDataSource
     if (self = [super initWithFrame:frame style:style]) {
         self.delegate = self;
         self.dataSource = self;
+        self.backgroundColor = [UIColor orangeColor];
         
         [self registerClass:[EDJMicroPartyLessonCell class] forCellReuseIdentifier:microCell];
         [self registerNib:[UINib nibWithNibName:microHeaderCell bundle:nil] forCellReuseIdentifier:microHeaderCell];

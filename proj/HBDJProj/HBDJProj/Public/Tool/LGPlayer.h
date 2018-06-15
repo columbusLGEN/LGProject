@@ -21,9 +21,11 @@ typedef NS_ENUM(NSUInteger, LGPlayerState) {
 
 @interface LGPlayer : NSObject
 
+- (void)initPlayerWithUrl:(NSString *)url;
+
 - (void)seekToProgress:(float)progress;
 - (void)lg_stop_play;
-- (BOOL)lg_playWithUrl:(NSString *)url;
+- (void)lg_play;
 - (void)lg_pause;
 - (void)lg_resume;
 

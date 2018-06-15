@@ -51,6 +51,10 @@ PODS:
   - UMCCommon (1.5.1)
   - UMCShare/Core (6.9.3):
     - UMCCommon
+  - UMCShare/Social/QQ (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedQQ
   - UMCShare/Social/ReducedQQ (6.9.3):
     - UMCCommon
     - UMCShare/Core
@@ -60,6 +64,14 @@ PODS:
   - UMCShare/Social/ReducedWeChat (6.9.3):
     - UMCCommon
     - UMCShare/Core
+  - UMCShare/Social/Sina (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedSina
+  - UMCShare/Social/WeChat (6.9.3):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedWeChat
   - UMCShare/UI (6.9.3):
     - UMCCommon
     - UMCShare/Core
@@ -81,9 +93,9 @@ DEPENDENCIES:
   - SDWebImage (~> 4.0)
   - SwipeTableView
   - UMCCommon
-  - UMCShare/Social/ReducedQQ
-  - UMCShare/Social/ReducedSina
-  - UMCShare/Social/ReducedWeChat
+  - UMCShare/Social/QQ
+  - UMCShare/Social/Sina
+  - UMCShare/Social/WeChat
   - UMCShare/UI
   - XHNetworkCache
   - YYText
@@ -129,6 +141,6 @@ SPEC CHECKSUMS:
   XHNetworkCache: 6050436268cb44be215ff5cbbe17b87901de649c
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: c19171593bac732b36a14825b7260fa6a1696617
+PODFILE CHECKSUM: a1e5c70ee80af0bbf7bfb5eedd26351be6959ef0
 
 COCOAPODS: 1.5.2

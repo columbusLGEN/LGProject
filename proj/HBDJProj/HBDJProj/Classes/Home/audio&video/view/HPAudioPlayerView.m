@@ -54,9 +54,9 @@ LGPlayerDelegate>
         self.audioPlayer.totalTime.text = totalString;
         _totalTimeSet = YES;
     }
+    NSLog(@"cutime: %f totaltime: %f",currentTime,totalTime);
 }
 - (void)playerStateChanged:(LGPlayer *)player state:(LGPlayerState)state{
-    NSLog(@"audio_state -- %ld",state);
     if (state == 10) {
         _played = NO;
         _audioPlayer.play.selected = NO;
@@ -69,6 +69,8 @@ LGPlayerDelegate>
 //    [_icon sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
 //    [_bgImg sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     
+//    [_audio initPlayerWithUrl:model.audio];
+    [_audio initPlayerWithUrl:testAudio];
 }
 
 - (void)play:(UIButton *)sender{
@@ -82,7 +84,7 @@ LGPlayerDelegate>
         if (!_played) {
             /// 首次播放
             //    [_audio lg_playWithUrl:self.model.audio];
-            [_audio lg_playWithUrl:testAudio];
+            [_audio lg_play];
         }else{
             [_audio lg_resume];
         }

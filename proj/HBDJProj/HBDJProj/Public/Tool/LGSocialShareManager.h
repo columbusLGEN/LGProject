@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface LGSocialShareManager : NSObject
-+ (void)showShareMenuWithThumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl;
++ (void)showShareMenuWithThumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl vc:(UIViewController *)vc;
 @end

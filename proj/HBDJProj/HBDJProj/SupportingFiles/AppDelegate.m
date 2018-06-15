@@ -50,42 +50,6 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - 私有方法
-- (void)baseConfigWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions{
-    self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
-    self.window.rootViewController = [LIGMainTabBarController new];
-    [self.window makeKeyAndVisible];
-    
-    [IFlySetting showLogcat:NO];
-    //Appid是应用的身份信息，具有唯一性，初始化时必须要传入Appid。
-    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@", iFlyAppid];
-    [IFlySpeechUtility createUtility:initString];
-    
-    [[LGDevice sharedInstance] lg_currentDeviceType];
-    /// 配置友盟分享
-    [self configUSharePlatforms];
-}
-
-- (void)configUSharePlatforms{
-    
-    /// TODO: 初始化 友盟SDK
-//    [UMConfigure initWithAppkey:@"Your appkey" channel:@"App Store"];
-
-    
-    /* 设置微信的appKey和appSecret */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxdc1e388c3822c80b" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
-    /* 设置分享到QQ互联的appID
-     * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
-     */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1105821097"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
-    /* 设置新浪的appKey和appSecret */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
-    /*
-     * 移除相应平台的分享，如微信收藏
-     */
-    //[[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[@(UMSocialPlatformType_WechatFavorite)]];
-    
-}
 // 设置系统回调 支持所有iOS系统
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
@@ -95,6 +59,62 @@
     }
     return result;
 }
+
+#pragma mark - 私有方法
+- (void)baseConfigWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions{
+    self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
+    self.window.rootViewController = [LIGMainTabBarController new];
+    [self.window makeKeyAndVisible];
+    
+    /// 初始化讯飞语音sdk
+    [IFlySetting showLogcat:NO];
+    //Appid是应用的身份信息，具有唯一性，初始化时必须要传入Appid。
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@", iFlyAppid];
+    [IFlySpeechUtility createUtility:initString];
+    
+    /// 配置友盟分享
+//    [self confitUShareSettings];
+    [self configUSharePlatforms];
+    
+    /// 确定当前设备
+    [[LGDevice sharedInstance] lg_currentDeviceType];
+}
+
+- (void)configUSharePlatforms{
+    
+    /// 初始化 友盟SDK
+    [UMConfigure initWithAppkey:DJUMAppKey channel:@"App Store"];
+//    [UMConfigure setLogEnabled:YES];
+    
+    /* 设置微信的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:DJWexinAppID appSecret:DJWexinAppSecret redirectURL:@""];
+    
+    /* 设置分享到QQ互联的appID
+     * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
+     */
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1105821097"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+//    /* 设置新浪的appKey和appSecret */
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
+
+}
+
+- (void)confitUShareSettings{
+    /*
+     * 打开图片水印
+     */
+    [UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+    /*
+     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     */
+    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+}
+
+
 
 
 @end

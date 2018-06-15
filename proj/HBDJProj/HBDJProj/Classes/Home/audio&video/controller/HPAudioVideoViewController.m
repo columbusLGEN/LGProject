@@ -128,6 +128,7 @@ LGThreeRightButtonViewDelegate>
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
+        apv.model = self.model;
         _apv = apv;
     }else{
         /// 其他

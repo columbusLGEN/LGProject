@@ -84,6 +84,13 @@ HPVoiceSearchViewDelegate>
     [self addTextFieldToNav:_fakeNavgationBar];
     
     [LGLocalSearchRecord sharedInstance];
+    
+    if (_voice) {
+        /// 添加语音面板
+        if (!_vsView) {
+            [self.view addSubview:self.vsView];
+        }
+    }
 }
 - (void)recordClick:(UIButton *)record{
     
@@ -172,32 +179,41 @@ HPVoiceSearchViewDelegate>
         NSArray *classes = responseObj[@"classes"];
         NSArray *news = responseObj[@"news"];
         
+        HPSearchLessonController *microvc = self.childViewControllers[0];
         if (classes == nil || classes.count == 0) {
-           NSLog(@"classes = nil: ");
+            microvc.dataArray = nil;
         }else{
             NSMutableArray *microModels = [NSMutableArray array];
             [classes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 DJDataBaseModel *model = [DJDataBaseModel mj_objectWithKeyValues:obj];
                 [microModels addObject:model];
             }];
-            HPSearchLessonController *microvc = self.childViewControllers[0];
+            
             microvc.dataArray = microModels.copy;
         }
+        
+        HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
         if (news == nil || news.count == 0) {
-            NSLog(@"news = nil: ");
+            partyvc.dataArray = nil;
         }else{
             NSMutableArray *partyModels = [NSMutableArray array];
             [news enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:obj];
                 [partyModels addObject:model];
             }];
-            HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
+            
             partyvc.dataArray = partyModels.copy;
         }
         if (classes.count || news.count) {
+            /// 微党课 或 要闻 有一个项目 有数据
             [_vsView removeFromSuperview];
             _vsView = nil;
         }
+        if (classes.count == 0 && news.count == 0) {
+            /// TODO: 搜索内容全为空 如何显示？
+            
+        }
+        
 
     } failure:^(id failureObj) {
         NSLog(@"faillureObject -- %@",failureObj);
@@ -264,7 +280,9 @@ HPVoiceSearchViewDelegate>
         frame.size.width -= 35;
         [self.view addSubview:self.textField];
         self.textField.frame = frame;
-        [self.textField becomeFirstResponder];
+        if (!_voice) {
+            [self.textField becomeFirstResponder];
+        }
         
     }
 }

@@ -23,6 +23,10 @@
 #import "LGDevice.h"
 #import "DJNetworkManager.h"
 
+#define DJUMAppKey       @"5b231ac1a40fa31e880000d9"
+#define DJWexinAppID     @"wxc21c2d288222bb77"
+#define DJWexinAppSecret @"cace94b565ab427db78517fcdb21ff2c"
+
 #define HbdjPrefixHeader_pch
 
 // Include any system framework and library headers here that should be included in all compilation units.

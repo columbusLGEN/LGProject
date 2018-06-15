@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		14120FADAE17F79542DF37A5 /* Pods_HBDJProjUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A115F1196D08C530AC251368 /* Pods_HBDJProjUITests.framework */; };
 		2C7C7E86E82AEAEDF7230796 /* Pods_HBDJProj.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AECC58CD5813726C23C0C6 /* Pods_HBDJProj.framework */; };
+		8805127320D381E10027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
+		8805127420D3826D0027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
+		8805127520D3826D0027B3B1 /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C948C2068EA5A009D6A52 /* AppDelegate.m */; };
 		881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 881C94942068EA5A009D6A52 /* Assets.xcassets */; };
 		881C949B2068EA5A009D6A52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C949A2068EA5A009D6A52 /* main.m */; };
@@ -116,8 +119,6 @@
 		886A1B6020CBDD2F0007AD63 /* LGRecordButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */; };
 		886A1B6320CE53220007AD63 /* LGSocialShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6220CE53220007AD63 /* LGSocialShareManager.m */; };
 		886A1B6620CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6520CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m */; };
-		886A1B7220D0C27B0007AD63 /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 886A1B6F20D0C2660007AD63 /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		886A1B7320D0C28A0007AD63 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886A1B6F20D0C2660007AD63 /* YMEpubReaderKit.framework */; };
 		886A1BE220D0CB330007AD63 /* CodeFileList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BCC20D0CB320007AD63 /* CodeFileList.plist */; };
 		886A1BE320D0CB330007AD63 /* day.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BCD20D0CB320007AD63 /* day.bundle */; };
 		886A1BE420D0CB330007AD63 /* hj.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BCE20D0CB320007AD63 /* hj.bundle */; };
@@ -381,7 +382,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				886A1B7220D0C27B0007AD63 /* YMEpubReaderKit.framework in Embed Frameworks */,
+				8805127520D3826D0027B3B1 /* YMEpubReaderKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +397,7 @@
 		5B9F86E8014D07FA4DE6D173 /* Pods-HBDJProjTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBDJProjTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HBDJProjTests/Pods-HBDJProjTests.release.xcconfig"; sourceTree = "<group>"; };
 		5DAB9BB351BB410846B49078 /* Pods-HBDJProj.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBDJProj.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj.debug.xcconfig"; sourceTree = "<group>"; };
 		6CF8435CB5EA2F49C61CE8A9 /* Pods-HBDJProjUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBDJProjUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBDJProjUITests/Pods-HBDJProjUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		881C94882068EA5A009D6A52 /* HBDJProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBDJProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		881C948B2068EA5A009D6A52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		881C948C2068EA5A009D6A52 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -602,7 +604,6 @@
 		886A1B6220CE53220007AD63 /* LGSocialShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSocialShareManager.m; sourceTree = "<group>"; };
 		886A1B6420CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPSearchBuildPoineNewsController.h; sourceTree = "<group>"; };
 		886A1B6520CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchBuildPoineNewsController.m; sourceTree = "<group>"; };
-		886A1B6F20D0C2660007AD63 /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		886A1BCC20D0CB320007AD63 /* CodeFileList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CodeFileList.plist; sourceTree = "<group>"; };
 		886A1BCD20D0CB320007AD63 /* day.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = day.bundle; sourceTree = "<group>"; };
 		886A1BCE20D0CB320007AD63 /* hj.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = hj.bundle; sourceTree = "<group>"; };
@@ -999,11 +1000,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				886A1B7320D0C28A0007AD63 /* YMEpubReaderKit.framework in Frameworks */,
 				88C5F14920B7F1900075D5F2 /* QuartzCore.framework in Frameworks */,
 				88BCED5F20C289DC00B5C1DB /* SystemConfiguration.framework in Frameworks */,
+				8805127420D3826D0027B3B1 /* YMEpubReaderKit.framework in Frameworks */,
 				88BCED5D20C289CE00B5C1DB /* Contacts.framework in Frameworks */,
 				88BCED5B20C289C100B5C1DB /* AddressBook.framework in Frameworks */,
+				8805127320D381E10027B3B1 /* YMEpubReaderKit.framework in Frameworks */,
 				88BCED5920C289B400B5C1DB /* CoreTelephony.framework in Frameworks */,
 				88BCED5720C289AA00B5C1DB /* CoreLocation.framework in Frameworks */,
 				88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */,
@@ -1098,8 +1100,8 @@
 		881C948A2068EA5A009D6A52 /* HBDJProj */ = {
 			isa = PBXGroup;
 			children = (
+				8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */,
 				886A1BCA20D0CB320007AD63 /* EpubResource */,
-				886A1B6F20D0C2660007AD63 /* YMEpubReaderKit.framework */,
 				881C94BD2068EA6E009D6A52 /* SupportingFiles */,
 				88BCED5420C2898C00B5C1DB /* iflyMSC.framework */,
 				881C94BE2068EC61009D6A52 /* Public */,
@@ -1142,6 +1144,7 @@
 		881C94BE2068EC61009D6A52 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				881C94C02068EC87009D6A52 /* Header */,
 				88D5C62020BE7EAA00E353DB /* LGLocalFileManager */,
 				889FCD4820B532090045746D /* photoManager */,
 				889FCC7720B2587D0045746D /* LGCoreText */,
@@ -1150,7 +1153,6 @@
 				881C94C32068ECA5009D6A52 /* BaseObject */,
 				881C94C22068EC96009D6A52 /* Catagory */,
 				881C94C12068EC8D009D6A52 /* Tool */,
-				881C94C02068EC87009D6A52 /* Header */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2761,7 +2763,7 @@
 				881C94862068EA5A009D6A52 /* Resources */,
 				939DE8F9065C7C885E4EFF02 /* [CP] Embed Pods Frameworks */,
 				88D5C61E20BE776400E353DB /* Embed Frameworks */,
-				B6552B8AA58CABB0F7B47340 /* [CP] Copy Pods Resources */,
+				AFC7FA7381DB41E80A487D8B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3030,17 +3032,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B6552B8AA58CABB0F7B47340 /* [CP] Copy Pods Resources */ = {
+		AFC7FA7381DB41E80A487D8B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj-resources.sh",
+				"${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
 				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

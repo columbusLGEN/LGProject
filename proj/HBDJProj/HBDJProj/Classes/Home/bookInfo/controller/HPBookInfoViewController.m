@@ -87,7 +87,6 @@ HPBookInfoBriefCellDelegate>
 - (void)readBook{
     /// TODO: 初步确定 无法打开epub3.0的资源文件,暂时
     [LGLocalFileProducer openBookWithModel:self.model vc:self];
-    NSLog(@"初步确定 无法打开epub3.0的资源文件,暂时无法阅读: ");
 }
 
 #pragma mark - HPBookInfoBriefCellDelegate
