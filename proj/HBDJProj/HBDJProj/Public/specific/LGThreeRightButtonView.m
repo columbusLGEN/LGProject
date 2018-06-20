@@ -9,6 +9,8 @@
 #import "LGThreeRightButtonView.h"
 #import "LGButton.h"
 
+static CGFloat buttonH = 30;
+
 @interface LGThreeRightButtonView ()
 @property (strong,nonatomic) UIView *line;
 @property (strong, nonatomic) LGButton *leftBtn;
@@ -91,6 +93,23 @@
 
 - (void)setBtnConfigs:(NSArray<NSDictionary *> *)btnConfigs{
     _btnConfigs = btnConfigs;
+    if (btnConfigs.count == 2) {
+        [self.leftBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).offset(marginEight);
+            make.left.equalTo(self.mas_left).offset(marginEight);
+            make.centerY.equalTo(self.rightBtn.mas_centerY);
+            make.width.mas_equalTo(kScreenWidth * 0.5);
+            make.height.mas_equalTo(buttonH);
+        }];
+        [self.midBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.mas_right).offset(-marginEight);
+            make.centerY.equalTo(self.leftBtn.mas_centerY);
+            make.width.mas_equalTo(self.leftBtn.mas_width);
+            make.height.mas_equalTo(buttonH);
+        }];
+        [self.rightBtn removeFromSuperview];
+        _rightBtn = nil;
+    }
     [btnConfigs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *title = obj[TRConfigTitleKey];
         NSString *imgName = obj[TRConfigImgNameKey];
@@ -141,7 +160,6 @@
         make.height.mas_equalTo(1);
     }];
 //    CGFloat buttonW = 60;
-    CGFloat buttonH = 30;
     [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(marginEight);
         make.right.equalTo(self.midBtn.mas_left).offset(-marginEight);

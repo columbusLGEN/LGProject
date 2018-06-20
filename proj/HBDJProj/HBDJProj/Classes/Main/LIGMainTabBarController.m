@@ -28,10 +28,9 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /// HPHomeViewController
     /// MARK: 配置自控制器
     NSArray<NSDictionary *> *childVcSettings = @[
-  @{vcClassKey:@"HPHomeViewController",
+  @{vcClassKey:@"HPChairmanSpeechViewController",
     vcTitleKey:@"讲习",
     tabbarIconKey:@"tab-icon-jiangxi-",
     tabbarSelectedIconKey:@"tab-icon-jiangxi-xz"

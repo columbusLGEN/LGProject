@@ -12,6 +12,8 @@
 #import "DJDataBaseModel.h"
 #import "LGPlayer.h"
 
+#import "HPAudioVideoViewController.h"
+
 static NSString * const testAudio = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXSx2ARepGAHi9Md52w6k161.mp3";
 
 @interface HPAudioPlayerView ()<
@@ -74,6 +76,7 @@ LGPlayerDelegate>
 }
 
 - (void)play:(UIButton *)sender{
+    _vc.opreated = YES;
     if (sender.isSelected) {
         sender.selected = NO;
         /// 暂停

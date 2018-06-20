@@ -11,6 +11,8 @@
 #import "PLMediaInfo.h"
 #import "DJDataBaseModel.h"
 
+#import "HPAudioVideoViewController.h"
+
 static NSString * const testVideo = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXS3WAMVzsAV8r1CUcVnM988.mp4";
 
 @interface HPVideoContainerView ()<
@@ -81,6 +83,10 @@ PLPlayerViewDelegate>
     }];
     
     [self exitFullScreen];
+}
+
+- (void)lg_played{
+    self.vc.opreated = YES;
 }
 
 - (void)exitFullScreen{

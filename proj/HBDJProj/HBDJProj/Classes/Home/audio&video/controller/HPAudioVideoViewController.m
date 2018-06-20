@@ -20,7 +20,6 @@
 #import "HPAudioVideoInfoCell.h"
 #import "HPAudioPlayerView.h"
 
-//#import "HPVideoPlayerView.h"
 #import "HPVideoContainerView.h"
 
 #import "LGVideoInterfaceView.h"
@@ -55,8 +54,6 @@ LGThreeRightButtonViewDelegate>
         NSLog(@"微党课responseobj -- %@",responseObj);
         _imgLoopModel = [EDJHomeImageLoopModel mj_objectWithKeyValues:responseObj];
         
-        
-        
     } failure:^(id failureObj) {
         
     }];
@@ -68,6 +65,7 @@ LGThreeRightButtonViewDelegate>
     
 }
 - (void)configUI{
+    
     CGFloat bottomHeight = 60;
     BOOL isiPhoneX = ([LGDevice sharedInstance].currentDeviceType == LGDeviecType_iPhoneX);
     if (isiPhoneX) {
@@ -97,13 +95,14 @@ LGThreeRightButtonViewDelegate>
                                  TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow",
                                  TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
                                  TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
-                                 },
-                               @{TRConfigTitleKey:@"",
-                                 TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
-                                 TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
-                                 TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
-                                 TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
                                  }]];
+//    ,
+//    @{TRConfigTitleKey:@"",
+//      TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
+//      TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
+//      TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+//      TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
+//      }
     
     [self.view addSubview:pbdBottom];
     
@@ -119,6 +118,7 @@ LGThreeRightButtonViewDelegate>
     if (self.contentType == ModelMediaTypeVideo) {
         /// MARK: 视频播放器
         HPVideoContainerView *vpv = [[HPVideoContainerView alloc] init];
+        vpv.vc = self;
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
         [self.view addSubview:vpv];
         vpv.model = self.model;
@@ -146,10 +146,10 @@ LGThreeRightButtonViewDelegate>
     [self likeCollectWithSeqid:self.imgLoopModel.seqid pcid:self.imgLoopModel.collectionid clickSuccess:success collect:YES];
 }
 
-- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    /// 分享
-    
-}
+//- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+//    /// 分享
+//
+//}
 - (void)likeCollectWithSeqid:(NSInteger)seqid pcid:(NSInteger)pcid clickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
     [DJUserInteractionMgr likeCollectWithSeqid:seqid pcid:pcid collect:collect type:DJDataPraisetypeMicrolesson success:^(id responseObj) {
         NSDictionary *dict = responseObj;
@@ -223,8 +223,15 @@ LGThreeRightButtonViewDelegate>
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
-- (void)dealloc{
-    [_vpv stop];
-    [_apv audioStop];
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (_opreated) {
+        [_vpv stop];
+        [_apv audioStop];
+    }
 }
+- (void)dealloc{
+    
+}
+
 @end

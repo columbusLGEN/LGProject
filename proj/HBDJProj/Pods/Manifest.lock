@@ -34,6 +34,7 @@ PODS:
   - HXWeiboPhotoPicker (2.1.5):
     - SDWebImage (~> 4.0)
   - JGProgressHUD (2.0.3)
+  - LTScrollView (0.1.6)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.15)
@@ -47,7 +48,6 @@ PODS:
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
-  - SwipeTableView (0.2.6)
   - UMCCommon (1.5.1)
   - UMCShare/Core (6.9.3):
     - UMCCommon
@@ -83,6 +83,7 @@ DEPENDENCIES:
   - DTCoreText
   - HXWeiboPhotoPicker (~> 2.1.5)
   - JGProgressHUD
+  - LTScrollView (~> 0.1.6)
   - Masonry
   - MBProgressHUD (~> 1.1.0)
   - MJExtension
@@ -91,7 +92,6 @@ DEPENDENCIES:
   - PLPlayerKit
   - SDCycleScrollView
   - SDWebImage (~> 4.0)
-  - SwipeTableView
   - UMCCommon
   - UMCShare/Social/QQ
   - UMCShare/Social/Sina
@@ -107,6 +107,7 @@ SPEC REPOS:
     - DTFoundation
     - HXWeiboPhotoPicker
     - JGProgressHUD
+    - LTScrollView
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -115,7 +116,6 @@ SPEC REPOS:
     - PLPlayerKit
     - SDCycleScrollView
     - SDWebImage
-    - SwipeTableView
     - UMCCommon
     - UMCShare
     - XHNetworkCache
@@ -127,6 +127,7 @@ SPEC CHECKSUMS:
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
   HXWeiboPhotoPicker: b389ed6a2f854270aa391c55591d0616a519c881
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  LTScrollView: 54ad587a9664434c6b25eefd2b8095eb5641c79c
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 3f039575db1b135a20699ad298713b26acec1528
@@ -135,12 +136,11 @@ SPEC CHECKSUMS:
   PLPlayerKit: 63a9c6a7661f497591c84121e854e8e6ac003256
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
-  SwipeTableView: 67d8a2e6e18bd38c188fd4fabda0b278eaa08d2f
   UMCCommon: 16b674e9de0616d3a6128c551348a686d869c3c7
   UMCShare: 023886b10d11119331c9c46d8e8a0c31fe67c23e
   XHNetworkCache: 6050436268cb44be215ff5cbbe17b87901de649c
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: a1e5c70ee80af0bbf7bfb5eedd26351be6959ef0
+PODFILE CHECKSUM: c1ea6b139b013283a418421675d611a36535f5a7
 
 COCOAPODS: 1.5.2

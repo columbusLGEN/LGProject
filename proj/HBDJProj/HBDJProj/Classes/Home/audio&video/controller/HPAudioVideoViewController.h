@@ -23,4 +23,6 @@
 @property (assign,nonatomic) ModelMediaType contentType;
 @property (strong,nonatomic) DJDataBaseModel *model;
 
+@property (assign,nonatomic) BOOL opreated;
+
 @end

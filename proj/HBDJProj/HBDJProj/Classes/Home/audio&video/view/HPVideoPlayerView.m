@@ -11,6 +11,8 @@
 #import "LGPlayer.h"
 #import <PLPlayerKit/PLPlayerKit.h>
 
+#import "HPAudioVideoViewController.h"
+
 @interface HPVideoPlayerView ()<
 LGPlayerDelegate,
 LGVideoInterfaceViewDelegate>
@@ -33,6 +35,7 @@ LGVideoInterfaceViewDelegate>
 #pragma mark - LGVideoInterfaceViewDelegate
 - (void)videoInterfaceIViewFullScreenClick:(LGVideoInterfaceView *)videoInterface{
     /// TODO: 封装 playerView & 处理全屏播放 以及 交互
+    
 }
 
 #pragma mark - LGPlayerDelegate
@@ -63,6 +66,7 @@ LGVideoInterfaceViewDelegate>
 }
 
 - (IBAction)play:(UIButton *)sender {
+    _vc.opreated = YES;
     if (sender.isSelected) {
         sender.selected = NO;
 //        [LGPlayer lg_pause];

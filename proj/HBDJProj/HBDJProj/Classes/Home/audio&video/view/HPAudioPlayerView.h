@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class DJDataBaseModel;
+@class DJDataBaseModel,HPAudioVideoViewController;
 
 @interface HPAudioPlayerView : UIView
 @property (strong,nonatomic) DJDataBaseModel *model;
+@property (strong,nonatomic) HPAudioVideoViewController *vc;
 - (void)audioStop;
 + (instancetype)audioPlayerView;
 @end

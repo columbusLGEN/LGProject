@@ -17,6 +17,8 @@
 
 - (void)playerViewWillPlay:(PLPlayerView *)playerView;
 
+- (void)lg_played;
+
 @end
 
 @interface PLPlayerView : UIView

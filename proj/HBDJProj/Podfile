@@ -15,10 +15,11 @@ pod 'DTCoreText'
 pod 'SDCycleScrollView'#图片轮播器
 pod 'HXWeiboPhotoPicker', '~> 2.1.5'
 pod 'PLPlayerKit'
-pod 'SwipeTableView'
 pod 'XHNetworkCache'
 pod 'JGProgressHUD'
 pod 'MMMaterialDesignSpinner'
+pod 'LTScrollView', '~> 0.1.6'
+
 
 # UM基础sdk
 pod 'UMCCommon'

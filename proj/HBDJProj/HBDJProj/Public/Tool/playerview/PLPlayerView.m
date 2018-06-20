@@ -740,6 +740,10 @@ UIGestureRecognizerDelegate
 
 - (void)play {
     
+    if ([self.delegate respondsToSelector:@selector(lg_played)]) {
+        [self.delegate lg_played];
+    }
+    
     if (self.isNeedSetupPlayer) {
         [self setupPlayer];
         self.isNeedSetupPlayer = NO;

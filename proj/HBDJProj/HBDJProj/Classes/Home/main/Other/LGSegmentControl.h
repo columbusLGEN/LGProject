@@ -6,12 +6,6 @@
 //  Copyright © 2017年 lee. All rights reserved.
 //
 
-/**
- 需要增加的功能:
-    segment 滑动
-    
- */
-
 #import <UIKit/UIKit.h>
 @class LGSegmentControl,LGSegmentControlModel;
 @protocol LGSegmentControlDelegate;
@@ -23,12 +17,6 @@
 @property (weak,nonatomic) id<LGSegmentControlDelegate> delegate;
 @property (strong,nonatomic,readonly) NSArray<LGSegmentControlModel *> *models;
 
-- (void)elfAnimateWithIndex:(NSInteger)index;
-
-/** 动画横条颜色,默认黑色 */
-@property (strong,nonatomic) UIColor *elfColor;
-/** 字号,默认12 */
-@property (assign,nonatomic) NSInteger textFont;
 
 @end
 
