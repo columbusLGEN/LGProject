@@ -10,7 +10,7 @@
 @class DJDataBaseModel,HPAudioVideoViewController;
 
 @interface HPVideoContainerView : LGBaseView
-@property (strong,nonatomic) HPAudioVideoViewController *vc;
+@property (weak,nonatomic) HPAudioVideoViewController *vc;
 @property (strong,nonatomic) DJDataBaseModel *model;
 - (void)stop;
 

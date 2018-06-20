@@ -231,7 +231,7 @@ LTSimpleScrollViewDelegate
 
 - (UIView *)header{
     if (!_header) {
-        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 293)];
+        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, homeImageLoopHeight + homeSegmentHeight + 10)];
         [_header addSubview:self.imgLoop];
         [_header addSubview:self.segment];
     }
@@ -255,7 +255,7 @@ LTSimpleScrollViewDelegate
             model.imageName = [NSString stringWithFormat:@"home_segment_icon%d",i];
             [arr addObject:model];
         }
-        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectMake(0, homeImageLoopHeight, kScreenWidth, homeSegmentHeight) models:arr.copy];
+        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectMake(0, homeImageLoopHeight + 10, kScreenWidth, homeSegmentHeight) models:arr.copy];
         _segment.delegate = self;
     }
     return _segment;
@@ -267,6 +267,7 @@ LTSimpleScrollViewDelegate
         CGFloat h = kScreenHeight - y;
         _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, y, kScreenWidth, h) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
         _managerView.delegate = self;
+//        _managerView.isClickScrollAnimation = true;
         //设置悬停位置
 //        _managerView.hoverY = 44;
     }
@@ -395,7 +396,6 @@ LTSimpleScrollViewDelegate
             EDJMicroLessionAlbumModel *alubm = self.microModels[index];
             /// 再获取专辑单条微党课
             DJDataBaseModel *lesson = alubm.classlist[subIndex];
-            NSLog(@"单条党课 -- %@",lesson);
             
             /// TODO: 打开正式代码
             /// MARK: 进入微党课正式代码
@@ -407,7 +407,8 @@ LTSimpleScrollViewDelegate
             //                avc.contentType = lesson.modaltype;
             //                [self.navigationController pushViewController:avc animated:YES];
             //            }
-            /// 进入微党课单条详情
+            
+            
             /// testcode 第一个cell，打开视频详情
             HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
             if ((index % 2) == 0) {
@@ -447,7 +448,7 @@ LTSimpleScrollViewDelegate
 
 #pragma mark - LGSegmentControlDelegate
 - (void)segmentControl:(LGSegmentControl *)sender didClick:(NSInteger)click{
-   
+    [self.managerView scrollToIndexWithIndex:click];
     
 }
 

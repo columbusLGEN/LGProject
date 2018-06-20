@@ -54,17 +54,17 @@ YMEpubReaderManagerDelegate>
 }
 - (void)willEndRead{
     NSLog(@"willEndRead");
-    // 获取时间(阅读秒数)
-    self.readTime = [[NSDate date] timeIntervalSinceDate:self.beginReadTime];
-    // 转成小时
-    double hour = self.readTime / 3600;
-    // 转成字符串
-    NSString *readTimeStr = [NSString stringWithFormat:@"%f",hour];
-    /// 请求上传进度接口
-    NSNumber *finalProgress;// = self.ymepubReader.currentReadBook.readProgress;
-    if (finalProgress.floatValue > 0.99) {
-        finalProgress = @1;
-    }
+//    // 获取时间(阅读秒数)
+//    self.readTime = [[NSDate date] timeIntervalSinceDate:self.beginReadTime];
+//    // 转成小时
+//    double hour = self.readTime / 3600;
+//    // 转成字符串
+//    NSString *readTimeStr = [NSString stringWithFormat:@"%f",hour];
+//    /// 请求上传进度接口
+//    NSNumber *finalProgress;// = self.ymepubReader.currentReadBook.readProgress;
+//    if (finalProgress.floatValue > 0.99) {
+//        finalProgress = @1;
+//    }
     /// TODO: 上传阅读进度
 }
 - (void)didEndRead{

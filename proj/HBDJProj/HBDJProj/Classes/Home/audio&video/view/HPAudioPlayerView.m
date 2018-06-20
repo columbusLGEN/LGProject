@@ -77,6 +77,7 @@ LGPlayerDelegate>
 
 - (void)play:(UIButton *)sender{
     _vc.opreated = YES;
+    NSLog(@"_vc: %@",_vc);
     if (sender.isSelected) {
         sender.selected = NO;
         /// 暂停

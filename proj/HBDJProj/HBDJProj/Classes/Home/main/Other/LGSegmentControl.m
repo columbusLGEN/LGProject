@@ -60,7 +60,7 @@
         CGFloat imgW = self.bounds.size.width * 0.9;
         CGFloat imgH = self.bounds.size.height;
         CGFloat imgX = (self.bounds.size.width - imgW) * 0.5;
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imgX, 8, imgW, imgH)];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imgX, 0, imgW, imgH)];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _imageView;
@@ -112,7 +112,7 @@
     
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:10];
     [_models enumerateObjectsUsingBlock:^(LGSegmentControlModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGFloat singleViewH = self.frame.size.height * 0.8;
+        CGFloat singleViewH = self.frame.size.height;
         CGFloat x = idx * singleViewWidth;
         CGFloat y = 0;
         CGRect frame = CGRectMake(x, y, singleViewWidth, singleViewH);

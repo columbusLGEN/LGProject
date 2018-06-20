@@ -22,7 +22,7 @@
         _offset = offset;
         _length = length;
         if ([length isEqualToString:@""] || length == nil) {
-            length = @"10";
+            _length = @"10";
         }
     }
     return self;

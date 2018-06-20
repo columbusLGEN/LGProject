@@ -253,7 +253,6 @@
 		88C5F15B20B7F1F00075D5F2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C5F15A20B7F1F00075D5F2 /* AudioToolbox.framework */; };
 		88C5F15D20B7F1FE0075D5F2 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C5F15C20B7F1FE0075D5F2 /* libbz2.tbd */; };
 		88C5F15F20B7F2050075D5F2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C5F15E20B7F2050075D5F2 /* libz.tbd */; };
-		88C5F16220B7FB7A0075D5F2 /* HPVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F16120B7FB7A0075D5F2 /* HPVideoPlayerView.m */; };
 		88C5F16720B7FF670075D5F2 /* HPAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F16620B7FF670075D5F2 /* HPAudioPlayerView.m */; };
 		88C5F16920B7FF6D0075D5F2 /* HPAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C5F16820B7FF6D0075D5F2 /* HPAudioPlayerView.xib */; };
 		88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD73962099592A00E80058 /* HPBookInfoViewController.m */; };
@@ -813,8 +812,6 @@
 		88C5F15A20B7F1F00075D5F2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		88C5F15C20B7F1FE0075D5F2 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		88C5F15E20B7F2050075D5F2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		88C5F16020B7FB7A0075D5F2 /* HPVideoPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPVideoPlayerView.h; sourceTree = "<group>"; };
-		88C5F16120B7FB7A0075D5F2 /* HPVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPVideoPlayerView.m; sourceTree = "<group>"; };
 		88C5F16520B7FF670075D5F2 /* HPAudioPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioPlayerView.h; sourceTree = "<group>"; };
 		88C5F16620B7FF670075D5F2 /* HPAudioPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioPlayerView.m; sourceTree = "<group>"; };
 		88C5F16820B7FF6D0075D5F2 /* HPAudioPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioPlayerView.xib; sourceTree = "<group>"; };
@@ -2095,8 +2092,6 @@
 				88C5F16520B7FF670075D5F2 /* HPAudioPlayerView.h */,
 				88C5F16620B7FF670075D5F2 /* HPAudioPlayerView.m */,
 				88C5F16820B7FF6D0075D5F2 /* HPAudioPlayerView.xib */,
-				88C5F16020B7FB7A0075D5F2 /* HPVideoPlayerView.h */,
-				88C5F16120B7FB7A0075D5F2 /* HPVideoPlayerView.m */,
 				882B118B20D24A2700917374 /* HPVideoContainerView.h */,
 				882B118C20D24A2700917374 /* HPVideoContainerView.m */,
 				889FCD4320B40D5C0045746D /* LGVideoInterfaceView.h */,
@@ -3282,7 +3277,6 @@
 				88D033872079EB8600665D2F /* EDJUserCenterViewController.m in Sources */,
 				88D13C2A2090138100A32236 /* EDJSearchTagModel.m in Sources */,
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
-				88C5F16220B7FB7A0075D5F2 /* HPVideoPlayerView.m in Sources */,
 				883E082B20CA7DCB00BB62BA /* LGLocalSearchRecord.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
 				88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */,
@@ -3485,7 +3479,7 @@
 					"$(PODS_ROOT)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3577,7 +3571,7 @@
 					"$(PODS_ROOT)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",

@@ -126,6 +126,7 @@ LGThreeRightButtonViewDelegate>
     }else if (self.contentType == ModelMediaTypeAudio){
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
+        apv.vc = self;
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
         apv.model = self.model;
@@ -223,15 +224,12 @@ LGThreeRightButtonViewDelegate>
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
+
+- (void)dealloc{
     if (_opreated) {
         [_vpv stop];
         [_apv audioStop];
     }
-}
-- (void)dealloc{
-    
 }
 
 @end

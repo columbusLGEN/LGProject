@@ -811,8 +811,8 @@ UIGestureRecognizerDelegate
     [self resetButton:NO];
     [self hideFullLoading];
     
-    [self hideTopBar];
-    [self hideBottomBar];
+//    [self hideTopBar];
+//    [self hideBottomBar];
     [self hideBottomProgressView];
     [self doConstraintAnimation];
     
