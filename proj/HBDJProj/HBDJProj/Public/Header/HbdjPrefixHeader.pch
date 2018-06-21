@@ -22,10 +22,12 @@
 #import "LGDevice.h"
 #import "DJNetworkManager.h"
 #import "UIView+MBProgressHUD.h"
+#import "DJUser.h"
 
 #define DJUMAppKey       @"5b231ac1a40fa31e880000d9"
 #define DJWexinAppID     @"wxc21c2d288222bb77"
 #define DJWexinAppSecret @"cace94b565ab427db78517fcdb21ff2c"
+#define iFlyAppid @"5b0d04ef"
 
 #define HbdjPrefixHeader_pch
 

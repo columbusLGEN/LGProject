@@ -7,7 +7,13 @@
 //
 
 #import "LGBaseViewController.h"
+@protocol UCAccountHitViewControllerDelegate <NSObject>
+- (void)ucanLoginWithTel:(NSString *)tel pwd:(NSString *)pwd;
+
+@end
 
 @interface UCAccountHitViewController : LGBaseViewController
+@property (strong,nonatomic) NSMutableDictionary *activationDict;
+@property (weak,nonatomic) id<UCAccountHitViewControllerDelegate> delegate;
 
 @end

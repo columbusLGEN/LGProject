@@ -16,7 +16,7 @@
 		<key>iconName</key>
 		<string>uc_icon_login_pwd_prefix</string>
 		<key>placeholder</key>
-		<string>请输入原密码</string>
+		<string>请输入初始密码</string>
 	</dict>
 	<dict>
 		<key>lineType</key>

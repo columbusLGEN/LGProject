@@ -70,6 +70,7 @@
 		883D475320D9F1DE00FD9971 /* HPDigitalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475220D9F1DE00FD9971 /* HPDigitalCollectionViewController.m */; };
 		883D475620DB4A2300FD9971 /* UIView+MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475520DB4A2200FD9971 /* UIView+MBProgressHUD.m */; };
 		883D475920DB4E5F00FD9971 /* LGLoadingAssit.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475820DB4E5F00FD9971 /* LGLoadingAssit.m */; };
+		883D475C20DB69E700FD9971 /* DJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475B20DB69E700FD9971 /* DJUser.m */; };
 		883E082220CA16C700BB62BA /* LGGaussManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082120CA16C700BB62BA /* LGGaussManager.m */; };
 		883E082520CA234F00BB62BA /* LGNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082320CA234F00BB62BA /* LGNetworkCache.m */; };
 		883E082820CA560900BB62BA /* DJUserInteractionMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082720CA560900BB62BA /* DJUserInteractionMgr.m */; };
@@ -516,6 +517,8 @@
 		883D475520DB4A2200FD9971 /* UIView+MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MBProgressHUD.m"; sourceTree = "<group>"; };
 		883D475720DB4E5F00FD9971 /* LGLoadingAssit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGLoadingAssit.h; sourceTree = "<group>"; };
 		883D475820DB4E5F00FD9971 /* LGLoadingAssit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGLoadingAssit.m; sourceTree = "<group>"; };
+		883D475A20DB69E700FD9971 /* DJUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUser.h; sourceTree = "<group>"; };
+		883D475B20DB69E700FD9971 /* DJUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUser.m; sourceTree = "<group>"; };
 		883E082020CA16C700BB62BA /* LGGaussManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGGaussManager.h; sourceTree = "<group>"; };
 		883E082120CA16C700BB62BA /* LGGaussManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGGaussManager.m; sourceTree = "<group>"; };
 		883E082320CA234F00BB62BA /* LGNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkCache.m; sourceTree = "<group>"; };
@@ -1356,6 +1359,8 @@
 		881C94ED2068F3B0009D6A52 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				883D475A20DB69E700FD9971 /* DJUser.h */,
+				883D475B20DB69E700FD9971 /* DJUser.m */,
 				88EA130620ABC68A007AB886 /* serviceView */,
 				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				8831E19720946383001D038E /* userLogin */,
@@ -3268,6 +3273,7 @@
 				884312B52087222600321F84 /* EDJLevelInsTableViewController.m in Sources */,
 				88435E73208D68D700188CE9 /* UCQuestionModel.m in Sources */,
 				8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */,
+				883D475C20DB69E700FD9971 /* DJUser.m in Sources */,
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,
 				882B118D20D24A2700917374 /* HPVideoContainerView.m in Sources */,
@@ -3491,7 +3497,7 @@
 					"$(PODS_ROOT)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3583,7 +3589,7 @@
 					"$(PODS_ROOT)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",

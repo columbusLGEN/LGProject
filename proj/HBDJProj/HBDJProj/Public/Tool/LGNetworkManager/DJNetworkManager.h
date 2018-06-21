@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 
 typedef void(^DJNetworkSuccess)(id responseObj);
+/** 请求失败时，返回包有 msg 和 result的字典，网络连接失败时，返回 “网络异常” 的 字符串 */
 typedef void(^DJNetworkFailure)(id failureObj);
 
 /** 1新闻;2微党课;3学习问答;4支部动态;5党员舞台 */
@@ -28,6 +29,27 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
 };
 
 @interface DJNetworkManager : NSObject
+
+
+/**
+ 登录
+
+ @param tel 手机
+ @param pwd_md5 密码MD5值
+ @param success 成功
+ @param failure 失败
+ */
+- (void)userLoginWithTel:(NSString *)tel pwd_md5:(NSString *)pwd_md5 success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/**
+ 激活账号
+
+ @param tel 手机号
+ @param oldPwd 旧密码（初始密码）
+ @param pwd 新密码
+ @param success 请求成功回调
+ @param failure 请求失败回调
+ */
+- (void)userActivationWithTel:(NSString *)tel oldPwd:(NSString *)oldPwd pwd:(NSString *)pwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /// MARK: 数字阅读列表
 + (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort  success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
