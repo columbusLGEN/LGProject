@@ -19,6 +19,7 @@
 
 #import "LGLocalSearchRecord.h"
 #import "LGRecordButtonLoader.h"
+#import "LGLoadingAssit.h"
 
 @interface HPSearchViewController ()<
 LGNavigationSearchBarDelelgate,
@@ -93,12 +94,14 @@ HPVoiceSearchViewDelegate>
     }
 }
 - (void)recordClick:(UIButton *)record{
-    
     NSLog(@"clickrecord.title: %@",record.titleLabel.text);
+    _textField.text = record.titleLabel.text;
+    [self sendSearchRequest:NO];
 }
 - (void)deleteSearchRecord:(UIButton *)sender{
-    NSLog(@"删除历史记录: ");
-    
+//    NSLog(@"删除历史记录: ");
+    [LGLocalSearchRecord removeLocalRecord];
+    [self getLocalRecord];
 }
 
 #pragma mark - notifications
@@ -139,7 +142,7 @@ HPVoiceSearchViewDelegate>
     }
 }
 - (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
-    [self sendSearchRequest];
+    [self sendSearchRequest:YES];
 }
 
 #pragma mark - textField delegate
@@ -157,7 +160,7 @@ HPVoiceSearchViewDelegate>
 }
 
 /** 发送搜索请求 */
-- (void)sendSearchRequest{
+- (void)sendSearchRequest:(BOOL)isaNewRecord{
     [self.view endEditing:YES];
     /** type: 默认传0
      1:微党课
@@ -166,16 +169,20 @@ HPVoiceSearchViewDelegate>
     
     self.searchContent = self.textField.text;
     
-    /// 写入搜索记录 测试数据，测试用户id：1，模块: home
-    [LGLocalSearchRecord addNewRecordWithContent:self.searchContent part:SearchRecordExePartHome];
-    
-    /// 将新输入的内容添加到界面上
-    [self getLocalRecord];
-    
+    if (isaNewRecord) {
+        /// 写入搜索记录 测试数据，测试用户id：1，模块: home
+        [LGLocalSearchRecord addNewRecordWithContent:self.searchContent part:SearchRecordExePartHome];
+        /// 将新输入的内容添加到界面上
+        [self getLocalRecord];
+        
+    }
+    [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
     [DJNetworkManager homeSearchWithString:self.searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
         /// MARK: 刷新子可控制器视图
-        [_searchHistory removeFromSuperview];
-        _searchHistory = nil;
+        [_vsView removeFromSuperview];
+        _vsView = nil;
+        [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
+        
         NSArray *classes = responseObj[@"classes"];
         NSArray *news = responseObj[@"news"];
         
@@ -204,18 +211,18 @@ HPVoiceSearchViewDelegate>
             
             partyvc.dataArray = partyModels.copy;
         }
+        
         if (classes.count || news.count) {
-            /// 微党课 或 要闻 有一个项目 有数据
-            [_vsView removeFromSuperview];
-            _vsView = nil;
+            _searchHistory.hidden = YES;
         }
         if (classes.count == 0 && news.count == 0) {
-            /// TODO: 搜索内容全为空 如何显示？
-            
+            _searchHistory.hidden = NO;
+            [self.view presentFailureTips:@"没有搜到想要的内容"];
         }
         
 
     } failure:^(id failureObj) {
+        [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
         NSLog(@"faillureObject -- %@",failureObj);
         
     }];

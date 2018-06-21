@@ -25,6 +25,28 @@
 
 @implementation LGLocalSearchRecord
 
+/** 删除本地所有数据 */
++ (void)removeLocalRecord{
+    [[self sharedInstance] removeLocalRecord];
+}
+- (void)removeLocalRecord{
+    /// 1.判断、创建目录 --> 判断、创建 文件
+    [self createDirectoryPath];
+    
+    /// 2.写入数据
+    /// 获取本地文件
+    NSArray *recordArray = [NSArray arrayWithContentsOfFile:self.filePath];
+    
+    NSMutableArray *recordMutable = [NSMutableArray arrayWithArray:recordArray];
+    [recordMutable removeAllObjects];
+    
+    BOOL write = [recordMutable writeToFile:self.filePath atomically:YES];
+    if (write) {
+        NSArray *recordArray = [NSArray arrayWithContentsOfFile:self.filePath];
+        NSLog(@"清空成功 -- %d: %@",write,recordArray);
+    }
+}
+
 + (NSArray *)getLocalRecordWithPart:(SearchRecordExePart)part{
     return [[self sharedInstance] getLocalRecordWithPart:part];
 }
@@ -54,16 +76,27 @@
     /// 2.写入数据
     /// 获取本地文件
     NSArray *recordArray = [NSArray arrayWithContentsOfFile:self.filePath];
-    NSLog(@"写入之前record -- %@",recordArray);
-    /// 建立新的数组
-    NSMutableArray *recordMutable = [NSMutableArray arrayWithArray:recordArray];
-    /// 插入
-    [recordMutable insertObject:content atIndex:0];
-    /// 写入
-    BOOL write = [recordMutable writeToFile:self.filePath atomically:YES];
-    if (write) {
-        NSArray *recordArray = [NSArray arrayWithContentsOfFile:self.filePath];
-        NSLog(@"写入成功 -- %d: %@",write,recordArray);
+    
+    /// 写入之前 先判断 是否 重复
+    BOOL repeat = NO;
+    for (NSString *localContent in recordArray) {
+        if ([content isEqualToString:localContent]) {
+            repeat = YES;
+        }
+    }
+    if (!repeat) {
+        /// 建立新的数组
+        NSMutableArray *recordMutable = [NSMutableArray arrayWithArray:recordArray];
+        /// 插入
+        [recordMutable insertObject:content atIndex:0];
+        /// 写入
+        BOOL write = [recordMutable writeToFile:self.filePath atomically:YES];
+        if (write) {
+            NSArray *recordArray = [NSArray arrayWithContentsOfFile:self.filePath];
+            NSLog(@"写入成功 -- %d: %@",write,recordArray);
+        }
+    }else{
+        NSLog(@"重复数据: 不写入");
     }
 }
 

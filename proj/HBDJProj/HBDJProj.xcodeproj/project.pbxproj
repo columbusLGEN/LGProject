@@ -68,6 +68,8 @@
 		883D474D20D9F08E00FD9971 /* HPMicrolessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D474C20D9F08E00FD9971 /* HPMicrolessonViewController.m */; };
 		883D475020D9F14200FD9971 /* HPBuildTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D474F20D9F14200FD9971 /* HPBuildTableViewController.m */; };
 		883D475320D9F1DE00FD9971 /* HPDigitalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475220D9F1DE00FD9971 /* HPDigitalCollectionViewController.m */; };
+		883D475620DB4A2300FD9971 /* UIView+MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475520DB4A2200FD9971 /* UIView+MBProgressHUD.m */; };
+		883D475920DB4E5F00FD9971 /* LGLoadingAssit.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475820DB4E5F00FD9971 /* LGLoadingAssit.m */; };
 		883E082220CA16C700BB62BA /* LGGaussManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082120CA16C700BB62BA /* LGGaussManager.m */; };
 		883E082520CA234F00BB62BA /* LGNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082320CA234F00BB62BA /* LGNetworkCache.m */; };
 		883E082820CA560900BB62BA /* DJUserInteractionMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082720CA560900BB62BA /* DJUserInteractionMgr.m */; };
@@ -510,6 +512,10 @@
 		883D474F20D9F14200FD9971 /* HPBuildTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPBuildTableViewController.m; sourceTree = "<group>"; };
 		883D475120D9F1DE00FD9971 /* HPDigitalCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPDigitalCollectionViewController.h; sourceTree = "<group>"; };
 		883D475220D9F1DE00FD9971 /* HPDigitalCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPDigitalCollectionViewController.m; sourceTree = "<group>"; };
+		883D475420DB4A2200FD9971 /* UIView+MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MBProgressHUD.h"; sourceTree = "<group>"; };
+		883D475520DB4A2200FD9971 /* UIView+MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MBProgressHUD.m"; sourceTree = "<group>"; };
+		883D475720DB4E5F00FD9971 /* LGLoadingAssit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGLoadingAssit.h; sourceTree = "<group>"; };
+		883D475820DB4E5F00FD9971 /* LGLoadingAssit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGLoadingAssit.m; sourceTree = "<group>"; };
 		883E082020CA16C700BB62BA /* LGGaussManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGGaussManager.h; sourceTree = "<group>"; };
 		883E082120CA16C700BB62BA /* LGGaussManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGGaussManager.m; sourceTree = "<group>"; };
 		883E082320CA234F00BB62BA /* LGNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkCache.m; sourceTree = "<group>"; };
@@ -1189,6 +1195,8 @@
 				883E082A20CA7DCB00BB62BA /* LGLocalSearchRecord.m */,
 				886A1B6120CE53220007AD63 /* LGSocialShareManager.h */,
 				886A1B6220CE53220007AD63 /* LGSocialShareManager.m */,
+				883D475720DB4E5F00FD9971 /* LGLoadingAssit.h */,
+				883D475820DB4E5F00FD9971 /* LGLoadingAssit.m */,
 				882B117A20D23D3300917374 /* playerview */,
 				88BCEDA120C29B8700B5C1DB /* voice */,
 			);
@@ -1243,6 +1251,8 @@
 		881C94C92068ECF3009D6A52 /* UICatagory */ = {
 			isa = PBXGroup;
 			children = (
+				883D475420DB4A2200FD9971 /* UIView+MBProgressHUD.h */,
+				883D475520DB4A2200FD9971 /* UIView+MBProgressHUD.m */,
 				881C94CA2068ECF3009D6A52 /* UIColor+Extension.h */,
 				881C94CB2068ECF3009D6A52 /* UIColor+Extension.m */,
 				881C94CC2068ECF3009D6A52 /* UIImage+Extension.h */,
@@ -3180,6 +3190,7 @@
 				88EA132F20AD5314007AB886 /* LGHTMLParser.m in Sources */,
 				8831E18D20941A78001D038E /* DCSubStageModel.m in Sources */,
 				88EA131020AD144C007AB886 /* UCAccountHitViewController.m in Sources */,
+				883D475620DB4A2300FD9971 /* UIView+MBProgressHUD.m in Sources */,
 				884312C5208737BF00321F84 /* UCMsgTableViewController.m in Sources */,
 				889E7DC02099969A00BB9084 /* UCMemberStageTransitionView.m in Sources */,
 				8877742320C0F7390011DFF3 /* LGBookReaderManager.m in Sources */,
@@ -3287,6 +3298,7 @@
 				88D13C30209013EB00A32236 /* LGBaseCollectionViewCell.m in Sources */,
 				884311F12084B80C00321F84 /* LGSegmentControl.m in Sources */,
 				88A47130207EF58B002F93E0 /* EDJUserCenterHomePageCell.m in Sources */,
+				883D475920DB4E5F00FD9971 /* LGLoadingAssit.m in Sources */,
 				8843124C2085E60F00321F84 /* EDJLevelInfoViewController.m in Sources */,
 				889E7DC92099B19F00BB9084 /* UCUploadViewController.m in Sources */,
 				88A47123207DF342002F93E0 /* EDJOnlineViewController.m in Sources */,

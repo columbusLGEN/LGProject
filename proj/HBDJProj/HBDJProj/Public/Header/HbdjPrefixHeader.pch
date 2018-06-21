@@ -12,7 +12,6 @@
 #import <Masonry/Masonry.h>
 #import "UIImageView+WebCache.h"
 #import <MJRefresh/MJRefresh.h>
-#import <MBProgressHUD/MBProgressHUD.h>
 
 #import "LGDefines.h"
 #import "LBCConstant.h"
@@ -22,6 +21,7 @@
 #import "UIViewController+Extension.h"
 #import "LGDevice.h"
 #import "DJNetworkManager.h"
+#import "UIView+MBProgressHUD.h"
 
 #define DJUMAppKey       @"5b231ac1a40fa31e880000d9"
 #define DJWexinAppID     @"wxc21c2d288222bb77"

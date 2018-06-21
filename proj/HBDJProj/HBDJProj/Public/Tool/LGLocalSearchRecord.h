@@ -16,11 +16,11 @@ typedef NS_ENUM(NSUInteger, SearchRecordExePart) {
 
 @interface LGLocalSearchRecord : NSObject
 
-
+/** 删除本地所有数据 */
++ (void)removeLocalRecord;
 /**
  获取当前用户 当前模块用户的搜索记录
 
- @param userid 当前用户id
  @param part 当前操作模块
  @return 目标数组(元素为字符串)
  */
