@@ -7,77 +7,102 @@
 		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>DTCoreText.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<key>DTFoundation.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>HXWeiboPhotoPicker.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
-		<key>MBProgressHUD.xcscheme</key>
+		<key>JGProgressHUD-JGProgressHUD.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>MJExtension.xcscheme</key>
+		<key>JGProgressHUD.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>LTScrollView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
-		<key>MJRefresh.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
-		</dict>
-		<key>Masonry.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>Pods-HBDJProj.xcscheme</key>
+		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
-		<key>Pods-HBDJProjTests.xcscheme</key>
+		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
-		<key>Pods-HBDJProjUITests.xcscheme</key>
+		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
-		<key>SDCycleScrollView.xcscheme</key>
+		<key>MMMaterialDesignSpinner.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>12</integer>
 		</dict>
-		<key>SDWebImage.xcscheme</key>
+		<key>Masonry.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Pods-HBDJProj.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>13</integer>
+		</dict>
+		<key>Pods-HBDJProjTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>Pods-HBDJProjUITests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>SDCycleScrollView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 		<key>SwipeTableView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
+		<key>XHNetworkCache.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>YYText.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>19</integer>
 		</dict>
 	</dict>
 </dict>
