@@ -7,11 +7,13 @@
 //
 
 #import "LGBaseTableViewCell.h"
-@class UCAccountHitModel;
+@class UCAccountHitModel,UCAccountHitViewController;
 
 static NSString *cellID = @"UCAccountHitTableViewCell";
 
 @interface UCAccountHitTableViewCell : LGBaseTableViewCell
 @property (strong,nonatomic) UCAccountHitModel *model;
+@property (weak,nonatomic) UCAccountHitViewController *vc;
+@property (strong,nonatomic) NSIndexPath *index;
 
 @end

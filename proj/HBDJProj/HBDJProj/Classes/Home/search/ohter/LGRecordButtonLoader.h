@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 本类接受 view vc 和 button 参数，将button添加到 view 上，实现代码分离
+
 #import <Foundation/Foundation.h>
 
 @interface LGRecordButtonLoader : NSObject

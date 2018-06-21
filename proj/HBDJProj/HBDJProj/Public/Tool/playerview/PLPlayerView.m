@@ -256,7 +256,8 @@ UIGestureRecognizerDelegate
     [self.exitfullScreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self.topBarView);
         make.left.equalTo(self.topBarView).offset(self.edgeSpace);
-        make.width.equalTo(self.exitfullScreenButton.mas_height);
+//        make.width.equalTo(self.exitfullScreenButton.mas_height);
+        make.width.mas_equalTo(100);
     }];
 //
 //    [self.moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -982,9 +983,11 @@ UIGestureRecognizerDelegate
                state == PLPlayerStatusReady ||
                state == PLPlayerStatusCaching) {
         [self showFullLoading];
+        [self bringSubviewToFront:self.topBarView];
         self.centerPauseButton.hidden = YES;
     } else if (state == PLPlayerStateAutoReconnecting) {
         [self showFullLoading];
+        [self bringSubviewToFront:self.topBarView];
         self.centerPauseButton.hidden = YES;
         // alert 重新
         [self showTip:@"重新连接..."];

@@ -8,6 +8,14 @@
 
 #import "LGBaseView.h"
 
+@class UCAccountHitSuccessView;
+
+@protocol UCAccountHitSuccessViewDelegate <NSObject>
+- (void)removehsView;
+
+@end
+
 @interface UCAccountHitSuccessView : LGBaseView
+@property (weak,nonatomic) id<UCAccountHitSuccessViewDelegate> delegate;
 
 @end

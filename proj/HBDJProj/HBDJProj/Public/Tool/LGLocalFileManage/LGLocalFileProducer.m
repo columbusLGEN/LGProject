@@ -12,6 +12,8 @@
 #import "LGLocalFileManager.h"// 路径管理
 #import "EDJDigitalModel.h"
 
+#import <MBProgressHUD/MBProgressHUD.h>
+
 @interface LGLocalFileProducer ()
 @property (weak,nonatomic) MBProgressHUD *progressBar;
 
@@ -35,6 +37,7 @@
         /// 直接打开
         [LGBookReaderManager openBookWithLocalUrl:model.localUrl bookId:bookId vc:vc];
     }else{
+        /// TODO: 将进度条绘制 封装至 LGLoadingAssit
         MBProgressHUD *progressBar = [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
         [vc.view addSubview:progressBar];
         _progressBar = progressBar;

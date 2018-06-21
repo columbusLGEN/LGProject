@@ -13,11 +13,14 @@
 @property (strong,nonatomic) UIImageView *img;
 @property (strong,nonatomic) UILabel *info;
 
+@property (weak,nonatomic) NSTimer *timer;
+
 @end
 
 @implementation UCAccountHitSuccessView
 
 - (void)bgClick{
+    [_timer invalidate];
     [self removeFromSuperview];
 }
 
@@ -41,6 +44,27 @@
         make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(self.img.mas_bottom).offset(marginTen);
     }];
+    
+    __block NSInteger second = 3;
+    
+    __weak typeof(self) weakSelf = self;
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.info.text = [NSString stringWithFormat:@"正在返回登陆页面 %lds",second];
+        second--;
+        if (second == -1) {
+            [timer invalidate];
+            strongSelf.timer = nil;
+            [strongSelf removeFromSuperview];
+            if ([strongSelf.delegate respondsToSelector:@selector(removehsView)]) {
+                [strongSelf.delegate removehsView];
+            }
+        }
+    }];
+    [timer fire];
+    _timer = timer;
+    
 }
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -74,6 +98,10 @@
         _info.text = @"正在返回登陆页面 3s";
     }
     return _info;
+}
+
+- (void)dealloc{
+    NSLog(@"dealloc_timer: %@",_timer);
 }
 
 @end

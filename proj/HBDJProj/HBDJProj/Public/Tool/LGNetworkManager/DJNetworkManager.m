@@ -10,6 +10,8 @@
 #import "LGNetworkManager.h"
 #import "LGNetworkCache.h"
 
+static NSString *param_key_userid = @"userid";
+
 @interface DJNetworkManager ()
 @property (strong,nonatomic) NSString *baseUrl;
 @property (strong,nonatomic) NSString *pakageName;
@@ -48,7 +50,29 @@
 }
 
 /// MARK: -----分割线-----
-- (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort  success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+- (void)userLoginWithTel:(NSString *)tel pwd_md5:(NSString *)pwd_md5 success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    /**
+     type
+     0: token登陆
+     1: 密码登陆
+     token 应该去掉，应为token是登陆成功服务器返回的，所以，这里接口设计的不够准确
+     */
+    
+    NSDictionary *param = @{@"phone":tel,
+                            @"password":pwd_md5,
+                            @"type":@""
+                            };
+    [self sendTableWithiName:@"/frontUserinfo/login" param:param needUserid:NO success:success failure:failure];
+}
+- (void)userActivationWithTel:(NSString *)tel oldPwd:(NSString *)oldPwd pwd:(NSString *)pwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"phone":tel,
+                            @"oldpassword":oldPwd,
+                            @"password":pwd
+                            };
+    [self sendTableWithiName:@"/frontUserinfo/activation" param:param needUserid:NO success:success failure:failure];
+}
+
+- (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{};
     [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontEbook/selectList" param:param success:success failure:failure];
 }
@@ -93,6 +117,57 @@
     NSDictionary *param = @{@"test":@"home"};
     [self sendPOSTRequestWithiName:@"/frontIndex/index" param:param success:success failure:failure];
 }
+/**
+ MARK: 上传表单数据的统一方法
+ @param iName 接口名
+ @param param 参数
+ @param needUserid 是否需要用户id，传NO表示不需要
+ @param success 成功回调
+ @param failure 失败回调
+ */
+- (void)sendTableWithiName:(NSString *)iName param:(id)param needUserid:(BOOL)needUserid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+    /// 添加统一参数
+    NSMutableDictionary *paramMutable = [self unitParamDictWithDict:param];
+    if (!needUserid) {
+        [paramMutable removeObjectForKey:param_key_userid];
+    }
+    
+    /// 拼接请求链接
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",self.baseUrl,self.pakageName,iName];
+    
+    /// 获取最终参数
+    NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
+    
+    NSLog(@"arguments -- %@",argum);
+    NSLog(@"requesturl: %@",url);
+    [[LGNetworkManager sharedInstance] sendPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSLog(@"DJNetworkManager.responseObject -- %@",responseObject);
+        
+        if (error) {
+            if (failure) failure(error);
+        }else{
+            NSInteger result = [responseObject[@"result"] integerValue];
+            NSString *msg = responseObject[@"msg"];
+            
+            id jsonString = responseObject[@"returnJson"];
+            if ([jsonString isKindOfClass:[NSNull class]]) {
+                NSLog(@"returnJsonisNSNull ");
+            }else{
+                NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
+                id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                if (result == 0) {/// 成功
+                    if (success) success(returnJson);
+                }else{
+                    NSDictionary *errorDict = @{@"msg":msg,
+                                                @"result":@(result)
+                                                };
+                    if (failure) failure(errorDict);
+                }
+            }
+        }
+    }];
+}
 
 /// MARK: 分页接口统一调用此方法
 - (void)commenPOSTWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort iName:(NSString *)iName param:(id)param success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
@@ -105,22 +180,17 @@
     paramMutable[@"sort"] = sort_string;
     [self sendPOSTRequestWithiName:iName param:paramMutable success:success failure:failure];
 }
+/// MARK: 发送请求数据的统一方法
 - (void)sendPOSTRequestWithiName:(NSString *)iName param:(id)param success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     
     /// 添加统一参数
-    NSMutableDictionary *paramMutable = [NSMutableDictionary dictionaryWithDictionary:param];
-    paramMutable[@"imei"] = @"imei";
-    paramMutable[@"imsi"] = @"imsi";
-    paramMutable[@"userid"] = @"1";// 获取本地userid
+    NSMutableDictionary *paramMutable = [self unitParamDictWithDict:param];
     
     /// 拼接请求链接
     NSString *url = [NSString stringWithFormat:@"%@%@%@",self.baseUrl,self.pakageName,iName];
     
     /// 获取最终参数
-    NSMutableDictionary *argum = [NSMutableDictionary dictionaryWithCapacity:10];
-    /// TODO: 计算param 的 MD5
-    argum[@"params"] = paramMutable.copy;
-    argum[@"md5"] = @"md5";
+    NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
 
     NSLog(@"arguments -- %@",argum);
     NSLog(@"requesturl: %@",url);
@@ -147,22 +217,17 @@
                 
                 /// MARK: 写入缓存数据
                 [LGNetworkCache lg_save_asyncJsonToCacheFile:returnJson URLString:iName params:argum];
-                
                 if (result == 0) {/// 成功
                     if (success) success(returnJson);
                 }else{
-                    
 //                    NSDictionary *errorDict = @{@"msg":msg,
-//                                                @"result":@(result),
-//                                                @"json":returnJson
+//                                                @"result":@(result)
 //                                                };
 //                    if (failure) failure(errorDict);
                     /// MARK: 回调缓存数据
                     [self callBackCacheJsonObjWithiName:iName argum:argum success:success failure:failure];
                 }
             }
-            
-            
         }
     }];
 }
@@ -172,8 +237,24 @@
     if (cacheJson) {
         if (success) success(cacheJson);
     }else{
-        if (failure) failure(@"获取缓存失败");
+        if (failure) failure(@"网络异常");
     }
+}
+/** 添加统一的参数 */
+- (NSMutableDictionary *)unitParamDictWithDict:(NSDictionary *)param{
+    NSMutableDictionary *paramMutable = [NSMutableDictionary dictionaryWithDictionary:param];
+    paramMutable[@"imei"] = @"imei";
+    paramMutable[@"imsi"] = @"imsi";
+    paramMutable[param_key_userid] = @"1";/// TODO: 获取本地userid
+    return paramMutable;
+}
+/** 返回最终的请求参数 */
+- (NSMutableDictionary *)terParamWithUnitParam:(NSDictionary *)unitParam{
+    NSMutableDictionary *argum = [NSMutableDictionary dictionaryWithCapacity:10];
+    /// TODO: 计算param 的 MD5
+    argum[@"params"] = unitParam;
+    argum[@"md5"] = @"md5";
+    return argum;
 }
 
 /// MARK: URL

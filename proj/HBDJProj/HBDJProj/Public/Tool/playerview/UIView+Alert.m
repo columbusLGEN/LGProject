@@ -235,6 +235,7 @@
     loadingView = [[UIView alloc] initWithFrame:self.bounds];
     loadingView.tag = fullLoadingTag;
     [self addSubview:loadingView];
+    
     [loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
@@ -246,6 +247,7 @@
     [loadingView addSubview:spinner];
     [self bringSubviewToFront:loadingView];
     [spinner startAnimating];
+    NSLog(@"loadingview: %@",loadingView);
     
     if (tip.length) {
      

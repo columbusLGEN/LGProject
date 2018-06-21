@@ -20,9 +20,7 @@
 
 - (void)setRecords:(NSArray *)records{
     _records = records;
-    [records enumerateObjectsUsingBlock:^(NSString *record, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-    }];
+    
 }
 
 

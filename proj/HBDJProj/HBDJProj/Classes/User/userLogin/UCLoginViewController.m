@@ -7,8 +7,11 @@
 //
 
 #import "UCLoginViewController.h"
+#import "UCAccountHitViewController.h"
+#import "DJUser.h"
 
-@interface UCLoginViewController ()
+@interface UCLoginViewController ()<
+UCAccountHitViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *pwd;
 @property (weak, nonatomic) IBOutlet UIButton *login;
@@ -34,7 +37,10 @@
 }
 /// 账号激活
 - (IBAction)acountHit:(UIButton *)sender {
-    [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCAccountHitViewController" animated:YES];
+    UCAccountHitViewController *hvc = (UCAccountHitViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCAccountHitViewController"];
+    hvc.delegate = self;
+    
+    [self.navigationController pushViewController:hvc animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -53,6 +59,19 @@
     _pwdIsSecureEntry = _pwd.isSecureTextEntry;
 }
 
-
+#pragma mark - UCAccountHitViewController
+- (void)ucanLoginWithTel:(NSString *)tel pwd:(NSString *)pwd{
+    NSLog(@"发送登陆请求: tel: %@ -- pwd: %@",tel,pwd);
+    
+    /// TODO: 对密码进行 MD5
+    NSString *pwd_md5 = pwd;
+    [[DJNetworkManager sharedInstance] userLoginWithTel:tel pwd_md5:pwd_md5 success:^(id responseObj) {
+        NSLog(@"userlogin: %@",responseObj);
+        [DJUser sharedInstance];
+        
+    } failure:^(id failureObj) {
+        NSLog(@"userloging_failure: %@",failureObj);
+    }];
+}
 
 @end

@@ -11,6 +11,9 @@
 
 @interface NSString (Extension)
 
+- (BOOL)isPwd;
+- (BOOL)isPhone;
+
 /**
  @return 当前时间戳
  */

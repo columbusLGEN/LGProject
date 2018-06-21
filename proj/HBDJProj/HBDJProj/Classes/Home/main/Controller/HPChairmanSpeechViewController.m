@@ -30,6 +30,7 @@
 #import "EDJMicroLessionAlbumModel.h"
 
 #import "LGDidSelectedNotification.h"
+#import "LGLoadingAssit.h"
 
 #import "LTScrollView-Swift.h"
 
@@ -67,7 +68,6 @@ LTSimpleScrollViewDelegate
 @property (assign,nonatomic) NSInteger buildOffset;
 @property (assign,nonatomic) NSInteger digitalOffset;
 
-@property (strong,nonatomic) MBProgressHUD *HUD;
 @property (weak,nonatomic) HPNetworkFailureView *emptyView;
 
 @end
@@ -111,23 +111,12 @@ LTSimpleScrollViewDelegate
 
 - (void)homeReloadDataWithScrollView:(UIScrollView *)scrollView{
     
-        self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        self.HUD.backgroundColor = [UIColor clearColor];
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            self.HUD.backgroundColor = [UIColor whiteColor];
-        });
-        if (!_HUD) {
-            [self.view addSubview:self.HUD];
-        }else{
-            [self.HUD showAnimated:YES];
-        }
-        self.HUD.mode = MBProgressHUDModeIndeterminate;
+    [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
     
     [DJNetworkManager homeIndexWithSuccess:^(id responseObj) {
         [_emptyView removeFromSuperview];
         _emptyView = nil;
-        [self.HUD hideAnimated:YES];
+        [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
         EDJHomeModel *homeModel = [EDJHomeModel mj_objectWithKeyValues:responseObj];
         _homeModel = homeModel;
         self.imageLoops = homeModel.imageLoops;
@@ -146,7 +135,7 @@ LTSimpleScrollViewDelegate
         }];
         
     } failure:^(id failureObj) {
-                [self.HUD hideAnimated:YES];
+        [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self lg_addEmptyView];
             if (scrollView) [scrollView.mj_header endRefreshing];
