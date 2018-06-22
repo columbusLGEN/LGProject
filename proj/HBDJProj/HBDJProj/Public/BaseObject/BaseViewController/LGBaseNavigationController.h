@@ -10,4 +10,5 @@
 
 @interface LGBaseNavigationController : UINavigationController
 
+
 @end

@@ -12,7 +12,9 @@
 #import <Masonry/Masonry.h>
 #import "UIImageView+WebCache.h"
 #import <MJRefresh/MJRefresh.h>
+#import <MJExtension/MJExtension.h>
 
+#import "Macros+Singleton.h"
 #import "LGDefines.h"
 #import "LBCConstant.h"
 #import "UIColor+Extension.h"
@@ -21,6 +23,8 @@
 #import "UIViewController+Extension.h"
 #import "LGDevice.h"
 #import "DJNetworkManager.h"
+#import "DJHomeNetworkManager.h"
+#import "DJUserNetworkManager.h"
 #import "UIView+MBProgressHUD.h"
 #import "DJUser.h"
 

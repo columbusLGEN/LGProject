@@ -177,7 +177,7 @@ HPVoiceSearchViewDelegate>
         
     }
     [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
-    [DJNetworkManager homeSearchWithString:self.searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
+    [DJHomeNetworkManager homeSearchWithString:self.searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
         /// MARK: 刷新子可控制器视图
         [_vsView removeFromSuperview];
         _vsView = nil;

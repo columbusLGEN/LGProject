@@ -9,5 +9,6 @@
 #import "LGBaseViewController.h"
 
 @interface UCLoginViewController : LGBaseViewController
+@property (assign,nonatomic) BOOL canBack;
 
 @end

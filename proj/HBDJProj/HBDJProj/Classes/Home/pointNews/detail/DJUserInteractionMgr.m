@@ -34,7 +34,7 @@
         ID = pcid;
         addordel = YES;
     }
-    [DJNetworkManager homeLikeSeqid:[NSString stringWithFormat:@"%ld",ID] add:addordel praisetype:type success:^(id responseObj) {
+    [DJHomeNetworkManager homeLikeSeqid:[NSString stringWithFormat:@"%ld",ID] add:addordel praisetype:type success:^(id responseObj) {
         if (success) success(responseObj);
     } failure:^(id failureObj) {
         if (failure) failure(failureObj);

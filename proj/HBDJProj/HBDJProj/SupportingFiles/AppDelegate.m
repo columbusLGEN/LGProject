@@ -12,6 +12,9 @@
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
 
+#import "LGBaseNavigationController.h"
+#import "UCLoginViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -20,6 +23,8 @@
 
 #pragma mark - UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"application: %@",application);
+    NSLog(@"launchOptions: %@",launchOptions);
     [self baseConfigWithApplication:application launchOptions:launchOptions];
     return YES;
 }
@@ -62,8 +67,19 @@
 
 #pragma mark - 私有方法
 - (void)baseConfigWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions{
+    
     self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
-    self.window.rootViewController = [LIGMainTabBarController new];
+    
+    if (![DJUser sharedInstance].userid) {
+        /// 表明用户还未登录，进入登录控制器
+        UCLoginViewController *loginvc = (UCLoginViewController *)[[UIStoryboard storyboardWithName:UserCenterStoryboardName bundle:nil] instantiateViewControllerWithIdentifier:@"UCLoginViewController"];
+        loginvc.canBack = NO;
+        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:loginvc];
+        self.window.rootViewController = nav;
+    }else{
+        self.window.rootViewController = [LIGMainTabBarController new];
+    }
+    
     [self.window makeKeyAndVisible];
     
     /// 初始化讯飞语音sdk

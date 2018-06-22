@@ -27,7 +27,11 @@
     _model = model;
     _itemIconCell.text = model.itemName;
     _item.text = model.itemName;
-    _content.text = model.content;
+    if ([model.itemName isEqualToString:@"头像"]) {
+        [_icon sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:DJPlaceholderImage];
+    }else{
+        _content.text = model.content;
+    }
     if (model.canChangePwd) {
         /// 安全显示密码
         NSMutableString *secureText = [NSMutableString new];

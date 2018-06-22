@@ -9,6 +9,7 @@
 #import "UCSettingViewController.h"
 #import "UCSettingModel.h"
 #import "UCSettingTableViewCell.h"
+#import "LGLoadingAssit.h"
 
 static NSString * const settingCell = @"UCSettingTableViewCell";
 static CGFloat cellHeight = 59;
@@ -62,8 +63,21 @@ UITableViewDelegate>
     [self.tableView reloadData];
     
 }
+/// 登出
 - (void)logOut:(id)sender{
-    NSLog(@"退出邓丽 -- ");
+    [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
+
+    [[DJUserNetworkManager sharedInstance] userLogoutSuccess:^(id responseObj) {
+       NSLog(@"userlogout_res: %@",responseObj);
+        [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
+        [[DJUser sharedInstance] removeLocalUserInfo];
+        /// 退出登录，重置页面
+        [[UIApplication sharedApplication].delegate application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:nil];
+        
+    } failure:^(id failureObj) {
+        [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
+        NSLog(@"userlogout_failureObj: %@",failureObj);
+    }];
 }
 
 

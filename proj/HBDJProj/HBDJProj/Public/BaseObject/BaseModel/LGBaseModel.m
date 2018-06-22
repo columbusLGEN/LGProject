@@ -7,7 +7,6 @@
 //
 
 #import "LGBaseModel.h"
-#import <MJExtension/MJExtension.h>
 
 @implementation LGBaseModel
 

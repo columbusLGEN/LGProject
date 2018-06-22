@@ -30,22 +30,6 @@
 		<key>iconUrl</key>
 		<string></string>
 		<key>itemName</key>
-		<string>密码</string>
-		<key>content</key>
-		<string>111111</string>
-	</dict>
-	<dict>
-		<key>iconUrl</key>
-		<string></string>
-		<key>itemName</key>
-		<string>身份证号</string>
-		<key>content</key>
-		<string>110110199912310000</string>
-	</dict>
-	<dict>
-		<key>iconUrl</key>
-		<string></string>
-		<key>itemName</key>
 		<string>民族</string>
 		<key>content</key>
 		<string>汉</string>

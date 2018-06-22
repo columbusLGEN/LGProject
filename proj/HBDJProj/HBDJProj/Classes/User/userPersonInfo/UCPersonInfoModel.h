@@ -15,4 +15,6 @@
 @property (copy,nonatomic) NSString *content;// e.g.: 1xxxxxxxxxx
 @property (assign,nonatomic) BOOL canChangePwd;
 
++ (NSArray *)userInfoArray;
+
 @end

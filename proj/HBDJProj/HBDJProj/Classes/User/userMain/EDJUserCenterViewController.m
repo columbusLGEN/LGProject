@@ -10,6 +10,7 @@
 #import "EDJUserCenterHomePageModel.h"
 #import "EDJUserCenterHomePageCell.h"
 #import "LGCustomButton.h"
+#import "UCLoginViewController.h"
 
 static NSString * const uchpCellReuseId = @"EDJUserCenterHomePageCell";
 
@@ -101,7 +102,9 @@ UITableViewDataSource>
 }
 
 - (IBAction)headerIconClick:(id)sender {
-    [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCLoginViewController" animated:YES];
+//    UCLoginViewController *loginvc = (UCLoginViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCLoginViewController"];
+//    loginvc.canBack = YES;
+//    [self.navigationController pushViewController:loginvc animated:YES];
 }
 
 

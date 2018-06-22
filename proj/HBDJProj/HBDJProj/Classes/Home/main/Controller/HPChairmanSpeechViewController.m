@@ -113,7 +113,7 @@ LTSimpleScrollViewDelegate
     
     [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
     
-    [DJNetworkManager homeIndexWithSuccess:^(id responseObj) {
+    [DJHomeNetworkManager homeIndexWithSuccess:^(id responseObj) {
         [_emptyView removeFromSuperview];
         _emptyView = nil;
         [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
@@ -161,7 +161,7 @@ LTSimpleScrollViewDelegate
 /// MARK: 党建要闻加载更多数据
 - (void)buildPointNewsLoadMoreDatas{
     
-    [DJNetworkManager homeChairmanPoineNewsClassid:_homeModel.newsClassId offset:_buildOffset length:requestLength sort:0 success:^(id responseObj) {
+    [DJHomeNetworkManager homeChairmanPoineNewsClassid:_homeModel.newsClassId offset:_buildOffset length:requestLength sort:0 success:^(id responseObj) {
         NSLog(@"buildpointnews_response : %@",responseObj);
         NSArray *array = (NSArray *)responseObj;
         NSMutableArray *buildArray = [NSMutableArray arrayWithArray:_btvc.dataArray];
@@ -184,7 +184,7 @@ LTSimpleScrollViewDelegate
 }
 /// MARK: 数字阅读加载更多数据
 - (void)digitalLoadMoreDatas{
-    [DJNetworkManager homeDigitalListWithOffset:_digitalOffset length:requestLength sort:0 success:^(id responseObj) {
+    [DJHomeNetworkManager homeDigitalListWithOffset:_digitalOffset length:requestLength sort:0 success:^(id responseObj) {
         NSLog(@"digitallist_response: %@",responseObj);
         NSArray *array = (NSArray *)responseObj;
         NSMutableArray *digitalArray = [NSMutableArray arrayWithArray:_dcvc.dataArray];

@@ -94,7 +94,7 @@ LGThreeRightButtonViewDelegate>
      "md5":"654c01acaf40e0ce6d841a552fd3b96c"}
      */
     
-    [DJNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:1 success:^(id responseObj) {
+    [DJHomeNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:1 success:^(id responseObj) {
         NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
         EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
         self.contentModel = model;
@@ -107,7 +107,7 @@ LGThreeRightButtonViewDelegate>
     
     /// 请求党建要闻详情数据
     /// imageLoopModel.seqid
-//    [DJNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:self.djDataType success:^(id responseObj) {
+//    [DJHomeNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:self.djDataType success:^(id responseObj) {
 //        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
 //
 //    } failure:^(id failureObj) {

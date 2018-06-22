@@ -23,7 +23,7 @@
     HPPointNewsHeader *header = (HPPointNewsHeader *)self.tableView.tableHeaderView;
     header.model = model;
     
-    [DJNetworkManager homeChairmanPoineNewsClassid:model.seqid offset:0 length:10 sort:0 success:^(id responseObj) {
+    [DJHomeNetworkManager homeChairmanPoineNewsClassid:model.seqid offset:0 length:10 sort:0 success:^(id responseObj) {
         NSArray *array = responseObj;
         NSMutableArray *arrmu = [NSMutableArray array];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

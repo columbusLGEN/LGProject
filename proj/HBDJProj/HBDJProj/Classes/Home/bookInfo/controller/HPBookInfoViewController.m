@@ -75,7 +75,7 @@ HPBookInfoBriefCellDelegate>
     _array = arrMu.copy;
     [self.tableView reloadData];
 
-//    [DJNetworkManager homeDigitalDetailWithId:model.seqid success:^(id responseObj) {
+//    [DJHomeNetworkManager homeDigitalDetailWithId:model.seqid success:^(id responseObj) {
 //        NSLog(@"homeDigitalDetailWithId -- %@",responseObj);
 //        EDJDigitalModel *model = [EDJDigitalModel mj_objectWithKeyValues:responseObj];
 //

@@ -122,7 +122,7 @@ UCAccountHitSuccessViewDelegate
     
     /// 测试账号
     /**
-     18768147661 -- 1111qqqq
+     18768147661 -- qqqq1111
      18768147662
      18768147663
      18768147664
@@ -133,9 +133,11 @@ UCAccountHitSuccessViewDelegate
      18768147669
      */
     
+    [self.view endEditing:YES];
+    
     if (canSendRequest) {
         __weak typeof(self) weakSelf = self;
-        [[DJNetworkManager sharedInstance] userActivationWithTel:tel oldPwd:oldPwd pwd:pwd success:^(id responseObj) {
+        [[DJUserNetworkManager sharedInstance] userActivationWithTel:tel oldPwd:oldPwd pwd:pwd success:^(id responseObj) {
             typeof(weakSelf) strongSelf = weakSelf;
             NSLog(@"activation: %@",responseObj);
             /**

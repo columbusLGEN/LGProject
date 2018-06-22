@@ -44,7 +44,7 @@
 }
 
 - (void)getMoreLesson{
-    [DJNetworkManager homeSearchWithString:_searchContent type:2 offset:offset length:1 sort:0 success:^(id responseObj) {
+    [DJHomeNetworkManager homeSearchWithString:_searchContent type:2 offset:offset length:1 sort:0 success:^(id responseObj) {
         NSLog(@"homesearch_loadmore_lesson: %@",responseObj);
         NSArray *array = (NSArray *)responseObj;
         NSMutableArray *arrayMutable = [NSMutableArray arrayWithArray:self.dataArray];

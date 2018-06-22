@@ -20,103 +20,6 @@ static NSString *param_key_userid = @"userid";
 
 @implementation DJNetworkManager
 
-+ (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort  success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [[self sharedInstance] homeDigitalListWithOffset:offset length:length sort:sort success:success failure:failure];
-}
-
-/// MARK: 数字阅读图书详情
-+ (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [[self sharedInstance] homeDigitalDetailWithId:id success:success failure:failure];
-}
-
-+ (void)homePointNewsDetailWithId:(NSInteger)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [[self sharedInstance] homePointNewsDetailWithId:id type:type success:success failure:failure];
-}
-
-+ (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
-    [[DJNetworkManager sharedInstance] homeLikeSeqid:seqid add:add praisetype:praisetype success:success failure:failure collect:collect];
-}
-
-+ (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [[DJNetworkManager sharedInstance] homeChairmanPoineNewsClassid:classid offset:offset length:length sort:sort success:success failure:failure];
-}
-
-+ (void)homeSearchWithString:(NSString *)string type:(NSInteger)type offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [[DJNetworkManager sharedInstance] homeSearchWithString:string type:type offset:offset length:length sort:sort success:success failure:failure];
-}
-/// MARK: 首页接口
-+ (void)homeIndexWithSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [[DJNetworkManager sharedInstance] homeIndexWithSuccess:success failure:failure];
-}
-
-/// MARK: -----分割线-----
-- (void)userLoginWithTel:(NSString *)tel pwd_md5:(NSString *)pwd_md5 success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    /**
-     type
-     0: token登陆
-     1: 密码登陆
-     token 应该去掉，应为token是登陆成功服务器返回的，所以，这里接口设计的不够准确
-     */
-    
-    NSDictionary *param = @{@"phone":tel,
-                            @"password":pwd_md5,
-                            @"type":@""
-                            };
-    [self sendTableWithiName:@"/frontUserinfo/login" param:param needUserid:NO success:success failure:failure];
-}
-- (void)userActivationWithTel:(NSString *)tel oldPwd:(NSString *)oldPwd pwd:(NSString *)pwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"phone":tel,
-                            @"oldpassword":oldPwd,
-                            @"password":pwd
-                            };
-    [self sendTableWithiName:@"/frontUserinfo/activation" param:param needUserid:NO success:success failure:failure];
-}
-
-- (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{};
-    [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontEbook/selectList" param:param success:success failure:failure];
-}
-- (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"seqid":id};
-    [self sendPOSTRequestWithiName:@"/frontEbook/select" param:param success:success failure:failure];
-}
-- (void)homePointNewsDetailWithId:(NSInteger)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"seqid":[NSString stringWithFormat:@"%ld",id],
-                            @"type":[NSString stringWithFormat:@"%ld",type]
-                            };
-    [self sendPOSTRequestWithiName:@"/frontNews/selectDetail" param:param success:success failure:failure];
-}
-- (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
-    NSString *iName = nil;
-    NSString *type = nil;
-    if (collect) {
-        NSLog(@"收藏接口 -- ");
-        iName = @"/frontUserCollections/add";
-        type = @"cellectiontype";
-    }else{
-        iName = @"/frontUserPraises/add";
-        type = @"praisetype";
-    }
-    NSDictionary *dict = @{@"addordel":[NSString stringWithFormat:@"%d",add],
-                           @"seqid":seqid,
-                           type:[NSString stringWithFormat:@"%ld",praisetype]};
-    [self sendPOSTRequestWithiName:iName param:dict success:success failure:failure];
-}
-- (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *dict = @{@"classid":[NSString stringWithFormat:@"%ld",classid],
-                           };
-    [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontNews/selectList" param:dict success:success failure:failure];
-}
-- (void)homeSearchWithString:(NSString *)string type:(NSInteger)type offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSString *type_string = [NSString stringWithFormat:@"%ld",type];
-    NSDictionary *dict = @{@"type":type_string,
-                           @"search":string};
-    [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontIndex/lectureSearch" param:dict success:success failure:failure];
-}
-- (void)homeIndexWithSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"test":@"home"};
-    [self sendPOSTRequestWithiName:@"/frontIndex/index" param:param success:success failure:failure];
-}
 /**
  MARK: 上传表单数据的统一方法
  @param iName 接口名
@@ -245,7 +148,8 @@ static NSString *param_key_userid = @"userid";
     NSMutableDictionary *paramMutable = [NSMutableDictionary dictionaryWithDictionary:param];
     paramMutable[@"imei"] = @"imei";
     paramMutable[@"imsi"] = @"imsi";
-    paramMutable[param_key_userid] = @"1";/// TODO: 获取本地userid
+    paramMutable[param_key_userid] = @"1";/// 测试代码
+//    paramMutable[param_key_userid] = [DJUser sharedInstance].userid;
     return paramMutable;
 }
 /** 返回最终的请求参数 */
@@ -260,7 +164,6 @@ static NSString *param_key_userid = @"userid";
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-//        _baseUrl = @"http://192.168.10.108:8080/";
         _baseUrl = @"http://123.59.197.176:8080/";
     }
     return _baseUrl;

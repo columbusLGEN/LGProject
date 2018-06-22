@@ -71,6 +71,8 @@
 		883D475620DB4A2300FD9971 /* UIView+MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475520DB4A2200FD9971 /* UIView+MBProgressHUD.m */; };
 		883D475920DB4E5F00FD9971 /* LGLoadingAssit.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475820DB4E5F00FD9971 /* LGLoadingAssit.m */; };
 		883D475C20DB69E700FD9971 /* DJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475B20DB69E700FD9971 /* DJUser.m */; };
+		883D476020DCD98F00FD9971 /* DJUserNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D475F20DCD98F00FD9971 /* DJUserNetworkManager.m */; };
+		883D476320DCDFC400FD9971 /* DJHomeNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D476220DCDFC400FD9971 /* DJHomeNetworkManager.m */; };
 		883E082220CA16C700BB62BA /* LGGaussManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082120CA16C700BB62BA /* LGGaussManager.m */; };
 		883E082520CA234F00BB62BA /* LGNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082320CA234F00BB62BA /* LGNetworkCache.m */; };
 		883E082820CA560900BB62BA /* DJUserInteractionMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E082720CA560900BB62BA /* DJUserInteractionMgr.m */; };
@@ -519,6 +521,11 @@
 		883D475820DB4E5F00FD9971 /* LGLoadingAssit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGLoadingAssit.m; sourceTree = "<group>"; };
 		883D475A20DB69E700FD9971 /* DJUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUser.h; sourceTree = "<group>"; };
 		883D475B20DB69E700FD9971 /* DJUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUser.m; sourceTree = "<group>"; };
+		883D475D20DCD94200FD9971 /* Macros+Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Macros+Singleton.h"; sourceTree = "<group>"; };
+		883D475E20DCD98F00FD9971 /* DJUserNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUserNetworkManager.h; sourceTree = "<group>"; };
+		883D475F20DCD98F00FD9971 /* DJUserNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUserNetworkManager.m; sourceTree = "<group>"; };
+		883D476120DCDFC400FD9971 /* DJHomeNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJHomeNetworkManager.h; sourceTree = "<group>"; };
+		883D476220DCDFC400FD9971 /* DJHomeNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJHomeNetworkManager.m; sourceTree = "<group>"; };
 		883E082020CA16C700BB62BA /* LGGaussManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGGaussManager.h; sourceTree = "<group>"; };
 		883E082120CA16C700BB62BA /* LGGaussManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGGaussManager.m; sourceTree = "<group>"; };
 		883E082320CA234F00BB62BA /* LGNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkCache.m; sourceTree = "<group>"; };
@@ -1176,6 +1183,7 @@
 				881C94E92068F071009D6A52 /* HbdjPrefixHeader.pch */,
 				8835B2A02071F8DE00722010 /* LGDefines.h */,
 				8835B31B2072256A00722010 /* LBCConstant.h */,
+				883D475D20DCD94200FD9971 /* Macros+Singleton.h */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -1318,6 +1326,8 @@
 		881C94EA2068F362009D6A52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				883D476120DCDFC400FD9971 /* DJHomeNetworkManager.h */,
+				883D476220DCDFC400FD9971 /* DJHomeNetworkManager.m */,
 				88435EB1208F15A900188CE9 /* main */,
 				88BCEDDA20C665D100B5C1DB /* album */,
 				889FCD2120B3FA430045746D /* audio&video */,
@@ -1359,6 +1369,8 @@
 		881C94ED2068F3B0009D6A52 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				883D475E20DCD98F00FD9971 /* DJUserNetworkManager.h */,
+				883D475F20DCD98F00FD9971 /* DJUserNetworkManager.m */,
 				883D475A20DB69E700FD9971 /* DJUser.h */,
 				883D475B20DB69E700FD9971 /* DJUser.m */,
 				88EA130620ABC68A007AB886 /* serviceView */,
@@ -3134,6 +3146,7 @@
 				88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */,
 				8831E1672094012A001D038E /* DCSubPartStateOneImgCell.m in Sources */,
 				889FCD1E20B3EAFC0045746D /* DCRichTextTopInfoView.m in Sources */,
+				883D476020DCD98F00FD9971 /* DJUserNetworkManager.m in Sources */,
 				8831E16220931332001D038E /* DCSubPartStateTableViewController.m in Sources */,
 				884312E6208987F100321F84 /* UCHelpFadebackModel.m in Sources */,
 				88EA131E20AD2096007AB886 /* UCAccountHitSuccessView.m in Sources */,
@@ -3173,6 +3186,7 @@
 				8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */,
 				883E082520CA234F00BB62BA /* LGNetworkCache.m in Sources */,
 				88ECF063209FF7B40071A98A /* OLExamSingleStemCell.m in Sources */,
+				883D476320DCDFC400FD9971 /* DJHomeNetworkManager.m in Sources */,
 				883D474D20D9F08E00FD9971 /* HPMicrolessonViewController.m in Sources */,
 				889FCC7520B255430045746D /* LGNetworkAgent.m in Sources */,
 				88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */,

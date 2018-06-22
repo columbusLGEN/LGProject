@@ -86,7 +86,7 @@
     if (!_img) {
         _img = [UIImageView new];
         _img.image = [UIImage imageNamed:@"uc_ah_success_mid_img"];
-        _img.backgroundColor = [UIColor randomColor];
+//        _img.backgroundColor = [UIColor randomColor];
     }
     return _img;
 }

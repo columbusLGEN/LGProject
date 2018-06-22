@@ -50,7 +50,7 @@ LGThreeRightButtonViewDelegate>
 
 - (void)setImgLoopModel:(EDJHomeImageLoopModel *)imgLoopModel{
     /// 从首页点击轮播图进入
-    [DJNetworkManager homePointNewsDetailWithId:imgLoopModel.seqid type:2 success:^(id responseObj) {
+    [DJHomeNetworkManager homePointNewsDetailWithId:imgLoopModel.seqid type:2 success:^(id responseObj) {
         NSLog(@"微党课responseobj -- %@",responseObj);
         _imgLoopModel = [EDJHomeImageLoopModel mj_objectWithKeyValues:responseObj];
         

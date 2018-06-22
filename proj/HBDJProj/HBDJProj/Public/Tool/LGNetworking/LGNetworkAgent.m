@@ -10,7 +10,6 @@
 #import "AFNetworking.h"
 #import "LGBaseRequest.h"
 #import "LGResponseModel.h"
-#import <MJExtension/MJExtension.h>
 
 @interface LGNetworkAgent ()
 @property (strong,nonatomic) AFHTTPSessionManager *manager;

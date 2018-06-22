@@ -31,7 +31,9 @@
 
 - (void)configUI{
     self.title = @"个人信息";
-    _array = [UCPersonInfoModel loadLocalPlistWithPlistName:@"userInfoConfig"];
+//    _array = [UCPersonInfoModel loadLocalPlistWithPlistName:@"userInfoConfig"];
+    _array = [UCPersonInfoModel userInfoArray];
+    NSLog(@"array: %@",_array);
     [self.tableView reloadData];
 }
 
@@ -51,16 +53,6 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UCPersonInfoModel *model = _array[indexPath.row];
-    if (model.canChangePwd) {
-        /// 找回密码
-        
-        EDJModifiPwdViewController *vc = (EDJModifiPwdViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"EDJModifiPwdViewController"];
-        vc.coType = CodeOperationTypeSendVerCode;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 46;
