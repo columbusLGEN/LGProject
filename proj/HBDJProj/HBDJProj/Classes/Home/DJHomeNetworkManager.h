@@ -24,6 +24,12 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
 
 @interface DJHomeNetworkManager : NSObject
 
+/// MARK: 上传阅读进度
+- (void)homeReadPorgressBookid:(NSString *)bookid progress:(CGFloat)progress success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/// MARK: 请求专辑课程列表
+- (void)homeAlbumListWithClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
 /// MARK: 数字阅读列表
 + (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort  success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 

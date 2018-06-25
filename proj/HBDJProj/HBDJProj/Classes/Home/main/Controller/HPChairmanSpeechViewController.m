@@ -8,67 +8,72 @@
 
 #import "HPChairmanSpeechViewController.h"
 
-#import "LGNavigationSearchBar.h"
-#import <SDCycleScrollView/SDCycleScrollView.h>
+// view
 #import "LGSegmentControl.h"
 #import "HPNetworkFailureView.h"
+#import "LGNavigationSearchBar.h"
+#import <SDCycleScrollView/SDCycleScrollView.h>
 
-#import "HPMicrolessonViewController.h"
-#import "HPBuildTableViewController.h"
-#import "HPDigitalCollectionViewController.h"
+// controller
 #import "HPSearchViewController.h"
-#import "HPPointNewsTableViewController.h"
-#import "HPPartyBuildDetailViewController.h"
+#import "HPBookInfoViewController.h"
+#import "HPBuildTableViewController.h"
 #import "HPAudioVideoViewController.h"
 #import "HPAlbumTableViewController.h"
-#import "HPBookInfoViewController.h"
+#import "HPMicrolessonViewController.h"
+#import "HPPointNewsTableViewController.h"
+#import "HPPartyBuildDetailViewController.h"
+#import "HPDigitalCollectionViewController.h"
 
+// model
 #import "EDJHomeModel.h"
-#import "EDJHomeImageLoopModel.h"
-#import "EDJMicroBuildModel.h"
 #import "EDJDigitalModel.h"
+#import "EDJMicroBuildModel.h"
+#import "EDJHomeImageLoopModel.h"
 #import "EDJMicroLessionAlbumModel.h"
 
-#import "LGDidSelectedNotification.h"
-#import "LGLoadingAssit.h"
-
+// other
 #import "LTScrollView-Swift.h"
+#import "LGDidSelectedNotification.h"
 
 static NSInteger requestLength = 1;
 
 @interface HPChairmanSpeechViewController ()<
-LTSimpleScrollViewDelegate
-,LGNavigationSearchBarDelelgate
-,LGSegmentControlDelegate
+ LGSegmentControlDelegate
 ,SDCycleScrollViewDelegate
-,HPNetworkFailureViewDelegate>
+,LTSimpleScrollViewDelegate
+,HPNetworkFailureViewDelegate
+,LGNavigationSearchBarDelelgate>
 
-@property (weak,nonatomic) LGNavigationSearchBar *fakeNav;
+// view
 @property (strong,nonatomic) UIView *header;
 @property (strong,nonatomic) SDCycleScrollView *imgLoop;
-@property (strong,nonatomic) LGSegmentControl *segment;
+@property (strong,nonatomic) LGSegmentControl  *segment;
+@property (weak,nonatomic)   LGNavigationSearchBar *fakeNav;
+@property (strong, nonatomic) LTLayout *layout;
+@property (strong, nonatomic) LTSimpleManager *managerView;
+@property (weak,nonatomic) HPNetworkFailureView *emptyView;
 
+// array 页面配置
 @property(copy, nonatomic) NSArray <UIViewController *> *viewControllers;
 @property(copy, nonatomic) NSArray <NSString *> *titles;
+// array 数据
+@property (strong,nonatomic) NSArray *imageLoops;
+@property (strong,nonatomic) NSArray *microModels;
+@property (strong,nonatomic) NSArray<EDJMicroBuildModel *> *buildModels;
+@property (strong,nonatomic) NSArray *digitalModels;
 
-@property(strong, nonatomic) LTLayout *layout;
-@property(strong, nonatomic) LTSimpleManager *managerView;
-
+// vc
 @property (strong,nonatomic) HPMicrolessonViewController *mlvc;
 @property (strong,nonatomic) HPBuildTableViewController *btvc;
 @property (strong,nonatomic) HPDigitalCollectionViewController *dcvc;
 
+// model
 @property (strong,nonatomic) EDJHomeModel *homeModel;
 
-@property (strong,nonatomic) NSArray *imageLoops;
-@property (strong,nonatomic) NSArray *microModels;
-
-@property (strong,nonatomic) NSArray<EDJMicroBuildModel *> *buildModels;
-@property (strong,nonatomic) NSArray *digitalModels;
+// other
 @property (assign,nonatomic) NSInteger buildOffset;
 @property (assign,nonatomic) NSInteger digitalOffset;
-
-@property (weak,nonatomic) HPNetworkFailureView *emptyView;
 
 @end
 
@@ -77,12 +82,15 @@ LTSimpleScrollViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-
     [self homeReloadDataWithScrollView:nil];
+    
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)configUI{
-    
     /// 添加自定义导航栏
     LGNavigationSearchBar *fakeNav = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kNavHeight)];
     fakeNav.delegate = self;
@@ -92,12 +100,13 @@ LTSimpleScrollViewDelegate
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.managerView];
     
+    /// 配置header
     __weak typeof(self) weakSelf = self;
     [self.managerView configHeaderView:^UIView * _Nullable{
         return weakSelf.header;
     }];
     
-    //控制器刷新事件
+    /// 下拉刷新回调
     [self.managerView refreshTableViewHandle:^(UIScrollView * _Nonnull scrollView, NSInteger index) {
         __weak typeof(scrollView) weakScrollView = scrollView;
         scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -108,15 +117,16 @@ LTSimpleScrollViewDelegate
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectedModel:) name:LGDidSelectedNotification object:nil];
 }
-
+// 获取数据
 - (void)homeReloadDataWithScrollView:(UIScrollView *)scrollView{
-    
+    /// 添加 页面网络指示器, 有添加，就要在每个回调中有删除
     [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
-    
+    /// 请求数据
     [DJHomeNetworkManager homeIndexWithSuccess:^(id responseObj) {
         [_emptyView removeFromSuperview];
         _emptyView = nil;
         [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
+        
         EDJHomeModel *homeModel = [EDJHomeModel mj_objectWithKeyValues:responseObj];
         _homeModel = homeModel;
         self.imageLoops = homeModel.imageLoops;
@@ -145,9 +155,11 @@ LTSimpleScrollViewDelegate
 }
 
 #pragma mark - HPNetworkFailureViewDelegate
+// 点击无数据视图 刷新数据
 - (void)djemptyViewClick{
     [self homeReloadDataWithScrollView:nil];
 }
+// 添加无数据视图
 - (void)lg_addEmptyView{
     if (!_emptyView) {
         HPNetworkFailureView *empty = [HPNetworkFailureView DJEmptyView];
@@ -206,7 +218,7 @@ LTSimpleScrollViewDelegate
     }];
     
 }
-
+/// 设置轮播数据
 - (void)setImageLoops:(NSArray *)imageLoops{
     _imageLoops = imageLoops;
     
@@ -217,7 +229,7 @@ LTSimpleScrollViewDelegate
     }];
     _imgLoop.imageURLStringsGroup = imgUrls.copy;
 }
-
+/// MARK: lazy load
 - (UIView *)header{
     if (!_header) {
         _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, homeImageLoopHeight + homeSegmentHeight + 10)];
@@ -249,7 +261,6 @@ LTSimpleScrollViewDelegate
     }
     return _segment;
 }
-
 - (LTSimpleManager *)managerView {
     if (!_managerView) {
         CGFloat y = kNavHeight;/// 减去header的高度
@@ -262,8 +273,6 @@ LTSimpleScrollViewDelegate
     }
     return _managerView;
 }
-
-
 -(LTLayout *)layout {
     if (!_layout) {
         _layout = [[LTLayout alloc] init];
@@ -286,15 +295,12 @@ LTSimpleScrollViewDelegate
     return _titles;
 }
 
-
 -(NSArray <UIViewController *> *)viewControllers {
     if (!_viewControllers) {
         _viewControllers = [self setupViewControllers];
     }
     return _viewControllers;
 }
-
-
 -(NSArray <UIViewController *> *)setupViewControllers {
     NSMutableArray <UIViewController *> *vcs = [NSMutableArray arrayWithCapacity:0];
     /**
@@ -319,12 +325,8 @@ LTSimpleScrollViewDelegate
     return vcs.copy;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-#pragma mark - LGNavigationSearchBarDelelgate
+/// MARK: 代理方法
+#pragma mark - LGNavigationSearchBarDelelgate -- 导航点击回调
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
     HPSearchViewController *searchVc = [HPSearchViewController new];
     [self.navigationController pushViewController:searchVc animated:YES];
@@ -335,7 +337,7 @@ LTSimpleScrollViewDelegate
     [self.navigationController pushViewController:searchVc animated:YES];
 }
 
-#pragma mark - SDCycleScrollViewDelegate
+#pragma mark - SDCycleScrollViewDelegate -- 轮播图点击回调
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     EDJHomeImageLoopModel *model = self.imageLoops[index];
     NSLog(@"model.classid -- %ld",model.seqid);
@@ -369,10 +371,10 @@ LTSimpleScrollViewDelegate
     }
 }
 
-#pragma mark - notifications
+#pragma mark - 进入数据详情页面 notifications
 - (void)didSelectedModel:(NSNotification *)notification{
     NSDictionary *userInfo = notification.userInfo;
-    //    id model = userInfo[LGDidSelectedModelKey];
+    id model = userInfo[LGDidSelectedModelKey];
     NSInteger skipType = [userInfo[LGDidSelectedSkipTypeKey] integerValue];
     NSInteger index = [userInfo[LGDidSelectedIndexKey] integerValue];
     
@@ -388,15 +390,8 @@ LTSimpleScrollViewDelegate
             
             /// TODO: 打开正式代码
             /// MARK: 进入微党课正式代码
-            //            if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
-            //                NSLog(@"数据异常: ");
-            //            }else{
-            //                HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-            //            avc.model = lesson;
-            //                avc.contentType = lesson.modaltype;
-            //                [self.navigationController pushViewController:avc animated:YES];
-            //            }
-            
+//            HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+//            [avc avcPushWithLesson:lesson baseVc:self];            
             
             /// testcode 第一个cell，打开视频详情
             HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
@@ -411,8 +406,13 @@ LTSimpleScrollViewDelegate
         }
             break;
         case LGDidSelectedSkipTypeMicrolessonAlbum:{
+            
+            /// 先获取专辑
+            EDJMicroLessionAlbumModel *albumModel = (EDJMicroLessionAlbumModel *)model;
+            
             /// MARK: 进入专辑列表
             HPAlbumTableViewController *album = [HPAlbumTableViewController new];
+            album.albumModel = albumModel;
             [self.navigationController pushViewController:album animated:YES];
         }
             break;

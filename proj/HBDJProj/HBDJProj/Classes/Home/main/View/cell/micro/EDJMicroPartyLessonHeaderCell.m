@@ -7,8 +7,25 @@
 //
 
 #import "EDJMicroPartyLessonHeaderCell.h"
+#import "EDJMicroLessionAlbumModel.h"
+
+@interface EDJMicroPartyLessonHeaderCell ()
+
+
+@end
 
 @implementation EDJMicroPartyLessonHeaderCell
+
+- (IBAction)leftClick:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(headerAlbumClick:index:)]) {
+        [self.delegate headerAlbumClick:self index:0];
+    }
+}
+- (IBAction)rightClick:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(headerAlbumClick:index:)]) {
+        [self.delegate headerAlbumClick:self index:1];
+    }
+}
 
 + (CGFloat)cellHeight{
     return 128;
@@ -19,10 +36,5 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

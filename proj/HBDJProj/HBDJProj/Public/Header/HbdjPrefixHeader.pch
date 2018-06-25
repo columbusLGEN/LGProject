@@ -7,36 +7,38 @@
 //
 
 #ifndef HbdjPrefixHeader_pch
+#define HbdjPrefixHeader_pch
+
 // MARK: 第三方
 #import "AFNetworking.h"
 #import <Masonry/Masonry.h>
 #import "UIImageView+WebCache.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 #import <MJRefresh/MJRefresh.h>
 #import <MJExtension/MJExtension.h>
 
 #import "Macros+Singleton.h"
 #import "LGDefines.h"
 #import "LBCConstant.h"
-#import "UIColor+Extension.h"
+
 #import "UIView+Extension.h"
 #import "UIColor+EDJColor.h"
+#import "UIColor+Extension.h"
+#import "UIView+MBProgressHUD.h"
 #import "UIViewController+Extension.h"
-#import "LGDevice.h"
+
 #import "DJNetworkManager.h"
 #import "DJHomeNetworkManager.h"
 #import "DJUserNetworkManager.h"
-#import "UIView+MBProgressHUD.h"
-#import "DJUser.h"
 
+#import "DJUser.h"
+#import "LGDevice.h"
+#import "LGLoadingAssit.h"
+
+#define iFlyAppid        @"5b0d04ef"
 #define DJUMAppKey       @"5b231ac1a40fa31e880000d9"
 #define DJWexinAppID     @"wxc21c2d288222bb77"
 #define DJWexinAppSecret @"cace94b565ab427db78517fcdb21ff2c"
-#define iFlyAppid @"5b0d04ef"
-
-#define HbdjPrefixHeader_pch
-
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #endif /* HbdjPrefixHeader_pch */
 

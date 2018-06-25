@@ -9,7 +9,6 @@
 #import "UCSettingViewController.h"
 #import "UCSettingModel.h"
 #import "UCSettingTableViewCell.h"
-#import "LGLoadingAssit.h"
 
 static NSString * const settingCell = @"UCSettingTableViewCell";
 static CGFloat cellHeight = 59;

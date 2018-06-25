@@ -14,18 +14,19 @@
 /// 暂时先按照纯文本 cell 处理
 
 #import "HPAudioVideoViewController.h"
-#import "LGThreeRightButtonView.h"
-#import "HPAudioVideoContentCell.h"
-#import "HPAudioVideoModel.h"
-#import "HPAudioVideoInfoCell.h"
+
 #import "HPAudioPlayerView.h"
-
 #import "HPVideoContainerView.h"
-
 #import "LGVideoInterfaceView.h"
-#import "LGPlayer.h"
+#import "LGThreeRightButtonView.h"
 
+#import "HPAudioVideoInfoCell.h"
+#import "HPAudioVideoContentCell.h"
+
+#import "HPAudioVideoModel.h"
 #import "EDJHomeImageLoopModel.h"
+
+#import "LGPlayer.h"
 #import "DJUserInteractionMgr.h"
 
 static CGFloat videoInsets = 233;
@@ -48,15 +49,15 @@ LGThreeRightButtonViewDelegate>
 
 @implementation HPAudioVideoViewController
 
-- (void)setImgLoopModel:(EDJHomeImageLoopModel *)imgLoopModel{
-    /// 从首页点击轮播图进入
-    [DJHomeNetworkManager homePointNewsDetailWithId:imgLoopModel.seqid type:2 success:^(id responseObj) {
-        NSLog(@"微党课responseobj -- %@",responseObj);
-        _imgLoopModel = [EDJHomeImageLoopModel mj_objectWithKeyValues:responseObj];
-        
-    } failure:^(id failureObj) {
-        
-    }];
+/// MARK: 进入微党课详情页面
+- (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
+    if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
+        NSLog(@"数据异常: ");
+    }else{
+        self.model = lesson;
+        self.contentType = lesson.modaltype;
+        [baseVc.navigationController pushViewController:self animated:YES];
+    }
 }
 
 - (void)viewDidLoad {
@@ -137,6 +138,17 @@ LGThreeRightButtonViewDelegate>
     
 }
 
+- (void)setImgLoopModel:(EDJHomeImageLoopModel *)imgLoopModel{
+    /// TODL: 从首页点击轮播图进入
+    [DJHomeNetworkManager homePointNewsDetailWithId:imgLoopModel.seqid type:2 success:^(id responseObj) {
+        NSLog(@"微党课responseobj -- %@",responseObj);
+        _imgLoopModel = [EDJHomeImageLoopModel mj_objectWithKeyValues:responseObj];
+        
+    } failure:^(id failureObj) {
+        
+    }];
+}
+
 #pragma mark - LGThreeRightButtonViewDelegate
 - (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 点赞
@@ -146,11 +158,11 @@ LGThreeRightButtonViewDelegate>
     /// 收藏
     [self likeCollectWithSeqid:self.imgLoopModel.seqid pcid:self.imgLoopModel.collectionid clickSuccess:success collect:YES];
 }
+- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 分享
 
-//- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-//    /// 分享
-//
-//}
+}
+
 - (void)likeCollectWithSeqid:(NSInteger)seqid pcid:(NSInteger)pcid clickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
     [DJUserInteractionMgr likeCollectWithSeqid:seqid pcid:pcid collect:collect type:DJDataPraisetypeMicrolesson success:^(id responseObj) {
         NSDictionary *dict = responseObj;
@@ -187,6 +199,7 @@ LGThreeRightButtonViewDelegate>
 }
 #pragma mark - HPAudioVideoInfoCellDelegate
 - (void)avInfoCellOpen:(HPAudioVideoInfoCell *)cell isOpen:(BOOL)isOpen{
+    /// 课程信息的展开与收起
     [self.tableView reloadData];
     if (!isOpen) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
@@ -194,10 +207,10 @@ LGThreeRightButtonViewDelegate>
     
 }
 #pragma mark - LGVideoInterfaceViewDelegate
-- (void)userDragProgress:(LGVideoInterfaceView *)videoInterfaceView value:(float)value{
-    NSLog(@"用户拖动进度value -- %f",value);
-    
-}
+//- (void)userDragProgress:(LGVideoInterfaceView *)videoInterfaceView value:(float)value{
+//    NSLog(@"用户拖动进度value -- %f",value);
+//
+//}
 
 - (UITableView *)tableView{
     if (!_tableView) {

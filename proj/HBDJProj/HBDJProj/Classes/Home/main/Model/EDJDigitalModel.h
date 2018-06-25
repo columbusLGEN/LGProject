@@ -32,7 +32,7 @@
 @property (strong,nonatomic) NSString *createdtime;
 /** ebookresource */
 @property (strong,nonatomic) NSString *ebookresource;
-/** 本地资源文件路径 */
+/** 本地资源文件存储路径 */
 @property (strong,nonatomic) NSString *localUrl;
 
 

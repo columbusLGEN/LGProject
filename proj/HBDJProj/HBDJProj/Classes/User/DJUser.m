@@ -11,10 +11,6 @@
 
 static NSString *key_suffix = @"_dj";
 
-@interface DJUser ()
-
-@end
-
 @implementation DJUser
 
 - (NSString *)userid{
@@ -49,7 +45,7 @@ static NSString *key_suffix = @"_dj";
     
 }
 - (void)removeLocalUserInfo{
-    /// 原则上，删除本地信息后，单利用户也需要清空自己的信息
+    /// 删除本地信息后，单利用户也需要清空自己的信息
     [DJUser sharedInstance].userid = nil;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     for (NSString *propertyName in self.propertyArray) {
@@ -70,11 +66,12 @@ static NSString *key_suffix = @"_dj";
         const char *propertyName = property_getName(propertys[i]);
         [arrayProperty addObject:[NSString stringWithUTF8String:propertyName]];
     }
-    NSLog(@"propertys: %@",arrayProperty);
+//    NSLog(@"propertys: %@",arrayProperty);
     return arrayProperty.copy;
 }
 
 - (NSString *)filePath{
+    /// 每一个用户都保存着 userid_数据.plist 的文件
     return [[[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"userInfo"] stringByAppendingPathComponent:[NSString stringWithFormat:@"userid_%@.plist",self.seqid]];
 }
 

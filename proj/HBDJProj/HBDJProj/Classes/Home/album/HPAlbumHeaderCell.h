@@ -9,8 +9,15 @@
 #import "LGBaseTableViewCell.h"
 @class DJDataBaseModel;
 
+@protocol HPAlbumHeaderCellDelegate <NSObject>
+- (void)albumListHeaderTimeSort;
+
+@end
+
 static NSString * const albumListHeaderCell = @"HPAlbumHeaderCell";
 
 @interface HPAlbumHeaderCell : LGBaseTableViewCell
 @property (strong,nonatomic) DJDataBaseModel *model;
+@property (weak,nonatomic) id<HPAlbumHeaderCellDelegate> delegate;
+
 @end

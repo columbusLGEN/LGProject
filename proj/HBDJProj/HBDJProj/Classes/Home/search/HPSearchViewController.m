@@ -7,24 +7,26 @@
 //
 
 #import "HPSearchViewController.h"
+
 #import "LGNavigationSearchBar.h"
-#import "HPSearchRequest.h"
 #import "HPVoiceSearchView.h"
 #import "HPSearchHistoryView.h"
-#import "LGVoiceRecoganizer.h"
-#import "DJDataBaseModel.h"
-#import "DCSubPartStateModel.h"
+
 #import "HPSearchLessonController.h"
 #import "HPSearchBuildPoineNewsController.h"
 
-#import "LGLocalSearchRecord.h"
-#import "LGRecordButtonLoader.h"
-#import "LGLoadingAssit.h"
+#import "DJDataBaseModel.h"// 微党课
+#import "DCSubPartStateModel.h"// 要闻
+
+#import "LGLocalSearchRecord.h"// 本地历史记录管理者
+#import "LGRecordButtonLoader.h"// 本地历史记录按钮加载管理者
+#import "LGVoiceRecoganizer.h"// 声音识别管理者
 
 @interface HPSearchViewController ()<
 LGNavigationSearchBarDelelgate,
 UITextFieldDelegate,
 HPVoiceSearchViewDelegate>
+
 @property (strong,nonatomic) LGNavigationSearchBar *fakeNavgationBar;
 @property (strong,nonatomic) UITextField *textField;
 /** 语音搜索页面 */
@@ -59,8 +61,7 @@ HPVoiceSearchViewDelegate>
     [self.view addSubview:fakeNavgationBar];
     _fakeNavgationBar = fakeNavgationBar;
     
-    /// 搜索记录
-    
+    /// 搜索记录view
     HPSearchHistoryView *hisView = [[HPSearchHistoryView alloc] init];
     _searchHistory = hisView;
     
@@ -92,6 +93,7 @@ HPVoiceSearchViewDelegate>
             [self.view addSubview:self.vsView];
         }
     }
+    
 }
 - (void)recordClick:(UIButton *)record{
     NSLog(@"clickrecord.title: %@",record.titleLabel.text);

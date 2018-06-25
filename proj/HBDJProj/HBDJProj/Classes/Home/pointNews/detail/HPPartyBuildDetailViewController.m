@@ -7,13 +7,14 @@
 //
 
 #import "HPPartyBuildDetailViewController.h"
-//#import "LGThreeRightButtonView.h"
+
 #import "LGThreeRightButtonView.h"
-#import "LGHTMLParser.h"
-#import "EDJHomeImageLoopModel.h"
 #import "DCRichTextTopInfoView.h"
+
+#import "EDJHomeImageLoopModel.h"
 #import "EDJMicroBuildModel.h"
 
+#import "LGHTMLParser.h"
 #import "DJUserInteractionMgr.h"
 #import "LGSocialShareManager.h"
 
@@ -29,7 +30,7 @@ LGThreeRightButtonViewDelegate>
 
 @property (strong,nonatomic) DTAttributedTextView *coreTextView;
 /** 图片尺寸缓存 */
-@property (nonatomic, strong) NSCache *imageSizeCache;
+@property (nonatomic,strong) NSCache *imageSizeCache;
 @property (strong,nonatomic) LGThreeRightButtonView *pbdBottom;
 
 @end
@@ -60,7 +61,6 @@ LGThreeRightButtonViewDelegate>
         NSAttributedString *string = attrString;
         
         /// 目标frame: 可以显示 string 的大小 --> 只需知道 string 的最大高度即可
-        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             DTAttributedTextView *textView = [[DTAttributedTextView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - self.bottomHeight - kNavHeight)];
             _coreTextView = textView;
@@ -69,7 +69,7 @@ LGThreeRightButtonViewDelegate>
             textView.attributedString = string;
             [self.view addSubview:textView];
             
-            /// MARK: 顶部信息view
+            /// MARK: 顶部信息view （标题，时间，来源等）
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
             topInfoView.model = contentModel;
             topInfoView.displayCounts = self.displayCounts;
@@ -87,13 +87,8 @@ LGThreeRightButtonViewDelegate>
 
 - (void)setImageLoopModel:(EDJHomeImageLoopModel *)imageLoopModel{
     _imageLoopModel = imageLoopModel;
-    
-    /**
-     /// 测试数据
-     {"params":{"imei":"460030912121001","imsi":"460030912121001","seqid":"1","userid":"","type":"1"},
-     "md5":"654c01acaf40e0ce6d841a552fd3b96c"}
-     */
-    
+
+    /// 从轮播图跳转到该页面时，模型没有富文本数据，需要单独请求
     [DJHomeNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:1 success:^(id responseObj) {
         NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
         EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
@@ -104,15 +99,6 @@ LGThreeRightButtonViewDelegate>
     } failure:^(id failureObj) {
         
     }];
-    
-    /// 请求党建要闻详情数据
-    /// imageLoopModel.seqid
-//    [DJHomeNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:self.djDataType success:^(id responseObj) {
-//        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
-//
-//    } failure:^(id failureObj) {
-//
-//    }];
     
 }
 

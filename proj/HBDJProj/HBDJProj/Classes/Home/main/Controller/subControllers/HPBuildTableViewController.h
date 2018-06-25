@@ -10,8 +10,8 @@
 
 @interface HPBuildTableViewController : LGBaseViewController
 @property (strong,nonatomic) NSArray *dataArray;
-/** 父控制器 */
-@property (strong,nonatomic) UIViewController *superVc;
 @property (strong,nonatomic) UITableView *tableView;
+/** 父控制器,用作接收上拉刷新事件 */
+@property (strong,nonatomic) UIViewController *superVc;
 
 @end

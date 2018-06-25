@@ -111,7 +111,8 @@ static NSString *param_key_userid = @"userid";
             
             id jsonString = responseObject[@"returnJson"];
             if ([jsonString isKindOfClass:[NSNull class]]) {
-                NSLog(@"returnJsonisNSNull ");
+                NSLog(@"returnJson为空");
+                [self callBackCacheJsonObjWithiName:iName argum:argum success:success failure:failure];
             }else{
                 NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
                 id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -164,7 +165,8 @@ static NSString *param_key_userid = @"userid";
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-        _baseUrl = @"http://123.59.197.176:8080/";
+        _baseUrl = @"http://192.168.12.93:8080/";
+//        _baseUrl = @"http://123.59.197.176:8080/";
     }
     return _baseUrl;
 }

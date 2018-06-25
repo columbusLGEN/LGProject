@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface LGLoadingAssit : NSObject
+- (void)normalShowHUDTo:(UIView *)view HUDBlock:(void (^)(MBProgressHUD *))block;
+
 - (void)homeAddLoadingViewTo:(UIView *)view;
 - (void)homeRemoveLoadingView;
 + (instancetype)sharedInstance;

@@ -8,6 +8,8 @@
 
 #import "LGBaseViewController.h"
 @class EDJDigitalModel;
+
 @interface HPBookInfoViewController : LGBaseViewController
 @property (strong,nonatomic) EDJDigitalModel *model;
+
 @end

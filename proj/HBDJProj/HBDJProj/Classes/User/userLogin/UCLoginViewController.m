@@ -12,7 +12,6 @@
 #import "DJUser.h"
 
 #import "LIGMainTabBarController.h"
-#import "LGLoadingAssit.h"
 
 @interface UCLoginViewController ()<
 UCAccountHitViewControllerDelegate

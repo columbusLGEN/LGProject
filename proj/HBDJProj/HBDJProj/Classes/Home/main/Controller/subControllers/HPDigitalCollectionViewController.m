@@ -7,11 +7,12 @@
 //
 
 #import "HPDigitalCollectionViewController.h"
-#import "EDJDigitalModel.h"
-#import "EDJDigitalCell.h"
 
-#import "LGDidSelectedNotification.h"
+#import "EDJDigitalCell.h"
+#import "EDJDigitalModel.h"
+
 #import "LTScrollView-Swift.h"
+#import "LGDidSelectedNotification.h"
 
 @interface HPDigitalCollectionViewController ()<
 UICollectionViewDelegate,

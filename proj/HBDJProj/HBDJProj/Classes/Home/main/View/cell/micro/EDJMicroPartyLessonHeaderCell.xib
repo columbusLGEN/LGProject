@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,14 +25,34 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="Hmo-1t-tNR">
                         <rect key="frame" x="236" y="23" width="199" height="115"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBG-al-H13">
+                        <rect key="frame" x="12" y="22.5" width="199" height="115"/>
+                        <connections>
+                            <action selector="leftClick:" destination="yj3-nn-HBu" eventType="touchUpInside" id="28t-4R-LxV"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3De-dX-Cu1">
+                        <rect key="frame" x="236" y="22.5" width="199" height="115"/>
+                        <connections>
+                            <action selector="rightClick:" destination="yj3-nn-HBu" eventType="touchUpInside" id="Mzy-ip-sgD"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Hmo-1t-tNR" secondAttribute="trailing" constant="12" id="6IH-yg-OVQ"/>
+                    <constraint firstItem="RBG-al-H13" firstAttribute="centerY" secondItem="JxW-SX-LvX" secondAttribute="centerY" id="Bt8-7s-0WH"/>
                     <constraint firstItem="Hmo-1t-tNR" firstAttribute="leading" secondItem="JxW-SX-LvX" secondAttribute="trailing" constant="25" id="LHI-uw-o00"/>
+                    <constraint firstItem="RBG-al-H13" firstAttribute="width" secondItem="JxW-SX-LvX" secondAttribute="width" id="OrU-6d-nmZ"/>
+                    <constraint firstItem="RBG-al-H13" firstAttribute="height" secondItem="JxW-SX-LvX" secondAttribute="height" id="P5S-B8-TRN"/>
                     <constraint firstAttribute="bottomMargin" secondItem="JxW-SX-LvX" secondAttribute="bottom" constant="12" id="PIY-sA-VVK"/>
+                    <constraint firstItem="RBG-al-H13" firstAttribute="centerX" secondItem="JxW-SX-LvX" secondAttribute="centerX" id="Ptt-xn-udK"/>
                     <constraint firstItem="JxW-SX-LvX" firstAttribute="width" secondItem="Hmo-1t-tNR" secondAttribute="width" id="Uqr-TD-q31"/>
                     <constraint firstItem="Hmo-1t-tNR" firstAttribute="centerY" secondItem="JxW-SX-LvX" secondAttribute="centerY" id="Vgx-ql-L5S"/>
+                    <constraint firstItem="3De-dX-Cu1" firstAttribute="width" secondItem="Hmo-1t-tNR" secondAttribute="width" id="ZRl-eV-osR"/>
                     <constraint firstItem="JxW-SX-LvX" firstAttribute="height" secondItem="Hmo-1t-tNR" secondAttribute="height" id="aEG-cp-dNE"/>
+                    <constraint firstItem="3De-dX-Cu1" firstAttribute="centerY" secondItem="Hmo-1t-tNR" secondAttribute="centerY" id="dFm-a1-fT6"/>
+                    <constraint firstItem="3De-dX-Cu1" firstAttribute="height" secondItem="Hmo-1t-tNR" secondAttribute="height" id="nLG-EY-q3b"/>
+                    <constraint firstItem="3De-dX-Cu1" firstAttribute="centerX" secondItem="Hmo-1t-tNR" secondAttribute="centerX" id="r5g-pQ-MNy"/>
                     <constraint firstItem="JxW-SX-LvX" firstAttribute="top" secondItem="cXE-CA-fxC" secondAttribute="topMargin" constant="12" id="v5l-Nz-eNr"/>
                     <constraint firstItem="JxW-SX-LvX" firstAttribute="leading" secondItem="cXE-CA-fxC" secondAttribute="leading" constant="12" id="zvG-md-vkh"/>
                 </constraints>
@@ -41,6 +61,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="party_history" width="550" height="309"/>
+        <image name="party_history" width="283" height="194"/>
     </resources>
 </document>

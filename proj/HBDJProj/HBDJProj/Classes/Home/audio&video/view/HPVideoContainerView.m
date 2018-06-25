@@ -31,7 +31,7 @@ PLPlayerViewDelegate>
     /// 设置数据
     PLMediaInfo *media = [PLMediaInfo new];
     /// TODO: 封面？ /// 视频连接？
-    media.thumbURL = @"http://a.hiphotos.baidu.com/image/pic/item/0df3d7ca7bcb0a46aa1f61a36763f6246b60af6f.jpg";
+    media.thumbURL = model.cover;// @"http://a.hiphotos.baidu.com/image/pic/item/0df3d7ca7bcb0a46aa1f61a36763f6246b60af6f.jpg";
     media.videoURL = testVideo;
     
     _playerView.media = media;

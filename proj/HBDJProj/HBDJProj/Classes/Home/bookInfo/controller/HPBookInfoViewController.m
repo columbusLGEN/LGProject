@@ -7,21 +7,24 @@
 //
 
 #import "HPBookInfoViewController.h"
+
 #import "HPBookInfoBaseCell.h"
+
 #import "EDJDigitalModel.h"
 #import "HPBookInfoModel.h"
+// 本地资源文件管理者
 #import "LGLocalFileProducer.h"
 
-static NSString * const bookInfoHeaderCell = @"HPBookInfoHeaderCell";
 static NSString * const bookInfoBriefCell = @"HPBookInfoBriefCell";
+static NSString * const bookInfoHeaderCell = @"HPBookInfoHeaderCell";
 
 @interface HPBookInfoViewController ()<
 UITableViewDelegate,
 UITableViewDataSource,
 HPBookInfoBriefCellDelegate>
 @property (strong,nonatomic) UITableView *tableView;
-@property (strong,nonatomic) NSArray *array;
 @property (strong,nonatomic) UIButton *button;
+@property (strong,nonatomic) NSArray *array;
 
 @end
 
@@ -48,25 +51,18 @@ HPBookInfoBriefCellDelegate>
             lineModel.coverUrl = model.cover;
         }
         
-//        lineModel.bookName = @"中国梦，我的梦";
         lineModel.bookName = model.ebookname;
-//        lineModel.author = @"蔡国英";
         lineModel.author = model.author;
-//        lineModel.press = @"阳光出版社";
         lineModel.press = model.publisher;
-//        lineModel.testPressTime = @"出版时间：2015-07-07";
         lineModel.testPressTime = [NSString stringWithFormat:@"出版时间: %@",model.pubdate];
         lineModel.testProgress = @"上次阅读进度：7%";
-//        lineModel.testProgress = model;
         
         if (i == 1) {
             lineModel.itemTitle = @"简介";
-//            lineModel.content = @"梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。梦想，是一个国家和民族前进的灯塔。银川的四月，春意方浓。";
             lineModel.content = model.introduction;
         }
         if (i == 2) {
             lineModel.itemTitle = @"目录";
-//            lineModel.content = @"第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n第一章: 中国梦是人民的名\n";
             lineModel.content = model.catalog;
         }
         
@@ -75,6 +71,7 @@ HPBookInfoBriefCellDelegate>
     _array = arrMu.copy;
     [self.tableView reloadData];
 
+    /// 如果需要，请详情接口获取数据
 //    [DJHomeNetworkManager homeDigitalDetailWithId:model.seqid success:^(id responseObj) {
 //        NSLog(@"homeDigitalDetailWithId -- %@",responseObj);
 //        EDJDigitalModel *model = [EDJDigitalModel mj_objectWithKeyValues:responseObj];
@@ -85,7 +82,6 @@ HPBookInfoBriefCellDelegate>
 }
 
 - (void)readBook{
-    /// TODO: 初步确定 无法打开epub3.0的资源文件,暂时
     [LGLocalFileProducer openBookWithModel:self.model vc:self];
 }
 

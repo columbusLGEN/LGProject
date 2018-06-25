@@ -9,11 +9,22 @@
 #import "HPAlbumTableViewController.h"
 
 #import "DJDataBaseModel.h"
+#import "EDJMicroLessionAlbumModel.h"
 
-#import "EDJMicroPartyLessonSubCell.h"
 #import "HPAlbumHeaderCell.h"
+#import "EDJMicroPartyLessonSubCell.h"
 
-@interface HPAlbumTableViewController ()
+#import "HPAudioVideoViewController.h"
+
+@interface HPAlbumTableViewController ()<
+HPAlbumHeaderCellDelegate>
+
+/// 切换数据排序方式
+@property (assign,nonatomic) BOOL timeSort;
+
+@property (strong,nonatomic) LGLoadingAssit *loadAssit;
+
+@property (assign,nonatomic) NSInteger offset;
 
 @end
 
@@ -31,20 +42,65 @@
     [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
     self.tableView.estimatedRowHeight = 90;
     
-    NSMutableArray *arrm = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
-        DJDataBaseModel *model = [DJDataBaseModel new];
-        
-        if (i == 0) {
-            /// 第一个模型为header模型
-        }
-        
-        [arrm addObject:model];
-    }
-    self.dataArray = arrm.copy;
-    [self.tableView reloadData];
+    self.timeSort = NO;
     
+    _offset = 0;
     
+    [self requestNetDataWithOffset:_offset];
+
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerLoad)];
+}
+
+- (void)requestNetDataWithOffset:(NSInteger)offset{
+    __weak typeof(self) weakSelf = self;
+    
+    [self.loadAssit normalShowHUDTo:self.view HUDBlock:^(MBProgressHUD *normalHUD) {
+        
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        [[DJHomeNetworkManager sharedInstance] homeAlbumListWithClassid:strongSelf.albumModel.classid offset:offset length:10 sort:strongSelf.timeSort success:^(id responseObj) {
+            
+            [normalHUD hideAnimated:YES];
+            [self.tableView.mj_footer endRefreshing];
+            
+            NSArray *array = responseObj;
+            
+            NSMutableArray *arrm;
+            if (offset == 0) {
+                arrm  = [NSMutableArray array];
+            }else{
+                arrm = [NSMutableArray arrayWithArray:strongSelf.dataArray];
+            }
+            
+            for (int i = 0; i < array.count; i++) {
+                DJDataBaseModel *model = [DJDataBaseModel mj_objectWithKeyValues:array[i]];
+                [arrm addObject:model];
+            }
+            /// 配置header 数据
+            DJDataBaseModel *headerModel = [DJDataBaseModel new];
+            headerModel.cover = strongSelf.albumModel.classimg;
+            headerModel.classdescription = strongSelf.albumModel.classdescription;
+            [arrm insertObject:headerModel atIndex:0];
+            
+            _offset = arrm.count;
+            strongSelf.dataArray = arrm.copy;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [strongSelf.tableView reloadData];
+            }];
+            
+        } failure:^(id failureObj) {
+            [normalHUD hideAnimated:YES];
+            [self.tableView.mj_footer endRefreshing];
+            
+            if ([failureObj isKindOfClass:[NSString class]]) {
+                [strongSelf.view presentFailureTips:failureObj];
+            }
+        }];
+    }];
+}
+
+- (void)footerLoad{
+    [self requestNetDataWithOffset:_offset];
 }
 
 #pragma mark - Table view data source
@@ -56,56 +112,37 @@
     DJDataBaseModel *model = self.dataArray[indexPath.row];
     if (indexPath.row == 0) {
         HPAlbumHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:albumListHeaderCell];
+        cell.delegate = self;
+        cell.model = model;
         return cell;
     }
     EDJMicroPartyLessonSubCell *cell = [tableView dequeueReusableCellWithIdentifier:microPartyLessonSubCell forIndexPath:indexPath];
     cell.model = model;
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    /// 进入课程详情
+    DJDataBaseModel *lesson = self.dataArray[indexPath.row];
+    HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+    [avc avcPushWithLesson:lesson baseVc:self];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark - HPAlbumHeaderCellDelegate
+- (void)albumListHeaderTimeSort{
+    if (self.timeSort) {
+        self.timeSort = NO;
+    }else{
+        self.timeSort = YES;
+    }
+    /// 重置数据
+    [self requestNetDataWithOffset:0];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (LGLoadingAssit *)loadAssit{
+    if (!_loadAssit) {
+        _loadAssit = [LGLoadingAssit new];
+    }
+    return _loadAssit;
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

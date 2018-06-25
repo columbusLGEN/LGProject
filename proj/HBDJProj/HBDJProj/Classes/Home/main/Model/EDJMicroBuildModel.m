@@ -13,7 +13,6 @@
 
 @synthesize cover = _cover;
 
-
 - (NSArray *)imgs{
     if (!_imgs) {
         _imgs = [_cover componentsSeparatedByString:@","];
@@ -21,11 +20,5 @@
     return _imgs;
 }
 
-
-/// testcode
-
-- (NSArray<DJDataBaseModel *> *)subNews{
-    return @[[DJDataBaseModel new],[DJDataBaseModel new],[DJDataBaseModel new]];
-}
 
 @end

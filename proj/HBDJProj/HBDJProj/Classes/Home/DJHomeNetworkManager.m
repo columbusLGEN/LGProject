@@ -40,6 +40,16 @@
 }
 
 /// MARK: -----分割线-----
+- (void)homeReadPorgressBookid:(NSString *)bookid progress:(CGFloat)progress success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"bookid":bookid,
+                            @"progress":[NSString stringWithFormat:@"%f",progress]
+                            };
+    [self sendPOSTRequestWithiName:@"/frontEbook/addprogress" param:param success:success failure:failure];
+}
+- (void)homeAlbumListWithClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"classid":[NSString stringWithFormat:@"%ld",classid]};
+    [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontNews/selectList" param:param success:success failure:failure];
+}
 - (void)homeDigitalListWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{};
     [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontEbook/selectList" param:param success:success failure:failure];

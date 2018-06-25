@@ -88,6 +88,7 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (assign,nonatomic) NSInteger collectionid;
 /** 点赞id，0表示未点赞 */
 @property (assign,nonatomic) NSInteger praiseid;
-
+/** 分享缩略图 */
+@property (strong,nonatomic) NSString *thumbnail;
 
 @end

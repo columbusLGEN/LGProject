@@ -24,7 +24,6 @@
 
 @implementation LGSegmentSingleView
 
-
 - (void)setImageName:(NSString *)imageName{
     _imageName = imageName;
     [self.imageView setImage:[UIImage imageNamed:imageName]];

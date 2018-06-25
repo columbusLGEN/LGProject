@@ -74,14 +74,13 @@ UCAccountHitSuccessViewDelegate
 
 - (IBAction)ahClick:(id)sender {
     NSLog(@"self.actiondict: %@",self.activationDict);
-    NSString *tel = self.activationDict[@"0"];
+    NSString *tel    = self.activationDict[@"0"];
     NSString *oldPwd = self.activationDict[@"1"];
-    NSString *pwd = self.activationDict[@"2"];
+    NSString *pwd    = self.activationDict[@"2"];
     NSString *pwd_confirm = self.activationDict[@"3"];
     
-    /// TODO:
+    /// 未输入时，文本框 取到 nil值
     
-    /// 未输入时，取到的值 为nil
     BOOL canSendRequest = YES;
     if (tel == nil) {
         [self.view presentFailureTips:@"手机号不能为空"];

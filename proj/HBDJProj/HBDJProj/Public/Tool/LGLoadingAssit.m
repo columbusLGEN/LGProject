@@ -7,14 +7,24 @@
 //
 
 #import "LGLoadingAssit.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface LGLoadingAssit ()
 @property (strong,nonatomic) MBProgressHUD *loadingHUD;
 
+//@property (weak,nonatomic) MBProgressHUD *normalHUD;
+
 @end
 
 @implementation LGLoadingAssit
+
+- (void)normalShowHUDTo:(UIView *)view HUDBlock:(void (^)(MBProgressHUD *))block{
+    MBProgressHUD *normalHUD = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    normalHUD.backgroundColor = [UIColor clearColor];
+    normalHUD.mode = MBProgressHUDModeIndeterminate;
+    [normalHUD showAnimated:YES];
+    if (block) block(normalHUD);
+//    _normalHUD = normalHUD;
+}
 
 - (void)homeAddLoadingViewTo:(UIView *)view{
     self.loadingHUD = [MBProgressHUD showHUDAddedTo:view animated:YES];

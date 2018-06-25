@@ -56,7 +56,7 @@ LGPlayerDelegate>
         self.audioPlayer.totalTime.text = totalString;
         _totalTimeSet = YES;
     }
-    NSLog(@"cutime: %f totaltime: %f",currentTime,totalTime);
+//    NSLog(@"cutime: %f totaltime: %f",currentTime,totalTime);
 }
 - (void)playerStateChanged:(LGPlayer *)player state:(LGPlayerState)state{
     if (state == 10) {
@@ -68,9 +68,8 @@ LGPlayerDelegate>
 - (void)setModel:(DJDataBaseModel *)model{
     _model = model;
     
-//    [_icon sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
-//    [_bgImg sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
-    
+    [_icon sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
+    [_bgImg sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
 //    [_audio initPlayerWithUrl:model.audio];
     [_audio initPlayerWithUrl:testAudio];
 }

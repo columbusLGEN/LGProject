@@ -9,7 +9,9 @@
 /// 专辑列表控制器
 
 #import "LGBaseTableViewController.h"
+@class EDJMicroLessionAlbumModel;
 
 @interface HPAlbumTableViewController : LGBaseTableViewController
+@property (strong,nonatomic) EDJMicroLessionAlbumModel *albumModel;
 
 @end

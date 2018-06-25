@@ -11,5 +11,4 @@
 @interface HPMicrolessonViewController : LGBaseViewController
 @property (strong,nonatomic) NSArray *dataArray;
 
-
 @end

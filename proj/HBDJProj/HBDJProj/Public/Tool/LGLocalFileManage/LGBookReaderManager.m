@@ -23,6 +23,8 @@ YMEpubReaderManagerDelegate>
 /** 阅读时间 */
 @property (assign,nonatomic) NSTimeInterval readTime;//
 
+@property (strong,nonatomic) NSString *currentBookid;
+
 @end
 
 @implementation LGBookReaderManager
@@ -31,6 +33,7 @@ YMEpubReaderManagerDelegate>
     [[self sharedInstance] openBookWithLocalUrl:localUrl bookId:(NSString *)bookId vc:vc];
 }
 - (void)openBookWithLocalUrl:(NSString *)localUrl bookId:(NSString *)bookId vc:(UIViewController *)vc{
+    _currentBookid = bookId;
     /// TODO: 获取userid
     MyBook *book = [self.ymepubReader loadBookWithPath:localUrl userId:@"1" bookId:bookId];
     [self.ymepubReader readBook:book fromController:vc];
@@ -54,18 +57,23 @@ YMEpubReaderManagerDelegate>
 }
 - (void)willEndRead{
     NSLog(@"willEndRead");
-//    // 获取时间(阅读秒数)
-//    self.readTime = [[NSDate date] timeIntervalSinceDate:self.beginReadTime];
-//    // 转成小时
-//    double hour = self.readTime / 3600;
-//    // 转成字符串
+    // 获取时间(阅读秒数)
+    self.readTime = [[NSDate date] timeIntervalSinceDate:self.beginReadTime];
+    // 转成小时
+    double hour = self.readTime / 3600;
+    // 转成字符串
 //    NSString *readTimeStr = [NSString stringWithFormat:@"%f",hour];
-//    /// 请求上传进度接口
-//    NSNumber *finalProgress;// = self.ymepubReader.currentReadBook.readProgress;
-//    if (finalProgress.floatValue > 0.99) {
-//        finalProgress = @1;
-//    }
+    /// 请求上传进度接口
+    NSNumber *finalProgress = self.ymepubReader.currentReadBook.readProgress;
+    if (finalProgress.floatValue > 0.99) {
+        finalProgress = @1;
+    }
     /// TODO: 上传阅读进度
+    [[DJHomeNetworkManager sharedInstance] homeReadPorgressBookid:_currentBookid progress:finalProgress.floatValue success:^(id responseObj) {
+        NSLog(@"上传阅读进度: %@",responseObj);
+    } failure:^(id failureObj) {
+        NSLog(@"上传阅读进度_failureObj: %@",failureObj);
+    }];
 }
 - (void)didEndRead{
     NSLog(@"didEndRead");

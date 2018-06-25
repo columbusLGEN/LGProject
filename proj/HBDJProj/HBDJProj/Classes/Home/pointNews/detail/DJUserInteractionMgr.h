@@ -5,6 +5,7 @@
 //  Created by Peanut Lee on 2018/6/8.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
+/// 用户交互管理者
 
 #import <Foundation/Foundation.h>
 

@@ -19,15 +19,11 @@
 @property (strong,nonatomic) NSString *classimg;
 /** 专辑名 */
 @property (strong,nonatomic) NSString *classname;
+@property (strong,nonatomic) NSString *classdescription;
 /** classlist */
 @property (strong,nonatomic) NSArray<DJDataBaseModel *> *classlist;
 
-///
-/** 展示类型
- 0 在cell中展示
- 1 头部第一个展示
- 2 头部第二个展示
- */
-@property (assign,nonatomic) NSInteger showType;
+@property (strong,nonatomic) EDJMicroLessionAlbumModel *headerModel1;
+@property (strong,nonatomic) EDJMicroLessionAlbumModel *headerModel2;
 
 @end
