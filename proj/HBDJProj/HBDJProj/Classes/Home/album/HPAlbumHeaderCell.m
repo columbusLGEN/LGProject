@@ -22,7 +22,7 @@
     _model = model;
     [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     _text.text = model.classdescription;
-//    NSLog(@"专辑列表.cover: %@",model.cover);
+    NSLog(@"专辑列表.cover: %@",model.cover);
 //    NSLog(@"专辑列表.info: %@",model.classdescription);
 }
 

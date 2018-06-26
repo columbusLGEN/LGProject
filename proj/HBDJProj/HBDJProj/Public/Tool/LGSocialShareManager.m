@@ -12,13 +12,14 @@
 
 @implementation LGSocialShareManager
 
+/// MARK: 分享
 + (void)showShareMenuWithThumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl vc:(UIViewController *)vc{
     [[LGSocialShareManager sharedInstance] showShareMenuWithThumbUrl:thumbUrl content:content webpageUrl:webpageUrl vc:vc];
     
 }
 - (void)showShareMenuWithThumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl vc:(UIViewController *)vc{
     
-    /// MARK: UI面板选项
+    /// MARK: 配置UI面板选项
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),
                                                @(UMSocialPlatformType_QQ),
                                                @(UMSocialPlatformType_WechatSession),
@@ -29,7 +30,6 @@
     }];
     
 }
-
 - (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType thumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl vc:(UIViewController *)vc{
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];

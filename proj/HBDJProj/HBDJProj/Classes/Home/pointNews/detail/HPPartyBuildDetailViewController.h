@@ -24,4 +24,6 @@ typedef NS_ENUM(NSUInteger, LGCoreTextViewType) {
 @property (strong,nonatomic) EDJHomeImageLoopModel *imageLoopModel;
 @property (strong,nonatomic) EDJMicroBuildModel *contentModel;
 
++ (void)buildVcPushWith:(id)model baseVc:(UIViewController *)baseVc;
+
 @end

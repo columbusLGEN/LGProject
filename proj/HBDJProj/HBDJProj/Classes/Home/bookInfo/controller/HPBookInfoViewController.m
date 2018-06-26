@@ -14,6 +14,7 @@
 #import "HPBookInfoModel.h"
 // 本地资源文件管理者
 #import "LGLocalFileProducer.h"
+#import "LGBookReaderManager.h"
 
 static NSString * const bookInfoBriefCell = @"HPBookInfoBriefCell";
 static NSString * const bookInfoHeaderCell = @"HPBookInfoHeaderCell";
@@ -30,11 +31,6 @@ HPBookInfoBriefCellDelegate>
 
 @implementation HPBookInfoViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
@@ -49,13 +45,13 @@ HPBookInfoBriefCellDelegate>
         lineModel.isHeader = !i;
         if (i == 0) {
             lineModel.coverUrl = model.cover;
+            lineModel.bookName = model.ebookname;
+            lineModel.author = model.author;
+            lineModel.press = model.publisher;
+            lineModel.testPressTime = [NSString stringWithFormat:@"出版时间: %@",model.pubdate];
+            lineModel.testProgress = model.progressForUI;
         }
         
-        lineModel.bookName = model.ebookname;
-        lineModel.author = model.author;
-        lineModel.press = model.publisher;
-        lineModel.testPressTime = [NSString stringWithFormat:@"出版时间: %@",model.pubdate];
-        lineModel.testProgress = @"上次阅读进度：7%";
         
         if (i == 1) {
             lineModel.itemTitle = @"简介";
@@ -79,6 +75,16 @@ HPBookInfoBriefCellDelegate>
 //    } failure:^(id failureObj) {
 //
 //    }];
+}
+
+- (void)closeReaderNotification:(NSNotification *)notification{
+    NSDictionary *userInfo = notification.userInfo;
+    NSNumber *progress = userInfo[LGCloseReaderProgressKey];
+    self.model.progress = progress.floatValue;
+    HPBookInfoModel *lineModel = self.array[0];
+    lineModel.testProgress = self.model.progressForUI;
+    [self.tableView reloadData];
+    NSLog(@"self.model.progressForUI: %@",self.model.progressForUI);
 }
 
 - (void)readBook{
@@ -124,6 +130,8 @@ HPBookInfoBriefCellDelegate>
         make.height.mas_equalTo(50);
     }];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeReaderNotification:) name:LGCloseReaderNotification object:nil];
+    
 }
 
 #pragma mark - getter
@@ -148,6 +156,11 @@ HPBookInfoBriefCellDelegate>
         [_button addTarget:self action:@selector(readBook) forControlEvents:UIControlEventTouchUpInside];
     }
     return _button;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)dealloc{

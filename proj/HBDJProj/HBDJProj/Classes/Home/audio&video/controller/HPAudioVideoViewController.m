@@ -49,16 +49,29 @@ LGThreeRightButtonViewDelegate>
 
 @implementation HPAudioVideoViewController
 
+/// TODO: 播放之后 调 添加播放接口 homeAddcountWithId
+
+
 /// MARK: 进入微党课详情页面
-- (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
++ (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
     if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
-        NSLog(@"数据异常: ");
+        [baseVc presentFailureTips:@"数据类型异常，请联系后台"];
     }else{
-        self.model = lesson;
-        self.contentType = lesson.modaltype;
-        [baseVc.navigationController pushViewController:self animated:YES];
+        HPAudioVideoViewController *avc = [self new];
+        avc.model = lesson;
+        avc.contentType = lesson.modaltype;
+        [baseVc.navigationController pushViewController:avc animated:YES];
     }
 }
+//- (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
+//    if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
+//        [self presentFailureTips:@"数据类型异常，请联系后台"];
+//    }else{
+//        self.model = lesson;
+//        self.contentType = lesson.modaltype;
+//        [baseVc.navigationController pushViewController:self animated:YES];
+//    }
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -104,6 +117,29 @@ LGThreeRightButtonViewDelegate>
 //      TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
 //      TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
 //      }
+    NSInteger praiseid = 0;
+    NSInteger collectionid = 0;
+    
+    NSInteger likeCount = 0;
+    NSInteger collectionCount = 0;
+    
+    if (self.imgLoopModel) {
+        praiseid = self.imgLoopModel.praiseid;
+        collectionid = self.imgLoopModel.collectionid;
+        likeCount = self.imgLoopModel.praisecount;
+        collectionCount = self.imgLoopModel.collectioncount;
+    }
+    if (self.model) {
+        praiseid = self.model.praiseid;
+        collectionid = self.model.collectionid;
+        likeCount = self.model.praisecount;
+        collectionCount = self.model.collectioncount;
+    }
+    
+    pbdBottom.leftIsSelected = !(praiseid <= 0);
+    pbdBottom.middleIsSelected = !(collectionid <= 0);
+    pbdBottom.likeCount = likeCount;
+    pbdBottom.collectionCount = collectionCount;
     
     [self.view addSubview:pbdBottom];
     
@@ -152,33 +188,26 @@ LGThreeRightButtonViewDelegate>
 #pragma mark - LGThreeRightButtonViewDelegate
 - (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 点赞
-    [self likeCollectWithSeqid:self.imgLoopModel.seqid pcid:self.imgLoopModel.praiseid clickSuccess:success collect:NO];
+    [self likeCollectWithClickSuccess:success collect:NO];
 }
 - (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 收藏
-    [self likeCollectWithSeqid:self.imgLoopModel.seqid pcid:self.imgLoopModel.collectionid clickSuccess:success collect:YES];
+    [self likeCollectWithClickSuccess:success collect:YES];
 }
 - (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 分享
 
 }
 
-- (void)likeCollectWithSeqid:(NSInteger)seqid pcid:(NSInteger)pcid clickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
-    [DJUserInteractionMgr likeCollectWithSeqid:seqid pcid:pcid collect:collect type:DJDataPraisetypeMicrolesson success:^(id responseObj) {
-        NSDictionary *dict = responseObj;
-        if ([[[dict allKeys] firstObject] isEqualToString:@"praiseid"]) {
-            NSLog(@"点赞 -- %@",responseObj);
-            self.imgLoopModel.praiseid = [responseObj[@"praiseid"] integerValue];
-            clickSuccess(self.imgLoopModel.praiseid);
-        }else{
-            NSLog(@"收藏 -- %@",responseObj);
-            self.imgLoopModel.collectionid = [responseObj[@"collectionid"] integerValue];
-            clickSuccess(self.imgLoopModel.collectionid);
-        }
+- (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
+    DJDataBaseModel *model = self.model?self.model:self.imgLoopModel;
+    [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:model collect:collect type:DJDataPraisetypeMicrolesson success:^(NSInteger cbkid, NSInteger cbkCount) {
+        if (clickSuccess) clickSuccess(cbkid,cbkCount);
     } failure:^(id failureObj) {
-        
+        NSLog(@"点赞收藏失败: ");
     }];
 }
+
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _array.count;

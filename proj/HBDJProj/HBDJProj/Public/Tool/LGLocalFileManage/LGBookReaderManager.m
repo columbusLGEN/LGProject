@@ -36,6 +36,7 @@ YMEpubReaderManagerDelegate>
     _currentBookid = bookId;
     /// TODO: 获取userid
     MyBook *book = [self.ymepubReader loadBookWithPath:localUrl userId:@"1" bookId:bookId];
+    
     [self.ymepubReader readBook:book fromController:vc];
 }
 
@@ -68,9 +69,14 @@ YMEpubReaderManagerDelegate>
     if (finalProgress.floatValue > 0.99) {
         finalProgress = @1;
     }
-    /// TODO: 上传阅读进度
+    
+    /// 1.上传阅读进度
     [[DJHomeNetworkManager sharedInstance] homeReadPorgressBookid:_currentBookid progress:finalProgress.floatValue success:^(id responseObj) {
         NSLog(@"上传阅读进度: %@",responseObj);
+        /// 成功之后，回调进度给控制器
+        NSDictionary *userInfo = @{LGCloseReaderProgressKey:finalProgress};
+        [[NSNotificationCenter defaultCenter] postNotificationName:LGCloseReaderNotification object:nil userInfo:userInfo];
+        
     } failure:^(id failureObj) {
         NSLog(@"上传阅读进度_failureObj: %@",failureObj);
     }];

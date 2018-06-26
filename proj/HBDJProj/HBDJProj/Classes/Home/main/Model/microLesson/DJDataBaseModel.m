@@ -10,5 +10,23 @@
 
 @implementation DJDataBaseModel
 
+- (NSInteger)praisecount{
+    if (_praisecount < 0) {
+        _praisecount = 0;
+    }
+    return _praisecount;
+}
+- (NSInteger)collectioncount{
+    if (_collectioncount < 0) {
+        _collectioncount = 0;
+    }
+    return _collectioncount;
+}
+- (NSInteger)playcount{
+    if (_playcount < 0) {
+        _playcount = 0;
+    }
+    return _playcount;
+}
 
 @end

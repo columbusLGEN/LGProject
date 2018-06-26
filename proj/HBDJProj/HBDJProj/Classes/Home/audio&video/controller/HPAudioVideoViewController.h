@@ -26,6 +26,6 @@
 // 是否已经播放过,默认为NO
 @property (assign,nonatomic) BOOL opreated;
 
-- (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc;
++ (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc;
 
 @end

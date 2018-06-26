@@ -34,6 +34,10 @@
 @property (strong,nonatomic) NSString *ebookresource;
 /** 本地资源文件存储路径 */
 @property (strong,nonatomic) NSString *localUrl;
+/** 阅读进度 */
+@property (assign,nonatomic) CGFloat progress;
+/** 设置在页面上的进度值 */
+@property (strong,nonatomic) NSString *progressForUI;
 
 
 @end

@@ -71,6 +71,8 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (strong,nonatomic) NSString *createdtime;
 /** praisecount */
 @property (assign,nonatomic) NSInteger praisecount;
+/** collectioncount */
+@property (assign,nonatomic) NSInteger collectioncount;
 /** 模板类型：1音频模板，2视频模板，3图文模板，4自由模板（包含音频、视频、图文） */
 @property (assign,nonatomic) ModelMediaType modaltype;
 /** contentvalidity */

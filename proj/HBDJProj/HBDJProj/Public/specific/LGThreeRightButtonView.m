@@ -30,6 +30,26 @@ static CGFloat buttonH = 30;
     _middleIsSelected = middleIsSelected;
     self.midBtn.selected = middleIsSelected;
 }
+- (void)setLikeCount:(NSInteger)likeCount{
+    _likeCount = likeCount;
+    [self.leftBtn setTitle:[self formatterWithCount:likeCount] forState:UIControlStateNormal];
+}
+- (void)setCollectionCount:(NSInteger)collectionCount{
+    _collectionCount = collectionCount;
+    [self.midBtn setTitle:[self formatterWithCount:collectionCount] forState:UIControlStateNormal];
+}
+
+- (NSString *)formatterWithCount:(NSInteger)count{
+    NSString *string = @"";
+    if (count <= 99) {
+        if (count != 0) {
+            string = [NSString stringWithFormat:@"%ld",count];        
+        }
+    }else{
+        string = @"99+";
+    }
+    return string;
+}
 
 - (void)setHideTopLine:(BOOL)hideTopLine{
     if (hideTopLine) {
@@ -51,13 +71,14 @@ static CGFloat buttonH = 30;
 
 - (void)leftClick:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(leftClick:success:failure:)]) {
-        [self.delegate leftClick:self success:^(NSInteger id){
+        [self.delegate leftClick:self success:^(NSInteger id,NSInteger count){
             NSLog(@"left刷新UI -- id: %ld",id);
             if (sender.isSelected) {
                 sender.selected = NO;
             }else{
                 sender.selected = YES;
             }
+            [self.leftBtn setTitle:[self formatterWithCount:count] forState:UIControlStateNormal];
         } failure:^{
             
         }];
@@ -65,8 +86,9 @@ static CGFloat buttonH = 30;
 }
 - (void)midClick:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(middleClick:success:failure:)]) {
-        [self.delegate middleClick:self success:^(NSInteger id){
-            NSLog(@"mid刷新UI -- id: %ld",id);
+        [self.delegate middleClick:self success:^(NSInteger id,NSInteger count){
+//            NSLog(@"mid刷新UI -- id: %ld",id);
+            [self.midBtn setTitle:[self formatterWithCount:count] forState:UIControlStateNormal];
             if (sender.isSelected) {
                 sender.selected = NO;
             }else{
@@ -79,7 +101,7 @@ static CGFloat buttonH = 30;
 }
 - (void)rightClick:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(rightClick:success:failure:)]) {
-        [self.delegate rightClick:self success:^(NSInteger id){
+        [self.delegate rightClick:self success:^(NSInteger id,NSInteger count){
             if (sender.isSelected) {
                 sender.selected = NO;
             }else{

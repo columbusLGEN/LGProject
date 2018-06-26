@@ -24,6 +24,9 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
 
 @interface DJHomeNetworkManager : NSObject
 
+/// MARK: 添加播放次数
+- (void)homeAddcountWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
 /// MARK: 上传阅读进度
 - (void)homeReadPorgressBookid:(NSString *)bookid progress:(CGFloat)progress success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 

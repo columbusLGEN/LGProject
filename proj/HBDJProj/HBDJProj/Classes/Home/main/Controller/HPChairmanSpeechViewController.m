@@ -36,7 +36,7 @@
 #import "LTScrollView-Swift.h"
 #import "LGDidSelectedNotification.h"
 
-static NSInteger requestLength = 1;
+static NSInteger requestLength = 10;
 
 @interface HPChairmanSpeechViewController ()<
  LGSegmentControlDelegate
@@ -119,6 +119,7 @@ static NSInteger requestLength = 1;
 }
 // 获取数据
 - (void)homeReloadDataWithScrollView:(UIScrollView *)scrollView{
+    [_btvc.tableView.mj_footer resetNoMoreData];
     /// 添加 页面网络指示器, 有添加，就要在每个回调中有删除
     [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
     /// 请求数据
@@ -176,17 +177,24 @@ static NSInteger requestLength = 1;
     [DJHomeNetworkManager homeChairmanPoineNewsClassid:_homeModel.newsClassId offset:_buildOffset length:requestLength sort:0 success:^(id responseObj) {
         NSLog(@"buildpointnews_response : %@",responseObj);
         NSArray *array = (NSArray *)responseObj;
-        NSMutableArray *buildArray = [NSMutableArray arrayWithArray:_btvc.dataArray];
-        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:obj];
-            [buildArray addObject:model];
-        }];
-        _buildOffset = buildArray.count;
         
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [_btvc.tableView.mj_footer endRefreshing];
-            _btvc.dataArray = buildArray;
-        }];
+        if (array.count == 0) {
+            [_btvc.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            NSMutableArray *buildArray = [NSMutableArray arrayWithArray:_btvc.dataArray];
+            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:obj];
+                [buildArray addObject:model];
+            }];
+            _buildOffset = buildArray.count;
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [_btvc.tableView.mj_footer endRefreshing];
+                _btvc.dataArray = buildArray;
+            }];
+        }
+        
+        
     } failure:^(id failureObj) {
         NSLog(@"buildpointnews_failure : %@",failureObj);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -352,20 +360,20 @@ static NSInteger requestLength = 1;
         case 1:{
             /// 进入 党建要闻详情
             //        imageLoopModel.newsid;
-            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-            dvc.djDataType = DJDataPraisetypeNews;
-            dvc.imageLoopModel = model;
-            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-            [self.navigationController pushViewController:dvc animated:YES];
+            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:self];
+            
+//            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+//            dvc.djDataType = DJDataPraisetypeNews;
+//            dvc.imageLoopModel = model;
+//            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+//            [self.navigationController pushViewController:dvc animated:YES];
         }
             break;
         case 2:{
             /// 进入 微党课详情
-            HPAudioVideoViewController *dvc = [HPAudioVideoViewController new];
-            dvc.imgLoopModel = model;
-            /// 用于区分音视频
-            dvc.contentType = model.modaltype;
-            [self.navigationController pushViewController:dvc animated:YES];
+//            HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+//            [avc avcPushWithLesson:model baseVc:self];
+            [HPAudioVideoViewController avcPushWithLesson:model baseVc:self];
         }
             break;
     }
@@ -388,21 +396,10 @@ static NSInteger requestLength = 1;
             /// 再获取专辑单条微党课
             DJDataBaseModel *lesson = alubm.classlist[subIndex];
             
-            /// TODO: 打开正式代码
             /// MARK: 进入微党课正式代码
 //            HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-//            [avc avcPushWithLesson:lesson baseVc:self];            
-            
-            /// testcode 第一个cell，打开视频详情
-            HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-            if ((index % 2) == 0) {
-                avc.contentType = ModelMediaTypeAudio;
-            }else{
-                avc.contentType = ModelMediaTypeVideo;
-            }
-            avc.model = lesson;
-            [self.navigationController pushViewController:avc animated:YES];
-            
+//            [avc avcPushWithLesson:lesson baseVc:self];
+            [HPAudioVideoViewController avcPushWithLesson:lesson baseVc:self];
         }
             break;
         case LGDidSelectedSkipTypeMicrolessonAlbum:{
@@ -417,15 +414,17 @@ static NSInteger requestLength = 1;
         }
             break;
         case LGDidSelectedSkipTypeBuildNews:{
-            EDJMicroBuildModel *contentModel = self.buildModels[index];
-            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-            dvc.contentModel = contentModel;
-            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-            [self.navigationController pushViewController:dvc animated:YES];
+            EDJMicroBuildModel *contentModel = (EDJMicroBuildModel *)model;
+            [HPPartyBuildDetailViewController buildVcPushWith:contentModel baseVc:self];
+            
+//            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+//            dvc.contentModel = contentModel;
+//            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+//            [self.navigationController pushViewController:dvc animated:YES];
         }
             break;
         case LGDidSelectedSkipTypeDigitalBook:{
-            EDJDigitalModel *digital = self.digitalModels[index];
+            EDJDigitalModel *digital = (EDJDigitalModel *)model;
             HPBookInfoViewController *vc = [HPBookInfoViewController new];
             vc.model = digital;
             [self.navigationController pushViewController:vc animated:YES];

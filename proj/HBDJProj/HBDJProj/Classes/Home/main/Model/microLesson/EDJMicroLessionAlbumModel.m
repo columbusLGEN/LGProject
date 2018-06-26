@@ -10,6 +10,13 @@
 
 @implementation EDJMicroLessionAlbumModel
 
+- (NSURL *)imgUrl{
+    if (!_imgUrl) {
+        _imgUrl = [NSURL URLWithString:_classimg];
+    }
+    return _imgUrl;
+}
+
 + (NSDictionary *)mj_objectClassInArray{
     return @{@"classlist":@"DJDataBaseModel"};
 }

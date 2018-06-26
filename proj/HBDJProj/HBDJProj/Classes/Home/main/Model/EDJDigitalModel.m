@@ -11,6 +11,15 @@
 
 @implementation EDJDigitalModel
 
+- (NSString *)progressForUI{
+    return [NSString stringWithFormat:@"上次阅读进度：%.0f%@",self.progress,@"%"];
+}
+
+- (CGFloat)progress{
+//    _progress = 0.57;
+    return _progress * 100;
+}
+
 - (NSString *)localUrl{
     if (!_localUrl) {
         _localUrl = [[LGLocalFileManager sharedLocalFileManager].filePath stringByAppendingString:[NSString stringWithFormat:@"/DJDigital_%@.epub",[NSString stringWithFormat:@"%ld",self.seqid]]];

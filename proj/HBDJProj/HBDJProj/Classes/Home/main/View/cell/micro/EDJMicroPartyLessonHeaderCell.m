@@ -10,11 +10,28 @@
 #import "EDJMicroLessionAlbumModel.h"
 
 @interface EDJMicroPartyLessonHeaderCell ()
+@property (weak, nonatomic) IBOutlet UIView *titleBgLeft;
+@property (weak, nonatomic) IBOutlet UILabel *titleLeft;
+@property (weak, nonatomic) IBOutlet UIView *titleBgRight;
+@property (weak, nonatomic) IBOutlet UILabel *titleRight;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgLeft;
+@property (weak, nonatomic) IBOutlet UIImageView *imgRight;
 
 @end
 
 @implementation EDJMicroPartyLessonHeaderCell
+
+- (void)setModel:(EDJMicroLessionAlbumModel *)model{
+    _model = model;
+    
+    _titleLeft.text = model.headerModel1.classname;
+    _titleRight.text = model.headerModel2.classname;
+    
+    [_imgLeft sd_setImageWithURL:model.headerModel1.imgUrl placeholderImage:DJPlaceholderImage];
+    [_imgRight sd_setImageWithURL:model.headerModel2.imgUrl placeholderImage:DJPlaceholderImage];
+    
+}
 
 - (IBAction)leftClick:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(headerAlbumClick:index:)]) {
@@ -28,12 +45,19 @@
 }
 
 + (CGFloat)cellHeight{
+    /// 该方法 未被调用
+//    return 128 * kScreenWidth / 1242;
     return 128;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    _titleLeft.textColor = [UIColor whiteColor];
+    _titleRight.textColor = [UIColor whiteColor];
+    
+    _titleBgLeft.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
+    _titleBgRight.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
 }
 
 

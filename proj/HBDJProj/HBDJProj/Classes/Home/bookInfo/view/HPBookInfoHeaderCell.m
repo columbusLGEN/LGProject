@@ -49,6 +49,7 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
+//    NSLog(@"_fuzzyBg.frame: %@",NSStringFromCGRect(_fuzzyBg.frame));
     UIVisualEffectView *effectView = [LGGaussManager gaussViewWithFrame:_fuzzyBg.frame style:UIBlurEffectStyleDark];
     [self.contentView addSubview:effectView];
     [self.contentView sendSubviewToBack:effectView];

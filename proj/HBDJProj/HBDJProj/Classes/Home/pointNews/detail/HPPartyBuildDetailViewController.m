@@ -37,6 +37,18 @@ LGThreeRightButtonViewDelegate>
 
 @implementation HPPartyBuildDetailViewController
 
++ (void)buildVcPushWith:(id)model baseVc:(UIViewController *)baseVc{
+    HPPartyBuildDetailViewController *dvc = [self new];
+    dvc.djDataType = DJDataPraisetypeNews;
+    if ([model isMemberOfClass:[NSClassFromString(@"EDJMicroBuildModel") class]]) {
+        dvc.contentModel = model;
+    }else{    
+        dvc.imageLoopModel = model;
+    }
+    dvc.coreTextViewType = LGCoreTextViewTypeDefault;
+    [baseVc.navigationController pushViewController:dvc animated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -49,6 +61,11 @@ LGThreeRightButtonViewDelegate>
     
     /// bottom
     [self.view addSubview:self.pbdBottom];
+    
+    NSInteger praiseid = self.contentModel.praiseid;
+    NSInteger collectionid = self.contentModel.collectionid;
+    NSInteger likeCount = self.contentModel.praisecount;
+    NSInteger collectionCount = self.contentModel.collectioncount;
     
 }
 
@@ -89,7 +106,8 @@ LGThreeRightButtonViewDelegate>
     _imageLoopModel = imageLoopModel;
 
     /// 从轮播图跳转到该页面时，模型没有富文本数据，需要单独请求
-    [DJHomeNetworkManager homePointNewsDetailWithId:imageLoopModel.seqid type:1 success:^(id responseObj) {
+    /// 这里需要传 imageLoopModel.newsid
+    [DJHomeNetworkManager homePointNewsDetailWithId:imageLoopModel.newsid type:DJDataPraisetypeNews success:^(id responseObj) {
         NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
         EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
         self.contentModel = model;
@@ -106,26 +124,17 @@ LGThreeRightButtonViewDelegate>
 #pragma mark - LGThreeRightButtonViewDelegate
 /// MARK: 点赞
 - (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    [self likeCollectWithSeqid:self.contentModel.seqid pcid:self.contentModel.praiseid clickSuccess:success collect:NO];
+    [self likeCollectWithClickSuccess:success collect:NO];
 }
 /// MARK: 收藏
 - (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    [self likeCollectWithSeqid:self.contentModel.seqid pcid:self.contentModel.collectionid clickSuccess:success collect:YES];
+    [self likeCollectWithClickSuccess:success collect:YES];
 }
-- (void)likeCollectWithSeqid:(NSInteger)seqid pcid:(NSInteger)pcid clickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
-    [DJUserInteractionMgr likeCollectWithSeqid:seqid pcid:pcid collect:collect type:DJDataPraisetypeNews success:^(id responseObj) {
-        NSDictionary *dict = responseObj;
-        if ([[[dict allKeys] firstObject] isEqualToString:@"praiseid"]) {
-            NSLog(@"点赞 -- %@",responseObj);
-            self.contentModel.praiseid = [responseObj[@"praiseid"] integerValue];
-            clickSuccess(self.contentModel.praiseid);
-        }else{
-            NSLog(@"收藏 -- %@",responseObj);
-            self.contentModel.collectionid = [responseObj[@"collectionid"] integerValue];
-            clickSuccess(self.contentModel.collectionid);
-        }
+- (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
+    [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:self.contentModel collect:collect type:DJDataPraisetypeNews success:^(NSInteger cbkid, NSInteger cbkCount) {
+        if (clickSuccess) clickSuccess(cbkid,cbkCount);
     } failure:^(id failureObj) {
-        
+        NSLog(@"党建要闻点赞收藏失败: ");
     }];
 }
 

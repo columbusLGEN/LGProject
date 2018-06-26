@@ -18,7 +18,7 @@
 /** classname */
 //@property (strong,nonatomic) NSString *classname;
 /** newsid: 如果有值，表示详情；否则表示习近平要闻列表 */
-@property (assign,nonatomic) NSObject *newsid;
+@property (assign,nonatomic) NSInteger newsid;
 
 /** parentclassid */
 //@property (assign,nonatomic) NSInteger parentclassid;

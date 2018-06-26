@@ -80,8 +80,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DJDataBaseModel *lesson = self.dataArray[indexPath.row];
-    HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-    [avc avcPushWithLesson:lesson baseVc:self];
+//    HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+//    [avc avcPushWithLesson:lesson baseVc:self];
+    [HPAudioVideoViewController avcPushWithLesson:lesson baseVc:self];
 }
 
 @end

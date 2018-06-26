@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^ClickRequestSuccess)(NSInteger id);
+typedef void(^ClickRequestSuccess)(NSInteger id,NSInteger count);
 typedef void(^ClickRequestFailure)(void);
 
 @protocol LGThreeRightButtonViewDelegate;
+
 static NSString * const TRConfigTitleKey = @"TRConfigTitleKey";
 static NSString * const TRConfigTitleColorNormalKey = @"TRConfigTitleColorNormalKey";
 static NSString * const TRConfigTitleColorSelectedKey = @"TRConfigTitleColorSelectedKey";
@@ -22,6 +23,9 @@ static NSString * const TRConfigSelectedImgNameKey = @"TRConfigSelectedImgNameKe
 
 @property (assign,nonatomic) BOOL leftIsSelected;
 @property (assign,nonatomic) BOOL middleIsSelected;
+@property (assign,nonatomic) NSInteger likeCount;
+@property (assign,nonatomic) NSInteger collectionCount;
+
 @property (weak,nonatomic) NSArray<NSDictionary *> *btnConfigs;
 /** 分割线是否顶头 */
 @property (assign,nonatomic) BOOL bothSidesClose;

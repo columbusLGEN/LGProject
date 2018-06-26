@@ -42,7 +42,7 @@ HPAlbumHeaderCellDelegate>
     [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
     self.tableView.estimatedRowHeight = 90;
     
-    self.timeSort = NO;
+    self.timeSort = YES;
     
     _offset = 0;
     
@@ -61,7 +61,6 @@ HPAlbumHeaderCellDelegate>
         [[DJHomeNetworkManager sharedInstance] homeAlbumListWithClassid:strongSelf.albumModel.classid offset:offset length:10 sort:strongSelf.timeSort success:^(id responseObj) {
             
             [normalHUD hideAnimated:YES];
-            [self.tableView.mj_footer endRefreshing];
             
             NSArray *array = responseObj;
             
@@ -70,6 +69,16 @@ HPAlbumHeaderCellDelegate>
                 arrm  = [NSMutableArray array];
             }else{
                 arrm = [NSMutableArray arrayWithArray:strongSelf.dataArray];
+            }
+            
+            if (offset != 0) {
+                /// 上拉刷新
+                if (array.count == 0 || array == nil) {
+                    /// 没有更多数据
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else{
+                    [self.tableView.mj_footer endRefreshing];
+                }
             }
             
             for (int i = 0; i < array.count; i++) {
@@ -123,8 +132,9 @@ HPAlbumHeaderCellDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 进入课程详情
     DJDataBaseModel *lesson = self.dataArray[indexPath.row];
-    HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-    [avc avcPushWithLesson:lesson baseVc:self];
+//    HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+//    [avc avcPushWithLesson:lesson baseVc:self];
+    [HPAudioVideoViewController avcPushWithLesson:lesson baseVc:self];
 }
 
 #pragma mark - HPAlbumHeaderCellDelegate

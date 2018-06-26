@@ -40,6 +40,11 @@
 }
 
 /// MARK: -----分割线-----
+- (void)homeAddcountWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+//
+    NSDictionary *param = @{@"seqid":id};
+    [self sendPOSTRequestWithiName:@"/frontNews/addcount" param:param success:success failure:failure];
+}
 - (void)homeReadPorgressBookid:(NSString *)bookid progress:(CGFloat)progress success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"bookid":bookid,
                             @"progress":[NSString stringWithFormat:@"%f",progress]

@@ -23,6 +23,8 @@
 /** classlist */
 @property (strong,nonatomic) NSArray<DJDataBaseModel *> *classlist;
 
+@property (strong,nonatomic) NSURL *imgUrl;
+
 @property (strong,nonatomic) EDJMicroLessionAlbumModel *headerModel1;
 @property (strong,nonatomic) EDJMicroLessionAlbumModel *headerModel2;
 
