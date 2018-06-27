@@ -47,21 +47,22 @@ EDJMicroPartyLessonHeaderCellDelegate>
 - (void)setDataArray:(NSArray *)dataArray{
     
     EDJMicroLessionAlbumModel *headerModel = [EDJMicroLessionAlbumModel new];
-    for (EDJMicroLessionAlbumModel *model in dataArray) {
-        NSLog(@"model.sort: %ld",model.sort);
+    
+    /// 精品课程单独处理
+    NSMutableArray *array = [NSMutableArray new];
+    for (int i = 0;i < dataArray.count;i++) {
+        EDJMicroLessionAlbumModel *model = dataArray[i];
         if (model.sort == 1) {
-            headerModel.headerModel1 = model;
+            [array addObject:model];
         }
-        if (model.sort == 2) {
-            headerModel.headerModel2 = model;
+    }
+    if (array.count > 1) {
+        if (headerModel.headerModel1 == nil) {
+            headerModel.headerModel1 = array[0];
         }
-        
-    }
-    if (headerModel.headerModel1 == nil) {
-        headerModel.headerModel1 = dataArray[0];
-    }
-    if (headerModel.headerModel2 == nil) {
-        headerModel.headerModel2 = dataArray[1];
+        if (headerModel.headerModel2 == nil) {
+            headerModel.headerModel2 = array[1];
+        }        
     }
     
     NSMutableArray *arrayMutable = [NSMutableArray arrayWithArray:dataArray];

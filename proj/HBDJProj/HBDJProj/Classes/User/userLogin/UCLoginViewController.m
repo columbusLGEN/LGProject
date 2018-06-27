@@ -12,6 +12,7 @@
 #import "DJUser.h"
 
 #import "LIGMainTabBarController.h"
+#import "LGBaseNavigationController.h"
 
 @interface UCLoginViewController ()<
 UCAccountHitViewControllerDelegate
@@ -24,6 +25,12 @@ UCAccountHitViewControllerDelegate
 @end
 
 @implementation UCLoginViewController
+
++ (UINavigationController *)navWithLoginvc{
+    UCLoginViewController *loginvc = (UCLoginViewController *)[[UIStoryboard storyboardWithName:UserCenterStoryboardName bundle:nil] instantiateViewControllerWithIdentifier:@"UCLoginViewController"];
+    loginvc.canBack = NO;
+    return [[LGBaseNavigationController alloc] initWithRootViewController:loginvc];
+}
 
 - (void)setNavLeftBackItem{
     if (_canBack) {

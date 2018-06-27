@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		14120FADAE17F79542DF37A5 /* Pods_HBDJProjUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A115F1196D08C530AC251368 /* Pods_HBDJProjUITests.framework */; };
 		2C7C7E86E82AEAEDF7230796 /* Pods_HBDJProj.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AECC58CD5813726C23C0C6 /* Pods_HBDJProj.framework */; };
+		880363A320E323BB00E97FA3 /* DJMediaDetailTransAssist.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363A220E323BB00E97FA3 /* DJMediaDetailTransAssist.m */; };
+		880363A620E363FB00E97FA3 /* HPAddBroseCountMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363A520E363FB00E97FA3 /* HPAddBroseCountMgr.m */; };
 		8805127320D381E10027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
 		8805127420D3826D0027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
 		8805127520D3826D0027B3B1 /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -396,6 +398,10 @@
 		5B9F86E8014D07FA4DE6D173 /* Pods-HBDJProjTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBDJProjTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HBDJProjTests/Pods-HBDJProjTests.release.xcconfig"; sourceTree = "<group>"; };
 		5DAB9BB351BB410846B49078 /* Pods-HBDJProj.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBDJProj.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBDJProj/Pods-HBDJProj.debug.xcconfig"; sourceTree = "<group>"; };
 		6CF8435CB5EA2F49C61CE8A9 /* Pods-HBDJProjUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBDJProjUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBDJProjUITests/Pods-HBDJProjUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		880363A120E323BB00E97FA3 /* DJMediaDetailTransAssist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJMediaDetailTransAssist.h; sourceTree = "<group>"; };
+		880363A220E323BB00E97FA3 /* DJMediaDetailTransAssist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJMediaDetailTransAssist.m; sourceTree = "<group>"; };
+		880363A420E363FB00E97FA3 /* HPAddBroseCountMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAddBroseCountMgr.h; sourceTree = "<group>"; };
+		880363A520E363FB00E97FA3 /* HPAddBroseCountMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAddBroseCountMgr.m; sourceTree = "<group>"; };
 		8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		881C94882068EA5A009D6A52 /* HBDJProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBDJProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		881C948B2068EA5A009D6A52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1073,6 +1079,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		880363A020E3238400E97FA3 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				883D476120DCDFC400FD9971 /* DJHomeNetworkManager.h */,
+				883D476220DCDFC400FD9971 /* DJHomeNetworkManager.m */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
 		881C947F2068EA5A009D6A52 = {
 			isa = PBXGroup;
 			children = (
@@ -1196,6 +1211,10 @@
 				886A1B6220CE53220007AD63 /* LGSocialShareManager.m */,
 				883D475720DB4E5F00FD9971 /* LGLoadingAssit.h */,
 				883D475820DB4E5F00FD9971 /* LGLoadingAssit.m */,
+				883E082620CA560900BB62BA /* DJUserInteractionMgr.h */,
+				883E082720CA560900BB62BA /* DJUserInteractionMgr.m */,
+				880363A120E323BB00E97FA3 /* DJMediaDetailTransAssist.h */,
+				880363A220E323BB00E97FA3 /* DJMediaDetailTransAssist.m */,
 				882B117A20D23D3300917374 /* playerview */,
 				88BCEDA120C29B8700B5C1DB /* voice */,
 			);
@@ -1314,8 +1333,7 @@
 		881C94EA2068F362009D6A52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				883D476120DCDFC400FD9971 /* DJHomeNetworkManager.h */,
-				883D476220DCDFC400FD9971 /* DJHomeNetworkManager.m */,
+				880363A020E3238400E97FA3 /* other */,
 				88435EB1208F15A900188CE9 /* main */,
 				88BCEDDA20C665D100B5C1DB /* album */,
 				889FCD2120B3FA430045746D /* audio&video */,
@@ -1975,8 +1993,6 @@
 				8885D23620A2BC1F00DC06A1 /* view */,
 				8885D23320A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.h */,
 				8885D23420A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m */,
-				883E082620CA560900BB62BA /* DJUserInteractionMgr.h */,
-				883E082720CA560900BB62BA /* DJUserInteractionMgr.m */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -2094,6 +2110,8 @@
 			children = (
 				889FCD2320B3FA8A0045746D /* HPAudioVideoViewController.h */,
 				889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */,
+				880363A420E363FB00E97FA3 /* HPAddBroseCountMgr.h */,
+				880363A520E363FB00E97FA3 /* HPAddBroseCountMgr.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3078,6 +3096,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880363A620E363FB00E97FA3 /* HPAddBroseCountMgr.m in Sources */,
 				881C94D32068ECF3009D6A52 /* UIView+Extension.m in Sources */,
 				8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */,
 				889E7DBB20998D5100BB9084 /* UCUploadTransitionView.m in Sources */,
@@ -3109,6 +3128,7 @@
 				88A4710E207DBE1F002F93E0 /* EDJMicroBuildOneImgCell.m in Sources */,
 				8885D23520A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m in Sources */,
 				88397814207F56D700F3D131 /* UCPersonInfoModel.m in Sources */,
+				880363A320E323BB00E97FA3 /* DJMediaDetailTransAssist.m in Sources */,
 				8831E18120941797001D038E /* DCSubStageOneImgCell.m in Sources */,
 				88A80BE920D9E46000AB274B /* HPChairmanSpeechViewController.m in Sources */,
 				884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */,

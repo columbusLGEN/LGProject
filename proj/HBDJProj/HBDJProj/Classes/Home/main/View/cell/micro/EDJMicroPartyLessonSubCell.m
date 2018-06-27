@@ -22,7 +22,7 @@
 - (void)setModel:(DJDataBaseModel *)model{
     _model = model;
     _title.text = model.title;
-    _time.text = model.createdtime;
+    _time.text = model.createdDate;
     _peopleCount.text = [NSString stringWithFormat:@"%ld",model.playcount];
     
     [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];

@@ -18,22 +18,23 @@
 #import "HPSearchViewController.h"
 #import "HPBookInfoViewController.h"
 #import "HPBuildTableViewController.h"
-#import "HPAudioVideoViewController.h"
 #import "HPAlbumTableViewController.h"
 #import "HPMicrolessonViewController.h"
 #import "HPPointNewsTableViewController.h"
-#import "HPPartyBuildDetailViewController.h"
 #import "HPDigitalCollectionViewController.h"
+
+//#import "HPAudioVideoViewController.h"
+//#import "HPPartyBuildDetailViewController.h"
 
 // model
 #import "EDJHomeModel.h"
 #import "EDJDigitalModel.h"
 #import "EDJMicroBuildModel.h"
 #import "EDJHomeImageLoopModel.h"
-#import "EDJMicroLessionAlbumModel.h"
 
 // other
 #import "LTScrollView-Swift.h"
+#import "DJMediaDetailTransAssist.h"
 #import "LGDidSelectedNotification.h"
 
 static NSInteger requestLength = 10;
@@ -74,6 +75,7 @@ static NSInteger requestLength = 10;
 // other
 @property (assign,nonatomic) NSInteger buildOffset;
 @property (assign,nonatomic) NSInteger digitalOffset;
+@property (strong,nonatomic) DJMediaDetailTransAssist *transAssist;
 
 @end
 
@@ -174,7 +176,7 @@ static NSInteger requestLength = 10;
 /// MARK: 党建要闻加载更多数据
 - (void)buildPointNewsLoadMoreDatas{
     
-    [DJHomeNetworkManager homeChairmanPoineNewsClassid:_homeModel.newsClassId offset:_buildOffset length:requestLength sort:0 success:^(id responseObj) {
+    [DJHomeNetworkManager homeChairmanPoineNewsClassid:_homeModel.newsClassId offset:_buildOffset length:requestLength sort:1 success:^(id responseObj) {
         NSLog(@"buildpointnews_response : %@",responseObj);
         NSArray *array = (NSArray *)responseObj;
         
@@ -333,6 +335,13 @@ static NSInteger requestLength = 10;
     return vcs.copy;
 }
 
+- (DJMediaDetailTransAssist *)transAssist{
+    if (!_transAssist) {
+        _transAssist = [DJMediaDetailTransAssist new];
+    }
+    return _transAssist;
+}
+
 /// MARK: 代理方法
 #pragma mark - LGNavigationSearchBarDelelgate -- 导航点击回调
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
@@ -348,89 +357,13 @@ static NSInteger requestLength = 10;
 #pragma mark - SDCycleScrollViewDelegate -- 轮播图点击回调
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     EDJHomeImageLoopModel *model = self.imageLoops[index];
-    NSLog(@"model.classid -- %ld",model.seqid);
-    switch (index) {
-        case 0:{
-            /// MARK: 进入习近平要闻列表
-            HPPointNewsTableViewController *vc = [HPPointNewsTableViewController new];
-            vc.model = model;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-        case 1:{
-            /// 进入 党建要闻详情
-            //        imageLoopModel.newsid;
-            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:self];
-            
-//            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-//            dvc.djDataType = DJDataPraisetypeNews;
-//            dvc.imageLoopModel = model;
-//            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-//            [self.navigationController pushViewController:dvc animated:YES];
-        }
-            break;
-        case 2:{
-            /// 进入 微党课详情
-//            HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-//            [avc avcPushWithLesson:model baseVc:self];
-            [HPAudioVideoViewController avcPushWithLesson:model baseVc:self];
-        }
-            break;
-    }
+    [self.transAssist imgLoopClick:index model:model baseVc:self];
 }
 
-#pragma mark - 进入数据详情页面 notifications
+#pragma mark - 进入 专辑，微党课，要闻详情，
 - (void)didSelectedModel:(NSNotification *)notification{
     NSDictionary *userInfo = notification.userInfo;
-    id model = userInfo[LGDidSelectedModelKey];
-    NSInteger skipType = [userInfo[LGDidSelectedSkipTypeKey] integerValue];
-    NSInteger index = [userInfo[LGDidSelectedIndexKey] integerValue];
-    
-    
-    switch (skipType) {
-        case LGDidSelectedSkipTypeMicrolessonSingle:{
-            NSInteger subIndex = [userInfo[LGDidSelectedSubModelIndexKey] integerValue];
-            
-            /// 先获取专辑
-            EDJMicroLessionAlbumModel *alubm = self.microModels[index];
-            /// 再获取专辑单条微党课
-            DJDataBaseModel *lesson = alubm.classlist[subIndex];
-            
-            /// MARK: 进入微党课正式代码
-//            HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-//            [avc avcPushWithLesson:lesson baseVc:self];
-            [HPAudioVideoViewController avcPushWithLesson:lesson baseVc:self];
-        }
-            break;
-        case LGDidSelectedSkipTypeMicrolessonAlbum:{
-            
-            /// 先获取专辑
-            EDJMicroLessionAlbumModel *albumModel = (EDJMicroLessionAlbumModel *)model;
-            
-            /// MARK: 进入专辑列表
-            HPAlbumTableViewController *album = [HPAlbumTableViewController new];
-            album.albumModel = albumModel;
-            [self.navigationController pushViewController:album animated:YES];
-        }
-            break;
-        case LGDidSelectedSkipTypeBuildNews:{
-            EDJMicroBuildModel *contentModel = (EDJMicroBuildModel *)model;
-            [HPPartyBuildDetailViewController buildVcPushWith:contentModel baseVc:self];
-            
-//            HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-//            dvc.contentModel = contentModel;
-//            dvc.coreTextViewType = LGCoreTextViewTypeDefault;
-//            [self.navigationController pushViewController:dvc animated:YES];
-        }
-            break;
-        case LGDidSelectedSkipTypeDigitalBook:{
-            EDJDigitalModel *digital = (EDJDigitalModel *)model;
-            HPBookInfoViewController *vc = [HPBookInfoViewController new];
-            vc.model = digital;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-    }
+    [self.transAssist homeListClick:userInfo baseVc:self];
     
 }
 
@@ -439,5 +372,6 @@ static NSInteger requestLength = 10;
     [self.managerView scrollToIndexWithIndex:click];
     
 }
+
 
 @end

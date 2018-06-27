@@ -77,9 +77,11 @@
     return [EDJMicroBuildCell cellHeightWithModel:model];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
-    dvc.coreTextViewType = LGCoreTextViewTypePoint;
-    [self.navigationController pushViewController:dvc animated:YES];
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:self];
+//    HPPartyBuildDetailViewController *dvc = [HPPartyBuildDetailViewController new];
+//    dvc.coreTextViewType = LGCoreTextViewTypePoint;
+//    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 

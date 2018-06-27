@@ -11,19 +11,11 @@
 @interface EDJHomeImageLoopModel : DJDataBaseModel
 /** 图片地址 */
 @property (strong,nonatomic) NSString *classimg;
-/** BaseClassesId */
-//@property (assign,nonatomic) BaseClassesId classid;
-
-
-/** classname */
-//@property (strong,nonatomic) NSString *classname;
-/** newsid: 如果有值，表示详情；否则表示习近平要闻列表 */
+/** 详情数据的主键id */
 @property (assign,nonatomic) NSInteger newsid;
 
-/** parentclassid */
-//@property (assign,nonatomic) NSInteger parentclassid;
+/** 点击轮播图跳转至音视频会用到 */
+@property (strong,nonatomic) DJDataBaseModel *frontNews;
 
-/** classdescription */
-//@property (strong,nonatomic) NSString *classdescription;
 
 @end

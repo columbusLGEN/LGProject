@@ -12,7 +12,6 @@
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
 
-#import "LGBaseNavigationController.h"
 #import "UCLoginViewController.h"
 
 @interface AppDelegate ()
@@ -23,8 +22,6 @@
 
 #pragma mark - UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSLog(@"application: %@",application);
-    NSLog(@"launchOptions: %@",launchOptions);
     [self baseConfigWithApplication:application launchOptions:launchOptions];
     return YES;
 }
@@ -72,10 +69,7 @@
     
     if (![DJUser sharedInstance].userid) {
         /// 表明用户还未登录，进入登录控制器
-        UCLoginViewController *loginvc = (UCLoginViewController *)[[UIStoryboard storyboardWithName:UserCenterStoryboardName bundle:nil] instantiateViewControllerWithIdentifier:@"UCLoginViewController"];
-        loginvc.canBack = NO;
-        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:loginvc];
-        self.window.rootViewController = nav;
+        self.window.rootViewController = [UCLoginViewController navWithLoginvc];
     }else{
         self.window.rootViewController = [LIGMainTabBarController new];
     }

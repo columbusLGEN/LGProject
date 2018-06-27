@@ -7,10 +7,12 @@
 //
 
 #import "LGBaseView.h"
-@class EDJMicroBuildModel;
+@class DJDataBaseModel;
 @interface DCRichTextTopInfoView : LGBaseView
-@property (strong,nonatomic) EDJMicroBuildModel *model;
+@property (strong,nonatomic) DJDataBaseModel *model;
 + (instancetype)richTextTopInfoView;
 /** 是否显示,查看次数,默认为NO，不显示 */
 @property (assign,nonatomic) BOOL displayCounts;
+- (void)reloadPlayCount:(NSInteger)count;
+
 @end

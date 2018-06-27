@@ -116,8 +116,7 @@ static NSString *param_key_userid = @"userid";
             }else{
                 NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
                 id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                NSLog(@"jsonstring -- %@",responseObject[@"returnJson"]);
-                NSLog(@"returnJson_class -- %@",[returnJson class]);
+                NSLog(@"jsonstring -- %@",jsonString);
                 
                 /// MARK: 写入缓存数据
                 [LGNetworkCache lg_save_asyncJsonToCacheFile:returnJson URLString:iName params:argum];

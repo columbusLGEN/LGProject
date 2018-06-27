@@ -7,6 +7,7 @@
 //
 
 #import "DJDataBaseModel.h"
+#import "NSString+Extension.h"
 
 @implementation DJDataBaseModel
 
@@ -27,6 +28,14 @@
         _playcount = 0;
     }
     return _playcount;
+}
+
+- (NSString *)createdDate{
+    if (!_createdDate) {
+        _createdDate = [_createdtime timestampToDate];
+        
+    }
+    return _createdDate;
 }
 
 @end

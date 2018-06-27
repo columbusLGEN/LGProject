@@ -28,6 +28,7 @@
 
 #import "LGPlayer.h"
 #import "DJUserInteractionMgr.h"
+#import "HPAddBroseCountMgr.h"
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -51,27 +52,24 @@ LGThreeRightButtonViewDelegate>
 
 /// TODO: 播放之后 调 添加播放接口 homeAddcountWithId
 
-
 /// MARK: 进入微党课详情页面
 + (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
+    /// 在经过 DJMediaDetailTransAssist 实例分发数据之后，这里只有 音视频模板类型的数据,if条件可以省略
     if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
         [baseVc presentFailureTips:@"数据类型异常，请联系后台"];
     }else{
+        /// 如果跳转来自 图片轮播器，那么 需要 EDJHomeImageLoopModel 的frontnews
         HPAudioVideoViewController *avc = [self new];
-        avc.model = lesson;
+        if ([lesson isMemberOfClass:[EDJHomeImageLoopModel class]]) {
+            EDJHomeImageLoopModel *imgLoopModel = (EDJHomeImageLoopModel *)lesson;
+            avc.model = imgLoopModel.frontNews;
+        }else{
+            avc.model = lesson;
+        }
         avc.contentType = lesson.modaltype;
         [baseVc.navigationController pushViewController:avc animated:YES];
     }
 }
-//- (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
-//    if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
-//        [self presentFailureTips:@"数据类型异常，请联系后台"];
-//    }else{
-//        self.model = lesson;
-//        self.contentType = lesson.modaltype;
-//        [baseVc.navigationController pushViewController:self animated:YES];
-//    }
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -171,18 +169,11 @@ LGThreeRightButtonViewDelegate>
     }else{
         /// 其他
     }
-    
-}
-
-- (void)setImgLoopModel:(EDJHomeImageLoopModel *)imgLoopModel{
-    /// TODL: 从首页点击轮播图进入
-    [DJHomeNetworkManager homePointNewsDetailWithId:imgLoopModel.seqid type:2 success:^(id responseObj) {
-        NSLog(@"微党课responseobj -- %@",responseObj);
-        _imgLoopModel = [EDJHomeImageLoopModel mj_objectWithKeyValues:responseObj];
-        
-    } failure:^(id failureObj) {
-        
+    [[HPAddBroseCountMgr new] addBroseCountWithId:self.model.seqid success:^{
+        self.model.playcount += 1;
+        [self.tableView reloadData];
     }];
+    
 }
 
 #pragma mark - LGThreeRightButtonViewDelegate

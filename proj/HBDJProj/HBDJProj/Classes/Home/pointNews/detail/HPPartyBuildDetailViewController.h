@@ -9,7 +9,7 @@
 /// 焦点图，要闻列表 的详情控制器
 
 #import "LGBaseViewController.h"
-@class EDJHomeImageLoopModel,EDJMicroBuildModel;
+@class EDJHomeImageLoopModel,DJDataBaseModel;
 
 typedef NS_ENUM(NSUInteger, LGCoreTextViewType) {
     LGCoreTextViewTypeDefault,
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, LGCoreTextViewType) {
 
 @property (assign,nonatomic) DJDataPraisetype djDataType;
 @property (strong,nonatomic) EDJHomeImageLoopModel *imageLoopModel;
-@property (strong,nonatomic) EDJMicroBuildModel *contentModel;
+@property (strong,nonatomic) DJDataBaseModel *contentModel;
 
 + (void)buildVcPushWith:(id)model baseVc:(UIViewController *)baseVc;
 

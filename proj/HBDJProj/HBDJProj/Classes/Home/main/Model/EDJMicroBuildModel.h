@@ -14,6 +14,5 @@
 @interface EDJMicroBuildModel : DJDataBaseModel
 
 @property (strong,nonatomic) NSArray *imgs;
-@property (assign,nonatomic) BOOL showInteractionView;
 
 @end

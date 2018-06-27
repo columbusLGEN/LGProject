@@ -56,9 +56,10 @@
 }
 //停止录音回调
 - (void) onEndOfSpeech{
-    NSDictionary *dict = @{LGVoiceRecoganizerTextKey:_voiceString};
+    NSDictionary *dict = @{LGVoiceRecoganizerTextKey:_voiceString?_voiceString:@""};
     [[NSNotificationCenter defaultCenter] postNotificationName:LGVoiceRecoganizerEndOfSpeechNotification object:nil userInfo:dict];
-    _voiceString = nil;
+    _voiceString = nil;        
+    
 }
 //开始录音回调
 - (void) onBeginOfSpeech{

@@ -130,11 +130,14 @@ HPAlbumHeaderCellDelegate>
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    /// 进入课程详情
-    DJDataBaseModel *lesson = self.dataArray[indexPath.row];
-//    HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
-//    [avc avcPushWithLesson:lesson baseVc:self];
-    [HPAudioVideoViewController avcPushWithLesson:lesson baseVc:self];
+    if (indexPath.row != 0) {
+        
+        /// 进入课程详情
+        DJDataBaseModel *lesson = self.dataArray[indexPath.row];
+        //    HPAudioVideoViewController *avc = [HPAudioVideoViewController new];
+        //    [avc avcPushWithLesson:lesson baseVc:self];
+        [HPAudioVideoViewController avcPushWithLesson:lesson baseVc:self];
+    }
 }
 
 #pragma mark - HPAlbumHeaderCellDelegate

@@ -11,7 +11,7 @@
 /** 微党课、要闻、数据模板类型 */
 typedef NS_ENUM(NSUInteger, ModelMediaType) {
     /** 音频 */
-    ModelMediaTypeAudio,
+    ModelMediaTypeAudio = 1,
     /** 视频 */
     ModelMediaTypeVideo,
     /** 图文 */
@@ -67,8 +67,10 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (assign,nonatomic) NSInteger creatorid;
 /** source */
 @property (strong,nonatomic) NSString *source;
-/** createdtime */
+/** 原始时间，时间戳 */
 @property (strong,nonatomic) NSString *createdtime;
+/** 由createdtime 转换成日期后的字符串 */
+@property (strong,nonatomic) NSString *createdDate;
 /** praisecount */
 @property (assign,nonatomic) NSInteger praisecount;
 /** collectioncount */

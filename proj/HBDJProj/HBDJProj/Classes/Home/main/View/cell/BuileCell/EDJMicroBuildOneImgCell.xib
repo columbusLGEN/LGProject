@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmc-jt-CLp">
-                        <rect key="frame" x="10" y="66" width="61.5" height="18"/>
+                        <rect key="frame" x="10" y="66" width="294" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -40,6 +40,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Rjk-Q4-FLd" secondAttribute="trailing" constant="20" id="4Rv-2c-dx1"/>
+                    <constraint firstItem="Rjk-Q4-FLd" firstAttribute="leading" secondItem="Lmc-jt-CLp" secondAttribute="trailing" constant="10" id="5KZ-jS-hNf"/>
                     <constraint firstItem="Gcr-sc-3TA" firstAttribute="top" secondItem="Rjk-Q4-FLd" secondAttribute="top" id="KFG-DH-PGk"/>
                     <constraint firstItem="Gcr-sc-3TA" firstAttribute="leading" secondItem="LSj-ou-9cL" secondAttribute="leading" constant="10" id="NJa-0t-4pK"/>
                     <constraint firstItem="Rjk-Q4-FLd" firstAttribute="leading" secondItem="Gcr-sc-3TA" secondAttribute="trailing" constant="20" id="O2D-Zn-toR"/>

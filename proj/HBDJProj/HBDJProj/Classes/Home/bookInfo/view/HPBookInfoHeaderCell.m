@@ -34,8 +34,6 @@
     _author.text = [NSString stringWithFormat:@"作者：%@",model.author];
     _press.text = [NSString stringWithFormat:@"出版社：%@",model.press];
     /// TODO: 时间戳转字符串
-//    _pressTime.text = [NSString stringWithFormat:@"出版时间：%f",model.pressTime];
-//    _readProgress.text = [NSString stringWithFormat:@"上次阅读进度：%f",model.readProgress];
     
     _pressTime.text = model.testPressTime;
     _readProgress.text = model.testProgress;

@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (strong,nonatomic) NSTimer *timer;
 
+@property (assign,nonatomic) BOOL searching;
+
 @end
 
 @implementation HPVoiceSearchView
@@ -21,25 +23,29 @@
 - (void)lg_endOfSpeech:(NSNotification *)notification{
     [_timer invalidate];
     _timer = nil;
+    _searching = NO;
     [self.icon setImage:[UIImage imageNamed:@"home_voice_begin"]];
 }
 
 - (IBAction)begin:(id)sender {
-    [LGVoiceRecoganizer lg_start];
-    __block NSInteger i = 0;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.15 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        [self.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",i]]];
-        i++;
-        if (i == 3) {
-            i = 0;
+    if (!_searching) {
+        [LGVoiceRecoganizer lg_start];
+        __block NSInteger i = 0;
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.15 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            [self.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",i]]];
+            i++;
+            if (i == 3) {
+                i = 0;
+            }
+        }];
+        
+        [_timer fire];
+        
+        if ([self.delegate respondsToSelector:@selector(voiceViewRecording:)]) {
+            [self.delegate voiceViewRecording:self];
         }
-    }];
-    
-    [_timer fire];
-    
-    if ([self.delegate respondsToSelector:@selector(voiceViewRecording:)]) {
-        [self.delegate voiceViewRecording:self];
     }
+    _searching = YES;
 }
 - (IBAction)close:(id)sender {
     [_timer invalidate];
@@ -51,6 +57,7 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
+    _searching = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lg_endOfSpeech:) name:LGVoiceRecoganizerEndOfSpeechNotification object:nil];
 }
 

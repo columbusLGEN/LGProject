@@ -8,8 +8,9 @@
 
 #import "HPAudioPlayerView.h"
 #import "LGAudioPlayerView.h"
-#import "LGGaussManager.h"
 #import "DJDataBaseModel.h"
+
+#import "LGGaussManager.h"
 #import "LGPlayer.h"
 
 #import "HPAudioVideoViewController.h"
@@ -70,19 +71,17 @@ LGPlayerDelegate>
     
     [_icon sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     [_bgImg sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
-//    [_audio initPlayerWithUrl:model.audio];
-    [_audio initPlayerWithUrl:testAudio];
+    [_audio initPlayerWithUrl:model.audio];
+//    [_audio initPlayerWithUrl:testAudio];
 }
 
 - (void)play:(UIButton *)sender{
     _vc.opreated = YES;
-    NSLog(@"_vc: %@",_vc);
     if (sender.isSelected) {
         sender.selected = NO;
         /// 暂停
         [_audio lg_pause];
     }else{
-        NSLog(@"开始播放音频: ");
         sender.selected = YES;
         if (!_played) {
             /// 首次播放
@@ -125,5 +124,7 @@ LGPlayerDelegate>
 
 - (void)dealloc{
     [_audio lg_stop_play];
+
 }
+
 @end

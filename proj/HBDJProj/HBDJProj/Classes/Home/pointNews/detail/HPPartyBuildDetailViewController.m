@@ -12,11 +12,11 @@
 #import "DCRichTextTopInfoView.h"
 
 #import "EDJHomeImageLoopModel.h"
-#import "EDJMicroBuildModel.h"
 
 #import "LGHTMLParser.h"
 #import "DJUserInteractionMgr.h"
 #import "LGSocialShareManager.h"
+#import "HPAddBroseCountMgr.h"
 
 static const CGFloat richTextTopInfoViewHeight = 100;
 
@@ -33,6 +33,8 @@ LGThreeRightButtonViewDelegate>
 @property (nonatomic,strong) NSCache *imageSizeCache;
 @property (strong,nonatomic) LGThreeRightButtonView *pbdBottom;
 
+@property (weak,nonatomic) DCRichTextTopInfoView *topInfoView;
+
 @end
 
 @implementation HPPartyBuildDetailViewController
@@ -40,10 +42,10 @@ LGThreeRightButtonViewDelegate>
 + (void)buildVcPushWith:(id)model baseVc:(UIViewController *)baseVc{
     HPPartyBuildDetailViewController *dvc = [self new];
     dvc.djDataType = DJDataPraisetypeNews;
-    if ([model isMemberOfClass:[NSClassFromString(@"EDJMicroBuildModel") class]]) {
-        dvc.contentModel = model;
-    }else{    
+    if ([model isMemberOfClass:[NSClassFromString(@"EDJHomeImageLoopModel") class]]) {
         dvc.imageLoopModel = model;
+    }else{
+        dvc.contentModel = model;
     }
     dvc.coreTextViewType = LGCoreTextViewTypeDefault;
     [baseVc.navigationController pushViewController:dvc animated:YES];
@@ -67,9 +69,19 @@ LGThreeRightButtonViewDelegate>
     NSInteger likeCount = self.contentModel.praisecount;
     NSInteger collectionCount = self.contentModel.collectioncount;
     
+    _pbdBottom.leftIsSelected = !(praiseid <= 0);
+    _pbdBottom.middleIsSelected = !(collectionid <= 0);
+    _pbdBottom.likeCount = likeCount;
+    _pbdBottom.collectionCount = collectionCount;
+    
+    /// 添加播放次数
+    [[HPAddBroseCountMgr new] addBroseCountWithId:self.contentModel.seqid success:^{
+        _contentModel.playcount += 1;
+        [_topInfoView reloadPlayCount:_contentModel.playcount];
+    }];
 }
 
-- (void)setContentModel:(EDJMicroBuildModel *)contentModel{
+- (void)setContentModel:(DJDataBaseModel *)contentModel{
     _contentModel = contentModel;
     _pbdBottom.leftIsSelected = !(contentModel.praiseid == 0);
     _pbdBottom.middleIsSelected = !(contentModel.collectionid == 0);
@@ -91,6 +103,7 @@ LGThreeRightButtonViewDelegate>
             topInfoView.model = contentModel;
             topInfoView.displayCounts = self.displayCounts;
             [textView addSubview:topInfoView];
+            _topInfoView = topInfoView;
             [topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(textView.mas_top);
                 make.left.equalTo(textView.mas_left);
@@ -104,19 +117,8 @@ LGThreeRightButtonViewDelegate>
 
 - (void)setImageLoopModel:(EDJHomeImageLoopModel *)imageLoopModel{
     _imageLoopModel = imageLoopModel;
-
-    /// 从轮播图跳转到该页面时，模型没有富文本数据，需要单独请求
-    /// 这里需要传 imageLoopModel.newsid
-    [DJHomeNetworkManager homePointNewsDetailWithId:imageLoopModel.newsid type:DJDataPraisetypeNews success:^(id responseObj) {
-        NSLog(@"homePointNewsDetailWithId -- %@",responseObj);
-        EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:responseObj];
-        self.contentModel = model;
-//        model.collectionid;
-//        model.praiseid;
-        
-    } failure:^(id failureObj) {
-        
-    }];
+    
+    self.contentModel = imageLoopModel.frontNews;
     
 }
 
