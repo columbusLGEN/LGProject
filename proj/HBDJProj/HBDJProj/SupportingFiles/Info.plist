@@ -28,6 +28,22 @@
 				<string>wxc21c2d288222bb77</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent1106968098</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ41FAFE22</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -90,13 +106,13 @@
 	<key>NSCameraUsageDescription</key>
 	<string>访问相册</string>
 	<key>NSContactsUsageDescription</key>
-	<string></string>
+	<string>获取您的通讯录信息</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>获取您的地理位置</string>
 	<key>NSLocationUsageDescription</key>
-	<string></string>
+	<string>获取您的地理位置</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string></string>
+	<string>是否允许访问您的麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App需要您的同意,才能访问相册</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -8,12 +8,14 @@
 
 #import "HPSearchBuildPoineNewsController.h"
 
-#import "DCSubPartStateModel.h"
-#import "DCSubPartStateBaseCell.h"
-#import "DCSubPartStateWithoutImgCell.h"
-#import "DCSubPartStateDetailViewController.h"
+#import "EDJMicroBuildCell.h"
+#import "EDJMicroBuildModel.h"
+
+#import "DJMediaDetailTransAssist.h"
 
 @interface HPSearchBuildPoineNewsController ()
+
+@property (strong,nonatomic) DJMediaDetailTransAssist *transAssist;
 
 @end
 
@@ -26,6 +28,7 @@
 - (void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
     offset = dataArray.count;
+    [self.tableView.mj_footer resetNoMoreData];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];
@@ -34,31 +37,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:withoutImgCell bundle:nil]
-         forCellReuseIdentifier:withoutImgCell];
-    [self.tableView registerNib:[UINib nibWithNibName:oneImgCell bundle:nil]
-         forCellReuseIdentifier:oneImgCell];
-    [self.tableView registerNib:[UINib nibWithNibName:threeImgCell bundle:nil]
-         forCellReuseIdentifier:threeImgCell];
+    /// EDJMicroBuildCell
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellNoImg bundle:nil] forCellReuseIdentifier:buildCellNoImg];
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellOneImg bundle:nil] forCellReuseIdentifier:buildCellOneImg];
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellThreeImg bundle:nil] forCellReuseIdentifier:buildCellThreeImg];
     
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreLesson)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
 }
 
-- (void)getMoreLesson{
+- (void)loadData{
     [DJHomeNetworkManager homeSearchWithString:_searchContent type:2 offset:offset length:1 sort:0 success:^(id responseObj) {
         NSLog(@"homesearch_loadmore_lesson: %@",responseObj);
         NSArray *array = (NSArray *)responseObj;
-        NSMutableArray *arrayMutable = [NSMutableArray arrayWithArray:self.dataArray];
-        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:obj];
-            [arrayMutable addObject:model];
-        }];
-        self.dataArray = arrayMutable.copy;
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        if (array == nil || array.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
             [self.tableView.mj_footer endRefreshing];
-            [self.tableView reloadData];
-        }];
+            
+            NSMutableArray *arrayMutable = [NSMutableArray arrayWithArray:self.dataArray];
+            for (int i = 0; i < array.count; i++) {
+                id obj = array[i];
+                EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:obj];
+                [arrayMutable addObject:model];
+            }
+            
+            self.dataArray = arrayMutable.copy;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+            
+        }
     } failure:^(id failureObj) {
+        [self.tableView.mj_footer endRefreshing];
         NSLog(@"homesearch_loadmore_lesson_failure -- %@",failureObj);
         
     }];
@@ -70,78 +81,33 @@
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DCSubPartStateModel *model = self.dataArray[indexPath.row];
-    DCSubPartStateBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DCSubPartStateBaseCell cellReuseIdWithModel:model]];
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    EDJMicroBuildCell *cell = [EDJMicroBuildCell cellWithTableView:tableView model:model];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(DCSubPartStateBaseCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    DCSubPartStateModel *model = self.dataArray[indexPath.row];
+- (void)tableView:(UITableView *)tableView willDisplayCell:(EDJMicroBuildCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
     cell.model = model;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DCSubPartStateModel *model = self.dataArray[indexPath.row];
-    return model.cellHeight;
+    CGFloat height = [EDJMicroBuildCell cellHeightWithModel:self.dataArray[indexPath.row]];
+    return height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
-    [self.navigationController pushViewController:dvc animated:YES];
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    [self.transAssist skipWithType:2 model:model baseVc:self];
     
-    // Configure the cell...
-    
-    return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (DJMediaDetailTransAssist *)transAssist{
+    if (!_transAssist) {
+        _transAssist = [DJMediaDetailTransAssist new];
+    }
+    return _transAssist;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -21,6 +21,28 @@
 /// 一个完整的请求包括： 1.URL,2.方法(get?post?other?),3.body参数,4.request序列化实例,5.reponse序列化实例
 /// 请求头可以在request序列化实例在设置，也可以在 manager中设置
 
+/**
+ 发送post请求，同时返回 task 实例
+
+ @param url 请求链接
+ @param param 参数字典
+ @param completionHandler 完成回调
+ @return task 实例
+ */
+- (NSURLSessionTask *)taskForPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(nullable LGNetworkCompletion)completionHandler{
+    NSError *error;
+    NSURLSessionDataTask *task = [self dataTaskWithHTTPMethod:@"POST" requestSerializer:self.requestSerializer URLString:url param:param error:error completionHandler:completionHandler];
+    [task resume];
+    return task;
+}
+
+/**
+ 发送post请求
+
+ @param url 请求链接
+ @param param 参数字典
+ @param completionHandler 完成回调
+ */
 - (void)sendPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(nullable LGNetworkCompletion)completionHandler{
     NSError *error;
     NSURLSessionDataTask *task = [self dataTaskWithHTTPMethod:@"POST" requestSerializer:self.requestSerializer URLString:url param:param error:error completionHandler:completionHandler];

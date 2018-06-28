@@ -23,8 +23,8 @@
     [[self sharedInstance] homePointNewsDetailWithId:id type:type success:success failure:failure];
 }
 
-+ (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
-    [[self sharedInstance] homeLikeSeqid:seqid add:add praisetype:praisetype success:success failure:failure collect:collect];
++ (NSURLSessionTask *)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
+    return [[self sharedInstance] homeLikeSeqid:seqid add:add praisetype:praisetype success:success failure:failure collect:collect];
 }
 
 + (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
@@ -69,7 +69,7 @@
                             };
     [self sendPOSTRequestWithiName:@"/frontNews/selectDetail" param:param success:success failure:failure];
 }
-- (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
+- (NSURLSessionTask *)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect{
     NSString *iName = nil;
     NSString *type = nil;
     if (collect) {
@@ -83,7 +83,7 @@
     NSDictionary *dict = @{@"addordel":[NSString stringWithFormat:@"%d",add],
                            @"seqid":seqid,
                            type:[NSString stringWithFormat:@"%ld",praisetype]};
-    [self sendPOSTRequestWithiName:iName param:dict success:success failure:failure];
+    return [self taskForPOSTRequestWithiName:iName param:dict needUserid:YES success:success failure:failure];
 }
 - (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *dict = @{@"classid":[NSString stringWithFormat:@"%ld",classid],
@@ -109,6 +109,10 @@
 /// MARK: 发送请求数据的统一方法
 - (void)sendPOSTRequestWithiName:(NSString *)iName param:(id)param success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[DJNetworkManager sharedInstance] sendPOSTRequestWithiName:iName param:param success:success failure:failure];
+}
+/// MARK: 发送post请求并返回task实例
+- (NSURLSessionTask *)taskForPOSTRequestWithiName:(NSString *)iName param:(id)param needUserid:(BOOL)needUserid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    return [[DJNetworkManager sharedInstance] taskForPOSTRequestWithiName:iName param:param needUserid:needUserid success:success failure:failure];
 }
 
 CM_SINGLETON_IMPLEMENTION

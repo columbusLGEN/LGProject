@@ -26,7 +26,7 @@
 - (void)setModel:(UCPersonInfoModel *)model{
     _model = model;
     _itemIconCell.text = model.itemName;
-    _item.text = model.itemName;
+    _item.text = [NSString stringWithFormat:@"%@:",model.itemName];
     if ([model.itemName isEqualToString:@"头像"]) {
         [_icon sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:DJPlaceholderImage];
     }else{

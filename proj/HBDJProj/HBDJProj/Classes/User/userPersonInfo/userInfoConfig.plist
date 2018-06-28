@@ -30,6 +30,22 @@
 		<key>iconUrl</key>
 		<string></string>
 		<key>itemName</key>
+		<string>性别</string>
+		<key>content</key>
+		<string>男</string>
+	</dict>
+	<dict>
+		<key>iconUrl</key>
+		<string></string>
+		<key>itemName</key>
+		<string>籍贯</string>
+		<key>content</key>
+		<string>北京</string>
+	</dict>
+	<dict>
+		<key>iconUrl</key>
+		<string></string>
+		<key>itemName</key>
 		<string>民族</string>
 		<key>content</key>
 		<string>汉</string>
@@ -38,9 +54,17 @@
 		<key>iconUrl</key>
 		<string></string>
 		<key>itemName</key>
-		<string>职务</string>
+		<string>出生日期</string>
 		<key>content</key>
-		<string>书记</string>
+		<string>1970-1-1</string>
+	</dict>
+	<dict>
+		<key>iconUrl</key>
+		<string></string>
+		<key>itemName</key>
+		<string>学历</string>
+		<key>content</key>
+		<string>本科</string>
 	</dict>
 	<dict>
 		<key>iconUrl</key>
@@ -62,15 +86,47 @@
 		<key>iconUrl</key>
 		<string></string>
 		<key>itemName</key>
+		<string>党内职务</string>
+		<key>content</key>
+		<string>书记</string>
+	</dict>
+	<dict>
+		<key>iconUrl</key>
+		<string></string>
+		<key>itemName</key>
+		<string>党员属性</string>
+		<key>content</key>
+		<string>普通党员</string>
+	</dict>
+	<dict>
+		<key>iconUrl</key>
+		<string></string>
+		<key>itemName</key>
+		<string>发展党员</string>
+		<key>content</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>iconUrl</key>
+		<string></string>
+		<key>itemName</key>
+		<string>人群类型</string>
+		<key>content</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>iconUrl</key>
+		<string></string>
+		<key>itemName</key>
 		<string>工作单位</string>
 		<key>content</key>
 		<string>湖北省党委</string>
 	</dict>
 	<dict>
 		<key>itemName</key>
-		<string>所在支部</string>
+		<string>奖惩情况</string>
 		<key>content</key>
-		<string>湖北省党支部</string>
+		<string>无</string>
 	</dict>
 </array>
 </plist>

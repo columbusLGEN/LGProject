@@ -22,7 +22,7 @@
     
     NSArray *modelArray = [self userInfoArrayFotItemTitle];
     
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 15; i++) {
         UCPersonInfoModel *model = modelArray[i];
         model.content = [user valueForKey:propertyNameArray[i]];
         

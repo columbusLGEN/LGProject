@@ -9,11 +9,14 @@
 #import "HPVoiceSearchView.h"
 #import "LGVoiceRecoganizer.h"
 
+#import "LGUserLimitsManager.h"
+
 @interface HPVoiceSearchView ()
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (strong,nonatomic) NSTimer *timer;
 
 @property (assign,nonatomic) BOOL searching;
+@property (strong,nonatomic) LGUserLimitsManager *mgr;
 
 @end
 
@@ -29,23 +32,29 @@
 
 - (IBAction)begin:(id)sender {
     if (!_searching) {
-        [LGVoiceRecoganizer lg_start];
-        __block NSInteger i = 0;
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.15 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            [self.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",i]]];
-            i++;
-            if (i == 3) {
-                i = 0;
+
+        [self.mgr microPhoneLimitCheck:^{
+            [LGVoiceRecoganizer lg_start];
+            __block NSInteger i = 0;
+            _timer = [NSTimer scheduledTimerWithTimeInterval:0.15 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                [self.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",i]]];
+                i++;
+                if (i == 3) {
+                    i = 0;
+                }
+            }];
+            
+            [_timer fire];
+            
+            if ([self.delegate respondsToSelector:@selector(voiceViewRecording:)]) {
+                [self.delegate voiceViewRecording:self];
             }
+            _searching = YES;
+        } denied:^{
+            UIAlertController *alertVc = [self.mgr showSetMicroPhoneAlertView];
+            [_vc presentViewController:alertVc animated:YES completion:nil];
         }];
-        
-        [_timer fire];
-        
-        if ([self.delegate respondsToSelector:@selector(voiceViewRecording:)]) {
-            [self.delegate voiceViewRecording:self];
-        }
     }
-    _searching = YES;
 }
 - (IBAction)close:(id)sender {
     [_timer invalidate];
@@ -59,6 +68,8 @@
     [super awakeFromNib];
     _searching = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lg_endOfSpeech:) name:LGVoiceRecoganizerEndOfSpeechNotification object:nil];
+    
+    
 }
 
 + (instancetype)voiceSearchView{
@@ -66,6 +77,13 @@
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (LGUserLimitsManager *)mgr{
+    if (!_mgr) {
+        _mgr = [LGUserLimitsManager new];
+    }
+    return _mgr;
 }
 
 @end

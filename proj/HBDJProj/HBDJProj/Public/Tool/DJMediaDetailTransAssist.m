@@ -46,6 +46,28 @@
     id model = userInfo[LGDidSelectedModelKey];
     NSInteger skipType = [userInfo[LGDidSelectedSkipTypeKey] integerValue];
     
+    [self skipWithType:skipType model:model baseVc:baseVc];
+}
+
+/// MARK: 进入图文 或者 音视频 详情
+- (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc{
+    switch (model.modaltype) {
+        case ModelMediaTypeAudio:
+        case ModelMediaTypeVideo:{
+            [HPAudioVideoViewController avcPushWithLesson:model baseVc:baseVc];
+        }
+            break;
+        case ModelMediaTypeRichText:{
+            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc];
+        }
+            break;
+        case ModelMediaTypeCustom:
+            break;
+    }
+    
+}
+
+- (void)skipWithType:(NSInteger)skipType model:(id)model baseVc:(UIViewController *)baseVc{
     switch (skipType) {
         case LGDidSelectedSkipTypeMicrolessonSingle:{
             DJDataBaseModel *lesson = (DJDataBaseModel *)model;
@@ -81,24 +103,5 @@
             break;
     }
 }
-
-/// MARK: 进入图文 或者 音视频 详情
-- (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc{
-    switch (model.modaltype) {
-        case ModelMediaTypeAudio:
-        case ModelMediaTypeVideo:{
-            [HPAudioVideoViewController avcPushWithLesson:model baseVc:baseVc];
-        }
-            break;
-        case ModelMediaTypeRichText:{
-            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc];
-        }
-            break;
-        case ModelMediaTypeCustom:
-            break;
-    }
-    
-}
-
 
 @end

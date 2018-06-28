@@ -69,13 +69,14 @@ UCAccountHitViewControllerDelegate
 
 - (IBAction)login:(id)sender {
     [[DJUser new] keepUserInfo];
+
     /// 登录
-    if (![_username.text isPhone]) {
+    if (_username.text == nil || [_username.text isEqualToString:@""]) {
+        [self.view presentFailureTips:@"请输入手机号"];
+    }else if (![_username.text isPhone]) {
         [self.view presentFailureTips:@"请输入正确的手机号"];
-
-    }else if (![_pwd.text isPwd]) {
-        [self.view presentFailureTips:@"请输入正确的密码"];
-
+    }else if (_pwd.text == nil || [_pwd.text isEqualToString:@""]) {
+        [self.view presentFailureTips:@"请输入密码"];
     }else{
         [self ucanLoginWithTel:_username.text pwd:_pwd.text];
     }
@@ -106,11 +107,15 @@ UCAccountHitViewControllerDelegate
                     返回用户信息
          */
         
-        /// 1.保存用户信息
-        /// 2.重新加载 keywindow 的 root vc
         [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
         DJUser *user = [DJUser mj_objectWithKeyValues:responseObj];
+
+        /// 用户信息本地化
         [user keepUserInfo];
+        
+        /// 将本地用户信息赋值给单利对象,保证每次用户重新登录之后，都会重新赋值
+        [[DJUser sharedInstance] getLocalUserInfo];
+        
         if (!_canBack) {
             [UIApplication sharedApplication].keyWindow.rootViewController = [LIGMainTabBarController new];
         }

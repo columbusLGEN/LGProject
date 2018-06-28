@@ -35,6 +35,8 @@ LGThreeRightButtonViewDelegate>
 
 @property (weak,nonatomic) DCRichTextTopInfoView *topInfoView;
 
+@property (strong,nonatomic) NSURLSessionTask *task;
+
 @end
 
 @implementation HPPartyBuildDetailViewController
@@ -47,6 +49,7 @@ LGThreeRightButtonViewDelegate>
     }else{
         dvc.contentModel = model;
     }
+    NSLog(@"buildvc.model: %@",model);
     dvc.coreTextViewType = LGCoreTextViewTypeDefault;
     [baseVc.navigationController pushViewController:dvc animated:YES];
 }
@@ -133,7 +136,7 @@ LGThreeRightButtonViewDelegate>
     [self likeCollectWithClickSuccess:success collect:YES];
 }
 - (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
-    [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:self.contentModel collect:collect type:DJDataPraisetypeNews success:^(NSInteger cbkid, NSInteger cbkCount) {
+    _task = [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:self.contentModel collect:collect type:DJDataPraisetypeNews success:^(NSInteger cbkid, NSInteger cbkCount) {
         if (clickSuccess) clickSuccess(cbkid,cbkCount);
     } failure:^(id failureObj) {
         NSLog(@"党建要闻点赞收藏失败: ");
@@ -255,6 +258,10 @@ LGThreeRightButtonViewDelegate>
                                      }]];
     }
     return _pbdBottom;
+}
+
+- (void)dealloc{
+    [_task cancel];
 }
 
 @end

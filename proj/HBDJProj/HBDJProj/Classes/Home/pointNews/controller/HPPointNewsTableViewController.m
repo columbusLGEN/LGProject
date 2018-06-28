@@ -14,32 +14,57 @@
 #import "EDJHomeImageLoopModel.h"
 
 @interface HPPointNewsTableViewController ()
+@property (assign,nonatomic) NSInteger offset;
 
 @end
 
 @implementation HPPointNewsTableViewController
 
 - (void)setModel:(EDJHomeImageLoopModel *)model{
+    _model = model;
     HPPointNewsHeader *header = (HPPointNewsHeader *)self.tableView.tableHeaderView;
     header.model = model;
     
-    [DJHomeNetworkManager homeChairmanPoineNewsClassid:model.seqid offset:0 length:10 sort:1 success:^(id responseObj) {
+    [self loadData];
+    
+}
+
+- (void)loadData{
+    [DJHomeNetworkManager homeChairmanPoineNewsClassid:_model.seqid offset:_offset length:10 sort:1 success:^(id responseObj) {
+        
         NSArray *array = responseObj;
-        NSMutableArray *arrmu = [NSMutableArray array];
-        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:obj];
-            [arrmu addObject:model];
-        }];
-        self.dataArray = arrmu.copy;
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.tableView reloadData];
-        }];
+        
+        if (array == nil || array.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+            NSMutableArray *arrmu;
+            
+            if (_offset == 0) {
+                arrmu = [NSMutableArray array];
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            }
+            
+            for (int i = 0; i < array.count; i++) {
+                NSDictionary *obj = array[i];
+                EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:obj];
+                [arrmu addObject:model];
+            }
+            
+            self.dataArray = arrmu.copy;
+            _offset = self.dataArray.count;
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
     } failure:^(id failureObj) {
+        [self.tableView.mj_footer endRefreshing];
         NSLog(@"homeChairmanPoineNewsClassid -- %@",failureObj);
         
     }];
-    
-    
 }
 
 
@@ -51,6 +76,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _offset = 0;
+    
     HPPointNewsHeader *header = [HPPointNewsHeader pointNewsHeader];
     self.tableView.tableHeaderView = header;
     self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 233);
@@ -58,6 +85,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:buildCellNoImg bundle:nil] forCellReuseIdentifier:buildCellNoImg];
     [self.tableView registerNib:[UINib nibWithNibName:buildCellOneImg bundle:nil] forCellReuseIdentifier:buildCellOneImg];
     [self.tableView registerNib:[UINib nibWithNibName:buildCellThreeImg bundle:nil] forCellReuseIdentifier:buildCellThreeImg];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
 }
 
@@ -85,22 +114,4 @@
 }
 
 
-
 @end
-//    NSMutableArray *arrMu = [NSMutableArray new];
-//    for (int i = 0; i < 20; i++) {
-//        EDJMicroBuildModel *model = [EDJMicroBuildModel new];
-//        model.showInteractionView = YES;
-//        NSMutableArray *imgs = [NSMutableArray new];
-//        int k = arc4random_uniform(3);
-//        if (k == 2) {
-//            k++;
-//        }
-//        for (int j = 0;j < k; j++) {
-//            [imgs addObject:@"build"];
-//        }
-//        model.imgs = imgs.copy;
-//        [arrMu addObject:model];
-//    }
-//    self.dataArray = arrMu.copy;
-//    [self.tableView reloadData];

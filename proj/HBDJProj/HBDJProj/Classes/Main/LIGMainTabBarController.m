@@ -28,6 +28,14 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 暂未开放
+    NSString *discoveryvcString = @"DJNotOpenViewController";
+//    NSString *onlinevcString = @"DJNotOpenViewController";
+    
+//    NSString *discoveryvcString = @"EDJDiscoveryViewController";
+    NSString *onlinevcString = @"EDJOnlineViewController";
+    
     /// MARK: 配置自控制器
     NSArray<NSDictionary *> *childVcSettings = @[
   @{vcClassKey:@"HPChairmanSpeechViewController",
@@ -35,12 +43,12 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
     tabbarIconKey:@"tab-icon-jiangxi-",
     tabbarSelectedIconKey:@"tab-icon-jiangxi-xz"
     },
-  @{vcClassKey:@"EDJDiscoveryViewController",
+  @{vcClassKey:discoveryvcString,
     vcTitleKey:@"发现",
     tabbarIconKey:@"tab-icon-faxian-",
     tabbarSelectedIconKey:@"tab-icon-faxian-xz"
     },
-  @{vcClassKey:@"EDJOnlineViewController",
+  @{vcClassKey:onlinevcString,
     vcTitleKey:@"在线",
     tabbarIconKey:@"tab-icon-zaixian-",
     tabbarSelectedIconKey:@"tab-icon-zaixian-xz"

@@ -20,4 +20,6 @@
 
 - (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc;
 
+- (void)skipWithType:(NSInteger)skipType model:(id)model baseVc:(UIViewController *)baseVc;
+
 @end

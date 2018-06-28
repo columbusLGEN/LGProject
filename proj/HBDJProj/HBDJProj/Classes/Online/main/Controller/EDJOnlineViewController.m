@@ -16,6 +16,7 @@
 
 #import "OLHomeModel.h"
 #import "OLSkipObject.h"
+#import "DJOnlineNetorkManager.h"
 
 static CGFloat headLineHeight = 233;
 
@@ -27,9 +28,18 @@ static CGFloat headLineHeight = 233;
 
 @implementation EDJOnlineViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+- (instancetype)init{
+    if (self = [super init]) {
+        /// 获取数据
+        [[DJOnlineNetorkManager sharedInstance] onlineHomeConfigSuccess:^(id responseObj) {
+           NSLog(@"onlinehomeconfig_success: %@",responseObj);
+            
+        } failure:^(id failureObj) {
+           NSLog(@"onlinehomeconfig_failure: %@",failureObj);
+            
+        }];
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -78,6 +88,12 @@ static CGFloat headLineHeight = 233;
         _onlineController = [EDJOnlineController new];
     }
     return _onlineController;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 @end

@@ -12,6 +12,7 @@
 @interface HPVoiceSearchView : LGBaseView
 
 @property (weak,nonatomic) id<HPVoiceSearchViewDelegate> delegate;
+@property (weak,nonatomic) UIViewController *vc;
 + (instancetype)voiceSearchView;
 @end
 

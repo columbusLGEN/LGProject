@@ -55,8 +55,9 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
  @param praisetype 数据类型 1新闻;2微党课;3学习问答;4支部动态;5党员舞台
  @param collect 1：收藏。0：点赞
  @param success 添加：返回点赞id 或者 收藏id；删除：返回0
+ @return task实例
  */
-+ (void)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect;
++ (NSURLSessionTask *)homeLikeSeqid:(NSString *)seqid add:(BOOL)add praisetype:(DJDataPraisetype)praisetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure collect:(BOOL)collect;
 /**
  1.焦点要闻列表/2.课程内容列表/3.党建要闻列表
  

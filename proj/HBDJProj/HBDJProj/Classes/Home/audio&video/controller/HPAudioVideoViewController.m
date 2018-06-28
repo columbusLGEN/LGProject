@@ -46,6 +46,8 @@ LGThreeRightButtonViewDelegate>
 @property (weak,nonatomic) HPVideoContainerView *vpv;
 @property (weak,nonatomic) HPAudioPlayerView *apv;
 
+@property (strong,nonatomic) NSURLSessionTask *task;
+
 @end
 
 @implementation HPAudioVideoViewController
@@ -192,7 +194,7 @@ LGThreeRightButtonViewDelegate>
 
 - (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
     DJDataBaseModel *model = self.model?self.model:self.imgLoopModel;
-    [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:model collect:collect type:DJDataPraisetypeMicrolesson success:^(NSInteger cbkid, NSInteger cbkCount) {
+    _task = [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:model collect:collect type:DJDataPraisetypeMicrolesson success:^(NSInteger cbkid, NSInteger cbkCount) {
         if (clickSuccess) clickSuccess(cbkid,cbkCount);
     } failure:^(id failureObj) {
         NSLog(@"点赞收藏失败: ");
@@ -259,6 +261,8 @@ LGThreeRightButtonViewDelegate>
 }
 
 - (void)dealloc{
+    [_task cancel];
+
     if (_opreated) {
         [_vpv stop];
         [_apv audioStop];

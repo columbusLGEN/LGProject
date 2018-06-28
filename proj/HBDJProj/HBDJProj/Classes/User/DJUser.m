@@ -45,13 +45,13 @@ static NSString *key_suffix = @"_dj";
     
 }
 - (void)removeLocalUserInfo{
-    /// 删除本地信息后，单利用户也需要清空自己的信息
-    [DJUser sharedInstance].userid = nil;
+    
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     for (NSString *propertyName in self.propertyArray) {
         NSString *key = [propertyName stringByAppendingString:key_suffix];
         [ud removeObjectForKey:key];
     }
+
 }
 
 /** 返回 属性名 数组 */
@@ -73,6 +73,36 @@ static NSString *key_suffix = @"_dj";
 - (NSString *)filePath{
     /// 每一个用户都保存着 userid_数据.plist 的文件
     return [[[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"userInfo"] stringByAppendingPathComponent:[NSString stringWithFormat:@"userid_%@.plist",self.seqid]];
+}
+
+- (NSString *)degree{
+    /** 学位：1高职高专，2专科，3本科，4硕士，5博士及以上 */
+    if ([_degree isEqualToString:@"1"]) {
+        return @"高职高专";
+    }
+    if ([_degree isEqualToString:@"2"]) {
+        return @"专科";
+    }
+    if ([_degree isEqualToString:@"3"]) {
+        return @"本科";
+    }
+    if ([_degree isEqualToString:@"4"]) {
+        return @"硕士";
+    }
+    if ([_degree isEqualToString:@"5"]) {
+        return @"博士及以上";
+    }
+    return _degree;
+}
+
+- (NSString *)gender{
+    if ([_gender isEqualToString:@"1"]) {
+        return @"男";
+    }
+    if ([_gender isEqualToString:@"0"]) {
+        return @"女";
+    }
+    return _gender;
 }
 
 + (instancetype)sharedInstance{

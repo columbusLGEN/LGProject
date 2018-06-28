@@ -20,6 +20,63 @@ static NSString *param_key_userid = @"userid";
 
 @implementation DJNetworkManager
 
+- (NSURLSessionTask *)taskForPOSTRequestWithiName:(NSString *)iName param:(id)param needUserid:(BOOL)needUserid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+    /// TODO: 目前暂未 想好 该方法如何与 sendPOSTRequestWithiName 合并为一个
+    
+    /// 添加统一参数
+    NSMutableDictionary *paramMutable = [self unitParamDictWithDict:param];
+    if (!needUserid) {
+        [paramMutable removeObjectForKey:param_key_userid];
+    }
+    
+    /// 拼接请求链接
+    NSString *url = [self urlStringWithiName:iName];
+    
+    /// 获取最终参数
+    NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
+    
+    NSLog(@"arguments -- %@",argum);
+    NSLog(@"requesturl: %@",url);
+    
+    return [[LGNetworkManager sharedInstance] taskForPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        /// 如果请求失败，执行失败回调
+        if (error) {
+            if (failure) failure(error);
+        }else{
+            /// 否则，解析数据
+            /// 1.获取 result
+            NSInteger result = [responseObject[@"result"] integerValue];
+            
+            /// 2.获取msg，请求成功或者失败的文本信息
+            
+            /// if result == 0,请求成功, if result == 1 请求失败
+            NSString *msg = responseObject[@"msg"];
+            if (result == 0) {/// 请求成功
+                /// 3.获取 returnJson，它是数据的json串
+                id jsonString = responseObject[@"returnJson"];
+                
+                if ([jsonString isKindOfClass:[NSNull class]]) {
+                    /// 3.1 如果 json串为空, 应该执行 失败回调，并说明 json串为空
+                    NSLog(@"returnJsonisNSNull ");
+                }else{
+                    /// 3.2 json串有值，则将json 进行反序列化操作，转为 字典 或 数组 类型的数据
+                    NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
+                    id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                    
+                    if (success) success(returnJson);
+                }
+                
+            }else{/// 请求失败
+                NSDictionary *errorDict = @{@"msg":msg,
+                                            @"result":@(result)
+                                            };
+                if (failure) failure(errorDict);
+            }
+        }
+    }];
+}
+
 /**
  MARK: 上传表单数据的统一方法
  @param iName 接口名
@@ -29,47 +86,7 @@ static NSString *param_key_userid = @"userid";
  @param failure 失败回调
  */
 - (void)sendTableWithiName:(NSString *)iName param:(id)param needUserid:(BOOL)needUserid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    
-    /// 添加统一参数
-    NSMutableDictionary *paramMutable = [self unitParamDictWithDict:param];
-    if (!needUserid) {
-        [paramMutable removeObjectForKey:param_key_userid];
-    }
-    
-    /// 拼接请求链接
-    NSString *url = [NSString stringWithFormat:@"%@%@%@",self.baseUrl,self.pakageName,iName];
-    
-    /// 获取最终参数
-    NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
-    
-    NSLog(@"arguments -- %@",argum);
-    NSLog(@"requesturl: %@",url);
-    [[LGNetworkManager sharedInstance] sendPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
-        NSLog(@"DJNetworkManager.responseObject -- %@",responseObject);
-        
-        if (error) {
-            if (failure) failure(error);
-        }else{
-            NSInteger result = [responseObject[@"result"] integerValue];
-            NSString *msg = responseObject[@"msg"];
-            
-            id jsonString = responseObject[@"returnJson"];
-            if ([jsonString isKindOfClass:[NSNull class]]) {
-                NSLog(@"returnJsonisNSNull ");
-            }else{
-                NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
-                id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                if (result == 0) {/// 成功
-                    if (success) success(returnJson);
-                }else{
-                    NSDictionary *errorDict = @{@"msg":msg,
-                                                @"result":@(result)
-                                                };
-                    if (failure) failure(errorDict);
-                }
-            }
-        }
-    }];
+    [self taskForPOSTRequestWithiName:iName param:param needUserid:needUserid success:success failure:failure];
 }
 
 /// MARK: 分页接口统一调用此方法
@@ -90,13 +107,14 @@ static NSString *param_key_userid = @"userid";
     NSMutableDictionary *paramMutable = [self unitParamDictWithDict:param];
     
     /// 拼接请求链接
-    NSString *url = [NSString stringWithFormat:@"%@%@%@",self.baseUrl,self.pakageName,iName];
+    NSString *url = [self urlStringWithiName:iName];
     
     /// 获取最终参数
     NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
 
     NSLog(@"arguments -- %@",argum);
     NSLog(@"requesturl: %@",url);
+    
     [[LGNetworkManager sharedInstance] sendPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) { 
         NSLog(@"DJNetworkManager.responseObject -- %@",responseObject);
         
@@ -120,6 +138,7 @@ static NSString *param_key_userid = @"userid";
                 
                 /// MARK: 写入缓存数据
                 [LGNetworkCache lg_save_asyncJsonToCacheFile:returnJson URLString:iName params:argum];
+                
                 if (result == 0) {/// 成功
                     if (success) success(returnJson);
                 }else{
@@ -138,13 +157,26 @@ static NSString *param_key_userid = @"userid";
 - (void)callBackCacheJsonObjWithiName:(NSString *)iName argum:(id)argum success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     id cacheJson = [LGNetworkCache lg_cache_jsonWithURLString:iName params:argum];
     if (cacheJson) {
+        [[UIApplication sharedApplication].keyWindow presentFailureTips:@"网络异常"];
         if (success) success(cacheJson);
     }else{
-        if (failure) failure(@"网络异常");
+        if (failure) failure(@"网络异常且本地没有缓存数据");
     }
 }
+
+/// MARK: 拼接请求链接
+- (NSString *)urlStringWithiName:(NSString *)iName{
+    if (![iName hasPrefix:@"/"]) {
+        iName = [NSString stringWithFormat:@"/%@",iName];
+    }
+    return [NSString stringWithFormat:@"%@%@%@",self.baseUrl,self.pakageName,iName];
+}
+
 /** 添加统一的参数 */
 - (NSMutableDictionary *)unitParamDictWithDict:(NSDictionary *)param{
+    if (param == nil) {
+        param = @{};
+    }
     NSMutableDictionary *paramMutable = [NSMutableDictionary dictionaryWithDictionary:param];
     paramMutable[@"imei"] = @"imei";
     paramMutable[@"imsi"] = @"imsi";

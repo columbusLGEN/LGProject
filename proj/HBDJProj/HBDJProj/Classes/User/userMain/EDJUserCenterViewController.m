@@ -22,6 +22,7 @@ UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *headerBgImageView;
 @property (weak, nonatomic) IBOutlet UIView *header;
 @property (weak, nonatomic) IBOutlet UIView *containerHeadIcon;
+/** 头像 */
 @property (weak, nonatomic) IBOutlet UIImageView *headIcon;
 @property (weak, nonatomic) IBOutlet UILabel *userNick;
 @property (weak, nonatomic) IBOutlet UILabel *level;
@@ -71,7 +72,11 @@ UITableViewDataSource>
     _array = [EDJUserCenterHomePageModel loadLocalPlist];
     [_tableView reloadData];
     
-    
+    DJUser *user = [DJUser sharedInstance];
+    [_headIcon sd_setImageWithURL:[NSURL URLWithString:user.image] placeholderImage:DJPlaceholderImage];
+    _userNick.text = user.name;
+    /// TODO: 设置党员等级文本
+    _level.text = @"先锋党员一级";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

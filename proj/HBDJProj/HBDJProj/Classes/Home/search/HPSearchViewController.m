@@ -16,7 +16,7 @@
 #import "HPSearchBuildPoineNewsController.h"
 
 #import "DJDataBaseModel.h"// 微党课
-#import "DCSubPartStateModel.h"// 要闻
+#import "EDJMicroBuildModel.h"// 要闻
 
 #import "LGLocalSearchRecord.h"// 本地历史记录管理者
 #import "LGRecordButtonLoader.h"// 本地历史记录按钮加载管理者
@@ -120,7 +120,7 @@ HPVoiceSearchViewDelegate>
 
 #pragma mark - HPVoiceSearchViewDelegate
 - (void)voiceViewRecording:(HPVoiceSearchView *)voiceView{
-    NSLog(@"开始录入语音 -- ");
+//    NSLog(@"开始录入语音 -- ");
 }
 - (void)voiceViewClose:(HPVoiceSearchView *)voiceView{
     if (_vsView) {
@@ -193,10 +193,12 @@ HPVoiceSearchViewDelegate>
             microvc.dataArray = nil;
         }else{
             NSMutableArray *microModels = [NSMutableArray array];
-            [classes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            for (int i = 0; i < classes.count; i++) {
+                id obj = classes[i];
                 DJDataBaseModel *model = [DJDataBaseModel mj_objectWithKeyValues:obj];
                 [microModels addObject:model];
-            }];
+            }
             
             microvc.dataArray = microModels.copy;
         }
@@ -206,10 +208,12 @@ HPVoiceSearchViewDelegate>
             partyvc.dataArray = nil;
         }else{
             NSMutableArray *partyModels = [NSMutableArray array];
-            [news enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:obj];
+            
+            for (int i = 0; i < news.count; i++) {
+                id obj = news[i];
+                EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:obj];
                 [partyModels addObject:model];
-            }];
+            }
             
             partyvc.dataArray = partyModels.copy;
         }
@@ -255,6 +259,7 @@ HPVoiceSearchViewDelegate>
         _vsView = [HPVoiceSearchView voiceSearchView];
         _vsView.frame = CGRectMake(0, navHeight(), kScreenWidth, kScreenHeight - navHeight());
         _vsView.delegate = self;
+        _vsView.vc = self;
     }
     return _vsView;
 }

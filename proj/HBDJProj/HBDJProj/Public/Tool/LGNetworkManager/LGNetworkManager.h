@@ -14,6 +14,7 @@ typedef void(^LGNetworkCompletion)(NSURLResponse *response, id _Nullable respons
 
 @interface LGNetworkManager : NSObject
 
+- (NSURLSessionTask *)taskForPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(nullable LGNetworkCompletion)completionHandler;
 - (void)sendPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(LGNetworkCompletion)completionHandler;
 + (instancetype)sharedInstance;
 @end
