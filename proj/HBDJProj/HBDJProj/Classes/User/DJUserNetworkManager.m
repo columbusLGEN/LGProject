@@ -16,6 +16,26 @@
 
 @implementation DJUserNetworkManager
 
+- (void)userForgetChangePwdWithPhone:(NSString *)phone newPwd:(NSString *)newPwd oldPwd:(NSString *)oldPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"phone":phone,
+                            @"newpassword":newPwd,
+                            @"password":[oldPwd md5String]
+                            };
+    [self sendTableWithiName:@"frontUserinfo/forgetPwd" param:param needUserid:NO success:success failure:failure];
+}
+
+- (void)userVerrifiCodeWithPhone:(NSString *)phone code:(NSString *)code success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"phone":phone,
+                            @"verifi":code
+                            };
+    [self sendTableWithiName:@"frontUserinfo/checkVerifi" param:param needUserid:NO success:success failure:failure];
+    
+}
+- (void)userSendMsgWithPhone:(NSString *)phone success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"phone":phone};
+    [self sendTableWithiName:@"frontUserinfo/sendMsg" param:param needUserid:NO success:success failure:failure];
+}
+
 - (void)userLogoutSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{};
     [self sendTableWithiName:@"/frontUserinfo/logout" param:param needUserid:YES success:success failure:failure];

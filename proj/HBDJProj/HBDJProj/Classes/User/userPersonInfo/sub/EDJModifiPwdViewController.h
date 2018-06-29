@@ -18,5 +18,7 @@ typedef NS_ENUM(NSUInteger, CodeOperationType) {
 @interface EDJModifiPwdViewController : LGBaseViewController
 
 @property (assign,nonatomic) CodeOperationType coType;
+/** coType为 confirmPwd时，该值由上一个页面传入 */
+@property (strong,nonatomic) NSString *phone;
 
 @end

@@ -11,6 +11,8 @@
 
 @interface HPVoiceSearchView : LGBaseView
 
+@property (weak, nonatomic) IBOutlet UIImageView *icon;
+
 @property (weak,nonatomic) id<HPVoiceSearchViewDelegate> delegate;
 @property (weak,nonatomic) UIViewController *vc;
 + (instancetype)voiceSearchView;
@@ -18,7 +20,6 @@
 
 @protocol HPVoiceSearchViewDelegate <NSObject>
 
-@optional
 - (void)voiceViewClose:(HPVoiceSearchView *)voiceView;
 - (void)voiceViewRecording:(HPVoiceSearchView *)voiceView;
 

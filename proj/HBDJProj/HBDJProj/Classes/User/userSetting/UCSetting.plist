@@ -4,6 +4,14 @@
 <array>
 	<dict>
 		<key>itemName</key>
+		<string>修改密码</string>
+		<key>contentType</key>
+		<integer>0</integer>
+		<key>content</key>
+		<string>********</string>
+	</dict>
+	<dict>
+		<key>itemName</key>
 		<string>系统推送</string>
 		<key>contentType</key>
 		<integer>1</integer>

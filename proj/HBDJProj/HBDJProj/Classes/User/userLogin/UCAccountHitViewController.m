@@ -10,7 +10,6 @@
 #import "UCAccountHitModel.h"
 #import "UCAccountHitTableViewCell.h"
 #import "UCAccountHitSuccessView.h"
-#import "NSString+Extension.h"
 
 @interface UCAccountHitViewController ()<
 UITableViewDelegate,

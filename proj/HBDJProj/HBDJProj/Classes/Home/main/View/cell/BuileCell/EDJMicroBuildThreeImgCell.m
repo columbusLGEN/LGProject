@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *img1;
 @property (weak, nonatomic) IBOutlet UIImageView *img2;
 @property (weak, nonatomic) IBOutlet UIImageView *img3;
+@property (weak, nonatomic) IBOutlet UILabel *toTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toTopWidth;
 
 
 @end
@@ -28,6 +30,11 @@
     [_img1 sd_setImageWithURL:[NSURL URLWithString:model.imgs[0]] placeholderImage:DJPlaceholderImage];
     [_img2 sd_setImageWithURL:[NSURL URLWithString:model.imgs[1]] placeholderImage:DJPlaceholderImage];
     [_img3 sd_setImageWithURL:[NSURL URLWithString:model.imgs[2]] placeholderImage:DJPlaceholderImage];
+    if (model.sort != 0) {
+        _toTopWidth.constant = 0;
+    }else{
+        _toTopWidth.constant = 40;
+    }
 }
 
 - (void)awakeFromNib {
@@ -35,10 +42,9 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [_toTop cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:_toTop.height * 0.5];
 }
 
 @end

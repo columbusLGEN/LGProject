@@ -7,7 +7,6 @@
 //
 
 #import "DJDataBaseModel.h"
-#import "NSString+Extension.h"
 
 @implementation DJDataBaseModel
 

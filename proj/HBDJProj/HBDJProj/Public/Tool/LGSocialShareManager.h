@@ -8,8 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const LGSocialShareParamKeyWebPageUrl;
+extern NSString * const LGSocialShareParamKeyTitle;
+extern NSString * const LGSocialShareParamKeyDesc;
+extern NSString * const LGSocialShareParamKeyThumbUrl;
+extern NSString * const LGSocialShareParamKeyVc;
+
 @interface LGSocialShareManager : NSObject
 
-+ (void)showShareMenuWithThumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl vc:(UIViewController *)vc;
+
+/**
+ 分享
+
+ @param param 参数字典
+ 
+ LGSocialShareParamKeyWebPageUrl
+ LGSocialShareParamKeyThumbUrl
+ LGSocialShareParamKeyTitle
+ LGSocialShareParamKeyDesc
+ LGSocialShareParamKeyVc
+ 
+ */
+- (void)showShareMenuWithParam:(NSDictionary *)param;
 
 @end

@@ -10,38 +10,46 @@
 #import <UShareUI/UShareUI.h>
 #import <UMShare/UMShare.h>
 
+NSString * const LGSocialShareParamKeyWebPageUrl = @"LGSocialShareParamKeyWebPageUrl";
+NSString * const LGSocialShareParamKeyTitle = @"LGSocialShareParamKeyTitle";
+NSString * const LGSocialShareParamKeyDesc  = @"LGSocialShareParamKeyDesc";
+NSString * const LGSocialShareParamKeyThumbUrl   = @"LGSocialShareParamKeyThumbUrl";
+NSString * const LGSocialShareParamKeyVc = @"LGSocialShareParamKeyVc";
+
 @implementation LGSocialShareManager
 
-/// MARK: 分享
-+ (void)showShareMenuWithThumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl vc:(UIViewController *)vc{
-    [[LGSocialShareManager sharedInstance] showShareMenuWithThumbUrl:thumbUrl content:content webpageUrl:webpageUrl vc:vc];
-    
-}
-- (void)showShareMenuWithThumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl vc:(UIViewController *)vc{
-    
+- (void)showShareMenuWithParam:(NSDictionary *)param{
     /// MARK: 配置UI面板选项
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),
                                                @(UMSocialPlatformType_QQ),
+                                               @(UMSocialPlatformType_Qzone),
                                                @(UMSocialPlatformType_WechatSession),
                                                @(UMSocialPlatformType_WechatTimeLine)]];
-    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-        // 根据获取的platformType确定所选平台进行下一步操作
-        [self shareWebPageToPlatformType:platformType thumbUrl:thumbUrl content:content webpageUrl:webpageUrl vc:vc];
-    }];
     
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        
+        [self shareWebPageToPlatformType:platformType param:param];
+    }];
 }
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType thumbUrl:(NSString *)thumbUrl content:(NSString *)content webpageUrl:(NSString *)webpageUrl vc:(UIViewController *)vc{
+
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType param:(NSDictionary *)param{
+    
+    NSString *webPageUrl = param[LGSocialShareParamKeyWebPageUrl];
+    NSString *thumbUrl = param[LGSocialShareParamKeyThumbUrl];
+    NSString *title = param[LGSocialShareParamKeyTitle];
+    NSString *desc = param[LGSocialShareParamKeyDesc];
+    UIViewController *vc = param[LGSocialShareParamKeyVc];
+    
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    /// TODO:1.图标URL thumbUrl
-    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-    /// TODO:2. content
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"欢迎使用【友盟+】社会化组件U-Share" descr:@"欢迎使用【友盟+】社会化组件U-Share，SDK包最小，集成成本最低，助力您的产品开发、运营与推广！" thumImage:thumbURL];
+    
+    /// 设置title, 描述 , 缩略图
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:desc thumImage:thumbUrl];
+    
     // 设置网页地址
-    /// TODO:3.内容地址 webpageUrl
-    shareObject.webpageUrl = @"http://mobile.umeng.com/social";
+    shareObject.webpageUrl = webPageUrl;
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -63,6 +71,7 @@
             }
         }
     }];
+    
 }
 
 + (instancetype)sharedInstance{

@@ -31,25 +31,38 @@
                         <rect key="frame" x="309.5" y="57.5" width="131.5" height="67"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物资公司认真查摆物资公司认真查摆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij9-oF-lzw">
-                        <rect key="frame" x="12" y="21.5" width="429" height="21"/>
+                        <rect key="frame" x="52" y="21.5" width="389" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="置顶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjq-um-mln">
+                        <rect key="frame" x="7" y="22" width="40" height="20"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.30588235289999999" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="QGx-c5-jOC"/>
+                            <constraint firstAttribute="width" constant="40" id="iDf-tD-i3O"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Ij9-oF-lzw" firstAttribute="leading" secondItem="Kjq-um-mln" secondAttribute="trailing" constant="5" id="0Ys-a5-Tnb"/>
                     <constraint firstItem="YxY-4L-b3g" firstAttribute="width" secondItem="0LS-Fj-Gyd" secondAttribute="width" id="E6R-JE-2MF"/>
                     <constraint firstItem="Ij9-oF-lzw" firstAttribute="trailing" secondItem="YxY-4L-b3g" secondAttribute="trailing" id="HA5-fw-tSg"/>
-                    <constraint firstItem="Ij9-oF-lzw" firstAttribute="leading" secondItem="n1x-Vg-LUk" secondAttribute="leading" id="KZp-3D-W4M"/>
                     <constraint firstItem="n1x-Vg-LUk" firstAttribute="top" secondItem="Ij9-oF-lzw" secondAttribute="bottom" constant="15" id="MjX-3W-4xB"/>
                     <constraint firstItem="YxY-4L-b3g" firstAttribute="height" secondItem="0LS-Fj-Gyd" secondAttribute="height" id="QW1-38-zeV"/>
                     <constraint firstItem="n1x-Vg-LUk" firstAttribute="leading" secondItem="nTp-Hh-STR" secondAttribute="leading" constant="12" id="bJZ-UA-Q22"/>
                     <constraint firstItem="YxY-4L-b3g" firstAttribute="centerY" secondItem="0LS-Fj-Gyd" secondAttribute="centerY" id="cXp-Fa-z6u"/>
                     <constraint firstItem="YxY-4L-b3g" firstAttribute="leading" secondItem="0LS-Fj-Gyd" secondAttribute="trailing" constant="17" id="cl8-qK-mkX"/>
                     <constraint firstItem="0LS-Fj-Gyd" firstAttribute="width" secondItem="n1x-Vg-LUk" secondAttribute="width" id="kwG-jH-JJP"/>
+                    <constraint firstItem="Kjq-um-mln" firstAttribute="leading" secondItem="n1x-Vg-LUk" secondAttribute="leading" constant="-5" id="lt2-6o-DwV"/>
                     <constraint firstAttribute="bottom" secondItem="n1x-Vg-LUk" secondAttribute="bottom" constant="10" id="pIu-BB-l9w"/>
                     <constraint firstItem="0LS-Fj-Gyd" firstAttribute="centerY" secondItem="n1x-Vg-LUk" secondAttribute="centerY" id="qXI-Dl-Jfk"/>
                     <constraint firstItem="0LS-Fj-Gyd" firstAttribute="leading" secondItem="n1x-Vg-LUk" secondAttribute="trailing" constant="17" id="sRu-9v-SsL"/>
+                    <constraint firstItem="Kjq-um-mln" firstAttribute="top" secondItem="Ij9-oF-lzw" secondAttribute="top" id="y7U-cv-XIm"/>
                     <constraint firstItem="0LS-Fj-Gyd" firstAttribute="height" secondItem="n1x-Vg-LUk" secondAttribute="height" id="ykq-rf-cwK"/>
                     <constraint firstAttribute="trailing" secondItem="YxY-4L-b3g" secondAttribute="trailing" constant="12" id="zvP-8Q-gPK"/>
                 </constraints>
@@ -59,6 +72,8 @@
                 <outlet property="img2" destination="0LS-Fj-Gyd" id="l8M-Dc-GPY"/>
                 <outlet property="img3" destination="YxY-4L-b3g" id="RZt-tz-gxo"/>
                 <outlet property="title" destination="Ij9-oF-lzw" id="GFv-qN-YmN"/>
+                <outlet property="toTop" destination="Kjq-um-mln" id="5CR-Ka-hhI"/>
+                <outlet property="toTopWidth" destination="iDf-tD-i3O" id="8oH-Q4-uaN"/>
             </connections>
             <point key="canvasLocation" x="57" y="227"/>
         </tableViewCell>

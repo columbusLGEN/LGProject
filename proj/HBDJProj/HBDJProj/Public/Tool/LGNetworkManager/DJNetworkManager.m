@@ -7,7 +7,6 @@
 //
 
 #import "DJNetworkManager.h"
-#import "LGNetworkManager.h"
 #import "LGNetworkCache.h"
 
 static NSString *param_key_userid = @"userid";
@@ -56,9 +55,12 @@ static NSString *param_key_userid = @"userid";
                 /// 3.获取 returnJson，它是数据的json串
                 id jsonString = responseObject[@"returnJson"];
                 
+                NSLog(@"tablerequestJSONString: %@",jsonString);
+                
                 if ([jsonString isKindOfClass:[NSNull class]]) {
                     /// 3.1 如果 json串为空, 应该执行 失败回调，并说明 json串为空
-                    NSLog(@"returnJsonisNSNull ");
+                    [[UIApplication sharedApplication].keyWindow presentFailureTips:@"网络请求异常"];
+                    if (failure) failure(@"JSON为空");
                 }else{
                     /// 3.2 json串有值，则将json 进行反序列化操作，转为 字典 或 数组 类型的数据
                     NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
@@ -214,6 +216,16 @@ static NSString *param_key_userid = @"userid";
         instance = [self new];
     });
     return instance;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        /// testcode
+//        [[LGNetworkManager sharedInstance] checkNetworkStatus];
+    }
+    return self;
 }
 
 @end

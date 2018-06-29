@@ -7,7 +7,6 @@
 //
 
 #import "DCSubStageModel.h"
-#import "NSString+Extension.h"
 
 static CGFloat baseHeight = 152;
 

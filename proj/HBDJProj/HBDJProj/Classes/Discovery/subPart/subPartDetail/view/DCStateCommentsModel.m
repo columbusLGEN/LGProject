@@ -7,7 +7,6 @@
 //
 
 #import "DCStateCommentsModel.h"
-#import "NSString+Extension.h"
 
 @implementation DCStateCommentsModel
 

@@ -39,8 +39,8 @@ static NSString *key_suffix = @"_dj";
         id propertyValue = [ud valueForKey:key];
         if (propertyValue) {
             [self setValue:propertyValue forKey:propertyName];
-            NSLog(@"%@ - %@",propertyName,[self valueForKey:propertyName]);
-        }    
+//            NSLog(@"%@ - %@",propertyName,[self valueForKey:propertyName]);
+        }
     }
     
 }

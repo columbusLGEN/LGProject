@@ -80,6 +80,9 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 /** contentvalidity */
 @property (strong,nonatomic) NSString *contentvalidity;
 
+/** 对于党建要闻类型的数据，sort为0的需要置顶 */
+@property (assign,nonatomic) NSInteger sort;
+
 
 /** parentclassid */
 @property (strong,nonatomic) NSString *parentclassid;
@@ -94,5 +97,7 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (assign,nonatomic) NSInteger praiseid;
 /** 分享缩略图 */
 @property (strong,nonatomic) NSString *thumbnail;
+/** 分享链接 */
+@property (strong,nonatomic) NSString *shareUrl;
 
 @end

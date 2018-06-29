@@ -75,8 +75,7 @@ UITableViewDataSource>
     DJUser *user = [DJUser sharedInstance];
     [_headIcon sd_setImageWithURL:[NSURL URLWithString:user.image] placeholderImage:DJPlaceholderImage];
     _userNick.text = user.name;
-    /// TODO: 设置党员等级文本
-    _level.text = @"先锋党员一级";
+    _level.text = user.gradename;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -93,6 +92,7 @@ UITableViewDataSource>
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"点击第%ld行: ",indexPath.row);
     if (indexPath.row == 0) {
         /// 第一行为 我的信息
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
@@ -130,7 +130,9 @@ UITableViewDataSource>
         }
             break;
         case 3:{
-            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCMsgTableViewController" animated:YES];
+            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
+                                            controllerId:@"UCMsgTableViewController"
+                                                animated:YES];
         }
             break;
     }

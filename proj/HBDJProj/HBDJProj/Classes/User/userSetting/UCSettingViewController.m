@@ -31,15 +31,7 @@ UITableViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-//    [_tableView registerNib:[UINib nibWithNibName:settingCell bundle:nil] forCellReuseIdentifier:settingCell];
-//    [_tableView registerClass:[UCSettingTableViewCell class] forCellReuseIdentifier:settingCell];
-    
-    // UCSetting.pilst
+
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 200, 0)];
     self.array = [UCSettingModel loadLocalPlist];
     
@@ -99,5 +91,11 @@ UITableViewDelegate>
     return cellHeight;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UCSettingModel *model = _array[indexPath.row];
+    if ([model.itemName isEqualToString:@"修改密码"]) {
+        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"DJChangePwdViewController" animated:YES];
+    }
+}
 
 @end

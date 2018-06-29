@@ -44,17 +44,23 @@
 /** 党内职务 */
 @property (strong,nonatomic) NSString *post;
 /** 党员属性 */
+@property (strong,nonatomic) NSString *partyproperty;
 /** 发展党员 */
+@property (strong,nonatomic) NSString *developparty;
 /** 人群类型 */
+@property (strong,nonatomic) NSString *crowdtype;
 /** 工作单位 */
 @property (strong,nonatomic) NSString *workunit;
 /** 奖惩情况 */
+@property (strong,nonatomic) NSString *bonuspenalty;
 
 /// ------------------分割线---以上内容在个人信息页面展示---------------
 
+
+/** 等级名称 */
+@property (strong,nonatomic) NSString *gradename;
 /** 所在支部 */
 @property (strong,nonatomic) NSString *mechanismname;
-@property (strong,nonatomic) NSString *partyproperty;
 
 /** 用户id */
 @property (strong,nonatomic) NSString *seqid;
@@ -81,10 +87,7 @@
 
 @property (assign,nonatomic) BOOL ismanager;
 
-@property (strong,nonatomic) NSString *developparty;
 @property (strong,nonatomic) NSString *labelid;
-@property (strong,nonatomic) NSString *bonuspenalty;
-@property (strong,nonatomic) NSString *crowdtype;
 
 /** 身份证 */
 @property (strong,nonatomic) NSString *identitycard;

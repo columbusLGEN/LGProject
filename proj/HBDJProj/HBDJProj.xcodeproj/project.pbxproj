@@ -14,6 +14,8 @@
 		880363A920E4A31A00E97FA3 /* LGUserLimitsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363A820E4A31A00E97FA3 /* LGUserLimitsManager.m */; };
 		880363AC20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363AB20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m */; };
 		880363AF20E4E05900E97FA3 /* DJNotOpenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363AE20E4E05900E97FA3 /* DJNotOpenViewController.m */; };
+		880363B220E5FA3600E97FA3 /* LGVoiceRecoAssist.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363B120E5FA3600E97FA3 /* LGVoiceRecoAssist.m */; };
+		880363B520E629FF00E97FA3 /* DJChangePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363B420E629FF00E97FA3 /* DJChangePwdViewController.m */; };
 		8805127320D381E10027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
 		8805127420D3826D0027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
 		8805127520D3826D0027B3B1 /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -411,6 +413,10 @@
 		880363AB20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJOnlineNetorkManager.m; sourceTree = "<group>"; };
 		880363AD20E4E05900E97FA3 /* DJNotOpenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJNotOpenViewController.h; sourceTree = "<group>"; };
 		880363AE20E4E05900E97FA3 /* DJNotOpenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJNotOpenViewController.m; sourceTree = "<group>"; };
+		880363B020E5FA3600E97FA3 /* LGVoiceRecoAssist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGVoiceRecoAssist.h; sourceTree = "<group>"; };
+		880363B120E5FA3600E97FA3 /* LGVoiceRecoAssist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGVoiceRecoAssist.m; sourceTree = "<group>"; };
+		880363B320E629FF00E97FA3 /* DJChangePwdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJChangePwdViewController.h; sourceTree = "<group>"; };
+		880363B420E629FF00E97FA3 /* DJChangePwdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJChangePwdViewController.m; sourceTree = "<group>"; };
 		8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		881C94882068EA5A009D6A52 /* HBDJProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBDJProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		881C948B2068EA5A009D6A52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1392,10 +1398,10 @@
 				883D475F20DCD98F00FD9971 /* DJUserNetworkManager.m */,
 				883D475A20DB69E700FD9971 /* DJUser.h */,
 				883D475B20DB69E700FD9971 /* DJUser.m */,
+				88A4713E207F5170002F93E0 /* userMain */,
 				88EA130620ABC68A007AB886 /* serviceView */,
 				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				8831E19720946383001D038E /* userLogin */,
-				88A4713E207F5170002F93E0 /* userMain */,
 				884312ED2089C15000321F84 /* userUpload */,
 				88A4713F207F51BF002F93E0 /* userPersonInfo */,
 				884312422085C6B800321F84 /* userLevelInfo */,
@@ -1807,6 +1813,8 @@
 			children = (
 				884312BC20872ED400321F84 /* EDJModifiPwdViewController.h */,
 				884312BD20872ED400321F84 /* EDJModifiPwdViewController.m */,
+				880363B320E629FF00E97FA3 /* DJChangePwdViewController.h */,
+				880363B420E629FF00E97FA3 /* DJChangePwdViewController.m */,
 			);
 			path = sub;
 			sourceTree = "<group>";
@@ -2409,6 +2417,8 @@
 				88D13C37209015C100A32236 /* EDJSearchTagCollectionViewFlowLayout.h */,
 				88D13C38209015C100A32236 /* EDJSearchTagCollectionViewFlowLayout.m */,
 				88D13C422090261400A32236 /* EDJSearchTagHeaderClasses.plist */,
+				880363B020E5FA3600E97FA3 /* LGVoiceRecoAssist.h */,
+				880363B120E5FA3600E97FA3 /* LGVoiceRecoAssist.m */,
 			);
 			path = ohter;
 			sourceTree = "<group>";
@@ -3179,10 +3189,12 @@
 				884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */,
 				88FE68B2209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m in Sources */,
 				88A470FA207C8615002F93E0 /* LGImageView.m in Sources */,
+				880363B520E629FF00E97FA3 /* DJChangePwdViewController.m in Sources */,
 				8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */,
 				88BCEDEE20C7A6E100B5C1DB /* LGNetworkManager.m in Sources */,
 				88ECF060209FF6D30071A98A /* OLExamSingleTableViewCell.m in Sources */,
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
+				880363B220E5FA3600E97FA3 /* LGVoiceRecoAssist.m in Sources */,
 				88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */,
 				8831E16C2094019D001D038E /* DCSubPartStateThreeImgCell.m in Sources */,
 				8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */,

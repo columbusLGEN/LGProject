@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *sub_title;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
+@property (weak, nonatomic) IBOutlet UILabel *toTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toTopWidth;
 
 
 
@@ -27,17 +29,20 @@
     _title.text = model.title;
     _sub_title.text = model.source;
     [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
+    if (model.sort != 0) {
+        _toTopWidth.constant = 0;
+    }else{
+        _toTopWidth.constant = 40;
+    }
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [_toTop cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:_toTop.height * 0.5];
 }
 
 @end

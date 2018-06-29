@@ -7,7 +7,6 @@
 //
 
 #import "HPBookInfoModel.h"
-#import "NSString+Extension.h"
 
 @implementation HPBookInfoModel
 

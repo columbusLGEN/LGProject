@@ -10,6 +10,32 @@
 
 @interface DJUserNetworkManager : NSObject
 
+
+
+/**
+ 忘记密码 & 修改密码接口
+
+ @param phone 电话号码
+ @param newPwd 新密码
+ @param oldPwd 旧密码
+ */
+- (void)userForgetChangePwdWithPhone:(NSString *)phone newPwd:(NSString *)newPwd oldPwd:(NSString *)oldPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+
+/**
+ 验证验证码接口
+
+ @param phone 手机号
+ @param code 验证码
+ */
+- (void)userVerrifiCodeWithPhone:(NSString *)phone code:(NSString *)code success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/**
+ 发送验证码接口
+
+ @param phone 手机号
+ */
+- (void)userSendMsgWithPhone:(NSString *)phone success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
 /** 登出当前用户 */
 - (void)userLogoutSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**

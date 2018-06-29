@@ -24,6 +24,7 @@ UITableViewDataSource>
 - (void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
     
+    
     [self.tableView reloadData];
 }
 

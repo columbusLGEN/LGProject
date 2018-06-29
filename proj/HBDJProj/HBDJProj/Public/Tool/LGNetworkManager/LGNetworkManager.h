@@ -16,5 +16,13 @@ typedef void(^LGNetworkCompletion)(NSURLResponse *response, id _Nullable respons
 
 - (NSURLSessionTask *)taskForPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(nullable LGNetworkCompletion)completionHandler;
 - (void)sendPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(LGNetworkCompletion)completionHandler;
+
+
+/**
+ 检查网络状态
+
+ @param netsBlock 回调网络状态
+ */
+- (void)checkNetworkStatusWithBlock:(void(^)(AFNetworkReachabilityStatus status))netsBlock;
 + (instancetype)sharedInstance;
 @end

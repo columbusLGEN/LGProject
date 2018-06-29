@@ -8,7 +8,6 @@
 
 #import "UCLoginViewController.h"
 #import "UCAccountHitViewController.h"
-#import "NSString+Extension.h"
 #import "DJUser.h"
 
 #import "LIGMainTabBarController.h"
@@ -65,6 +64,7 @@ UCAccountHitViewControllerDelegate
 }
 - (IBAction)forgetPwd:(id)sender {
     /// 忘记密码
+    [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"EDJModifiPwdViewController" animated:YES];
 }
 
 - (IBAction)login:(id)sender {
