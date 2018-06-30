@@ -97,7 +97,8 @@
     [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontIndex/lectureSearch" param:dict success:success failure:failure];
 }
 - (void)homeIndexWithSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"test":@"home"};
+    /// 首页额外传递 mechanismid 机构id
+    NSDictionary *param = @{@"mechanismid":[DJUser sharedInstance].mechanismid};
     [self sendPOSTRequestWithiName:@"/frontIndex/index" param:param success:success failure:failure];
 }
 
