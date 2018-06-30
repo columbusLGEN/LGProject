@@ -16,6 +16,7 @@
 		880363AF20E4E05900E97FA3 /* DJNotOpenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363AE20E4E05900E97FA3 /* DJNotOpenViewController.m */; };
 		880363B220E5FA3600E97FA3 /* LGVoiceRecoAssist.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363B120E5FA3600E97FA3 /* LGVoiceRecoAssist.m */; };
 		880363B520E629FF00E97FA3 /* DJChangePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363B420E629FF00E97FA3 /* DJChangePwdViewController.m */; };
+		880363B820E7255E00E97FA3 /* UIButton+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363B720E7255E00E97FA3 /* UIButton+LGExtension.m */; };
 		8805127320D381E10027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
 		8805127420D3826D0027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
 		8805127520D3826D0027B3B1 /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -417,6 +418,8 @@
 		880363B120E5FA3600E97FA3 /* LGVoiceRecoAssist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGVoiceRecoAssist.m; sourceTree = "<group>"; };
 		880363B320E629FF00E97FA3 /* DJChangePwdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJChangePwdViewController.h; sourceTree = "<group>"; };
 		880363B420E629FF00E97FA3 /* DJChangePwdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJChangePwdViewController.m; sourceTree = "<group>"; };
+		880363B620E7255E00E97FA3 /* UIButton+LGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LGExtension.h"; sourceTree = "<group>"; };
+		880363B720E7255E00E97FA3 /* UIButton+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LGExtension.m"; sourceTree = "<group>"; };
 		8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		881C94882068EA5A009D6A52 /* HBDJProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBDJProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		881C948B2068EA5A009D6A52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1300,6 +1303,8 @@
 				88A4712C207EEB91002F93E0 /* UIViewController+Extension.m */,
 				8831E194209450B7001D038E /* UITextView+Extension.h */,
 				8831E195209450B7001D038E /* UITextView+Extension.m */,
+				880363B620E7255E00E97FA3 /* UIButton+LGExtension.h */,
+				880363B720E7255E00E97FA3 /* UIButton+LGExtension.m */,
 			);
 			path = UICatagory;
 			sourceTree = "<group>";
@@ -3360,6 +3365,7 @@
 				88BCEDA720C2A0CA00B5C1DB /* IATConfig.m in Sources */,
 				882B118920D23D3400917374 /* UIButton+Animate.m in Sources */,
 				889FCD4520B40D5C0045746D /* LGVideoInterfaceView.m in Sources */,
+				880363B820E7255E00E97FA3 /* UIButton+LGExtension.m in Sources */,
 				889FCD3420B3FD8A0045746D /* HPAudioVideoInfoCell.m in Sources */,
 				88BB64D7209BEC1400FE6103 /* OLKnowleageTestController.m in Sources */,
 				88FE68A3209ABD31008C28A0 /* OLMindReportTableViewCell.m in Sources */,

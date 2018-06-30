@@ -39,6 +39,7 @@ static NSString *param_key_userid = @"userid";
     NSLog(@"requesturl: %@",url);
     
     return [[LGNetworkManager sharedInstance] taskForPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSLog(@"POST_task_res_obj: %@",responseObject);
         /// 如果请求失败，执行失败回调
         if (error) {
             if (failure) failure(error);
@@ -54,8 +55,6 @@ static NSString *param_key_userid = @"userid";
             if (result == 0) {/// 请求成功
                 /// 3.获取 returnJson，它是数据的json串
                 id jsonString = responseObject[@"returnJson"];
-                
-                NSLog(@"tablerequestJSONString: %@",jsonString);
                 
                 if ([jsonString isKindOfClass:[NSNull class]]) {
                     /// 3.1 如果 json串为空, 应该执行 失败回调，并说明 json串为空

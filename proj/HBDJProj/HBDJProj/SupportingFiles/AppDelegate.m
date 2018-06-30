@@ -135,7 +135,12 @@
     [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
 }
 
-
+/**
+ * 功能：禁止横屏
+ */
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 
 @end

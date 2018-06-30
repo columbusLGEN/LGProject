@@ -21,6 +21,9 @@
 
 - (void)bgClick{
     [_timer invalidate];
+    if ([self.delegate respondsToSelector:@selector(removehsView)]) {
+        [self.delegate removehsView];
+    }
     [self removeFromSuperview];
 }
 

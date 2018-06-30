@@ -12,6 +12,8 @@
 #import "LGCustomButton.h"
 #import "UCLoginViewController.h"
 
+#import "DJNotOpenViewController.h"
+
 static NSString * const uchpCellReuseId = @"EDJUserCenterHomePageCell";
 
 @interface EDJUserCenterViewController ()<
@@ -56,10 +58,6 @@ UITableViewDataSource>
     [self uiConfig];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-}
-
 - (void)uiConfig{
     self.view.backgroundColor = [UIColor EDJGrayscale_F3];
     _separatLine.backgroundColor = [UIColor EDJGrayscale_F4];
@@ -91,52 +89,82 @@ UITableViewDataSource>
     return 45;
 }
 
+#pragma mark - 跳转
+/// MARK: 点击头像
+- (IBAction)headerIconClick:(id)sender {
+    [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
+}
+/// MARK: 跳转到我的等级
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    return NO;
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"点击第%ld行: ",indexPath.row);
+    
+    /// MARK: 我的信息、党员统计信息、帮助与反馈、设置
     if (indexPath.row == 0) {
         /// 第一行为 我的信息
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
     }
-    if (indexPath.row == 2) {
-        /// 第三行 帮助与反馈
-        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCHelpFadebackViewController" animated:YES];
-    }
     if (indexPath.row == _array.count - 1) {
+        /// 设置
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCSettingViewController" animated:YES];
     }
-}
-
-- (IBAction)headerIconClick:(id)sender {
-//    UCLoginViewController *loginvc = (UCLoginViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCLoginViewController"];
-//    loginvc.canBack = YES;
-//    [self.navigationController pushViewController:loginvc animated:YES];
-}
-
-
-- (void)headerButtonCick:(UIButton *)sender{
-    switch (sender.tag) {
-        case 0:{
-            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
-                                            controllerId:@"UCMyQuestionViewController"
-                                                animated:YES];
-        }
-            break;
-        case 1:{
-            NSLog(@"收藏");
-        }
-            break;
-        case 2:{
-            [self lgPushViewControllerWithClassName:@"UCUploadHomePageViewController"];
-        }
-            break;
-        case 3:{
-            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
-                                            controllerId:@"UCMsgTableViewController"
-                                                animated:YES];
-        }
-            break;
+    
+    
+    if (indexPath.row == 1 || indexPath.row == 2) {
+        [self showNotOpenvc];
     }
+//    if (indexPath.row == 1) {
+//        /// 党员统计信息
+//    }
+//    if (indexPath.row == 2) {
+//        /// 第三行 帮助与反馈
+//        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCHelpFadebackViewController" animated:YES];
+//    }
+    
+    
 }
+- (void)headerButtonCick:(UIButton *)sender{
+
+    [self showNotOpenvc];
+    /// MARK: 提问、收藏、上传、消息
+//    switch (sender.tag) {
+//        case 0:{
+//            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
+//                                            controllerId:@"UCMyQuestionViewController"
+//                                                animated:YES];
+//        }
+//            break;
+//        case 1:{
+//            NSLog(@"收藏");
+//        }
+//            break;
+//        case 2:{
+//            [self lgPushViewControllerWithClassName:@"UCUploadHomePageViewController"];
+//        }
+//            break;
+//        case 3:{
+//            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
+//                                            controllerId:@"UCMsgTableViewController"
+//                                                animated:YES];
+//        }
+//            break;
+//    }
+
+}
+
+/// MARK: 展示暂未开放控制器
+- (void)showNotOpenvc{
+    DJNotOpenViewController *vc = [DJNotOpenViewController new];
+    vc.showBackItem = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)setHeaderButtons{
     NSString *hbtColorStr = @"333333";
     

@@ -38,20 +38,21 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rE9-KL-YZR">
-                        <rect key="frame" x="15" y="370.5" width="67" height="20"/>
+                        <rect key="frame" x="15" y="370.5" width="50" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="a9f-yC-CkS"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <inset key="titleEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <inset key="imageEdgeInsets" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="时间排序" image="home_album_list_time_sort">
+                        <state key="normal" title="时间排序">
                             <color key="titleColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="timeSort:" destination="EiQ-4f-gB9" eventType="touchUpInside" id="a9H-EL-1Ly"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_album_list_time_sort" translatesAutoresizingMaskIntoConstraints="NO" id="tKc-CQ-ULS">
+                        <rect key="frame" x="70" y="374" width="17" height="12"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gMH-2q-O0v" firstAttribute="top" secondItem="eXZ-cr-e7d" secondAttribute="bottom" constant="19" id="04c-u2-TuX"/>
@@ -64,12 +65,15 @@
                     <constraint firstAttribute="trailing" secondItem="eXZ-cr-e7d" secondAttribute="trailing" id="QsE-eL-fF6"/>
                     <constraint firstItem="5Xp-A2-oM4" firstAttribute="top" secondItem="gMH-2q-O0v" secondAttribute="bottom" constant="19" id="RUA-yx-weT"/>
                     <constraint firstItem="rE9-KL-YZR" firstAttribute="top" secondItem="5Xp-A2-oM4" secondAttribute="bottom" constant="14" id="bvm-lY-lX3"/>
+                    <constraint firstItem="tKc-CQ-ULS" firstAttribute="centerY" secondItem="rE9-KL-YZR" secondAttribute="centerY" id="dqs-gG-ggr"/>
                     <constraint firstItem="rE9-KL-YZR" firstAttribute="leading" secondItem="gMH-2q-O0v" secondAttribute="leading" id="k0g-ph-f4S"/>
+                    <constraint firstItem="tKc-CQ-ULS" firstAttribute="leading" secondItem="rE9-KL-YZR" secondAttribute="trailing" constant="5" id="vR0-hI-mDM"/>
                     <constraint firstAttribute="trailing" secondItem="gMH-2q-O0v" secondAttribute="trailing" constant="15" id="yQb-i7-Awf"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="img" destination="eXZ-cr-e7d" id="e2l-tR-9U0"/>
+                <outlet property="sotrAcce" destination="tKc-CQ-ULS" id="QyP-23-hLf"/>
                 <outlet property="text" destination="gMH-2q-O0v" id="TtY-eI-fHM"/>
             </connections>
             <point key="canvasLocation" x="-178" y="160.5"/>

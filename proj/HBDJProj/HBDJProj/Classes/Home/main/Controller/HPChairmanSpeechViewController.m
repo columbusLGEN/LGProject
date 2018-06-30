@@ -84,12 +84,11 @@ static NSInteger requestLength = 10;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    [self homeReloadDataWithScrollView:nil];
-    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self homeReloadDataWithScrollView:nil];
 }
 
 - (void)configUI{
@@ -123,7 +122,11 @@ static NSInteger requestLength = 10;
 - (void)homeReloadDataWithScrollView:(UIScrollView *)scrollView{
     [_btvc.tableView.mj_footer resetNoMoreData];
     /// 添加 页面网络指示器, 有添加，就要在每个回调中有删除
-    [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
+    });
+    
     /// 请求数据
     [DJHomeNetworkManager homeIndexWithSuccess:^(id responseObj) {
         [_emptyView removeFromSuperview];

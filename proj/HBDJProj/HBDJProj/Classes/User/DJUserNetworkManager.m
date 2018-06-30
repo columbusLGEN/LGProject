@@ -19,7 +19,7 @@
 - (void)userForgetChangePwdWithPhone:(NSString *)phone newPwd:(NSString *)newPwd oldPwd:(NSString *)oldPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"phone":phone,
                             @"newpassword":newPwd,
-                            @"password":[oldPwd md5String]
+                            @"password":oldPwd
                             };
     [self sendTableWithiName:@"frontUserinfo/forgetPwd" param:param needUserid:NO success:success failure:failure];
 }

@@ -12,6 +12,7 @@
 @interface HPAlbumHeaderCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UILabel *text;
+@property (weak, nonatomic) IBOutlet UIImageView *sotrAcce;
 
 
 @end
@@ -26,7 +27,14 @@
 //    NSLog(@"专辑列表.info: %@",model.classdescription);
 }
 
-- (IBAction)timeSort:(id)sender {
+- (IBAction)timeSort:(UIButton *)sender {
+    if (sender.isSelected) {
+        sender.selected = NO;
+        _sotrAcce.transform = CGAffineTransformMakeRotation(M_PI);
+    }else{
+        sender.selected = YES;
+        _sotrAcce.transform = CGAffineTransformIdentity;
+    }
     if ([self.delegate respondsToSelector:@selector(albumListHeaderTimeSort)]) {
         [self.delegate albumListHeaderTimeSort];
     }

@@ -7,8 +7,11 @@
 //
 
 #import "EDJModifiPwdViewController.h"
+#import "UIButton+LGExtension.h"
+#import "UCAccountHitSuccessView.h"
 
-@interface EDJModifiPwdViewController ()
+@interface EDJModifiPwdViewController ()<
+UCAccountHitSuccessViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *pnIcon;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
 @property (weak, nonatomic) IBOutlet UIImageView *vcIcon;
@@ -40,7 +43,7 @@
     [_verCodeButton setBackgroundColor:[UIColor EDJMainColor]];
 
     if (_coType == CodeOperationTypeConfirmPwd) {
-        /// 重置密码
+        /// 重置密码 页面
         UIImage *lockIcon = [UIImage imageNamed:@"uc_icon_login_pwd_prefix"];
         [_nextButton setTitle:@"确定" forState:UIControlStateNormal];
         _verCodeButton.hidden = YES;
@@ -57,17 +60,22 @@
 }
 
 
-- (IBAction)verClick:(id)sender {
+/// MARK: 发送获取验证码请求
+- (IBAction)verClick:(UIButton *)sender {
     
-    /// MARK: 发送获取验证码请求
     /// 验证手机号
     BOOL canSend = [self verifiPhoneWith:_phoneNumber.text];
     if (canSend) {
         
         [[DJUserNetworkManager sharedInstance] userSendMsgWithPhone:_phoneNumber.text success:^(id responseObj) {
             [self presentFailureTips:@"发送成功,请注意查收"];
+            [sender openCountdown];
         } failure:^(id failureObj) {
-            [self presentFailureTips:@"发送验证码失败,请稍后重试"];
+            if ([failureObj isKindOfClass:[NSDictionary class]]) {
+                [self presentFailureTips:failureObj[@"msg"]];
+            }else{
+                [self presentFailureTips:@"发送验证码失败,请稍后重试"];
+            }
         }];
     }
 }
@@ -75,7 +83,7 @@
 - (IBAction)doneClick:(UIButton *)sender {
     
     if (_coType == CodeOperationTypeConfirmPwd) {
-        /// TODO: 发送忘记密码修改密码请求
+        /// MARK: 修改密码 & 确认密码
         /// 验证手机号
         BOOL canSend = [self verifiPhoneWith:_phone];
         if (canSend) {
@@ -90,8 +98,14 @@
             }
             
             [[DJUserNetworkManager sharedInstance] userForgetChangePwdWithPhone:_phone newPwd:_phoneNumber.text oldPwd:@"" success:^(id responseObj) {
-                [self presentFailureTips:@"修改成功,请登录"];
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                /// 修改密码成功回调
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self presentFailureTips:@"修改成功,请登录"];
+                    UCAccountHitSuccessView *sv = [[UCAccountHitSuccessView alloc] initWithFrame:self.view.bounds];
+                    sv.delegate = self;
+                    //    [self.view addSubview:sv];
+                    [[UIApplication sharedApplication].keyWindow addSubview:sv];
+                }];
                 
             } failure:^(id failureObj) {
                 NSLog(@"userForgetChangePwdWithPhone_failure: %@",failureObj);
@@ -103,13 +117,16 @@
     
     if (_coType == CodeOperationTypeSendVerCode) {
         BOOL canSend = [self verifiPhoneWith:_phoneNumber.text];
-        /// 先发送验证 验证码请求，如果成果，再跳转至确认密码页面
+        /// MARK: 验证 验证码
         if (canSend) {
             [[DJUserNetworkManager sharedInstance] userVerrifiCodeWithPhone:_phoneNumber.text code:_verCodeText.text success:^(id responseObj) {
                NSLog(@"验证验证码成功: %@",responseObj);
+                /// 跳转至 确认新密码页面
                 EDJModifiPwdViewController *vc = (EDJModifiPwdViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"EDJModifiPwdViewController"];
+                
                 vc.coType = CodeOperationTypeConfirmPwd;
-                vc.phone = _phoneNumber.text;
+                vc.phone  = _phoneNumber.text;
+                
                 [self.navigationController pushViewController:vc animated:YES];
             } failure:^(id failureObj) {
                 [self presentFailureTips:@"验证失败,请输入正确的验证码或稍后重试"];
@@ -119,6 +136,14 @@
     }
     
 }
+
+
+#pragma mark - UCAccountHitSuccessViewDelegate
+- (void)removehsView{
+    /// 设置成功页面销毁的回调
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 - (BOOL)verifiPhoneWith:(NSString *)phoneNumber{
     

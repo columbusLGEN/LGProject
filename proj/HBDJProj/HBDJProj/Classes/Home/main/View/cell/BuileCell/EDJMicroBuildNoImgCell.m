@@ -25,7 +25,7 @@
     _title.text = model.title;
     _sub_title.text = model.source;
     
-    if (model.sort != 0) {
+    if (model.sort == 0) {
         _toTopWidth.constant = 0;
     }else{
         _toTopWidth.constant = 40;
