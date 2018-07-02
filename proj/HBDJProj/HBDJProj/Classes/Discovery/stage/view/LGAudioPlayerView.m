@@ -11,11 +11,16 @@
 static CGFloat progressHeight = 5;
 
 @interface LGAudioPlayerView ()
-
+@property (strong,nonatomic) UIProgressView *progress;
 
 @end
 
 @implementation LGAudioPlayerView
+
+- (void)setProgressValue:(CGFloat)progressValue{
+    _progressValue = progressValue;
+    _progress.progress = progressValue;
+}
 
 - (void)configUI{
     [self addSubview:self.play];
@@ -72,7 +77,9 @@ static CGFloat progressHeight = 5;
     if (!_progress) {
         UIProgressView *progress = [UIProgressView new];
         progress.tintColor = [UIColor EDJMainColor];
-        progress.progress = 0.7;
+        progress.progress = 0.0;
+        progress.trackTintColor = [UIColor EDJGrayscale_F6];
+
         _progress = progress;
     }
     return _progress;

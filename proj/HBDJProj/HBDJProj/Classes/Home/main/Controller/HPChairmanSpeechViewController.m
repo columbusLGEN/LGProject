@@ -84,11 +84,11 @@ static NSInteger requestLength = 10;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
+    [self homeReloadDataWithScrollView:nil];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self homeReloadDataWithScrollView:nil];
 }
 
 - (void)configUI{

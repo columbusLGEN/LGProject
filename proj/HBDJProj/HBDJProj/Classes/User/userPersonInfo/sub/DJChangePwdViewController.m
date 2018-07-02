@@ -50,13 +50,13 @@
         return;
     }
     
-    [[DJUserNetworkManager sharedInstance] userForgetChangePwdWithPhone:[DJUser sharedInstance].phone newPwd:_pwdNew.text oldPwd:_oldPwd.text success:^(id responseObj) {
+    [[DJUserNetworkManager sharedInstance] userUpdatePwdWithOld:_oldPwd.text newPwd:_pwdNew.text success:^(id responseObj) {
         [self presentFailureTips:@"修改成功"];
         [self.navigationController popViewControllerAnimated:YES];
-        
     } failure:^(id failureObj) {
         [self presentFailureTips:@"修改失败,请稍后重试"];
     }];
+    
 }
 
 - (void)viewDidLayoutSubviews{

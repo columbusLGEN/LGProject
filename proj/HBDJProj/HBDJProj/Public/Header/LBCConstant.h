@@ -15,7 +15,7 @@ static const CGFloat marginTwenty = 20;
 
 static const CGFloat widthFifty = 50;
 static const CGFloat homeImageLoopHeight = 233;
-static const CGFloat homeSegmentHeight = 60;
+static const CGFloat homeSegmentHeight = 50;
 static const CGFloat homeSegmentContentWidth = 38;
 static const CGFloat tabBarHeight = 49;
 

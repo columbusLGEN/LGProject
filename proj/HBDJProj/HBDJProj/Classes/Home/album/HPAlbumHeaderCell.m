@@ -30,10 +30,10 @@
 - (IBAction)timeSort:(UIButton *)sender {
     if (sender.isSelected) {
         sender.selected = NO;
-        _sotrAcce.transform = CGAffineTransformMakeRotation(M_PI);
+        _sotrAcce.transform = CGAffineTransformIdentity;
     }else{
         sender.selected = YES;
-        _sotrAcce.transform = CGAffineTransformIdentity;
+        _sotrAcce.transform = CGAffineTransformMakeRotation(M_PI);
     }
     if ([self.delegate respondsToSelector:@selector(albumListHeaderTimeSort)]) {
         [self.delegate albumListHeaderTimeSort];

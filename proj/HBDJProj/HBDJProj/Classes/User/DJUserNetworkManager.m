@@ -16,6 +16,12 @@
 
 @implementation DJUserNetworkManager
 
+- (void)userUpdatePwdWithOld:(NSString *)oldPwd newPwd:(NSString *)newPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"newpassword":newPwd,
+                            @"password":oldPwd};
+    [self sendTableWithiName:@"frontUserinfo/updatePwd" param:param needUserid:YES success:success failure:failure];
+}
+
 - (void)userForgetChangePwdWithPhone:(NSString *)phone newPwd:(NSString *)newPwd oldPwd:(NSString *)oldPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"phone":phone,
                             @"newpassword":newPwd,

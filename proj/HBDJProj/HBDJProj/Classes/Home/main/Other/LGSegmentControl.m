@@ -19,14 +19,22 @@
 @property (strong,nonatomic) UIImageView *imageView;
 @property (strong,nonatomic) UIButton *button;
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
+- (void)updateImageView;
 
 @end
 
 @implementation LGSegmentSingleView
 
+- (void)updateImageView{
+    [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX).offset(-3);
+    }];
+}
+
 - (void)setImageName:(NSString *)imageName{
     _imageName = imageName;
     [self.imageView setImage:[UIImage imageNamed:imageName]];
+    [self.imageView sizeToFit];
 }
 - (void)setTag:(NSInteger)tag{
     [super setTag:tag];
@@ -38,6 +46,10 @@
 - (void)setupUI{
     [self addSubview:self.imageView];
     [self addSubview:self.button];
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.centerY.equalTo(self.mas_centerY);
+    }];
     
 }
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -56,11 +68,8 @@
 
 - (UIImageView *)imageView{
     if (_imageView == nil) {
-        CGFloat imgW = self.bounds.size.width * 0.9;
-        CGFloat imgH = self.bounds.size.height;
-        CGFloat imgX = (self.bounds.size.width - imgW) * 0.5;
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imgX, 0, imgW, imgH)];
-        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+        _imageView = [[UIImageView alloc] init];
+        _imageView.contentMode = UIViewContentModeScaleToFill;
     }
     return _imageView;
 }
@@ -110,6 +119,7 @@
     CGFloat singleViewWidth = [self singleViewWidth];
     
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:10];
+    
     [_models enumerateObjectsUsingBlock:^(LGSegmentControlModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CGFloat singleViewH = self.frame.size.height;
         CGFloat x = idx * singleViewWidth;
@@ -120,10 +130,15 @@
         singleView.tag = idx;
         singleView.imageName = obj.imageName;
         
+        if (!idx) {
+            [singleView updateImageView];
+        }
+        
         [singleView addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:singleView];
         [arr addObject:singleView];
     }];
+    
     self.subSingleViews = arr.copy;
     
 }

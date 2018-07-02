@@ -28,6 +28,9 @@
 + (UIColor *)EDJGrayscale_F5{/// 245
     return [self colorWithHexString:@"F5F5F5"];
 }
++ (UIColor *)EDJGrayscale_F6{/// 246
+    return [self colorWithHexString:@"F6F6F6"];
+}
 + (UIColor *)EDJGrayscale_C6{/// 198
     return [self colorWithHexString:@"C6C6C6"];
 }

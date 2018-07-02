@@ -11,6 +11,13 @@
 @interface DJUserNetworkManager : NSObject
 
 
+/**
+ 修改密码
+
+ @param oldPwd 旧密码
+ @param newPwd 新面貌
+ */
+- (void)userUpdatePwdWithOld:(NSString *)oldPwd newPwd:(NSString *)newPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /**
  忘记密码 & 修改密码接口

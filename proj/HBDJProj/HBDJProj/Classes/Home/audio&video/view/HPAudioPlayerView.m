@@ -42,7 +42,7 @@ LGPlayerDelegate>
 #pragma mark - LGPlayerDelegate
 - (void)playProgress:(LGPlayer *)player progress:(float)progress currentTime:(float)currentTime totalTime:(float)totalTime{
 
-    self.audioPlayer.progress.progress = progress;
+    self.audioPlayer.progressValue = progress;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"mm:ss"];
@@ -111,7 +111,7 @@ LGPlayerDelegate>
     _audio.delegate = self;
     _played = NO;
     
-    _audioPlayer.progress.progress = 0;
+    _audioPlayer.progressValue = 0;
     [_audioPlayer.play addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
     
     [_icon cutBorderWithBorderWidth:0.5 borderColor:[UIColor whiteColor] cornerRadius:0];

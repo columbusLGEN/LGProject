@@ -81,7 +81,7 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (strong,nonatomic) NSString *contentvalidity;
 
 /** 对于党建要闻类型的数据，sort为0的需要置顶 */
-@property (assign,nonatomic) NSInteger sort;
+//@property (assign,nonatomic) NSInteger sort;
 
 
 /** parentclassid */

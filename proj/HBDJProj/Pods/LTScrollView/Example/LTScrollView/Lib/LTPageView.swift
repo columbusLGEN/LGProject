@@ -721,6 +721,7 @@ extension LTPageView {
     private func subButton(frame: CGRect, flag: Int, title: String?, parentView: UIView) -> UIButton {
         let button = UIButton(type: .custom)
         button.frame = frame
+//        print("lgpageviewwwww" + title! + NSStringFromCGRect(frame))
         button.tag = flag
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(titleSelectIndex(_:)), for: .touchUpInside)

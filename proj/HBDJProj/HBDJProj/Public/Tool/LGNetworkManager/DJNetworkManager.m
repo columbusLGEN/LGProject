@@ -181,8 +181,7 @@ static NSString *param_key_userid = @"userid";
     NSMutableDictionary *paramMutable = [NSMutableDictionary dictionaryWithDictionary:param];
     paramMutable[@"imei"] = @"imei";
     paramMutable[@"imsi"] = @"imsi";
-    paramMutable[param_key_userid] = @"1";/// 测试代码
-//    paramMutable[param_key_userid] = [DJUser sharedInstance].userid;
+    paramMutable[param_key_userid] = [DJUser sharedInstance].userid;
     return paramMutable;
 }
 /** 返回最终的请求参数 */

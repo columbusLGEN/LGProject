@@ -38,7 +38,7 @@
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerY.equalTo(self.mas_centerY).offset(-5);
     }];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(label.mas_centerY);
@@ -59,6 +59,15 @@
         make.width.mas_equalTo(lineWidth);
     }];
     
+    UIView *line_sep = [[UIView alloc] init];
+    line_sep.backgroundColor = [UIColor EDJGrayscale_F6];
+    [self addSubview:line_sep];
+    [line_sep mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@5);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.mas_bottom);
+    }];
     
 }
 - (instancetype)initWithFrame:(CGRect)frame{
