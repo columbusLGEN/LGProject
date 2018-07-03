@@ -44,12 +44,6 @@
     }
 }
 
-+ (CGFloat)cellHeight{
-    /// 该方法 未被调用
-//    return 128 * kScreenWidth / 1242;
-    return 128;
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     

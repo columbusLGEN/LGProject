@@ -65,7 +65,7 @@ static NSString *param_key_userid = @"userid";
                     NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
                     id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                     
-                    if (success) success(returnJson);
+                    if (success) success([self returnJsonHandle:returnJson]);
                 }
                 
             }else{/// 请求失败
@@ -113,11 +113,11 @@ static NSString *param_key_userid = @"userid";
     /// 获取最终参数
     NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
 
-    NSLog(@"arguments -- %@",argum);
-    NSLog(@"requesturl: %@",url);
+    NSLog(@"%@: arguments -- %@",iName,argum);
+    NSLog(@"%@: requesturl: %@",iName,url);
     
     [[LGNetworkManager sharedInstance] sendPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) { 
-        NSLog(@"DJNetworkManager.responseObject -- %@",responseObject);
+        NSLog(@"%@ -- %@",iName,responseObject);
         
         if (error) {
 //            if (failure) failure(error);
@@ -138,15 +138,13 @@ static NSString *param_key_userid = @"userid";
                 NSLog(@"jsonstring -- %@",jsonString);
                 
                 /// MARK: 写入缓存数据
-                [LGNetworkCache lg_save_asyncJsonToCacheFile:returnJson URLString:iName params:argum];
+                [LGNetworkCache lg_save_asyncJsonToCacheFile:[self returnJsonHandle:returnJson] URLString:iName params:argum];
                 
                 if (result == 0) {/// 成功
-                    if (success) success(returnJson);
+                    
+                    
+                    if (success) success([self returnJsonHandle:returnJson]);
                 }else{
-//                    NSDictionary *errorDict = @{@"msg":msg,
-//                                                @"result":@(result)
-//                                                };
-//                    if (failure) failure(errorDict);
                     /// MARK: 回调缓存数据
                     [self callBackCacheJsonObjWithiName:iName argum:argum success:success failure:failure];
                 }
@@ -163,6 +161,18 @@ static NSString *param_key_userid = @"userid";
     }else{
         if (failure) failure(@"网络异常且本地没有缓存数据");
     }
+}
+
+/// 处理 responseObj 为数组，且只有一个元素的情况
+- (id)returnJsonHandle:(id)responseObj{
+    if ([responseObj isKindOfClass:[NSArray class]]) {
+        NSArray *array = responseObj;
+        if (array.count == 1) {
+            /// 回调字典 array[0]
+            return array[0];
+        }
+    }
+    return responseObj;
 }
 
 /// MARK: 拼接请求链接

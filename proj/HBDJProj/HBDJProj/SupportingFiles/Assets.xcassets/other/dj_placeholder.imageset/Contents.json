@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "guanggao-2@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "zhutidangri@3x.png",
+      "filename" : "guanggao-2@3x.png",
       "scale" : "3x"
     }
   ],

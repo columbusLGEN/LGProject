@@ -3,68 +3,14 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>modelType</key>
-		<integer>0</integer>
-		<key>title</key>
-		<string>三会一课</string>
-		<key>imgName_haveLimit</key>
-		<string>ol_hp_shyk_have_limit</string>
-		<key>imgName_noLimit</key>
-		<string>ol_hp_shyk_no_limit</string>
-		<key>limit</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>modelType</key>
-		<integer>1</integer>
-		<key>title</key>
-		<string>主题党日</string>
-		<key>imgName_haveLimit</key>
-		<string>ol_hp_ztdr_have_limit</string>
-		<key>imgName_noLimit</key>
-		<string>ol_hp_ztdr_no_limit</string>
-		<key>limit</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>modelType</key>
-		<integer>2</integer>
-		<key>title</key>
-		<string>思想汇报</string>
-		<key>imgName_haveLimit</key>
-		<string>ol_hp_sxhb_have_limit</string>
-		<key>imgName_noLimit</key>
-		<string>ol_hp_sxhb_no_limit</string>
-		<key>limit</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>controllerInitType</key>
-		<integer>1</integer>
-		<key>modelType</key>
-		<integer>3</integer>
-		<key>title</key>
-		<string>知识测试</string>
-		<key>imgName_haveLimit</key>
-		<string>ol_hp_zscs_have_limit</string>
-		<key>imgName_noLimit</key>
-		<string></string>
-		<key>limit</key>
-		<true/>
-		<key>storyboardName</key>
-		<string>Online</string>
-		<key>controllerID</key>
-		<string>OLKnowleageTestController</string>
-	</dict>
-	<dict>
+		<key>seqid</key>
+		<integer>-1</integer>
 		<key>modelType</key>
 		<integer>-1</integer>
-		<key>title</key>
+		<key>toolname</key>
 		<string>更多</string>
-		<key>imgName_haveLimit</key>
+		<key>locaImage</key>
 		<string>ol_hp_more</string>
-		<key>limit</key>
-		<true/>
 	</dict>
 </array>
 </plist>

@@ -20,17 +20,19 @@ UICollectionViewDataSource>
 
 @implementation EDJOnlineController
 
-- (void)getDataWithPlistName:(NSString *)plistName{
-    _onlineModels  = [OLHomeModel loadLocalPlistWithPlistName:plistName];
+/// 设置网络数据
+- (void)setOnlineModels:(NSArray *)onlineModels{
+    NSMutableArray *arrayMutable = [NSMutableArray arrayWithArray:onlineModels];
+    [arrayMutable addObject:[OLHomeModel loadItemOfMore]];
+    _onlineModels = arrayMutable.copy;
+    
     [self.collectionView reloadData];
 }
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
+/// 设置本地数据
+- (void)getDataWithPlistName:(NSString *)plistName{
+    _onlineModels  = [OLHomeModel loadLocalPlistWithPlistName:plistName];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource

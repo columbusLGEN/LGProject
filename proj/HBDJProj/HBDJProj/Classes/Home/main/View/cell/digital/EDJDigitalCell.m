@@ -19,7 +19,7 @@
 
 - (void)setModel:(EDJDigitalModel *)model{
     _model = model;
-    [_cover sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
+    [_cover sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJDigitalBookPImage];
     _title.text = model.ebookname;
 }
 

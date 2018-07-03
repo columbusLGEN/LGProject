@@ -14,6 +14,7 @@
 #import "OLAddMoreToolViewController.h"
 #import "OLMindReportViewController.h"
 
+#import "DJOnlineHomeModel.h"
 #import "OLHomeModel.h"
 #import "OLSkipObject.h"
 #import "DJOnlineNetorkManager.h"
@@ -23,24 +24,12 @@ static CGFloat headLineHeight = 233;
 @interface EDJOnlineViewController ()<UICollectionViewDelegate>
 @property (strong,nonatomic) EDJOnlineController *onlineController;
 @property (strong,nonatomic) UIImageView *headLine;
+@property (strong,nonatomic) DJOnlineHomeModel *model;
 
 @end
 
 @implementation EDJOnlineViewController
 
-- (instancetype)init{
-    if (self = [super init]) {
-        /// 获取数据
-        [[DJOnlineNetorkManager sharedInstance] onlineHomeConfigSuccess:^(id responseObj) {
-           NSLog(@"onlinehomeconfig_success: %@",responseObj);
-            
-        } failure:^(id failureObj) {
-           NSLog(@"onlinehomeconfig_failure: %@",failureObj);
-            
-        }];
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,6 +42,17 @@ static CGFloat headLineHeight = 233;
     [self.view addSubview:nav];
     [self.onlineController.collectionView addSubview:self.headLine];
     
+    /// 获取数据
+    [[DJOnlineNetorkManager sharedInstance] onlineHomeConfigSuccess:^(id responseObj) {
+        NSLog(@"res_class: %@",[responseObj class]);
+        self.model = [DJOnlineHomeModel mj_objectWithKeyValues:responseObj];
+        self.onlineController.onlineModels = self.model.activation;
+        
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"网络异常"];
+        
+    }];
+    
 }
 
 #pragma mark - delegate
@@ -60,14 +60,15 @@ static CGFloat headLineHeight = 233;
     OLHomeModel *model = self.onlineController.onlineModels[indexPath.row];
     if (indexPath.item == self.onlineController.onlineModels.count - 1) {
         /// 跳转至 添加更多工具
-        OLAddMoreToolViewController *vc = [OLAddMoreToolViewController new];
-        vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-        vc.pushWay = LGBaseViewControllerPushWayModal;
-        [self presentViewController:vc animated:YES completion:nil];
+        if (self.model) {        
+            OLAddMoreToolViewController *vc = [OLAddMoreToolViewController new];
+            vc.array = self.model.notactive;
+            vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            vc.pushWay = LGBaseViewControllerPushWayModal;
+            [self presentViewController:vc animated:YES completion:nil];
+        }
     }else{
-//        OLMindReportViewController *vc = [OLMindReportViewController new];
-//        vc.title = model.title;
-//        [self.navigationController pushViewController:vc animated:YES];
+
         [self.navigationController pushViewController:[OLSkipObject viewControllerWithOLHomeModelType:model] animated:YES];
         
     }

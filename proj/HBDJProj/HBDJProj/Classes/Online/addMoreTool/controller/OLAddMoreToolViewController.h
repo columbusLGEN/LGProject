@@ -10,4 +10,6 @@
 
 @interface OLAddMoreToolViewController : LGBaseViewController
 
+@property (strong,nonatomic) NSArray *array;
+
 @end

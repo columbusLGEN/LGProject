@@ -11,19 +11,19 @@
 
 @implementation OLSkipObject
 + (UIViewController *)viewControllerWithOLHomeModelType:(OLHomeModel *)model{
-    if (model.controllerInitType == ControllerInitTypeCode) {
-        NSString *controllerClass = controllerClassWithModelType(model.modelType);
-        /// TODO: 需要对 controllerClass 代表的类型做判断，需要判断 对不是控制器类型及其派生类 的情况 进行处理
-        UIViewController *vc = [NSClassFromString(controllerClass) new];
-        vc.title = model.title;
-        
+    if (model.modelType == OnlineModelTypeKnowleageTest) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Online" bundle:nil];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"OLKnowleageTestController"];
+        vc.title = model.toolname;
         return vc;
     }else{
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:model.storyboardName bundle:nil];
-        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:model.controllerID];
-        vc.title = model.title;
+        NSString *controllerClass = controllerClassWithModelType(model.modelType);
+        UIViewController *vc = [NSClassFromString(controllerClass) new];
+        vc.title = model.toolname;
+        
         return vc;
     }
+
 }
 
 NSString *controllerClassWithModelType(OnlineModelType modelType){
@@ -56,10 +56,6 @@ NSString *controllerClassWithModelType(OnlineModelType modelType){
             return @"OLVoteListController";
         }
             break;
-//        default:{
-//            return @"OLAddMoreToolViewController";
-//        }
-//            break;
 
     }
 }

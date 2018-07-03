@@ -20,6 +20,8 @@ UCAccountHitViewControllerDelegate
 @property (weak, nonatomic) IBOutlet UITextField *pwd;
 @property (weak, nonatomic) IBOutlet UIButton *login;
 @property (assign,nonatomic) BOOL pwdIsSecureEntry;
+@property (weak, nonatomic) IBOutlet UIButton *eye;
+
 
 @end
 
@@ -45,6 +47,7 @@ UCAccountHitViewControllerDelegate
     _pwd.delegate = self;
     
     _pwdIsSecureEntry = _pwd.isSecureTextEntry;
+    _eye.selected = _pwdIsSecureEntry;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -54,13 +57,14 @@ UCAccountHitViewControllerDelegate
     return NO;
 }
 
-- (IBAction)displayPwd:(id)sender {
+- (IBAction)displayPwd:(UIButton *)sender {
     if (_pwdIsSecureEntry) {
         _pwd.secureTextEntry = NO;
     }else{
         _pwd.secureTextEntry = YES;
     }
     _pwdIsSecureEntry = _pwd.isSecureTextEntry;
+    sender.selected = _pwdIsSecureEntry;
 }
 - (IBAction)forgetPwd:(id)sender {
     /// 忘记密码

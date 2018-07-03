@@ -27,7 +27,7 @@
 
 #pragma mark - target
 - (IBAction)close:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self lg_dismissViewController];
     
 }
 - (IBAction)tkClick:(UIButton *)sender {

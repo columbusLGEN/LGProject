@@ -238,7 +238,6 @@ static NSInteger requestLength = 10;
     NSMutableArray *imgUrls = [NSMutableArray array];
     [imageLoops enumerateObjectsUsingBlock:^(EDJHomeImageLoopModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
         [imgUrls addObject:model.classimg];
-//        NSLog(@"imgloop.classimg -- %@",model.classimg);
     }];
     _imgLoop.imageURLStringsGroup = imgUrls.copy;
 }
@@ -253,10 +252,8 @@ static NSInteger requestLength = 10;
 }
 - (SDCycleScrollView *)imgLoop{
     if (_imgLoop == nil) {
-        _imgLoop = [[SDCycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, homeImageLoopHeight)];
-        _imgLoop.placeholderImage = nil;
-        _imgLoop.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-        _imgLoop.delegate = self;
+        _imgLoop = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, homeImageLoopHeight) delegate:self placeholderImage:DJImgloopPImage];
+        _imgLoop.bannerImageViewContentMode = UIViewContentModeScaleToFill;
         
     }
     return _imgLoop;
@@ -348,12 +345,14 @@ static NSInteger requestLength = 10;
 /// MARK: 代理方法
 #pragma mark - LGNavigationSearchBarDelelgate -- 导航点击回调
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
-    HPSearchViewController *searchVc = [HPSearchViewController new];
-    [self.navigationController pushViewController:searchVc animated:YES];
+    [self beginSearchWithVoice:NO];
 }
 - (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
+    [self beginSearchWithVoice:YES];
+}
+- (void)beginSearchWithVoice:(BOOL)voice{
     HPSearchViewController *searchVc = [HPSearchViewController new];
-    searchVc.voice = YES;
+    searchVc.voice = voice;
     [self.navigationController pushViewController:searchVc animated:YES];
 }
 

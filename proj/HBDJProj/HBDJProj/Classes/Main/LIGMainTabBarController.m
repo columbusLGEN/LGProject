@@ -31,10 +31,10 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
     
     // 暂未开放
     NSString *discoveryvcString = @"DJNotOpenViewController";
-    NSString *onlinevcString = @"DJNotOpenViewController";
+//    NSString *onlinevcString = @"DJNotOpenViewController";
     
 //    NSString *discoveryvcString = @"EDJDiscoveryViewController";
-//    NSString *onlinevcString = @"EDJOnlineViewController";
+    NSString *onlinevcString = @"EDJOnlineViewController";
     
     /// MARK: 配置自控制器
     NSArray<NSDictionary *> *childVcSettings = @[

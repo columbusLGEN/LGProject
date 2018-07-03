@@ -156,6 +156,7 @@
 		886A1BF420D0CB330007AD63 /* STKAITI.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BE120D0CB320007AD63 /* STKAITI.TTF */; };
 		886A1BF720D101700007AD63 /* HPNetworkFailureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1BF620D101700007AD63 /* HPNetworkFailureView.m */; };
 		886A1BF920D101A00007AD63 /* HPNetworkFailureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BF820D101A00007AD63 /* HPNetworkFailureView.xib */; };
+		8876E3C320EA0DBE001C6A1A /* DJOnlineHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3C220EA0DBE001C6A1A /* DJOnlineHomeModel.m */; };
 		8877742220C0F7390011DFF3 /* ECRPDFRelateder.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */; };
 		8877742320C0F7390011DFF3 /* LGBookReaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FE20C0F7390011DFF3 /* LGBookReaderManager.m */; };
 		8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8877740220C0F7390011DFF3 /* LGDownloadManager.m */; };
@@ -295,7 +296,6 @@
 		88D13C612090586900A32236 /* OLHomeCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D13C602090586900A32236 /* OLHomeCollectionCell.xib */; };
 		88D13C632090597F00A32236 /* OLHomeItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88D13C622090597F00A32236 /* OLHomeItems.plist */; };
 		88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C68209063F000A32236 /* OLAddMoreToolViewController.m */; };
-		88D13C6C20906EBC00A32236 /* OLAddMoreTool.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88D13C6B20906EBC00A32236 /* OLAddMoreTool.plist */; };
 		88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */; };
 		88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */; };
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
@@ -666,6 +666,8 @@
 		886A1BF520D101700007AD63 /* HPNetworkFailureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPNetworkFailureView.h; sourceTree = "<group>"; };
 		886A1BF620D101700007AD63 /* HPNetworkFailureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPNetworkFailureView.m; sourceTree = "<group>"; };
 		886A1BF820D101A00007AD63 /* HPNetworkFailureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPNetworkFailureView.xib; sourceTree = "<group>"; };
+		8876E3C120EA0DBE001C6A1A /* DJOnlineHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJOnlineHomeModel.h; sourceTree = "<group>"; };
+		8876E3C220EA0DBE001C6A1A /* DJOnlineHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJOnlineHomeModel.m; sourceTree = "<group>"; };
 		887773FB20C0F7390011DFF3 /* ECRPDFRelateder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRPDFRelateder.h; sourceTree = "<group>"; };
 		887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRPDFRelateder.m; sourceTree = "<group>"; };
 		887773FD20C0F7390011DFF3 /* LGBookReaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBookReaderManager.h; sourceTree = "<group>"; };
@@ -897,7 +899,6 @@
 		88D13C622090597F00A32236 /* OLHomeItems.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OLHomeItems.plist; sourceTree = "<group>"; };
 		88D13C67209063F000A32236 /* OLAddMoreToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreToolViewController.h; sourceTree = "<group>"; };
 		88D13C68209063F000A32236 /* OLAddMoreToolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolViewController.m; sourceTree = "<group>"; };
-		88D13C6B20906EBC00A32236 /* OLAddMoreTool.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OLAddMoreTool.plist; sourceTree = "<group>"; };
 		88D13C6D20906EF300A32236 /* OLAddMoreFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreFlowLayout.h; sourceTree = "<group>"; };
 		88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreFlowLayout.m; sourceTree = "<group>"; };
 		88D13C7120907A1700A32236 /* OLAddMoreToolHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreToolHeader.h; sourceTree = "<group>"; };
@@ -1647,6 +1648,8 @@
 		8835B2DB20720B7000722010 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8876E3C120EA0DBE001C6A1A /* DJOnlineHomeModel.h */,
+				8876E3C220EA0DBE001C6A1A /* DJOnlineHomeModel.m */,
 				88D13C5A2090583D00A32236 /* OLHomeModel.h */,
 				88D13C5B2090583D00A32236 /* OLHomeModel.m */,
 			);
@@ -2507,7 +2510,6 @@
 		88D13C6A20906EA100A32236 /* other */ = {
 			isa = PBXGroup;
 			children = (
-				88D13C6B20906EBC00A32236 /* OLAddMoreTool.plist */,
 				88D13C6D20906EF300A32236 /* OLAddMoreFlowLayout.h */,
 				88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */,
 			);
@@ -2961,7 +2963,6 @@
 				88D13C432090261400A32236 /* EDJSearchTagHeaderClasses.plist in Resources */,
 				884312D620873B6900321F84 /* UCSetting.plist in Resources */,
 				886A1BEF20D0CB330007AD63 /* Fangsong.ttf in Resources */,
-				88D13C6C20906EBC00A32236 /* OLAddMoreTool.plist in Resources */,
 				8831E16E209401A3001D038E /* DCSubPartStateThreeImgCell.xib in Resources */,
 				88C5F16920B7FF6D0075D5F2 /* HPAudioPlayerView.xib in Resources */,
 				88DD8137209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib in Resources */,
@@ -3323,6 +3324,7 @@
 				880363AF20E4E05900E97FA3 /* DJNotOpenViewController.m in Sources */,
 				88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */,
 				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,
+				8876E3C320EA0DBE001C6A1A /* DJOnlineHomeModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,
 				8835B3172072189D00722010 /* LGBaseButton.m in Sources */,

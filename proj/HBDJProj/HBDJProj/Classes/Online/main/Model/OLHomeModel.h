@@ -8,14 +8,15 @@
 
 #import "LGBaseModel.h"
 
+/** 实例的 modeltype 与seqid对应 */
 typedef NS_ENUM(NSUInteger, OnlineModelType) {
+    OnlineModelTypeKnowleageTest = 1,
+    OnlineModelTypeVote,
+    OnlineModelTypePayPartyFee,
     OnlineModelTypeThreeMeetings,
     OnlineModelTypeThemePartyDay,
     OnlineModelTypeMindReport,
-    OnlineModelTypeKnowleageTest,
-    OnlineModelTypeSpeakCheap,
-    OnlineModelTypePayPartyFee,
-    OnlineModelTypeVote
+    OnlineModelTypeSpeakCheap
 };
 typedef NS_ENUM(NSUInteger, ControllerInitType) {
     ControllerInitTypeCode,
@@ -24,18 +25,20 @@ typedef NS_ENUM(NSUInteger, ControllerInitType) {
 
 @interface OLHomeModel : LGBaseModel
 
-/** YES: 该项服务已经开通，NO:该项服务还未开通 */
-@property (assign,nonatomic) BOOL limit;
-@property (copy,nonatomic) NSString *imgName_haveLimit;
-@property (copy,nonatomic) NSString *imgName_noLimit;
+/** 获取 “更多” 项 */
++ (instancetype)loadItemOfMore;
 
-@property (copy,nonatomic) NSString *title;
+/** 1: 默认激活
+    0:
+    该字段用于后台判断，客户端不处理
+ */
+@property (assign,nonatomic) BOOL isDefault;
+@property (strong,nonatomic) NSString *toolname;
+@property (strong,nonatomic) NSString *iconUrl;
+
+/// 本地图标name
+@property (strong,nonatomic) NSString *locaImage;
+
 @property (assign,nonatomic) OnlineModelType modelType;
-
-@property (assign,nonatomic) ControllerInitType controllerInitType;
-@property (copy,nonatomic) NSString *storyboardName;
-@property (copy,nonatomic) NSString *controllerID;
-
-
 
 @end

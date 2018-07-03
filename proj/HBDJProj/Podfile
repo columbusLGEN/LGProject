@@ -15,10 +15,10 @@ pod 'DTCoreText'
 pod 'SDCycleScrollView'#图片轮播器
 pod 'HXWeiboPhotoPicker', '~> 2.1.5'
 pod 'PLPlayerKit'
-pod 'XHNetworkCache'
-pod 'JGProgressHUD'
-pod 'MMMaterialDesignSpinner'
-pod 'LTScrollView', '~> 0.1.6'
+pod 'XHNetworkCache'#网络请求缓存
+pod 'JGProgressHUD'#playerView 需要用到
+pod 'MMMaterialDesignSpinner'#playerView 需要用到
+pod 'LTScrollView', '~> 0.1.6'#首页用
 
 
 # UM基础sdk

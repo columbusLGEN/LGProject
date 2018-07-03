@@ -20,12 +20,11 @@
 
 - (void)setModel:(OLHomeModel *)model{
     _model = model;
-    if (model.limit) {
-        _img.image = [UIImage imageNamed:model.imgName_haveLimit];
-    }else{
-        _img.image = [UIImage imageNamed:model.imgName_noLimit];
+    _title.text = model.toolname;
+    [_img sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:DJPlaceholderImage];
+    if (model.locaImage) {
+        _img.image = [UIImage imageNamed:model.locaImage];
     }
-    _title.text = model.title;
 }
 
 - (void)awakeFromNib{

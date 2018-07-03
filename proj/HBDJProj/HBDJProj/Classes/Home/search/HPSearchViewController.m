@@ -282,6 +282,9 @@ LGVoiceRecoAssistDelegate>
     }];
     
 }
+
+
+
 /** 退出输入状态 */
 - (void)endInput{
     [self.view endEditing:YES];

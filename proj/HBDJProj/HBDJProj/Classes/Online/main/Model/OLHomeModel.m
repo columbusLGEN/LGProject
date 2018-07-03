@@ -10,4 +10,13 @@
 
 @implementation OLHomeModel
 
++ (instancetype)loadItemOfMore{
+    NSArray *localArray = [OLHomeModel loadLocalPlistWithPlistName:@"OLHomeItems"];
+    return localArray[0];
+}
+
+- (OnlineModelType)modelType{
+    return self.seqid;
+}
+
 @end

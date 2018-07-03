@@ -32,7 +32,6 @@ UICollectionViewDelegateFlowLayout>
 @property (strong,nonatomic) OLAddMoreFlowLayout *flowLayout;
 @property (strong,nonatomic) OLAddMoreToolFooter *fakeFooter;
 
-@property (strong,nonatomic) NSArray *array;
 
 @end
 
@@ -52,12 +51,60 @@ UICollectionViewDelegateFlowLayout>
     
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
     
 }
+
+- (void)setArray:(NSArray *)array{
+    _array = array;
+    [self.collectionView reloadData];
+    
+}
+
+#pragma mark - delegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return _array.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    OLHomeModel *model = _array[indexPath.item];
+    OLHomeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:onlinCell forIndexPath:indexPath];
+    cell.model = model;
+    return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    OLHomeModel *model = self.array[indexPath.row];
+    LGBaseViewController *vc = (LGBaseViewController *)[OLSkipObject viewControllerWithOLHomeModelType:model];
+    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:vc];
+    vc.pushWay = LGBaseViewControllerPushWayModal;
+    [self showViewController:nav sender:nil];
+}
+
+#pragma mark - header & footer
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        OLAddMoreToolHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseID forIndexPath:indexPath];
+        return header;
+    }
+//    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+//        OLAddMoreToolFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerReuseID forIndexPath:indexPath];
+//        return footer;
+//    }
+    return nil;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(kScreenWidth, 60);
+}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+//    return CGSizeMake(kScreenWidth, 60);
+//}
+
+- (void)close:(UIButton *)sender{
+    [self.bigClose removeFromSuperview];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)configUI{
     self.view.backgroundColor = [UIColor clearColor];
@@ -97,52 +144,7 @@ UICollectionViewDelegateFlowLayout>
         make.bottom.equalTo(self.view.mas_bottom);///.offset(-kTabBarHeight);
     }];
     
-    _array = [OLHomeModel loadLocalPlistWithPlistName:@"OLAddMoreTool"];
-    [self.collectionView reloadData];
 }
-
-#pragma mark - delegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 3;
-}
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    OLHomeModel *model = _array[indexPath.item];
-    OLHomeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:onlinCell forIndexPath:indexPath];
-    cell.model = model;
-    return cell;
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    OLHomeModel *model = self.array[indexPath.row];
-    LGBaseViewController *vc = (LGBaseViewController *)[OLSkipObject viewControllerWithOLHomeModelType:model];
-    vc.pushWay = LGBaseViewControllerPushWayModal;
-    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:vc];
-    [self showViewController:nav sender:nil];
-}
-
-#pragma mark - header & footer
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        OLAddMoreToolHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseID forIndexPath:indexPath];
-        return header;
-    }
-//    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-//        OLAddMoreToolFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerReuseID forIndexPath:indexPath];
-//        return footer;
-//    }
-    return nil;
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(kScreenWidth, 60);
-}
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-//    return CGSizeMake(kScreenWidth, 60);
-//}
-
-- (void)close:(UIButton *)sender{
-    [self.bigClose removeFromSuperview];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 /// MARK: lazy laod
 - (UIButton *)bigClose{

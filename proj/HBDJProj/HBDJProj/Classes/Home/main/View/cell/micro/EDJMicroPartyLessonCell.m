@@ -80,7 +80,6 @@ UITableViewDataSource>
 + (CGFloat)cellHeightWithIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         return 128 * kScreenWidth / 414;
-//        return 128;
     }else{
         return 375;
     }

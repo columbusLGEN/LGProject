@@ -381,15 +381,15 @@
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="23" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLU-lM-xvu" customClass="LGCustomButton">
-                                                <rect key="frame" x="258" y="105" width="85" height="95"/>
+                                                <rect key="frame" x="257.5" y="105" width="85.5" height="95"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view tag="22" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-dr-Ppc" customClass="LGCustomButton">
-                                                <rect key="frame" x="171.5" y="105" width="86.5" height="95"/>
+                                                <rect key="frame" x="171" y="105" width="86.5" height="95"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="21" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-D0-N9G" customClass="LGCustomButton">
-                                                <rect key="frame" x="86" y="105" width="85.5" height="95"/>
+                                                <rect key="frame" x="86" y="105" width="85" height="95"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gud-sL-xcH">
@@ -1266,6 +1266,7 @@
                                             <constraint firstAttribute="width" constant="25" id="DNs-LD-Bwo"/>
                                         </constraints>
                                         <state key="normal" image="uc_icon_login_display_pwd"/>
+                                        <state key="selected" image="uc_icon_login_hide_pwd"/>
                                         <connections>
                                             <action selector="displayPwd:" destination="bEQ-0O-xbU" eventType="touchUpInside" id="qo8-pD-xGY"/>
                                         </connections>
@@ -1375,6 +1376,7 @@
                         <viewLayoutGuide key="safeArea" id="K4p-uD-84b"/>
                     </view>
                     <connections>
+                        <outlet property="eye" destination="jrX-ne-wIn" id="wpZ-iq-yHL"/>
                         <outlet property="login" destination="s3F-Cr-G5r" id="GYC-AM-74N"/>
                         <outlet property="pwd" destination="vxe-Ep-jAl" id="Rmx-Rc-ejt"/>
                         <outlet property="username" destination="2wK-aq-yRn" id="Cau-rG-V65"/>
@@ -1547,6 +1549,7 @@
         <image name="uc_icon_fenxiang_green" width="22" height="22"/>
         <image name="uc_icon_home_top_bg" width="414" height="190"/>
         <image name="uc_icon_login_display_pwd" width="25" height="17"/>
+        <image name="uc_icon_login_hide_pwd" width="16" height="7"/>
         <image name="uc_icon_login_pwd_prefix" width="23" height="23"/>
         <image name="uc_icon_login_username_prefix" width="23" height="23"/>
         <image name="uc_icon_my_feedback" width="20" height="20"/>

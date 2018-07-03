@@ -38,5 +38,8 @@
 //#endif
 
 #define DJPlaceholderImage [UIImage imageNamed:@"dj_placeholder"]
+#define DJDigitalBookPImage [UIImage imageNamed:@"home_book_placeholder"]
+#define DJImgloopPImage [UIImage imageNamed:@"home_imgloop_placeholder"]
+
 
 
