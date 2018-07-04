@@ -28,7 +28,7 @@
     _itemIconCell.text = model.itemName;
     _item.text = [NSString stringWithFormat:@"%@:",model.itemName];
     if ([model.itemName isEqualToString:@"头像"]) {
-        [_icon sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:DJPlaceholderImage];
+        [_icon sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:DJHeadIconPImage];
     }else{
         _content.text = model.content;
     }

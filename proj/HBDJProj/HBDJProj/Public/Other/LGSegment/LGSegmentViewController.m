@@ -25,7 +25,6 @@ LGSegmentBottomViewDelegate
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];

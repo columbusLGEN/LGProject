@@ -23,9 +23,6 @@
 #import "HPPointNewsTableViewController.h"
 #import "HPDigitalCollectionViewController.h"
 
-//#import "HPAudioVideoViewController.h"
-//#import "HPPartyBuildDetailViewController.h"
-
 // model
 #import "EDJHomeModel.h"
 #import "EDJDigitalModel.h"

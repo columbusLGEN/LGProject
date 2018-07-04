@@ -71,7 +71,7 @@ UITableViewDataSource>
     [_tableView reloadData];
     
     DJUser *user = [DJUser sharedInstance];
-    [_headIcon sd_setImageWithURL:[NSURL URLWithString:user.image] placeholderImage:DJPlaceholderImage];
+    [_headIcon sd_setImageWithURL:[NSURL URLWithString:user.image] placeholderImage:DJHeadIconPImage];
     _userNick.text = user.name;
     _level.text = user.gradename;
 }

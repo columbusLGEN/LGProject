@@ -9,6 +9,8 @@
 #import "OLSkipObject.h"
 #import "OLHomeModel.h"
 
+#import "OLMindReportViewController.h"
+
 @implementation OLSkipObject
 + (UIViewController *)viewControllerWithOLHomeModelType:(OLHomeModel *)model{
     if (model.modelType == OnlineModelTypeKnowleageTest) {
@@ -18,8 +20,14 @@
         return vc;
     }else{
         NSString *controllerClass = controllerClassWithModelType(model.modelType);
+        
         UIViewController *vc = [NSClassFromString(controllerClass) new];
         vc.title = model.toolname;
+        
+        if ([vc isKindOfClass:[OLMindReportViewController class]]) {
+            OLMindReportViewController *vc_ = (OLMindReportViewController *)vc;
+            vc_.listType = model.modelType;
+        }
         
         return vc;
     }

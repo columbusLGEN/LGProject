@@ -59,6 +59,7 @@
                         <state key="normal" title="展开">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <state key="selected" title="收起"/>
                         <connections>
                             <action selector="showAllClick:" destination="zrc-tE-mZa" eventType="touchUpInside" id="dz2-ik-z9W"/>
                         </connections>

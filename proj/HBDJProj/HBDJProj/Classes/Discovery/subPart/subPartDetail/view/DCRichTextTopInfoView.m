@@ -22,7 +22,7 @@
 @implementation DCRichTextTopInfoView
 
 - (void)reloadPlayCount:(NSInteger)count{
-    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",count];
+//    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",count];
 }
 
 - (void)setModel:(DJDataBaseModel *)model{

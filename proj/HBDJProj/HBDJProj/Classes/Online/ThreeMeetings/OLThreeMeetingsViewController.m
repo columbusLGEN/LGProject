@@ -9,6 +9,8 @@
 #import "OLThreeMeetingsViewController.h"
 #import "OLMindReportViewController.h"
 
+#import "DJOnlineUplaodTableViewController.h"
+
 static CGFloat channelLabelY = 17;
 static CGFloat channelScrollViewHeight = 51;
 
@@ -42,6 +44,10 @@ UIScrollViewDelegate>
 }
 
 - (void)configUI{
+    
+    UIBarButtonItem *item_create = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStyleDone target:self action:@selector(createContent)];
+    self.navigationItem.rightBarButtonItem = item_create;
+    
     [self.view addSubview:self.channelScrollView];
     
     _channelLabelArray = [NSMutableArray new];
@@ -86,6 +92,7 @@ UIScrollViewDelegate>
     /// MARK: 配置content
     [self.channelTitleArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         OLMindReportViewController *vc = [OLMindReportViewController new];
+        vc.listType = OnlineModelTypeThreeMeetings;
         vc.view.frame = CGRectMake(kScreenWidth * idx, 0, kScreenWidth, contentScrollViewHeight);
         [self addChildViewController:vc];
         [self.contentScrollView addSubview:vc.view];
@@ -98,6 +105,11 @@ UIScrollViewDelegate>
     _currentIndex = tap.view.tag;
     [self moveElfWithLabels:self.channelLabelArray index:_currentIndex];
     [self.contentScrollView setContentOffset:CGPointMake((_currentIndex * kScreenWidth), 0) animated:YES];
+}
+- (void)createContent{
+    DJOnlineUplaodTableViewController *olupvc = [[DJOnlineUplaodTableViewController alloc] initWithListType:OnlineModelTypeThreeMeetings];
+    
+    [self.navigationController pushViewController:olupvc animated:YES];
 }
 
 #pragma mark - scroll view delegate

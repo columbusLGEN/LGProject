@@ -8,16 +8,6 @@
 
 #import "LGBaseModel.h"
 
-/** 实例的 modeltype 与seqid对应 */
-typedef NS_ENUM(NSUInteger, OnlineModelType) {
-    OnlineModelTypeKnowleageTest = 1,
-    OnlineModelTypeVote,
-    OnlineModelTypePayPartyFee,
-    OnlineModelTypeThreeMeetings,
-    OnlineModelTypeThemePartyDay,
-    OnlineModelTypeMindReport,
-    OnlineModelTypeSpeakCheap
-};
 typedef NS_ENUM(NSUInteger, ControllerInitType) {
     ControllerInitTypeCode,
     ControllerInitTypeStoryboard,

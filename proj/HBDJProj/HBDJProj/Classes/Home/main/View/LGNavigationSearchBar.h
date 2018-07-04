@@ -24,12 +24,12 @@ typedef NS_ENUM(NSUInteger, NavState) {
  @param navigationSearchBar self
  */
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar;
-/** 点击最有边的按钮 */
+/** 点击语音搜索 */
+- (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar;
+/** 点击最由边的按钮 */
 - (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar;
 /** 点击最左边的按钮 */
 - (void)leftButtonClick:(LGNavigationSearchBar *)navigationSearchBar;
-/** 点击语音搜索 */
-- (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar;
 
 @end
 

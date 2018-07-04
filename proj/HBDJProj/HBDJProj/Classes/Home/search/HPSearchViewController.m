@@ -53,18 +53,21 @@ LGVoiceRecoAssistDelegate>
 
 @implementation HPSearchViewController
 
+#pragma mark - 视图生命周期
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configUI_sub];
+    
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+- (void)configUI_sub{
     _speaking = NO;
     
     LGNavigationSearchBar *fakeNavgationBar = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
-//    LGNavigationSearchBar *fakeNavgationBar = [[LGNavigationSearchBar alloc] init];
     fakeNavgationBar.leftImgName = @"icon_arrow_left_black";
     fakeNavgationBar.isShowRightBtn = YES;
     fakeNavgationBar.rightButtonTitle = @"搜索";
@@ -72,10 +75,11 @@ LGVoiceRecoAssistDelegate>
     [self.view addSubview:fakeNavgationBar];
     _fakeNavgationBar = fakeNavgationBar;
     
-    /// 搜索记录view
+    /// 历史记录视图
     HPSearchHistoryView *hisView = [[HPSearchHistoryView alloc] init];
     _searchHistory = hisView;
     
+    /// 获取本地历史记录数据
     [self getLocalRecord];
     
     [hisView.deleteRecord addTarget:self
@@ -90,13 +94,11 @@ LGVoiceRecoAssistDelegate>
         make.right.equalTo(self.view.mas_right);
     }];
     
-    
+    /// 监听语音识别结束
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lg_endOfSpeech:) name:LGVoiceRecoganizerEndOfSpeechNotification object:nil];
     
     /// 默认进入页面自动响应输入
     [self addTextFieldToNav:_fakeNavgationBar];
-    
-    [LGLocalSearchRecord sharedInstance];
     
     if (_voice) {
         /// 添加语音面板
@@ -104,15 +106,25 @@ LGVoiceRecoAssistDelegate>
             [self.view addSubview:self.vsView];
         }
     }
-    
 }
+
+#pragma mark - settter
+- (void)setSearchContent:(NSString *)searchContent{
+    _searchContent = searchContent;
+    HPSearchLessonController *microvc = self.childViewControllers[0];
+    HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
+    microvc.searchContent = searchContent;
+    partyvc.searchContent = searchContent;
+}
+
+#pragma mark - target
+/// MARK: 点击搜索历史
 - (void)recordClick:(UIButton *)record{
-    NSLog(@"clickrecord.title: %@",record.titleLabel.text);
     _textField.text = record.titleLabel.text;
     [self sendSearchRequest:NO];
 }
+/// MARK: 删除历史记录
 - (void)deleteSearchRecord:(UIButton *)sender{
-//    NSLog(@"删除历史记录: ");
     [LGLocalSearchRecord removeLocalRecord];
     [self getLocalRecord];
 }
@@ -129,7 +141,8 @@ LGVoiceRecoAssistDelegate>
     self.textField.text = [NSString stringWithFormat:@"%@%@",self.textField.text,trimmedString];
 }
 
-#pragma mark - HPVoiceSearchViewDelegate
+#pragma mark - delegate
+/// MARK: 语音搜索视图 HPVoiceSearchViewDelegate
 - (void)voiceViewRecording:(HPVoiceSearchView *)voiceView{
     /// 检查网络状态
     [[LGNetworkManager sharedInstance] checkNetworkStatusWithBlock:^(AFNetworkReachabilityStatus status) {
@@ -161,7 +174,8 @@ LGVoiceRecoAssistDelegate>
         _vsView = nil;
     }
 }
-#pragma mark - LGVoiceRecoAssistDelegate
+
+/// MARK: 声音识别辅助对象 LGVoiceRecoAssistDelegate
 - (void)voiceRecoAssistRecoganizing:(NSInteger)second{
     [_vsView.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",second]]];
 }
@@ -169,7 +183,7 @@ LGVoiceRecoAssistDelegate>
     [self voiceViewClose:_vsView];
 }
 
-#pragma - LGNavigationSearchBarDelelgate
+/// MARK: 搜索bar LGNavigationSearchBarDelelgate
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
     [self addTextFieldToNav:navigationSearchBar];
 }
@@ -187,21 +201,73 @@ LGVoiceRecoAssistDelegate>
     [self sendSearchRequest:YES];
 }
 
-#pragma mark - textField delegate
+/// MARK: 输入框 UITextfieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self navRightButtonClick:nil];
     return YES;
 }
 
-- (void)setSearchContent:(NSString *)searchContent{
-    _searchContent = searchContent;
-    HPSearchLessonController *microvc = self.childViewControllers[0];
-    HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
-    microvc.searchContent = searchContent;
-    partyvc.searchContent = searchContent;
+#pragma mark - lazy load & getter
+- (UITextField *)textField{
+    if (!_textField) {
+        _textField = [[UITextField alloc] init];
+        _textField.borderStyle = UITextBorderStyleNone;
+        _textField.delegate = self;
+        UIView *margin = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        _textField.leftView = margin;
+        _textField.leftViewMode = UITextFieldViewModeAlways;
+        _textField.returnKeyType = UIReturnKeySearch;
+    }
+    return _textField;
+}
+- (HPVoiceSearchView *)vsView{
+    if (!_vsView) {
+        _vsView = [HPVoiceSearchView voiceSearchView];
+        _vsView.frame = CGRectMake(0, navHeight(), kScreenWidth, kScreenHeight - navHeight());
+        _vsView.delegate = self;
+        _vsView.vc = self;
+    }
+    return _vsView;
+}
+- (LGRecordButtonLoader *)rbLoader{
+    if (!_rbLoader) {
+        _rbLoader = [[LGRecordButtonLoader alloc] init];
+    }
+    return _rbLoader;
+}
+- (LGUserLimitsManager *)limitsMgr{
+    if (!_limitsMgr) {
+        _limitsMgr = [LGUserLimitsManager new];
+    }
+    return _limitsMgr;
+}
+- (LGVoiceRecoAssist *)voiceAssist{
+    if (!_voiceAssist) {
+        _voiceAssist = [LGVoiceRecoAssist new];
+        _voiceAssist.delegate = self;
+    }
+    return _voiceAssist;
+}
+- (NSArray<NSDictionary *> *)segmentItems{
+    /**
+     DCQuestionCommunityViewController
+     HPSearchBuildPoineNewsController
+     */
+    return @[@{LGSegmentItemNameKey:@"微党课",
+               LGSegmentItemViewControllerClassKey:@"HPSearchLessonController",/// HPSearchLessonController
+               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
+               },
+             @{LGSegmentItemNameKey:@"要闻",
+               LGSegmentItemViewControllerClassKey:@"HPSearchBuildPoineNewsController",///
+               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
+               }];
+}
+- (CGFloat)segmentTopMargin{
+    return kNavSingleBarHeight + marginTen;
 }
 
-/** 发送搜索请求 */
+#pragma mark - private method
+/// MARK: 发送搜索请求
 - (void)sendSearchRequest:(BOOL)isaNewRecord{
     [self.view endEditing:YES];
     /** type: 默认传0
@@ -270,7 +336,7 @@ LGVoiceRecoAssistDelegate>
             [self.view presentFailureTips:@"没有搜到想要的内容"];
         }
         
-
+        
     } failure:^(id failureObj) {
         [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
         NSLog(@"faillureObject -- %@",failureObj);
@@ -282,17 +348,17 @@ LGVoiceRecoAssistDelegate>
     }];
     
 }
-
-
-
-/** 退出输入状态 */
-- (void)endInput{
-    [self.view endEditing:YES];
-    _fakeNavgationBar.isEditing = NO;
-    [_textField removeFromSuperview];
-    _textField = nil;
+/// 获取搜索历史记录
+- (void)getLocalRecord{
+    self.records = [LGLocalSearchRecord getLocalRecordWithPart:SearchRecordExePartHome];
+    NSMutableArray *buttonArray = [NSMutableArray array];
+    [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *button = [self.rbLoader buttonWith:obj frame:CGRectZero];
+        [buttonArray addObject:button];
+    }];
+    [self.rbLoader addButtonTo:_searchHistory.scrollv viewController:self array:buttonArray.copy action:@selector(recordClick:)];
 }
-
+/// 添加输入框
 - (void)addTextFieldToNav:(LGNavigationSearchBar *)navigationSearchBar{
     if (!_textField) {
         navigationSearchBar.isEditing = YES;
@@ -306,82 +372,19 @@ LGVoiceRecoAssistDelegate>
         
     }
 }
-/** 获取本地搜索记录 */
-- (void)getLocalRecord{
-    self.records = [LGLocalSearchRecord getLocalRecordWithPart:SearchRecordExePartHome];
-    NSMutableArray *buttonArray = [NSMutableArray array];
-    [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *button = [self.rbLoader buttonWith:obj frame:CGRectZero];
-        [buttonArray addObject:button];
-    }];
-    [self.rbLoader addButtonTo:_searchHistory.scrollv viewController:self array:buttonArray.copy action:@selector(recordClick:)];
+/// 退出输入状态
+- (void)endInput{
+    [self.view endEditing:YES];
+    _fakeNavgationBar.isEditing = NO;
+    [_textField removeFromSuperview];
+    _textField = nil;
 }
 
+#pragma mark - system method
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - getter
-- (UITextField *)textField{
-    if (!_textField) {
-        _textField = [[UITextField alloc] init];
-        _textField.borderStyle = UITextBorderStyleNone;
-        _textField.delegate = self;
-        UIView *margin = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        _textField.leftView = margin;
-        _textField.leftViewMode = UITextFieldViewModeAlways;
-        _textField.returnKeyType = UIReturnKeySearch;
-    }
-    return _textField;
-}
-- (HPVoiceSearchView *)vsView{
-    if (!_vsView) {
-        _vsView = [HPVoiceSearchView voiceSearchView];
-        _vsView.frame = CGRectMake(0, navHeight(), kScreenWidth, kScreenHeight - navHeight());
-        _vsView.delegate = self;
-        _vsView.vc = self;
-    }
-    return _vsView;
-}
-- (NSArray<NSDictionary *> *)segmentItems{
-    /**
-     DCQuestionCommunityViewController
-     HPSearchBuildPoineNewsController
-     
-     */
-    return @[@{LGSegmentItemNameKey:@"微党课",
-               LGSegmentItemViewControllerClassKey:@"HPSearchLessonController",/// HPSearchLessonController
-               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
-               },
-             @{LGSegmentItemNameKey:@"要闻",
-               LGSegmentItemViewControllerClassKey:@"HPSearchBuildPoineNewsController",///
-               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
-               }];
-}
-- (LGRecordButtonLoader *)rbLoader{
-    if (!_rbLoader) {
-        _rbLoader = [[LGRecordButtonLoader alloc] init];
-    }
-    return _rbLoader;
-}
-- (LGUserLimitsManager *)limitsMgr{
-    if (!_limitsMgr) {
-        _limitsMgr = [LGUserLimitsManager new];
-    }
-    return _limitsMgr;
-}
-- (LGVoiceRecoAssist *)voiceAssist{
-    if (!_voiceAssist) {
-        _voiceAssist = [LGVoiceRecoAssist new];
-        _voiceAssist.delegate = self;
-    }
-    return _voiceAssist;
-}
-
-- (CGFloat)segmentTopMargin{
-    return kNavSingleBarHeight + marginTen;
 }
 @end

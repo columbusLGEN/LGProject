@@ -40,20 +40,23 @@
         /// TODO: 将进度条绘制 封装至 LGLoadingAssit
         MBProgressHUD *progressBar = [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
         [vc.view addSubview:progressBar];
+        
         _progressBar = progressBar;
         progressBar.mode = MBProgressHUDModeAnnularDeterminate;
         progressBar.progress = 0.0;
+        
         /// 先下载，再打开
         [self downloadResourceWithUrl:model.ebookresource localUrl:model.localUrl progressBlk:^(CGFloat progress,CGFloat total, CGFloat current) {
             _progressBar.progress = progress;
         } success:^(NSString *destiPath) {
             [_progressBar hideAnimated:YES];
-            NSLog(@"destipath: %@",destiPath);
             model.localUrl = destiPath;
             [LGBookReaderManager openBookWithLocalUrl:destiPath bookId:bookId vc:vc];
         } failure:^(NSError *error) {
             [_progressBar hideAnimated:YES];
-            NSLog(@"downloadfailure: %@",error);
+            if (error) {
+                [vc presentFailureTips:@"网络或下载链接异常"];
+            }
         }];
     }
     

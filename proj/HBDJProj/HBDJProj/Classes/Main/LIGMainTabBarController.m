@@ -54,7 +54,7 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
     tabbarSelectedIconKey:@"tab-icon-zaixian-xz"
     },
   @{vcClassKey:userCenterViewController,
-    vcTitleKey:@"个人中心",
+    vcTitleKey:@"我的",
     tabbarIconKey:@"tab-icon-wode-",
     tabbarSelectedIconKey:@"tab-icon-wode-xz"
     }

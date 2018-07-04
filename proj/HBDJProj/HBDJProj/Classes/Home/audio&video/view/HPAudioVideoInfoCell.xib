@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,19 +29,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-1-22  更新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efe-1Z-gsZ">
-                        <rect key="frame" x="89" y="280" width="111" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源：人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB8-m5-xpr">
-                        <rect key="frame" x="205" y="280" width="107.5" height="18"/>
+                        <rect key="frame" x="89" y="254" width="111" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999次播放" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwU-Gg-FzT">
-                        <rect key="frame" x="10" y="280.5" width="74" height="18"/>
+                        <rect key="frame" x="10" y="254.5" width="74" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="RFN-yE-vaQ"/>
                         </constraints>
@@ -50,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wA-6I-nZu">
-                        <rect key="frame" x="10" y="96" width="577" height="150.5"/>
+                        <rect key="frame" x="10" y="96" width="577" height="130.5"/>
                         <string key="text">1.祖国是人民最坚实的依靠，英雄是民族最闪亮的坐标。
 ——2016年11月30日，在中国文联十大、中国作协九大开幕式上的讲话
 2.对中华民族的英雄，要心怀崇敬，浓墨重彩记录英雄、塑造英雄，让英雄在文艺作品中得到传扬，引导人民树立正确的历史观、民族观、国家观、文化观，绝不做亵渎祖先、亵渎经典、亵渎英雄的事情。
@@ -98,7 +92,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-gq-QE4">
-                        <rect key="frame" x="530" y="256.5" width="47" height="22"/>
+                        <rect key="frame" x="530" y="236.5" width="47" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Knf-hZ-099"/>
                         </constraints>
@@ -112,22 +106,29 @@
                             <action selector="open:" destination="xPp-GS-1Xa" eventType="touchUpInside" id="glA-Ra-DUH"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源：人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB8-m5-xpr">
+                        <rect key="frame" x="10" y="280.5" width="567" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JB8-m5-xpr" firstAttribute="centerY" secondItem="efe-1Z-gsZ" secondAttribute="centerY" id="0Ka-yP-cEd"/>
                     <constraint firstItem="efe-1Z-gsZ" firstAttribute="centerY" secondItem="pwU-Gg-FzT" secondAttribute="centerY" id="1ev-SS-GIS"/>
                     <constraint firstItem="efe-1Z-gsZ" firstAttribute="leading" secondItem="pwU-Gg-FzT" secondAttribute="trailing" constant="5" id="24Y-CZ-a62"/>
                     <constraint firstAttribute="trailing" secondItem="jXj-lO-IK8" secondAttribute="trailing" id="GBJ-wC-bAa"/>
                     <constraint firstItem="5wA-6I-nZu" firstAttribute="top" secondItem="1yC-f4-Z1k" secondAttribute="bottom" constant="15" id="Gg6-K6-Yke"/>
+                    <constraint firstItem="JB8-m5-xpr" firstAttribute="trailing" secondItem="zf2-gq-QE4" secondAttribute="trailing" id="OZD-Eb-eq0"/>
                     <constraint firstItem="5wA-6I-nZu" firstAttribute="trailing" secondItem="1yC-f4-Z1k" secondAttribute="trailing" id="PcC-xc-IDD"/>
-                    <constraint firstItem="jXj-lO-IK8" firstAttribute="top" secondItem="zf2-gq-QE4" secondAttribute="bottom" constant="30" id="T6k-aG-Rpj"/>
-                    <constraint firstItem="JB8-m5-xpr" firstAttribute="leading" secondItem="efe-1Z-gsZ" secondAttribute="trailing" constant="5" id="TN1-aS-mGp"/>
+                    <constraint firstItem="jXj-lO-IK8" firstAttribute="top" secondItem="zf2-gq-QE4" secondAttribute="bottom" constant="50" id="T6k-aG-Rpj"/>
                     <constraint firstItem="5wA-6I-nZu" firstAttribute="leading" secondItem="1yC-f4-Z1k" secondAttribute="leading" id="Y3W-Cr-NlU"/>
                     <constraint firstAttribute="trailing" secondItem="zf2-gq-QE4" secondAttribute="trailing" constant="20" id="Z3b-Im-5DM"/>
                     <constraint firstItem="zf2-gq-QE4" firstAttribute="top" secondItem="5wA-6I-nZu" secondAttribute="bottom" constant="10" id="eQp-pq-8Tu"/>
                     <constraint firstItem="1yC-f4-Z1k" firstAttribute="leading" secondItem="r2J-ij-bKj" secondAttribute="leading" constant="10" id="erq-e2-xiD"/>
                     <constraint firstItem="pwU-Gg-FzT" firstAttribute="leading" secondItem="1yC-f4-Z1k" secondAttribute="leading" id="fbO-aQ-tAS"/>
-                    <constraint firstItem="jXj-lO-IK8" firstAttribute="top" secondItem="pwU-Gg-FzT" secondAttribute="bottom" constant="10" id="icL-kB-8wt"/>
+                    <constraint firstItem="JB8-m5-xpr" firstAttribute="leading" secondItem="pwU-Gg-FzT" secondAttribute="leading" id="gM5-Ua-kZR"/>
+                    <constraint firstItem="JB8-m5-xpr" firstAttribute="top" secondItem="pwU-Gg-FzT" secondAttribute="bottom" constant="8" id="h1g-Ps-A91"/>
+                    <constraint firstItem="jXj-lO-IK8" firstAttribute="top" secondItem="JB8-m5-xpr" secondAttribute="bottom" constant="10" id="hpN-cl-Bfm"/>
                     <constraint firstItem="jXj-lO-IK8" firstAttribute="leading" secondItem="r2J-ij-bKj" secondAttribute="leading" id="jMo-NE-HzE"/>
                     <constraint firstItem="1yC-f4-Z1k" firstAttribute="top" secondItem="r2J-ij-bKj" secondAttribute="topMargin" constant="5" id="l4v-pH-Uzu"/>
                     <constraint firstAttribute="bottom" secondItem="jXj-lO-IK8" secondAttribute="bottom" id="qSz-2Z-bQG"/>

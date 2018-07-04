@@ -13,6 +13,7 @@
 #import "EDJOnlineController.h"
 #import "OLAddMoreToolViewController.h"
 #import "OLMindReportViewController.h"
+#import "DJSearchViewController.h"
 
 #import "DJOnlineHomeModel.h"
 #import "OLHomeModel.h"
@@ -21,7 +22,9 @@
 
 static CGFloat headLineHeight = 233;
 
-@interface EDJOnlineViewController ()<UICollectionViewDelegate>
+@interface EDJOnlineViewController ()<
+UICollectionViewDelegate
+,LGNavigationSearchBarDelelgate>
 @property (strong,nonatomic) EDJOnlineController *onlineController;
 @property (strong,nonatomic) UIImageView *headLine;
 @property (strong,nonatomic) DJOnlineHomeModel *model;
@@ -39,6 +42,7 @@ static CGFloat headLineHeight = 233;
     self.onlineController.collectionView.delegate = self;
     
     LGNavigationSearchBar *nav = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
+    nav.delegate = self;
     [self.view addSubview:nav];
     [self.onlineController.collectionView addSubview:self.headLine];
     
@@ -47,6 +51,8 @@ static CGFloat headLineHeight = 233;
         NSLog(@"res_class: %@",[responseObj class]);
         self.model = [DJOnlineHomeModel mj_objectWithKeyValues:responseObj];
         self.onlineController.onlineModels = self.model.activation;
+        
+        [self.headLine sd_setImageWithURL:[NSURL URLWithString:self.model.headlineImg] placeholderImage:DJImgloopPImage];
         
     } failure:^(id failureObj) {
         [self presentFailureTips:@"网络异常"];
@@ -68,10 +74,21 @@ static CGFloat headLineHeight = 233;
             [self presentViewController:vc animated:YES completion:nil];
         }
     }else{
-
+        /// 其余跳转
         [self.navigationController pushViewController:[OLSkipObject viewControllerWithOLHomeModelType:model] animated:YES];
-        
     }
+}
+#pragma mark - LGNavigationSearchBarDelelgate
+- (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
+    [self beginSearchWithVoice:NO];
+}
+- (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
+    [self beginSearchWithVoice:YES];
+}
+- (void)beginSearchWithVoice:(BOOL)voice{
+    DJSearchViewController *searchVc = [DJSearchViewController new];
+    searchVc.voice = voice;
+    [self.navigationController pushViewController:searchVc animated:YES];
 }
 
 - (UIImageView *)headLine{

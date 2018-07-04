@@ -17,4 +17,7 @@
 /** 未激活 */
 @property (strong,nonatomic) NSArray<OLHomeModel *> *notactive;
 
+/** 在线首页顶部图片链接 */
+@property (strong,nonatomic) NSString *headlineImg;
+
 @end

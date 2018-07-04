@@ -26,7 +26,7 @@ UITextFieldDelegate>
     NSString *updatedString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     textField.text = updatedString;
     [self.vc.activationDict setValue:updatedString forKey:[NSString stringWithFormat:@"%ld",self.index.row]];
-    NSLog(@"textfield.text: %@",updatedString);
+//    NSLog(@"textfield.text: %@",updatedString);
     return NO;
 }
 

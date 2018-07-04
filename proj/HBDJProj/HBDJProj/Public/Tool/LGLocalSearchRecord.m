@@ -158,6 +158,9 @@
         case SearchRecordExePartDiscovery:
             return @"discovery";
             break;
+        case SearchRecordExePartOnline:
+            return @"online";
+            break;
     }
     
 }
@@ -166,7 +169,6 @@
  搜索记录的key
  /// userid,模块_index
  /// 例如: userid == 123, 模块为首页,index == 0 key: userid_123,home_1;
- 
 
  @param userid 当前用户id
  @param part 搜索模块，首页，发现等
@@ -181,8 +183,7 @@
 }
 
 - (NSString *)userId{
-    /// TODO: 获取userid
-    return @"1";
+    return [DJUser sharedInstance].userid;
 }
 
 + (instancetype)sharedInstance{

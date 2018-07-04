@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>itemName</key>
+		<string>活动主题</string>
+		<key>itemClass</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>活动时间</string>
+		<key>itemClass</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>活动地点</string>
+		<key>itemClass</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>活动主持人</string>
+		<key>itemClass</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>活动人员</string>
+		<key>itemClass</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>缺席人员</string>
+		<key>itemClass</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>活动内容</string>
+		<key>itemClass</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>添加封面</string>
+		<key>itemClass</key>
+		<integer>4</integer>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>添加图片</string>
+		<key>itemClass</key>
+		<integer>3</integer>
+	</dict>
+</array>
+</plist>

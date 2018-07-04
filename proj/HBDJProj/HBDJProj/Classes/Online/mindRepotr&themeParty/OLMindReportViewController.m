@@ -10,6 +10,8 @@
 #import "OLMindReportTableViewCell.h"
 #import "OLMindReportModel.h"
 
+#import "DJOnlineUplaodTableViewController.h"
+
 @interface OLMindReportViewController ()
 
 @end
@@ -23,26 +25,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configUI];
     
-    [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
-    
-    NSMutableArray *arrMu = [NSMutableArray new];
-    for (NSInteger i = 0; i < 20; i++) {
-        OLMindReportModel *model = [OLMindReportModel new];
-        model.title = @"2017思想汇报";
-        model.author = @"常小江";
-        model.testTime = @"2018-01-01";
-        [arrMu addObject:model];
-    }
-    self.dataArray = arrMu.copy;
-    [self.tableView reloadData];
 }
 
-#pragma mark - Table view data source
+#pragma mark - target
+- (void)createContent{
+    DJOnlineUplaodTableViewController *olupvc = [[DJOnlineUplaodTableViewController alloc] initWithListType:self.listType];
+
+    [self.navigationController pushViewController:olupvc animated:YES];
+}
+
+#pragma mark - delegate
+/// MARK: tablview 代理、数据源
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OLMindReportModel *model = self.dataArray[indexPath.row];
     OLMindReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
@@ -53,49 +51,37 @@
     return 100;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - config UI
+- (void)configUI{
+    
+    UIBarButtonItem *item_create = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStyleDone target:self action:@selector(createContent)];
+    self.navigationItem.rightBarButtonItem = item_create;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
+    
+    NSString *title;
+    switch (_listType) {
+        case OnlineModelTypeThemePartyDay:
+            title = @"主题党日";
+            break;
+        case OnlineModelTypeThreeMeetings:
+            title = @"三会一课";
+            break;
+        default:
+            break;
+    }
+    
+    NSMutableArray *arrMu = [NSMutableArray new];
+    for (NSInteger i = 0; i < 20; i++) {
+        OLMindReportModel *model = [OLMindReportModel new];
+        model.title = title;
+        model.author = @"常小江";
+        model.testTime = @"2018-01-01";
+        [arrMu addObject:model];
+    }
+    self.dataArray = arrMu.copy;
+    [self.tableView reloadData];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

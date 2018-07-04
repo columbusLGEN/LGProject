@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSUInteger, SearchRecordExePart) {
     SearchRecordExePartHome,
     SearchRecordExePartDiscovery,
-    
+    SearchRecordExePartOnline
 };
 
 @interface LGLocalSearchRecord : NSObject
@@ -32,5 +32,6 @@ typedef NS_ENUM(NSUInteger, SearchRecordExePart) {
  @param part 当前模块，首页：home
  */
 + (void)addNewRecordWithContent:(NSString *)content part:(SearchRecordExePart)part;
+
 + (instancetype)sharedInstance;
 @end

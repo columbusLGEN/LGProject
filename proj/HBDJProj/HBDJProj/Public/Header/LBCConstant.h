@@ -24,5 +24,16 @@ static NSString * const OnlineStoryboardName = @"Online";
 static NSString * const textBold = @"Helvetica-Bold";
 static NSString * const testImg = @"party_history";
 
+#pragma mark - 在线页面相关常量、枚举等
+/** 在线首页 实例的 modeltype 与seqid对应 */
+typedef NS_ENUM(NSUInteger, OnlineModelType) {
+    OnlineModelTypeKnowleageTest = 1,
+    OnlineModelTypeVote,
+    OnlineModelTypePayPartyFee,
+    OnlineModelTypeThreeMeetings,
+    OnlineModelTypeThemePartyDay,
+    OnlineModelTypeMindReport,
+    OnlineModelTypeSpeakCheap
+};
 
 

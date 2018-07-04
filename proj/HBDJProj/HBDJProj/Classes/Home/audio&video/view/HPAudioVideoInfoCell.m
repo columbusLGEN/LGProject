@@ -27,7 +27,7 @@
     [_title setText:model.title];
     [_content setText:model.contentvalidity];
     [_playTimes setText:[NSString stringWithFormat:@"%ld次查看",model.playcount]];
-    [_time setText:model.createdDate];
+    [_time setText:[model.createdDate stringByAppendingString:@" 更新"]];
     [_source setText:[NSString stringWithFormat:@"来源: %@",model.source]];
     
 }

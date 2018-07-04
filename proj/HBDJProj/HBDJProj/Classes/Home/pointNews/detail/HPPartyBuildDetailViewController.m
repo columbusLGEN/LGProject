@@ -18,7 +18,7 @@
 #import "LGSocialShareManager.h"
 #import "HPAddBroseCountMgr.h"
 
-static const CGFloat richTextTopInfoViewHeight = 100;
+static const CGFloat richTextTopInfoViewHeight = 110;
 
 @interface HPPartyBuildDetailViewController ()<
 DTAttributedTextContentViewDelegate,
@@ -96,6 +96,7 @@ LGThreeRightButtonViewDelegate>
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             DTAttributedTextView *textView = [[DTAttributedTextView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - self.bottomHeight - kNavHeight)];
             _coreTextView = textView;
+            /// 设置insets 以显示 top info view
             textView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
             textView.textDelegate = self;
             textView.attributedString = string;
@@ -103,16 +104,11 @@ LGThreeRightButtonViewDelegate>
             
             /// MARK: 顶部信息view （标题，时间，来源等）
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
+            topInfoView.frame = CGRectMake(0, 0, kScreenWidth, richTextTopInfoViewHeight);
             topInfoView.model = contentModel;
             topInfoView.displayCounts = self.displayCounts;
             [textView addSubview:topInfoView];
             _topInfoView = topInfoView;
-            [topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(textView.mas_top);
-                make.left.equalTo(textView.mas_left);
-                make.width.mas_equalTo(kScreenWidth);
-                make.height.mas_equalTo(richTextTopInfoViewHeight);
-            }];
             
         }];
     }];

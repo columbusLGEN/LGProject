@@ -106,7 +106,7 @@ static CGFloat buttonHeight = 30;
         [self.fakeSearch setTitle:nil forState:UIControlStateNormal];
         [self.fakeSearch setImage:nil forState:UIControlStateNormal];
     }else{
-        [self.fakeSearch setTitle:@"搜索你想要的" forState:UIControlStateNormal];
+        [self.fakeSearch setTitle:@"搜索你想搜的" forState:UIControlStateNormal];
         [self.fakeSearch setImage:[UIImage imageNamed:@"home_nav_search"]
                          forState:UIControlStateNormal];
     }
@@ -161,7 +161,7 @@ static CGFloat buttonHeight = 30;
         _fakeSearch.highlighted = NO;
         _fakeSearch.titleLabel.font = [UIFont systemFontOfSize:14];
         [_fakeSearch setTitleColor:[UIColor EDJGrayscale_88] forState:UIControlStateNormal];
-        [_fakeSearch setTitle:@"搜索你想要的" forState:UIControlStateNormal];
+        [_fakeSearch setTitle:@"搜索你想搜的" forState:UIControlStateNormal];
         [_fakeSearch setBackgroundColor:[UIColor EDJGrayscale_F4]];
         [_fakeSearch setImage:[UIImage imageNamed:@"home_nav_search"]
                      forState:UIControlStateNormal];
