@@ -12,7 +12,7 @@
 
 - (instancetype)initWithListType:(OnlineModelType)listType;
 
-/// 暴露出来，以便cell修改表单数据
-@property (strong,nonatomic) NSMutableDictionary *formDataDict;
+/// MARK: 暴露给cell，改变表单的值
+- (void)setFormDataDictValue:(nonnull id)value indexPath:(NSIndexPath *)indexPath;
 
 @end

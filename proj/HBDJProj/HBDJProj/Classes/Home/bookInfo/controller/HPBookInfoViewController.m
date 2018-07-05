@@ -92,7 +92,7 @@ HPBookInfoBriefCellDelegate>
 }
 
 #pragma mark - HPBookInfoBriefCellDelegate
-- (void)bibCellShowAllButtonClick{
+- (void)bibCellShowAllButtonClick:(HPBookInfoBriefCell *)cell{
     [self.tableView reloadData];
 }
 
@@ -103,8 +103,8 @@ HPBookInfoBriefCellDelegate>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HPBookInfoModel *model = _array[indexPath.row];
     HPBookInfoBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[HPBookInfoBaseCell cellReuseIdWithModel:model]];
-    cell.delegate = self;
     cell.model = model;
+    cell.delegate = self;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

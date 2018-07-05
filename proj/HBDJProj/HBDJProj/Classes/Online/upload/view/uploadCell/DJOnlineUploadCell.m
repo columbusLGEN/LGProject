@@ -23,7 +23,7 @@ UITextFieldDelegate>
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     NSString *updateString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     textField.text = updateString;
-    [self.vc.formDataDict setValue:updateString forKey:[NSString stringWithFormat:@"%ld",self.indexPath.row]];
+    [self.vc setFormDataDictValue:updateString indexPath:self.indexPath];
     
     return NO;
 }

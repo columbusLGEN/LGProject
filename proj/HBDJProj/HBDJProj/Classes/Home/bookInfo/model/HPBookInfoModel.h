@@ -23,6 +23,7 @@
 @property (assign,nonatomic) CGFloat readProgress;
 
 /// --------------以下为 简介 或 目录用到的属性
+
 /** 是否展开显示全部，默认为NO */
 @property (assign,nonatomic) BOOL showAll;
 /** 项目标题，“简介” 或者 “目录”*/

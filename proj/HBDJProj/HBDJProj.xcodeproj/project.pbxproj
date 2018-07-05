@@ -167,6 +167,9 @@
 		8876E3EB20EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3EA20EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.m */; };
 		8876E3EE20EC74A7001C6A1A /* LGSelectImgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3ED20EC74A7001C6A1A /* LGSelectImgManager.m */; };
 		8876E3F120ECB38A001C6A1A /* DJSelectDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3F020ECB38A001C6A1A /* DJSelectDateViewController.m */; };
+		8876E3F720EDB851001C6A1A /* DJSelectPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3F620EDB851001C6A1A /* DJSelectPeopleViewController.m */; };
+		8876E3FB20EDBCB5001C6A1A /* DJSelectPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3FA20EDBCB5001C6A1A /* DJSelectPeopleCell.m */; };
+		8876E3FE20EDC4AB001C6A1A /* DJSelectPeopleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3FD20EDC4AB001C6A1A /* DJSelectPeopleModel.m */; };
 		8877742220C0F7390011DFF3 /* ECRPDFRelateder.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */; };
 		8877742320C0F7390011DFF3 /* LGBookReaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FE20C0F7390011DFF3 /* LGBookReaderManager.m */; };
 		8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8877740220C0F7390011DFF3 /* LGDownloadManager.m */; };
@@ -696,6 +699,12 @@
 		8876E3ED20EC74A7001C6A1A /* LGSelectImgManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSelectImgManager.m; sourceTree = "<group>"; };
 		8876E3EF20ECB38A001C6A1A /* DJSelectDateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectDateViewController.h; sourceTree = "<group>"; };
 		8876E3F020ECB38A001C6A1A /* DJSelectDateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectDateViewController.m; sourceTree = "<group>"; };
+		8876E3F520EDB851001C6A1A /* DJSelectPeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectPeopleViewController.h; sourceTree = "<group>"; };
+		8876E3F620EDB851001C6A1A /* DJSelectPeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectPeopleViewController.m; sourceTree = "<group>"; };
+		8876E3F920EDBCB5001C6A1A /* DJSelectPeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectPeopleCell.h; sourceTree = "<group>"; };
+		8876E3FA20EDBCB5001C6A1A /* DJSelectPeopleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectPeopleCell.m; sourceTree = "<group>"; };
+		8876E3FC20EDC4AB001C6A1A /* DJSelectPeopleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectPeopleModel.h; sourceTree = "<group>"; };
+		8876E3FD20EDC4AB001C6A1A /* DJSelectPeopleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectPeopleModel.m; sourceTree = "<group>"; };
 		887773FB20C0F7390011DFF3 /* ECRPDFRelateder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRPDFRelateder.h; sourceTree = "<group>"; };
 		887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRPDFRelateder.m; sourceTree = "<group>"; };
 		887773FD20C0F7390011DFF3 /* LGBookReaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBookReaderManager.h; sourceTree = "<group>"; };
@@ -2046,11 +2055,44 @@
 				8876E3CA20EB5C12001C6A1A /* DJOnlineUplaodTableViewController.m */,
 				8876E3EF20ECB38A001C6A1A /* DJSelectDateViewController.h */,
 				8876E3F020ECB38A001C6A1A /* DJSelectDateViewController.m */,
+				8876E3F520EDB851001C6A1A /* DJSelectPeopleViewController.h */,
+				8876E3F620EDB851001C6A1A /* DJSelectPeopleViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
 		};
 		8876E3CC20EB679F001C6A1A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8876E3F820EDBC95001C6A1A /* uploadCell */,
+				8876E3F920EDBCB5001C6A1A /* DJSelectPeopleCell.h */,
+				8876E3FA20EDBCB5001C6A1A /* DJSelectPeopleCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8876E3DA20EB6E7D001C6A1A /* modle */ = {
+			isa = PBXGroup;
+			children = (
+				8876E3DB20EB6E9A001C6A1A /* DJOnlineUploadTableModel.h */,
+				8876E3DC20EB6E9A001C6A1A /* DJOnlineUploadTableModel.m */,
+				8876E3FC20EDC4AB001C6A1A /* DJSelectPeopleModel.h */,
+				8876E3FD20EDC4AB001C6A1A /* DJSelectPeopleModel.m */,
+			);
+			path = modle;
+			sourceTree = "<group>";
+		};
+		8876E3DE20EB7053001C6A1A /* other */ = {
+			isa = PBXGroup;
+			children = (
+				8876E3DF20EB706E001C6A1A /* OLUplaodThemeTable.plist */,
+				8876E3EC20EC74A7001C6A1A /* LGSelectImgManager.h */,
+				8876E3ED20EC74A7001C6A1A /* LGSelectImgManager.m */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		8876E3F820EDBC95001C6A1A /* uploadCell */ = {
 			isa = PBXGroup;
 			children = (
 				8876E3E620EB7559001C6A1A /* DJOnlineUplaodBaseCell.h */,
@@ -2064,26 +2106,7 @@
 				8876E3D020EB685D001C6A1A /* DJOnlineUploadAddImgCell.h */,
 				8876E3D120EB685D001C6A1A /* DJOnlineUploadAddImgCell.m */,
 			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		8876E3DA20EB6E7D001C6A1A /* modle */ = {
-			isa = PBXGroup;
-			children = (
-				8876E3DB20EB6E9A001C6A1A /* DJOnlineUploadTableModel.h */,
-				8876E3DC20EB6E9A001C6A1A /* DJOnlineUploadTableModel.m */,
-			);
-			path = modle;
-			sourceTree = "<group>";
-		};
-		8876E3DE20EB7053001C6A1A /* other */ = {
-			isa = PBXGroup;
-			children = (
-				8876E3DF20EB706E001C6A1A /* OLUplaodThemeTable.plist */,
-				8876E3EC20EC74A7001C6A1A /* LGSelectImgManager.h */,
-				8876E3ED20EC74A7001C6A1A /* LGSelectImgManager.m */,
-			);
-			path = other;
+			path = uploadCell;
 			sourceTree = "<group>";
 		};
 		887773FA20C0F7390011DFF3 /* LGLocalFileManage */ = {
@@ -3216,6 +3239,7 @@
 				881C94D32068ECF3009D6A52 /* UIView+Extension.m in Sources */,
 				8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */,
 				889E7DBB20998D5100BB9084 /* UCUploadTransitionView.m in Sources */,
+				8876E3FB20EDBCB5001C6A1A /* DJSelectPeopleCell.m in Sources */,
 				889FCCC120B2A7840045746D /* DCSubStageAudioCell.m in Sources */,
 				88A47113207DBE33002F93E0 /* EDJMicroBuildThreeImgCell.m in Sources */,
 				88FE689C209AA604008C28A0 /* UCUploadModel.m in Sources */,
@@ -3315,6 +3339,7 @@
 				880363A920E4A31A00E97FA3 /* LGUserLimitsManager.m in Sources */,
 				8876E3DD20EB6E9A001C6A1A /* DJOnlineUploadTableModel.m in Sources */,
 				8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */,
+				8876E3FE20EDC4AB001C6A1A /* DJSelectPeopleModel.m in Sources */,
 				88C5F14520B7EEEA0075D5F2 /* LGPlayer.m in Sources */,
 				88EA132F20AD5314007AB886 /* LGHTMLParser.m in Sources */,
 				8831E18D20941A78001D038E /* DCSubStageModel.m in Sources */,
@@ -3415,6 +3440,7 @@
 				88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */,
 				88ECF068209FF8280071A98A /* OLExamSingleOptionCell.m in Sources */,
 				8831E159209310BD001D038E /* DCSubPartStateModel.m in Sources */,
+				8876E3F720EDB851001C6A1A /* DJSelectPeopleViewController.m in Sources */,
 				880363AF20E4E05900E97FA3 /* DJNotOpenViewController.m in Sources */,
 				88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */,
 				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,

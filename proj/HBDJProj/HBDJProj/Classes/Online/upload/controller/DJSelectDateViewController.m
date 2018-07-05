@@ -28,6 +28,26 @@
     
 }
 
+- (void)lg_dismissViewController{
+    if ([self.delegate respondsToSelector:@selector(selectDate:dateString:cellIndex:)]) {
+        [self.delegate selectDate:self dateString:_currentTime.text cellIndex:_cellIndex];
+    }
+    [super lg_dismissViewController];
+}
+
+#pragma mark - target
+- (void)segmentChanged:(UISegmentedControl *)segment{
+    if (segment.selectedSegmentIndex == 0) {
+        _datePicker.datePickerMode = UIDatePickerModeDate;
+    }
+    if (segment.selectedSegmentIndex == 1) {
+        _datePicker.datePickerMode = UIDatePickerModeTime;
+    }
+}
+- (void)dateChanged:(UIDatePicker *)datePicker{
+    _currentTime.text =  [self timeStringWithDate:datePicker.date dateFormat:[self dateFormat]];
+}
+
 - (void)configUI{
     self.pushWay = LGBaseViewControllerPushWayModal;
     self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
@@ -79,6 +99,24 @@
         make.right.equalTo(self.container.mas_right);
         make.bottom.equalTo(self.container.mas_bottom).offset(-marginEight);
     }];
+    
+}
+
+#pragma mark - 私有方法
+- (NSString *)currentTimeString{
+    /// 返回当前时间 格式 yyyy/MM/dd HH:mm
+    NSDate *dateNow = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = [self dateFormat];
+    return [formatter stringFromDate:dateNow];
+}
+- (NSString *)timeStringWithDate:(NSDate *)date dateFormat:(NSString *)dateFormat{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = dateFormat;
+    return [formatter stringFromDate:date];
+}
+- (NSString *)dateFormat{
+    return @"yyyy/MM/dd HH:mm";
 }
 
 #pragma mark - getter & lazy load
@@ -110,7 +148,7 @@
         _currentTime = UILabel.new;
         _currentTime.textColor = [UIColor EDJGrayscale_11];
         _currentTime.font = [UIFont systemFontOfSize:15];
-        _currentTime.text = @"2018/01/01 09:00";
+        _currentTime.text = [self currentTimeString];
     }
     return _currentTime;
 }
@@ -124,7 +162,9 @@
 - (UISegmentedControl *)segment{
     if (!_segment) {
         _segment = [[UISegmentedControl alloc] initWithItems:@[@"日期",@"时间"]];
-        
+        _segment.tintColor = [UIColor EDJGrayscale_66];
+        _segment.selectedSegmentIndex = 0;
+        [_segment addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _segment;
 }
@@ -132,6 +172,9 @@
 - (UIDatePicker *)datePicker{
     if (!_datePicker) {
         _datePicker = UIDatePicker.new;
+        _datePicker.datePickerMode = UIDatePickerModeDate;
+//        _datePicker.minimumDate = [NSDate date];
+        [_datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _datePicker;
 }

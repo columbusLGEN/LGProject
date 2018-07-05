@@ -11,10 +11,12 @@
 @class DJSelectDateViewController;
 
 @protocol DJSelectDateViewControllerDelegate <NSObject>
+- (void)selectDate:(DJSelectDateViewController *)vc dateString:(NSString *)dateString cellIndex:(NSIndexPath *)cellIndex;
 
 @end
 
 @interface DJSelectDateViewController : LGBaseViewController
+@property (strong,nonatomic) NSIndexPath *cellIndex;
 @property (weak,nonatomic) id<DJSelectDateViewControllerDelegate> delegate;
 
 @end

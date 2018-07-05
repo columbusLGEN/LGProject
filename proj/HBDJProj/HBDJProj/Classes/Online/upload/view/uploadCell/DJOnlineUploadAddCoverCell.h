@@ -10,6 +10,14 @@
 
 static NSString * const addCoverCell = @"DJOnlineUploadAddCoverCell";
 
+@class DJOnlineUploadAddCoverCell;
+
+@protocol DJOnlineUploadAddCoverCellDelegate <NSObject>
+- (void)addCoverClick:(DJOnlineUploadAddCoverCell *)cell;
+
+@end
+
 @interface DJOnlineUploadAddCoverCell : DJOnlineUplaodBaseCell
+@property (weak,nonatomic) id<DJOnlineUploadAddCoverCellDelegate> delegate;
 
 @end

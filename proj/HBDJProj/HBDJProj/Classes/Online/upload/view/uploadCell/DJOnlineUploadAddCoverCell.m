@@ -17,7 +17,9 @@
 @implementation DJOnlineUploadAddCoverCell
 
 - (void)selectImageClick:(UIButton *)sender{
-    NSLog(@"选封面 ");
+    if ([self.delegate respondsToSelector:@selector(addCoverClick:)]) {
+        [self.delegate addCoverClick:self];
+    }
 }
 
 - (void)setModel:(DJOnlineUploadTableModel *)model{

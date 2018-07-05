@@ -14,29 +14,32 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrow;
 
-@property (strong,nonatomic) HPBookInfoModel *subModel;
-
 @end
 
 @implementation HPBookInfoBriefCell
 
+@synthesize model = _model;
+
 - (void)setModel:(HPBookInfoModel *)model{
-    _subModel = model;
+    _model = model;
+    
     _itemTitle.text = model.itemTitle;
     _contentLabel.text = model.content;
 }
 
-- (IBAction)showAllClick:(id)sender {
-    if (_subModel.showAll) {
-        _subModel.showAll = NO;
-        _arrow.transform = CGAffineTransformMakeRotation(M_PI);
-    }else{
-        _subModel.showAll = YES;
+- (IBAction)showAllClick:(UIButton *)sender {
+    if (_model.showAll) {
+        _model.showAll = NO;
         _arrow.transform = CGAffineTransformIdentity;
+    }else{
+        _model.showAll = YES;
+        _arrow.transform = CGAffineTransformMakeRotation(M_PI);
     }
-    if ([self.delegate respondsToSelector:@selector(bibCellShowAllButtonClick)]) {
-        [self.delegate bibCellShowAllButtonClick];
-    }
+    sender.selected = !sender.isSelected;
+    
+//    if ([self.delegate respondsToSelector:@selector(bibCellShowAllButtonClick:)]) {
+//        [self.delegate bibCellShowAllButtonClick:self];
+//    }
 }
 
 - (void)awakeFromNib {

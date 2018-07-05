@@ -9,6 +9,8 @@
 #import "DJOnlineUploadAddPeopleCell.h"
 #import "DJOnlineUploadTableModel.h"
 
+static NSString * const olupTimeKeyPath = @"content";
+
 @interface DJOnlineUploadAddPeopleCell ()
 @property (weak,nonatomic) UILabel *content;
 
@@ -16,9 +18,20 @@
 
 @implementation DJOnlineUploadAddPeopleCell
 
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change context:(nullable void *)context{
+    if ([keyPath isEqualToString:olupTimeKeyPath] && object == self.model) {
+        _content.text = self.model.content;
+    }
+}
+
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     [super setModel:model];
-    _content.text = [model.itemName stringByAppendingString:@"内容内容内容内容内容内容内容内容内容内容内容内容"];
+    _content.text = [model.itemName stringByAppendingString:@"内容"];
+    
+    if (model.itemClass == OLUploadTableModelClassSelectTime) {
+        [model addObserver:self forKeyPath:olupTimeKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    }
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -37,6 +50,10 @@
     }
     return self;
 }
-
+- (void)dealloc{
+    if (self.model.itemClass == OLUploadTableModelClassSelectTime) {
+        [self.model removeObserver:self forKeyPath:olupTimeKeyPath];
+    }
+}
 
 @end

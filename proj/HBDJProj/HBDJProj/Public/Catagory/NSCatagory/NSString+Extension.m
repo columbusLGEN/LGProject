@@ -59,7 +59,13 @@
     return [preds evaluateWithObject:self];
     
 }
-
+#pragma mark - 时间日期相关
+/// MARK: 传入 日期 和 格式化字符串，得到想要的时间字符串
+- (NSString *)timeStringWithDate:(NSDate *)date dateFormat:(NSString *)dateFormat{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = dateFormat;
+    return [formatter stringFromDate:date];
+}
 // MARK: 获取系统当前时间戳
 + (NSString*)getCurrentTimestamp{
     NSDate *dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -117,6 +123,7 @@
         return @"1分钟前";
     }
 }
+
 // MARK: MD5
 - (NSString *)md5String{
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];

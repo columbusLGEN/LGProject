@@ -14,9 +14,12 @@ typedef void(^LGNetworkCompletion)(NSURLResponse *response, id _Nullable respons
 
 @interface LGNetworkManager : NSObject
 
-- (NSURLSessionTask *)taskForPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(nullable LGNetworkCompletion)completionHandler;
-- (void)sendPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(LGNetworkCompletion)completionHandler;
 
+- (void)uploadWithUrl:(NSString *)url param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName;
+
+- (NSURLSessionTask *)taskForPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(nullable LGNetworkCompletion)completionHandler;
+
+- (void)sendPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(LGNetworkCompletion)completionHandler;
 
 /**
  检查网络状态
@@ -24,5 +27,6 @@ typedef void(^LGNetworkCompletion)(NSURLResponse *response, id _Nullable respons
  @param netsBlock 回调网络状态
  */
 - (void)checkNetworkStatusWithBlock:(void(^)(AFNetworkReachabilityStatus status))netsBlock;
+
 + (instancetype)sharedInstance;
 @end

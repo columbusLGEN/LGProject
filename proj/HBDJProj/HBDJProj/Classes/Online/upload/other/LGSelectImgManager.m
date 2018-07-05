@@ -16,6 +16,8 @@
 @implementation LGSelectImgManager
 
 - (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal{
+    
+    /// TODO: 如何区分 选择封面 和 选择内容？
     [HXPhotoTools selectListWriteToTempPath:photos requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
     } completion:^(NSArray<NSURL *> *allUrl, NSArray<NSURL *> *imageUrls, NSArray<NSURL *> *videoUrls) {
         _tempImageUrls = imageUrls.copy;

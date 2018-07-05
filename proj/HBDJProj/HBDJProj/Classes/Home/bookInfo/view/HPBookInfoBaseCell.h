@@ -8,10 +8,10 @@
 
 #import "LGBaseTableViewCell.h"
 
-@class HPBookInfoModel;
+@class HPBookInfoModel,HPBookInfoBriefCell;
 
 @protocol HPBookInfoBriefCellDelegate <NSObject>
-- (void)bibCellShowAllButtonClick;
+- (void)bibCellShowAllButtonClick:(HPBookInfoBriefCell *)cell;
 
 @end
 

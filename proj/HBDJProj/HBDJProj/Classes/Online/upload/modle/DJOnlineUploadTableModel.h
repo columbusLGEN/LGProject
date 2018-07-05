@@ -11,9 +11,10 @@
 typedef NS_ENUM(NSUInteger, OLUploadTableModelClass) {
     OLUploadTableModelClassTextInput,   /// 文本输入
     OLUploadTableModelClassSelectTime,  /// 选择时间
-    OLUploadTableModelClassSelectPeople,/// 选择人员
+    OLUploadTableModelClassSelectPeople,/// 选择参会人员
     OLUploadTableModelClassSelectImage, /// 选择图片
-    OLUploadTableModelClassSelectCover  /// 选择封面
+    OLUploadTableModelClassSelectCover,  /// 选择封面
+    OLUploadTableModelClassSelectPeopleNotCome/// 选择缺席人员
 };
 
 @interface DJOnlineUploadTableModel : LGBaseModel
@@ -21,5 +22,7 @@ typedef NS_ENUM(NSUInteger, OLUploadTableModelClass) {
 @property (strong,nonatomic) NSString *itemName;
 /** 项目类型 */
 @property (assign,nonatomic) OLUploadTableModelClass itemClass;
+/** 内容 */
+@property (strong,nonatomic) NSString *content;
 
 @end
