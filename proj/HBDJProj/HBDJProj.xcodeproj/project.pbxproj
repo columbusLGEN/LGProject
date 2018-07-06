@@ -2407,7 +2407,6 @@
 				883D474A20D9F06000FD9971 /* subControllers */,
 				88A80BE720D9E46000AB274B /* HPChairmanSpeechViewController.h */,
 				88A80BE820D9E46000AB274B /* HPChairmanSpeechViewController.m */,
-				88BCEDDE20C672B300B5C1DB /* other */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2420,16 +2419,9 @@
 				88BCEDE320C67D6C00B5C1DB /* HPAlbumHeaderCell.h */,
 				88BCEDE420C67D6C00B5C1DB /* HPAlbumHeaderCell.m */,
 				88BCEDE620C67D7500B5C1DB /* HPAlbumHeaderCell.xib */,
-			);
-			path = album;
-			sourceTree = "<group>";
-		};
-		88BCEDDE20C672B300B5C1DB /* other */ = {
-			isa = PBXGroup;
-			children = (
 				88BCEDDF20C672DD00B5C1DB /* LGDidSelectedNotification.h */,
 			);
-			path = other;
+			path = album;
 			sourceTree = "<group>";
 		};
 		88BCEDEB20C7A6B200B5C1DB /* LGNetworkManager */ = {

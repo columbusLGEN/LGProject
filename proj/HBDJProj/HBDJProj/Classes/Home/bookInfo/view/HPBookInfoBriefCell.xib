@@ -84,6 +84,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="arrow" destination="auA-uj-nCz" id="UwV-9u-sAb"/>
+                <outlet property="button" destination="1dT-jN-eUE" id="YHB-Nw-QdL"/>
                 <outlet property="contentLabel" destination="R88-em-mtX" id="Vb4-g2-Qi3"/>
                 <outlet property="itemTitle" destination="rIx-Pr-zyB" id="R3A-Om-vjM"/>
             </connections>
