@@ -37,9 +37,9 @@
     }
     sender.selected = !sender.isSelected;
     
-//    if ([self.delegate respondsToSelector:@selector(bibCellShowAllButtonClick:)]) {
-//        [self.delegate bibCellShowAllButtonClick:self];
-//    }
+    if ([self.delegate respondsToSelector:@selector(bibCellShowAllButtonClick:)]) {
+        [self.delegate bibCellShowAllButtonClick:self];
+    }
 }
 
 - (void)awakeFromNib {
