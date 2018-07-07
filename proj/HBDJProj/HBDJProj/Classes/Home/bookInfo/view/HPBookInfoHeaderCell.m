@@ -24,7 +24,11 @@
 
 @implementation HPBookInfoHeaderCell
 
-@synthesize model = _model;
+//@synthesize model = _model;
+
++ (instancetype)bookInInfoHeaderCell{
+    return [[[NSBundle mainBundle] loadNibNamed:bookinfoHeaderCell owner:nil options:nil] lastObject];
+}
 
 - (void)setModel:(HPBookInfoModel *)model{
     _model = model;

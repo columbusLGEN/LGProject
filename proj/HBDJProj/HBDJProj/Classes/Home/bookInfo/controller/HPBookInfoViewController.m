@@ -9,6 +9,8 @@
 #import "HPBookInfoViewController.h"
 
 #import "HPBookInfoBaseCell.h"
+#import "HPBookInfoHeaderCell.h"
+#import "HPBookInfoBriefCell.h"
 
 #import "EDJDigitalModel.h"
 #import "HPBookInfoModel.h"
@@ -16,8 +18,6 @@
 #import "LGLocalFileProducer.h"
 #import "LGBookReaderManager.h"
 
-static NSString * const bookInfoBriefCell = @"HPBookInfoBriefCell";
-static NSString * const bookInfoHeaderCell = @"HPBookInfoHeaderCell";
 
 @interface HPBookInfoViewController ()<
 UITableViewDelegate,
@@ -43,6 +43,7 @@ HPBookInfoBriefCellDelegate>
     for (NSInteger i = 0; i < 3; i++) {
         HPBookInfoModel *lineModel = [HPBookInfoModel new];
         lineModel.isHeader = !i;
+        NSLog(@"isheader: %d",lineModel.isHeader);
         if (i == 0) {
             lineModel.coverUrl = model.cover;
             lineModel.bookName = model.ebookname;
@@ -102,7 +103,14 @@ HPBookInfoBriefCellDelegate>
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HPBookInfoModel *model = _array[indexPath.row];
-    HPBookInfoBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[HPBookInfoBaseCell cellReuseIdWithModel:model]];
+    if (indexPath.row == 0) {
+        HPBookInfoHeaderCell *cell = [HPBookInfoHeaderCell bookInInfoHeaderCell];
+        cell.model = model;
+        return cell;
+    }
+//    HPBookInfoBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[HPBookInfoBaseCell cellReuseIdWithModel:model]];
+//    cell.model = model;
+    HPBookInfoBriefCell *cell = [HPBookInfoBriefCell bookinfoBreifCell];
     cell.model = model;
     cell.delegate = self;
     return cell;
@@ -141,8 +149,9 @@ HPBookInfoBriefCellDelegate>
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_tableView registerNib:[UINib nibWithNibName:bookInfoHeaderCell bundle:nil] forCellReuseIdentifier:bookInfoHeaderCell];
-        [_tableView registerNib:[UINib nibWithNibName:bookInfoBriefCell bundle:nil] forCellReuseIdentifier:bookInfoBriefCell];
+        
+        [_tableView registerNib:[UINib nibWithNibName:bookinfoHeaderCell bundle:nil] forCellReuseIdentifier:bookinfoHeaderCell];
+        [_tableView registerNib:[UINib nibWithNibName:bookinfoBriefCell bundle:nil] forCellReuseIdentifier:bookinfoBriefCell];
     }
     return _tableView;
 }

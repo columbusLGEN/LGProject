@@ -8,6 +8,10 @@
 
 #import "HPBookInfoBaseCell.h"
 
+static NSString * const bookinfoHeaderCell = @"HPBookInfoHeaderCell";
+
 @interface HPBookInfoHeaderCell : HPBookInfoBaseCell
+@property (strong,nonatomic) HPBookInfoModel *model;
++ (instancetype)bookInInfoHeaderCell;
 
 @end
