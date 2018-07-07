@@ -13,6 +13,9 @@ PLPlayerDelegate>
 @property (strong,nonatomic) PLPlayer *audioPlayer;
 @property (strong,nonatomic) NSTimer *playTimer;
 
+/** 首次播放之前为YES，之后为NO */
+@property (assign,nonatomic) BOOL firstPlay;
+
 @end
 
 @implementation LGPlayer
@@ -23,7 +26,12 @@ PLPlayerDelegate>
         [self removeTimer];
     }
     NSInteger lg_state = state;
-    NSLog(@"lg_state状态回调: %ld",lg_state);
+
+    if (state == 5 && _firstPlay) {
+        /// MARK: 如果是首次播放，先暂停
+        [self.audioPlayer pause];
+        _firstPlay = NO;
+    }
     if ([self.delegate respondsToSelector:@selector(playerStateChanged:state:)]) {
         [self.delegate playerStateChanged:self state:lg_state];
     }
@@ -72,21 +80,19 @@ PLPlayerDelegate>
 
 - (void)initPlayerWithUrl:(NSString *)url{
     self.audioPlayer = [[PLPlayer alloc] initWithURL:[NSURL URLWithString:url] option:nil];
-    self.audioPlayer.delegate = self;
     [self addTimer];
-    /// 因为后台无法提供资源的时间数据，所以 为了获取到资源的总时间，在此先play，再pause。 虽然这种处理方法不是解决问题的方式，但是目前没有别的方法
+    self.audioPlayer.delegate = self;
+    
+    /// 为了获取到频频的总时间， 先play，并且设置音量为0，让用户听不到，在代理回调中再暂停
     [self.audioPlayer play];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.audioPlayer pause];
-    });
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        NSLog(@"currentThread: %@",[NSThread currentThread]);
-//    });
+    [self.audioPlayer setVolume:0.0];
+    _firstPlay = YES;
+    
     
 }
 - (void)lg_play{
     /// 因为在init中已经play了，所以play方法直接调用resume即可
-//    return [self.audioPlayer play];
+    [self.audioPlayer setVolume:1.0];
     [self.audioPlayer resume];
 }
 - (void)lg_pause{

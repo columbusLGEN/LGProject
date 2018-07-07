@@ -2,7 +2,7 @@
 //  PLPlayerView.h
 //  NiuPlayer
 //
-//  Created by hxiongan on 2018/3/7.
+//  Created by hxiongan on 2018/3/7.lg_played
 //  Copyright © 2018年 hxiongan. All rights reserved.
 //
 

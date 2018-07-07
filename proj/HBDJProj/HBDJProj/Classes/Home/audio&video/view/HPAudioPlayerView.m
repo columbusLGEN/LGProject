@@ -41,6 +41,10 @@ LGPlayerDelegate>
 
 #pragma mark - LGPlayerDelegate
 - (void)playProgress:(LGPlayer *)player progress:(float)progress currentTime:(float)currentTime totalTime:(float)totalTime{
+    
+//    if (currentTime < 0) {
+//        currentTime = 0;
+//    }
 
     self.audioPlayer.progressValue = progress;
     
@@ -72,7 +76,7 @@ LGPlayerDelegate>
     [_icon sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     [_bgImg sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     [_audio initPlayerWithUrl:model.audio];
-//    [_audio initPlayerWithUrl:testAudio];
+    
 }
 
 - (void)play:(UIButton *)sender{
@@ -85,7 +89,6 @@ LGPlayerDelegate>
         sender.selected = YES;
         if (!_played) {
             /// 首次播放
-            //    [_audio lg_playWithUrl:self.model.audio];
             [_audio lg_play];
         }else{
             [_audio lg_resume];

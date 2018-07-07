@@ -75,23 +75,27 @@ HPAlbumHeaderCellDelegate>
             
             if (offset != 0) {
                 /// 上拉刷新
+//                [arrm removeObjectAtIndex:0];
                 if (array.count == 0 || array == nil) {
                     /// 没有更多数据
                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 }else{
                     [self.tableView.mj_footer endRefreshing];
                 }
+            }else{
+                /// 配置header 数据
+                DJDataBaseModel *headerModel = [DJDataBaseModel new];
+                headerModel.cover = strongSelf.albumModel.classimg;
+                headerModel.classdescription = strongSelf.albumModel.classdescription;
+                [arrm insertObject:headerModel atIndex:0];
             }
             
             for (int i = 0; i < array.count; i++) {
                 DJDataBaseModel *model = [DJDataBaseModel mj_objectWithKeyValues:array[i]];
                 [arrm addObject:model];
             }
-            /// 配置header 数据
-            DJDataBaseModel *headerModel = [DJDataBaseModel new];
-            headerModel.cover = strongSelf.albumModel.classimg;
-            headerModel.classdescription = strongSelf.albumModel.classdescription;
-            [arrm insertObject:headerModel atIndex:0];
+            
+            
             
             _offset = arrm.count;
             strongSelf.dataArray = arrm.copy;

@@ -300,7 +300,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VF4-hW-kRH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_home_top_bg" translatesAutoresizingMaskIntoConstraints="NO" id="RV2-sA-ipO">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_home_top_bg" translatesAutoresizingMaskIntoConstraints="NO" id="RV2-sA-ipO">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="190" id="y06-kJ-blw"/>
