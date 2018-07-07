@@ -10,12 +10,25 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^LGUploadImageProgressBlock)(NSProgress *uploadProgress);
+typedef void (^LGUploadImageSuccess)(NSString *imgUrl_sub);
+typedef void (^LGUploadImageFailure)(id uploadFailure);
+
 typedef void(^LGNetworkCompletion)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error);
 
 @interface LGNetworkManager : NSObject
 
-
-- (void)uploadWithUrl:(NSString *)url param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName;
+/**
+ 上传图片
+ 
+ @param url 接口链接
+ @param param 参数
+ @param localFileUrl 本地文件路径
+ @param fieldName 接口接受文件的字段名
+ @param fileName 文件名(存到服务器上的)
+ @param progress 上传进度
+ */
+- (void)uploadImageWithUrl:(NSString *)url param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure;
 
 - (NSURLSessionTask *)taskForPOSTRequestWithUrl:(NSString *)url param:(id)param completionHandler:(nullable LGNetworkCompletion)completionHandler;
 

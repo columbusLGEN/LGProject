@@ -19,6 +19,21 @@ static NSString *param_key_userid = @"userid";
 
 @implementation DJNetworkManager
 
+//- (void)uploadWithiName:(NSString *)iName param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+//    
+//    /// 添加统一参数
+//    NSMutableDictionary *paramMutable = [self unitParamDictWithDict:param];
+//    
+//    /// 拼接请求链接
+//    NSString *url = [self urlStringWithiName:iName];
+//    
+//    /// 获取最终参数
+//    NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
+//    
+//    [[LGNetworkManager sharedInstance] uploadWithUrl:url param:argum localFileUrl:localFileUrl fieldName:fieldName fileName:fileName];
+//    
+//}
+
 - (NSURLSessionTask *)taskForPOSTRequestWithiName:(NSString *)iName param:(id)param needUserid:(BOOL)needUserid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     
     /// TODO: 目前暂未 想好 该方法如何与 sendPOSTRequestWithiName 合并为一个
@@ -206,8 +221,9 @@ static NSString *param_key_userid = @"userid";
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-        _baseUrl = @"http://192.168.12.93:8080/";
-//        _baseUrl = @"http://123.59.197.176:8080/";
+//        _baseUrl = @"http://192.168.12.93:8080/";
+//        _baseUrl = @"http://123.59.197.176:8480/";
+        _baseUrl = @"http://123.59.199.170:8081/";
     }
     return _baseUrl;
 }

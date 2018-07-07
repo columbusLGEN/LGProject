@@ -170,6 +170,11 @@
 		8876E3F720EDB851001C6A1A /* DJSelectPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3F620EDB851001C6A1A /* DJSelectPeopleViewController.m */; };
 		8876E3FB20EDBCB5001C6A1A /* DJSelectPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3FA20EDBCB5001C6A1A /* DJSelectPeopleCell.m */; };
 		8876E3FE20EDC4AB001C6A1A /* DJSelectPeopleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3FD20EDC4AB001C6A1A /* DJSelectPeopleModel.m */; };
+		8876E40220F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E40120F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.m */; };
+		8876E40520F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E40420F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.m */; };
+		8876E40720F06CF1001C6A1A /* OLUplaodThreeMeetingsTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8876E40620F06CF0001C6A1A /* OLUplaodThreeMeetingsTable.plist */; };
+		8876E40A20F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E40920F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.m */; };
+		8876E40D20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E40C20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m */; };
 		8877742220C0F7390011DFF3 /* ECRPDFRelateder.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */; };
 		8877742320C0F7390011DFF3 /* LGBookReaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FE20C0F7390011DFF3 /* LGBookReaderManager.m */; };
 		8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8877740220C0F7390011DFF3 /* LGDownloadManager.m */; };
@@ -705,6 +710,15 @@
 		8876E3FA20EDBCB5001C6A1A /* DJSelectPeopleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectPeopleCell.m; sourceTree = "<group>"; };
 		8876E3FC20EDC4AB001C6A1A /* DJSelectPeopleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectPeopleModel.h; sourceTree = "<group>"; };
 		8876E3FD20EDC4AB001C6A1A /* DJSelectPeopleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectPeopleModel.m; sourceTree = "<group>"; };
+		8876E40020F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUploadThemePartyDayTableViewController.h; sourceTree = "<group>"; };
+		8876E40120F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUploadThemePartyDayTableViewController.m; sourceTree = "<group>"; };
+		8876E40320F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUploadThreeMeetingsTableViewController.h; sourceTree = "<group>"; };
+		8876E40420F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUploadThreeMeetingsTableViewController.m; sourceTree = "<group>"; };
+		8876E40620F06CF0001C6A1A /* OLUplaodThreeMeetingsTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OLUplaodThreeMeetingsTable.plist; sourceTree = "<group>"; };
+		8876E40820F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJOnlineUploadSelectMeetingTag.h; sourceTree = "<group>"; };
+		8876E40920F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJOnlineUploadSelectMeetingTag.m; sourceTree = "<group>"; };
+		8876E40B20F08CCC001C6A1A /* DJSelectMeetingTagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectMeetingTagViewController.h; sourceTree = "<group>"; };
+		8876E40C20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectMeetingTagViewController.m; sourceTree = "<group>"; };
 		887773FB20C0F7390011DFF3 /* ECRPDFRelateder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRPDFRelateder.h; sourceTree = "<group>"; };
 		887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRPDFRelateder.m; sourceTree = "<group>"; };
 		887773FD20C0F7390011DFF3 /* LGBookReaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBookReaderManager.h; sourceTree = "<group>"; };
@@ -2051,12 +2065,17 @@
 		8876E3C820EB5BE5001C6A1A /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				8876E3C920EB5C12001C6A1A /* DJOnlineUplaodTableViewController.h */,
-				8876E3CA20EB5C12001C6A1A /* DJOnlineUplaodTableViewController.m */,
+				8876E3FF20F06355001C6A1A /* base */,
 				8876E3EF20ECB38A001C6A1A /* DJSelectDateViewController.h */,
 				8876E3F020ECB38A001C6A1A /* DJSelectDateViewController.m */,
 				8876E3F520EDB851001C6A1A /* DJSelectPeopleViewController.h */,
 				8876E3F620EDB851001C6A1A /* DJSelectPeopleViewController.m */,
+				8876E40B20F08CCC001C6A1A /* DJSelectMeetingTagViewController.h */,
+				8876E40C20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m */,
+				8876E40020F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.h */,
+				8876E40120F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.m */,
+				8876E40320F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.h */,
+				8876E40420F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2086,6 +2105,7 @@
 			isa = PBXGroup;
 			children = (
 				8876E3DF20EB706E001C6A1A /* OLUplaodThemeTable.plist */,
+				8876E40620F06CF0001C6A1A /* OLUplaodThreeMeetingsTable.plist */,
 				8876E3EC20EC74A7001C6A1A /* LGSelectImgManager.h */,
 				8876E3ED20EC74A7001C6A1A /* LGSelectImgManager.m */,
 			);
@@ -2105,8 +2125,19 @@
 				8876E3EA20EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.m */,
 				8876E3D020EB685D001C6A1A /* DJOnlineUploadAddImgCell.h */,
 				8876E3D120EB685D001C6A1A /* DJOnlineUploadAddImgCell.m */,
+				8876E40820F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.h */,
+				8876E40920F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.m */,
 			);
 			path = uploadCell;
+			sourceTree = "<group>";
+		};
+		8876E3FF20F06355001C6A1A /* base */ = {
+			isa = PBXGroup;
+			children = (
+				8876E3C920EB5C12001C6A1A /* DJOnlineUplaodTableViewController.h */,
+				8876E3CA20EB5C12001C6A1A /* DJOnlineUplaodTableViewController.m */,
+			);
+			path = base;
 			sourceTree = "<group>";
 		};
 		887773FA20C0F7390011DFF3 /* LGLocalFileManage */ = {
@@ -3017,6 +3048,7 @@
 				88ECF07920A032540071A98A /* OLExamViewBottomBar.xib in Resources */,
 				88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */,
 				88CD73A420995A5A00E80058 /* HPBookInfoBriefCell.xib in Resources */,
+				8876E40720F06CF1001C6A1A /* OLUplaodThreeMeetingsTable.plist in Resources */,
 				88A47137207F06D3002F93E0 /* UserCenterHomeForm.plist in Resources */,
 				88ECF06A209FF8300071A98A /* OLExamSingleOptionCell.xib in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
@@ -3264,6 +3296,7 @@
 				880363A320E323BB00E97FA3 /* DJMediaDetailTransAssist.m in Sources */,
 				8831E18120941797001D038E /* DCSubStageOneImgCell.m in Sources */,
 				88A80BE920D9E46000AB274B /* HPChairmanSpeechViewController.m in Sources */,
+				8876E40D20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m in Sources */,
 				884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */,
 				88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */,
 				8831E1672094012A001D038E /* DCSubPartStateOneImgCell.m in Sources */,
@@ -3330,6 +3363,7 @@
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
 				880363A920E4A31A00E97FA3 /* LGUserLimitsManager.m in Sources */,
 				8876E3DD20EB6E9A001C6A1A /* DJOnlineUploadTableModel.m in Sources */,
+				8876E40520F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.m in Sources */,
 				8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */,
 				8876E3FE20EDC4AB001C6A1A /* DJSelectPeopleModel.m in Sources */,
 				88C5F14520B7EEEA0075D5F2 /* LGPlayer.m in Sources */,
@@ -3411,6 +3445,7 @@
 				8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */,
 				88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */,
 				8831E1512092FE22001D038E /* LGButton.m in Sources */,
+				8876E40220F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.m in Sources */,
 				8877742220C0F7390011DFF3 /* ECRPDFRelateder.m in Sources */,
 				88ECF05D209FF53A0071A98A /* OLExamModel.m in Sources */,
 				88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */,
@@ -3435,6 +3470,7 @@
 				8876E3F720EDB851001C6A1A /* DJSelectPeopleViewController.m in Sources */,
 				880363AF20E4E05900E97FA3 /* DJNotOpenViewController.m in Sources */,
 				88DD813F209C239400F297D6 /* OLVoteDetailHeaderModel.m in Sources */,
+				8876E40A20F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.m in Sources */,
 				88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */,
 				8876E3C320EA0DBE001C6A1A /* DJOnlineHomeModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,

@@ -4,7 +4,15 @@
 <array>
 	<dict>
 		<key>itemName</key>
-		<string>活动主题</string>
+		<string>会议标签</string>
+		<key>itemClass</key>
+		<integer>6</integer>
+		<key>uploadJsonKey</key>
+		<string>sessiontype</string>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>会议主题</string>
 		<key>itemClass</key>
 		<integer>0</integer>
 		<key>uploadJsonKey</key>
@@ -12,7 +20,7 @@
 	</dict>
 	<dict>
 		<key>itemName</key>
-		<string>活动时间</string>
+		<string>会议时间</string>
 		<key>itemClass</key>
 		<integer>1</integer>
 		<key>uploadJsonKey</key>
@@ -20,7 +28,7 @@
 	</dict>
 	<dict>
 		<key>itemName</key>
-		<string>活动地点</string>
+		<string>会议地点</string>
 		<key>itemClass</key>
 		<integer>0</integer>
 		<key>uploadJsonKey</key>
@@ -28,7 +36,7 @@
 	</dict>
 	<dict>
 		<key>itemName</key>
-		<string>活动主持人</string>
+		<string>会议主持人</string>
 		<key>itemClass</key>
 		<integer>2</integer>
 		<key>uploadJsonKey</key>
@@ -36,7 +44,7 @@
 	</dict>
 	<dict>
 		<key>itemName</key>
-		<string>活动人员</string>
+		<string>到会人员</string>
 		<key>itemClass</key>
 		<integer>2</integer>
 		<key>uploadJsonKey</key>
@@ -52,7 +60,7 @@
 	</dict>
 	<dict>
 		<key>itemName</key>
-		<string>活动内容</string>
+		<string>会议内容</string>
 		<key>itemClass</key>
 		<integer>0</integer>
 		<key>uploadJsonKey</key>

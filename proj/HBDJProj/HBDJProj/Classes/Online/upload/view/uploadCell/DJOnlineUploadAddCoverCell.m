@@ -25,6 +25,9 @@
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     [super setModel:model];
     
+    if (model.coverBackUrl) {
+        [_imageButton setImage:[UIImage imageWithContentsOfFile:model.coverBackUrl.relativePath] forState:UIControlStateNormal];
+    }
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{

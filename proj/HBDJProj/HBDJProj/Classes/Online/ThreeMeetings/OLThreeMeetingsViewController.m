@@ -9,7 +9,7 @@
 #import "OLThreeMeetingsViewController.h"
 #import "OLMindReportViewController.h"
 
-#import "DJOnlineUplaodTableViewController.h"
+#import "DJUploadThreeMeetingsTableViewController.h"
 
 static CGFloat channelLabelY = 17;
 static CGFloat channelScrollViewHeight = 51;
@@ -107,7 +107,7 @@ UIScrollViewDelegate>
     [self.contentScrollView setContentOffset:CGPointMake((_currentIndex * kScreenWidth), 0) animated:YES];
 }
 - (void)createContent{
-    DJOnlineUplaodTableViewController *olupvc = [[DJOnlineUplaodTableViewController alloc] initWithListType:OnlineModelTypeThreeMeetings];
+    DJUploadThreeMeetingsTableViewController *olupvc = [[DJUploadThreeMeetingsTableViewController alloc] init];
     
     [self.navigationController pushViewController:olupvc animated:YES];
 }

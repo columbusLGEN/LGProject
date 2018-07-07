@@ -10,7 +10,7 @@
 #import "OLMindReportTableViewCell.h"
 #import "OLMindReportModel.h"
 
-#import "DJOnlineUplaodTableViewController.h"
+#import "DJUploadThemePartyDayTableViewController.h"
 
 @interface OLMindReportViewController ()
 
@@ -31,7 +31,7 @@
 
 #pragma mark - target
 - (void)createContent{
-    DJOnlineUplaodTableViewController *olupvc = [[DJOnlineUplaodTableViewController alloc] initWithListType:self.listType];
+    DJUploadThemePartyDayTableViewController *olupvc = [[DJUploadThemePartyDayTableViewController alloc] init];
 
     [self.navigationController pushViewController:olupvc animated:YES];
 }

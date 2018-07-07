@@ -15,9 +15,11 @@
 #import "DJOnlineUploadAddPeopleCell.h"
 #import "DJOnlineUploadAddCoverCell.h"
 #import "DJOnlineUploadAddImgCell.h"
+#import "DJOnlineUploadSelectMeetingTag.h"
 
 #import "DJSelectDateViewController.h"
 #import "DJSelectPeopleViewController.h"
+#import "DJSelectMeetingTagViewController.h"
 
 #import "LGSelectImgManager.h"
 #import "HXPhotoPicker.h"
@@ -25,9 +27,8 @@
 @interface DJOnlineUplaodTableViewController ()<
 DJSelectDateViewControllerDelegate,
 DJSelectPeopleViewControllerDelegate,
-DJOnlineUploadAddCoverCellDelegate>
-@property (assign,nonatomic) OnlineModelType listType;
-@property (strong,nonatomic) NSArray *array;
+DJOnlineUploadAddCoverCellDelegate,
+DJSelectMeetingTagViewControllerDelegate>
 
 /** 选择图片管理者 */
 @property (strong,nonatomic) LGSelectImgManager *simgr;
@@ -42,11 +43,6 @@ DJOnlineUploadAddCoverCellDelegate>
 
 @implementation DJOnlineUplaodTableViewController
 
-- (instancetype)initWithListType:(OnlineModelType)listType{
-    self.listType = listType;
-    return [self init];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -54,6 +50,7 @@ DJOnlineUploadAddCoverCellDelegate>
     [self.tableView registerClass:[DJOnlineUploadAddPeopleCell class] forCellReuseIdentifier:addPeopleCell];
     [self.tableView registerClass:[DJOnlineUploadAddCoverCell class] forCellReuseIdentifier:addCoverCell];
     [self.tableView registerClass:[DJOnlineUploadAddImgCell class] forCellReuseIdentifier:addImgCell];
+    [self.tableView registerClass:[DJOnlineUploadSelectMeetingTag class] forCellReuseIdentifier:selectMeetingTagCell];
     self.tableView.estimatedRowHeight = 1.0;
     
     UIBarButtonItem *send = [[UIBarButtonItem alloc] initWithTitle:@"上传" style:UIBarButtonItemStyleDone target:self action:@selector(uploadData)];
@@ -63,8 +60,21 @@ DJOnlineUploadAddCoverCellDelegate>
 #pragma mark - 上传数据
 - (void)uploadData{
     NSLog(@"表单数据: %@",self.formDataDict);
+    if (!_coverFileUrl) {
+        NSLog(@"请选择封面: ");
+        return;
+    }
+    /// http://123.59.199.170:8081
+    /// http://192.168.12.93:8080
     
-    [[LGNetworkManager sharedInstance] uploadWithUrl:@"http://192.168.12.37:8080/APMKAFService/frontUserinfo/uploadFile" param:@{@"userid":[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""} localFileUrl:_coverFileUrl fieldName:@"pic" fileName:@""];
+    [[LGNetworkManager sharedInstance] uploadImageWithUrl:@"http://123.59.199.170:8081/APMKAFService/frontUserinfo/uploadFile" param:@{@"userid":[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""} localFileUrl:_coverFileUrl fieldName:@"pic" fileName:@"" uploadProgress:^(NSProgress *uploadProgress) {
+        NSLog(@"上传封面进度: %f",(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(NSString *imgUrl_sub) {
+        NSLog(@"上传封面成功，图片路径: %@",imgUrl_sub);
+        
+    } failure:^(id uploadFailure) {
+        NSLog(@"上传封面失败: %@",uploadFailure);
+    }];
     
     /// TODO: 先上传图片，拿到图片的地址回调，再上传JSON
 //    [LGSelectImgManager.sharedInstance.tempImageUrls enumerateObjectsUsingBlock:^(NSURL *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -72,18 +82,23 @@ DJOnlineUploadAddCoverCellDelegate>
 //    }];
         
 }
-/// MARK: DJOnlineUploadAddCoverCell 添加封面代理
+/// MARK: DJOnlineUploadAddCoverCell 添加封面 代理方法
 - (void)addCoverClick:(DJOnlineUploadAddCoverCell *)cell{
     [self hx_presentAlbumListViewControllerWithManager:self.coverSelectMgr done:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
         
         [HXPhotoTools selectListWriteToTempPath:photoList requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
         } completion:^(NSArray<NSURL *> *allUrl, NSArray<NSURL *> *imageUrls, NSArray<NSURL *> *videoUrls) {
-            NSLog(@"cover_photoList: %@",photoList);
+//            NSLog(@"cover_photoList: %@",photoList);
+            
             /// 选择完成之后需要做  件事
             /// 1.更新UI
+            
             /// 2.保存封面图片的本地临时路径
             if (photoList.count) {
                 _coverFileUrl = imageUrls[0];
+                
+                cell.model.coverBackUrl = _coverFileUrl;
+                [self.tableView reloadData];
             }
         } error:^{
             NSLog(@"selectPhotoError");
@@ -93,26 +108,16 @@ DJOnlineUploadAddCoverCellDelegate>
         
     }];
 }
+/// MARK: DJSelectMeetingTagViewControllerDelegate
+- (void)selectMeetingTag:(DJSelectMeetingTagViewController *)vc selectString:(NSString *)string{
+    NSLog(@"父类选中了: %@",string);
+}
 
 #pragma mark -  setter
-- (void)setListType:(OnlineModelType)listType{
-    _listType = listType;
-    switch (listType) {
-        case OnlineModelTypeThreeMeetings:
-            self.array = self.threeMeetingsItems;
-            break;
-        case OnlineModelTypeThemePartyDay:            
-            self.array = self.themePartyDayItems;
-            break;
-        default:
-            break;
-    }
-    
-    [self.tableView reloadData];
-}
 /// MARK: 暴露给cell，改变表单的值
 - (void)setFormDataDictValue:(nonnull id)value indexPath:(NSIndexPath *)indexPath{
-    NSString *key = [self keyWithIndexPath:indexPath];
+    DJOnlineUploadTableModel *model = self.dataArray[indexPath.row];
+    NSString *key = model.uploadJsonKey;
     [self.formDataDict setValue:value forKey:key];
 }
 
@@ -122,10 +127,10 @@ DJOnlineUploadAddCoverCellDelegate>
 }
 /// MARK: tableview datasource & delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _array.count;
+    return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DJOnlineUploadTableModel *model = self.array[indexPath.row];
+    DJOnlineUploadTableModel *model = self.dataArray[indexPath.row];
     
     DJOnlineUplaodBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DJOnlineUplaodBaseCell cellReuseIdWithModel:model] forIndexPath:indexPath];
     cell.indexPath = indexPath;
@@ -140,7 +145,7 @@ DJOnlineUploadAddCoverCellDelegate>
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DJOnlineUploadTableModel *model = self.array[indexPath.row];
+    DJOnlineUploadTableModel *model = self.dataArray[indexPath.row];
     switch (model.itemClass) {
         case OLUploadTableModelClassSelectTime:{
             DJSelectDateViewController *selectTime = DJSelectDateViewController.new;
@@ -159,9 +164,18 @@ DJOnlineUploadAddCoverCellDelegate>
         }
             break;
         case OLUploadTableModelClassSelectCover:
-            NSLog(@"选则封面: ");
+            NSLog(@"封面: ");
+            break;
         case OLUploadTableModelClassSelectImage:
-            NSLog(@"选则会议图片: ");
+            NSLog(@"会议图片: ");
+            break;
+        case OLUploadTableModelClassSelectMeetingTag:{
+            /// 选择会议标签
+            DJSelectMeetingTagViewController *selectMeetingTag = DJSelectMeetingTagViewController.new;
+            selectMeetingTag.delegate = self;
+            selectMeetingTag.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            [self presentViewController:selectMeetingTag animated:YES completion:nil];
+        }
         default:
             break;
     }
@@ -169,12 +183,12 @@ DJOnlineUploadAddCoverCellDelegate>
 
 /// MARK: DJSelectDateViewController 日期选择回调
 - (void)selectDate:(DJSelectDateViewController *)vc dateString:(NSString *)dateString cellIndex:(NSIndexPath *)cellIndex{
-    DJOnlineUploadTableModel *model = self.array[cellIndex.row];
+    DJOnlineUploadTableModel *model = self.dataArray[cellIndex.row];
     model.content = dateString;
     [self setFormDataDictValue:dateString indexPath:cellIndex];
     
 }
-/// MARK: DJSelectPeopleViewControllerDelegate 选择人员回调
+/// MARK: DJSelectPeopleViewControllerDelegate 选人回调
 - (void)selectPeopleDone:(DJSelectPeopleViewController *)vc peopleList:(NSArray *)peopleList spType:(DJSelectPeopleType)spType{
     
     NSString *desc;
@@ -200,6 +214,7 @@ DJOnlineUploadAddCoverCellDelegate>
     selectPeople.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:selectPeople animated:YES completion:nil];
 }
+/// TODO: 返回的key值 由DJOnlineUploadTableModel模型实例确定
 - (NSString *)keyWithIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:/// 主题
@@ -236,20 +251,11 @@ DJOnlineUploadAddCoverCellDelegate>
 }
 
 #pragma mark - lazy load getter
-- (NSArray *)themePartyDayItems{
-    return [DJOnlineUploadTableModel loadLocalPlistWithPlistName:@"OLUplaodThemeTable"];
-}
-- (NSArray *)threeMeetingsItems{
-    return @[@"会议标签:",
-             @"会议主题:",
-             @"会议时间:",
-             @"会议地点:",
-             @"会议主持人:",
-             @"到会人员:",
-             @"缺席人员:",
-             @"会议内容:",
-             @"添加图片:"];
-}
+/// TODO: 类型只有一个array，只不过在子类中返回不同的数据
+//- (NSArray *)themePartyDayItems{
+//    return [DJOnlineUploadTableModel loadLocalPlistWithPlistName:@"OLUplaodThemeTable"];
+//}
+
 - (LGSelectImgManager *)simgr{
     if (!_simgr) {
         _simgr = LGSelectImgManager.sharedInstance;

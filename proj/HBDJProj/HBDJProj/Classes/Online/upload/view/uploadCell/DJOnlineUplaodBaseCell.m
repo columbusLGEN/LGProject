@@ -13,6 +13,7 @@
 #import "DJOnlineUploadAddPeopleCell.h"
 #import "DJOnlineUploadAddCoverCell.h"
 #import "DJOnlineUploadAddImgCell.h"
+#import "DJOnlineUploadSelectMeetingTag.h"
 
 @implementation DJOnlineUplaodBaseCell
 
@@ -31,6 +32,9 @@
             break;
         case OLUploadTableModelClassSelectImage:
             return addImgCell;
+            break;
+        case OLUploadTableModelClassSelectMeetingTag:
+            return selectMeetingTagCell;
             break;
     }
 }

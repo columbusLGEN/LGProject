@@ -18,37 +18,28 @@
 
 @implementation LGNetworkManager
 
-
-/**
- 上传图片
-
- @param url 接口链接
- @param param 参数
- @param localFileUrl 本地文件路径
- @param fieldName 接口接受文件的字段名
- @param fileName 文件名(存到服务器上的)
- */
-- (void)uploadWithUrl:(NSString *)url param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName{
+- (void)uploadImageWithUrl:(NSString *)url param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
     /// name 为 接口接受图片的字段名
     /// fileName 为 保存到服务器上的文件名
     NSMutableDictionary *argu = [NSMutableDictionary dictionaryWithDictionary:param];
-    UIImage *img = [UIImage imageWithContentsOfFile:localFileUrl.relativePath];
-    NSData *imgData = UIImageJPEGRepresentation(img, 1);
-    
-    [argu setValue:imgData forKey:fieldName];
     
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:url parameters:argu constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
         [formData appendPartWithFileURL:localFileUrl name:fieldName fileName:fileName mimeType:@"image/jpeg" error:nil];
-        
     } error:nil];
     
-    NSURLSessionUploadTask *uploadTask = [self.manager uploadTaskWithStreamedRequest:request progress:^(NSProgress * _Nonnull uploadProgress) {
-        NSLog(@"upload_Progress: %f",(float)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        NSLog(@"upload_response: %@",response);
-        NSLog(@"upload_responseobject: %@",responseObject);
-        NSLog(@"upload_error: %@",error);
+    NSURLSessionUploadTask *uploadTask = [self.manager uploadTaskWithStreamedRequest:request progress:progress completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            if (failure) failure(@"请检查网络");
+        }else{
+            /// result == 0 : 成功
+            if (![responseObject objectForKey:@"result"]) {
+//                成功
+                if (success) success([[responseObject objectForKey:@"returnJson"] objectForKey:@"path"]);
+            }else{
+//                失败
+                if (failure) failure(@"上传失败的msg");
+            }
+        }
     }];
     [uploadTask resume];
     
@@ -127,6 +118,7 @@
         // AFJSONRequestSerializer            JSON
         // AFPropertyListRequestSerializer    PList(是一种特殊的XML,解析起来相对容易)
         _manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        [_manager.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
         
         /// 接受的content-type
         _manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/xml", @"text/xml",@"text/html", @"application/json",@"text/plain", nil];
