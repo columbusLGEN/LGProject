@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DJTestScoreListTableViewCell" rowHeight="106" id="Zx3-KZ-0jI" customClass="DJTestScoreListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="106"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zx3-KZ-0jI" id="ahM-Nx-FoL">
+                <rect key="frame" x="0.0" y="0.0" width="430" height="105.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGp-0Z-1BZ" customClass="DJTestScoreListLabel">
+                        <rect key="frame" x="0.0" y="42" width="107.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QxK-KR-t6A" customClass="DJTestScoreListLabel">
+                        <rect key="frame" x="107.5" y="42" width="107.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC5-JN-SEM" customClass="DJTestScoreListLabel">
+                        <rect key="frame" x="215" y="42" width="107.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8QL-mN-eNv" customClass="DJTestScoreListLabel">
+                        <rect key="frame" x="322.5" y="42" width="107.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDf-t0-369">
+                        <rect key="frame" x="0.0" y="104.5" width="430" height="1"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Rbi-gq-wbS"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="8QL-mN-eNv" secondAttribute="trailing" id="1io-BS-w0t"/>
+                    <constraint firstItem="iDf-t0-369" firstAttribute="centerX" secondItem="ahM-Nx-FoL" secondAttribute="centerX" id="2i3-1O-505"/>
+                    <constraint firstItem="iDf-t0-369" firstAttribute="width" secondItem="ahM-Nx-FoL" secondAttribute="width" id="JYV-9L-Ve1"/>
+                    <constraint firstItem="LGp-0Z-1BZ" firstAttribute="width" secondItem="QxK-KR-t6A" secondAttribute="width" id="QCo-aH-dD0"/>
+                    <constraint firstItem="LGp-0Z-1BZ" firstAttribute="leading" secondItem="ahM-Nx-FoL" secondAttribute="leading" id="bXC-4E-yws"/>
+                    <constraint firstItem="8QL-mN-eNv" firstAttribute="width" secondItem="LGp-0Z-1BZ" secondAttribute="width" id="cRa-yB-PXN"/>
+                    <constraint firstItem="LGp-0Z-1BZ" firstAttribute="centerY" secondItem="ahM-Nx-FoL" secondAttribute="centerY" id="hzw-tX-ZYM"/>
+                    <constraint firstItem="aC5-JN-SEM" firstAttribute="width" secondItem="LGp-0Z-1BZ" secondAttribute="width" id="k60-ap-ZrT"/>
+                    <constraint firstItem="QxK-KR-t6A" firstAttribute="leading" secondItem="LGp-0Z-1BZ" secondAttribute="trailing" id="liE-j3-tSe"/>
+                    <constraint firstItem="aC5-JN-SEM" firstAttribute="leading" secondItem="QxK-KR-t6A" secondAttribute="trailing" id="nOE-g0-TcM"/>
+                    <constraint firstItem="aC5-JN-SEM" firstAttribute="centerY" secondItem="LGp-0Z-1BZ" secondAttribute="centerY" id="pSi-bW-qy1"/>
+                    <constraint firstItem="QxK-KR-t6A" firstAttribute="centerY" secondItem="LGp-0Z-1BZ" secondAttribute="centerY" id="pg5-M9-sMU"/>
+                    <constraint firstItem="iDf-t0-369" firstAttribute="bottom" secondItem="ahM-Nx-FoL" secondAttribute="bottom" id="qW7-7M-tqR"/>
+                    <constraint firstItem="8QL-mN-eNv" firstAttribute="leading" secondItem="aC5-JN-SEM" secondAttribute="trailing" id="qnC-S0-XXr"/>
+                    <constraint firstItem="8QL-mN-eNv" firstAttribute="centerY" secondItem="LGp-0Z-1BZ" secondAttribute="centerY" id="t9m-ck-ZC7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="name" destination="QxK-KR-t6A" id="kKO-pb-ejC"/>
+                <outlet property="rank" destination="LGp-0Z-1BZ" id="0YU-9N-eyR"/>
+                <outlet property="rate" destination="8QL-mN-eNv" id="9ZJ-Ii-XZA"/>
+                <outlet property="time" destination="aC5-JN-SEM" id="wzF-BZ-Nte"/>
+            </connections>
+            <point key="canvasLocation" x="58" y="56"/>
+        </tableViewCell>
+    </objects>
+</document>

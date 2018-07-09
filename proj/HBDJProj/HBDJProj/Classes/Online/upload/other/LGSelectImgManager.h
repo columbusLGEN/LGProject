@@ -15,5 +15,4 @@
 @property (strong,nonatomic) NSMutableArray *tempImageUrls;
 @property (strong,nonatomic) HXPhotoManager *hxPhotoManager;
 
-CM_SINGLETON_INTERFACE
 @end

@@ -39,6 +39,8 @@ DJSelectMeetingTagViewControllerDelegate>
 @property (strong,nonatomic) HXPhotoManager *coverSelectMgr;
 @property (strong,nonatomic) NSURL *coverFileUrl;
 
+@property (strong,nonatomic) HXPhotoView *cellSelectedImageView;
+
 @end
 
 @implementation DJOnlineUplaodTableViewController
@@ -55,6 +57,8 @@ DJSelectMeetingTagViewControllerDelegate>
     
     UIBarButtonItem *send = [[UIBarButtonItem alloc] initWithTitle:@"上传" style:UIBarButtonItemStyleDone target:self action:@selector(uploadData)];
     self.navigationItem.rightBarButtonItem = send;
+    
+    _cellSelectedImageView = [[HXPhotoView alloc] initWithFrame:CGRectZero manager:self.simgr.hxPhotoManager];
 }
 
 #pragma mark - 上传数据
@@ -108,7 +112,7 @@ DJSelectMeetingTagViewControllerDelegate>
         
     }];
 }
-/// MARK: DJSelectMeetingTagViewControllerDelegate
+/// MARK: DJSelectMeetingTagViewControllerDelegate 选择会议标签回调
 - (void)selectMeetingTag:(DJSelectMeetingTagViewController *)vc selectString:(NSString *)string{
     NSLog(@"父类选中了: %@",string);
 }
@@ -136,8 +140,12 @@ DJSelectMeetingTagViewControllerDelegate>
     cell.indexPath = indexPath;
     cell.vc = self;
     cell.model = model;
+    if ([cell isMemberOfClass:[DJOnlineUploadAddImgCell class]]) {
+        DJOnlineUploadAddImgCell *addImageCell = (DJOnlineUploadAddImgCell *)cell;
+        addImageCell.photoView = _cellSelectedImageView;
+    }
     
-    if ([cell isKindOfClass:[DJOnlineUploadAddCoverCell class]]) {
+    if ([cell isMemberOfClass:[DJOnlineUploadAddCoverCell class]]) {
         DJOnlineUploadAddCoverCell *addCoverCell = (DJOnlineUploadAddCoverCell *)cell;
         addCoverCell.delegate = self;
     }
@@ -163,11 +171,9 @@ DJSelectMeetingTagViewControllerDelegate>
             [self selectPeopleVcWithSpType:DJSelectPeopleTypeCome];
         }
             break;
-        case OLUploadTableModelClassSelectCover:
-            NSLog(@"封面: ");
+        case OLUploadTableModelClassSelectCover:NSLog(@"封面: ");
             break;
-        case OLUploadTableModelClassSelectImage:
-            NSLog(@"会议图片: ");
+        case OLUploadTableModelClassSelectImage:NSLog(@"会议图片: ");
             break;
         case OLUploadTableModelClassSelectMeetingTag:{
             /// 选择会议标签
@@ -181,7 +187,7 @@ DJSelectMeetingTagViewControllerDelegate>
     }
 }
 
-/// MARK: DJSelectDateViewController 日期选择回调
+/// MARK: DJSelectDateViewController 选择日期回调
 - (void)selectDate:(DJSelectDateViewController *)vc dateString:(NSString *)dateString cellIndex:(NSIndexPath *)cellIndex{
     DJOnlineUploadTableModel *model = self.dataArray[cellIndex.row];
     model.content = dateString;
@@ -214,51 +220,11 @@ DJSelectMeetingTagViewControllerDelegate>
     selectPeople.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:selectPeople animated:YES completion:nil];
 }
-/// TODO: 返回的key值 由DJOnlineUploadTableModel模型实例确定
-- (NSString *)keyWithIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.row) {
-        case 0:/// 主题
-            return @"theme";
-            break;
-        case 1:/// 时间
-            return @"time";
-            break;
-        case 2:/// 地点
-            return @"site";
-            break;
-        case 3:/// 主题人
-            return @"hostMan";
-            break;
-        case 4:/// 参会人员
-            return @"memberCome";
-            break;
-        case 5:/// 缺席人员
-            return @"memberNotCome";
-            break;
-        case 6:/// 活动内容
-            return @"content";
-            break;
-        case 7:/// 封面链接
-            return @"coverUrl";
-            break;
-        case 8:/// 图片链接
-            return @"imgUrls";
-            break;
-        default:///
-            return @"other";
-            break;
-    }
-}
 
-#pragma mark - lazy load getter
-/// TODO: 类型只有一个array，只不过在子类中返回不同的数据
-//- (NSArray *)themePartyDayItems{
-//    return [DJOnlineUploadTableModel loadLocalPlistWithPlistName:@"OLUplaodThemeTable"];
-//}
-
+#pragma mark - lazy load & getter
 - (LGSelectImgManager *)simgr{
     if (!_simgr) {
-        _simgr = LGSelectImgManager.sharedInstance;
+        _simgr = LGSelectImgManager.new;
     }
     return _simgr;
 }
@@ -273,14 +239,16 @@ DJSelectMeetingTagViewControllerDelegate>
         _coverSelectMgr = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
         _coverSelectMgr.configuration.singleSelected = YES;
         _coverSelectMgr.configuration.albumListTableView = ^(UITableView *tableView) {
-            //            NSSLog(@"%@",tableView);
         };
         _coverSelectMgr.configuration.singleJumpEdit = YES;
         _coverSelectMgr.configuration.movableCropBox = YES;
         _coverSelectMgr.configuration.movableCropBoxEditSize = YES;
-        //        _manager.configuration.movableCropBoxCustomRatio = CGPointMake(1, 1);
     }
     return _coverSelectMgr;
+}
+
+- (void)dealloc{
+
 }
 
 @end

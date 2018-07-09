@@ -175,6 +175,7 @@
 		8876E40720F06CF1001C6A1A /* OLUplaodThreeMeetingsTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8876E40620F06CF0001C6A1A /* OLUplaodThreeMeetingsTable.plist */; };
 		8876E40A20F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E40920F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.m */; };
 		8876E40D20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E40C20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m */; };
+		8876E41120F30B13001C6A1A /* DJTestScoreListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E41020F30B13001C6A1A /* DJTestScoreListTableViewController.m */; };
 		8877742220C0F7390011DFF3 /* ECRPDFRelateder.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */; };
 		8877742320C0F7390011DFF3 /* LGBookReaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 887773FE20C0F7390011DFF3 /* LGBookReaderManager.m */; };
 		8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8877740220C0F7390011DFF3 /* LGDownloadManager.m */; };
@@ -198,8 +199,6 @@
 		889FCC6920B255080045746D /* DCStateCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC6320B255080045746D /* DCStateCommentsModel.m */; };
 		889FCC6A20B255080045746D /* DCStateCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC6520B255080045746D /* DCStateCommentsTableViewCell.m */; };
 		889FCC6B20B255080045746D /* DCStateCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889FCC6620B255080045746D /* DCStateCommentsTableViewCell.xib */; };
-		889FCC7420B255430045746D /* LGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC6F20B255430045746D /* LGBaseRequest.m */; };
-		889FCC7520B255430045746D /* LGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC7120B255430045746D /* LGNetworkAgent.m */; };
 		889FCC7A20B2587D0045746D /* DCStateContentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCC7920B2587D0045746D /* DCStateContentsCell.m */; };
 		889FCCBE20B273E30045746D /* LGNineImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCCBC20B273E30045746D /* LGNineImgView.m */; };
 		889FCCC120B2A7840045746D /* DCSubStageAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889FCCC020B2A7840045746D /* DCSubStageAudioCell.m */; };
@@ -245,6 +244,12 @@
 		88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A4713C207F320F002F93E0 /* LGCustomButton.m */; };
 		88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A47141207F5242002F93E0 /* UCPersonInfoViewController.m */; };
 		88A80BE920D9E46000AB274B /* HPChairmanSpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A80BE820D9E46000AB274B /* HPChairmanSpeechViewController.m */; };
+		88BA906720F33E5D007DD4B4 /* DJTestScoreListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */; };
+		88BA906A20F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906920F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m */; };
+		88BA906C20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA906B20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib */; };
+		88BA906F20F33F64007DD4B4 /* DJTestScoreListLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906E20F33F64007DD4B4 /* DJTestScoreListLabel.m */; };
+		88BA907220F34343007DD4B4 /* DJTestScoreListHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA907120F34343007DD4B4 /* DJTestScoreListHeader.m */; };
+		88BA907620F34381007DD4B4 /* DJTestScoreListHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA907520F34381007DD4B4 /* DJTestScoreListHeader.xib */; };
 		88BB64D7209BEC1400FE6103 /* OLKnowleageTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB64D6209BEC1400FE6103 /* OLKnowleageTestController.m */; };
 		88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BB64D8209BEC4F00FE6103 /* Online.storyboard */; };
 		88BCED4E20C271D000B5C1DB /* HPVoiceSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BCED4D20C271D000B5C1DB /* HPVoiceSearchView.m */; };
@@ -316,7 +321,6 @@
 		88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */; };
 		88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */; };
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
-		88D5C61520BE3B3600E353DB /* LGResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5C61420BE3B3600E353DB /* LGResponseModel.m */; };
 		88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61A20BE768500E353DB /* libxml2.2.tbd */; };
 		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
 		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
@@ -719,6 +723,8 @@
 		8876E40920F06EA3001C6A1A /* DJOnlineUploadSelectMeetingTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJOnlineUploadSelectMeetingTag.m; sourceTree = "<group>"; };
 		8876E40B20F08CCC001C6A1A /* DJSelectMeetingTagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectMeetingTagViewController.h; sourceTree = "<group>"; };
 		8876E40C20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectMeetingTagViewController.m; sourceTree = "<group>"; };
+		8876E40F20F30B13001C6A1A /* DJTestScoreListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListTableViewController.h; sourceTree = "<group>"; };
+		8876E41020F30B13001C6A1A /* DJTestScoreListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTestScoreListTableViewController.m; sourceTree = "<group>"; };
 		887773FB20C0F7390011DFF3 /* ECRPDFRelateder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRPDFRelateder.h; sourceTree = "<group>"; };
 		887773FC20C0F7390011DFF3 /* ECRPDFRelateder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRPDFRelateder.m; sourceTree = "<group>"; };
 		887773FD20C0F7390011DFF3 /* LGBookReaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBookReaderManager.h; sourceTree = "<group>"; };
@@ -759,10 +765,6 @@
 		889FCC6420B255080045746D /* DCStateCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStateCommentsTableViewCell.h; sourceTree = "<group>"; };
 		889FCC6520B255080045746D /* DCStateCommentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStateCommentsTableViewCell.m; sourceTree = "<group>"; };
 		889FCC6620B255080045746D /* DCStateCommentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCStateCommentsTableViewCell.xib; sourceTree = "<group>"; };
-		889FCC6E20B255430045746D /* LGBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseRequest.h; sourceTree = "<group>"; };
-		889FCC6F20B255430045746D /* LGBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseRequest.m; sourceTree = "<group>"; };
-		889FCC7020B255430045746D /* LGNetworkAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNetworkAgent.h; sourceTree = "<group>"; };
-		889FCC7120B255430045746D /* LGNetworkAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNetworkAgent.m; sourceTree = "<group>"; };
 		889FCC7820B2587D0045746D /* DCStateContentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStateContentsCell.h; sourceTree = "<group>"; };
 		889FCC7920B2587D0045746D /* DCStateContentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStateContentsCell.m; sourceTree = "<group>"; };
 		889FCCBC20B273E30045746D /* LGNineImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNineImgView.m; sourceTree = "<group>"; };
@@ -843,6 +845,16 @@
 		88A80BE620D9E3AB00AB274B /* HBDJProj-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HBDJProj-Bridging-Header.h"; sourceTree = "<group>"; };
 		88A80BE720D9E46000AB274B /* HPChairmanSpeechViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPChairmanSpeechViewController.h; sourceTree = "<group>"; };
 		88A80BE820D9E46000AB274B /* HPChairmanSpeechViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPChairmanSpeechViewController.m; sourceTree = "<group>"; };
+		88BA906520F33E5D007DD4B4 /* DJTestScoreListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListModel.h; sourceTree = "<group>"; };
+		88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTestScoreListModel.m; sourceTree = "<group>"; };
+		88BA906820F33EB3007DD4B4 /* DJTestScoreListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListTableViewCell.h; sourceTree = "<group>"; };
+		88BA906920F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTestScoreListTableViewCell.m; sourceTree = "<group>"; };
+		88BA906B20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJTestScoreListTableViewCell.xib; sourceTree = "<group>"; };
+		88BA906D20F33F64007DD4B4 /* DJTestScoreListLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListLabel.h; sourceTree = "<group>"; };
+		88BA906E20F33F64007DD4B4 /* DJTestScoreListLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTestScoreListLabel.m; sourceTree = "<group>"; };
+		88BA907020F34343007DD4B4 /* DJTestScoreListHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListHeader.h; sourceTree = "<group>"; };
+		88BA907120F34343007DD4B4 /* DJTestScoreListHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTestScoreListHeader.m; sourceTree = "<group>"; };
+		88BA907520F34381007DD4B4 /* DJTestScoreListHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJTestScoreListHeader.xib; sourceTree = "<group>"; };
 		88BB64D5209BEC1400FE6103 /* OLKnowleageTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLKnowleageTestController.h; sourceTree = "<group>"; };
 		88BB64D6209BEC1400FE6103 /* OLKnowleageTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLKnowleageTestController.m; sourceTree = "<group>"; };
 		88BB64D8209BEC4F00FE6103 /* Online.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Online.storyboard; sourceTree = "<group>"; };
@@ -955,8 +967,6 @@
 		88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolHeader.m; sourceTree = "<group>"; };
 		88D13C7420907A3700A32236 /* OLAddMoreToolFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreToolFooter.h; sourceTree = "<group>"; };
 		88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolFooter.m; sourceTree = "<group>"; };
-		88D5C61320BE3B3600E353DB /* LGResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGResponseModel.h; sourceTree = "<group>"; };
-		88D5C61420BE3B3600E353DB /* LGResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGResponseModel.m; sourceTree = "<group>"; };
 		88D5C61A20BE768500E353DB /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		88D5C61F20BE781C00E353DB /* huamulan.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = huamulan.epub; sourceTree = "<group>"; };
 		88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewController.h; sourceTree = "<group>"; };
@@ -1267,7 +1277,6 @@
 			children = (
 				88BCEDEB20C7A6B200B5C1DB /* LGNetworkManager */,
 				887773FA20C0F7390011DFF3 /* LGLocalFileManage */,
-				889FCC6D20B255430045746D /* LGNetworking */,
 				88EA132D20AD5314007AB886 /* LGHTMLParser.h */,
 				88EA132E20AD5314007AB886 /* LGHTMLParser.m */,
 				88C5F14320B7EEEA0075D5F2 /* LGPlayer.h */,
@@ -1422,8 +1431,9 @@
 		881C94EB2068F36D009D6A52 /* Online */ = {
 			isa = PBXGroup;
 			children = (
-				8876E3C720EB5BDB001C6A1A /* upload */,
+				88BB64D8209BEC4F00FE6103 /* Online.storyboard */,
 				88D13C642090634C00A32236 /* main */,
+				8876E3C720EB5BDB001C6A1A /* upload */,
 				88DD814E209C49E500F297D6 /* ThreeMeetings */,
 				88DD814A209C3C1300F297D6 /* testResult */,
 				88DD8114209BFF3800F297D6 /* tk&cs */,
@@ -1432,7 +1442,6 @@
 				88FE68AC209AFAA7008C28A0 /* payPartyCharge */,
 				88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */,
 				88D13C652090635F00A32236 /* addMoreTool */,
-				88BB64D8209BEC4F00FE6103 /* Online.storyboard */,
 			);
 			path = Online;
 			sourceTree = "<group>";
@@ -1453,11 +1462,11 @@
 			children = (
 				883D475E20DCD98F00FD9971 /* DJUserNetworkManager.h */,
 				883D475F20DCD98F00FD9971 /* DJUserNetworkManager.m */,
+				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				883D475A20DB69E700FD9971 /* DJUser.h */,
 				883D475B20DB69E700FD9971 /* DJUser.m */,
 				88A4713E207F5170002F93E0 /* userMain */,
 				88EA130620ABC68A007AB886 /* serviceView */,
-				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				8831E19720946383001D038E /* userLogin */,
 				884312ED2089C15000321F84 /* userUpload */,
 				88A4713F207F51BF002F93E0 /* userPersonInfo */,
@@ -2140,6 +2149,25 @@
 			path = base;
 			sourceTree = "<group>";
 		};
+		8876E40E20F30AE0001C6A1A /* testScoreList */ = {
+			isa = PBXGroup;
+			children = (
+				88BA907020F34343007DD4B4 /* DJTestScoreListHeader.h */,
+				88BA907120F34343007DD4B4 /* DJTestScoreListHeader.m */,
+				88BA907520F34381007DD4B4 /* DJTestScoreListHeader.xib */,
+				88BA906520F33E5D007DD4B4 /* DJTestScoreListModel.h */,
+				88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */,
+				88BA906820F33EB3007DD4B4 /* DJTestScoreListTableViewCell.h */,
+				88BA906920F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m */,
+				88BA906B20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib */,
+				88BA906D20F33F64007DD4B4 /* DJTestScoreListLabel.h */,
+				88BA906E20F33F64007DD4B4 /* DJTestScoreListLabel.m */,
+				8876E40F20F30B13001C6A1A /* DJTestScoreListTableViewController.h */,
+				8876E41020F30B13001C6A1A /* DJTestScoreListTableViewController.m */,
+			);
+			path = testScoreList;
+			sourceTree = "<group>";
+		};
 		887773FA20C0F7390011DFF3 /* LGLocalFileManage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2225,19 +2253,6 @@
 				889FCD1A20B3E6560045746D /* DCRichTextBottomInfoView.xib */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		889FCC6D20B255430045746D /* LGNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				88D5C61320BE3B3600E353DB /* LGResponseModel.h */,
-				88D5C61420BE3B3600E353DB /* LGResponseModel.m */,
-				889FCC6E20B255430045746D /* LGBaseRequest.h */,
-				889FCC6F20B255430045746D /* LGBaseRequest.m */,
-				889FCC7020B255430045746D /* LGNetworkAgent.h */,
-				889FCC7120B255430045746D /* LGNetworkAgent.m */,
-			);
-			path = LGNetworking;
 			sourceTree = "<group>";
 		};
 		889FCC7720B2587D0045746D /* LGCoreText */ = {
@@ -2661,6 +2676,7 @@
 		88DD8114209BFF3800F297D6 /* tk&cs */ = {
 			isa = PBXGroup;
 			children = (
+				8876E40E20F30AE0001C6A1A /* testScoreList */,
 				88ECF004209FE2670071A98A /* exam */,
 				88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */,
 				88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */,
@@ -3059,10 +3075,12 @@
 				88FE68B4209AFB11008C28A0 /* OLPayPartyChargeTableViewCell.xib in Resources */,
 				886A1BED20D0CB330007AD63 /* rm.bundle in Resources */,
 				88A4712A207E02D4002F93E0 /* UserCenter.storyboard in Resources */,
+				88BA906C20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib in Resources */,
 				886A1BF120D0CB330007AD63 /* GB2312kaiti.ttf in Resources */,
 				886A1BE620D0CB330007AD63 /* HTMLPSFile.plist in Resources */,
 				886A1BF220D0CB330007AD63 /* SimHei.ttf in Resources */,
 				88BCEDE720C67D7500B5C1DB /* HPAlbumHeaderCell.xib in Resources */,
+				88BA907620F34381007DD4B4 /* DJTestScoreListHeader.xib in Resources */,
 				886A1BF020D0CB330007AD63 /* GB2312.ttf in Resources */,
 				884312AB2086F2D400321F84 /* EDJLeverInfoHeader.xib in Resources */,
 				886A1BE320D0CB330007AD63 /* day.bundle in Resources */,
@@ -3279,12 +3297,12 @@
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
 				88A47133207EF5EB002F93E0 /* EDJUserCenterHomePageModel.m in Sources */,
 				88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */,
+				88BA906A20F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m in Sources */,
 				889FCCC720B2B81F0045746D /* DCSubStageCommentsModel.m in Sources */,
 				8885D23920A2BCB000DC06A1 /* PBDBottomView.m in Sources */,
 				8876E3C620EB4149001C6A1A /* DJSearchViewDataSource.m in Sources */,
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
 				88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */,
-				88D5C61520BE3B3600E353DB /* LGResponseModel.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
 				883E082220CA16C700BB62BA /* LGGaussManager.m in Sources */,
 				88FE68A0209ABD0A008C28A0 /* OLMindReportViewController.m in Sources */,
@@ -3324,6 +3342,7 @@
 				88DD8132209C0D6E00F297D6 /* OLVoteDetailNormalTableViewCell.m in Sources */,
 				88D13C592090560E00A32236 /* EDJDigitalModel.m in Sources */,
 				884312DC2087402200321F84 /* UCSettingModel.m in Sources */,
+				88BA906F20F33F64007DD4B4 /* DJTestScoreListLabel.m in Sources */,
 				882B118720D23D3400917374 /* PLMediaInfo.m in Sources */,
 				88BCEDA420C29B9100B5C1DB /* ISRDataHelper.m in Sources */,
 				881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */,
@@ -3338,6 +3357,7 @@
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
 				880363B220E5FA3600E97FA3 /* LGVoiceRecoAssist.m in Sources */,
 				8876E3F120ECB38A001C6A1A /* DJSelectDateViewController.m in Sources */,
+				88BA906720F33E5D007DD4B4 /* DJTestScoreListModel.m in Sources */,
 				88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */,
 				8831E16C2094019D001D038E /* DCSubPartStateThreeImgCell.m in Sources */,
 				8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */,
@@ -3345,7 +3365,6 @@
 				88ECF063209FF7B40071A98A /* OLExamSingleStemCell.m in Sources */,
 				883D476320DCDFC400FD9971 /* DJHomeNetworkManager.m in Sources */,
 				883D474D20D9F08E00FD9971 /* HPMicrolessonViewController.m in Sources */,
-				889FCC7520B255430045746D /* LGNetworkAgent.m in Sources */,
 				88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */,
 				881C94D22068ECF3009D6A52 /* UIImage+Extension.m in Sources */,
 				88D13C412090253200A32236 /* EDJSearchTagHeaderModel.m in Sources */,
@@ -3363,6 +3382,7 @@
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
 				880363A920E4A31A00E97FA3 /* LGUserLimitsManager.m in Sources */,
 				8876E3DD20EB6E9A001C6A1A /* DJOnlineUploadTableModel.m in Sources */,
+				88BA907220F34343007DD4B4 /* DJTestScoreListHeader.m in Sources */,
 				8876E40520F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.m in Sources */,
 				8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */,
 				8876E3FE20EDC4AB001C6A1A /* DJSelectPeopleModel.m in Sources */,
@@ -3461,6 +3481,7 @@
 				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
 				88A4711D207DE00F002F93E0 /* LGBaseTableViewCell.m in Sources */,
 				88D13C4A20902FCE00A32236 /* EDJSearchTagHistoryCell.m in Sources */,
+				8876E41120F30B13001C6A1A /* DJTestScoreListTableViewController.m in Sources */,
 				882B118A20D23D3400917374 /* UIView+Alert.m in Sources */,
 				883D475020D9F14200FD9971 /* HPBuildTableViewController.m in Sources */,
 				881F1A8320C125A7005D9261 /* HPSearchViewController.m in Sources */,
@@ -3501,7 +3522,6 @@
 				8835B2E920720CD800722010 /* LIGObject.m in Sources */,
 				88FE68C2209B0690008C28A0 /* OLVoteListTableViewCell.m in Sources */,
 				88BCED6220C28DD500B5C1DB /* LGVoiceRecoganizer.m in Sources */,
-				889FCC7420B255430045746D /* LGBaseRequest.m in Sources */,
 				88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */,
 				8835B314207216DB00722010 /* LGNavigationSearchBar.m in Sources */,
 				889FCC6A20B255080045746D /* DCStateCommentsTableViewCell.m in Sources */,
@@ -3670,8 +3690,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 33C939949Y;
+				DEVELOPMENT_TEAM = 2DANKBZTCS;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3762,8 +3783,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 33C939949Y;
+				DEVELOPMENT_TEAM = 2DANKBZTCS;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

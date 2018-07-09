@@ -27,7 +27,7 @@ static NSString * const olupTimeKeyPath = @"content";
 
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     [super setModel:model];
-    _content.text = [model.itemName stringByAppendingString:@"内容"];
+    _content.text = [model.selectedPeople componentsJoinedByString:@","];
     
     if (model.itemClass == OLUploadTableModelClassSelectTime) {
         [model addObserver:self forKeyPath:olupTimeKeyPath options:NSKeyValueObservingOptionNew context:nil];

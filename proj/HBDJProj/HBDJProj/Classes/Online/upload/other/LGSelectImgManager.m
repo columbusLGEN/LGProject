@@ -35,5 +35,5 @@
     return _hxPhotoManager;
 }
 
-CM_SINGLETON_IMPLEMENTION
+
 @end

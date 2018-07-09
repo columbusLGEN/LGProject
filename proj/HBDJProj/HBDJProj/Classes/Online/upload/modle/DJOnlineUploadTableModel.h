@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, OLUploadTableModelClass) {
 @property (strong,nonatomic) NSString *uploadJsonKey;
 /** 选择封面之后的图片回调 */
 @property (strong,nonatomic) NSURL *coverBackUrl;
-
+/** 所选的人 */
+@property (strong,nonatomic) NSArray<NSString *> *selectedPeople;
 
 @end

@@ -31,10 +31,10 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
     
     // 暂未开放
     NSString *discoveryvcString = @"DJNotOpenViewController";
-    NSString *onlinevcString = @"DJNotOpenViewController";
+//    NSString *onlinevcString = @"DJNotOpenViewController";
     
 //    NSString *discoveryvcString = @"EDJDiscoveryViewController";
-//    NSString *onlinevcString = @"EDJOnlineViewController";
+    NSString *onlinevcString = @"EDJOnlineViewController";
     
     /// MARK: 配置自控制器
     NSArray<NSDictionary *> *childVcSettings = @[
@@ -71,6 +71,7 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
     [currentItem setTitleTextAttributes:textDict forState:UIControlStateSelected];
     
 
+    self.selectedIndex = 2;
 }
 
 - (void)setChildViewControllerWithClassName:(NSString *)className title:(NSString *)title normalIconName:(NSString *)normalIconName selectedIconName:(NSString *)selectedIconName{

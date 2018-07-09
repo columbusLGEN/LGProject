@@ -10,8 +10,12 @@
 
 #import "DJOnlineUplaodBaseCell.h"
 
+@class HXPhotoView;
+
 static NSString * addImgCell = @"DJOnlineUplaodAddImgCell";
 
 @interface DJOnlineUploadAddImgCell : DJOnlineUplaodBaseCell
+/** 该view 由控制器创建 set给cell */
+@property (weak,nonatomic) HXPhotoView *photoView;
 
 @end
