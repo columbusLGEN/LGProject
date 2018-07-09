@@ -28,7 +28,8 @@
 DJSelectDateViewControllerDelegate,
 DJSelectPeopleViewControllerDelegate,
 DJOnlineUploadAddCoverCellDelegate,
-DJSelectMeetingTagViewControllerDelegate>
+DJSelectMeetingTagViewControllerDelegate,
+DJOnlineUploadCellDelegate>
 
 /** 选择图片管理者 */
 @property (strong,nonatomic) LGSelectImgManager *simgr;
@@ -117,6 +118,18 @@ DJSelectMeetingTagViewControllerDelegate>
     NSLog(@"父类选中了: %@",string);
 }
 
+/// MARK: DJOnlineUploadCellDelegate 文本输入框代理
+- (void)userInputContenLineFeed:(DJOnlineUploadCell *)cell textView:(UITextView *)textView lineCount:(int)lineCount singleHeight:(CGFloat)singleHeight reloadCallBack:(void (^)(UITextView *, CGFloat))reloadCallBack{
+    [textView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(lineCount * singleHeight - singleHeight + 34);
+    }];
+    [self.tableView reloadData];
+//    if (reloadCallBack) {
+//        reloadCallBack(textView,0);
+//        
+//    }
+}
+
 #pragma mark -  setter
 /// MARK: 暴露给cell，改变表单的值
 - (void)setFormDataDictValue:(nonnull id)value indexPath:(NSIndexPath *)indexPath{
@@ -127,7 +140,7 @@ DJSelectMeetingTagViewControllerDelegate>
 
 #pragma mark - delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.view endEditing:YES];
+//    [self.view endEditing:YES];
 }
 /// MARK: tableview datasource & delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -148,6 +161,10 @@ DJSelectMeetingTagViewControllerDelegate>
     if ([cell isMemberOfClass:[DJOnlineUploadAddCoverCell class]]) {
         DJOnlineUploadAddCoverCell *addCoverCell = (DJOnlineUploadAddCoverCell *)cell;
         addCoverCell.delegate = self;
+    }
+    if ([cell isMemberOfClass:[DJOnlineUploadCell class]]) {
+        DJOnlineUploadCell *textInputCell = (DJOnlineUploadCell *)cell;
+        textInputCell.delegate = self;
     }
     
     return cell;
