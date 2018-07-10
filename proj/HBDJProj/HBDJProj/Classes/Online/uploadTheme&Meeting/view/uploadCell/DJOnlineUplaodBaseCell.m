@@ -24,6 +24,7 @@
             break;
         case OLUploadTableModelClassSelectTime:
         case OLUploadTableModelClassSelectPeople:
+            case OLUploadTableModelClassSelectHost:
             case OLUploadTableModelClassSelectPeopleNotCome:
             return addPeopleCell;
             break;

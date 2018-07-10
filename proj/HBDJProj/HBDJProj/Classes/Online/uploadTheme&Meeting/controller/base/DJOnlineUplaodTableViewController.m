@@ -9,6 +9,7 @@
 #import "DJOnlineUplaodTableViewController.h"
 
 #import "DJOnlineUploadTableModel.h"
+#import "DJSelectPeopleModel.h"
 
 #import "DJOnlineUplaodBaseCell.h"
 #import "DJOnlineUploadCell.h"
@@ -20,6 +21,8 @@
 #import "DJSelectDateViewController.h"
 #import "DJSelectPeopleViewController.h"
 #import "DJSelectMeetingTagViewController.h"
+#import "DJInputContentViewController.h"
+#import "LGBaseNavigationController.h"
 
 #import "LGSelectImgManager.h"
 #import "HXPhotoPicker.h"
@@ -29,7 +32,8 @@ DJSelectDateViewControllerDelegate,
 DJSelectPeopleViewControllerDelegate,
 DJOnlineUploadAddCoverCellDelegate,
 DJSelectMeetingTagViewControllerDelegate,
-DJOnlineUploadCellDelegate>
+DJOnlineUploadCellDelegate,
+DJInputContentViewControllerDelegate>
 
 /** 选择图片管理者 */
 @property (strong,nonatomic) LGSelectImgManager *simgr;
@@ -41,6 +45,14 @@ DJOnlineUploadCellDelegate>
 @property (strong,nonatomic) NSURL *coverFileUrl;
 
 @property (strong,nonatomic) HXPhotoView *cellSelectedImageView;
+
+@property (strong,nonatomic) NSArray *allPeople;
+/** 出席人员 */
+@property (strong,nonatomic) NSMutableArray *peoplePresent;
+/** 缺席人员 */
+@property (strong,nonatomic) NSMutableArray *peopleAbsent;
+/**主持人 */
+@property (strong,nonatomic) NSMutableArray *peopleHost;
 
 @end
 
@@ -115,19 +127,22 @@ DJOnlineUploadCellDelegate>
 }
 /// MARK: DJSelectMeetingTagViewControllerDelegate 选择会议标签回调
 - (void)selectMeetingTag:(DJSelectMeetingTagViewController *)vc selectString:(NSString *)string{
-    NSLog(@"父类选中了: %@",string);
+//    NSLog(@"父类选中了: %@",string);
 }
 
 /// MARK: DJOnlineUploadCellDelegate 文本输入框代理
-- (void)userInputContenLineFeed:(DJOnlineUploadCell *)cell textView:(UITextView *)textView lineCount:(int)lineCount singleHeight:(CGFloat)singleHeight reloadCallBack:(void (^)(UITextView *, CGFloat))reloadCallBack{
-    [textView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(lineCount * singleHeight - singleHeight + 34);
-    }];
+- (void)userWantBeginInputWithModel:(DJOnlineUploadTableModel *)model cell:(DJOnlineUploadCell *)cell{
+    DJInputContentViewController *vc = DJInputContentViewController.new;
+    vc.model = model;
+    vc.delegate = self;
+    vc.pushWay = LGBaseViewControllerPushWayModal;
+    LGBaseNavigationController *nav = [LGBaseNavigationController.alloc initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+/// MARK: DJInputContentViewControllerDelegate 输入文本代理回调
+- (void)inputContentViewController:(DJInputContentViewController *)vc model:(DJOnlineUploadTableModel *)model{
+    [self.formDataDict setValue:model.content forKey:model.uploadJsonKey];
     [self.tableView reloadData];
-//    if (reloadCallBack) {
-//        reloadCallBack(textView,0);
-//        
-//    }
 }
 
 #pragma mark -  setter
@@ -181,11 +196,11 @@ DJOnlineUploadCellDelegate>
         }
             break;
         case OLUploadTableModelClassSelectPeopleNotCome:{
-            [self selectPeopleVcWithSpType:DJSelectPeopleTypeNotCome];
+            [self selectPeopleVcWithSpType:DJSelectPeopleTypeAbsent model:model];
         }
             break;
         case OLUploadTableModelClassSelectPeople:{
-            [self selectPeopleVcWithSpType:DJSelectPeopleTypeCome];
+            [self selectPeopleVcWithSpType:DJSelectPeopleTypePresent model:model];
         }
             break;
         case OLUploadTableModelClassSelectCover:NSLog(@"封面: ");
@@ -198,6 +213,9 @@ DJOnlineUploadCellDelegate>
             selectMeetingTag.delegate = self;
             selectMeetingTag.modalPresentationStyle = UIModalPresentationOverFullScreen;
             [self presentViewController:selectMeetingTag animated:YES completion:nil];
+        }
+        case OLUploadTableModelClassSelectHost:{
+            [self selectPeopleVcWithSpType:DJSelectPeopleTypeHost model:model];
         }
         default:
             break;
@@ -212,30 +230,64 @@ DJOnlineUploadCellDelegate>
     
 }
 /// MARK: DJSelectPeopleViewControllerDelegate 选人回调
-- (void)selectPeopleDone:(DJSelectPeopleViewController *)vc peopleList:(NSArray *)peopleList spType:(DJSelectPeopleType)spType{
+- (void)selectPeopleDone:(DJSelectPeopleViewController *)vc model:(DJOnlineUploadTableModel *)model spType:(DJSelectPeopleType)spType{
     
-    NSString *desc;
-    if (spType == DJSelectPeopleTypeCome) {
-        desc = @"参会";
+    for (int i = 0; i < self.allPeople.count; i++) {
+        DJSelectPeopleModel *model = self.allPeople[i];
+        if (model.select_present) {
+            /// 出席人员
+            [self.peoplePresent addObject:model.name];
+        }
+        if (model.select_absent) {
+            /// 缺席人员
+            [self.peopleAbsent addObject:model.name];
+        }
     }
-    if (spType == DJSelectPeopleTypeNotCome) {
-        desc = @"缺席";
+    NSString *peoples;
+    switch (spType) {
+        case DJSelectPeopleTypePresent:{
+            peoples = [self.peoplePresent componentsJoinedByString:@"、"];
+        }
+            break;
+        case DJSelectPeopleTypeAbsent:{
+            peoples = [self.peopleAbsent componentsJoinedByString:@"、"];
+        }
+            break;
+        case DJSelectPeopleTypeHost:{
+            peoples = model.content;
+        }
+            break;
     }
-    for (int i = 0; i < peopleList.count; i++) {
-        NSLog(@"%@人员: %@",desc,[peopleList[i] valueForKey:@"name"]);
-    }
-    /// TODO: 设置参会人员和缺席人员到表单数据
-    
+    [self.formDataDict setValue:peoples forKey:model.uploadJsonKey];
+    model.content = peoples;
+    /// 更新cell中的数据
+    [self.tableView reloadData];
 }
 
+
 #pragma mark - 私有方法
-- (void)selectPeopleVcWithSpType:(DJSelectPeopleType)spType{
+- (void)selectPeopleVcWithSpType:(DJSelectPeopleType)spType model:(DJOnlineUploadTableModel *)model{
+    switch (spType) {
+        case DJSelectPeopleTypePresent:
+            [self.peoplePresent removeAllObjects];
+            break;
+        case DJSelectPeopleTypeAbsent:
+            [self.peopleAbsent removeAllObjects];
+            break;
+        case DJSelectPeopleTypeHost:
+            
+            break;
+    }
+    /// MARK: 创建并弹出选人控制器
     DJSelectPeopleViewController *selectPeople = DJSelectPeopleViewController.new;
+    selectPeople.model = model;
     selectPeople.spType = spType;
     selectPeople.delegate = self;
+    selectPeople.allPeople = self.allPeople;
     selectPeople.pushWay = LGBaseViewControllerPushWayModal;
     selectPeople.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:selectPeople animated:YES completion:nil];
+    
 }
 
 #pragma mark - lazy load & getter
@@ -263,9 +315,41 @@ DJOnlineUploadCellDelegate>
     }
     return _coverSelectMgr;
 }
-
-- (void)dealloc{
-
+- (NSMutableArray *)peoplePresent{
+    if (!_peoplePresent) {
+        _peoplePresent = NSMutableArray.new;
+    }
+    return _peoplePresent;
+}
+- (NSMutableArray *)peopleAbsent{
+    if (!_peopleAbsent) {
+        _peopleAbsent = NSMutableArray.new;
+    }
+    return _peopleAbsent;
+}
+- (NSMutableArray *)peopleHost{
+    if (!_peopleHost) {
+        _peopleHost = NSMutableArray.new;
+    }
+    return _peopleHost;
+}
+- (NSArray *)allPeople{
+    if (!_allPeople) {
+        NSMutableArray *arrMutable = NSMutableArray.new;
+        for (int i = 0; i < self.tmpNames.count; i++) {
+            DJSelectPeopleModel *model = DJSelectPeopleModel.new;
+            model.name = self.tmpNames[i];
+            /// 默认全员出席
+            model.attend = DJMemeberAttendTypePresent;
+            model.select_present = YES;
+            [arrMutable addObject:model];
+        }
+        _allPeople = arrMutable.copy;
+    }
+    return _allPeople;
+}
+- (NSArray *)tmpNames{
+    return @[@"党伟大",@"李建国",@"张爱国",@"网钢铁",@"孙建军",@"赵爱民",@"刘国庆"];
 }
 
 @end

@@ -11,9 +11,11 @@
 @interface UIColor (EDJColor)
 
 + (UIColor *)EDJMainColor;
+/** 占位文字颜色 */
 + (UIColor *)EDJGrayscale_EC;
 + (UIColor *)EDJGrayscale_F4;
 + (UIColor *)EDJGrayscale_88;
+/** 分割线颜色 */
 + (UIColor *)EDJGrayscale_F3;
 + (UIColor *)EDJGrayscale_F5;
 + (UIColor *)EDJGrayscale_F6;

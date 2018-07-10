@@ -10,21 +10,26 @@
 
 /** 选择人员类型 */
 typedef NS_ENUM(NSUInteger, DJSelectPeopleType) {
-    /** 参会人员 */
-    DJSelectPeopleTypeCome,
-    /** 缺席人员 */
-    DJSelectPeopleTypeNotCome,
+    /** 出席 */
+    DJSelectPeopleTypePresent,
+    /** 缺席 */
+    DJSelectPeopleTypeAbsent,
+    /** 主持人 */
+    DJSelectPeopleTypeHost
 };
 
-@class DJSelectPeopleViewController;
+@class DJSelectPeopleViewController,DJOnlineUploadTableModel;
 
 @protocol DJSelectPeopleViewControllerDelegate <NSObject>
-- (void)selectPeopleDone:(DJSelectPeopleViewController *)vc peopleList:(NSArray *)peopleList spType:(DJSelectPeopleType)spType;
+- (void)selectPeopleDone:(DJSelectPeopleViewController *)vc model:(DJOnlineUploadTableModel *)model spType:(DJSelectPeopleType)spType;
 
 @end
 
 @interface DJSelectPeopleViewController : LGBaseViewController
 @property (weak,nonatomic) id<DJSelectPeopleViewControllerDelegate> delegate;
 @property (assign,nonatomic) DJSelectPeopleType spType;
+@property (strong,nonatomic) DJOnlineUploadTableModel *model;
+
+@property (strong,nonatomic) NSArray *allPeople;
 
 @end

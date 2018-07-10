@@ -27,9 +27,13 @@ static NSString * const olupTimeKeyPath = @"content";
 
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     [super setModel:model];
-    _content.text = [model.selectedPeople componentsJoinedByString:@","];
+    if (model.content) {
+        _content.text = model.content;
+        _content.textColor = [UIColor EDJGrayscale_11];
+    }
     
     if (model.itemClass == OLUploadTableModelClassSelectTime) {
+        /// 选择时间单元格，监听模型的conent属性，在用户改变了时间之后，在不刷新tablView 的情况下 更新单元格时间label的值
         [model addObserver:self forKeyPath:olupTimeKeyPath options:NSKeyValueObservingOptionNew context:nil];
     }
 }
@@ -39,12 +43,15 @@ static NSString * const olupTimeKeyPath = @"content";
         UILabel *lbl = UILabel.new;
         [self.contentView addSubview:lbl];
         _content = lbl;
-        _content.textColor = [UIColor EDJGrayscale_11];
+        _content.numberOfLines = 0;
+        _content.text = @"请点击进行选择";
+        _content.textColor = [UIColor EDJGrayscale_F3];
         _content.font = [UIFont systemFontOfSize:14];
         [_content mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.item.mas_right).offset(marginTen);
             make.right.equalTo(self.contentView.mas_right).offset(-marginTen);
-            make.centerY.equalTo(self.contentView.mas_centerY);
+            make.top.equalTo(self.contentView.mas_top).offset(marginFifteen);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginFifteen);
         }];
         
     }

@@ -9,7 +9,9 @@
 #import "DJSelectPeopleCell.h"
 #import "DJSelectPeopleModel.h"
 
-static NSString * const selectKeyPath = @"select";
+static NSString * const selectPresntKeyPath = @"select_present";
+static NSString * const selectAbsentKeyPath = @"select_absent";
+static NSString * const selectHostKeyPath = @"select_host";
 
 @interface DJSelectPeopleCell ()
 @property (weak,nonatomic) UILabel *peopleName;
@@ -22,17 +24,53 @@ static NSString * const selectKeyPath = @"select";
 - (void)setModel:(DJSelectPeopleModel *)model{
     _model = model;
     _peopleName.text = model.name;
-    _selectButton.selected = model.select;
-    
-    [model addObserver:self forKeyPath:selectKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    if (self.repSpType == 0) {
+        /// 出席
+        _selectButton.selected = model.select_present;
+        [model addObserver:self forKeyPath:selectPresntKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    }else if(self.repSpType == 1){
+        /// 缺席
+        _selectButton.selected = model.select_absent;
+        [model addObserver:self forKeyPath:selectAbsentKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    }else{
+        /// 主持人
+        _selectButton.selected = model.select_host;
+        [model addObserver:self forKeyPath:selectHostKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    }
+
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:selectKeyPath] && object == self.model) {
-        self.selectButton.selected = self.model.select;
+    
+    if (self.repSpType == 0) {
+        if ([keyPath isEqualToString:selectPresntKeyPath] && object == self.model) {
+            self.selectButton.selected = self.model.select_present;
+        }
+    }else if(self.repSpType == 1){
+        if ([keyPath isEqualToString:selectAbsentKeyPath] && object == self.model) {
+            self.selectButton.selected = self.model.select_absent;
+        }
+    }else{
+        //        主持人
+        if ([keyPath isEqualToString:selectHostKeyPath] && object == self.model) {
+            self.selectButton.selected = self.model.select_host;
+        }
     }
+
 }
 
+
+- (void)dealloc{
+    if (self.repSpType == 0) {
+        [self.model removeObserver:self forKeyPath:selectPresntKeyPath];
+    }else if(self.repSpType == 1){
+        [self.model removeObserver:self forKeyPath:selectAbsentKeyPath];
+    }else{
+        //        主持人
+        [self.model removeObserver:self forKeyPath:selectHostKeyPath];
+    }
+    
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -71,8 +109,5 @@ static NSString * const selectKeyPath = @"select";
     return self;
 }
 
-- (void)dealloc{
-    [self.model removeObserver:self forKeyPath:selectKeyPath];
-}
 
 @end

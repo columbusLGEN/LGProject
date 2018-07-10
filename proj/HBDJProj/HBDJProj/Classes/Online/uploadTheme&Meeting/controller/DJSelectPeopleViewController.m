@@ -10,14 +10,13 @@
 #import "DJSelectPeopleModel.h"
 #import "DJSelectPeopleCell.h"
 
+#import "DJOnlineUploadTableModel.h"
+
 @interface DJSelectPeopleViewController ()<
 UITableViewDelegate,
 UITableViewDataSource>
 @property (strong,nonatomic) UIButton *shadow;
 @property (strong,nonatomic) UITableView *tableView;
-@property (strong,nonatomic) NSArray *array;
-
-@property (strong,nonatomic) NSMutableArray *selectPeople;
 
 @end
 
@@ -46,32 +45,58 @@ UITableViewDataSource>
         make.top.equalTo(self.view.mas_top);
         make.height.mas_equalTo(shadowHeight);
     }];
-    
-    NSMutableArray *arrMutable = NSMutableArray.new;
-    for (int i = 0; i < 30; i++) {
-        DJSelectPeopleModel *model = DJSelectPeopleModel.new;
-        model.name = [@"雪碧" stringByAppendingFormat:@"_%d",i];
-        [arrMutable addObject:model];
-    }
-    self.array = arrMutable.copy;
+
+}
+
+- (void)setAllPeople:(NSArray *)allPeople{
+    _allPeople = allPeople;
     [self.tableView reloadData];
-    _selectPeople = NSMutableArray.new;
 }
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _array.count;
+    return _allPeople.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DJSelectPeopleModel *model = self.array[indexPath.row];
+    DJSelectPeopleModel *model = self.allPeople[indexPath.row];
     DJSelectPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:selectPeopleCell];
+    cell.repSpType = _spType;
     cell.model = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DJSelectPeopleModel *model = self.array[indexPath.row];
-    model.select = !model.select;
-    model.select?[_selectPeople addObject:model]:[_selectPeople removeObject:model];
+    DJSelectPeopleModel *model = self.allPeople[indexPath.row];
+    
+    if (_spType == DJSelectPeopleTypePresent) {
+        /// 出席
+        if (model.attend == DJMemeberAttendTypePresent) {
+            model.attend = DJMemeberAttendTypeAbsent;
+        }else{
+            model.attend = DJMemeberAttendTypePresent;
+        }
+        model.select_present = (model.attend == DJMemeberAttendTypePresent);
+        model.select_absent = !model.select_present;
+    }else if(_spType == DJSelectPeopleTypeAbsent){
+        /// 缺席
+        if (model.attend == DJMemeberAttendTypeAbsent) {
+            model.attend = DJMemeberAttendTypePresent;
+        }else{
+            model.attend = DJMemeberAttendTypeAbsent;
+        }
+        model.select_absent = (model.attend == DJMemeberAttendTypeAbsent);
+        model.select_present = !model.select_absent;
+    }else{
+        /// 选择主持人
+        for (DJSelectPeopleModel *other in self.allPeople) {
+            if (other == model) {
+                other.select_host = YES;
+                self.model.content = other.name;
+            }else{
+                other.select_host = NO;
+            }
+        }
+    }
+
 }
 
 #pragma mark - lazy load
@@ -94,8 +119,8 @@ UITableViewDataSource>
 }
 
 - (void)lg_dismissViewController{
-    if ([self.delegate respondsToSelector:@selector(selectPeopleDone:peopleList:spType:)]) {
-        [self.delegate selectPeopleDone:self peopleList:self.selectPeople.copy spType:_spType];
+    if ([self.delegate respondsToSelector:@selector(selectPeopleDone:model:spType:)]) {
+        [self.delegate selectPeopleDone:self model:self.model spType:_spType];
     }
     [super lg_dismissViewController];
 }

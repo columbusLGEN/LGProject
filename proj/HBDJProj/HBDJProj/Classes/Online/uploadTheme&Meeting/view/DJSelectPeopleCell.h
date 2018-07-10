@@ -14,5 +14,10 @@ static NSString * const selectPeopleCell = @"DJSelectPeopleCell";
 
 @interface DJSelectPeopleCell : LGBaseTableViewCell
 @property (strong,nonatomic) DJSelectPeopleModel *model;
+/** 0: 出席
+    1: 缺席
+    2: 主持人
+*/
+@property (assign,nonatomic) NSInteger repSpType;
 
 @end

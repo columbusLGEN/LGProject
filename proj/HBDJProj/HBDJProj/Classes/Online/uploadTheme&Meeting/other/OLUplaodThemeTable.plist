@@ -30,7 +30,7 @@
 		<key>itemName</key>
 		<string>活动主持人</string>
 		<key>itemClass</key>
-		<integer>2</integer>
+		<integer>7</integer>
 		<key>uploadJsonKey</key>
 		<string>organizer</string>
 	</dict>
