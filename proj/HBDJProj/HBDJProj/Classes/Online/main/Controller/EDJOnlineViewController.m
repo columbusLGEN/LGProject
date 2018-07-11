@@ -68,17 +68,17 @@ UICollectionViewDelegate
     OLHomeModel *model = self.onlineController.onlineModels[indexPath.row];
     if (indexPath.item == self.onlineController.onlineModels.count - 1) {
         /// 跳转至 添加更多工具
-//        if (self.model) {
-//            OLAddMoreToolViewController *vc = [OLAddMoreToolViewController new];
-//            vc.array = self.model.notactive;
-//            vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-//            vc.pushWay = LGBaseViewControllerPushWayModal;
-//            [self presentViewController:vc animated:YES completion:nil];
-//        }
+        if (self.model) {
+            OLAddMoreToolViewController *vc = [OLAddMoreToolViewController new];
+            vc.array = self.model.notactive;
+            vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            vc.pushWay = LGBaseViewControllerPushWayModal;
+            [self presentViewController:vc animated:YES completion:nil];
+        }
         
         /// 跳转测试 -- 进入成绩统计排行，此页面入口在哪里
-        DJTestScoreListTableViewController *vc = DJTestScoreListTableViewController.new;
-        [self.navigationController pushViewController:vc animated:YES];
+//        DJTestScoreListTableViewController *vc = DJTestScoreListTableViewController.new;
+//        [self.navigationController pushViewController:vc animated:YES];
         
     }else{
         /// 其余跳转

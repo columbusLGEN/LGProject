@@ -1,42 +1,44 @@
 //
-//  DJOnlineUplaodBaseCell.m
+//  DJShowThemeMeetingBaseCell.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/7/3.
+//  Created by Peanut Lee on 2018/7/11.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "DJOnlineUplaodBaseCell.h"
+#import "DJShowThemeMeetingBaseCell.h"
+
 #import "DJOnlineUploadTableModel.h"
 
-#import "DJOnlineUploadCell.h"
-#import "DJOnlineUploadAddPeopleCell.h"
-#import "DJOnlineUploadAddCoverCell.h"
-#import "DJOnlineUploadAddImgCell.h"
-#import "DJOnlineUploadSelectMeetingTag.h"
+#import "DJShowThmemeMeetingImageCell.h"
+#import "DJShowThmemeMeetingNormalTextCell.h"
+#import "DJShowThmemeMeetingMoreTextCell.h"
 
-@implementation DJOnlineUplaodBaseCell
+
+@interface DJShowThemeMeetingBaseCell ()
+
+
+@end
+
+@implementation DJShowThemeMeetingBaseCell
 
 + (NSString *)cellReuseIdWithModel:(DJOnlineUploadTableModel *)model{
     switch (model.itemClass) {
         case OLUploadTableModelClassTextInput:
-        case OLUploadTableModelClassMeetContent:
-            return inputTextCell;
-            break;
+        case OLUploadTableModelClassSelectMeetingTag:
         case OLUploadTableModelClassSelectTime:
         case OLUploadTableModelClassSelectPeople:
-            case OLUploadTableModelClassSelectHost:
-            case OLUploadTableModelClassSelectPeopleNotCome:
-            return addPeopleCell;
+        case OLUploadTableModelClassSelectHost:
+        case OLUploadTableModelClassSelectPeopleNotCome:
+            return showTMNormalTextcell;
             break;
         case OLUploadTableModelClassSelectCover:
-            return addCoverCell;
+            return nil;
             break;
+        case OLUploadTableModelClassMeetContent:
+            return showTMMoreTextcell;
         case OLUploadTableModelClassSelectImage:
-            return addImgCell;
-            break;
-        case OLUploadTableModelClassSelectMeetingTag:
-            return selectMeetingTagCell;
+            return showTMImgagecell;
             break;
     }
 }

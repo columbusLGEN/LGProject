@@ -54,7 +54,7 @@ static NSString *key_suffix = @"_dj";
 
 }
 
-/** 返回 属性名 数组 */
+/** 获取类型的所有属性名 */
 - (NSArray *)propertyArray{
     u_int count = 0;
     

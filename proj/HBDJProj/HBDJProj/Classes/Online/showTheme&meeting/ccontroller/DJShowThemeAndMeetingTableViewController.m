@@ -7,39 +7,59 @@
 //
 
 #import "DJShowThemeAndMeetingTableViewController.h"
+#import "DJThemeMeetingsModel.h"
+#import "DJOnlineUploadTableModel.h"
+#import "DJShowThemeMeetingBaseCell.h"
+#import "DJShowThmemeMeetingImageCell.h"
+#import "DJShowThmemeMeetingNormalTextCell.h"
+#import "DJShowThmemeMeetingMoreTextCell.h"
 
 @interface DJShowThemeAndMeetingTableViewController ()
-@property (strong,nonatomic) id model;
+/** 是否展示全部会议内容，默认只显示三行 */
+@property (assign,nonatomic) BOOL contentShowAll;
 
 @end
 
 @implementation DJShowThemeAndMeetingTableViewController
 
+@synthesize dataArray = _dataArray;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    /**
-        结构：
-            cell（四个类）：basecell，普通文本cell，带更多按钮的文本cell，图片展示cell
-            模型：一个详情模型 和 一个tableModel数组。详情模型的属性按照需要展示的顺序从上到下排列
-     
-            显示思路如果断了，参考 UCPersonInfoViewController 展示用户信息的业务逻辑
-     */
+    [self.tableView registerClass:[DJShowThmemeMeetingNormalTextCell class] forCellReuseIdentifier:showTMNormalTextcell];
+    [self.tableView registerClass:[DJShowThmemeMeetingMoreTextCell class] forCellReuseIdentifier:showTMMoreTextcell];
+    [self.tableView registerClass:[DJShowThmemeMeetingImageCell class] forCellReuseIdentifier:showTMImgagecell];
     
+    _contentShowAll = NO;
+}
+
+- (void)setDataArray:(NSArray *)dataArray{
+    _dataArray = dataArray;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"" forIndexPath:indexPath];
-    
+    DJOnlineUploadTableModel *tableModel = self.dataArray[indexPath.row];
+    DJShowThemeMeetingBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DJShowThemeMeetingBaseCell cellReuseIdWithModel:tableModel] forIndexPath:indexPath];
+    cell.model = tableModel;
     
     return cell;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DJOnlineUploadTableModel *tableModel = self.dataArray[indexPath.row];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isMemberOfClass:[DJShowThmemeMeetingMoreTextCell class]]) {
+        _contentShowAll = !_contentShowAll;
+        tableModel.contentShowAll = _contentShowAll;
+    }
+    [self.tableView reloadData];
+}
 
 /*
 // Override to support conditional editing of the table view.

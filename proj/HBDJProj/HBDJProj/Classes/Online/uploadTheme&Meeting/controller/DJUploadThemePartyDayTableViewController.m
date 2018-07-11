@@ -20,7 +20,7 @@
 - (NSArray *)dataArray{
     if (!_dataArray) {
         _dataArray = [DJOnlineUploadTableModel loadLocalPlistWithPlistName:@"OLUplaodThemeTable"];
-        NSLog(@"_dataarray: %@",_dataArray);
+//        NSLog(@"_dataarray: %@",_dataArray);
     }
     return _dataArray;
 }

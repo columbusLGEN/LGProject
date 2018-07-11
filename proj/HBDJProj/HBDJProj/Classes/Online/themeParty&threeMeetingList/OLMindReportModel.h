@@ -6,10 +6,9 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGBaseModel.h"
+#import "DJThemeMeetingsModel.h"
 
-@interface OLMindReportModel : LGBaseModel
-@property (copy,nonatomic) NSString *title;
+@interface OLMindReportModel : DJThemeMeetingsModel
 @property (copy,nonatomic) NSString *testTime;
 @property (copy,nonatomic) NSString *author;
 

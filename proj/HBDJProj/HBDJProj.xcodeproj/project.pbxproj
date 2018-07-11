@@ -244,6 +244,11 @@
 		88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A4713C207F320F002F93E0 /* LGCustomButton.m */; };
 		88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A47141207F5242002F93E0 /* UCPersonInfoViewController.m */; };
 		88A80BE920D9E46000AB274B /* HPChairmanSpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A80BE820D9E46000AB274B /* HPChairmanSpeechViewController.m */; };
+		88A955C120F59D77009AB70F /* DJThemeMeetingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C020F59D77009AB70F /* DJThemeMeetingsModel.m */; };
+		88A955C420F5A40A009AB70F /* DJShowThemeMeetingBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C320F5A40A009AB70F /* DJShowThemeMeetingBaseCell.m */; };
+		88A955C720F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C620F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m */; };
+		88A955CA20F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C920F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m */; };
+		88A955CD20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955CC20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m */; };
 		88BA906720F33E5D007DD4B4 /* DJTestScoreListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */; };
 		88BA906A20F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906920F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m */; };
 		88BA906C20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA906B20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib */; };
@@ -847,6 +852,16 @@
 		88A80BE620D9E3AB00AB274B /* HBDJProj-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HBDJProj-Bridging-Header.h"; sourceTree = "<group>"; };
 		88A80BE720D9E46000AB274B /* HPChairmanSpeechViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPChairmanSpeechViewController.h; sourceTree = "<group>"; };
 		88A80BE820D9E46000AB274B /* HPChairmanSpeechViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPChairmanSpeechViewController.m; sourceTree = "<group>"; };
+		88A955BF20F59D77009AB70F /* DJThemeMeetingsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThemeMeetingsModel.h; sourceTree = "<group>"; };
+		88A955C020F59D77009AB70F /* DJThemeMeetingsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThemeMeetingsModel.m; sourceTree = "<group>"; };
+		88A955C220F5A40A009AB70F /* DJShowThemeMeetingBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJShowThemeMeetingBaseCell.h; sourceTree = "<group>"; };
+		88A955C320F5A40A009AB70F /* DJShowThemeMeetingBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJShowThemeMeetingBaseCell.m; sourceTree = "<group>"; };
+		88A955C520F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJShowThmemeMeetingNormalTextCell.h; sourceTree = "<group>"; };
+		88A955C620F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJShowThmemeMeetingNormalTextCell.m; sourceTree = "<group>"; };
+		88A955C820F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJShowThmemeMeetingMoreTextCell.h; sourceTree = "<group>"; };
+		88A955C920F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJShowThmemeMeetingMoreTextCell.m; sourceTree = "<group>"; };
+		88A955CB20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJShowThmemeMeetingImageCell.h; sourceTree = "<group>"; };
+		88A955CC20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJShowThmemeMeetingImageCell.m; sourceTree = "<group>"; };
 		88BA906520F33E5D007DD4B4 /* DJTestScoreListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListModel.h; sourceTree = "<group>"; };
 		88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTestScoreListModel.m; sourceTree = "<group>"; };
 		88BA906820F33EB3007DD4B4 /* DJTestScoreListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListTableViewCell.h; sourceTree = "<group>"; };
@@ -1447,7 +1462,7 @@
 				88BB64D4209BEB4100FE6103 /* knowleageTest */,
 				88FE68B8209B05BD008C28A0 /* vote */,
 				88FE68AC209AFAA7008C28A0 /* payPartyCharge */,
-				88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */,
+				88FE689D209ABC9A008C28A0 /* themeParty&threeMeetingList */,
 				88D13C652090635F00A32236 /* addMoreTool */,
 			);
 			path = Online;
@@ -2448,6 +2463,8 @@
 			children = (
 				88BA90C820F4A9A3007DD4B4 /* DJShowThemeAndMeetingTableViewController.h */,
 				88BA90C920F4A9A3007DD4B4 /* DJShowThemeAndMeetingTableViewController.m */,
+				88A955BF20F59D77009AB70F /* DJThemeMeetingsModel.h */,
+				88A955C020F59D77009AB70F /* DJThemeMeetingsModel.m */,
 			);
 			path = ccontroller;
 			sourceTree = "<group>";
@@ -2455,6 +2472,14 @@
 		88BA90CB20F4AC68007DD4B4 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				88A955C220F5A40A009AB70F /* DJShowThemeMeetingBaseCell.h */,
+				88A955C320F5A40A009AB70F /* DJShowThemeMeetingBaseCell.m */,
+				88A955C520F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.h */,
+				88A955C620F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m */,
+				88A955C820F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.h */,
+				88A955C920F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m */,
+				88A955CB20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.h */,
+				88A955CC20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2900,7 +2925,7 @@
 			path = subPartDetail;
 			sourceTree = "<group>";
 		};
-		88FE689D209ABC9A008C28A0 /* mindRepotr&themeParty */ = {
+		88FE689D209ABC9A008C28A0 /* themeParty&threeMeetingList */ = {
 			isa = PBXGroup;
 			children = (
 				88FE689E209ABD0A008C28A0 /* OLMindReportViewController.h */,
@@ -2911,7 +2936,7 @@
 				88FE68A6209ABD60008C28A0 /* OLMindReportModel.h */,
 				88FE68A7209ABD60008C28A0 /* OLMindReportModel.m */,
 			);
-			path = "mindRepotr&themeParty";
+			path = "themeParty&threeMeetingList";
 			sourceTree = "<group>";
 		};
 		88FE68AC209AFAA7008C28A0 /* payPartyCharge */ = {
@@ -3348,6 +3373,7 @@
 				880363A320E323BB00E97FA3 /* DJMediaDetailTransAssist.m in Sources */,
 				8831E18120941797001D038E /* DCSubStageOneImgCell.m in Sources */,
 				88A80BE920D9E46000AB274B /* HPChairmanSpeechViewController.m in Sources */,
+				88A955C120F59D77009AB70F /* DJThemeMeetingsModel.m in Sources */,
 				8876E40D20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m in Sources */,
 				884312BE20872ED400321F84 /* EDJModifiPwdViewController.m in Sources */,
 				88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */,
@@ -3355,6 +3381,7 @@
 				889FCD1E20B3EAFC0045746D /* DCRichTextTopInfoView.m in Sources */,
 				883D476020DCD98F00FD9971 /* DJUserNetworkManager.m in Sources */,
 				8831E16220931332001D038E /* DCSubPartStateTableViewController.m in Sources */,
+				88A955C420F5A40A009AB70F /* DJShowThemeMeetingBaseCell.m in Sources */,
 				884312E6208987F100321F84 /* UCHelpFadebackModel.m in Sources */,
 				88EA131E20AD2096007AB886 /* UCAccountHitSuccessView.m in Sources */,
 				8831E17620941674001D038E /* DCSubStageBaseTableViewCell.m in Sources */,
@@ -3435,6 +3462,7 @@
 				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
 				88C5F16720B7FF670075D5F2 /* HPAudioPlayerView.m in Sources */,
 				88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */,
+				88A955C720F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m in Sources */,
 				889FCD4220B400B60045746D /* HPAudioVideoModel.m in Sources */,
 				88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
@@ -3470,6 +3498,7 @@
 				8876E3EE20EC74A7001C6A1A /* LGSelectImgManager.m in Sources */,
 				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				889FCC6920B255080045746D /* DCStateCommentsModel.m in Sources */,
+				88A955CA20F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m in Sources */,
 				889FCD1420B3B3850045746D /* LGBaseModel.m in Sources */,
 				88D13C5F2090585F00A32236 /* OLHomeCollectionCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
@@ -3574,6 +3603,7 @@
 				889FCD3420B3FD8A0045746D /* HPAudioVideoInfoCell.m in Sources */,
 				88BB64D7209BEC1400FE6103 /* OLKnowleageTestController.m in Sources */,
 				88FE68A3209ABD31008C28A0 /* OLMindReportTableViewCell.m in Sources */,
+				88A955CD20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m in Sources */,
 				886A1BF720D101700007AD63 /* HPNetworkFailureView.m in Sources */,
 				889FCD1920B3E6050045746D /* DCRichTextBottomInfoView.m in Sources */,
 				88BA90C220F4510B007DD4B4 /* DJInputContentViewController.m in Sources */,

@@ -14,12 +14,11 @@ static NSString * const onlineUplaodBaseCell = @"DJOnlineUplaodBaseCell";
 
 @interface DJOnlineUplaodBaseCell : LGBaseTableViewCell
 
-@property (strong,nonatomic) NSIndexPath *indexPath;
-
-@property (strong,nonatomic) DJOnlineUploadTableModel *model;
-
 @property (weak,nonatomic,readonly) UILabel *item;
 @property (weak,nonatomic,readonly) UIView *line_sep;
+
+@property (strong,nonatomic) DJOnlineUploadTableModel *model;
+@property (strong,nonatomic) NSIndexPath *indexPath;
 
 @property (weak,nonatomic) DJOnlineUplaodTableViewController *vc;
 

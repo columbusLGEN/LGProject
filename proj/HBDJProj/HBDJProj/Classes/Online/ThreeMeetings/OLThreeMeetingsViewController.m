@@ -92,6 +92,7 @@ UIScrollViewDelegate>
     /// MARK: 配置content
     [self.channelTitleArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         OLMindReportViewController *vc = [OLMindReportViewController new];
+        vc.fromType = DJThemeMeetingDetailFromTypeThreeMeeting;
         vc.listType = OnlineModelTypeThreeMeetings;
         vc.view.frame = CGRectMake(kScreenWidth * idx, 0, kScreenWidth, contentScrollViewHeight);
         [self addChildViewController:vc];

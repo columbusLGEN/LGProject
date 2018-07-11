@@ -10,8 +10,6 @@
 
 /// 设计图给的 尺寸
 /// static CGFloat niWidth = 266;/// 图片布局总宽度
-static CGFloat niMargin = 7;/// 图片间距
-static CGFloat niImgWidth = 84;/// (266 - 2 * 7) / 3 , height = width
 
 @interface LGNineImgView ()
 
@@ -28,7 +26,6 @@ static CGFloat niImgWidth = 84;/// (266 - 2 * 7) / 3 , height = width
 - (void)setDataSource:(NSArray *)dataSource{
     _dataSource = dataSource;
     
-    
     for (NSInteger i = 0; i < dataSource.count; i++) {
         CGFloat imgX = (niImgWidth + niMargin) * (i % 3);
         CGFloat imgY = (niImgWidth + niMargin) * (i / 3);
@@ -38,8 +35,8 @@ static CGFloat niImgWidth = 84;/// (266 - 2 * 7) / 3 , height = width
         if ([dataSource[i] isKindOfClass:[UIImage class]]) {
             img.image = dataSource[i];
         }else if ([dataSource[i] isKindOfClass:[NSString class]]) {
-            /// sd_set
-            
+            /// 加载链接
+            [img sd_setImageWithURL:[NSURL URLWithString:dataSource[i]] placeholderImage:DJPlaceholderImage];
         }
         img.tag = i;
         img.userInteractionEnabled = YES;
