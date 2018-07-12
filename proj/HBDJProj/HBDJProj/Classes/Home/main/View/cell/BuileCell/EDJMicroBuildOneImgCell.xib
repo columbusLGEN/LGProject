@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,20 +19,36 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="Rjk-Q4-FLd">
-                        <rect key="frame" x="314" y="12" width="119" height="67"/>
+                        <rect key="frame" x="253" y="12" width="180" height="139.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="67" id="Tqf-fd-MK7"/>
+                            <constraint firstAttribute="width" constant="180" id="T3A-rM-NjN"/>
                             <constraint firstAttribute="width" constant="119" id="WuR-kx-q1T"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="T3A-rM-NjN"/>
+                                <exclude reference="WuR-kx-q1T"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="WuR-kx-q1T"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="T3A-rM-NjN"/>
+                            </mask>
+                        </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李克强: 创新造福人名也是全体人民共同事业创新造福人名也是全体人民共同事业" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcr-sc-3TA">
-                        <rect key="frame" x="52" y="12" width="242" height="41"/>
+                        <rect key="frame" x="52" y="12" width="181" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmc-jt-CLp">
-                        <rect key="frame" x="12" y="66" width="292" height="18"/>
+                        <rect key="frame" x="12" y="138.5" width="231" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -57,6 +73,7 @@
                     <constraint firstItem="Gcr-sc-3TA" firstAttribute="top" secondItem="Rjk-Q4-FLd" secondAttribute="top" id="KFG-DH-PGk"/>
                     <constraint firstItem="6ZY-1M-JQ7" firstAttribute="leading" secondItem="Lmc-jt-CLp" secondAttribute="leading" constant="-5" id="NjM-v2-v4B"/>
                     <constraint firstItem="Rjk-Q4-FLd" firstAttribute="leading" secondItem="Gcr-sc-3TA" secondAttribute="trailing" constant="20" id="O2D-Zn-toR"/>
+                    <constraint firstAttribute="bottom" secondItem="Rjk-Q4-FLd" secondAttribute="bottom" constant="10" id="T8h-KJ-dqE"/>
                     <constraint firstItem="Rjk-Q4-FLd" firstAttribute="top" secondItem="LSj-ou-9cL" secondAttribute="top" constant="12" id="c9S-D0-bfE"/>
                     <constraint firstItem="6ZY-1M-JQ7" firstAttribute="top" secondItem="Gcr-sc-3TA" secondAttribute="top" id="xte-ld-16a"/>
                     <constraint firstItem="Lmc-jt-CLp" firstAttribute="bottom" secondItem="Rjk-Q4-FLd" secondAttribute="bottom" constant="5" id="yqQ-5m-mpD"/>

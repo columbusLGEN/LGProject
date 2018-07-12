@@ -24,8 +24,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介内容" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R88-em-mtX">
-                        <rect key="frame" x="21" y="56.5" width="428" height="47"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介内容" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R88-em-mtX">
+                        <rect key="frame" x="21" y="56.5" width="428" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -74,7 +74,6 @@
                     <constraint firstItem="rIx-Pr-zyB" firstAttribute="centerY" secondItem="6RX-sG-t0q" secondAttribute="centerY" id="JGj-uN-B7d"/>
                     <constraint firstItem="R88-em-mtX" firstAttribute="leading" secondItem="rIx-Pr-zyB" secondAttribute="leading" id="NZw-bO-p7d"/>
                     <constraint firstAttribute="trailing" secondItem="fyz-Qe-Pxe" secondAttribute="trailing" id="OBN-we-yPh"/>
-                    <constraint firstItem="1dT-jN-eUE" firstAttribute="top" secondItem="R88-em-mtX" secondAttribute="bottom" constant="15" id="OQo-Uy-upK"/>
                     <constraint firstItem="1dT-jN-eUE" firstAttribute="trailing" secondItem="auA-uj-nCz" secondAttribute="trailing" id="Sna-NL-174"/>
                     <constraint firstAttribute="trailing" secondItem="auA-uj-nCz" secondAttribute="trailing" constant="15" id="YK5-dv-gIF"/>
                     <constraint firstItem="R88-em-mtX" firstAttribute="trailing" secondItem="1dT-jN-eUE" secondAttribute="trailing" id="lIl-ap-r8t"/>

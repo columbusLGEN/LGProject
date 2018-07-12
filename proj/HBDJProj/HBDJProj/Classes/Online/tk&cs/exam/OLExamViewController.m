@@ -13,7 +13,6 @@
 #import "OLExamSingleModel.h"
 #import "OLExamSingleFooterView.h"
 #import "OLTestResultViewController.h"
-#import "LGBaseNavigationController.h"
 
 static CGFloat bottomBarHeight = 60;
 static NSString * const cellID = @"OLExamCollectionViewCell";

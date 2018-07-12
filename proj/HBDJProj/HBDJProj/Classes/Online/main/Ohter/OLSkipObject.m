@@ -45,7 +45,7 @@ NSString *controllerClassWithModelType(OnlineModelType modelType){
         }
             break;
         case OnlineModelTypeMindReport:{
-            return @"OLMindReportViewController";
+            return @"DJThoutghtRepotListViewController";
         }
             break;
         case OnlineModelTypeKnowleageTest:{
@@ -53,7 +53,7 @@ NSString *controllerClassWithModelType(OnlineModelType modelType){
         }
             break;
         case OnlineModelTypeSpeakCheap:{
-            return @"OLMindReportViewController";
+            return @"DJThoutghtRepotListViewController";
         }
             break;
         case OnlineModelTypePayPartyFee:{

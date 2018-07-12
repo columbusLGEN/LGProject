@@ -22,7 +22,6 @@
 #import "DJSelectPeopleViewController.h"
 #import "DJSelectMeetingTagViewController.h"
 #import "DJInputContentViewController.h"
-#import "LGBaseNavigationController.h"
 
 #import "LGSelectImgManager.h"
 #import "HXPhotoPicker.h"

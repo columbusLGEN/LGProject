@@ -29,8 +29,10 @@
     
     UILabel *title = [UILabel new];
     _title = title;
-    title.font = [UIFont systemFontOfSize:19];
+    title.numberOfLines = 0;
+    title.font = [UIFont systemFontOfSize:17];
     title.textColor = [UIColor EDJGrayscale_66];
+    title.textAlignment = NSTextAlignmentLeft;
     [self addSubview:title];
     
     [rectangleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -41,8 +43,9 @@
     }];
     
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(rectangleView.mas_centerY);
+        make.top.equalTo(rectangleView.mas_top);
         make.left.equalTo(rectangleView.mas_right).offset(marginTen);
+        make.right.equalTo(self.mas_right).offset(-marginTen);
     }];
     
     

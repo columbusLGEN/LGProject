@@ -12,7 +12,6 @@
 #import "UCUploadTransitionView.h"
 #import "UCMemberStageTransitionView.h"
 #import "UCUploadViewController.h"
-#import "LGBaseNavigationController.h"
 #import "LGSegmentBottomView.h"
 
 @interface UCUploadHomePageViewController ()<

@@ -241,7 +241,7 @@ static NSInteger requestLength = 10;
 /// MARK: lazy load
 - (UIView *)header{
     if (!_header) {
-        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, homeImageLoopHeight + homeSegmentHeight + 10)];
+        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.imgLoopHeight_forAnyScreen + homeSegmentHeight + 10)];
         [_header addSubview:self.imgLoop];
         [_header addSubview:self.segment];
     }
@@ -249,8 +249,9 @@ static NSInteger requestLength = 10;
 }
 - (SDCycleScrollView *)imgLoop{
     if (_imgLoop == nil) {
-        _imgLoop = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, homeImageLoopHeight) delegate:self placeholderImage:DJImgloopPImage];
-        _imgLoop.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+        /// homeImageLoopHeight --> self.imgLoopHeight_forAnyScreen
+        _imgLoop = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.imgLoopHeight_forAnyScreen) delegate:self placeholderImage:DJImgloopPImage];
+        _imgLoop.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         
     }
     return _imgLoop;
@@ -263,7 +264,7 @@ static NSInteger requestLength = 10;
             model.imageName = [NSString stringWithFormat:@"home_segment_icon%d",i];
             [arr addObject:model];
         }
-        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectMake(0, homeImageLoopHeight + 10, kScreenWidth, homeSegmentHeight) models:arr.copy];
+        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectMake(0, self.imgLoopHeight_forAnyScreen + 10, kScreenWidth, homeSegmentHeight) models:arr.copy];
         _segment.delegate = self;
     }
     return _segment;
@@ -293,6 +294,10 @@ static NSInteger requestLength = 10;
         
     }
     return _layout;
+}
+
+- (CGFloat)imgLoopHeight_forAnyScreen{
+    return  (homeImageLoopHeight * kScreenHeight) / plusScreenHeight;
 }
 
 - (NSArray <NSString *> *)titles {

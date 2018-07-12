@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UILabel *text;
 @property (weak, nonatomic) IBOutlet UIImageView *sotrAcce;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgHeightConstraint;
 
 
 @end
@@ -43,6 +44,7 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     
+    _imgHeightConstraint.constant = homeImageLoopHeight * kScreenHeight / plusScreenHeight;
 }
 
 @end

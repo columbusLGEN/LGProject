@@ -17,7 +17,11 @@ static const CGFloat widthFifty = 50;
 static const CGFloat homeImageLoopHeight = 211;
 static const CGFloat homeSegmentHeight = 50;
 static const CGFloat homeSegmentContentWidth = 38;
+static const CGFloat homeMicroLessonHeaderHeight = 128;
 static const CGFloat tabBarHeight = 49;
+
+static const CGFloat plusScreenHeight = 736;
+static const CGFloat plusScreenWidth = 414;
 
 static NSString * const UserCenterStoryboardName = @"UserCenter";
 static NSString * const OnlineStoryboardName = @"Online";

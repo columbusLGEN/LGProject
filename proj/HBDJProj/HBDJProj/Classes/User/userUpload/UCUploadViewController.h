@@ -9,9 +9,9 @@
 #import "LGBaseViewController.h"
 
 typedef NS_ENUM(NSUInteger, UploadTyle) {
-    UploadTyleMemberStage,
-    UploadTyleMindReport,
-    UploadTyleSpeakCheap,
+    UploadTyleMemberStage,/// 党员舞台
+    UploadTyleMindReport,/// 思想汇报
+    UploadTyleSpeakCheap,/// 述职述廉
 };
 
 @interface UCUploadViewController : LGBaseViewController

@@ -11,7 +11,7 @@
 #import "UCUploadHeaderFooterView.h"
 #import "UCUploadCollectionCell.h"
 #import "UCUploadModel.h"
-#import "LGPhotoManager.h"
+//#import "LGPhotoManager.h"
 
 @interface UCUploadViewController ()<
 UICollectionViewDelegate,
@@ -47,24 +47,26 @@ UICollectionViewDelegateFlowLayout>
     /// 视图部分
     [self.view addSubview:self.collectionView];
     
-    NSMutableArray *arrMu = [NSMutableArray new];
-    for (NSInteger i = 0; i < 9; i++) {
-        UCUploadModel *model = [UCUploadModel new];
-        model.additional = NO;
-        [arrMu addObject:model];
-    }
-    UCUploadModel *model = [UCUploadModel new];
-    model.additional = YES;
-    
-    [arrMu addObject:model];
-    
-    _array = arrMu.copy;
-    NSLog(@"viewdidlaod -- ");
+    UCUploadModel *model = UCUploadModel.new;
+    self.array = @[model];
     [self.collectionView reloadData];
     
 }
 
+#pragma mark - target
+- (void)cancelClick{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)sendClick{
+    NSLog(@"发送 -- ");
+    
+}
+
 #pragma mark - delegaet & data source
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UCUploadModel *model = self.array[indexPath.item];
+    return CGSizeMake(kScreenWidth, model.cellHeight + 30);
+}
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _array.count;
 }
@@ -72,11 +74,11 @@ UICollectionViewDelegateFlowLayout>
     UCUploadModel *model = _array[indexPath.row];
     UCUploadCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     cell.model = model;
+    __weak typeof(self) weakSelf = self;
+    [cell setPhotoViewChangeHeightBlock:^(UICollectionViewCell *mycell) {
+        [weakSelf.collectionView reloadData];
+    }];
     return cell;
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"添加或者更换图片 -- ");
-    [LGPhotoManager beforeModalImgPickerWithViewController:self];
 }
 
 /// MARK: collection view header & footer
@@ -94,7 +96,7 @@ UICollectionViewDelegateFlowLayout>
         if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
             UCUploadHeaderFooterView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerFooterID forIndexPath:indexPath];
             if (self.uploadType == UploadTyleMindReport) {
-                footer.titleText = @"你的思想汇报内容是";
+                footer.titleText = @"你的思想汇报内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是你的述职述廉内容是";
             }else{
                 footer.titleText = @"你的述职述廉内容是";
             }
@@ -105,23 +107,15 @@ UICollectionViewDelegateFlowLayout>
 }
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    /// 高度根据输入的内容返回
     return CGSizeMake(kScreenWidth, 77);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    /// 高度根据输入的内容返回
     if (!(self.uploadType == UploadTyleMemberStage)) {
-        return CGSizeMake(kScreenWidth, 77);
+        return CGSizeMake(kScreenWidth, 277);
     }
     return CGSizeZero;
-}
-
-
-
-#pragma mark - target
-- (void)cancelClick{
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
-- (void)sendClick{
-    NSLog(@"发送 -- ");
 }
 
 #pragma mark - getter

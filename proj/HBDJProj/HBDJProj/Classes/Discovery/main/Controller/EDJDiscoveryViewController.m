@@ -8,7 +8,6 @@
 
 #import "EDJDiscoveryViewController.h"
 #import "LGNavigationSearchBar.h"
-#import "LGBaseNavigationController.h"
 #import "DCWriteQuestionViewController.h"
 
 typedef NS_ENUM(NSUInteger, DiscoveryChannel) {

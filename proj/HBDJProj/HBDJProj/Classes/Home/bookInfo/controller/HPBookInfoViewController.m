@@ -85,7 +85,7 @@ HPBookInfoBriefCellDelegate>
     HPBookInfoModel *lineModel = self.array[0];
     lineModel.testProgress = self.model.progressForUI;
     [self.tableView reloadData];
-    NSLog(@"self.model.progressForUI: %@",self.model.progressForUI);
+//    NSLog(@"self.model.progressForUI: %@",self.model.progressForUI);
 }
 
 - (void)readBook{

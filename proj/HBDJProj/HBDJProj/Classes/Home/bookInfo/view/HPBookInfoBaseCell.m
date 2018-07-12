@@ -20,11 +20,10 @@
 }
 
 + (CGFloat)cellHeightWithModel:(HPBookInfoModel *)model{
-    if (model.isHeader) {
-        return 220;
-    }else{
-        return model.cellHeight;
-    }
+//    if (model.isHeader) {
+//        model.cellHeight = (233 * kScreenHeight) / plusScreenHeight;   
+//    }
+    return model.cellHeight;
 }
 
 @end

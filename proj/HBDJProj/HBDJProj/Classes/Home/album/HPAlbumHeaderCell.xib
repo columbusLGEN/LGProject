@@ -73,6 +73,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="img" destination="eXZ-cr-e7d" id="e2l-tR-9U0"/>
+                <outlet property="imgHeightConstraint" destination="sNk-6l-vcI" id="7jV-eL-4iP"/>
                 <outlet property="sotrAcce" destination="tKc-CQ-ULS" id="QyP-23-hLf"/>
                 <outlet property="text" destination="gMH-2q-O0v" id="TtY-eI-fHM"/>
             </connections>

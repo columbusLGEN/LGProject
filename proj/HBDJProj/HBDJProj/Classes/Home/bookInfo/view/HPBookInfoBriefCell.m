@@ -32,8 +32,10 @@
     _button.selected = model.showAll;
     if (model.showAll) {
         _arrow.transform = CGAffineTransformMakeRotation(M_PI);
+        _contentLabel.numberOfLines = 0;
     }else{
         _arrow.transform = CGAffineTransformIdentity;
+        _contentLabel.numberOfLines = 3;
     }
 }
 

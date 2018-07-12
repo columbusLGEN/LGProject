@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *pressTime;
 @property (weak, nonatomic) IBOutlet UILabel *readProgress;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *coverHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *coverWidth;
 
 @end
 
@@ -42,20 +44,25 @@
     _pressTime.text = model.testPressTime;
     _readProgress.text = model.testProgress;
     
+//    _coverHeight.constant = (160 * model.cellHeight) / 233;
+//    NSLog(@"model.cellHeight: %f",model.cellHeight);
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = [UIColor whiteColor];
-}
-- (void)layoutSubviews{
-    [super layoutSubviews];
     
-//    NSLog(@"_fuzzyBg.frame: %@",NSStringFromCGRect(_fuzzyBg.frame));
-    UIVisualEffectView *effectView = [LGGaussManager gaussViewWithFrame:_fuzzyBg.frame style:UIBlurEffectStyleDark];
+    UIVisualEffectView *effectView = [LGGaussManager gaussViewWithFrame:CGRectZero style:UIBlurEffectStyleDark];
     [self.contentView addSubview:effectView];
+    [effectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_fuzzyBg);
+    }];
     [self.contentView sendSubviewToBack:effectView];
     [self.contentView sendSubviewToBack:_fuzzyBg];
+
+    _coverWidth.constant = (120 * kScreenWidth) / plusScreenWidth;
+//    _coverHeight.constant = (160 * kScreenHeight) / plusScreenHeight;
+    
 }
 
 @end

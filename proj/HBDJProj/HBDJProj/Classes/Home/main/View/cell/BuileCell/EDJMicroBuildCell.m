@@ -32,14 +32,16 @@
 }
 
 + (CGFloat)cellHeightWithModel:(EDJMicroBuildModel *)model{
+    CGFloat rate = kScreenHeight / plusScreenHeight;
+    CGFloat height;
     if (model.imgs.count == 0) {/// 没有图
-        return 85;
+        height = 85;
     }else if (model.imgs.count == 1){/// 有一张图
-        return 90;
-    }else if (model.imgs.count == 3){/// 有三张图
-        return 120;
+        height = 90;
+    }else{/// 有三张图
+        height = 120;
     }
-    return 120;
+    return height * rate;
 }
 
 - (void)awakeFromNib{

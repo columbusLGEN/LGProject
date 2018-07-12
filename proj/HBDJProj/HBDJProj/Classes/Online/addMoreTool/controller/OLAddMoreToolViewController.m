@@ -13,7 +13,6 @@
 #import "OLAddMoreToolHeader.h"
 #import "OLAddMoreToolFooter.h"
 #import "OLSkipObject.h"
-#import "LGBaseNavigationController.h"/// testcode
 
 static NSString * const onlinCell = @"OLHomeCollectionCell";
 static NSString * const headerReuseID = @"OLAddMoreToolHeader";

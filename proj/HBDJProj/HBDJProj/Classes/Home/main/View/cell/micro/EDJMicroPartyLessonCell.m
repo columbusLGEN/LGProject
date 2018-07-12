@@ -79,7 +79,7 @@ UITableViewDataSource>
 }
 + (CGFloat)cellHeightWithIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 128 * kScreenWidth / 414;
+        return homeMicroLessonHeaderHeight * kScreenWidth / plusScreenWidth;
     }else{
         return 375;
     }

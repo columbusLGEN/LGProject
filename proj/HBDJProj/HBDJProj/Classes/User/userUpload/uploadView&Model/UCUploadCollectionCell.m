@@ -9,9 +9,14 @@
 #import "UCUploadCollectionCell.h"
 #import "UCUploadModel.h"
 
-@interface UCUploadCollectionCell ()
-@property (weak,nonatomic) UIImageView *img;
-@property (weak,nonatomic) UIButton *addImg;
+#import "HXPhotoPicker.h"
+
+@interface UCUploadCollectionCell ()<
+HXPhotoViewDelegate>
+/**  照片管理  */
+@property (nonatomic, strong) HXPhotoManager *manager;
+/**  照片视图  */
+@property (nonatomic, strong) HXPhotoView *photoView;
 
 @end
 
@@ -19,25 +24,33 @@
 
 - (void)setModel:(UCUploadModel *)model{
     _model = model;
-    if (model.additional) {
-        [_img setImage:[UIImage imageNamed:@"uc_icon_upload_add"]];
-    }
+
 
 }
 
+- (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
+    
+    self.model.endCameraList = self.manager.afterCameraArray.mutableCopy;
+    self.model.endCameraPhotos = self.manager.afterCameraPhotoArray.mutableCopy;
+
+    self.model.endSelectedCameraList = self.manager.afterSelectedCameraArray.mutableCopy;
+    self.model.endSelectedCameraPhotos = self.manager.afterSelectedCameraPhotoArray.mutableCopy;
+    
+    self.model.endSelectedList = self.manager.afterSelectedArray.mutableCopy;
+    self.model.endSelectedPhotos = self.manager.afterSelectedPhotoArray.mutableCopy;
+    
+}
+- (void)photoView:(HXPhotoView *)photoView updateFrame:(CGRect)frame {
+    if (frame.size.height == self.model.photoViewHeight) {
+        return;
+    }
+    self.model.photoViewHeight = frame.size.height;
+    if (self.photoViewChangeHeightBlock) self.photoViewChangeHeightBlock(self);
+}
+
 - (void)setupUI{
-    UIImageView *img = [UIImageView new];
-    _img = img;
-    img.clipsToBounds = YES;
-    img.contentMode = UIViewContentModeScaleAspectFit;
-    img.image = [UIImage imageNamed:testImg];
-    [self addSubview:img];
-    [img mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(marginTen);
-        make.left.equalTo(self.mas_left).offset(marginTen);
-        make.right.equalTo(self.mas_right).offset(-marginTen);
-        make.bottom.equalTo(self.mas_bottom).offset(-marginTen);
-    }];
+
+    [self.contentView addSubview:self.photoView];
 }
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -46,5 +59,19 @@
     return self;
 }
 
+- (HXPhotoManager *)manager {
+    if (!_manager) {
+        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
+    }
+    return _manager;
+}
+- (HXPhotoView *)photoView {
+    if (!_photoView) {
+        _photoView = [[HXPhotoView alloc] initWithFrame:CGRectMake(12, 0, [UIScreen mainScreen].bounds.size.width - 24, 0) WithManager:self.manager];
+        _photoView.backgroundColor = [UIColor whiteColor];
+        _photoView.delegate = self;
+    }
+    return _photoView;
+}
 
 @end

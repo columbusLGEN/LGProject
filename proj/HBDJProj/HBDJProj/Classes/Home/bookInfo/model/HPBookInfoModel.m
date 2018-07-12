@@ -11,11 +11,14 @@
 @implementation HPBookInfoModel
 
 - (CGFloat)cellHeight{
+    if (_isHeader) {
+        return (233 * kScreenHeight) / plusScreenHeight;
+    }
     if (_showAll) {
         CGSize size = [self.content sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 36, MAXFLOAT) font:[UIFont systemFontOfSize:15]];
         return 100 + size.height + 8;
     }else{
-        return 120;
+        return 140;
     }
 }
 

@@ -14,5 +14,6 @@ static NSString * const cellID = @"UCUploadCollectionCell";
 @interface UCUploadCollectionCell : LGBaseCollectionViewCell
 @property (strong,nonatomic) UCUploadModel *model;
 @property (strong,nonatomic) NSIndexPath *idx;
+@property (copy, nonatomic) void (^photoViewChangeHeightBlock)(UICollectionViewCell *myCell);
 
 @end

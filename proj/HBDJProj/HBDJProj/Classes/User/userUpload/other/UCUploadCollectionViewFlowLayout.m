@@ -10,15 +10,4 @@
 
 @implementation UCUploadCollectionViewFlowLayout
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.itemSize = CGSizeMake(kScreenWidth / 3, 97);
-        self.minimumLineSpacing = 0;
-        self.minimumInteritemSpacing = 0;
-    }
-    return self;
-}
-
 @end
