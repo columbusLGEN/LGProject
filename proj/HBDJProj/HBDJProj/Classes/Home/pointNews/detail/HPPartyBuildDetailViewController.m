@@ -97,10 +97,12 @@ LGThreeRightButtonViewDelegate>
             DTAttributedTextView *textView = [[DTAttributedTextView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - self.bottomHeight - kNavHeight)];
             _coreTextView = textView;
             /// 设置insets 以显示 top info view
-            textView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
-            textView.textDelegate = self;
-            textView.attributedString = string;
-            [self.view addSubview:textView];
+            _coreTextView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
+            _coreTextView.textDelegate = self;
+            _coreTextView.attributedString = string;
+            _coreTextView.shouldDrawLinks = NO;/// 实现超链接点击，该属性设为NO，代理方法中创建DTLinkButton
+            [self.view addSubview:_coreTextView];
+
             
             /// MARK: 顶部信息view （标题，时间，来源等）
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
@@ -119,6 +121,28 @@ LGThreeRightButtonViewDelegate>
     
     self.contentModel = imageLoopModel.frontNews;
     
+}
+
+#pragma mark Actions
+- (void)linkPushed:(DTLinkButton *)button {
+    NSURL *URL = button.URL;
+    
+    /// TODO: 打开URL
+    NSLog(@"url: %@",URL);
+}
+- (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan)
+    {
+        DTLinkButton *button = (id)[gesture view];
+        button.highlighted = NO;
+//        self.lastActionLink = button.URL;
+        NSLog(@"url: %@",button.URL);
+//        if ([[UIApplication sharedApplication] canOpenURL:[button.URL absoluteURL]])
+//        {
+//            UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:[[button.URL absoluteURL] description] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", nil];
+//            [action showFromRect:button.frame inView:button.superview animated:YES];
+//        }
+    }
 }
 
 
@@ -156,6 +180,40 @@ LGThreeRightButtonViewDelegate>
     
     return YES;
 }
+
+#pragma mark Custom Views on Text
+
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
+{
+    NSDictionary *attributes = [string attributesAtIndex:0 effectiveRange:NULL];
+    
+    NSURL *URL = [attributes objectForKey:DTLinkAttribute];
+    NSString *identifier = [attributes objectForKey:DTGUIDAttribute];
+    
+    
+    DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:frame];
+    button.URL = URL;
+    button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
+    button.GUID = identifier;
+    
+    // get image with normal link text
+    UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
+    [button setImage:normalImage forState:UIControlStateNormal];
+    
+    // get image for highlighted link text
+    UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
+    [button setImage:highlightImage forState:UIControlStateHighlighted];
+    
+    // use normal push action for opening URL
+    [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // demonstrate combination with long press
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
+    [button addGestureRecognizer:longPress];
+    
+    return button;
+}
+
 - (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame{
     
     DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
@@ -167,6 +225,27 @@ LGThreeRightButtonViewDelegate>
     
     // url for deferred loading
     imageView.url = attachment.contentURL;
+    
+    if (attachment.hyperLinkURL)
+    {
+        // NOTE: this is a hack, you probably want to use your own image view and touch handling
+        // also, this treats an image with a hyperlink by itself because we don't have the GUID of the link parts
+        imageView.userInteractionEnabled = YES;
+        
+        DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:imageView.bounds];
+        button.URL = attachment.hyperLinkURL;
+        button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
+        button.GUID = attachment.hyperLinkGUID;
+        
+        // use normal push action for opening URL
+        [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        // demonstrate combination with long press
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
+        [button addGestureRecognizer:longPress];
+        
+        [imageView addSubview:button];
+    }
     
     return imageView;
 }
