@@ -82,7 +82,6 @@ EDJMicroPartyLessonHeaderCellDelegate>
     if ([cell isMemberOfClass:[EDJMicroPartyLessonHeaderCell class]]) {
         EDJMicroPartyLessonHeaderCell *headerCell = (EDJMicroPartyLessonHeaderCell *)cell;
         headerCell.delegate = self;
-        NSLog(@"headercell: %@",headerCell);
     }
     cell.model = model;
     return cell;
@@ -96,7 +95,6 @@ EDJMicroPartyLessonHeaderCellDelegate>
     if (indexPath.row == 0) {
         /// 头部专辑 单独处理
     }else{
-        NSLog(@"其他专辑 -- ");
         model = self.dataArray[indexPath.row];
         [self sendNotificationWithModel:model];
     }
@@ -116,10 +114,14 @@ EDJMicroPartyLessonHeaderCellDelegate>
 }
 
 - (void)sendNotificationWithModel:(EDJMicroLessionAlbumModel *)model{
-    NSDictionary *dict = @{LGDidSelectedModelKey:model,
-                           LGDidSelectedSkipTypeKey:@(LGDidSelectedSkipTypeMicrolessonAlbum)
-                           };
-    [[NSNotificationCenter defaultCenter] postNotificationName:LGDidSelectedNotification object:nil userInfo:dict];
+    if (model) {
+        NSDictionary *dict = @{LGDidSelectedModelKey:model,
+                               LGDidSelectedSkipTypeKey:@(LGDidSelectedSkipTypeMicrolessonAlbum)
+                               };
+        [[NSNotificationCenter defaultCenter] postNotificationName:LGDidSelectedNotification object:nil userInfo:dict];
+    }else{
+        [self presentFailureTips:@"精品专辑数据异常"];
+    }
 }
 
 

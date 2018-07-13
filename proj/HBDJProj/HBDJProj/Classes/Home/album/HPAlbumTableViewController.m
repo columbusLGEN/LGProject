@@ -20,6 +20,7 @@
 @interface HPAlbumTableViewController ()<
 HPAlbumHeaderCellDelegate>
 
+@property (strong,nonatomic) HPAlbumHeaderCell *header;
 /// 切换数据排序方式
 @property (assign,nonatomic) BOOL timeSort;
 
@@ -31,27 +32,6 @@ HPAlbumHeaderCellDelegate>
 @end
 
 @implementation HPAlbumTableViewController
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:albumListHeaderCell bundle:nil] forCellReuseIdentifier:albumListHeaderCell];
-    [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
-    self.tableView.estimatedRowHeight = 90;
-    
-    self.timeSort = YES;
-    
-    _offset = 0;
-    
-    [self requestNetDataWithOffset:_offset];
-
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerLoad)];
-}
 
 - (void)requestNetDataWithOffset:(NSInteger)offset{
     __weak typeof(self) weakSelf = self;
@@ -75,19 +55,12 @@ HPAlbumHeaderCellDelegate>
             
             if (offset != 0) {
                 /// 上拉刷新
-//                [arrm removeObjectAtIndex:0];
                 if (array.count == 0 || array == nil) {
                     /// 没有更多数据
                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 }else{
                     [self.tableView.mj_footer endRefreshing];
                 }
-            }else{
-                /// 配置header 数据
-                DJDataBaseModel *headerModel = [DJDataBaseModel new];
-                headerModel.cover = strongSelf.albumModel.classimg;
-                headerModel.classdescription = strongSelf.albumModel.classdescription;
-                [arrm insertObject:headerModel atIndex:0];
             }
             
             for (int i = 0; i < array.count; i++) {
@@ -95,10 +68,16 @@ HPAlbumHeaderCellDelegate>
                 [arrm addObject:model];
             }
             
-            
+            /// 配置header模型
+            DJDataBaseModel *headerModel = [DJDataBaseModel new];
+            headerModel.cover = strongSelf.albumModel.classimg;
+            headerModel.classdescription = strongSelf.albumModel.classdescription;
+            _header.model = headerModel;
+            _header.frame = CGRectMake(0, 0, kScreenWidth, [_header headerHeight]);
             
             _offset = arrm.count;
             strongSelf.dataArray = arrm.copy;
+            
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [strongSelf.tableView reloadData];
             }];
@@ -114,6 +93,32 @@ HPAlbumHeaderCellDelegate>
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+//    [self.tableView registerNib:[UINib nibWithNibName:albumListHeaderCell bundle:nil] forCellReuseIdentifier:albumListHeaderCell];
+    [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
+    self.tableView.rowHeight = homeMicroLessonSubCellBaseHeight * rateForMicroLessonCellHeight();
+    
+    HPAlbumHeaderCell *header =  [[[NSBundle mainBundle] loadNibNamed:albumListHeaderCell owner:nil options:nil] lastObject];
+    _header = header;
+    header.delegate = self;
+    self.tableView.tableHeaderView = header;
+    
+    self.timeSort = YES;
+    
+    _offset = 0;
+    
+    [self requestNetDataWithOffset:_offset];
+
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerLoad)];
+}
+
 - (void)footerLoad{
     [self requestNetDataWithOffset:_offset];
 }
@@ -125,22 +130,24 @@ HPAlbumHeaderCellDelegate>
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DJDataBaseModel *model = self.dataArray[indexPath.row];
-    if (indexPath.row == 0) {
-        HPAlbumHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:albumListHeaderCell];
-        cell.delegate = self;
-        cell.model = model;
-        return cell;
-    }
+//    if (indexPath.row == 0) {
+//        HPAlbumHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:albumListHeaderCell];
+//        cell.delegate = self;
+//        cell.model = model;
+//        return cell;
+//    }
     EDJMicroPartyLessonSubCell *cell = [tableView dequeueReusableCellWithIdentifier:microPartyLessonSubCell forIndexPath:indexPath];
     cell.model = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row != 0) {
-        /// 进入课程详情
-        DJDataBaseModel *lesson = self.dataArray[indexPath.row];
-        [self.transAssist mediaDetailWithModel:lesson baseVc:self];
-    }
+//    if (indexPath.row != 0) {
+//        /// 进入课程详情
+//        DJDataBaseModel *lesson = self.dataArray[indexPath.row];
+//        [self.transAssist mediaDetailWithModel:lesson baseVc:self];
+//    }
+    DJDataBaseModel *lesson = self.dataArray[indexPath.row];
+    [self.transAssist mediaDetailWithModel:lesson baseVc:self];
 }
 
 #pragma mark - HPAlbumHeaderCellDelegate

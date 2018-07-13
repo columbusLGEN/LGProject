@@ -32,7 +32,7 @@
 }
 
 + (CGFloat)cellHeightWithModel:(EDJMicroBuildModel *)model{
-    CGFloat rate = kScreenHeight / plusScreenHeight;
+    CGFloat rate = rateForMicroLessonCellHeight();
     CGFloat height;
     if (model.imgs.count == 0) {/// 没有图
         height = 85;

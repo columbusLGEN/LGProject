@@ -22,7 +22,7 @@
     _model = model;
     [_img sd_setImageWithURL:[NSURL URLWithString:model.classimg] placeholderImage:DJPlaceholderImage];
     _title.text = model.classname;
-    NSLog(@"xjppointlistname -- %@,%@",model.classname,model.classimg);
+
 }
 
 + (instancetype)pointNewsHeader{

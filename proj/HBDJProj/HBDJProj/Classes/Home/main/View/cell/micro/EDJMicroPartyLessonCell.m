@@ -47,10 +47,10 @@ UITableViewDataSource>
         make.top.equalTo(self.mas_top);
         make.left.equalTo(self.mas_left);
         make.width.equalTo(self.mas_width);
-        make.height.mas_equalTo(53);
+        make.height.mas_equalTo(homeMicroLessonHeaderFooterHeight);
     }];
     
-    /// content 每个 高度 90
+    /// content 
     [self.contentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.header.mas_bottom);
         make.left.equalTo(self.mas_left);
@@ -81,7 +81,7 @@ UITableViewDataSource>
     if (indexPath.row == 0) {
         return homeMicroLessonHeaderHeight * kScreenWidth / plusScreenWidth;
     }else{
-        return 375;
+        return contentTableViewRowHeight() * 3 + homeMicroLessonHeaderFooterHeight * 2;
     }
 }
 
@@ -111,7 +111,7 @@ UITableViewDataSource>
         _contentTableView.scrollEnabled = NO;
         _contentTableView.dataSource = self;
         _contentTableView.delegate = self;
-        _contentTableView.estimatedRowHeight = 90;
+        _contentTableView.rowHeight = contentTableViewRowHeight();
         _contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_contentTableView registerNib:[UINib nibWithNibName:subCellID bundle:nil] forCellReuseIdentifier:subCellID];
     }
@@ -135,6 +135,10 @@ UITableViewDataSource>
                            LGDidSelectedIndexKey:@(indexPath.row)
                            };
     [[NSNotificationCenter defaultCenter] postNotificationName:LGDidSelectedNotification object:nil userInfo:dict];
+}
+
+CGFloat contentTableViewRowHeight(){
+    return homeMicroLessonSubCellBaseHeight * rateForMicroLessonCellHeight();
 }
 
 @end

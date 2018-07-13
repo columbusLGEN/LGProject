@@ -139,6 +139,7 @@
 		8851C63D20F5EB8800C91575 /* DJThoutghtRepotListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C63C20F5EB8800C91575 /* DJThoutghtRepotListModel.m */; };
 		8851C64020F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C63F20F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.m */; };
 		8851C64220F5EBC200C91575 /* DJThoutghtRepotListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8851C64120F5EBC200C91575 /* DJThoutghtRepotListTableViewCell.xib */; };
+		8851C64420F87B0B00C91575 /* DJPublickFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C64320F87B0B00C91575 /* DJPublickFunctions.m */; };
 		886A1B6020CBDD2F0007AD63 /* LGRecordButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */; };
 		886A1B6320CE53220007AD63 /* LGSocialShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6220CE53220007AD63 /* LGSocialShareManager.m */; };
 		886A1B6620CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6520CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m */; };
@@ -682,6 +683,7 @@
 		8851C63E20F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThoutghtRepotListTableViewCell.h; sourceTree = "<group>"; };
 		8851C63F20F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThoutghtRepotListTableViewCell.m; sourceTree = "<group>"; };
 		8851C64120F5EBC200C91575 /* DJThoutghtRepotListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJThoutghtRepotListTableViewCell.xib; sourceTree = "<group>"; };
+		8851C64320F87B0B00C91575 /* DJPublickFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJPublickFunctions.m; sourceTree = "<group>"; };
 		886A1B5E20CBDD2F0007AD63 /* LGRecordButtonLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGRecordButtonLoader.h; sourceTree = "<group>"; };
 		886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGRecordButtonLoader.m; sourceTree = "<group>"; };
 		886A1B6120CE53220007AD63 /* LGSocialShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSocialShareManager.h; sourceTree = "<group>"; };
@@ -1300,6 +1302,7 @@
 				8835B2A02071F8DE00722010 /* LGDefines.h */,
 				8835B31B2072256A00722010 /* LBCConstant.h */,
 				883D475D20DCD94200FD9971 /* Macros+Singleton.h */,
+				8851C64320F87B0B00C91575 /* DJPublickFunctions.m */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -3500,6 +3503,7 @@
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,
 				889FCD2520B3FA8A0045746D /* HPAudioVideoViewController.m in Sources */,
 				88DD8135209C0D7F00F297D6 /* OLVoteDetailVotedTableViewCell.m in Sources */,
+				8851C64420F87B0B00C91575 /* DJPublickFunctions.m in Sources */,
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
 				88BA90CA20F4A9A3007DD4B4 /* DJShowThemeAndMeetingTableViewController.m in Sources */,
 				88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */,

@@ -180,13 +180,13 @@ static NSString *param_key_userid = @"userid";
 
 /// 处理 responseObj 为数组，且只有一个元素的情况
 - (id)returnJsonHandle:(id)responseObj{
-    if ([responseObj isKindOfClass:[NSArray class]]) {
-        NSArray *array = responseObj;
-        if (array.count == 1) {
-            /// 回调字典 array[0]
-            return array[0];
-        }
-    }
+//    if ([responseObj isKindOfClass:[NSArray class]]) {
+//        NSArray *array = responseObj;
+//        if (array.count == 1) {
+//            /// 回调字典 array[0]
+//            return array[0];
+//        }
+//    }
     return responseObj;
 }
 
@@ -224,8 +224,7 @@ static NSString *param_key_userid = @"userid";
 //        _baseUrl = @"http://192.168.12.93:8080/";
 //        _baseUrl = @"http://123.59.197.176:8480/";
         _baseUrl = @"http://123.59.199.170:8081/";
-//        _baseUrl = @"http://47.96.165.218:8081/";
-        [_baseUrl sizeWithFont:nil constrainedToSize:CGSizeZero lineBreakMode:nil];
+//        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
 
     }
     return _baseUrl;

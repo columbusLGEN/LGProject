@@ -16,6 +16,8 @@ static NSString *playcount_key_path = @"playcount";
 @property (weak, nonatomic) IBOutlet UILabel *peopleCount;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgWidthConstraint;
 
 
 @end
@@ -48,6 +50,9 @@ static NSString *playcount_key_path = @"playcount";
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    CGFloat imgHeight = 67 * rateForMicroLessonCellHeight();
+    _imgHeightConstraint.constant = imgHeight;
+    _imgWidthConstraint.constant = rate16_9() * imgHeight;
 }
 
 @end

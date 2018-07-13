@@ -18,6 +18,8 @@ static const CGFloat homeImageLoopHeight = 211;
 static const CGFloat homeSegmentHeight = 50;
 static const CGFloat homeSegmentContentWidth = 38;
 static const CGFloat homeMicroLessonHeaderHeight = 128;
+static const CGFloat homeMicroLessonSubCellBaseHeight = 90;
+static const CGFloat homeMicroLessonHeaderFooterHeight = 55;
 static const CGFloat tabBarHeight = 49;
 
 static const CGFloat plusScreenHeight = 736;
@@ -41,3 +43,6 @@ typedef NS_ENUM(NSUInteger, OnlineModelType) {
 };
 
 
+/// MARK: 函数声明
+CGFloat rateForMicroLessonCellHeight(void);
+CGFloat rate16_9(void);

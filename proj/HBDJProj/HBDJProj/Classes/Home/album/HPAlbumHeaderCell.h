@@ -20,4 +20,6 @@ static NSString * const albumListHeaderCell = @"HPAlbumHeaderCell";
 @property (strong,nonatomic) DJDataBaseModel *model;
 @property (weak,nonatomic) id<HPAlbumHeaderCellDelegate> delegate;
 
+- (CGFloat)headerHeight;
+
 @end

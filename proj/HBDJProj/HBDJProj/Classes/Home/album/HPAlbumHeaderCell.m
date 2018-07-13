@@ -24,8 +24,7 @@
     _model = model;
     [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     _text.text = model.classdescription;
-    NSLog(@"专辑列表.cover: %@",model.cover);
-//    NSLog(@"专辑列表.info: %@",model.classdescription);
+
 }
 
 - (IBAction)timeSort:(UIButton *)sender {
@@ -44,7 +43,12 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     
-    _imgHeightConstraint.constant = homeImageLoopHeight * kScreenHeight / plusScreenHeight;
+    _imgHeightConstraint.constant = homeImageLoopHeight * rateForMicroLessonCellHeight();
+}
+
+- (CGFloat)headerHeight{
+    CGFloat textHeight = [_model.classdescription sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 30, MAXFLOAT) font:[UIFont systemFontOfSize:17]].height;
+    return homeImageLoopHeight * rateForMicroLessonCellHeight() + 19 * 2 + textHeight + 8 + 44;
 }
 
 @end

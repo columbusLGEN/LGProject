@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -25,7 +25,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMH-2q-O0v">
-                        <rect key="frame" x="15" y="252" width="562" height="77.5"/>
+                        <rect key="frame" x="15" y="252" width="562" height="61"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -63,7 +63,6 @@
                     <constraint firstItem="eXZ-cr-e7d" firstAttribute="top" secondItem="RVR-OP-lma" secondAttribute="top" id="BRu-Wc-Yy0"/>
                     <constraint firstAttribute="bottom" secondItem="rE9-KL-YZR" secondAttribute="bottom" constant="10" id="Pyh-4G-R0I"/>
                     <constraint firstAttribute="trailing" secondItem="eXZ-cr-e7d" secondAttribute="trailing" id="QsE-eL-fF6"/>
-                    <constraint firstItem="5Xp-A2-oM4" firstAttribute="top" secondItem="gMH-2q-O0v" secondAttribute="bottom" constant="19" id="RUA-yx-weT"/>
                     <constraint firstItem="rE9-KL-YZR" firstAttribute="top" secondItem="5Xp-A2-oM4" secondAttribute="bottom" constant="14" id="bvm-lY-lX3"/>
                     <constraint firstItem="tKc-CQ-ULS" firstAttribute="centerY" secondItem="rE9-KL-YZR" secondAttribute="centerY" id="dqs-gG-ggr"/>
                     <constraint firstItem="rE9-KL-YZR" firstAttribute="leading" secondItem="gMH-2q-O0v" secondAttribute="leading" id="k0g-ph-f4S"/>

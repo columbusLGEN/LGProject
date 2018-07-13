@@ -36,7 +36,7 @@
     [super viewDidLoad];
     
     offset = 0;
-    self.tableView.estimatedRowHeight = 90;
+    self.tableView.rowHeight = homeMicroLessonSubCellBaseHeight * rateForMicroLessonCellHeight();
     [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
     
 //    NSMutableArray *arr = [NSMutableArray array];
