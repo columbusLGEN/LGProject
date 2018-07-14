@@ -17,25 +17,31 @@
 #import "DJUserInteractionMgr.h"
 #import "LGSocialShareManager.h"
 #import "HPAddBroseCountMgr.h"
+#import "LGWKWebViewController.h"
 
-static const CGFloat richTextTopInfoViewHeight = 110;
+#import <WebKit/WebKit.h>
+#import "LGAttributedTextView.h"
 
 @interface HPPartyBuildDetailViewController ()<
 DTAttributedTextContentViewDelegate,
 DTLazyImageViewDelegate,
-LGThreeRightButtonViewDelegate>
+LGThreeRightButtonViewDelegate,
+WKUIDelegate,
+WKNavigationDelegate>
 
 /** 是否显示,查看次数,默认为NO，不显示 */
 @property (assign,nonatomic) BOOL displayCounts;
 
-@property (strong,nonatomic) DTAttributedTextView *coreTextView;
+@property (strong,nonatomic) LGAttributedTextView *coreTextView;
 /** 图片尺寸缓存 */
 @property (nonatomic,strong) NSCache *imageSizeCache;
 @property (strong,nonatomic) LGThreeRightButtonView *pbdBottom;
 
-@property (weak,nonatomic) DCRichTextTopInfoView *topInfoView;
-
 @property (strong,nonatomic) NSURLSessionTask *task;
+
+@property (weak,nonatomic) DCRichTextTopInfoView *topInfoView;
+//@property (strong,nonatomic) UIScrollView *scrollView;
+//@property (strong,nonatomic) WKWebView *webView;
 
 @end
 
@@ -62,6 +68,27 @@ LGThreeRightButtonViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [self.view addSubview:self.scrollView];
+//    /// webview
+//    [self.scrollView addSubview:self.topInfoView];
+//    [self.scrollView addSubview:self.webView];
+//
+//    [self.topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.scrollView.mas_top);
+//        make.left.equalTo(self.scrollView.mas_left);
+//        make.right.equalTo(self.scrollView.mas_right);
+//        make.bottom.equalTo(self.webView.mas_top);
+//        make.width.mas_equalTo(kScreenWidth);
+//        make.height.mas_equalTo(richTextTopInfoViewHeight);
+//    }];
+//    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.scrollView.mas_left);
+//        make.right.equalTo(self.scrollView.mas_right);
+//        make.bottom.equalTo(self.scrollView.mas_bottom);
+//        make.width.mas_equalTo(kScreenWidth);
+//        make.height.mas_equalTo(kScreenHeight - richTextTopInfoViewHeight - self.bottomHeight);
+//    }];
+    
     _imageSizeCache = [[NSCache alloc] init];
     
     /// bottom
@@ -82,6 +109,7 @@ LGThreeRightButtonViewDelegate>
         _contentModel.playcount += 1;
         [_topInfoView reloadPlayCount:_contentModel.playcount];
     }];
+
 }
 
 - (void)setContentModel:(DJDataBaseModel *)contentModel{
@@ -89,12 +117,15 @@ LGThreeRightButtonViewDelegate>
     _pbdBottom.leftIsSelected = !(contentModel.praiseid == 0);
     _pbdBottom.middleIsSelected = !(contentModel.collectionid == 0);
     
+//    [self.webView loadHTMLString:contentModel.content baseURL:nil];
+//    self.topInfoView.model = contentModel;
+    
     [LGHTMLParser HTMLSaxWithHTMLString:contentModel.content success:^(NSAttributedString *attrString) {
         NSAttributedString *string = attrString;
-        
+
         /// 目标frame: 可以显示 string 的大小 --> 只需知道 string 的最大高度即可
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            DTAttributedTextView *textView = [[DTAttributedTextView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - self.bottomHeight - kNavHeight)];
+            LGAttributedTextView *textView = [[LGAttributedTextView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - self.bottomHeight - kNavHeight)];
             _coreTextView = textView;
             /// 设置insets 以显示 top info view
             _coreTextView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
@@ -103,7 +134,7 @@ LGThreeRightButtonViewDelegate>
             _coreTextView.shouldDrawLinks = NO;/// 实现超链接点击，该属性设为NO，代理方法中创建DTLinkButton
             [self.view addSubview:_coreTextView];
 
-            
+
             /// MARK: 顶部信息view （标题，时间，来源等）
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
             topInfoView.frame = CGRectMake(0, 0, kScreenWidth, richTextTopInfoViewHeight);
@@ -111,40 +142,51 @@ LGThreeRightButtonViewDelegate>
             topInfoView.displayCounts = self.displayCounts;
             [textView addSubview:topInfoView];
             _topInfoView = topInfoView;
-            
+
         }];
     }];
 }
 
 - (void)setImageLoopModel:(EDJHomeImageLoopModel *)imageLoopModel{
     _imageLoopModel = imageLoopModel;
-    
     self.contentModel = imageLoopModel.frontNews;
-    
 }
 
 #pragma mark Actions
+/// MARK: 点击超链接响应事件
 - (void)linkPushed:(DTLinkButton *)button {
     NSURL *URL = button.URL;
     
     /// TODO: 打开URL
-    NSLog(@"url: %@",URL);
+    NSLog(@"linkPushedurl: %@",URL);
+    LGWKWebViewController *webVc = [LGWKWebViewController.alloc initWithUrl:URL];
+    [self.navigationController pushViewController:webVc animated:YES];
 }
-- (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture {
-    if (gesture.state == UIGestureRecognizerStateBegan)
-    {
-        DTLinkButton *button = (id)[gesture view];
-        button.highlighted = NO;
-//        self.lastActionLink = button.URL;
-        NSLog(@"url: %@",button.URL);
-//        if ([[UIApplication sharedApplication] canOpenURL:[button.URL absoluteURL]])
-//        {
-//            UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:[[button.URL absoluteURL] description] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", nil];
-//            [action showFromRect:button.frame inView:button.superview animated:YES];
-//        }
-    }
-}
+///// MARK: 长按超链接响应事件
+//- (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture {
+//    if (gesture.state == UIGestureRecognizerStateBegan)
+//    {
+//        DTLinkButton *button = (id)[gesture view];
+//        button.highlighted = NO;
+//        NSLog(@"linkLongPressedurl: %@",button.URL);
+//
+//    }
+//}
 
+//- (void)lg_dismissViewController{
+//    if ([self.webView canGoBack]) {
+//        [self.webView goBack];
+//    }else{
+//        [super lg_dismissViewController];
+//    }
+//}
+
+-(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+    if (!navigationAction.targetFrame.isMainFrame) {
+        [webView loadRequest:navigationAction.request];
+    }
+    return nil;
+}
 
 #pragma mark - LGThreeRightButtonViewDelegate
 /// MARK: 点赞
@@ -207,9 +249,9 @@ LGThreeRightButtonViewDelegate>
     // use normal push action for opening URL
     [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
     
-    // demonstrate combination with long press
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
-    [button addGestureRecognizer:longPress];
+    // demonstrate combination with long press -- 长按
+//    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
+//    [button addGestureRecognizer:longPress];
     
     return button;
 }
@@ -341,6 +383,30 @@ LGThreeRightButtonViewDelegate>
     }
     return _pbdBottom;
 }
+//- (UIScrollView *)scrollView{
+//    if (!_scrollView) {
+//        _scrollView = [UIScrollView.alloc initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - self.bottomHeight)];
+//    }
+//    return _scrollView;
+//}
+//- (WKWebView *)webView{
+//    if (!_webView) {
+//        _webView = [WKWebView.alloc initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - self.bottomHeight)];
+//        _webView.UIDelegate = self;
+//        _webView.navigationDelegate = self;
+//        _webView.scrollView.scrollEnabled = NO;
+//    }
+//    return _webView;
+//}
+//- (DCRichTextTopInfoView *)topInfoView{
+//    if (!_topInfoView) {
+//        _topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
+//        _topInfoView.frame = CGRectMake(0, 0, kScreenWidth, richTextTopInfoViewHeight);
+//        _topInfoView.displayCounts = self.displayCounts;
+//
+//    }
+//    return _topInfoView;
+//}
 
 - (void)dealloc{
     [_task cancel];

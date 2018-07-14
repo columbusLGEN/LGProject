@@ -18,7 +18,7 @@
 #import "DCRichTextTopInfoView.h"
 #import "DCRichTextBottomInfoView.h"
 
-static const CGFloat richTextTopInfoViewHeight = 100;
+//static const CGFloat richTextTopInfoViewHeight = 100;
 static const CGFloat richTextBottomInfoViewHeight = 77;
 
 @interface DCSubPartStateDetailViewController ()<

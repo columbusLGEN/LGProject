@@ -19,6 +19,8 @@
 #import "HPAlbumTableViewController.h"
 #import "HPBookInfoViewController.h"
 
+#import "DJRichTextShowWithYYKitViewController.h"
+
 #import "LGDidSelectedNotification.h"
 
 @implementation DJMediaDetailTransAssist
@@ -58,7 +60,11 @@
         }
             break;
         case ModelMediaTypeRichText:{
-            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc];
+            /// TODO: YYText 测试
+//            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc];
+            DJRichTextShowWithYYKitViewController *vc = DJRichTextShowWithYYKitViewController.new;
+            vc.contentModel = model;
+            [baseVc.navigationController pushViewController:vc animated:YES];
         }
             break;
         case ModelMediaTypeCustom:
