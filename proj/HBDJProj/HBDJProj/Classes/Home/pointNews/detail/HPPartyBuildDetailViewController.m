@@ -40,8 +40,7 @@ WKNavigationDelegate>
 @property (strong,nonatomic) NSURLSessionTask *task;
 
 @property (weak,nonatomic) DCRichTextTopInfoView *topInfoView;
-//@property (strong,nonatomic) UIScrollView *scrollView;
-//@property (strong,nonatomic) WKWebView *webView;
+
 
 @end
 
@@ -55,7 +54,6 @@ WKNavigationDelegate>
     }else{
         dvc.contentModel = model;
     }
-    NSLog(@"buildvc.model: %@",model);
     dvc.coreTextViewType = LGCoreTextViewTypeDefault;
     [baseVc.navigationController pushViewController:dvc animated:YES];
 }
@@ -67,27 +65,6 @@ WKNavigationDelegate>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [self.view addSubview:self.scrollView];
-//    /// webview
-//    [self.scrollView addSubview:self.topInfoView];
-//    [self.scrollView addSubview:self.webView];
-//
-//    [self.topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.scrollView.mas_top);
-//        make.left.equalTo(self.scrollView.mas_left);
-//        make.right.equalTo(self.scrollView.mas_right);
-//        make.bottom.equalTo(self.webView.mas_top);
-//        make.width.mas_equalTo(kScreenWidth);
-//        make.height.mas_equalTo(richTextTopInfoViewHeight);
-//    }];
-//    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.scrollView.mas_left);
-//        make.right.equalTo(self.scrollView.mas_right);
-//        make.bottom.equalTo(self.scrollView.mas_bottom);
-//        make.width.mas_equalTo(kScreenWidth);
-//        make.height.mas_equalTo(kScreenHeight - richTextTopInfoViewHeight - self.bottomHeight);
-//    }];
     
     _imageSizeCache = [[NSCache alloc] init];
     
@@ -112,13 +89,34 @@ WKNavigationDelegate>
 
 }
 
+- (void)longPress:(UILongPressGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateRecognized) {
+        CGPoint location = [gesture locationInView:_coreTextView];
+        NSUInteger tappedIndex = [_coreTextView closestCursorIndexToPoint:location];
+        
+        NSString *plainText = [_coreTextView.attributedString string];
+        NSString *tappedChar = [plainText substringWithRange:NSMakeRange(tappedIndex, 1)];
+        
+        __block NSRange wordRange = NSMakeRange(0, 0);
+        
+        [plainText enumerateSubstringsInRange:NSMakeRange(0, [plainText length]) options:NSStringEnumerationByWords usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+            if (NSLocationInRange(tappedIndex, enclosingRange)) {
+                *stop = YES;
+                wordRange = substringRange;
+            }
+        }];
+        
+        NSString *word = [plainText substringWithRange:wordRange];
+        NSLog(@"%lu: '%@' word: '%@'", (unsigned long)tappedIndex, tappedChar, word);
+        UIPasteboard *pasteboard;
+        UITextView *t;
+    }
+}
+
 - (void)setContentModel:(DJDataBaseModel *)contentModel{
     _contentModel = contentModel;
     _pbdBottom.leftIsSelected = !(contentModel.praiseid == 0);
     _pbdBottom.middleIsSelected = !(contentModel.collectionid == 0);
-    
-//    [self.webView loadHTMLString:contentModel.content baseURL:nil];
-//    self.topInfoView.model = contentModel;
     
     [LGHTMLParser HTMLSaxWithHTMLString:contentModel.content success:^(NSAttributedString *attrString) {
         NSAttributedString *string = attrString;
@@ -126,14 +124,18 @@ WKNavigationDelegate>
         /// 目标frame: 可以显示 string 的大小 --> 只需知道 string 的最大高度即可
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             LGAttributedTextView *textView = [[LGAttributedTextView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreenWidth, kScreenHeight - self.bottomHeight - kNavHeight)];
+            textView.userInteractionEnabled = YES;
             _coreTextView = textView;
             /// 设置insets 以显示 top info view
             _coreTextView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
             _coreTextView.textDelegate = self;
             _coreTextView.attributedString = string;
-            _coreTextView.shouldDrawLinks = NO;/// 实现超链接点击，该属性设为NO，代理方法中创建DTLinkButton
+//            _coreTextView.shouldDrawLinks = NO;/// 实现超链接点击，该属性设为NO，代理方法中创建DTLinkButton
+            
+            UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+            [_coreTextView addGestureRecognizer:tap];
+            
             [self.view addSubview:_coreTextView];
-
 
             /// MARK: 顶部信息view （标题，时间，来源等）
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
@@ -283,8 +285,8 @@ WKNavigationDelegate>
         [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
         
         // demonstrate combination with long press
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
-        [button addGestureRecognizer:longPress];
+//        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
+//        [button addGestureRecognizer:longPress];
         
         [imageView addSubview:button];
     }
@@ -383,30 +385,6 @@ WKNavigationDelegate>
     }
     return _pbdBottom;
 }
-//- (UIScrollView *)scrollView{
-//    if (!_scrollView) {
-//        _scrollView = [UIScrollView.alloc initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - self.bottomHeight)];
-//    }
-//    return _scrollView;
-//}
-//- (WKWebView *)webView{
-//    if (!_webView) {
-//        _webView = [WKWebView.alloc initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - self.bottomHeight)];
-//        _webView.UIDelegate = self;
-//        _webView.navigationDelegate = self;
-//        _webView.scrollView.scrollEnabled = NO;
-//    }
-//    return _webView;
-//}
-//- (DCRichTextTopInfoView *)topInfoView{
-//    if (!_topInfoView) {
-//        _topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
-//        _topInfoView.frame = CGRectMake(0, 0, kScreenWidth, richTextTopInfoViewHeight);
-//        _topInfoView.displayCounts = self.displayCounts;
-//
-//    }
-//    return _topInfoView;
-//}
 
 - (void)dealloc{
     [_task cancel];

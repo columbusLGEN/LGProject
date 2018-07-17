@@ -13,8 +13,7 @@
 #import "LIGMainTabBarController.h"
 
 @interface UCLoginViewController ()<
-UCAccountHitViewControllerDelegate
-,UITextFieldDelegate>
+UCAccountHitViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *pwd;
 @property (weak, nonatomic) IBOutlet UIButton *login;
@@ -43,17 +42,8 @@ UCAccountHitViewControllerDelegate
     
     self.title = @"用户登录";
     
-    _pwd.delegate = self;
-    
     _pwdIsSecureEntry = _pwd.isSecureTextEntry;
     _eye.selected = _pwdIsSecureEntry;
-}
-
-#pragma mark - UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    NSString *updateString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    textField.text = updateString;
-    return NO;
 }
 
 - (IBAction)displayPwd:(UIButton *)sender {

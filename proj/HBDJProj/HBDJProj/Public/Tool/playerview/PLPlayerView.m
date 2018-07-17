@@ -164,11 +164,9 @@ UIGestureRecognizerDelegate
     
     self.slider = [[UISlider alloc] init];
     self.slider.continuous = NO;
-//    [self.slider setThumbImage:[UIImage imageNamed:@"slider_thumb"] forState:(UIControlStateNormal)];
-    [self.slider setThumbImage:[UIImage new] forState:(UIControlStateNormal)];
+    [self.slider setThumbImage:[UIImage imageNamed:@"slider_thumb"] forState:(UIControlStateNormal)];
     self.slider.maximumTrackTintColor = [UIColor clearColor];
-//    self.slider.minimumTrackTintColor = [UIColor colorWithRed:.2 green:.2 blue:.8 alpha:1];
-    self.slider.minimumTrackTintColor = [UIColor whiteColor];
+    self.slider.minimumTrackTintColor = [UIColor EDJMainColor];
     [self.slider addTarget:self action:@selector(sliderValueChange) forControlEvents:(UIControlEventValueChanged)];
     
     self.bufferingView = [[UIProgressView alloc] init];
@@ -714,7 +712,7 @@ UIGestureRecognizerDelegate
     self.player.delegateQueue = dispatch_get_main_queue();
     self.player.playerView.contentMode = UIViewContentModeScaleAspectFit;
     self.player.delegate = self;
-    self.player.loopPlay = YES;
+//    self.player.loopPlay = YES;
     
     [self insertSubview:self.player.playerView atIndex:0];
     self.player.playerView.frame = self.bounds;
@@ -951,22 +949,27 @@ UIGestureRecognizerDelegate
 - (void)playerWillEndBackgroundTask:(PLPlayer *)player {
 }
 
-- (void)player:(PLPlayer *)player statusDidChange:(PLPlayerStatus)state
-{
+- (void)player:(PLPlayer *)player statusDidChange:(PLPlayerStatus)state{
+    
+    if (state == PLPlayerStatusCompleted) {
+        [self stop];
+        return;
+    }
+    
     if (self.isStop) {
-        static NSString * statesString[] = {
-            @"PLPlayerStatusUnknow"
-            @"PLPlayerStatusPreparing",
-            @"PLPlayerStatusReady",
-            @"PLPlayerStatusOpen",
-            @"PLPlayerStatusCaching",
-            @"PLPlayerStatusPlaying",
-            @"PLPlayerStatusPaused",
-            @"PLPlayerStatusStopped",
-            @"PLPlayerStatusError",
-            @"PLPlayerStateAutoReconnecting",
-            @"PLPlayerStatusCompleted"
-        };
+//        static NSString * statesString[] = {
+//            @"PLPlayerStatusUnknow",
+//            @"PLPlayerStatusPreparing",
+//            @"PLPlayerStatusReady",
+//            @"PLPlayerStatusOpen",
+//            @"PLPlayerStatusCaching",
+//            @"PLPlayerStatusPlaying",
+//            @"PLPlayerStatusPaused",
+//            @"PLPlayerStatusStopped",
+//            @"PLPlayerStatusError",
+//            @"PLPlayerStateAutoReconnecting",
+//            @"PLPlayerStatusCompleted"
+//        };
 //        NSLog(@"stop statusDidChange self,= %p state = %@", self, statesString[state]);
         [self stop];
         return;

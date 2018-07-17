@@ -45,7 +45,6 @@ LGPlayerDelegate>
 //    if (currentTime < 0) {
 //        currentTime = 0;
 //    }
-
     self.audioPlayer.progressValue = progress;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -65,6 +64,7 @@ LGPlayerDelegate>
 }
 - (void)playerStateChanged:(LGPlayer *)player state:(LGPlayerState)state{
     if (state == 10) {
+        self.audioPlayer.progressValue = 1;
         _played = NO;
         _audioPlayer.play.selected = NO;
     }
@@ -90,6 +90,7 @@ LGPlayerDelegate>
         if (!_played) {
             /// 首次播放
             [_audio lg_play];
+            self.audioPlayer.progressValue = 0;
         }else{
             [_audio lg_resume];
         }

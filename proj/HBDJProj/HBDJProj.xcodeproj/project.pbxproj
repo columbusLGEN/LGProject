@@ -1339,6 +1339,8 @@
 				880363A220E323BB00E97FA3 /* DJMediaDetailTransAssist.m */,
 				880363A720E4A31A00E97FA3 /* LGUserLimitsManager.h */,
 				880363A820E4A31A00E97FA3 /* LGUserLimitsManager.m */,
+				889FCCC220B2A86B0045746D /* LGAudioPlayerView.h */,
+				889FCCC320B2A86B0045746D /* LGAudioPlayerView.m */,
 				882B117A20D23D3300917374 /* playerview */,
 				88BCEDA120C29B8700B5C1DB /* voice */,
 			);
@@ -1630,8 +1632,6 @@
 				8831E18620941985001D038E /* DCSubStageThreeImgCell.m */,
 				889FCCBF20B2A7840045746D /* DCSubStageAudioCell.h */,
 				889FCCC020B2A7840045746D /* DCSubStageAudioCell.m */,
-				889FCCC220B2A86B0045746D /* LGAudioPlayerView.h */,
-				889FCCC320B2A86B0045746D /* LGAudioPlayerView.m */,
 				889FCCC820B2BA9E0045746D /* DCSubStageCommentsCell.h */,
 				889FCCC920B2BA9E0045746D /* DCSubStageCommentsCell.m */,
 			);

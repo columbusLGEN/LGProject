@@ -9,9 +9,11 @@
 #import "LGAudioPlayerView.h"
 
 static CGFloat progressHeight = 5;
+static CGFloat progressRectWidth = 3;
 
 @interface LGAudioPlayerView ()
 @property (strong,nonatomic) UIProgressView *progress;
+@property (strong,nonatomic) UIView *rect;
 
 @end
 
@@ -20,6 +22,22 @@ static CGFloat progressHeight = 5;
 - (void)setProgressValue:(CGFloat)progressValue{
     _progressValue = progressValue;
     _progress.progress = progressValue;
+    [UIView animateWithDuration:0 animations:^{
+        CGRect frame = _rect.frame;
+        if (_progress.progress == 1) {
+            frame.origin.x = roundf(_progress.progress * _progress.width + _progress.x - progressRectWidth);
+        }else{
+            frame.origin.x = roundf(_progress.progress * _progress.width + _progress.x);
+        }
+        _rect.frame = frame;
+    }];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    self.rect.backgroundColor = UIColor.EDJMainColor;
+    [_progress cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:_progress.height * 0.5];
 }
 
 - (void)configUI{
@@ -105,6 +123,14 @@ static CGFloat progressHeight = 5;
         
     }
     return _totalTime;
+}
+- (UIView *)rect{
+    if (!_rect) {
+        _rect = [UIView.alloc initWithFrame:CGRectMake(_progress.x, _progress.y - 5, progressRectWidth, 15)];
+        [_rect cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:1.5];
+        [self addSubview:_rect];
+    }
+    return _rect;
 }
 
 @end

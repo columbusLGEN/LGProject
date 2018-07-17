@@ -60,12 +60,13 @@ PLPlayerDelegate>
     
     float floorfCurrentTime = floorf(currentTime);
     float floorfTotalTime = floorf(totalTime);
-    
+
     if (floorfCurrentTime == floorfTotalTime) {
         [self removeTimer];
     }
     
-    float progress = floorfCurrentTime / floorfTotalTime;
+//    float progress = floorfCurrentTime / floorfTotalTime;
+    float progress = currentTime / totalTime;
     
     if ([self.delegate respondsToSelector:@selector(playProgress:
                                                     progress:
@@ -92,6 +93,9 @@ PLPlayerDelegate>
 }
 - (void)lg_play{
     /// 因为在init中已经play了，所以play方法直接调用resume即可
+    if (!_playTimer) {
+        [self addTimer];
+    }
     [self.audioPlayer setVolume:1.0];
     [self.audioPlayer resume];
 }
