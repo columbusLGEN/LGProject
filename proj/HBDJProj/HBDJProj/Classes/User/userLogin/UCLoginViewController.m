@@ -135,5 +135,8 @@ UCAccountHitViewControllerDelegate>
     [super viewDidLayoutSubviews];
     [_login cutBorderWithBorderWidth:0 borderColor:0 cornerRadius:_login.height / 2];
 }
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import "DJChangePwdViewController.h"
+#import "UCAccountHitSuccessView.h"
 
-@interface DJChangePwdViewController ()
+@interface DJChangePwdViewController ()<UCAccountHitSuccessViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *oldPwd;
 @property (weak, nonatomic) IBOutlet UITextField *pwdNew;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPwd;
@@ -26,7 +27,7 @@
 }
 
 - (IBAction)done:(id)sender {
-    
+    [self.view endEditing:YES];
     if ([_oldPwd.text isEqualToString:@""] || _oldPwd.text == nil) {
         [self presentFailureTips:@"请输入原密码"];
         return;
@@ -51,18 +52,31 @@
     }
     
     [[DJUserNetworkManager sharedInstance] userUpdatePwdWithOld:_oldPwd.text newPwd:_pwdNew.text success:^(id responseObj) {
-        [self presentFailureTips:@"修改成功"];
-        [self.navigationController popViewControllerAnimated:YES];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            UCAccountHitSuccessView *sv = [[UCAccountHitSuccessView alloc] initWithFrame:self.view.bounds];
+            sv.delegate = self;
+            [[UIApplication sharedApplication].keyWindow addSubview:sv];
+        }];
     } failure:^(id failureObj) {
         [self presentFailureTips:@"修改失败,请稍后重试"];
     }];
     
 }
 
+#pragma mark - UCAccountHitSuccessViewDelegate
+- (void)removehsView{
+    /// 设置成功页面销毁的回调
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
     [_done cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:_done.height * 0.5];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 @end
