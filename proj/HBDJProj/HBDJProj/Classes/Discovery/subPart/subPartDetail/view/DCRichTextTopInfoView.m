@@ -22,7 +22,7 @@
 @implementation DCRichTextTopInfoView
 
 - (void)reloadPlayCount:(NSInteger)count{
-//    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",count];
+    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",count];
 }
 
 - (void)setModel:(DJDataBaseModel *)model{
@@ -35,6 +35,7 @@
 
 - (void)setDisplayCounts:(BOOL)displayCounts{
     if (displayCounts) _counts.hidden = NO;
+    NSLog(@"_counts.hidden: %d",_counts.hidden);
 }
 
 - (void)awakeFromNib{

@@ -46,15 +46,20 @@ WKNavigationDelegate>
 
 @implementation HPPartyBuildDetailViewController
 
-+ (void)buildVcPushWith:(id)model baseVc:(UIViewController *)baseVc{
++ (void)buildVcPushWith:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc;{
     HPPartyBuildDetailViewController *dvc = [self new];
     dvc.djDataType = DJDataPraisetypeNews;
+    if (model.classid == 1 || model.classid == 2) {
+        /// 要闻
+        dvc.dj_jumpSource = DJPointNewsSourcePartyBuild;
+    }else{/// 党课
+        dvc.dj_jumpSource = DJPointNewsSourceMicroLesson;
+    }
     if ([model isMemberOfClass:[NSClassFromString(@"EDJHomeImageLoopModel") class]]) {
-        dvc.imageLoopModel = model;
+        dvc.imageLoopModel = (EDJHomeImageLoopModel *)model;
     }else{
         dvc.contentModel = model;
     }
-    dvc.coreTextViewType = LGCoreTextViewTypeDefault;
     [baseVc.navigationController pushViewController:dvc animated:YES];
 }
 
@@ -87,30 +92,7 @@ WKNavigationDelegate>
         [_topInfoView reloadPlayCount:_contentModel.playcount];
     }];
 
-}
-
-- (void)longPress:(UILongPressGestureRecognizer *)gesture {
-    if (gesture.state == UIGestureRecognizerStateRecognized) {
-        CGPoint location = [gesture locationInView:_coreTextView];
-        NSUInteger tappedIndex = [_coreTextView closestCursorIndexToPoint:location];
-        
-        NSString *plainText = [_coreTextView.attributedString string];
-        NSString *tappedChar = [plainText substringWithRange:NSMakeRange(tappedIndex, 1)];
-        
-        __block NSRange wordRange = NSMakeRange(0, 0);
-        
-        [plainText enumerateSubstringsInRange:NSMakeRange(0, [plainText length]) options:NSStringEnumerationByWords usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
-            if (NSLocationInRange(tappedIndex, enclosingRange)) {
-                *stop = YES;
-                wordRange = substringRange;
-            }
-        }];
-        
-        NSString *word = [plainText substringWithRange:wordRange];
-        NSLog(@"%lu: '%@' word: '%@'", (unsigned long)tappedIndex, tappedChar, word);
-        UIPasteboard *pasteboard;
-        UITextView *t;
-    }
+    
 }
 
 - (void)setContentModel:(DJDataBaseModel *)contentModel{
@@ -130,10 +112,10 @@ WKNavigationDelegate>
             _coreTextView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
             _coreTextView.textDelegate = self;
             _coreTextView.attributedString = string;
-//            _coreTextView.shouldDrawLinks = NO;/// 实现超链接点击，该属性设为NO，代理方法中创建DTLinkButton
+            _coreTextView.shouldDrawLinks = NO;/// 实现超链接点击，该属性设为NO，代理方法中创建DTLinkButton
             
-            UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-            [_coreTextView addGestureRecognizer:tap];
+//            UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+//            [_coreTextView addGestureRecognizer:tap];
             
             [self.view addSubview:_coreTextView];
 
@@ -345,11 +327,7 @@ WKNavigationDelegate>
 #pragma mark - getter
 /// 显示查看次数
 - (BOOL)displayCounts{
-    if (self.coreTextViewType == LGCoreTextViewTypePoint) {
-        return NO;
-    }else{
-        return YES;
-    }
+    return (self.dj_jumpSource == DJPointNewsSourceMicroLesson);
 }
 - (CGFloat)bottomHeight{
     CGFloat bottomHeight = 60;
@@ -364,24 +342,28 @@ WKNavigationDelegate>
         LGThreeRightButtonView *pbdBottom = [[LGThreeRightButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight - self.bottomHeight, kScreenWidth, self.bottomHeight)];
         pbdBottom.delegate = self;
         _pbdBottom = pbdBottom;
-        [pbdBottom setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
-                                     TRConfigImgNameKey:@"dc_like_normal",
-                                     TRConfigSelectedImgNameKey:@"dc_like_selected",
-                                     TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
-                                     TRConfigTitleColorSelectedKey:[UIColor EDJColor_6CBEFC]
-                                     },
-                                   @{TRConfigTitleKey:@"99+",
-                                     TRConfigImgNameKey:@"uc_icon_shouc_gray",
-                                     TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow",
-                                     TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
-                                     TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
-                                     },
-                                   @{TRConfigTitleKey:@"",
-                                     TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
-                                     TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
-                                     TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
-                                     TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
-                                     }]];
+        NSMutableArray *array = [@[@{TRConfigTitleKey:@"99+",
+                                    TRConfigImgNameKey:@"dc_like_normal",
+                                    TRConfigSelectedImgNameKey:@"dc_like_selected",
+                                    TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                    TRConfigTitleColorSelectedKey:[UIColor EDJColor_6CBEFC]
+                                    },
+                                  @{TRConfigTitleKey:@"99+",
+                                    TRConfigImgNameKey:@"uc_icon_shouc_gray",
+                                    TRConfigSelectedImgNameKey:@"uc_icon_shouc_yellow",
+                                    TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                    TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
+                                    },
+                                  @{TRConfigTitleKey:@"",
+                                    TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
+                                    TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
+                                    TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+                                    TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
+                                    }] mutableCopy];
+        if (self.dj_jumpSource == DJPointNewsSourceMicroLesson) {
+            [array removeLastObject];
+        }
+        [pbdBottom setBtnConfigs:array];
     }
     return _pbdBottom;
 }
@@ -391,3 +373,29 @@ WKNavigationDelegate>
 }
 
 @end
+
+
+
+//- (void)longPress:(UILongPressGestureRecognizer *)gesture {
+//    if (gesture.state == UIGestureRecognizerStateRecognized) {
+//        CGPoint location = [gesture locationInView:_coreTextView];
+//        NSUInteger tappedIndex = [_coreTextView closestCursorIndexToPoint:location];
+//
+//        NSString *plainText = [_coreTextView.attributedString string];
+//        NSString *tappedChar = [plainText substringWithRange:NSMakeRange(tappedIndex, 1)];
+//
+//        __block NSRange wordRange = NSMakeRange(0, 0);
+//
+//        [plainText enumerateSubstringsInRange:NSMakeRange(0, [plainText length]) options:NSStringEnumerationByWords usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+//            if (NSLocationInRange(tappedIndex, enclosingRange)) {
+//                *stop = YES;
+//                wordRange = substringRange;
+//            }
+//        }];
+//
+////        NSString *word = [plainText substringWithRange:wordRange];
+////        NSLog(@"%lu: '%@' word: '%@'", (unsigned long)tappedIndex, tappedChar, word);
+////        UIPasteboard *pasteboard;
+////        UITextView *t;
+//    }
+//}

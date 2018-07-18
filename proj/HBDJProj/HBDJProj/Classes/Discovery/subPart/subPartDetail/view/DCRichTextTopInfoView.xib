@@ -37,12 +37,21 @@
                     <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看次数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sN-VY-OhF">
+                    <rect key="frame" x="10" y="76" width="468" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="bJh-B8-MeA" firstAttribute="leading" secondItem="ZQL-kh-JZ3" secondAttribute="leading" id="DKN-0z-YIq"/>
                 <constraint firstItem="ZQL-kh-JZ3" firstAttribute="top" secondItem="JtG-ou-HrK" secondAttribute="top" constant="10" id="KOl-a5-3Hy"/>
                 <constraint firstItem="JtG-ou-HrK" firstAttribute="trailing" secondItem="jQF-RF-I5d" secondAttribute="trailing" constant="10" id="M9a-n2-fpg"/>
+                <constraint firstItem="0sN-VY-OhF" firstAttribute="top" secondItem="bJh-B8-MeA" secondAttribute="bottom" constant="8" id="SC8-kh-cbY"/>
+                <constraint firstItem="0sN-VY-OhF" firstAttribute="trailing" secondItem="jQF-RF-I5d" secondAttribute="trailing" id="bEU-Rt-t0o"/>
+                <constraint firstItem="0sN-VY-OhF" firstAttribute="leading" secondItem="bJh-B8-MeA" secondAttribute="leading" id="bQp-Sg-DIZ"/>
                 <constraint firstItem="ZQL-kh-JZ3" firstAttribute="leading" secondItem="JtG-ou-HrK" secondAttribute="leading" constant="10" id="cdG-DV-hwU"/>
                 <constraint firstItem="jQF-RF-I5d" firstAttribute="centerY" secondItem="bJh-B8-MeA" secondAttribute="centerY" id="cdS-Qy-HDI"/>
                 <constraint firstItem="jQF-RF-I5d" firstAttribute="leading" secondItem="bJh-B8-MeA" secondAttribute="trailing" constant="10" id="dna-CC-BEm"/>
@@ -52,6 +61,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="JtG-ou-HrK"/>
             <connections>
+                <outlet property="counts" destination="0sN-VY-OhF" id="gJt-xJ-0oJ"/>
                 <outlet property="source" destination="jQF-RF-I5d" id="Mas-lQ-wAN"/>
                 <outlet property="time" destination="bJh-B8-MeA" id="qCN-tf-zai"/>
                 <outlet property="title" destination="ZQL-kh-JZ3" id="nt7-lF-BeB"/>

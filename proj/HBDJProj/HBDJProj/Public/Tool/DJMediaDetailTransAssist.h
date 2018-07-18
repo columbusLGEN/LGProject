@@ -14,12 +14,14 @@
 
 @interface DJMediaDetailTransAssist : NSObject
 
-- (void)imgLoopClick:(NSInteger)index model:(EDJHomeImageLoopModel *)model baseVc:(UIViewController *)baseVc;
-
-- (void)homeListClick:(NSDictionary *)userInfo baseVc:(UIViewController *)baseVc;
-
 /// 跳转至详情页面，外部主要调用该方法
 - (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc;
+
+/// 首页 图片轮播点击
+- (void)imgLoopClick:(NSInteger)index model:(EDJHomeImageLoopModel *)model baseVc:(UIViewController *)baseVc;
+
+/// 首页 list点击
+- (void)homeListClick:(NSDictionary *)userInfo baseVc:(UIViewController *)baseVc;
 
 /// 原本该方法是内部方法，但是便于某些场景需要调用才暴露
 - (void)skipWithType:(NSInteger)skipType model:(id)model baseVc:(UIViewController *)baseVc;

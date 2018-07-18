@@ -25,6 +25,28 @@
 
 @implementation DJMediaDetailTransAssist
 
+/// MARK: 进入图文 或者 音视频 详情
+- (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc{
+    switch (model.modaltype) {
+        case ModelMediaTypeAudio:
+        case ModelMediaTypeVideo:{
+            [HPAudioVideoViewController avcPushWithLesson:model baseVc:baseVc];
+        }
+            break;
+        case ModelMediaTypeRichText:{
+            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc];
+            
+            //            DJRichTextShowWithYYKitViewController *vc = DJRichTextShowWithYYKitViewController.new;
+            //            vc.contentModel = model;
+            //            [baseVc.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case ModelMediaTypeCustom:
+            break;
+    }
+    
+}
+
 /// MARK: 首页轮播图点击
 - (void)imgLoopClick:(NSInteger)index model:(EDJHomeImageLoopModel *)model baseVc:(UIViewController *)baseVc{
     switch (index) {
@@ -47,31 +69,7 @@
 - (void)homeListClick:(NSDictionary *)userInfo baseVc:(UIViewController *)baseVc{
     id model = userInfo[LGDidSelectedModelKey];
     NSInteger skipType = [userInfo[LGDidSelectedSkipTypeKey] integerValue];
-    
     [self skipWithType:skipType model:model baseVc:baseVc];
-}
-
-/// MARK: 进入图文 或者 音视频 详情
-- (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc{
-    switch (model.modaltype) {
-        case ModelMediaTypeAudio:
-        case ModelMediaTypeVideo:{
-            [HPAudioVideoViewController avcPushWithLesson:model baseVc:baseVc];
-        }
-            break;
-        case ModelMediaTypeRichText:{
-            /// TODO: YYText 测试
-            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc];
-            
-//            DJRichTextShowWithYYKitViewController *vc = DJRichTextShowWithYYKitViewController.new;
-//            vc.contentModel = model;
-//            [baseVc.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-        case ModelMediaTypeCustom:
-            break;
-    }
-    
 }
 
 - (void)skipWithType:(NSInteger)skipType model:(id)model baseVc:(UIViewController *)baseVc{

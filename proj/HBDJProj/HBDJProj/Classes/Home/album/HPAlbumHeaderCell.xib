@@ -53,26 +53,48 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_album_list_time_sort" translatesAutoresizingMaskIntoConstraints="NO" id="tKc-CQ-ULS">
                         <rect key="frame" x="70" y="374.5" width="17" height="12"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-6h-jUo">
+                        <rect key="frame" x="533" y="326" width="44" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="U4F-my-L0w"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="更多    ">
+                            <color key="titleColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="moreClick:" destination="EiQ-4f-gB9" eventType="touchUpInside" id="Mt4-Zp-4A4"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_digital_book_info_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="Pn4-P3-K1F">
+                        <rect key="frame" x="567" y="331" width="10" height="5"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gMH-2q-O0v" firstAttribute="top" secondItem="eXZ-cr-e7d" secondAttribute="bottom" constant="19" id="04c-u2-TuX"/>
+                    <constraint firstItem="Pn4-P3-K1F" firstAttribute="trailing" secondItem="ceU-6h-jUo" secondAttribute="trailing" id="2rY-C9-9in"/>
                     <constraint firstItem="eXZ-cr-e7d" firstAttribute="leading" secondItem="RVR-OP-lma" secondAttribute="leading" id="3AP-5o-JXB"/>
                     <constraint firstItem="gMH-2q-O0v" firstAttribute="leading" secondItem="RVR-OP-lma" secondAttribute="leading" constant="15" id="7FI-4b-BdT"/>
                     <constraint firstItem="5Xp-A2-oM4" firstAttribute="leading" secondItem="eXZ-cr-e7d" secondAttribute="leading" id="7eZ-us-01R"/>
                     <constraint firstItem="5Xp-A2-oM4" firstAttribute="trailing" secondItem="eXZ-cr-e7d" secondAttribute="trailing" id="96B-GE-1qt"/>
                     <constraint firstItem="eXZ-cr-e7d" firstAttribute="top" secondItem="RVR-OP-lma" secondAttribute="top" id="BRu-Wc-Yy0"/>
+                    <constraint firstItem="5Xp-A2-oM4" firstAttribute="top" secondItem="ceU-6h-jUo" secondAttribute="bottom" constant="8" id="Cqp-ZC-uVe"/>
                     <constraint firstAttribute="bottom" secondItem="rE9-KL-YZR" secondAttribute="bottom" constant="10" id="Pyh-4G-R0I"/>
                     <constraint firstAttribute="trailing" secondItem="eXZ-cr-e7d" secondAttribute="trailing" id="QsE-eL-fF6"/>
                     <constraint firstItem="rE9-KL-YZR" firstAttribute="top" secondItem="5Xp-A2-oM4" secondAttribute="bottom" constant="14" id="bvm-lY-lX3"/>
+                    <constraint firstItem="ceU-6h-jUo" firstAttribute="trailing" secondItem="gMH-2q-O0v" secondAttribute="trailing" id="ciC-Ih-5JK"/>
                     <constraint firstItem="tKc-CQ-ULS" firstAttribute="centerY" secondItem="rE9-KL-YZR" secondAttribute="centerY" id="dqs-gG-ggr"/>
                     <constraint firstItem="rE9-KL-YZR" firstAttribute="leading" secondItem="gMH-2q-O0v" secondAttribute="leading" id="k0g-ph-f4S"/>
+                    <constraint firstItem="Pn4-P3-K1F" firstAttribute="centerY" secondItem="ceU-6h-jUo" secondAttribute="centerY" id="myc-FK-KqM"/>
                     <constraint firstItem="tKc-CQ-ULS" firstAttribute="leading" secondItem="rE9-KL-YZR" secondAttribute="trailing" constant="-15" id="vR0-hI-mDM"/>
                     <constraint firstAttribute="trailing" secondItem="gMH-2q-O0v" secondAttribute="trailing" constant="15" id="yQb-i7-Awf"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="arrow" destination="Pn4-P3-K1F" id="Qdd-Bm-kFD"/>
                 <outlet property="img" destination="eXZ-cr-e7d" id="e2l-tR-9U0"/>
                 <outlet property="imgHeightConstraint" destination="sNk-6l-vcI" id="7jV-eL-4iP"/>
+                <outlet property="more" destination="ceU-6h-jUo" id="0pS-hJ-rCU"/>
                 <outlet property="sotrAcce" destination="tKc-CQ-ULS" id="QyP-23-hLf"/>
                 <outlet property="text" destination="gMH-2q-O0v" id="TtY-eI-fHM"/>
             </connections>
@@ -81,6 +103,7 @@
     </objects>
     <resources>
         <image name="home_album_list_time_sort" width="17" height="12"/>
+        <image name="home_digital_book_info_arrow_down" width="10" height="5"/>
         <image name="party_history" width="283" height="194"/>
     </resources>
 </document>

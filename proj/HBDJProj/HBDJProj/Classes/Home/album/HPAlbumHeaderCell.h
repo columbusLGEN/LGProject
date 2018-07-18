@@ -11,6 +11,7 @@
 
 @protocol HPAlbumHeaderCellDelegate <NSObject>
 - (void)albumListHeaderTimeSort;
+- (void)albumListHeaderReCalHeight;
 
 @end
 

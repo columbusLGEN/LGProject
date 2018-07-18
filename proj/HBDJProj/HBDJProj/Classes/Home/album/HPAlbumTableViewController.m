@@ -125,27 +125,15 @@ HPAlbumHeaderCellDelegate>
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DJDataBaseModel *model = self.dataArray[indexPath.row];
-//    if (indexPath.row == 0) {
-//        HPAlbumHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:albumListHeaderCell];
-//        cell.delegate = self;
-//        cell.model = model;
-//        return cell;
-//    }
     EDJMicroPartyLessonSubCell *cell = [tableView dequeueReusableCellWithIdentifier:microPartyLessonSubCell forIndexPath:indexPath];
     cell.model = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.row != 0) {
-//        /// 进入课程详情
-//        DJDataBaseModel *lesson = self.dataArray[indexPath.row];
-//        [self.transAssist mediaDetailWithModel:lesson baseVc:self];
-//    }
     DJDataBaseModel *lesson = self.dataArray[indexPath.row];
     [self.transAssist mediaDetailWithModel:lesson baseVc:self];
 }
@@ -159,6 +147,10 @@ HPAlbumHeaderCellDelegate>
     }
     /// 重置数据
     [self requestNetDataWithOffset:0];
+}
+- (void)albumListHeaderReCalHeight{
+    _header.frame = CGRectMake(0, 0, kScreenWidth, [_header headerHeight]);
+    [self.tableView reloadData];
 }
 
 - (LGLoadingAssit *)loadAssit{
