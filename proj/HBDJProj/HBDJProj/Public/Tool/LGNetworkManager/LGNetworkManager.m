@@ -19,12 +19,15 @@
 @implementation LGNetworkManager
 
 - (void)uploadImageWithUrl:(NSString *)url param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
+    
     /// name 为 接口接受图片的字段名
     /// fileName 为 保存到服务器上的文件名
     NSMutableDictionary *argu = [NSMutableDictionary dictionaryWithDictionary:param];
     
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:url parameters:argu constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileURL:localFileUrl name:fieldName fileName:fileName mimeType:@"image/jpeg" error:nil];
+        NSError *error;
+        NSLog(@"filrUrl: %@",localFileUrl);
+        [formData appendPartWithFileURL:localFileUrl name:fieldName fileName:fileName mimeType:@"image/jpeg" error:&error];
     } error:nil];
     
     NSURLSessionUploadTask *uploadTask = [self.manager uploadTaskWithStreamedRequest:request progress:progress completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
@@ -32,9 +35,16 @@
             if (failure) failure(@"请检查网络");
         }else{
             /// result == 0 : 成功
-            if (![responseObject objectForKey:@"result"]) {
+            NSNumber *result = [responseObject objectForKey:@"result"];
+            NSString *returnJson = [responseObject objectForKey:@"returnJson"];
+            NSData *data = [returnJson dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            //            NSLog(@"result: %@",result);
+            //            NSLog(@"responseObject: %@",responseObject);
+            if (result.intValue == 0) {
 //                成功
-                if (success) success([[responseObject objectForKey:@"returnJson"] objectForKey:@"path"]);
+                if (success) success(dict[@"path"]);
             }else{
 //                失败
                 if (failure) failure(@"上传失败的msg");

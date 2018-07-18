@@ -9,6 +9,7 @@
 #import "EDJOnlineViewController.h"
 
 #import "LGNavigationSearchBar.h"
+#import "HPNetworkFailureView.h"
 
 #import "EDJOnlineController.h"
 #import "OLAddMoreToolViewController.h"
@@ -26,10 +27,12 @@ static CGFloat headLineHeight = 233;
 
 @interface EDJOnlineViewController ()<
 UICollectionViewDelegate
-,LGNavigationSearchBarDelelgate>
+,LGNavigationSearchBarDelelgate,
+HPNetworkFailureViewDelegate>
 @property (strong,nonatomic) EDJOnlineController *onlineController;
 @property (strong,nonatomic) UIImageView *headLine;
 @property (strong,nonatomic) DJOnlineHomeModel *model;
+@property (strong,nonatomic) HPNetworkFailureView *online_home_emptyView;
 
 @end
 
@@ -48,9 +51,14 @@ UICollectionViewDelegate
     [self.view addSubview:nav];
     [self.onlineController.collectionView addSubview:self.headLine];
     
-    /// 获取数据
+    [self loadNetData];
+    
+}
+
+/// 获取数据
+- (void)loadNetData{
     [[DJOnlineNetorkManager sharedInstance] onlineHomeConfigSuccess:^(id responseObj) {
-        NSLog(@"res_class: %@",[responseObj class]);
+        [self removeEmptyView];
         self.model = [DJOnlineHomeModel mj_objectWithKeyValues:responseObj];
         self.onlineController.onlineModels = self.model.activation;
         
@@ -58,10 +66,10 @@ UICollectionViewDelegate
         
     } failure:^(id failureObj) {
         [self presentFailureTips:@"网络异常"];
-        
+        [self addEmptyView];
     }];
-    
 }
+
 
 #pragma mark - delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -85,7 +93,7 @@ UICollectionViewDelegate
         [self.navigationController pushViewController:[OLSkipObject viewControllerWithOLHomeModelType:model] animated:YES];
     }
 }
-#pragma mark - LGNavigationSearchBarDelelgate
+/// MARK: LGNavigationSearchBarDelelgate
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
     [self beginSearchWithVoice:NO];
 }
@@ -97,7 +105,33 @@ UICollectionViewDelegate
     searchVc.voice = voice;
     [self.navigationController pushViewController:searchVc animated:YES];
 }
+/// MARK: HPNetworkFailureView
+- (void)djemptyViewClick{
+    [self loadNetData];
+}
 
+- (void)addEmptyView{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (!_online_home_emptyView) {
+            [self.view addSubview:self.online_home_emptyView];
+        }
+    }];
+}
+- (void)removeEmptyView{
+    if (_online_home_emptyView) {
+        [_online_home_emptyView removeFromSuperview];
+        _online_home_emptyView = nil;
+    }
+}
+
+- (HPNetworkFailureView *)online_home_emptyView{
+    if (!_online_home_emptyView) {
+        _online_home_emptyView = [HPNetworkFailureView DJEmptyView];
+        _online_home_emptyView.frame = self.view.bounds;
+        _online_home_emptyView.delegate = self;
+    }
+    return _online_home_emptyView;
+}
 - (UIImageView *)headLine{
     if (_headLine == nil) {
         _headLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, - [EDJOnlineController headerHeight] - 9, kScreenWidth, headLineHeight)];

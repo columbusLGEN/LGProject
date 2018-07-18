@@ -25,19 +25,13 @@
     return _dataArray;
 }
 
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//    
-//
-//}
-
-#pragma mark - Table view data source
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return [super tableView:tableView numberOfRowsInSection:section];
-//}
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-//}
-
+- (void)setCoverFormDataWithUrl:(NSString *)url{
+    /// 主题党日 index == 7，三会一课 index == 8
+    [self setFormDataDictValue:url indexPath:[NSIndexPath indexPathForRow:7 inSection:0]];
+}
+- (void)setImagesFormDataWithArray:(NSArray *)imgUrls{
+    NSString *urls_string = [imgUrls componentsJoinedByString:@","];
+    [self setFormDataDictValue:urls_string indexPath:[NSIndexPath indexPathForRow:8 inSection:0]];
+}
 
 @end

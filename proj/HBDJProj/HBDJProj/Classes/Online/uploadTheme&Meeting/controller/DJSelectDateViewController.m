@@ -116,7 +116,7 @@
     return [formatter stringFromDate:date];
 }
 - (NSString *)dateFormat{
-    return @"yyyy/MM/dd HH:mm";
+    return @"yyyy-MM-dd HH:mm:ss";
 }
 
 #pragma mark - getter & lazy load

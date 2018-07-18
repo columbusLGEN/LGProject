@@ -10,6 +10,16 @@
 
 @implementation DJOnlineNetorkManager
 
+
+- (void)addThemeWithFormdict:(NSMutableDictionary *)formDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    formDict[@"mechanismid"] = [DJUser.sharedInstance mechanismid];
+    [self sendPOSTRequestWithiName:@"frontThemes/add" param:formDict success:success failure:failure];
+}
+
+- (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
+    [[DJNetworkManager sharedInstance] uploadImageWithLocalFileUrl:localFileUrl uploadProgress:progress success:success failure:failure];
+}
+
 - (void)onlineHomeConfigSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"mechanismid":[DJUser sharedInstance].mechanismid};
     [self commenPOSTWithOffset:0 length:10 sort:0 iName:@"mechanism/select" param:param success:success failure:failure];
@@ -19,7 +29,6 @@
 - (void)sendPOSTRequestWithiName:(NSString *)iName param:(id)param success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[DJNetworkManager sharedInstance] sendPOSTRequestWithiName:iName param:param success:success failure:failure];
 }
-
 - (void)commenPOSTWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort iName:(NSString *)iName param:(id)param success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[DJNetworkManager sharedInstance] commenPOSTWithOffset:offset length:length sort:sort iName:iName param:param success:success failure:failure];
 }

@@ -17,6 +17,17 @@ typedef void(^DJNetworkFailure)(id failureObj);
 
 @interface DJNetworkManager : NSObject
 
+
+/**
+ 上传图片
+
+ @param localFileUrl 图片本地路径
+ @param progress 传输进度
+ @param success 成功
+ @param failure 失败
+ */
+- (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure;
+
 /**
  发送POST请求并返回task实例
 

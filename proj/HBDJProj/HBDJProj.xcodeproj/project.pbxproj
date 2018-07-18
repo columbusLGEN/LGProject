@@ -1480,6 +1480,8 @@
 			isa = PBXGroup;
 			children = (
 				88BB64D8209BEC4F00FE6103 /* Online.storyboard */,
+				880363AA20E4BBDC00E97FA3 /* DJOnlineNetorkManager.h */,
+				880363AB20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m */,
 				8851C62C20F5E47900C91575 /* themeParty&threeMeetingList */,
 				88D13C642090634C00A32236 /* main */,
 				8876E3C720EB5BDB001C6A1A /* uploadTheme&Meeting */,
@@ -2137,16 +2139,16 @@
 			isa = PBXGroup;
 			children = (
 				8876E3FF20F06355001C6A1A /* base */,
+				8876E40020F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.h */,
+				8876E40120F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.m */,
+				8876E40320F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.h */,
+				8876E40420F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.m */,
 				8876E3EF20ECB38A001C6A1A /* DJSelectDateViewController.h */,
 				8876E3F020ECB38A001C6A1A /* DJSelectDateViewController.m */,
 				8876E3F520EDB851001C6A1A /* DJSelectPeopleViewController.h */,
 				8876E3F620EDB851001C6A1A /* DJSelectPeopleViewController.m */,
 				8876E40B20F08CCC001C6A1A /* DJSelectMeetingTagViewController.h */,
 				8876E40C20F08CCC001C6A1A /* DJSelectMeetingTagViewController.m */,
-				8876E40020F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.h */,
-				8876E40120F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.m */,
-				8876E40320F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.h */,
-				8876E40420F06C8D001C6A1A /* DJUploadThreeMeetingsTableViewController.m */,
 				88BA90C020F4510B007DD4B4 /* DJInputContentViewController.h */,
 				88BA90C120F4510B007DD4B4 /* DJInputContentViewController.m */,
 			);
@@ -2741,8 +2743,6 @@
 		88D13C642090634C00A32236 /* main */ = {
 			isa = PBXGroup;
 			children = (
-				880363AA20E4BBDC00E97FA3 /* DJOnlineNetorkManager.h */,
-				880363AB20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m */,
 				88A47125207DF921002F93E0 /* Ohter */,
 				8835B2DA20720B7000722010 /* Controller */,
 				8835B2DB20720B7000722010 /* Model */,

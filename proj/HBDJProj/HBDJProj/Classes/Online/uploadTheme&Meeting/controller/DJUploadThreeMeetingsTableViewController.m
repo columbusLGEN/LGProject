@@ -36,27 +36,13 @@ DJSelectMeetingTagViewControllerDelegate>
     }
     [self.tableView reloadData];
 }
-
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//
-//    // Uncomment the following line to preserve selection between presentations.
-//    // self.clearsSelectionOnViewWillAppear = NO;
-//
-//    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-//}
-//
-//- (void)didReceiveMemoryWarning {
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
-//
-//#pragma mark - Table view data source
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-//    return 0;
-//}
-
+- (void)setCoverFormDataWithUrl:(NSString *)url{
+    /// 主题党日 index == 7，三会一课 index == 8
+    [self setFormDataDictValue:url indexPath:[NSIndexPath indexPathForRow:8 inSection:0]];
+}
+- (void)setImagesFormDataWithArray:(NSArray *)imgUrls{
+    NSString *urls_string = [imgUrls componentsJoinedByString:@","];
+    [self setFormDataDictValue:urls_string indexPath:[NSIndexPath indexPathForRow:9 inSection:0]];
+}
 
 @end

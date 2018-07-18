@@ -21,8 +21,8 @@
 
 }
 - (void)setPhotoView:(HXPhotoView *)photoView{
-    [self.contentView addSubview:photoView];
     _photoView = photoView;
+    [self.contentView addSubview:photoView];
     [photoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.item.mas_right).offset(marginTen);
         make.top.equalTo(self.item.mas_top);

@@ -19,20 +19,14 @@ static NSString *param_key_userid = @"userid";
 
 @implementation DJNetworkManager
 
-//- (void)uploadWithiName:(NSString *)iName param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-//    
-//    /// 添加统一参数
-//    NSMutableDictionary *paramMutable = [self unitParamDictWithDict:param];
-//    
-//    /// 拼接请求链接
-//    NSString *url = [self urlStringWithiName:iName];
-//    
-//    /// 获取最终参数
-//    NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
-//    
-//    [[LGNetworkManager sharedInstance] uploadWithUrl:url param:argum localFileUrl:localFileUrl fieldName:fieldName fileName:fileName];
-//    
-//}
+- (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
+    
+//    NSString *url = @"http://123.59.199.170:8081/APMKAFService/frontUserinfo/uploadFile";
+    NSString *url = [self urlStringWithiName:@"frontUserinfo/uploadFile"];
+    NSDictionary *param = @{@"userid":[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""};
+    
+    [[LGNetworkManager sharedInstance] uploadImageWithUrl:url param:param localFileUrl:localFileUrl fieldName:@"pic" fileName:@"" uploadProgress:progress success:success failure:failure];
+}
 
 - (NSURLSessionTask *)taskForPOSTRequestWithiName:(NSString *)iName param:(id)param needUserid:(BOOL)needUserid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     
@@ -221,9 +215,9 @@ static NSString *param_key_userid = @"userid";
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-//        _baseUrl = @"http://192.168.12.93:8080/";
+        _baseUrl = @"http://192.168.12.37:8080/";
 //        _baseUrl = @"http://123.59.197.176:8480/";
-        _baseUrl = @"http://123.59.199.170:8081/";
+//        _baseUrl = @"http://123.59.199.170:8081/";
 //        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
 
     }

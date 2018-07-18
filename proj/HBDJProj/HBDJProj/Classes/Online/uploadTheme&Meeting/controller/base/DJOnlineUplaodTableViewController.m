@@ -25,6 +25,7 @@
 
 #import "LGSelectImgManager.h"
 #import "HXPhotoPicker.h"
+#import "DJOnlineNetorkManager.h"
 
 @interface DJOnlineUplaodTableViewController ()<
 DJSelectDateViewControllerDelegate,
@@ -50,7 +51,7 @@ DJInputContentViewControllerDelegate>
 @property (strong,nonatomic) NSMutableArray *peoplePresent;
 /** 缺席人员 */
 @property (strong,nonatomic) NSMutableArray *peopleAbsent;
-/**主持人 */
+/** 主持人 */
 @property (strong,nonatomic) NSMutableArray *peopleHost;
 
 @end
@@ -70,32 +71,65 @@ DJInputContentViewControllerDelegate>
     UIBarButtonItem *send = [[UIBarButtonItem alloc] initWithTitle:@"上传" style:UIBarButtonItemStyleDone target:self action:@selector(uploadData)];
     self.navigationItem.rightBarButtonItem = send;
     
-    _cellSelectedImageView = [[HXPhotoView alloc] initWithFrame:CGRectZero manager:self.simgr.hxPhotoManager];
+    _cellSelectedImageView = [[HXPhotoView alloc] initWithManager:self.simgr.hxPhotoManager];
+    _cellSelectedImageView.delegate = self.simgr;
 }
 
 #pragma mark - 上传数据
 - (void)uploadData{
-    NSLog(@"表单数据: %@",self.formDataDict);
-    if (!_coverFileUrl) {
-        NSLog(@"请选择封面: ");
-        return;
-    }
-    /// http://123.59.199.170:8081
-    /// http://192.168.12.93:8080
+//    if (!_coverFileUrl) {
+//        NSLog(@"请选择封面: ");
+//        return;
+//    }
     
-    [[LGNetworkManager sharedInstance] uploadImageWithUrl:@"http://123.59.199.170:8081/APMKAFService/frontUserinfo/uploadFile" param:@{@"userid":[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""} localFileUrl:_coverFileUrl fieldName:@"pic" fileName:@"" uploadProgress:^(NSProgress *uploadProgress) {
-        NSLog(@"上传封面进度: %f",(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-    } success:^(NSString *imgUrl_sub) {
-        NSLog(@"上传封面成功，图片路径: %@",imgUrl_sub);
+    /// MARK: 上传内容图片
+    /// 如何保证正确的图片顺序？
+    __block NSInteger successCount = 0;
+    __block NSInteger failureCount = 0;
+    
+    /** 上传图片完成block */
+    NSMutableArray *imageUrls = [NSMutableArray arrayWithArray:self.simgr.tempImageUrls.copy];
+    void (^uploadImageCompleteBlock)(NSDictionary *urls) = ^(NSDictionary *urls){
+        for (NSInteger i = 0; i < imageUrls.count; i++) {
+            imageUrls[i] = urls[[NSString stringWithFormat:@"%ld",i]];
+        }
+        [self setImagesFormDataWithArray:imageUrls.copy];
         
-    } failure:^(id uploadFailure) {
-        NSLog(@"上传封面失败: %@",uploadFailure);
-    }];
+        /// MARK: 发送上传数据请求
+        [DJOnlineNetorkManager.sharedInstance addThemeWithFormdict:self.formDataDict success:^(id responseObj) {
+           NSLog(@"上传主题党日成功: %@",responseObj);
+            
+        } failure:^(id failureObj) {
+           NSLog(@"上传主题党日失败: %@",failureObj);
+            
+        }];
+    };
     
-    /// TODO: 先上传图片，拿到图片的地址回调，再上传JSON
-//    [LGSelectImgManager.sharedInstance.tempImageUrls enumerateObjectsUsingBlock:^(NSURL *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSLog(@"图片本地url: %@",obj);
-//    }];
+    NSMutableDictionary *urlDict = NSMutableDictionary.new;
+    for (NSInteger i = 0; i < self.simgr.tempImageUrls.count; i++) {
+        NSURL *localUrl = self.simgr.tempImageUrls[i];
+        
+        [self uploadImageWithLocalFileUrl:localUrl uploadProgress:^(NSProgress *uploadProgress) {
+            NSLog(@"%ld: %f",i,(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+            
+        } success:^(NSString *imgUrl_sub) {
+            [urlDict setValue:imgUrl_sub forKey:[NSString stringWithFormat:@"%ld",i]];
+            successCount++;
+            NSLog(@"%ld:imgUrl_sub %@",i,imgUrl_sub);
+            if ((successCount + failureCount) == self.simgr.tempImageUrls.count) {
+                uploadImageCompleteBlock(urlDict.copy);
+            }
+            
+        } failure:^(id uploadFailure) {
+            [urlDict setValue:[NSString stringWithFormat:@"第%ld张图上传失败",i] forKey:[NSString stringWithFormat:@"%ld",i]];
+            failureCount++;
+            
+            if ((successCount + failureCount) == self.simgr.tempImageUrls.count) {
+                uploadImageCompleteBlock(urlDict.copy);
+            }
+            
+        }];
+    }
         
 }
 /// MARK: DJOnlineUploadAddCoverCell 添加封面 代理方法
@@ -104,14 +138,24 @@ DJInputContentViewControllerDelegate>
         
         [HXPhotoTools selectListWriteToTempPath:photoList requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
         } completion:^(NSArray<NSURL *> *allUrl, NSArray<NSURL *> *imageUrls, NSArray<NSURL *> *videoUrls) {
-//            NSLog(@"cover_photoList: %@",photoList);
-            
             /// 选择完成之后需要做  件事
             /// 1.更新UI
-            
             /// 2.保存封面图片的本地临时路径
             if (photoList.count) {
                 _coverFileUrl = imageUrls[0];
+                
+                /// MARK: 上传封面
+                [self uploadImageWithLocalFileUrl:_coverFileUrl uploadProgress:^(NSProgress *uploadProgress) {
+                    NSLog(@"上传封面: %f",
+                          (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+                } success:^(NSString *imgUrl_sub) {
+                    NSLog(@"上传封面成功: %@",imgUrl_sub);
+                    /// 主题党日 index == 7，三会一课 index == 8
+                    /// 子类分别实现
+                    [self setCoverFormDataWithUrl:imgUrl_sub];
+                } failure:^(id uploadFailure) {
+                    NSLog(@"上传封面失败: %@",uploadFailure);
+                }];
                 
                 cell.model.coverBackUrl = _coverFileUrl;
                 [self.tableView reloadData];
@@ -126,7 +170,7 @@ DJInputContentViewControllerDelegate>
 }
 /// MARK: DJSelectMeetingTagViewControllerDelegate 选择会议标签回调
 - (void)selectMeetingTag:(DJSelectMeetingTagViewController *)vc selectString:(NSString *)string{
-//    NSLog(@"父类选中了: %@",string);
+    /// 父类不做处理
 }
 
 /// MARK: DJOnlineUploadCellDelegate 文本输入框代理
@@ -180,8 +224,16 @@ DJInputContentViewControllerDelegate>
         DJOnlineUploadCell *textInputCell = (DJOnlineUploadCell *)cell;
         textInputCell.delegate = self;
     }
-    
+    /// testcode
+    [self.formDataDict setValue:[self testVlueForModel:model] forKey:model.uploadJsonKey];
     return cell;
+}
+- (NSString *)testVlueForModel:(DJOnlineUploadTableModel *)model{
+    if ([model.uploadJsonKey isEqualToString:@"date"]) {
+        return @"2017-6-6 15:15:14";
+    }else{
+        return @"测试数据";
+    }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DJOnlineUploadTableModel *model = self.dataArray[indexPath.row];
@@ -287,6 +339,10 @@ DJInputContentViewControllerDelegate>
     selectPeople.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:selectPeople animated:YES completion:nil];
     
+}
+
+- (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
+    [[DJOnlineNetorkManager sharedInstance] uploadImageWithLocalFileUrl:localFileUrl uploadProgress:progress success:success failure:failure];
 }
 
 #pragma mark - lazy load & getter
