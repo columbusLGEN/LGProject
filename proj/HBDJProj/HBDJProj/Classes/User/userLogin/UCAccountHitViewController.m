@@ -16,8 +16,9 @@ UITableViewDelegate,
 UITableViewDataSource,
 UCAccountHitSuccessViewDelegate
 >
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (weak, nonatomic) UITableView *tableView;
 
 @property (strong,nonatomic) NSArray *array;
 
@@ -46,6 +47,13 @@ UCAccountHitSuccessViewDelegate
     
     _activationDict = [NSMutableDictionary new];
     
+    UITableView *tableView = [UITableView.alloc initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView = tableView;
+    [self.containerView addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_containerView);
+    }];
+    
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 50;
@@ -72,7 +80,7 @@ UCAccountHitSuccessViewDelegate
 }
 
 - (IBAction)ahClick:(id)sender {
-    NSLog(@"self.actiondict: %@",self.activationDict);
+//    NSLog(@"self.actiondict: %@",self.activationDict);
     NSString *tel    = self.activationDict[@"0"];
     NSString *oldPwd = self.activationDict[@"1"];
     NSString *pwd    = self.activationDict[@"2"];
