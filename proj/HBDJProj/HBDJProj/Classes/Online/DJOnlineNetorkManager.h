@@ -8,7 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
+    DJOnlineUGCTypeStage = 1,/// 党员舞台
+    DJOnlineUGCTypeMindReport,/// 思想汇报
+    DJOnlineUGCTypeComponce,/// 述职述廉
+};
+
 @interface DJOnlineNetorkManager : NSObject
+
+/** 确认投票接口 */
+- (void)frontVotes_addWithVoteid:(NSInteger)voteid votedetailid:(NSArray *)votedetailid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 投票详情,标题，选项等 */
+- (void)frontVotes_selectDetailWithVoteid:(NSInteger)voteid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 在线投票列表 */
+- (void)frontVotes_selectWithOffset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/**
+ 获取党员舞台、思想汇报、述职述廉 列表数据
+
+ @param ugcType 类型：1党员舞台 2思想汇报 3述职述廉
+ */
+- (void)frontUgcWithType:(DJOnlineUGCType)ugcType offset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /** 获取三会一课列表数据 */
 - (void)frontSessionsWithSessiontype:(NSInteger)sessionType offset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;

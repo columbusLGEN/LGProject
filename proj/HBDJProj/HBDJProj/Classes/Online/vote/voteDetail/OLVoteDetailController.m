@@ -12,6 +12,9 @@
 #import "OLVoteDetailHeaderView.h"
 #import "OLVoteDetailHeaderModel.h"
 #import "OLVoteDetailFooterView.h"
+#import "DJOnlineNetorkManager.h"
+#import "OLVoteListModel.h"
+#import "DJOnlineNetorkManager.h"
 
 static NSString * const normalCellID = @"OLVoteDetailNormalTableViewCell";
 static NSString * const votedCellID = @"OLVoteDetailVotedTableViewCell";
@@ -64,6 +67,19 @@ OLVoteDetailFooterViewDelegate>
     self.tableView.tableFooterView = footer;
 }
 
+- (void)setModel:(OLVoteListModel *)model{
+    _model = model;
+    
+    /// TODO: 投票详情接口
+    [DJOnlineNetorkManager.sharedInstance frontVotes_selectDetailWithVoteid:model.seqid success:^(id responseObj) {
+        
+        
+    } failure:^(id failureObj) {
+        
+    }];
+}
+
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
@@ -99,6 +115,7 @@ OLVoteDetailFooterViewDelegate>
 }
 
 #pragma mark - footer delegate
+/// MARK: 提交投票
 - (void)voteFooterCommit:(OLVoteDetailFooterView *)voteFooter{
     
     if (_selectedSomeItem) {
@@ -108,15 +125,25 @@ OLVoteDetailFooterViewDelegate>
         _headerModel.status = VoteModelStatusVoted;
         _header.model = _headerModel;
         
-        /// 切换 模型状态
-        [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            OLVoteDetailModel *model = obj;
-            model.status = VoteModelStatusVoted;
-        }];
-        self.tableView.tableFooterView = nil;
+        /// TODO: 添加已选的投票选项id
         
-        [self.tableView reloadData];
-        _selectedSomeItem = NO;
+        [DJOnlineNetorkManager.sharedInstance frontVotes_addWithVoteid:_model.seqid votedetailid:nil success:^(id responseObj) {
+            
+            /// 切换 模型状态
+            [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                OLVoteDetailModel *model = obj;
+                model.status = VoteModelStatusVoted;
+            }];
+            self.tableView.tableFooterView = nil;
+            
+            [self.tableView reloadData];
+            _selectedSomeItem = NO;
+            
+        } failure:^(id failureObj) {
+            [self presentFailureTips:@"网络异常，请稍后重试"];
+        }];
+        
+        
     }else{
         NSLog(@"您未选中任何选项 -- ");
     }

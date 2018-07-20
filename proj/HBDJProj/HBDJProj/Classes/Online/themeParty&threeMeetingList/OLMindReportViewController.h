@@ -11,6 +11,6 @@
 #import "LGBaseTableViewController.h"
 
 @interface OLMindReportViewController : LGBaseTableViewController
-@property (assign,nonatomic) OnlineModelType listType;
+
 
 @end

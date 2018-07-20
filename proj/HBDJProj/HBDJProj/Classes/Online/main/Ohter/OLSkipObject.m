@@ -9,7 +9,7 @@
 #import "OLSkipObject.h"
 #import "OLHomeModel.h"
 
-#import "OLMindReportViewController.h"
+#import "DJThoutghtRepotListViewController.h"
 
 @implementation OLSkipObject
 + (UIViewController *)viewControllerWithOLHomeModelType:(OLHomeModel *)model{
@@ -24,8 +24,8 @@
         UIViewController *vc = [NSClassFromString(controllerClass) new];
         vc.title = model.toolname;
         
-        if ([vc isKindOfClass:[OLMindReportViewController class]]) {
-            OLMindReportViewController *vc_ = (OLMindReportViewController *)vc;
+        if ([vc isKindOfClass:[DJThoutghtRepotListViewController class]]) {
+            DJThoutghtRepotListViewController *vc_ = (DJThoutghtRepotListViewController *)vc;
             vc_.listType = model.modelType;
         }
         

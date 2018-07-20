@@ -9,5 +9,6 @@
 #import "LGBaseTableViewController.h"
 
 @interface DJThoutghtRepotListViewController : LGBaseTableViewController
+@property (assign,nonatomic) OnlineModelType listType;
 
 @end

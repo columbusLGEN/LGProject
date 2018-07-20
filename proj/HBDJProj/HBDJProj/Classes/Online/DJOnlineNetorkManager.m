@@ -9,11 +9,41 @@
 #import "DJOnlineNetorkManager.h"
 #import "DJUser.h"
 
+static NSString * const testjigouid = @"180607092010001";
+
 @implementation DJOnlineNetorkManager
+
+/// TODO: 机构id 统一添加
+
+
+
+- (void)frontVotes_addWithVoteid:(NSInteger)voteid votedetailid:(NSArray *)votedetailid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure {
+    NSDictionary *param = @{@"voteid":[NSString stringWithFormat:@"%ld",voteid],
+                            @"votedetailid":[votedetailid componentsJoinedByString:@","]};
+    [self sendPOSTRequestWithiName:@"frontVotes/add" param:param success:success failure:failure];
+}
+
+
+- (void)frontVotes_selectDetailWithVoteid:(NSInteger)voteid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"voteid":[NSString stringWithFormat:@"%ld",voteid]};
+    [self sendPOSTRequestWithiName:@"frontVotes/selectDetail" param:param success:success failure:failure];
+}
+
+- (void)frontVotes_selectWithOffset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"mechanismid":testjigouid};
+//    NSDictionary *param = @{@"mechanismid":DJUser.sharedInstance.mechanismid};
+    [self commenPOSTWithOffset:offset length:length sort:0 iName:@"frontVotes/select" param:param success:success failure:failure];
+}
+
+- (void)frontUgcWithType:(DJOnlineUGCType)ugcType offset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"mechanismid":DJUser.sharedInstance.mechanismid
+                            ,@"ugctype":[NSString stringWithFormat:@"%ld",ugcType]};
+    [self commenPOSTWithOffset:offset length:length sort:0 iName:@"frontUgc/selectmechanism" param:param success:success failure:failure];
+}
 
 - (void)frontSessionsWithSessiontype:(NSInteger)sessionType offset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     
-    NSDictionary *param = @{@"mechanismid":@"180607092010001",
+    NSDictionary *param = @{@"mechanismid":testjigouid,
                             @"sessiontype":[NSString stringWithFormat:@"%ld",sessionType],
                             @"userid":@"72"
                             };
@@ -24,12 +54,12 @@
 - (void)frontThemesWithOffset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     /// 支部id
     /// 测试用 机构id 180630014315001
-    NSDictionary *param = @{@"mechanismid":@"180630014315001"};
+    NSDictionary *param = @{@"mechanismid":testjigouid};
 //    NSDictionary *param = @{@"mechanismid":DJUser.sharedInstance.mechanismid};
     [self commenPOSTWithOffset:offset length:length sort:0 iName:@"frontThemes/select" param:param success:success failure:failure];
 }
 - (void)frontUserinfoSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"mechanismid":@"180630014315001"};
+    NSDictionary *param = @{@"mechanismid":testjigouid};
     [self sendPOSTRequestWithiName:@"frontUserinfo/selectListUser" param:param success:success failure:failure];
 }
 

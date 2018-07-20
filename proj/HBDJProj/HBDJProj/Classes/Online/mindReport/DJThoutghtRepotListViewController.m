@@ -10,8 +10,10 @@
 #import "DJThoutghtRepotListModel.h"
 #import "DJThoutghtRepotListTableViewCell.h"
 #import "UCUploadViewController.h"
+#import "DJOnlineNetorkManager.h"
 
 @interface DJThoutghtRepotListViewController ()
+@property (assign,nonatomic) NSInteger offset;
 
 @end
 
@@ -19,27 +21,65 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:thoughtRepotrListCell bundle:nil] forCellReuseIdentifier:thoughtRepotrListCell];
-    self.tableView.rowHeight = 100;
-    
-    NSMutableArray *arrMu = [NSMutableArray new];
-    for (NSInteger i = 0; i < 20; i++) {
-        DJThoutghtRepotListModel *model = [DJThoutghtRepotListModel new];
-        model.title = @"思想汇报/述职述廉";
-        model.author = @"党小伟";
-        model.time = @"2018-04-11";
-        [arrMu addObject:model];
-    }
-    self.dataArray = arrMu.copy;
-    [self.tableView reloadData];
-    
-    UIBarButtonItem *create = [UIBarButtonItem.alloc initWithTitle:@"创建" style:UIBarButtonItemStyleDone target:self action:@selector(create)];
-    self.navigationItem.rightBarButtonItem = create;
+    [self configUI];
+    [self getNetDataWithOffset:0];
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+- (void)getNetDataWithOffset:(NSInteger)offset{
+    /// request data
+    NSLog(@"self.listtype: %ld",self.listType);
+    
+    /**
+     listType
+        思想汇报 -- 6
+        述职述廉 -- 7
+     */
+    /**
+     DJOnlineUGCType
+        思想汇报 -- 2
+        数值数量 -- 3
+     */
+    [DJOnlineNetorkManager.sharedInstance frontUgcWithType:(self.listType - 4) offset:offset length:10 success:^(id responseObj) {
+        NSArray *array = responseObj;
+        BOOL arrayIsNull = (array == nil || array.count == 0);
+        if (offset == 0) {
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            if (arrayIsNull) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }else{
+                [self.tableView.mj_footer endRefreshing];
+            }
+            
+        }
+        if (arrayIsNull) {
+            return;
+        }else{
+            NSMutableArray *arrMutable;
+            if (_offset == 0) {
+                arrMutable  = NSMutableArray.new;
+            }else{
+                arrMutable  = [NSMutableArray arrayWithArray:self.dataArray];
+            }
+            for (NSInteger i = 0; i < array.count; i++) {
+                DJThoutghtRepotListModel *model = [DJThoutghtRepotListModel mj_objectWithKeyValues:array[i]];
+                [arrMutable addObject:model];
+            }
+            self.dataArray = arrMutable.copy;
+            _offset = arrMutable.count;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        if (offset == 0) {
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+
+        }
+    }];
+
 }
 
 #pragma mark - target
@@ -66,49 +106,25 @@
     
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)configUI{
+    
+    [self.tableView registerNib:[UINib nibWithNibName:thoughtRepotrListCell bundle:nil] forCellReuseIdentifier:thoughtRepotrListCell];
+    self.tableView.rowHeight = 100;
+    
+    UIBarButtonItem *create = [UIBarButtonItem.alloc initWithTitle:@"创建" style:UIBarButtonItemStyleDone target:self action:@selector(create)];
+    self.navigationItem.rightBarButtonItem = create;
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _offset = 0;
+        [self getNetDataWithOffset:_offset];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getNetDataWithOffset:_offset];
+    }];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

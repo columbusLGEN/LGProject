@@ -40,7 +40,6 @@
 @property (strong,nonatomic) NSString *issent;
 @property (strong,nonatomic) NSString *mechanismid;
 
-
 /**
  将服务器返回的单个数据转换成表单
  0: 主题党日，1: 三会一课

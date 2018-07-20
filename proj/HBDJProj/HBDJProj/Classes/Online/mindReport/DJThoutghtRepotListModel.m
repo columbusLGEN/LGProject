@@ -10,4 +10,11 @@
 
 @implementation DJThoutghtRepotListModel
 
+- (NSString *)createdtime{
+    if (_createdtime.length > 10) {
+        _createdtime = [_createdtime substringToIndex:10];
+    }
+    return _createdtime;
+}
+
 @end

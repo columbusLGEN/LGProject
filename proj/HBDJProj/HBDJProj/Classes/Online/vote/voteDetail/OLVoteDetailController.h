@@ -7,7 +7,7 @@
 //
 
 #import "LGBaseTableViewController.h"
-
+@class OLVoteListModel;
 @interface OLVoteDetailController : LGBaseTableViewController
-
+@property (strong,nonatomic) OLVoteListModel *model;
 @end

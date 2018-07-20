@@ -22,9 +22,9 @@
 - (void)setModel:(DJThoutghtRepotListModel *)model{
     _model = model;
     _title.text = model.title;
-    _time.text = model.time;
-    _author.text = model.author;
-//    _image sd_setImageWithURL:<#(nullable NSURL *)#> placeholderImage:<#(nullable UIImage *)#>
+    _time.text = model.createdtime;
+    _author.text = model.uploader;
+    [_image sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     
 }
 
