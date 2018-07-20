@@ -131,7 +131,7 @@
 		88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */; };
 		88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */; };
 		88435EAC208F061400188CE9 /* DJSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EAB208F061400188CE9 /* DJSearchViewController.m */; };
-		8851C63420F5E47A00C91575 /* OLMindReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C62E20F5E47900C91575 /* OLMindReportModel.m */; };
+		884EB402210174E6005D5CA9 /* DJThreemeetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB401210174E6005D5CA9 /* DJThreemeetListViewController.m */; };
 		8851C63520F5E47A00C91575 /* OLMindReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C63020F5E47900C91575 /* OLMindReportTableViewCell.m */; };
 		8851C63620F5E47A00C91575 /* OLMindReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8851C63120F5E47900C91575 /* OLMindReportTableViewCell.xib */; };
 		8851C63720F5E47A00C91575 /* OLMindReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C63320F5E47900C91575 /* OLMindReportViewController.m */; };
@@ -672,8 +672,8 @@
 		88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJMicroPartyLessonSubCell.xib; sourceTree = "<group>"; };
 		88435EAA208F061400188CE9 /* DJSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSearchViewController.h; sourceTree = "<group>"; };
 		88435EAB208F061400188CE9 /* DJSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSearchViewController.m; sourceTree = "<group>"; };
-		8851C62D20F5E47900C91575 /* OLMindReportModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLMindReportModel.h; sourceTree = "<group>"; };
-		8851C62E20F5E47900C91575 /* OLMindReportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLMindReportModel.m; sourceTree = "<group>"; };
+		884EB400210174E6005D5CA9 /* DJThreemeetListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThreemeetListViewController.h; sourceTree = "<group>"; };
+		884EB401210174E6005D5CA9 /* DJThreemeetListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThreemeetListViewController.m; sourceTree = "<group>"; };
 		8851C62F20F5E47900C91575 /* OLMindReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLMindReportTableViewCell.h; sourceTree = "<group>"; };
 		8851C63020F5E47900C91575 /* OLMindReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLMindReportTableViewCell.m; sourceTree = "<group>"; };
 		8851C63120F5E47900C91575 /* OLMindReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OLMindReportTableViewCell.xib; sourceTree = "<group>"; };
@@ -2055,13 +2055,13 @@
 		8851C62C20F5E47900C91575 /* themeParty&threeMeetingList */ = {
 			isa = PBXGroup;
 			children = (
-				8851C62D20F5E47900C91575 /* OLMindReportModel.h */,
-				8851C62E20F5E47900C91575 /* OLMindReportModel.m */,
 				8851C62F20F5E47900C91575 /* OLMindReportTableViewCell.h */,
 				8851C63020F5E47900C91575 /* OLMindReportTableViewCell.m */,
 				8851C63120F5E47900C91575 /* OLMindReportTableViewCell.xib */,
 				8851C63220F5E47900C91575 /* OLMindReportViewController.h */,
 				8851C63320F5E47900C91575 /* OLMindReportViewController.m */,
+				884EB400210174E6005D5CA9 /* DJThreemeetListViewController.h */,
+				884EB401210174E6005D5CA9 /* DJThreemeetListViewController.m */,
 			);
 			path = "themeParty&threeMeetingList";
 			sourceTree = "<group>";
@@ -3487,7 +3487,6 @@
 				88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */,
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
-				8851C63420F5E47A00C91575 /* OLMindReportModel.m in Sources */,
 				880363A920E4A31A00E97FA3 /* LGUserLimitsManager.m in Sources */,
 				8876E3DD20EB6E9A001C6A1A /* DJOnlineUploadTableModel.m in Sources */,
 				88BA907220F34343007DD4B4 /* DJTestScoreListHeader.m in Sources */,
@@ -3562,6 +3561,7 @@
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
 				88CD739A209959FD00E80058 /* HPBookInfoBaseCell.m in Sources */,
 				8831E19A2094639E001D038E /* UCLoginViewController.m in Sources */,
+				884EB402210174E6005D5CA9 /* DJThreemeetListViewController.m in Sources */,
 				88BCEDC520C63EBF00B5C1DB /* LGBaseCollectionView.m in Sources */,
 				88EA130920ABC6E2007AB886 /* RegisterBottomInfoView.m in Sources */,
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,
@@ -3822,7 +3822,7 @@
 					"$(PODS_ROOT)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3917,7 +3917,7 @@
 					"$(PODS_ROOT)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HBDJProj/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",

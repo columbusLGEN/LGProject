@@ -8,6 +8,7 @@
 
 #import "DJUploadThemePartyDayTableViewController.h"
 #import "DJOnlineUploadTableModel.h"
+#import "DJOnlineNetorkManager.h"
 
 @interface DJUploadThemePartyDayTableViewController ()
 
@@ -32,6 +33,10 @@
 - (void)setImagesFormDataWithArray:(NSArray *)imgUrls{
     NSString *urls_string = [imgUrls componentsJoinedByString:@","];
     [self setFormDataDictValue:urls_string indexPath:[NSIndexPath indexPathForRow:8 inSection:0]];
+}
+/// shangchaun 
+- (void)requestUploadSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [DJOnlineNetorkManager.sharedInstance addThemeWithFormdict:self.formDataDict success:success failure:failure];
 }
 
 @end

@@ -7,8 +7,7 @@
 //
 
 #import "OLThreeMeetingsViewController.h"
-#import "OLMindReportViewController.h"
-
+#import "DJThreemeetListViewController.h"
 #import "DJUploadThreeMeetingsTableViewController.h"
 
 static CGFloat channelLabelY = 17;
@@ -22,8 +21,9 @@ UIScrollViewDelegate>
 @property (weak,nonatomic) UIView *elf;
 
 @property (strong,nonatomic) UIScrollView *contentScrollView;
-
+/** 频道栏 title 数组 */
 @property (strong,nonatomic) NSArray *channelTitleArray;
+/** 频道栏 lable数组 */
 @property (strong,nonatomic) NSMutableArray *channelLabelArray;
 
 @property (assign,nonatomic) NSInteger currentIndex;
@@ -51,7 +51,11 @@ UIScrollViewDelegate>
     [self.view addSubview:self.channelScrollView];
     
     _channelLabelArray = [NSMutableArray new];
-    self.channelTitleArray = @[@"全部",@"支部党员大会",@"党支部委员会",@"党小组会",@"党课  "];
+    
+    /// 设置频道标题数组
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[DJUploadThreeMeetingsTableViewController tagStrings]];
+    [array insertObject:@"全部" atIndex:0];
+    self.channelTitleArray = array.copy;
     
     /// MARK: 配置channel
     __block CGFloat totalWidth;
@@ -90,14 +94,16 @@ UIScrollViewDelegate>
     [self.view addSubview:self.contentScrollView];
     
     /// MARK: 配置content
-    [self.channelTitleArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        OLMindReportViewController *vc = [OLMindReportViewController new];
-        vc.fromType = DJThemeMeetingDetailFromTypeThreeMeeting;
-        vc.listType = OnlineModelTypeThreeMeetings;
-        vc.view.frame = CGRectMake(kScreenWidth * idx, 0, kScreenWidth, contentScrollViewHeight);
+    for (NSInteger i = 0; i < self.channelTitleArray.count; i++) {
+        /// 三会一课列表控制器
+        DJThreemeetListViewController *vc = DJThreemeetListViewController.new;
+        vc.sessionType = i;
+        /// 设置frame 会执行控制器的 viewdidload
+        vc.view.frame = CGRectMake(kScreenWidth * i, 0, kScreenWidth, contentScrollViewHeight);
         [self addChildViewController:vc];
         [self.contentScrollView addSubview:vc.view];
-    }];
+    }
+
     [_contentScrollView setContentSize:CGSizeMake(self.channelTitleArray.count * kScreenWidth, 0)];
 }
 
@@ -108,14 +114,14 @@ UIScrollViewDelegate>
     [self.contentScrollView setContentOffset:CGPointMake((_currentIndex * kScreenWidth), 0) animated:YES];
 }
 - (void)createContent{
+    /// MARK: 创建三会一课
     DJUploadThreeMeetingsTableViewController *olupvc = [[DJUploadThreeMeetingsTableViewController alloc] init];
-    
     [self.navigationController pushViewController:olupvc animated:YES];
 }
 
 #pragma mark - scroll view delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
+    
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if ([scrollView isEqual:self.contentScrollView]) {

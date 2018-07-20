@@ -10,7 +10,13 @@
 
 @interface DJOnlineNetorkManager : NSObject
 
+/** 获取三会一课列表数据 */
+- (void)frontSessionsWithSessiontype:(NSInteger)sessionType offset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/** 获取主题党日列表数据 */
+- (void)frontThemesWithOffset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
+/** 上传三会一课 */
+- (void)addSessionsWithFormdict:(NSMutableDictionary *)formDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**
 上传主题党日
 
@@ -19,6 +25,9 @@
  @param failure 失败
  */
 - (void)addThemeWithFormdict:(NSMutableDictionary *)formDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 机构人员列表 */
+- (void)frontUserinfoSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /** 上传图片 */
 - (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure;

@@ -34,7 +34,6 @@ UITextViewDelegate>
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     [super setModel:model];
     if (model.content) {
-//        _txt.text = model.content;
         _contentLabel.text = model.content;
         _contentLabel.textColor = UIColor.EDJGrayscale_11;
     }

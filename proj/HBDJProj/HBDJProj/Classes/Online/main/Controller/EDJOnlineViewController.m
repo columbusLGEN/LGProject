@@ -42,7 +42,7 @@ HPNetworkFailureViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.onlineController getDataWithPlistName:@"OLHomeItems"];
+    [self.onlineController getDataWithPlistName:@"OLHomeItems"];/// 添加“更多”
     [self.view addSubview:self.onlineController.collectionView];
     self.onlineController.collectionView.delegate = self;
     
@@ -51,13 +51,18 @@ HPNetworkFailureViewDelegate>
     [self.view addSubview:nav];
     [self.onlineController.collectionView addSubview:self.headLine];
     
-    [self loadNetData];
+    self.onlineController.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadNetData];
+    }];
+    self.onlineController.collectionView.mj_header.ignoredScrollViewContentInsetTop = [EDJOnlineController headerHeight] + 10;
     
+    [self.onlineController.collectionView.mj_header beginRefreshing];
 }
 
 /// 获取数据
 - (void)loadNetData{
     [[DJOnlineNetorkManager sharedInstance] onlineHomeConfigSuccess:^(id responseObj) {
+        [self.onlineController.collectionView.mj_header endRefreshing];
         [self removeEmptyView];
         self.model = [DJOnlineHomeModel mj_objectWithKeyValues:responseObj];
         self.onlineController.onlineModels = self.model.activation;
@@ -65,6 +70,7 @@ HPNetworkFailureViewDelegate>
         [self.headLine sd_setImageWithURL:[NSURL URLWithString:self.model.headlineImg] placeholderImage:DJImgloopPImage];
         
     } failure:^(id failureObj) {
+        [self.onlineController.collectionView.mj_header endRefreshing];
         [self presentFailureTips:@"网络异常"];
         [self addEmptyView];
     }];

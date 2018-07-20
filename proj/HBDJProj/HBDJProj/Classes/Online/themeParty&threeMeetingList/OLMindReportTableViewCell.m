@@ -7,7 +7,7 @@
 //
 
 #import "OLMindReportTableViewCell.h"
-#import "OLMindReportModel.h"
+#import "DJThemeMeetingsModel.h"
 
 @interface OLMindReportTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -20,12 +20,12 @@
 
 @implementation OLMindReportTableViewCell
 
-- (void)setModel:(OLMindReportModel *)model{
+- (void)setModel:(DJThemeMeetingsModel *)model{
     _model = model;
     _title.text = model.title;
-    _time.text = model.testTime;
-    _author.text = [NSString stringWithFormat:@"作者：%@",model.author];
-//    _img sd_setImageWithURL:<#(nullable NSURL *)#> placeholderImage:<#(nullable UIImage *)#>
+    _time.text = model.date;
+    _author.text = [NSString stringWithFormat:@"上传者：%@",model.uploader?model.uploader:@""];
+    [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
 }
 
 - (void)awakeFromNib {

@@ -69,7 +69,6 @@ static NSString * const ucHomePageVcId = @"EDJUserCenterViewController";
     textDict[NSForegroundColorAttributeName] = [UIColor EDJMainColor];
     [currentItem setTitleTextAttributes:textDict forState:UIControlStateSelected];
     
-
 //    self.selectedIndex = 2;
 }
 

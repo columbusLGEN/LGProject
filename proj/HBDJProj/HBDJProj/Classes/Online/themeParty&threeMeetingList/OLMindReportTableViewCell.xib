@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,12 +25,15 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnM-kS-RxI">
-                        <rect key="frame" x="15" y="92.5" width="30.5" height="16"/>
+                        <rect key="frame" x="15" y="92.5" width="100" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="wYG-HY-gEf"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="TXB-DJ-Zlt">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="TXB-DJ-Zlt">
                         <rect key="frame" x="366" y="41.5" width="119" height="67"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="119" id="aXD-hx-AG3"/>
@@ -45,7 +48,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作者：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hle-7v-1a5">
-                        <rect key="frame" x="65.5" y="92" width="40" height="16"/>
+                        <rect key="frame" x="135" y="92" width="221" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -56,6 +59,7 @@
                     <constraint firstItem="Hle-7v-1a5" firstAttribute="leading" secondItem="DnM-kS-RxI" secondAttribute="trailing" constant="20" id="GVr-M7-Uqr"/>
                     <constraint firstItem="OCk-Mc-MGb" firstAttribute="leading" secondItem="94i-Ga-1fM" secondAttribute="leading" id="H4P-8i-amp"/>
                     <constraint firstItem="94i-Ga-1fM" firstAttribute="top" secondItem="TXB-DJ-Zlt" secondAttribute="top" id="I7I-JE-3hN"/>
+                    <constraint firstItem="TXB-DJ-Zlt" firstAttribute="leading" secondItem="Hle-7v-1a5" secondAttribute="trailing" constant="10" id="LiM-Ap-giq"/>
                     <constraint firstItem="DnM-kS-RxI" firstAttribute="leading" secondItem="94i-Ga-1fM" secondAttribute="leading" id="WMB-Ak-qSr"/>
                     <constraint firstItem="TXB-DJ-Zlt" firstAttribute="centerY" secondItem="uAA-Tn-uQg" secondAttribute="centerY" id="Wzq-b8-jAJ"/>
                     <constraint firstItem="Hle-7v-1a5" firstAttribute="bottom" secondItem="DnM-kS-RxI" secondAttribute="bottom" id="aSb-RR-UdE"/>

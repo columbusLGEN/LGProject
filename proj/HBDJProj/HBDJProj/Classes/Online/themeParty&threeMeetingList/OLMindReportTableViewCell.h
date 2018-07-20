@@ -10,9 +10,9 @@
 
 static NSString * const cellID = @"OLMindReportTableViewCell";
 
-@class OLMindReportModel;
+@class DJThemeMeetingsModel;
 
 @interface OLMindReportTableViewCell : LGBaseTableViewCell
-@property (strong,nonatomic) OLMindReportModel *model;
+@property (strong,nonatomic) DJThemeMeetingsModel *model;
 
 @end

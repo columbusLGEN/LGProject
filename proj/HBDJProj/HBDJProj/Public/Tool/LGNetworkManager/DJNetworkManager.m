@@ -200,7 +200,10 @@ static NSString *param_key_userid = @"userid";
     NSMutableDictionary *paramMutable = [NSMutableDictionary dictionaryWithDictionary:param];
     paramMutable[@"imei"] = @"imei";
     paramMutable[@"imsi"] = @"imsi";
-    paramMutable[param_key_userid] = [DJUser sharedInstance].userid;
+    /// 如果没有userid这个键，添加userid，以便测试时，其他接口指定userid
+    if (![paramMutable.allKeys containsObject:param_key_userid]) {
+        paramMutable[param_key_userid] = [DJUser sharedInstance].userid;
+    }
     return paramMutable;
 }
 /** 返回最终的请求参数 */
@@ -215,9 +218,9 @@ static NSString *param_key_userid = @"userid";
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-        _baseUrl = @"http://192.168.12.37:8080/";
+//        _baseUrl = @"http://192.168.12.37:8080/";
 //        _baseUrl = @"http://123.59.197.176:8480/";
-//        _baseUrl = @"http://123.59.199.170:8081/";
+        _baseUrl = @"http://123.59.199.170:8081/";
 //        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
 
     }

@@ -9,5 +9,6 @@
 #import "DJOnlineUplaodTableViewController.h"
 
 @interface DJUploadThreeMeetingsTableViewController : DJOnlineUplaodTableViewController
++ (NSArray *)tagStrings;
 
 @end

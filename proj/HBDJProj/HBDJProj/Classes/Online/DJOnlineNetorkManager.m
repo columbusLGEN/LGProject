@@ -7,9 +7,36 @@
 //
 
 #import "DJOnlineNetorkManager.h"
+#import "DJUser.h"
 
 @implementation DJOnlineNetorkManager
 
+- (void)frontSessionsWithSessiontype:(NSInteger)sessionType offset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+    NSDictionary *param = @{@"mechanismid":@"180607092010001",
+                            @"sessiontype":[NSString stringWithFormat:@"%ld",sessionType],
+                            @"userid":@"72"
+                            };
+    //    NSDictionary *param = @{@"mechanismid":DJUser.sharedInstance.mechanismid};
+    [self commenPOSTWithOffset:offset length:length sort:0 iName:@"frontSessions/select" param:param success:success failure:failure];
+}
+
+- (void)frontThemesWithOffset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    /// 支部id
+    /// 测试用 机构id 180630014315001
+    NSDictionary *param = @{@"mechanismid":@"180630014315001"};
+//    NSDictionary *param = @{@"mechanismid":DJUser.sharedInstance.mechanismid};
+    [self commenPOSTWithOffset:offset length:length sort:0 iName:@"frontThemes/select" param:param success:success failure:failure];
+}
+- (void)frontUserinfoSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"mechanismid":@"180630014315001"};
+    [self sendPOSTRequestWithiName:@"frontUserinfo/selectListUser" param:param success:success failure:failure];
+}
+
+- (void)addSessionsWithFormdict:(NSMutableDictionary *)formDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    formDict[@"mechanismid"] = [DJUser.sharedInstance mechanismid];
+    [self sendPOSTRequestWithiName:@"frontSessions/add" param:formDict success:success failure:failure];
+}
 
 - (void)addThemeWithFormdict:(NSMutableDictionary *)formDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     formDict[@"mechanismid"] = [DJUser.sharedInstance mechanismid];

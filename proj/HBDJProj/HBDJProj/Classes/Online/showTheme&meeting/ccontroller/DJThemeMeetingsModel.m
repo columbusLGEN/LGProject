@@ -11,8 +11,8 @@
 
 @implementation DJThemeMeetingsModel
 
-/// 返回主题党日数组
 - (NSArray<DJOnlineUploadTableModel *> *)tableModelsWithType:(NSInteger)type{
+    /// 获取自身属性列表
     NSMutableArray *pArray = [self propertyArray];
     NSString *plistName;
     if (type == 0) {
@@ -27,7 +27,7 @@
     NSArray *tableModels = [DJOnlineUploadTableModel loadLocalPlistWithPlistName:plistName];
     NSMutableArray *arrayMutable = [NSMutableArray arrayWithArray:tableModels];
     
-    /// 删除 封面cell
+    /// 不显示封面
     for (NSInteger i = arrayMutable.count - 1; i > -1; i--) {
         DJOnlineUploadTableModel *model = arrayMutable[i];
         if (model.itemClass == OLUploadTableModelClassSelectCover) {
@@ -35,8 +35,8 @@
         }
     }
     
-    /// 如果是会议模型，需要多添加一个属性 会议标签 怎么加？
-    
+
+    /// 如果是三会一课模型，添加 会议标签
     for (int i = 0; i < arrayMutable.count; i++) {
         DJOnlineUploadTableModel *model = arrayMutable[i];
 
@@ -46,7 +46,7 @@
         NSString *key = pArray[i];
         id value = [self valueForKey:key];
         model.content = value;
-        NSLog(@"value: %@",value);
+        NSLog(@"tableDataValue: %@",value);
     }
     return arrayMutable.copy;
 }

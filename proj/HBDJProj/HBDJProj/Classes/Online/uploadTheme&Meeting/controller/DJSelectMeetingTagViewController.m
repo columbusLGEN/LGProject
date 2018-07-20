@@ -7,6 +7,7 @@
 //
 
 #import "DJSelectMeetingTagViewController.h"
+#import "DJUploadThreeMeetingsTableViewController.h"
 
 @interface DJSelectMeetingTagViewController ()<
 UIPickerViewDelegate,
@@ -49,10 +50,7 @@ UIPickerViewDataSource>
         make.height.mas_equalTo(self.tagPickerHeight);
     }];
     
-    self.array = @[@"支部党员大会",
-                   @"党支部党员大会",
-                   @"党小组会",
-                   @"党课",];
+    self.array = [DJUploadThreeMeetingsTableViewController tagStrings];
     [self.tagPicker reloadAllComponents];
     _selectString = self.array[0];
 }
