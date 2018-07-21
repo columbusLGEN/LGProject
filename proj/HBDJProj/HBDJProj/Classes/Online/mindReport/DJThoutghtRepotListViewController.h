@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 思想汇报，述职述廉列表
+
 #import "LGBaseTableViewController.h"
 
 @interface DJThoutghtRepotListViewController : LGBaseTableViewController

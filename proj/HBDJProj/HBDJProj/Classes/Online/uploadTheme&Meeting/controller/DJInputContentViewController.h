@@ -20,5 +20,6 @@
 @interface DJInputContentViewController : LGBaseViewController
 @property (weak,nonatomic) id<DJInputContentViewControllerDelegate> delegate;
 @property (strong,nonatomic) DJOnlineUploadTableModel *model;
++ (LGBaseNavigationController *)modalInputvcWithModel:(id)model delegate:(id)delegate;
 
 @end

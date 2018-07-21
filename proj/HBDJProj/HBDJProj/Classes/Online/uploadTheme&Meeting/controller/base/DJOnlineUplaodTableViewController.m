@@ -134,18 +134,17 @@ DJInputContentViewControllerDelegate>
         NSURL *localUrl = self.simgr.tempImageUrls[i];
         
         [self uploadImageWithLocalFileUrl:localUrl uploadProgress:^(NSProgress *uploadProgress) {
-            NSLog(@"%ld: %f",i,(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+            NSLog(@"%zd: %f",i,(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
             
         } success:^(NSString *imgUrl_sub) {
-            [urlDict setValue:imgUrl_sub forKey:[NSString stringWithFormat:@"%ld",i]];
+            [urlDict setValue:imgUrl_sub forKey:[NSString stringWithFormat:@"%zd",i]];
             successCount++;
-            NSLog(@"%ld:imgUrl_sub %@",i,imgUrl_sub);
             if ((successCount + failureCount) == self.simgr.tempImageUrls.count) {
                 uploadImageCompleteBlock(urlDict.copy);
             }
             
         } failure:^(id uploadFailure) {
-            [urlDict setValue:[NSString stringWithFormat:@"第%ld张图上传失败",i] forKey:[NSString stringWithFormat:@"%ld",i]];
+            [urlDict setValue:[NSString stringWithFormat:@"第%zd张图上传失败",i] forKey:[NSString stringWithFormat:@"%ld",i]];
             failureCount++;
             
             if ((successCount + failureCount) == self.simgr.tempImageUrls.count) {
@@ -159,6 +158,7 @@ DJInputContentViewControllerDelegate>
 
 /// MARK: DJOnlineUploadAddCoverCell 添加封面 代理方法
 - (void)addCoverClick:(DJOnlineUploadAddCoverCell *)cell{
+    
     [self hx_presentAlbumListViewControllerWithManager:self.coverSelectMgr done:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
         
         [HXPhotoTools selectListWriteToTempPath:photoList requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
@@ -166,7 +166,7 @@ DJInputContentViewControllerDelegate>
             /// 选择完成之后需要做  件事
             /// 1.更新UI
             /// 2.保存封面图片的本地临时路径
-            if (photoList.count) {
+            if (imageUrls.count) {
                 _coverFileUrl = imageUrls[0];
                 
                 /// MARK: 上传封面
@@ -196,12 +196,7 @@ DJInputContentViewControllerDelegate>
 
 /// MARK: DJOnlineUploadCellDelegate 弹出文本输入框
 - (void)userWantBeginInputWithModel:(DJOnlineUploadTableModel *)model cell:(DJOnlineUploadCell *)cell{
-    DJInputContentViewController *vc = DJInputContentViewController.new;
-    vc.model = model;
-    vc.delegate = self;
-    vc.pushWay = LGBaseViewControllerPushWayModal;
-    LGBaseNavigationController *nav = [LGBaseNavigationController.alloc initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+    [self presentViewController:[DJInputContentViewController modalInputvcWithModel:model delegate:self] animated:YES completion:nil];
 }
 /// MARK: DJInputContentViewControllerDelegate 输入文本代理回调
 - (void)inputContentViewController:(DJInputContentViewController *)vc model:(DJOnlineUploadTableModel *)model{
@@ -233,7 +228,6 @@ DJInputContentViewControllerDelegate>
         DJOnlineUploadAddImgCell *addImageCell = (DJOnlineUploadAddImgCell *)cell;
         addImageCell.photoView = _cellSelectedImageView;
     }
-    
     if ([cell isMemberOfClass:[DJOnlineUploadAddCoverCell class]]) {
         DJOnlineUploadAddCoverCell *addCoverCell = (DJOnlineUploadAddCoverCell *)cell;
         addCoverCell.delegate = self;
@@ -324,7 +318,7 @@ DJInputContentViewControllerDelegate>
         }
             break;
         case DJSelectPeopleTypeHost:{
-            peoples = [NSString stringWithFormat:@"%ld",model.seqid];
+            peoples = [NSString stringWithFormat:@"%zd",model.seqid];
             peopleNames = model.content;
         }
             break;

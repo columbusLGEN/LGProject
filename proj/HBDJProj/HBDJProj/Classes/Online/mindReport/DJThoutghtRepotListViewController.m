@@ -9,7 +9,7 @@
 #import "DJThoutghtRepotListViewController.h"
 #import "DJThoutghtRepotListModel.h"
 #import "DJThoutghtRepotListTableViewCell.h"
-#import "UCUploadViewController.h"
+#import "DJUploadMindReportController.h"
 #import "DJOnlineNetorkManager.h"
 
 @interface DJThoutghtRepotListViewController ()
@@ -26,7 +26,7 @@
 }
 - (void)getNetDataWithOffset:(NSInteger)offset{
     /// request data
-    NSLog(@"self.listtype: %ld",self.listType);
+    NSLog(@"self.listtype: %zd",self.listType);
     
     /**
      listType
@@ -84,8 +84,7 @@
 
 #pragma mark - target
 - (void)create{
-    UCUploadViewController *upvc = UCUploadViewController.new;
-    upvc.uploadType = UploadTyleMindReport;
+    DJUploadMindReportController *upvc = DJUploadMindReportController.new;
     upvc.pushWay = LGBaseViewControllerPushWayModal;
     LGBaseNavigationController *nav = [LGBaseNavigationController.alloc initWithRootViewController:upvc];
     [self presentViewController:nav animated:YES completion:nil];

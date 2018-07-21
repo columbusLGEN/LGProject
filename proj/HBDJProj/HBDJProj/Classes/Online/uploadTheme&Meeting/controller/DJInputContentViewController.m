@@ -17,6 +17,15 @@ UITextViewDelegate>
 
 @implementation DJInputContentViewController
 
++ (LGBaseNavigationController *)modalInputvcWithModel:(id)model delegate:(id)delegate{
+    DJInputContentViewController *vc = self.new;
+    vc.model = model;
+    vc.delegate = delegate;
+    vc.pushWay = LGBaseViewControllerPushWayModal;
+    LGBaseNavigationController *nav = [LGBaseNavigationController.alloc initWithRootViewController:vc];
+    return nav;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
