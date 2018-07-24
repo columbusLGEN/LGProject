@@ -12,20 +12,23 @@
 #import "DJUploadMindReportTextCell.h"
 #import "DJUploadMindReportCoverCell.h"
 #import "DJUploadMindReportImageCell.h"
-#import "HXPhotoPicker.h"
 #import "DJInputContentViewController.h"
+#import "DJOnlineNetorkManager.h"
+#import "DJUploadDataManager.h"
 
 @interface DJUploadMindReportController ()<
-HXPhotoViewDelegate,
 DJInputContentViewControllerDelegate,
 DJUploadMindReportCoverCellDelegate>
-@property (strong,nonatomic) NSMutableDictionary *formData;
 
 @property (strong,nonatomic) HXPhotoView *cellSelectedImageView;
-@property (strong,nonatomic) HXPhotoManager *hxPhotoManager;
-
 @property (strong,nonatomic) HXPhotoManager *nineImageManager;
+@property (strong,nonatomic) HXPhotoManager *coverManager;
+
 @property (strong,nonatomic) NSURL *coverFileUrl;
+/** 记录了所选照片的本地临时路径 */
+@property (strong,nonatomic) NSMutableArray *tempImageUrls;
+
+@property (strong,nonatomic) DJUploadDataManager *uploadDataManager;
 
 @end
 
@@ -57,64 +60,55 @@ DJUploadMindReportCoverCellDelegate>
     self.dataArray = [DJUploadMindReportLineModel loadLocalPlistWithPlistName:@"DJOnlineUploadConfig"];
     [self.tableView reloadData];
     
-    _hxPhotoManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhoto];
     
-    _cellSelectedImageView = [HXPhotoView.alloc initWithManager:_hxPhotoManager];
-    _cellSelectedImageView.delegate = self;
+    /// MARK: 选择图片 & 上传图 管理者
+    _uploadDataManager = DJUploadDataManager.new;
     
-    _formData = NSMutableDictionary.new;
-    
+    _coverManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhoto];
     _nineImageManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhoto];
+    _cellSelectedImageView = [HXPhotoView.alloc initWithManager:_nineImageManager];
+    _cellSelectedImageView.delegate = _uploadDataManager;
+    
 }
 
 - (void)uploadData{
-    NSLog(@"发送数据: 开始上传");
-}
-
-#pragma mark - HXPhotoViewDelegate
-/// MARK: 选择图片回调
-- (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal{
     
+    /// TODO: 上传表单数据
+    [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
+        /// TODO: 上传数据前的判空校验 根据formData, 如果用户不选图片呢？
+        
+        DJUploadMindReportLineModel *imageLineModle = [self.dataArray lastObject];
+        [_uploadDataManager setUploadValue:[imageUrls componentsJoinedByString:@","] key:imageLineModle.uploadJsonKey];
+        
+        NSLog(@"formData: %@",formData);
+        
+        /// TODO: 发送上传数据请求
+        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:[formData mutableCopy] ugctype:(self.listType - 4) filetype:1 success:^(id responseObj) {
+            NSLog(@"上传成功: %@",responseObj);
+            [self baseViewControllerDismiss];
+            
+        } failure:^(id failureObj) {
+            NSLog(@"上传失败: %@",failureObj);
+            
+        }];
+        
+    }];
 }
 
 /// MARK: DJOnlineUploadAddCoverCell 添加封面 代理方法
 - (void)addCoverClick:(DJUploadMindReportCoverCell *)cell{
-    NSLog(@"cell: %@",cell);
-    NSLog(@"cell.model: %@",cell.model);
-    [self hx_presentAlbumListViewControllerWithManager:_nineImageManager done:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
-        
-        [HXPhotoTools selectListWriteToTempPath:photoList requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
-        } completion:^(NSArray<NSURL *> *allUrl, NSArray<NSURL *> *imageUrls, NSArray<NSURL *> *videoUrls) {
-            /// 选择完成之后需要做  件事
-            /// 1.更新UI
-            /// 2.保存封面图片的本地临时路径
-            if (imageUrls.count) {
-                _coverFileUrl = imageUrls[0];
-
-//                /// MARK: 上传封面
-//                [self uploadImageWithLocalFileUrl:_coverFileUrl uploadProgress:^(NSProgress *uploadProgress) {
-//                    NSLog(@"上传封面: %f",
-//                          (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-//                } success:^(NSString *imgUrl_sub) {
-//                    NSLog(@"上传封面成功: %@",imgUrl_sub);
-//                    /// 主题党日 index == 7，三会一课 index == 8
-//                    /// 子类分别实现
-//                    [self setCoverFormDataWithUrl:imgUrl_sub];
-//                } failure:^(id uploadFailure) {
-//                    NSLog(@"上传封面失败: %@",uploadFailure);
-//                }];
-//
-                cell.model.coverBackUrl = _coverFileUrl;
-                [self.tableView reloadData];
-                
-            }
-        } error:^{
-            NSLog(@"selectPhotoError");
-        }];
-        
-    } cancel:^(HXAlbumListViewController *viewController) {
-        
+    [_uploadDataManager presentAlbunListViewControllerWithViewController:self manager:_coverManager selectSuccess:^(NSURL *coverFileUrl) {
+        cell.model.coverBackUrl = coverFileUrl;
+        [self.tableView reloadData];
+    } uploadProgress:^(NSProgress *uploadProgress) {
+        NSLog(@"思想汇报&述职述廉_上传封面: %f",
+              (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(NSString *imgUrl_sub) {
+        [_uploadDataManager setUploadValue:imgUrl_sub key:cell.model.uploadJsonKey];
+    } failure:^(id uploadFailure) {
+        NSLog(@"思想汇报&述职述廉_上传封面失败: %@",uploadFailure);
     }];
+    
 }
 
 #pragma mark - Table view data source
@@ -149,10 +143,14 @@ DJUploadMindReportCoverCellDelegate>
 
 /// MARK: 文本输入控制器代理回调
 - (void)inputContentViewController:(DJInputContentViewController *)vc model:(DJOnlineUploadTableModel *)model{
-    
-    [_formData setValue:model.content forKey:model.uploadJsonKey];
+    /// MARK: 设置表单数据
+    [_uploadDataManager setUploadValue:model.content key:model.uploadJsonKey];
     [self.tableView reloadData];
 }
+#pragma mark - 私有方法
 
+- (void)baseViewControllerDismiss{
+    [super baseViewControllerDismiss];
+}
 
 @end

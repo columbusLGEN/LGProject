@@ -61,6 +61,15 @@ HPNetworkFailureViewDelegate>
 
 /// 获取数据
 - (void)loadNetData{
+    
+    /// TODO: 在线首页获取数据优化
+    // 1.获取当前时间戳
+    // 2.将当前时间戳保存到本地
+    // 3.获取本地时间戳
+    // 4.获取 （当前 - 本地） 的差值
+    // 5.if 本地值存在 || 差值 >= 86400 --> 执行请求并且执行2, 并将数据缓存到本地
+    // 6.else 获取本地缓存数据
+    
     [[DJOnlineNetorkManager sharedInstance] onlineHomeConfigSuccess:^(id responseObj) {
         [self.onlineController.collectionView.mj_header endRefreshing];
         [self removeEmptyView];

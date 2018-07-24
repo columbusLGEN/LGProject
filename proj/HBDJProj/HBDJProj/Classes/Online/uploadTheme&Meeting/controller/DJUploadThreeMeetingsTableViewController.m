@@ -55,8 +55,9 @@ DJSelectMeetingTagViewControllerDelegate>
 }
 
 /// 上传
-- (void)requestUploadSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [DJOnlineNetorkManager.sharedInstance addSessionsWithFormdict:self.formDataDict success:success failure:failure];
+- (void)requestUploadWithFormData:(NSDictionary *)formData success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [DJOnlineNetorkManager.sharedInstance addThemeWithFormdict:[formData mutableCopy] success:success failure:failure];
+    
 }
 
 + (NSArray *)tagStrings{

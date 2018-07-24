@@ -24,8 +24,8 @@
 #import "DJInputContentViewController.h"
 
 #import "LGSelectImgManager.h"
-#import "HXPhotoPicker.h"
 #import "DJOnlineNetorkManager.h"
+#import "DJUploadDataManager.h"
 
 @interface DJOnlineUplaodTableViewController ()<
 DJSelectDateViewControllerDelegate,
@@ -35,12 +35,11 @@ DJSelectMeetingTagViewControllerDelegate,
 DJOnlineUploadCellDelegate,
 DJInputContentViewControllerDelegate>
 
-/** 选择图片管理者 */
-@property (strong,nonatomic) LGSelectImgManager *simgr;
+/** 选择/上传图片管理者 */
+@property (strong,nonatomic) DJUploadDataManager *uploadDataManager;
 
-@property (strong,nonatomic) HXPhotoManager *coverSelectMgr;
-@property (strong,nonatomic) NSURL *coverFileUrl;
-
+@property (strong,nonatomic) HXPhotoManager *coverManager;
+@property (strong,nonatomic) HXPhotoManager *nineImageManager;
 @property (strong,nonatomic) HXPhotoView *cellSelectedImageView;
 
 @property (strong,nonatomic) NSArray *allPeople;
@@ -59,6 +58,12 @@ DJInputContentViewControllerDelegate>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configUI];
+    [self getOrganizeUser];
+    
+}
+
+- (void)configUI{
     
     [self.tableView registerClass:[DJOnlineUploadCell class] forCellReuseIdentifier:inputTextCell];
     [self.tableView registerClass:[DJOnlineUploadAddPeopleCell class] forCellReuseIdentifier:addPeopleCell];
@@ -70,9 +75,24 @@ DJInputContentViewControllerDelegate>
     UIBarButtonItem *send = [[UIBarButtonItem alloc] initWithTitle:@"上传" style:UIBarButtonItemStyleDone target:self action:@selector(uploadData)];
     self.navigationItem.rightBarButtonItem = send;
     
-    _cellSelectedImageView = [[HXPhotoView alloc] initWithManager:self.simgr.hxPhotoManager];
-    _cellSelectedImageView.delegate = self.simgr;
+    /// 选择/上传 图片管理者封装
+    _uploadDataManager = DJUploadDataManager.new;
     
+    _coverManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
+    //    _coverSelectMgr.configuration.singleSelected = YES;
+    //    _coverSelectMgr.configuration.albumListTableView = ^(UITableView *tableView) {
+    //    };
+    //    _coverSelectMgr.configuration.singleJumpEdit = YES;
+    //    _coverSelectMgr.configuration.movableCropBox = YES;
+    //    _coverSelectMgr.configuration.movableCropBoxEditSize = YES;
+    
+    _nineImageManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
+    _cellSelectedImageView = [[HXPhotoView alloc] initWithManager:_nineImageManager];
+    _cellSelectedImageView.delegate = _uploadDataManager;
+}
+
+- (void)getOrganizeUser{
+    /// MARK: 获取机构的人员
     NSMutableArray *arrMutable = NSMutableArray.new;
     [DJOnlineNetorkManager.sharedInstance frontUserinfoSuccess:^(id responseObj) {
         NSArray *array = responseObj;
@@ -106,92 +126,40 @@ DJInputContentViewControllerDelegate>
 //    }
     
     /// MARK: 上传内容图片
-    /// 如何保证正确的图片顺序？
-    __block NSInteger successCount = 0;
-    __block NSInteger failureCount = 0;
-    
-    /** 上传图片完成block */
-    NSMutableArray *imageUrls = [NSMutableArray arrayWithArray:self.simgr.tempImageUrls.copy];
-    void (^uploadImageCompleteBlock)(NSDictionary *urls) = ^(NSDictionary *urls){
-        for (NSInteger i = 0; i < imageUrls.count; i++) {
-            imageUrls[i] = urls[[NSString stringWithFormat:@"%ld",i]];
-        }
+    [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
+        
+        /// TODO: 上传数据之前数据校验，如果用户选图片，如何上传？
+        
         [self setImagesFormDataWithArray:imageUrls.copy];
         
         /// MARK: 发送上传数据请求
-        [self requestUploadSuccess:^(id responseObj) {
+        [self requestUploadWithFormData:formData success:^(id responseObj) {
             NSLog(@"上传成功: %@",responseObj);
             [self.navigationController popViewControllerAnimated:YES];
-            
         } failure:^(id failureObj) {
             NSLog(@"上传失败: %@",failureObj);
         }];
-
-    };
-    
-    NSMutableDictionary *urlDict = NSMutableDictionary.new;
-    for (NSInteger i = 0; i < self.simgr.tempImageUrls.count; i++) {
-        NSURL *localUrl = self.simgr.tempImageUrls[i];
-        
-        [self uploadImageWithLocalFileUrl:localUrl uploadProgress:^(NSProgress *uploadProgress) {
-            NSLog(@"%zd: %f",i,(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-            
-        } success:^(NSString *imgUrl_sub) {
-            [urlDict setValue:imgUrl_sub forKey:[NSString stringWithFormat:@"%zd",i]];
-            successCount++;
-            if ((successCount + failureCount) == self.simgr.tempImageUrls.count) {
-                uploadImageCompleteBlock(urlDict.copy);
-            }
-            
-        } failure:^(id uploadFailure) {
-            [urlDict setValue:[NSString stringWithFormat:@"第%zd张图上传失败",i] forKey:[NSString stringWithFormat:@"%ld",i]];
-            failureCount++;
-            
-            if ((successCount + failureCount) == self.simgr.tempImageUrls.count) {
-                uploadImageCompleteBlock(urlDict.copy);
-            }
-            
-        }];
-    }
+    }];
         
 }
 
 /// MARK: DJOnlineUploadAddCoverCell 添加封面 代理方法
 - (void)addCoverClick:(DJOnlineUploadAddCoverCell *)cell{
     
-    [self hx_presentAlbumListViewControllerWithManager:self.coverSelectMgr done:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
-        
-        [HXPhotoTools selectListWriteToTempPath:photoList requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
-        } completion:^(NSArray<NSURL *> *allUrl, NSArray<NSURL *> *imageUrls, NSArray<NSURL *> *videoUrls) {
-            /// 选择完成之后需要做  件事
-            /// 1.更新UI
-            /// 2.保存封面图片的本地临时路径
-            if (imageUrls.count) {
-                _coverFileUrl = imageUrls[0];
-                
-                /// MARK: 上传封面
-                [self uploadImageWithLocalFileUrl:_coverFileUrl uploadProgress:^(NSProgress *uploadProgress) {
-                    NSLog(@"上传封面: %f",
-                          (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-                } success:^(NSString *imgUrl_sub) {
-                    NSLog(@"上传封面成功: %@",imgUrl_sub);
-                    /// 主题党日 index == 7，三会一课 index == 8
-                    /// 子类分别实现
-                    [self setCoverFormDataWithUrl:imgUrl_sub];
-                } failure:^(id uploadFailure) {
-                    NSLog(@"上传封面失败: %@",uploadFailure);
-                }];
-                
-                cell.model.coverBackUrl = _coverFileUrl;
-                [self.tableView reloadData];
-            }
-        } error:^{
-            NSLog(@"selectPhotoError");
-        }];
-        
-    } cancel:^(HXAlbumListViewController *viewController) {
+    /// MARK: 选择并上传封面
+    [_uploadDataManager presentAlbunListViewControllerWithViewController:self manager:_coverManager selectSuccess:^(NSURL *coverFileUrl) {
+        cell.model.coverBackUrl = coverFileUrl;
+        [self.tableView reloadData];
+    } uploadProgress:^(NSProgress *uploadProgress) {
+        NSLog(@"上传封面: %f",
+              (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(NSString *imgUrl_sub) {
+        /// 设置表单数据
+        [self setCoverFormDataWithUrl:imgUrl_sub];
+    } failure:^(id uploadFailure) {
         
     }];
+
 }
 
 /// MARK: DJOnlineUploadCellDelegate 弹出文本输入框
@@ -200,7 +168,7 @@ DJInputContentViewControllerDelegate>
 }
 /// MARK: DJInputContentViewControllerDelegate 输入文本代理回调
 - (void)inputContentViewController:(DJInputContentViewController *)vc model:(DJOnlineUploadTableModel *)model{
-    [self.formDataDict setValue:model.content forKey:model.uploadJsonKey];
+    [_uploadDataManager setUploadValue:model.content key:model.uploadJsonKey];
     [self.tableView reloadData];
 }
 
@@ -209,7 +177,7 @@ DJInputContentViewControllerDelegate>
 - (void)setFormDataDictValue:(nonnull id)value indexPath:(NSIndexPath *)indexPath{
     DJOnlineUploadTableModel *model = self.dataArray[indexPath.row];
     NSString *key = model.uploadJsonKey;
-    [self.formDataDict setValue:value forKey:key];
+    [_uploadDataManager setUploadValue:value key:key];
 }
 
 #pragma mark - delegate
@@ -297,7 +265,7 @@ DJInputContentViewControllerDelegate>
             /// 出席人员
             [self.peoplePresent addObject:@(model.seqid)];
             [self.peoplePresentNames addObject:model.name];
-        }
+        }   
         if (model.select_absent) {
             /// 缺席人员
             [self.peopleAbsent addObject:@(model.seqid)];
@@ -318,12 +286,14 @@ DJInputContentViewControllerDelegate>
         }
             break;
         case DJSelectPeopleTypeHost:{
-            peoples = [NSString stringWithFormat:@"%zd",model.seqid];
+            peoples = [NSString stringWithFormat:@"%ld",(long)model.seqid];
             peopleNames = model.content;
         }
             break;
     }
-    [self.formDataDict setValue:peoples forKey:model.uploadJsonKey]; /// 提交给后台的数据 人的id
+    NSLog(@"peoples: %@",peoples);
+    NSLog(@"peopleNames: %@",peopleNames);
+    [_uploadDataManager setUploadValue:peoples key:model.uploadJsonKey];/// 提交给后台的数据 人的id
     model.content = peopleNames;/// 显示在页面上的数据 name
     /// 更新cell中的数据
     [self.tableView reloadData];
@@ -360,30 +330,6 @@ DJInputContentViewControllerDelegate>
 }
 
 #pragma mark - lazy load & getter
-- (LGSelectImgManager *)simgr{
-    if (!_simgr) {
-        _simgr = LGSelectImgManager.new;
-    }
-    return _simgr;
-}
-- (NSMutableDictionary *)formDataDict{
-    if (!_formDataDict) {
-        _formDataDict = NSMutableDictionary.new;
-    }
-    return _formDataDict;
-}
-- (HXPhotoManager *)coverSelectMgr {
-    if (!_coverSelectMgr) {
-        _coverSelectMgr = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
-        _coverSelectMgr.configuration.singleSelected = YES;
-        _coverSelectMgr.configuration.albumListTableView = ^(UITableView *tableView) {
-        };
-        _coverSelectMgr.configuration.singleJumpEdit = YES;
-        _coverSelectMgr.configuration.movableCropBox = YES;
-        _coverSelectMgr.configuration.movableCropBoxEditSize = YES;
-    }
-    return _coverSelectMgr;
-}
 - (NSMutableArray *)peoplePresent{
     if (!_peoplePresent) {
         _peoplePresent = NSMutableArray.new;
@@ -421,7 +367,7 @@ DJInputContentViewControllerDelegate>
 }
 
 /// 给子类实现
-- (void)requestUploadSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+- (void)requestUploadWithFormData:(NSDictionary *)formData success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     
 }
 - (void)setCoverFormDataWithUrl:(NSString *)url{

@@ -15,9 +15,9 @@
 
 /// MARK: 需要暴露给子类的
 /** 上传时需要提交的 表单数据 */ 
-@property (strong,nonatomic) NSMutableDictionary *formDataDict;
+//@property (strong,nonatomic) NSMutableDictionary *formDataDict;
 - (void)setCoverFormDataWithUrl:(NSString *)url;
 - (void)setImagesFormDataWithArray:(NSArray *)imgUrls;
-- (void)requestUploadSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+- (void)requestUploadWithFormData:(NSDictionary *)formData success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 @end

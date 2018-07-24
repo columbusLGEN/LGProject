@@ -32,7 +32,7 @@
 		<key>lineType</key>
 		<integer>2</integer>
 		<key>uploadJsonKey</key>
-		<string>fileurls</string>
+		<string>fileurl</string>
 	</dict>
 </array>
 </plist>

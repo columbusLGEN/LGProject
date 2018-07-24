@@ -30,7 +30,6 @@
 - (HXPhotoManager *)hxPhotoManager {
     if (!_hxPhotoManager) {
         _hxPhotoManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
-
     }
     return _hxPhotoManager;
 }

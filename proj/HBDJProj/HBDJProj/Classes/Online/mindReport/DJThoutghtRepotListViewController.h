@@ -11,6 +11,12 @@
 #import "LGBaseTableViewController.h"
 
 @interface DJThoutghtRepotListViewController : LGBaseTableViewController
+
+/**
+ listType
+ 思想汇报 -- 6
+ 述职述廉 -- 7
+ */
 @property (assign,nonatomic) OnlineModelType listType;
 
 @end

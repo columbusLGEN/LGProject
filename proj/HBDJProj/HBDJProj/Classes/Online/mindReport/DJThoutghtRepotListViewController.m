@@ -26,7 +26,7 @@
 }
 - (void)getNetDataWithOffset:(NSInteger)offset{
     /// request data
-    NSLog(@"self.listtype: %zd",self.listType);
+    NSLog(@"self.listtype: %ld",self.listType);
     
     /**
      listType
@@ -36,7 +36,7 @@
     /**
      DJOnlineUGCType
         思想汇报 -- 2
-        数值数量 -- 3
+        述职述廉 -- 3
      */
     [DJOnlineNetorkManager.sharedInstance frontUgcWithType:(self.listType - 4) offset:offset length:10 success:^(id responseObj) {
         NSArray *array = responseObj;
@@ -86,6 +86,7 @@
 - (void)create{
     DJUploadMindReportController *upvc = DJUploadMindReportController.new;
     upvc.pushWay = LGBaseViewControllerPushWayModal;
+    upvc.listType = _listType;
     LGBaseNavigationController *nav = [LGBaseNavigationController.alloc initWithRootViewController:upvc];
     [self presentViewController:nav animated:YES completion:nil];
 }

@@ -34,9 +34,11 @@
     NSString *urls_string = [imgUrls componentsJoinedByString:@","];
     [self setFormDataDictValue:urls_string indexPath:[NSIndexPath indexPathForRow:8 inSection:0]];
 }
-/// shangchaun 
-- (void)requestUploadSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [DJOnlineNetorkManager.sharedInstance addThemeWithFormdict:self.formDataDict success:success failure:failure];
+/// 上传
+- (void)requestUploadWithFormData:(NSDictionary *)formData success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [DJOnlineNetorkManager.sharedInstance addThemeWithFormdict:[formData mutableCopy] success:success failure:failure];
+
 }
+
 
 @end

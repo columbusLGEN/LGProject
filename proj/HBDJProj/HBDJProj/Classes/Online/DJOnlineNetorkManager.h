@@ -36,6 +36,17 @@ typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
 /** 获取主题党日列表数据 */
 - (void)frontThemesWithOffset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
+/**
+ 上传思想汇报，述职述廉，党员舞台
+
+ @param formDict json字典
+ @param ugctype 1党员舞台; 2思想汇报; 3述职述廉
+ @param filetype 1图片; 2视频; 3音频; 4文本
+ @param success 成功回调
+ @param failure 失败回调
+ */
+- (void)frontUgc_addWithFormData:(NSMutableDictionary *)formDict ugctype:(NSInteger)ugctype filetype:(NSInteger)filetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
 /** 上传三会一课 */
 - (void)addSessionsWithFormdict:(NSMutableDictionary *)formDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**

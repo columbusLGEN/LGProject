@@ -14,4 +14,6 @@
 @property (assign,nonatomic) LGBaseViewControllerPushWay pushWay;
 @property (strong,nonatomic) NSArray *dataArray;
 
+- (void)baseViewControllerDismiss;
+
 @end

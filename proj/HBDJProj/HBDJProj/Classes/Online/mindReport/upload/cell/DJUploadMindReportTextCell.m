@@ -35,7 +35,7 @@
         _content = content;
         [self.contentView addSubview:_content];
         _content.textColor = UIColor.EDJGrayscale_11;
-        _content.font = [UIFont systemFontOfSize:15];
+        _content.font = [UIFont systemFontOfSize:17];
         _content.textAlignment = NSTextAlignmentLeft;
         _content.numberOfLines = 0;
         
