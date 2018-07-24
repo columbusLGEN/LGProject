@@ -16,7 +16,15 @@ typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
 
 @interface DJOnlineNetorkManager : NSObject
 
-/** 确认投票接口 */
+
+/**
+ 提交投票结果接口
+
+ @param voteid 投票的主题id
+ @param votedetailid 选项id
+ @param success 成功回调
+ @param failure 失败回调
+ */
 - (void)frontVotes_addWithVoteid:(NSInteger)voteid votedetailid:(NSArray *)votedetailid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /** 投票详情,标题，选项等 */

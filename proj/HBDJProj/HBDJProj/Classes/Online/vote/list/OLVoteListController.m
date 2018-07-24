@@ -65,8 +65,6 @@
             for (NSInteger i = 0; i < array.count; i++) {
                 OLVoteListModel *model = [OLVoteListModel mj_objectWithKeyValues:array[i]];
                 [arrMu addObject:model];
-//                model.isVote;
-//                model.isEnd;
             }
             
             self.dataArray = arrMu.copy;

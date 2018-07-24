@@ -10,4 +10,24 @@
 
 @implementation OLVoteListModel
 
+- (NSString *)starttime{
+    if (_starttime.length > 10) {
+        _starttime = [_starttime substringToIndex:11];
+    }
+    return _starttime;
+}
+
+//- (BOOL)isEnd{
+//    
+//    NSDate *date = [NSDate date];
+//    NSDateFormatter *formatter = NSDateFormatter.new;
+//    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//    NSString *currentDate = [formatter stringFromDate:date];
+//
+//    if ([_endtime compare:currentDate] == -1) {
+//        return YES;
+//    }
+//    return NO;
+//}
+
 @end

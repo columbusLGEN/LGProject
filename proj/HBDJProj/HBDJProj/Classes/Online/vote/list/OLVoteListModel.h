@@ -10,20 +10,27 @@
 
 @interface OLVoteListModel : LGBaseModel
 
-//{"seqid":1,"title":"习近平在庆祝中国人民解放军建军90周年阅兵时
-//    的讲话","cover":"group1/M00/00/0C/CgoKBFq5uYaAMPPoAAFIlkwhY8w124.jpg","source":"
-//    习近平","modaltype":"2","classid":""}
-
 @property (copy,nonatomic) NSString *title;
-@property (copy,nonatomic) NSString *testTime;
+@property (copy,nonatomic) NSString *starttime;
+@property (copy,nonatomic) NSString *endtime;
+@property (copy,nonatomic) NSString *createdtime;
 @property (strong,nonatomic) NSString *source;
 /** ??? */
 @property (assign,nonatomic) NSInteger modaltype;
 
-//TODO: 缺 time
+/**
+ 1多选
+ 0单选
+ */
+@property (assign,nonatomic) BOOL ismultiselect;
 
-/** 是否已经投票 */
-@property (assign,nonatomic) BOOL isVote;
+/**
+ 0 未投票
+ 1 投票完成
+ 2 未开始
+ 3 已经结束
+ */
+@property (assign,nonatomic) NSInteger votestatus;
 /** 活动是否结束 */
 @property (assign,nonatomic) BOOL isEnd;
 

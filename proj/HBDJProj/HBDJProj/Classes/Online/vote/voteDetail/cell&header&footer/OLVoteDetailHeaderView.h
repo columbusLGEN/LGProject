@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class OLVoteDetailHeaderModel;
+@class OLVoteDetailHeaderModel,OLVoteDetailHeaderView;
+
+@protocol OLVoteDetailHeaderViewDelegate <NSObject>
+- (void)voteDetailHeaderReCallHeight:(OLVoteDetailHeaderView *)header;
+
+@end
 
 @interface OLVoteDetailHeaderView : UIView
 + (instancetype)headerForVoteDetail;
 @property (strong,nonatomic) OLVoteDetailHeaderModel *model;
+@property (weak,nonatomic) id<OLVoteDetailHeaderViewDelegate> delegate;
+- (CGFloat)headerHeight;
 
 @end

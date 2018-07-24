@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,26 +18,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="575" height="191.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8m-gE-zKD">
-                        <rect key="frame" x="54" y="21" width="54.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-1-6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbb-Ec-Dxg">
-                        <rect key="frame" x="54" y="52" width="64" height="18"/>
+                        <rect key="frame" x="54" y="51.5" width="64" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已投票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsr-tm-4tt">
                         <rect key="frame" x="508" y="85.5" width="52" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="52" id="I5n-Ql-TBg"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ol_vote_list_icon" translatesAutoresizingMaskIntoConstraints="NO" id="r3E-r0-ig3">
                         <rect key="frame" x="15" y="20" width="29" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="29" id="WDG-L6-gND"/>
+                        </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIv-oq-mac">
                         <rect key="frame" x="15" y="190.5" width="545" height="1"/>
@@ -46,6 +46,12 @@
                             <constraint firstAttribute="height" constant="1" id="3nK-FF-0CT"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8m-gE-zKD">
+                        <rect key="frame" x="54" y="20.5" width="439" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Rbb-Ec-Dxg" firstAttribute="top" secondItem="Y8m-gE-zKD" secondAttribute="bottom" constant="10" id="11o-ar-oOJ"/>
@@ -53,6 +59,7 @@
                     <constraint firstItem="Rbb-Ec-Dxg" firstAttribute="leading" secondItem="Y8m-gE-zKD" secondAttribute="leading" id="7Ju-Q8-PTm"/>
                     <constraint firstItem="PIv-oq-mac" firstAttribute="leading" secondItem="0ZR-iV-v2n" secondAttribute="leading" constant="15" id="Faa-1e-B7k"/>
                     <constraint firstItem="nsr-tm-4tt" firstAttribute="centerY" secondItem="0ZR-iV-v2n" secondAttribute="centerY" id="IEi-xa-JRk"/>
+                    <constraint firstItem="nsr-tm-4tt" firstAttribute="leading" secondItem="Y8m-gE-zKD" secondAttribute="trailing" constant="15" id="KhA-10-9Ch"/>
                     <constraint firstItem="r3E-r0-ig3" firstAttribute="top" secondItem="0ZR-iV-v2n" secondAttribute="top" constant="20" id="QSo-BI-sEz"/>
                     <constraint firstItem="r3E-r0-ig3" firstAttribute="leading" secondItem="0ZR-iV-v2n" secondAttribute="leading" constant="15" id="aO8-3z-5Qv"/>
                     <constraint firstItem="Y8m-gE-zKD" firstAttribute="centerY" secondItem="r3E-r0-ig3" secondAttribute="centerY" id="i49-qy-fbg"/>

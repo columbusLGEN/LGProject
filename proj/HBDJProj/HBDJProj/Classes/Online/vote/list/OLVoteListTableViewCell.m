@@ -21,20 +21,21 @@
 
 - (void)setModel:(OLVoteListModel *)model{
     _model = model;
-    _title.text = model.title;
-    _time.text = model.testTime;
-    if (model.isEnd) {
+    if (model.votestatus == 1) {
+        _vote.text = @"已投票";
+        _vote.textColor = [UIColor EDJGrayscale_66];
+    }else if (model.votestatus == 0){
+        _vote.text = @"待投票";
+        _vote.textColor = [UIColor EDJColor_57C6FF];
+    }else if(model.votestatus == 3){
         _vote.text = @"已结束";
         _vote.textColor = [UIColor EDJGrayscale_C2];
     }else{
-        if (model.isVote) {
-            _vote.text = @"已投票";
-            _vote.textColor = [UIColor EDJGrayscale_66];
-        }else{
-            _vote.text = @"待投票";
-            _vote.textColor = [UIColor EDJColor_57C6FF];
-        }
+        /// 未开始
+        
     }
+    _title.text = model.title;
+    _time.text = model.starttime;
 }
 
 - (void)awakeFromNib {

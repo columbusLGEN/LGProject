@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,19 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="487" height="160.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgu-3x-EUZ">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgu-3x-EUZ">
                         <rect key="frame" x="20" y="70" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="33C-zU-hnY"/>
                             <constraint firstAttribute="height" constant="20" id="Riv-9X-YOv"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="ol_test_option_icon_normal"/>
+                        <state key="selected" image="ol_test_option_icon_user_wrong"/>
                         <connections>
                             <action selector="voteClick:" destination="EkY-Lx-h2B" eventType="touchUpInside" id="UC8-Ed-6z5"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="“红色之旅”爱国主义主题教育活动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhZ-iq-FSg">
-                        <rect key="frame" x="48" y="70" width="424" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="“红色之旅”爱国主义主题教育活动" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhZ-iq-FSg">
+                        <rect key="frame" x="48" y="15" width="424" height="130.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -40,8 +42,10 @@
                     <constraint firstItem="Tgu-3x-EUZ" firstAttribute="centerY" secondItem="5Vh-ft-545" secondAttribute="centerY" id="9AR-eV-sDv"/>
                     <constraint firstItem="Tgu-3x-EUZ" firstAttribute="leading" secondItem="5Vh-ft-545" secondAttribute="leading" constant="20" id="FHP-eB-Faj"/>
                     <constraint firstItem="dhZ-iq-FSg" firstAttribute="centerY" secondItem="5Vh-ft-545" secondAttribute="centerY" id="UeZ-7B-Mg4"/>
+                    <constraint firstAttribute="bottom" secondItem="dhZ-iq-FSg" secondAttribute="bottom" constant="15" id="Y9P-xB-Lf0"/>
                     <constraint firstAttribute="trailing" secondItem="dhZ-iq-FSg" secondAttribute="trailing" constant="15" id="c9O-AX-9FA"/>
                     <constraint firstItem="dhZ-iq-FSg" firstAttribute="leading" secondItem="Tgu-3x-EUZ" secondAttribute="trailing" constant="8" id="hhJ-mT-E1H"/>
+                    <constraint firstItem="dhZ-iq-FSg" firstAttribute="top" secondItem="5Vh-ft-545" secondAttribute="top" constant="15" id="xcF-Tp-xvx"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -51,4 +55,8 @@
             <point key="canvasLocation" x="-32.5" y="101.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ol_test_option_icon_normal" width="14" height="14"/>
+        <image name="ol_test_option_icon_user_wrong" width="14" height="14"/>
+    </resources>
 </document>

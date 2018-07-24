@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;争当八先锋&quot;主题教育活动" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoM-E7-n6t">
-                        <rect key="frame" x="15" y="20" width="369" height="18"/>
+                        <rect key="frame" x="15" y="20" width="369" height="43"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -51,6 +51,7 @@
                     <constraint firstAttribute="bottom" secondItem="vnL-F4-NnL" secondAttribute="bottom" id="WhI-m7-rgS"/>
                     <constraint firstItem="LoM-E7-n6t" firstAttribute="top" secondItem="auk-8x-VeD" secondAttribute="top" constant="20" id="cON-gl-2fu"/>
                     <constraint firstItem="gSI-GD-qTY" firstAttribute="centerY" secondItem="6UK-ZG-0Vr" secondAttribute="centerY" id="gNt-V2-R3f"/>
+                    <constraint firstItem="6UK-ZG-0Vr" firstAttribute="top" secondItem="LoM-E7-n6t" secondAttribute="bottom" constant="15" id="m7b-n4-BWW"/>
                     <constraint firstItem="6UK-ZG-0Vr" firstAttribute="trailing" secondItem="LoM-E7-n6t" secondAttribute="trailing" id="oLh-0d-QhT"/>
                     <constraint firstItem="6UK-ZG-0Vr" firstAttribute="leading" secondItem="LoM-E7-n6t" secondAttribute="leading" id="pVi-in-LWs"/>
                     <constraint firstItem="vnL-F4-NnL" firstAttribute="centerX" secondItem="auk-8x-VeD" secondAttribute="centerX" id="s6c-Jm-o6c"/>

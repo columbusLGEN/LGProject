@@ -9,8 +9,10 @@
 #import "OLVoteDetailNormalTableViewCell.h"
 #import "OLVoteDetailModel.h"
 
+
+static NSString * statusKey = @"status";
+
 @interface OLVoteDetailNormalTableViewCell ()
-@property (strong,nonatomic) OLVoteDetailModel *subModel;
 @property (weak, nonatomic) IBOutlet UIButton *voteBtn;
 @property (weak, nonatomic) IBOutlet UILabel *content;
 
@@ -18,18 +20,6 @@
 
 @implementation OLVoteDetailNormalTableViewCell
 
-- (void)setModel:(OLVoteDetailModel *)model{
-    _subModel = model;
-    if (model.status == VoteModelStatusVoted || model.status == VoteModelStatusSelected) {
-        _content.textColor = [UIColor EDJMainColor];
-        _voteBtn.selected = YES;
-        self.backgroundColor = [UIColor EDJGrayscale_FA];
-    }else{
-        _content.textColor = [UIColor blackColor];
-        _voteBtn.selected = NO;
-        self.backgroundColor = [UIColor whiteColor];
-    }
-}
 - (IBAction)voteClick:(UIButton *)sender {
     if (sender.isSelected) {
         sender.selected = NO;
@@ -39,16 +29,30 @@
     
 }
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    [_voteBtn cutBorderWithBorderWidth:1 borderColor:[UIColor EDJGrayscale_B0] cornerRadius:_voteBtn.width / 2];
+- (void)setModel:(OLVoteDetailModel *)model{
+    [super setModel:model];
+    _content.text = model.options;
+    
+    [model addObserver:self forKeyPath:statusKey options:NSKeyValueObservingOptionNew context:nil];
+    
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-//    [_voteBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-//    [_voteBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:statusKey] && object == self.model) {
+        if (self.model.status == VoteModelStatusVoted || self.model.status == VoteModelStatusSelected) {
+            _content.textColor = [UIColor EDJMainColor];
+            _voteBtn.selected = YES;
+            self.backgroundColor = [UIColor EDJGrayscale_FA];
+        }else{
+            _content.textColor = [UIColor blackColor];
+            _voteBtn.selected = NO;
+            self.backgroundColor = [UIColor whiteColor];
+        }
+    }
 }
 
+- (void)dealloc{
+    [self.model removeObserver:self forKeyPath:statusKey];
+}
 
 @end

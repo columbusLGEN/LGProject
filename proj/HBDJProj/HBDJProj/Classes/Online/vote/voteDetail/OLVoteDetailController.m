@@ -20,13 +20,19 @@ static NSString * const normalCellID = @"OLVoteDetailNormalTableViewCell";
 static NSString * const votedCellID = @"OLVoteDetailVotedTableViewCell";
 
 @interface OLVoteDetailController ()<
-OLVoteDetailFooterViewDelegate>
-@property (weak,nonatomic) OLVoteDetailHeaderModel *headerModel;
+OLVoteDetailFooterViewDelegate,
+OLVoteDetailHeaderViewDelegate>
+
+@property (strong,nonatomic) OLVoteDetailHeaderModel *headerModel;
 @property (weak,nonatomic) OLVoteDetailHeaderView *header;
 /** 是否选中某选项 */
 @property (assign,nonatomic) BOOL selectedSomeItem;
 /** 是否已经提交 */
 @property (assign,nonatomic) BOOL commited;
+
+@property (strong,nonatomic) NSMutableArray *optionIds;
+
+@property (strong,nonatomic) OLVoteDetailModel *currentOption;
 
 @end
 
@@ -37,41 +43,71 @@ OLVoteDetailFooterViewDelegate>
     
     [self.tableView registerNib:[UINib nibWithNibName:normalCellID bundle:nil] forCellReuseIdentifier:normalCellID];
     [self.tableView registerNib:[UINib nibWithNibName:votedCellID bundle:nil] forCellReuseIdentifier:votedCellID];
-
-    NSMutableArray *arrMu = [NSMutableArray new];
-    for (NSInteger i = 0; i < 4; i++) {
-        OLVoteDetailModel *model = [OLVoteDetailModel new];
-        model.status = VoteModelStatusNormal;
-        [arrMu addObject:model];
-    }
-    self.dataArray = arrMu.copy;
-    [self.tableView reloadData];
-    
-    /// testcode
-    OLVoteDetailHeaderModel *headerModel = [OLVoteDetailHeaderModel new];
-    _headerModel = headerModel;
-    headerModel.status = VoteModelStatusNormal;
-    headerModel.title = @"2017年十大党建活动评选";
-    headerModel.testTime = @"2018-01-01";
-    headerModel.voteDescripetion = @"单选(匿名投票)";
+    self.tableView.estimatedRowHeight = 1.0;
     
     OLVoteDetailHeaderView *header = [OLVoteDetailHeaderView headerForVoteDetail];
     _header = header;
-    header.model = headerModel;
+    header.delegate = self;
     header.frame = CGRectMake(0, 0, kScreenWidth, 101);
+    header.model = _headerModel;
     self.tableView.tableHeaderView = header;
     
-    OLVoteDetailFooterView *footer = [OLVoteDetailFooterView footerForVoteDetail];
-    footer.delegate = self;
-    footer.frame = CGRectMake(0, 0, kScreenWidth, 200);
-    self.tableView.tableFooterView = footer;
+    if (_model.votestatus == 0) {
+        OLVoteDetailFooterView *footer = [OLVoteDetailFooterView footerForVoteDetail];
+        footer.delegate = self;
+        footer.frame = CGRectMake(0, 0, kScreenWidth, 200);
+        self.tableView.tableFooterView = footer;
+    }
+    
+    _optionIds = NSMutableArray.new;
 }
 
 - (void)setModel:(OLVoteListModel *)model{
     _model = model;
     
-    /// TODO: 投票详情接口
+    /**
+        header 需要
+        title
+        time
+        单选 or 多选
+        匿名 or 实名
+     */
+    OLVoteDetailHeaderModel *headerModel = [OLVoteDetailHeaderModel new];
+    headerModel.title = model.title;
+    headerModel.time = model.starttime;
+    headerModel.voteDescripetion = @"单选(匿名投票)";
+    _headerModel = headerModel;
+    if (model.votestatus == 1) {
+        headerModel.status = VoteModelStatusVoted;
+    }
+    
     [DJOnlineNetorkManager.sharedInstance frontVotes_selectDetailWithVoteid:model.seqid success:^(id responseObj) {
+        NSArray *array = responseObj;
+        if (array == nil || array.count == 0) {
+            return;
+        }else{
+            NSMutableArray *arrMu = [NSMutableArray new];
+            NSInteger voteAllCount = 0;
+            for (NSInteger i = 0; i < array.count; i++) {
+                OLVoteDetailModel *modelDetail = [OLVoteDetailModel mj_objectWithKeyValues:array[i]];
+                modelDetail.status = VoteModelStatusNormal;
+                if (model.votestatus == 1) {
+                    modelDetail.status = VoteModelStatusVoted;
+                }
+                voteAllCount += modelDetail.votecount;
+                [arrMu addObject:modelDetail];
+            }
+            headerModel.totalVotesCount = voteAllCount;
+            /// 赋值投票总数
+            for (OLVoteDetailModel *modelDetail in arrMu) {
+                modelDetail.totalVotesCount = voteAllCount;
+            }
+            self.dataArray = arrMu.copy;
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
         
         
     } failure:^(id failureObj) {
@@ -91,27 +127,31 @@ OLVoteDetailFooterViewDelegate>
     
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    OLVoteDetailModel *model = self.dataArray[indexPath.row];
-    return [OLVoteDetailTableViewCell cellHeightWithModel:model];
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    OLVoteDetailModel *currentClickModel = self.dataArray[indexPath.row];
+    _currentOption = currentClickModel;
     if (!_commited) {
-        [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            OLVoteDetailModel *model = obj;
-            if (idx == indexPath.row) {
+        for (OLVoteDetailModel *model in self.dataArray) {
+            if (model == currentClickModel) {
                 model.status = VoteModelStatusSelected;
                 _selectedSomeItem = YES;
+                [_optionIds addObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
             }else{
                 model.status = VoteModelStatusNormal;
+                [_optionIds removeObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
             }
-        }];
-        [tableView reloadData];
+        }
     }else{
-        NSLog(@"已经提交 -- ");
+        
     }
     
+}
+
+#pragma mark - header delegate
+- (void)voteDetailHeaderReCallHeight:(OLVoteDetailHeaderView *)header{
+    header.frame = CGRectMake(0, 0, kScreenWidth, [header headerHeight]);
+    [self.tableView reloadData];
 }
 
 #pragma mark - footer delegate
@@ -125,15 +165,16 @@ OLVoteDetailFooterViewDelegate>
         _headerModel.status = VoteModelStatusVoted;
         _header.model = _headerModel;
         
-        /// TODO: 添加已选的投票选项id
-        
-        [DJOnlineNetorkManager.sharedInstance frontVotes_addWithVoteid:_model.seqid votedetailid:nil success:^(id responseObj) {
+        [DJOnlineNetorkManager.sharedInstance frontVotes_addWithVoteid:_model.seqid votedetailid:_optionIds.copy success:^(id responseObj) {
             
-            /// 切换 模型状态
-            [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                OLVoteDetailModel *model = obj;
-                model.status = VoteModelStatusVoted;
-            }];
+            /// 修改数据
+            _currentOption.votecount += 1;
+            for (OLVoteDetailModel *detailModel in self.dataArray) {
+                detailModel.totalVotesCount += 1;
+                detailModel.status = VoteModelStatusVoted;
+            }
+            _header.model.totalVotesCount += 1;
+            
             self.tableView.tableFooterView = nil;
             
             [self.tableView reloadData];
@@ -149,49 +190,5 @@ OLVoteDetailFooterViewDelegate>
     }
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
