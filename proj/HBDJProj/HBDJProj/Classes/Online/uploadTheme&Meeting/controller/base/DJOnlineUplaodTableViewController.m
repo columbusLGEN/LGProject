@@ -124,10 +124,27 @@ DJInputContentViewControllerDelegate>
 //        return;
 //    }
     
+    /// TODO: 1.数据校验. 部分文本信息为必填项
+    /// 2.图片和封面 是非必填项
+    
+    /**
+        如何校验?
+     方法一:
+        1.给模型添加一个属性 nes,标识属性是否我必填项
+     
+        2.创建一个bool变量 hasEmptyValue,初始化为NO,如果有有必填项为空,则赋值为YES
+     
+        3.for循环遍历table model
+            if nes 如果是必填项
+                判断content 是否为空
+                    如果content为空,则跳出循环,弹窗信息为model.itemName 不能为空
+        4.for循环结束后,判断 hasEmptyValue 如果未真,则返回,否则继续执行
+     
+     
+     */
+    
     /// MARK: 上传内容图片
     [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
-        
-        /// TODO: 上传数据之前数据校验，如果用户选图片，如何上传？
         
         [self setImagesFormDataWithArray:imageUrls.copy];
         
