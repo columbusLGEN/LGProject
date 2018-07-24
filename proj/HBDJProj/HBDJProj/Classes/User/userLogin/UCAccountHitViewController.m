@@ -126,19 +126,6 @@ UCAccountHitSuccessViewDelegate
         return;
     }
     
-    /// 测试账号
-    /**
-     18768147661 -- qqqq1111
-     18768147662
-     18768147663
-     18768147664
-     18768147665
-     18768147666
-     18768147667
-     18768147668
-     18768147669
-     */
-    
     [self.view endEditing:YES];
     
     if (canSendRequest) {

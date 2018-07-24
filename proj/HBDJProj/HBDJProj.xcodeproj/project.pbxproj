@@ -140,6 +140,14 @@
 		884EB41521030328005D5CA9 /* DJUploadMindReportCoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB41421030328005D5CA9 /* DJUploadMindReportCoverCell.m */; };
 		884EB41821030332005D5CA9 /* DJUploadMindReportImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB41721030332005D5CA9 /* DJUploadMindReportImageCell.m */; };
 		884EB41B210567A4005D5CA9 /* DJUploadDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB41A210567A4005D5CA9 /* DJUploadDataManager.m */; };
+		884EB42021073A3C005D5CA9 /* DJThoughtReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB41F21073A3C005D5CA9 /* DJThoughtReportDetailViewController.m */; };
+		884EB42321073C9F005D5CA9 /* DJThoughtReportDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB42221073C9F005D5CA9 /* DJThoughtReportDetailTableViewCell.m */; };
+		884EB42621073D15005D5CA9 /* DJThoughtReportDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB42521073D15005D5CA9 /* DJThoughtReportDetailModel.m */; };
+		884EB42A21073D96005D5CA9 /* DJThoughtReportDetailHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB42921073D96005D5CA9 /* DJThoughtReportDetailHeaderCell.m */; };
+		884EB42D21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB42C21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.m */; };
+		884EB43021073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB42F21073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.m */; };
+		884EB43221073E26005D5CA9 /* DJThoughtReportDetailHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884EB43121073E26005D5CA9 /* DJThoughtReportDetailHeaderCell.xib */; };
+		884EB43421073E2E005D5CA9 /* DJThoughtReportDetailTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884EB43321073E2E005D5CA9 /* DJThoughtReportDetailTextCell.xib */; };
 		8851C63520F5E47A00C91575 /* OLMindReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C63020F5E47900C91575 /* OLMindReportTableViewCell.m */; };
 		8851C63620F5E47A00C91575 /* OLMindReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8851C63120F5E47900C91575 /* OLMindReportTableViewCell.xib */; };
 		8851C63720F5E47A00C91575 /* OLMindReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C63320F5E47900C91575 /* OLMindReportViewController.m */; };
@@ -183,7 +191,6 @@
 		8876E3E320EB72C3001C6A1A /* DJOnlineUploadAddPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3E220EB72C3001C6A1A /* DJOnlineUploadAddPeopleCell.m */; };
 		8876E3E820EB7559001C6A1A /* DJOnlineUplaodBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3E720EB7559001C6A1A /* DJOnlineUplaodBaseCell.m */; };
 		8876E3EB20EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3EA20EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.m */; };
-		8876E3EE20EC74A7001C6A1A /* LGSelectImgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3ED20EC74A7001C6A1A /* LGSelectImgManager.m */; };
 		8876E3F120ECB38A001C6A1A /* DJSelectDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3F020ECB38A001C6A1A /* DJSelectDateViewController.m */; };
 		8876E3F720EDB851001C6A1A /* DJSelectPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3F620EDB851001C6A1A /* DJSelectPeopleViewController.m */; };
 		8876E3FB20EDBCB5001C6A1A /* DJSelectPeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3FA20EDBCB5001C6A1A /* DJSelectPeopleCell.m */; };
@@ -697,6 +704,20 @@
 		884EB41721030332005D5CA9 /* DJUploadMindReportImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUploadMindReportImageCell.m; sourceTree = "<group>"; };
 		884EB419210567A4005D5CA9 /* DJUploadDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUploadDataManager.h; sourceTree = "<group>"; };
 		884EB41A210567A4005D5CA9 /* DJUploadDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUploadDataManager.m; sourceTree = "<group>"; };
+		884EB41E21073A3C005D5CA9 /* DJThoughtReportDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThoughtReportDetailViewController.h; sourceTree = "<group>"; };
+		884EB41F21073A3C005D5CA9 /* DJThoughtReportDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThoughtReportDetailViewController.m; sourceTree = "<group>"; };
+		884EB42121073C9F005D5CA9 /* DJThoughtReportDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThoughtReportDetailTableViewCell.h; sourceTree = "<group>"; };
+		884EB42221073C9F005D5CA9 /* DJThoughtReportDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThoughtReportDetailTableViewCell.m; sourceTree = "<group>"; };
+		884EB42421073D15005D5CA9 /* DJThoughtReportDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThoughtReportDetailModel.h; sourceTree = "<group>"; };
+		884EB42521073D15005D5CA9 /* DJThoughtReportDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThoughtReportDetailModel.m; sourceTree = "<group>"; };
+		884EB42821073D96005D5CA9 /* DJThoughtReportDetailHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThoughtReportDetailHeaderCell.h; sourceTree = "<group>"; };
+		884EB42921073D96005D5CA9 /* DJThoughtReportDetailHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThoughtReportDetailHeaderCell.m; sourceTree = "<group>"; };
+		884EB42B21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThoughtReportDetailTextCell.h; sourceTree = "<group>"; };
+		884EB42C21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThoughtReportDetailTextCell.m; sourceTree = "<group>"; };
+		884EB42E21073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThoughtReportDetailNineImageCell.h; sourceTree = "<group>"; };
+		884EB42F21073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThoughtReportDetailNineImageCell.m; sourceTree = "<group>"; };
+		884EB43121073E26005D5CA9 /* DJThoughtReportDetailHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJThoughtReportDetailHeaderCell.xib; sourceTree = "<group>"; };
+		884EB43321073E2E005D5CA9 /* DJThoughtReportDetailTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJThoughtReportDetailTextCell.xib; sourceTree = "<group>"; };
 		8851C62F20F5E47900C91575 /* OLMindReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLMindReportTableViewCell.h; sourceTree = "<group>"; };
 		8851C63020F5E47900C91575 /* OLMindReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLMindReportTableViewCell.m; sourceTree = "<group>"; };
 		8851C63120F5E47900C91575 /* OLMindReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OLMindReportTableViewCell.xib; sourceTree = "<group>"; };
@@ -759,8 +780,6 @@
 		8876E3E720EB7559001C6A1A /* DJOnlineUplaodBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJOnlineUplaodBaseCell.m; sourceTree = "<group>"; };
 		8876E3E920EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJOnlineUploadAddCoverCell.h; sourceTree = "<group>"; };
 		8876E3EA20EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJOnlineUploadAddCoverCell.m; sourceTree = "<group>"; };
-		8876E3EC20EC74A7001C6A1A /* LGSelectImgManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSelectImgManager.h; sourceTree = "<group>"; };
-		8876E3ED20EC74A7001C6A1A /* LGSelectImgManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSelectImgManager.m; sourceTree = "<group>"; };
 		8876E3EF20ECB38A001C6A1A /* DJSelectDateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectDateViewController.h; sourceTree = "<group>"; };
 		8876E3F020ECB38A001C6A1A /* DJSelectDateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSelectDateViewController.m; sourceTree = "<group>"; };
 		8876E3F520EDB851001C6A1A /* DJSelectPeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSelectPeopleViewController.h; sourceTree = "<group>"; };
@@ -1505,6 +1524,8 @@
 				88BB64D8209BEC4F00FE6103 /* Online.storyboard */,
 				880363AA20E4BBDC00E97FA3 /* DJOnlineNetorkManager.h */,
 				880363AB20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m */,
+				884EB419210567A4005D5CA9 /* DJUploadDataManager.h */,
+				884EB41A210567A4005D5CA9 /* DJUploadDataManager.m */,
 				8851C62C20F5E47900C91575 /* themeParty&threeMeetingList */,
 				88D13C642090634C00A32236 /* main */,
 				8876E3C720EB5BDB001C6A1A /* uploadTheme&Meeting */,
@@ -2103,6 +2124,49 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		884EB41C210739F1005D5CA9 /* list */ = {
+			isa = PBXGroup;
+			children = (
+				8851C63820F5EB6400C91575 /* DJThoutghtRepotListViewController.h */,
+				8851C63920F5EB6400C91575 /* DJThoutghtRepotListViewController.m */,
+				8851C63B20F5EB8800C91575 /* DJThoutghtRepotListModel.h */,
+				8851C63C20F5EB8800C91575 /* DJThoutghtRepotListModel.m */,
+				8851C63E20F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.h */,
+				8851C63F20F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.m */,
+				8851C64120F5EBC200C91575 /* DJThoutghtRepotListTableViewCell.xib */,
+			);
+			path = list;
+			sourceTree = "<group>";
+		};
+		884EB41D21073A1D005D5CA9 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				884EB42721073D33005D5CA9 /* cell */,
+				884EB41E21073A3C005D5CA9 /* DJThoughtReportDetailViewController.h */,
+				884EB41F21073A3C005D5CA9 /* DJThoughtReportDetailViewController.m */,
+				884EB42421073D15005D5CA9 /* DJThoughtReportDetailModel.h */,
+				884EB42521073D15005D5CA9 /* DJThoughtReportDetailModel.m */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		884EB42721073D33005D5CA9 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				884EB42121073C9F005D5CA9 /* DJThoughtReportDetailTableViewCell.h */,
+				884EB42221073C9F005D5CA9 /* DJThoughtReportDetailTableViewCell.m */,
+				884EB42821073D96005D5CA9 /* DJThoughtReportDetailHeaderCell.h */,
+				884EB42921073D96005D5CA9 /* DJThoughtReportDetailHeaderCell.m */,
+				884EB43121073E26005D5CA9 /* DJThoughtReportDetailHeaderCell.xib */,
+				884EB42B21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.h */,
+				884EB42C21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.m */,
+				884EB43321073E2E005D5CA9 /* DJThoughtReportDetailTextCell.xib */,
+				884EB42E21073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.h */,
+				884EB42F21073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		8851C62C20F5E47900C91575 /* themeParty&threeMeetingList */ = {
 			isa = PBXGroup;
 			children = (
@@ -2232,8 +2296,6 @@
 			children = (
 				8876E3DF20EB706E001C6A1A /* OLUplaodThemeTable.plist */,
 				8876E40620F06CF0001C6A1A /* OLUplaodThreeMeetingsTable.plist */,
-				8876E3EC20EC74A7001C6A1A /* LGSelectImgManager.h */,
-				8876E3ED20EC74A7001C6A1A /* LGSelectImgManager.m */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -2549,16 +2611,9 @@
 		88A955CE20F5DBDA009AB70F /* mindReport */ = {
 			isa = PBXGroup;
 			children = (
-				884EB419210567A4005D5CA9 /* DJUploadDataManager.h */,
-				884EB41A210567A4005D5CA9 /* DJUploadDataManager.m */,
+				884EB41D21073A1D005D5CA9 /* detail */,
+				884EB41C210739F1005D5CA9 /* list */,
 				884EB4062102FB6E005D5CA9 /* upload */,
-				8851C63820F5EB6400C91575 /* DJThoutghtRepotListViewController.h */,
-				8851C63920F5EB6400C91575 /* DJThoutghtRepotListViewController.m */,
-				8851C63B20F5EB8800C91575 /* DJThoutghtRepotListModel.h */,
-				8851C63C20F5EB8800C91575 /* DJThoutghtRepotListModel.m */,
-				8851C63E20F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.h */,
-				8851C63F20F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.m */,
-				8851C64120F5EBC200C91575 /* DJThoutghtRepotListTableViewCell.xib */,
 			);
 			path = mindReport;
 			sourceTree = "<group>";
@@ -3226,6 +3281,7 @@
 				88ECF06A209FF8300071A98A /* OLExamSingleOptionCell.xib in Resources */,
 				884312CD2087380E00321F84 /* UCMsgTableViewCell.xib in Resources */,
 				8877743620C0FC7F0011DFF3 /* LGLocalFileManageDocument.txt in Resources */,
+				884EB43421073E2E005D5CA9 /* DJThoughtReportDetailTextCell.xib in Resources */,
 				886A1BE520D0CB330007AD63 /* HTMLCCFile.plist in Resources */,
 				88435E84208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib in Resources */,
 				889FCD1B20B3E6560045746D /* DCRichTextBottomInfoView.xib in Resources */,
@@ -3261,6 +3317,7 @@
 				886A1BE820D0CB330007AD63 /* JRReader.xcassets in Resources */,
 				88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */,
 				8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */,
+				884EB43221073E26005D5CA9 /* DJThoughtReportDetailHeaderCell.xib in Resources */,
 				889FCC6B20B255080045746D /* DCStateCommentsTableViewCell.xib in Resources */,
 				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
 				889E7DBD20998DD200BB9084 /* UCUploadTransitionView.xib in Resources */,
@@ -3462,6 +3519,7 @@
 				8876E3C620EB4149001C6A1A /* DJSearchViewDataSource.m in Sources */,
 				884312E02089785900321F84 /* UCHelpFadebackViewController.m in Sources */,
 				88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */,
+				884EB42321073C9F005D5CA9 /* DJThoughtReportDetailTableViewCell.m in Sources */,
 				88D13C4620902BF000A32236 /* NSObject+Extension.m in Sources */,
 				883E082220CA16C700BB62BA /* LGGaussManager.m in Sources */,
 				889FCD3720B3FD970045746D /* HPAudioVideoContentCell.m in Sources */,
@@ -3531,6 +3589,8 @@
 				881C94D22068ECF3009D6A52 /* UIImage+Extension.m in Sources */,
 				88D13C412090253200A32236 /* EDJSearchTagHeaderModel.m in Sources */,
 				88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */,
+				884EB42A21073D96005D5CA9 /* DJThoughtReportDetailHeaderCell.m in Sources */,
+				884EB42021073A3C005D5CA9 /* DJThoughtReportDetailViewController.m in Sources */,
 				884312D420873B2800321F84 /* UCSettingViewController.m in Sources */,
 				88ECF07220A01F290071A98A /* OLExamSingleFooterView.m in Sources */,
 				8831E18720941985001D038E /* DCSubStageThreeImgCell.m in Sources */,
@@ -3539,6 +3599,7 @@
 				88ECF0C920A19E6A0071A98A /* DCSubPartStateDetailViewController.m in Sources */,
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
 				881C94D02068ECF3009D6A52 /* NSString+Extension.m in Sources */,
+				884EB43021073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.m in Sources */,
 				8851C64020F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.m in Sources */,
 				88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */,
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
@@ -3603,7 +3664,6 @@
 				8876E3EB20EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.m in Sources */,
 				88C5F13B20B7DC280075D5F2 /* EDJHomeModel.m in Sources */,
 				889FCD4B20B532750045746D /* LGPhotoManager.m in Sources */,
-				8876E3EE20EC74A7001C6A1A /* LGSelectImgManager.m in Sources */,
 				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				889FCC6920B255080045746D /* DCStateCommentsModel.m in Sources */,
 				88A955CA20F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m in Sources */,
@@ -3634,6 +3694,7 @@
 				88435EAC208F061400188CE9 /* DJSearchViewController.m in Sources */,
 				88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */,
 				8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */,
+				884EB42621073D15005D5CA9 /* DJThoughtReportDetailModel.m in Sources */,
 				889E7DC52099A45500BB9084 /* UCMemberStageTransitionButton.m in Sources */,
 				8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */,
 				88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */,
@@ -3675,6 +3736,7 @@
 				8835B3172072189D00722010 /* LGBaseButton.m in Sources */,
 				8851C63D20F5EB8800C91575 /* DJThoutghtRepotListModel.m in Sources */,
 				88D033872079EB8600665D2F /* EDJUserCenterViewController.m in Sources */,
+				884EB42D21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.m in Sources */,
 				88D13C2A2090138100A32236 /* EDJSearchTagModel.m in Sources */,
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
 				883E082B20CA7DCB00BB62BA /* LGLocalSearchRecord.m in Sources */,

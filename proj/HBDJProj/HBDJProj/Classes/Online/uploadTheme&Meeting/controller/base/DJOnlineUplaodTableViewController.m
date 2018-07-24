@@ -23,7 +23,6 @@
 #import "DJSelectMeetingTagViewController.h"
 #import "DJInputContentViewController.h"
 
-#import "LGSelectImgManager.h"
 #import "DJOnlineNetorkManager.h"
 #import "DJUploadDataManager.h"
 

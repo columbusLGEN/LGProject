@@ -32,6 +32,7 @@
     [self.tableView registerClass:[DJShowThmemeMeetingImageCell class] forCellReuseIdentifier:showTMImgagecell];
     
     _contentShowAll = NO;
+    
 }
 
 

@@ -11,6 +11,7 @@
 #import "DJThoutghtRepotListTableViewCell.h"
 #import "DJUploadMindReportController.h"
 #import "DJOnlineNetorkManager.h"
+#import "DJThoughtReportDetailViewController.h"
 
 @interface DJThoutghtRepotListViewController ()
 @property (assign,nonatomic) NSInteger offset;
@@ -26,7 +27,7 @@
 }
 - (void)getNetDataWithOffset:(NSInteger)offset{
     /// request data
-    NSLog(@"self.listtype: %ld",self.listType);
+    NSLog(@"self.listtype: %lu",(unsigned long)self.listType);
     
     /**
      listType
@@ -103,7 +104,10 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    DJThoutghtRepotListModel *model = self.dataArray[indexPath.row];
+    DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
+    detailvc.model = model;
+    [self.navigationController pushViewController:detailvc animated:YES];
 }
 
 - (void)configUI{

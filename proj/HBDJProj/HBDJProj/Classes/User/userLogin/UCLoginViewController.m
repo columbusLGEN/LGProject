@@ -9,8 +9,9 @@
 #import "UCLoginViewController.h"
 #import "UCAccountHitViewController.h"
 #import "DJUser.h"
-
 #import "LIGMainTabBarController.h"
+
+static NSString * const dj_username_local = @"dj_username";
 
 @interface UCLoginViewController ()<
 UCAccountHitViewControllerDelegate>
@@ -44,6 +45,8 @@ UCAccountHitViewControllerDelegate>
     
     _pwdIsSecureEntry = _pwd.isSecureTextEntry;
     _eye.selected = _pwdIsSecureEntry;
+    
+    _username.text = [[NSUserDefaults standardUserDefaults] objectForKey:dj_username_local];
 }
 
 - (IBAction)displayPwd:(UIButton *)sender {
@@ -71,7 +74,8 @@ UCAccountHitViewControllerDelegate>
     }else if (_pwd.text == nil || [_pwd.text isEqualToString:@""]) {
         [self.view presentFailureTips:@"请输入密码"];
     }else{
-        [self ucanLoginWithTel:_username.text pwd:_pwd.text];
+//        [self ucanLoginWithTel:_username.text pwd:_pwd.text];
+        [self userLoginWithTel:_username.text pwd:_pwd.text];
     }
 }
 /// 账号激活
@@ -82,27 +86,28 @@ UCAccountHitViewControllerDelegate>
     [self.navigationController pushViewController:hvc animated:YES];
 }
 
-#pragma mark - UCAccountHitViewController
-- (void)ucanLoginWithTel:(NSString *)tel pwd:(NSString *)pwd{
-    NSLog(@"发送登陆请求: tel: %@ -- pwd: %@",tel,pwd);
+- (void)userLoginWithTel:(NSString *)tel pwd:(NSString *)pwd{
     [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
     /// TODO: 计算 密码 MD5
     NSString *pwd_md5 = pwd;
     [[DJUserNetworkManager sharedInstance] userLoginWithTel:tel pwd_md5:pwd_md5 success:^(id responseObj) {
         NSLog(@"userlogin: %@",responseObj);
         /**
-            服务端应返回的情况
-                1.登录失败
-                    账号未激活
-                    密码错误
+         服务端应返回的情况
+         1.登录失败
+         账号未激活
+         密码错误
          
-                2.登录成功
-                    返回用户信息
+         2.登录成功
+         返回用户信息
          */
+        
+        /// 登录成功之后，记录用户名，下次自动填充
+        [[NSUserDefaults standardUserDefaults] setValue:tel forKey:dj_username_local];
         
         [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
         DJUser *user = [DJUser mj_objectWithKeyValues:responseObj];
-
+        
         /// 用户信息本地化
         [user keepUserInfo];
         
@@ -124,6 +129,12 @@ UCAccountHitViewControllerDelegate>
             [self.view presentFailureTips:msg];
         }
     }];
+}
+
+#pragma mark - UCAccountHitViewController
+- (void)ucanLoginWithTel:(NSString *)tel pwd:(NSString *)pwd{
+    _username.text = tel;
+    _pwd.text = pwd;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
