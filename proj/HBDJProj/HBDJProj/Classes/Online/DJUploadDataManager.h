@@ -23,6 +23,14 @@ typedef void (^DJUploadImageComplete)(NSArray *imageUrls,NSDictionary *formData)
 @property (strong,nonatomic) NSMutableArray *tempImageUrls;
 
 /**
+ formdata 判空校验
+
+ @param array 表单模型数组
+ @return 必填项为空的项目名，如果为空，表示所有必填项都有值
+ */
+- (NSString *)msgByFormdataVerifyWithTableModels:(NSArray *)array;
+
+/**
  设置表单数据的 value for key
 
  @param value 值
@@ -53,7 +61,7 @@ typedef void (^DJUploadImageComplete)(NSArray *imageUrls,NSDictionary *formData)
  */
 - (void)presentAlbunListViewControllerWithViewController:(UIViewController *)vc manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure;
 
-/** 上传内容图片 */
+/** 上传内容图片,本地图片源: tempImageUrls */
 - (void)uploadContentImageWithSuccess:(DJUploadImageComplete)completeBlock;
 
 @end

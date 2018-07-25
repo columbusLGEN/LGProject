@@ -33,5 +33,8 @@ typedef NS_ENUM(NSUInteger, OLUploadTableModelClass) {
 @property (strong,nonatomic) NSURL *coverBackUrl;
 /** 会议内容 展示更多 */
 @property (assign,nonatomic) BOOL contentShowAll;
+/** 该行是否为必填项, YES:是. NO:否 */
+@property (assign,nonatomic) BOOL necess;
+
 
 @end

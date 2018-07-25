@@ -21,7 +21,11 @@ static NSString * const olupTimeKeyPath = @"content";
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change context:(nullable void *)context{
     if ([keyPath isEqualToString:olupTimeKeyPath] && object == self.model) {
-        _content.text = self.model.content;
+        NSString *timeString;
+        if (self.model.content.length > 10) {
+            timeString = [self.model.content substringToIndex:11];
+        }
+        _content.text = timeString;
         _content.textColor = [UIColor EDJGrayscale_11];
     }
 }
@@ -49,10 +53,15 @@ static NSString * const olupTimeKeyPath = @"content";
         _content.textColor = [UIColor EDJGrayscale_F3];
         _content.font = [UIFont systemFontOfSize:14];
         [_content mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.item.mas_top);
             make.left.equalTo(self.item.mas_right).offset(marginTen);
             make.right.equalTo(self.contentView.mas_right).offset(-marginTen);
-            make.top.equalTo(self.contentView.mas_top).offset(marginFifteen);
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginFifteen);
+        }];
+        
+        [self.item mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(marginTen);
+            make.top.equalTo(self.contentView.mas_top).offset(marginTen);
         }];
         
     }

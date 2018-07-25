@@ -118,36 +118,23 @@ DJInputContentViewControllerDelegate>
 
 #pragma mark - 上传数据
 - (void)uploadData{
-    /// TODO: 上传数据前的判空校验
-//    if (!_coverFileUrl) {
-//        NSLog(@"请选择封面: ");
-//        return;
-//    }
     
-    /// TODO: 1.数据校验. 部分文本信息为必填项
-    /// 2.图片和封面 是非必填项
+    /// MARK: 数据校验
+    NSString *msg = [_uploadDataManager msgByFormdataVerifyWithTableModels:self.dataArray];
     
-    /**
-        如何校验?
-     方法一:
-        1.给模型添加一个属性 nes,标识属性是否我必填项
-     
-        2.创建一个bool变量 hasEmptyValue,初始化为NO,如果有有必填项为空,则赋值为YES
-     
-        3.for循环遍历table model
-            if nes 如果是必填项
-                判断content 是否为空
-                    如果content为空,则跳出循环,弹窗信息为model.itemName 不能为空
-        4.for循环结束后,判断 hasEmptyValue 如果未真,则返回,否则继续执行
-     
-     
-     */
+    if (msg) {
+        /// TODO: 弹窗提示改为系统弹窗
+        [self presentFailureTips:[NSString stringWithFormat:@"%@不能为空",msg]];
+        return;
+    }
     
     /// MARK: 上传内容图片
     [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
-        
-        [self setImagesFormDataWithArray:imageUrls.copy];
-        
+
+        if (imageUrls != nil) {
+            [self setImagesFormDataWithArray:imageUrls.copy];
+        }
+
         /// MARK: 发送上传数据请求
         [self requestUploadWithFormData:formData success:^(id responseObj) {
             NSLog(@"上传成功: %@",responseObj);
@@ -156,7 +143,7 @@ DJInputContentViewControllerDelegate>
             NSLog(@"上传失败: %@",failureObj);
         }];
     }];
-        
+    
 }
 
 /// MARK: DJOnlineUploadAddCoverCell 添加封面 代理方法
@@ -270,48 +257,76 @@ DJInputContentViewControllerDelegate>
 /// MARK: DJSelectPeopleViewControllerDelegate 选人回调
 - (void)selectPeopleDone:(DJSelectPeopleViewController *)vc model:(DJOnlineUploadTableModel *)model spType:(DJSelectPeopleType)spType{
     
+    /// 选择缺席人员 和 到会人员 数据如何联动？
+    /// 其实此时数组中的数据已经同步了，当前问题就是 如何 修改model的content？
+    /// 选择到会人员时，怎么修改缺席人员的content
+    /// 选择缺席人员时，怎么修改到会人员的content
+    
     [self.peoplePresent removeAllObjects];
     [self.peoplePresentNames removeAllObjects];
     [self.peopleAbsent removeAllObjects];
     [self.peopleAbsentNames removeAllObjects];
     
+    NSMutableArray *host = NSMutableArray.new;
+    
     for (int i = 0; i < self.allPeople.count; i++) {
-        DJSelectPeopleModel *model = self.allPeople[i];
-        if (model.select_present) {
+        DJSelectPeopleModel *peolple_model = self.allPeople[i];
+        if (peolple_model.select_present) {
             /// 出席人员
-            [self.peoplePresent addObject:@(model.seqid)];
-            [self.peoplePresentNames addObject:model.name];
+            [self.peoplePresent addObject:@(peolple_model.seqid)];
+            [self.peoplePresentNames addObject:peolple_model.name];
         }   
-        if (model.select_absent) {
+        if (peolple_model.select_absent) {
             /// 缺席人员
-            [self.peopleAbsent addObject:@(model.seqid)];
-            [self.peopleAbsentNames addObject:model.name];
+            [self.peopleAbsent addObject:@(peolple_model.seqid)];
+            [self.peopleAbsentNames addObject:peolple_model.name];
+        }
+        if (peolple_model.select_host) {
+            [host addObject:@(peolple_model.seqid)];
         }
     }
     NSString *peoples;
     NSString *peopleNames;
     switch (spType) {
         case DJSelectPeopleTypePresent:{
+            /// 当前模型是到会人员
+            /// 获取缺席人员模型
+            
+            NSInteger index = [self.dataArray indexOfObject:model] + 1;
+            DJOnlineUploadTableModel *absentModel = self.dataArray[index];
+            absentModel.content = [self.peopleAbsentNames componentsJoinedByString:@"、"];
+            [_uploadDataManager setUploadValue:[self.peopleAbsent componentsJoinedByString:@","] key:absentModel.uploadJsonKey];/// 提交给后台的数据 人的id
+            
             peoples = [self.peoplePresent componentsJoinedByString:@","];
             peopleNames = [self.peoplePresentNames componentsJoinedByString:@"、"];
         }
             break;
         case DJSelectPeopleTypeAbsent:{
+            
+            /// 当前模型是缺席人员
+            /// 获取到会人员模型
+            NSInteger index = [self.dataArray indexOfObject:model] - 1;
+            DJOnlineUploadTableModel *presentModel = self.dataArray[index];
+            presentModel.content = [self.peoplePresentNames componentsJoinedByString:@"、"];
+            [_uploadDataManager setUploadValue:[self.peoplePresent componentsJoinedByString:@","] key:presentModel.uploadJsonKey];
+            
             peoples = [self.peopleAbsent componentsJoinedByString:@","];
             peopleNames = [self.peopleAbsentNames componentsJoinedByString:@"、"];
         }
             break;
         case DJSelectPeopleTypeHost:{
-            peoples = [NSString stringWithFormat:@"%ld",(long)model.seqid];
+            
+            if (host.count) {
+                peoples = host[0];                
+            }
             peopleNames = model.content;
         }
             break;
     }
-    NSLog(@"peoples: %@",peoples);
-    NSLog(@"peopleNames: %@",peopleNames);
+    
     [_uploadDataManager setUploadValue:peoples key:model.uploadJsonKey];/// 提交给后台的数据 人的id
     model.content = peopleNames;/// 显示在页面上的数据 name
-    /// 更新cell中的数据
+    
     [self.tableView reloadData];
 }
 

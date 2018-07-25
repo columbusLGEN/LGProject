@@ -11,10 +11,11 @@
 
 #import "DJOnlineUplaodTableViewController.h"
 
+//static NSString * const keyPath_content = @"content";
+
 @interface DJOnlineUploadCell ()<
 UITextViewDelegate>
-//@property (weak,nonatomic) UITextField *txt;
-//@property (weak,nonatomic) UITextView *txt;
+
 /** 内容标签 */
 @property (weak,nonatomic) UILabel *contentLabel;
 
@@ -37,7 +38,18 @@ UITextViewDelegate>
         _contentLabel.text = model.content;
         _contentLabel.textColor = UIColor.EDJGrayscale_11;
     }
+//    [model addObserver:self forKeyPath:keyPath_content options:NSKeyValueObservingOptionNew context:nil];
 }
+
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+//    if ([keyPath isEqualToString:keyPath_content] && object == self.model) {
+//        _contentLabel.text = self.model.content;
+//    }
+//}
+
+//- (void)dealloc{
+//    [self.model removeObserver:self forKeyPath:keyPath_content];
+//}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

@@ -41,7 +41,6 @@
             [arrayMutable removeObject:model];
         }
     }
-    
 
     /// 如果是三会一课模型，添加 会议标签
     for (int i = 0; i < arrayMutable.count; i++) {
@@ -53,7 +52,7 @@
         NSString *key = pArray[i];
         id value = [self valueForKey:key];
         model.content = value;
-        NSLog(@"tableDataValue: %@",value);
+
     }
     return arrayMutable.copy;
 }

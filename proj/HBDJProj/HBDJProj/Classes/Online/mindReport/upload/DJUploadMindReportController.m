@@ -73,16 +73,21 @@ DJUploadMindReportCoverCellDelegate>
 
 - (void)uploadData{
     
-    /// TODO: 上传表单数据
+    /// MARK: 数据校验
+    NSString *msg = [_uploadDataManager msgByFormdataVerifyWithTableModels:self.dataArray];
+    
+    if (msg) {
+        /// TODO: 弹窗提示改为系统弹窗
+        [self presentFailureTips:[NSString stringWithFormat:@"%@不能为空",msg]];
+        return;
+    }
+    
+    /// 上传图片
     [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
-        /// TODO: 上传数据前的判空校验 根据formData, 如果用户不选图片呢？
         
         DJUploadMindReportLineModel *imageLineModle = [self.dataArray lastObject];
         [_uploadDataManager setUploadValue:[imageUrls componentsJoinedByString:@","] key:imageLineModle.uploadJsonKey];
         
-        NSLog(@"formData: %@",formData);
-        
-        /// TODO: 发送上传数据请求
         [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:[formData mutableCopy] ugctype:(self.listType - 4) filetype:1 success:^(id responseObj) {
             NSLog(@"上传成功: %@",responseObj);
             [self baseViewControllerDismiss];

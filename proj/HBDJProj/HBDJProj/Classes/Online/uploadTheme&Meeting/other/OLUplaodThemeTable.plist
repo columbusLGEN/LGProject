@@ -9,6 +9,8 @@
 		<integer>0</integer>
 		<key>uploadJsonKey</key>
 		<string>title</string>
+		<key>necess</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -17,6 +19,8 @@
 		<integer>1</integer>
 		<key>uploadJsonKey</key>
 		<string>date</string>
+		<key>necess</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -25,6 +29,8 @@
 		<integer>0</integer>
 		<key>uploadJsonKey</key>
 		<string>address</string>
+		<key>necess</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -33,6 +39,8 @@
 		<integer>7</integer>
 		<key>uploadJsonKey</key>
 		<string>organizer</string>
+		<key>necess</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -41,6 +49,8 @@
 		<integer>2</integer>
 		<key>uploadJsonKey</key>
 		<string>attendusers</string>
+		<key>necess</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -49,6 +59,8 @@
 		<integer>5</integer>
 		<key>uploadJsonKey</key>
 		<string>absentusers</string>
+		<key>necess</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -57,6 +69,8 @@
 		<integer>8</integer>
 		<key>uploadJsonKey</key>
 		<string>introduction</string>
+		<key>necess</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -65,6 +79,8 @@
 		<integer>4</integer>
 		<key>uploadJsonKey</key>
 		<string>cover</string>
+		<key>necess</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -73,6 +89,8 @@
 		<integer>3</integer>
 		<key>uploadJsonKey</key>
 		<string>fileurl</string>
+		<key>necess</key>
+		<false/>
 	</dict>
 </array>
 </plist>

@@ -66,7 +66,9 @@ UITextViewDelegate>
 
 - (void)inputDone{
     /// 通知代理
-    self.model.content = _textView.text;
+    if (_textView.text.length > 0) {
+        self.model.content = _textView.text;
+    }
     if ([self.delegate respondsToSelector:@selector(inputContentViewController:model:)]) {
         [self.view endEditing:YES];
         [self.delegate inputContentViewController:self model:self.model];

@@ -9,6 +9,7 @@
 #import "DJUploadDataManager.h"
 #import "HXPhotoPicker.h"
 #import "DJOnlineNetorkManager.h"
+#import "DJOnlineUploadTableModel.h"
 
 @interface DJUploadDataManager ()
 /** 要上传的表单数据 */
@@ -18,13 +19,24 @@
 
 @implementation DJUploadDataManager
 
+- (NSString *)msgByFormdataVerifyWithTableModels:(NSArray *)array{
+    NSString *msg;
+    for (NSInteger i = 0; i < array.count; i++) {
+        DJOnlineUploadTableModel *model = array[i];
+        if (model.necess) {
+            if ([model.content isEqualToString:@""] || model.content == nil) {
+                msg = model.itemName;
+                break;
+            }
+        }
+    }
+    return msg;
+}
+
 - (void)setUploadValue:(id)value key:(NSString *)key{
     NSAssert(value == nil, @"value 不能为空");
     [_formData setValue:value forKey:key];
-}
-
-- (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
-    [[DJOnlineNetorkManager sharedInstance] uploadImageWithLocalFileUrl:localFileUrl uploadProgress:progress success:success failure:failure];
+    NSLog(@"表单数据_formData: %@",_formData);
 }
 
 - (void)presentAlbunListViewControllerWithViewController:(UIViewController *)vc manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure {
@@ -64,6 +76,12 @@
      4.两个count 失败计数 和 成功计数，上传成功或者失败时各自+1，当失败计数+成功计数与tempImageUrls.count相等时，就执行上传完成block
      
      */
+    
+    if (_tempImageUrls == nil) {
+        /// 表示用户没有选择图片，直接回调
+        if (completeBlock) completeBlock(nil,_formData);
+    }
+    
     __block NSInteger successCount = 0;
     __block NSInteger failureCount = 0;
     
@@ -101,6 +119,10 @@
         }];
     }
     
+}
+
+- (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
+    [[DJOnlineNetorkManager sharedInstance] uploadImageWithLocalFileUrl:localFileUrl uploadProgress:progress success:success failure:failure];
 }
 
 /// MARK: HXPhotoViewDelegate

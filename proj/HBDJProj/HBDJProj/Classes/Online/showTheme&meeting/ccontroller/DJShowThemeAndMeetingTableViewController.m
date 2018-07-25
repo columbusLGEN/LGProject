@@ -38,7 +38,16 @@
 
 
 - (void)setDataArray:(NSArray *)dataArray{
-    _dataArray = dataArray;
+    NSMutableArray *arrmu = [NSMutableArray arrayWithArray:dataArray];
+    for (NSInteger i = 0; i < arrmu.count; i++) {
+        DJOnlineUploadTableModel *model = arrmu[i];
+        if (model.content == nil || [model.content isKindOfClass:[NSNull class]] || [model.content isEqualToString:@""]) {
+            [arrmu removeObject:model];
+            /// 因为这里确定是最有一个模型才有可能content为空，所以可以放心大胆删除最后一个元素
+        }
+    }
+    _dataArray = arrmu.copy;
+    
     [self.tableView reloadData];
 }
 

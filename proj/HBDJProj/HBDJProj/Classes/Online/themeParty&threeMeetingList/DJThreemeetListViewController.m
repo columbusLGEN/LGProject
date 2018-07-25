@@ -89,7 +89,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DJThemeMeetingsModel *model = self.dataArray[indexPath.row];
-    NSLog(@"sessiontype: %@",model.sessiontype);
+//    NSLog(@"sessiontype: %@",model.sessiontype);
     //    DJThemeMeetingsModel *model = DJThemeMeetingsModel.new;
     //    model.meetTag = @"党小组会议";
     //    model.title = @"测试主题";

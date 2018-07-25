@@ -119,10 +119,25 @@ UITableViewDataSource>
 }
 
 - (void)lg_dismissViewController{
-    if ([self.delegate respondsToSelector:@selector(selectPeopleDone:model:spType:)]) {
-        [self.delegate selectPeopleDone:self model:self.model spType:_spType];
+    /// 如果全员缺席，禁止用户返回
+    BOOL allAbsent = YES;
+    for (DJSelectPeopleModel *model in self.allPeople) {
+        /// 只要有人出席，allAbsent赋值为NO
+        if (model.select_present) {
+            allAbsent = NO;
+        }
     }
-    [super lg_dismissViewController];
+    if (allAbsent) {
+        [self presentFailureTips:@"禁止全员缺席"];
+        /// TODO: 改为系统弹窗
+        return;
+    }else{
+        if ([self.delegate respondsToSelector:@selector(selectPeopleDone:model:spType:)]) {
+            [self.delegate selectPeopleDone:self model:self.model spType:_spType];
+        }
+        [super lg_dismissViewController];
+    }
+    
 }
 
 @end

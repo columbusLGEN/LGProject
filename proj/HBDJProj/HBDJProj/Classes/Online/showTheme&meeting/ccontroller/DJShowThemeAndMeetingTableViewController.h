@@ -11,6 +11,6 @@
 @class DJThemeMeetingsModel;
 
 @interface DJShowThemeAndMeetingTableViewController : LGBaseTableViewController
-@property (strong,nonatomic) DJThemeMeetingsModel *model;
+//@property (strong,nonatomic) DJThemeMeetingsModel *model;
 
 @end
