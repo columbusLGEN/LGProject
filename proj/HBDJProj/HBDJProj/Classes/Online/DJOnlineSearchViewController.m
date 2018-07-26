@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "DJSearchViewController.h"
+#import "DJOnlineSearchViewController.h"
 
 #import "LGNavigationSearchBar.h"
 #import "HPVoiceSearchView.h"
@@ -24,12 +24,11 @@
 #import "LGUserLimitsManager.h"// 隐私权限检查
 #import "LGVoiceRecoAssist.h"// 语音识别辅助
 
-@interface DJSearchViewController ()<
+@interface DJOnlineSearchViewController ()<
 LGNavigationSearchBarDelelgate,
 UITextFieldDelegate,
 HPVoiceSearchViewDelegate,
 LGVoiceRecoAssistDelegate>
-
 
 @property (strong,nonatomic) LGNavigationSearchBar *fakeNavgationBar;
 @property (strong,nonatomic) UITextField *textField;
@@ -52,7 +51,7 @@ LGVoiceRecoAssistDelegate>
 
 @end
 
-@implementation DJSearchViewController
+@implementation DJOnlineSearchViewController
 
 #pragma mark - 视图生命周期
 - (void)viewDidLoad {

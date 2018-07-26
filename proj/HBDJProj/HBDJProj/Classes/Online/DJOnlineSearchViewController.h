@@ -8,7 +8,7 @@
 
 #import "LGBaseViewController.h"
 
-@interface DJSearchViewController : LGBaseViewController
+@interface DJOnlineSearchViewController : LGBaseViewController
 @property (assign,nonatomic) BOOL voice;
 
 @end
