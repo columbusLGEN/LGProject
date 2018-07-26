@@ -10,7 +10,6 @@
 #import "DJUser.h"
 
 // 机构id 180630014315001
-//
 // 用户id 63
 
 /** 涉及机构的用户 测试机构id 和 测试用户id */
@@ -19,7 +18,30 @@ static NSString * const testjigouUserid = @"63";
 
 @implementation DJOnlineNetorkManager
 
-/// TODO: 机构id 统一添加
+- (void)frontSubjects_selectTitleDetailWithPortName:(NSString *)portName titleid:(NSInteger)titleid offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+//    frontSubjects/selectTitleDetail
+//    frontSubjects/selectTestsDetail
+    NSString *iName = [NSString stringWithFormat:@"frontSubjects/select%@Detail",portName];
+//    titleid
+//    testsid
+    NSString *paramKey;
+    if ([portName isEqualToString:@"Title"]) {
+        paramKey = @"titleid";
+    }else{
+        paramKey = @"testsid";
+    }
+    NSDictionary *param = @{paramKey:[NSString stringWithFormat:@"%ld",(long)titleid]};
+    [self commenPOSTWithOffset:offset length:100 sort:0 iName:iName param:param success:success failure:failure];
+}
+
+- (void)frontSubjects_selectWithPortName:(NSString *)portName offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    /// 题库列表        frontSubjects/selectTitle
+    /// 测试题库列表     frontSubjects/selectTests
+    NSString *iName = [@"frontSubjects/select" stringByAppendingString:portName];
+    NSDictionary *param = @{};
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:iName param:param success:success failure:failure];
+}
 
 - (void)frontVotes_addWithVoteid:(NSInteger)voteid votedetailid:(NSArray *)votedetailid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure {
     NSDictionary *param = @{@"voteid":[NSString stringWithFormat:@"%ld",(long)voteid],

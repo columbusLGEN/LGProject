@@ -21,10 +21,11 @@ static CGFloat flyW = 50;
 
 - (instancetype)initWithSegmentItems:(NSArray<NSDictionary *> *)items{
     NSMutableArray *itemStrings = [NSMutableArray array];
-    [items enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (NSInteger i = 0; i < items.count; i++) {
+        NSDictionary *obj = items[i];
         NSString *itemName = obj[LGSegmentItemNameKey];
         [itemStrings addObject:itemName];
-    }];
+    }
     self.segmentItems = itemStrings;
     return [self init];
 }

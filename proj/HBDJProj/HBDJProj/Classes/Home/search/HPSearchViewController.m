@@ -177,7 +177,7 @@ LGVoiceRecoAssistDelegate>
 
 /// MARK: 声音识别辅助对象 LGVoiceRecoAssistDelegate
 - (void)voiceRecoAssistRecoganizing:(NSInteger)second{
-    [_vsView.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",second]]];
+    [_vsView.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",(long)second]]];
 }
 - (void)voiceRecoAssistEndRecoganize{
     [self voiceViewClose:_vsView];

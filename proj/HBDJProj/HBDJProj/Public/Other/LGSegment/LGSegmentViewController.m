@@ -16,6 +16,7 @@ LGSegmentViewDelegate,
 LGSegmentBottomViewDelegate
 >
 @property (weak,nonatomic) LGSegmentBottomView *bottom;
+
 @end
 
 @implementation LGSegmentViewController

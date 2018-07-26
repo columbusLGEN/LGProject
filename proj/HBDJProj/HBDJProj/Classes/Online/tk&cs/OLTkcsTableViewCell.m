@@ -20,15 +20,18 @@
 
 - (void)setModel:(OLTkcsModel *)model{
     _model = model;
-    _title.text = model.title;
-    _count.text = [NSString stringWithFormat:@"%ld题",model.testCount];
-}
+    _title.text = model.subjecttitle;
+    if (model.tkcsType == 0) {
+        /// 题库列表 显示题目数量
+        _count.text = [NSString stringWithFormat:@"%ld题",(long)model.subcount];
+    }else{
+        /// 测试列表 显示状态 
+        _count.text = model.statusDesc;
+        _count.textColor = model.statusDescColor;
+        
+    }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
 }
-
 
 
 @end

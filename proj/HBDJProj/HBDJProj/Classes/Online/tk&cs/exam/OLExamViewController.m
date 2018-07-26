@@ -13,6 +13,8 @@
 #import "OLExamSingleModel.h"
 #import "OLExamSingleFooterView.h"
 #import "OLTestResultViewController.h"
+#import "OLTkcsModel.h"
+#import "DJOnlineNetorkManager.h"
 
 static CGFloat bottomBarHeight = 60;
 static NSString * const cellID = @"OLExamCollectionViewCell";
@@ -44,27 +46,17 @@ OLExamViewBottomBarDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
+    NSLog(@"题目控制器viewdidload");
+}
+
+- (void)setModel:(OLTkcsModel *)model{
+    _model = model;
     
 }
 
 - (void)configUI{
     
     [self.view addSubview:self.collectionView];
-    
-    /// testcode
-    NSMutableArray *arrMu = [NSMutableArray new];
-    NSInteger questioTotalCount = 10;
-    for (NSInteger i = 0; i < questioTotalCount; i++) {
-        OLExamSingleModel *model = [OLExamSingleModel new];
-        model.backLook = self.backLook;
-        model.index = i;
-        model.contents;
-        model.questioTotalCount = questioTotalCount;
-        [arrMu addObject:model];
-    }
-    
-    self.dataArray = arrMu.copy;
-    [self.collectionView reloadData];
     
     OLExamViewBottomBar *bottomBar = [OLExamViewBottomBar examViewBottomBar];
     _bottomBar = bottomBar;
@@ -77,7 +69,36 @@ OLExamViewBottomBarDelegate
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(turnQuestion:) name:OLExamTurnQuestionNotification object:nil];
     
-//    NSLog(@"self.navigationController.viewControllers -- %@",self.navigationController.viewControllers);
+    [self getNetData];
+}
+
+- (void)getNetData{
+    
+    [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTitleDetailWithPortName:_portName titleid:_model.seqid offset:0 success:^(id responseObj) {
+        
+        NSArray *array = responseObj;
+        BOOL arrIsNil = (array == nil || array.count == 0);
+        if (arrIsNil) {
+            return;
+        }else{
+            NSMutableArray *arrMu = [NSMutableArray new];
+            for (NSInteger i = 0; i < array.count; i++) {
+                OLExamSingleModel *model = [OLExamSingleModel mj_objectWithKeyValues:array[i]];
+                model.backLook = self.backLook;
+                model.index = i;
+                model.questioTotalCount = array.count;
+                [arrMu addObject:model];
+            }
+            
+            self.dataArray = arrMu.copy;
+            [self.collectionView reloadData];
+            
+            
+        }
+        
+    } failure:^(id failureObj) {
+        
+    }];
 }
 
 #pragma mark - bottom bar delegate

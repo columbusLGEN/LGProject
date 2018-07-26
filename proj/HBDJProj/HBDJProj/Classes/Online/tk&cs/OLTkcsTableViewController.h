@@ -8,8 +8,11 @@
 
 #import "LGBaseTableViewController.h"
 
+/** 列表类型 */
 typedef NS_ENUM(NSUInteger, OLTkcsType) {
+    /** 题库 */
     OLTkcsTypetk,
+    /** 测试 */
     OLTkcsTypecs,
 };
 

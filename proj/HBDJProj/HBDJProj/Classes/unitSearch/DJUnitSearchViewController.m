@@ -1,12 +1,12 @@
 //
-//  EDJSearchViewController.m
+//  DJUnitSearchViewController.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/4/24.
+//  Created by Peanut Lee on 2018/7/26.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "DJOnlineSearchViewController.h"
+#import "DJUnitSearchViewController.h"
 
 #import "LGNavigationSearchBar.h"
 #import "HPVoiceSearchView.h"
@@ -24,7 +24,7 @@
 #import "LGUserLimitsManager.h"// 隐私权限检查
 #import "LGVoiceRecoAssist.h"// 语音识别辅助
 
-@interface DJOnlineSearchViewController ()<
+@interface DJUnitSearchViewController ()<
 LGNavigationSearchBarDelelgate,
 UITextFieldDelegate,
 HPVoiceSearchViewDelegate,
@@ -49,9 +49,11 @@ LGVoiceRecoAssistDelegate>
 /** 是否正在识别,默认为NO */
 @property (assign,nonatomic) BOOL speaking;
 
+
 @end
 
-@implementation DJOnlineSearchViewController
+@implementation DJUnitSearchViewController
+
 
 #pragma mark - 视图生命周期
 - (void)viewDidLoad {
@@ -111,8 +113,8 @@ LGVoiceRecoAssistDelegate>
 #pragma mark - settter
 - (void)setSearchContent:(NSString *)searchContent{
     _searchContent = searchContent;
-    
-    
+    /// MARK: 给子视图控制器赋值搜索内容，用于列表的上拉刷新 子类处理
+    [self setChildvcSearchContent:searchContent];
 }
 
 #pragma mark - target
@@ -175,7 +177,7 @@ LGVoiceRecoAssistDelegate>
 
 /// MARK: 声音识别辅助对象 LGVoiceRecoAssistDelegate
 - (void)voiceRecoAssistRecoganizing:(NSInteger)second{
-    [_vsView.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",second]]];
+    [_vsView.icon setImage:[UIImage imageNamed:[NSString stringWithFormat:@"home_voice_searching_%ld",(long)second]]];
 }
 - (void)voiceRecoAssistEndRecoganize{
     [self voiceViewClose:_vsView];
@@ -206,6 +208,10 @@ LGVoiceRecoAssistDelegate>
 }
 
 #pragma mark - lazy load & getter
+/// MARK: 分页列表控制，子类实现
+//- (NSArray<NSDictionary *> *)segmentItems{
+//
+//}
 - (UITextField *)textField{
     if (!_textField) {
         _textField = [[UITextField alloc] init];
@@ -247,6 +253,10 @@ LGVoiceRecoAssistDelegate>
     return _voiceAssist;
 }
 
+- (CGFloat)segmentTopMargin{
+    return kNavSingleBarHeight + marginTen;
+}
+
 #pragma mark - private method
 /// MARK: 发送搜索请求
 - (void)sendSearchRequest:(BOOL)isaNewRecord{
@@ -264,34 +274,19 @@ LGVoiceRecoAssistDelegate>
     
     if (isaNewRecord) {
         /// 写入搜索记录 测试数据，测试用户id：1，模块: home
-        [LGLocalSearchRecord addNewRecordWithContent:self.searchContent part:SearchRecordExePartOnline];
+        [LGLocalSearchRecord addNewRecordWithContent:self.searchContent part:[self searchRecordExePart]];
         /// 将新输入的内容添加到界面上
         [self getLocalRecord];
         
     }
-    [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
-    [DJHomeNetworkManager homeSearchWithString:self.searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
-        /// MARK: 刷新子可控制器视图
-        [_vsView removeFromSuperview];
-        _vsView = nil;
-        [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
-        
-        
-        
-    } failure:^(id failureObj) {
-        [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
-        NSLog(@"faillureObject -- %@",failureObj);
-        if ([failureObj isKindOfClass:[NSError class]]) {
-            [self presentFailureTips:@"网络异常"];
-        }else{
-            [self presentFailureTips:@"没有数据"];
-        }
-    }];
+    
+    /// MARK: 发送搜索请求 子类处理
+    [self sendSerachRequestWithSearchContent:self.searchContent];
     
 }
 /// 获取搜索历史记录
 - (void)getLocalRecord{
-    self.records = [LGLocalSearchRecord getLocalRecordWithPart:SearchRecordExePartOnline];
+    self.records = [LGLocalSearchRecord getLocalRecordWithPart:[self searchRecordExePart]];
     NSMutableArray *buttonArray = [NSMutableArray array];
     [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *button = [self.rbLoader buttonWith:obj frame:CGRectZero];
@@ -327,6 +322,18 @@ LGVoiceRecoAssistDelegate>
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - 给子类实现的方法
+
+- (NSInteger)searchRecordExePart{
+    return 0;
+}
+- (void)setChildvcSearchContent:(NSString *)searchContent{
+    
+}
+- (void)sendSerachRequestWithSearchContent:(NSString *)searchContent{
+    
 }
 
 @end

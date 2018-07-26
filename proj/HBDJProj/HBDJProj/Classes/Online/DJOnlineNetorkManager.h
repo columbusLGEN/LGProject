@@ -18,6 +18,21 @@ typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
 
 
 /**
+ 题目接口
+
+ portName:
+ Title -- 题库
+ Tests -- 测试题库
+ */
+- (void)frontSubjects_selectTitleDetailWithPortName:(NSString *)portName titleid:(NSInteger)titleid offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 题库和测试题库列表请求
+ portName:
+ Title -- 题库
+ Tests -- 测试题库
+ */
+- (void)frontSubjects_selectWithPortName:(NSString *)portName offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/**
  提交投票结果接口
 
  @param voteid 投票的主题id

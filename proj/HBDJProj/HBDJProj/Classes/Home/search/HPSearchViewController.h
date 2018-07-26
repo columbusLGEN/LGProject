@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 首页搜索控制器
+
 #import "LGSegmentViewController.h"
 
 @interface HPSearchViewController : LGSegmentViewController

@@ -8,7 +8,11 @@
 
 #import "LGBaseViewController.h"
 
+@class OLTkcsModel;
+
 @interface OLExamViewController : LGBaseViewController
+@property (strong,nonatomic) NSString *portName;
+@property (strong,nonatomic) OLTkcsModel *model;
 
 /** 是否是回看状态 */
 @property (assign,nonatomic) BOOL backLook;

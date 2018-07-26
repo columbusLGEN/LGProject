@@ -9,8 +9,14 @@
 #import "OLTkcsTableViewController.h"
 #import "OLTkcsTableViewCell.h"
 #import "OLTkcsModel.h"
+#import "DJOnlineNetorkManager.h"
+#import "OLExamViewController.h"
 
 @interface OLTkcsTableViewController ()
+
+@property (assign,nonatomic) NSInteger offset;
+
+@property (strong,nonatomic) NSString *portName;
 
 @end
 
@@ -23,23 +29,71 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.rowHeight = 57;
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     
-    NSMutableArray *arrMu = [NSMutableArray new];
-    for (NSInteger i = 0; i < 10; i++) {
-        OLTkcsModel *model = [OLTkcsModel new];
-        if (self.tkcsType == OLTkcsTypecs) {
-            model.title = @"2018年3月学习竞猜测试题";
-        }else{
-            model.title = @"2018年3月学习竞猜题库";
-        }
-        model.testCount = arc4random_uniform(201);
-        
-        [arrMu addObject:model];
+    _offset = 0;
+    [self getNetDataWithOffset:_offset];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.tableView.mj_footer resetNoMoreData];
+        _offset = 0;
+        [self getNetDataWithOffset:_offset];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getNetDataWithOffset:_offset];
+    }];
+}
+
+- (void)getNetDataWithOffset:(NSInteger)offset{
+    if (self.tkcsType == OLTkcsTypetk) {
+        _portName = @"Title";
+    }else{
+        _portName = @"Tests";
     }
-    self.dataArray = arrMu.copy;
-    [self.tableView reloadData];
+    [DJOnlineNetorkManager.sharedInstance frontSubjects_selectWithPortName:_portName offset:offset success:^(id responseObj) {
+        
+        NSArray *array = responseObj;
+        
+        BOOL arrIsNull = (array == nil || array.count == 0);
+        
+        if (offset == 0) {
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            if (arrIsNull) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }else{
+                [self.tableView.mj_footer endRefreshing];
+            }
+        }
+        
+        if (arrIsNull) {
+            return;
+        }else{
+            NSMutableArray *arrmu;
+            if (offset == 0) {
+                arrmu = NSMutableArray.new;
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            }
+            
+            for (NSInteger i = 0; i < array.count; i++) {
+                OLTkcsModel *model = [OLTkcsModel mj_objectWithKeyValues:array[i]];
+                model.tkcsType = _tkcsType;
+                [arrmu addObject:model];
+            }
+            self.dataArray = arrmu.copy;
+            _offset = self.dataArray.count;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -53,55 +107,15 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 进入测试页面
-    [self lgPushViewControllerWithClassName:@"OLExamViewController"];
+    OLTkcsModel *model = self.dataArray[indexPath.row];
+    OLExamViewController *vc = OLExamViewController.new;
+    vc.portName = _portName;
+    vc.model = model;
+    [self.navigationController pushViewController:vc animated:YES];
 
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

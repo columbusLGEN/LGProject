@@ -126,10 +126,10 @@ static NSString *param_key_userid = @"userid";
     NSLog(@"%@: requesturl: %@",iName,url);
     
     [[LGNetworkManager sharedInstance] sendPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) { 
-        NSLog(@"%@ -- %@",iName,responseObject);
+        NSLog(@"%@_responseObject: %@",iName,responseObject);
         
         if (error) {
-//            if (failure) failure(error);
+            NSLog(@"error: %@",error);
             /// MARK: 回调缓存数据
             [self callBackCacheJsonObjWithiName:iName argum:argum success:success failure:failure];
 
@@ -150,8 +150,6 @@ static NSString *param_key_userid = @"userid";
                 [LGNetworkCache lg_save_asyncJsonToCacheFile:[self returnJsonHandle:returnJson] URLString:iName params:argum];
                 
                 if (result == 0) {/// 成功
-                    
-                    
                     if (success) success([self returnJsonHandle:returnJson]);
                 }else{
                     /// MARK: 回调缓存数据

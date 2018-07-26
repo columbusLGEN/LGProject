@@ -14,9 +14,9 @@
 #import "EDJOnlineController.h"
 #import "OLAddMoreToolViewController.h"
 #import "OLMindReportViewController.h"
-#import "DJSearchViewController.h"
 
-#import "DJTestScoreListTableViewController.h"/// testcode
+/// 成绩统计排行榜，入口在哪？
+#import "DJTestScoreListTableViewController.h"
 
 #import "DJOnlineHomeModel.h"
 #import "OLHomeModel.h"
@@ -63,6 +63,7 @@ HPNetworkFailureViewDelegate>
 - (void)loadNetData{
     
     /// TODO: 在线首页获取数据优化
+    /// 一天之内不重复请求 but 用户开通新功能之后需要发送请求 → 用户开通新功能后发送推送消息，app收到推送后发送新的请求
     // 1.获取当前时间戳
     // 2.将当前时间戳保存到本地
     // 3.获取本地时间戳
@@ -116,9 +117,8 @@ HPNetworkFailureViewDelegate>
     [self beginSearchWithVoice:YES];
 }
 - (void)beginSearchWithVoice:(BOOL)voice{
-    DJSearchViewController *searchVc = [DJSearchViewController new];
-    searchVc.voice = voice;
-    [self.navigationController pushViewController:searchVc animated:YES];
+    /// TODO: 进入在线搜索
+    
 }
 /// MARK: HPNetworkFailureView
 - (void)djemptyViewClick{

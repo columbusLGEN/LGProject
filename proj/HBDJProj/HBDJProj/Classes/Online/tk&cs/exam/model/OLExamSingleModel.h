@@ -1,5 +1,5 @@
 //
-//  OLExamModel.h
+//  OLExamSingleModel.h
 //  HBDJProj
 //
 //  Created by Peanut Lee on 2018/5/7.
@@ -20,6 +20,70 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 @class OLExamSingleLineModel;
 
 @interface OLExamSingleModel : LGBaseModel
+
+//"frontUserTest":[
+//
+//],
+//"subject":"领导干部的（），不仅关系自己的家庭，而且关系党风政风",
+//"titleid":"1",
+//"creatorid":1,
+//"analysis":"",
+//"frontSubjectsDetail":[
+//                       {
+//                           "isright":"1",
+//                           "creatorid":1,
+//                           "options":"作风",
+//                           "type":0,
+//                           "createdtime":"2018-04-18 13:59:26",
+//                           "seqid":198,
+//                           "subjectid":"1",
+//                           "status":1
+//                       },
+//                       {
+//                           "isright":"1",
+//                           "creatorid":1,
+//                           "options":"家风",
+//                           "type":0,
+//                           "createdtime":"2018-04-18 13:59:26",
+//                           "seqid":199,
+//                           "subjectid":"1",
+//                           "status":1
+//                       },
+//                       {
+//                           "isright":"",
+//                           "creatorid":1,
+//                           "options":"家庭意识",
+//                           "type":0,
+//                           "createdtime":"2018-04-18 13:59:26",
+//                           "seqid":200,
+//                           "subjectid":"1",
+//                           "status":1
+//                       },
+//                       {
+//                           "isright":"",
+//                           "creatorid":1,
+//                           "options":"裙带意识",
+//                           "type":0,
+//                           "createdtime":"2018-04-18 13:59:26",
+//                           "seqid":201,
+//                           "subjectid":"1",
+//                           "status":1
+//                       }
+//                       ],
+//"mechanismid":"",
+//"createdtime":"2018-03-21 15:34:54",
+//"score":0,
+//"subjecttype":"2",
+//"seqid":1,
+//"status":1
+
+/**
+ 需要，但是返回值没有的数据
+    1.本题的正确答案
+
+ */
+
+
 @property (strong,nonatomic) NSArray<OLExamSingleLineModel *> *contents;
 
 /// textcode
@@ -40,6 +104,7 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 
 /** 是否是回看状态 */
 @property (assign,nonatomic) BOOL backLook;
+
 
 
 @end
