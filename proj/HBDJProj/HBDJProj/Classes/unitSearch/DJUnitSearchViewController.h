@@ -8,12 +8,17 @@
 
 #import "LGSegmentViewController.h"
 
+@class HPVoiceSearchView,HPSearchHistoryView;
+
 @interface DJUnitSearchViewController : LGSegmentViewController
 
 /** 是否语音搜索 */
 @property (assign,nonatomic) BOOL voice;
 
 /// --------------- 以下属性、方法 由子类实现 ---------------
+
+@property (strong,nonatomic) HPVoiceSearchView *vsView;
+@property (weak,nonatomic) HPSearchHistoryView *searchHistory;
 
 /** 本地历史记录索引 0:首页 1:在线 2:在线 */
 - (NSInteger)searchRecordExePart;

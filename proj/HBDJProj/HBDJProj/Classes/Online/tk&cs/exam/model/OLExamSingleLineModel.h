@@ -11,9 +11,12 @@
 @class OLExamSingleModel;
 
 typedef NS_ENUM(NSUInteger, ExamSingleLineType) {
-    ExamSingleLineTypeContent,/// 题干
-    ExamSingleLineTypeOption,/// 选项
-    ExamSingleLineTypeAnswer/// 答案
+    /// 题干
+    ExamSingleLineTypeContent,
+    /// 选项
+    ExamSingleLineTypeOption,
+    /// 答案
+    ExamSingleLineTypeAnswer
 };
 typedef NS_ENUM(NSUInteger, ExamSingleAnswer) {
     ExamSingleAnswerA,
@@ -23,6 +26,23 @@ typedef NS_ENUM(NSUInteger, ExamSingleAnswer) {
 };
 
 @interface OLExamSingleLineModel : LGBaseModel
+
+//{
+//    "creatorid":1,
+//    "status":1
+//},
+
+/** YES: 表示该选项是正确选项 */
+@property (assign,nonatomic) BOOL isright;
+/** 正确返回1，错误返回-1 */
+@property (assign,nonatomic) NSInteger optionValue;
+/** 选项描述 */
+@property (strong,nonatomic) NSString *options;
+@property (strong,nonatomic) NSString *createdtime;
+@property (assign,nonatomic) NSInteger type;
+@property (assign,nonatomic) NSInteger subjectid;
+/// ----------------------以上是新加属性
+
 
 #pragma mark - 状态
 @property (assign,nonatomic) ExamSingleLineType lineType;
@@ -47,7 +67,5 @@ typedef NS_ENUM(NSUInteger, ExamSingleAnswer) {
 
 /** 所属题目 */
 @property (strong,nonatomic) OLExamSingleModel *belongTo;
-
-
 
 @end

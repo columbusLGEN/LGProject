@@ -10,7 +10,6 @@
 #import "OLExamSingleLineModel.h"
 
 @interface OLExamSingleStemCell ()
-@property (strong,nonatomic) OLExamSingleLineModel *subModel;
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UILabel *content;
 
@@ -19,7 +18,7 @@
 @implementation OLExamSingleStemCell
 
 - (void)setModel:(OLExamSingleLineModel *)model{
-    _subModel = model;
+    [super setModel:model];
     [self optionStateWithMutiple:model.choiceMutiple];
     _content.text = model.questionContent;
     

@@ -24,12 +24,8 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 //"frontUserTest":[
 //
 //],
-//"subject":"领导干部的（），不仅关系自己的家庭，而且关系党风政风",
-//"titleid":"1",
 //"creatorid":1,
-//"analysis":"",
-//"frontSubjectsDetail":[
-//                       {
+//"frontSubjectsDetail":[{
 //                           "isright":"1",
 //                           "creatorid":1,
 //                           "options":"作风",
@@ -38,53 +34,38 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 //                           "seqid":198,
 //                           "subjectid":"1",
 //                           "status":1
-//                       },
-//                       {
-//                           "isright":"1",
-//                           "creatorid":1,
-//                           "options":"家风",
-//                           "type":0,
-//                           "createdtime":"2018-04-18 13:59:26",
-//                           "seqid":199,
-//                           "subjectid":"1",
-//                           "status":1
-//                       },
-//                       {
-//                           "isright":"",
-//                           "creatorid":1,
-//                           "options":"家庭意识",
-//                           "type":0,
-//                           "createdtime":"2018-04-18 13:59:26",
-//                           "seqid":200,
-//                           "subjectid":"1",
-//                           "status":1
-//                       },
-//                       {
-//                           "isright":"",
-//                           "creatorid":1,
-//                           "options":"裙带意识",
-//                           "type":0,
-//                           "createdtime":"2018-04-18 13:59:26",
-//                           "seqid":201,
-//                           "subjectid":"1",
-//                           "status":1
 //                       }
 //                       ],
 //"mechanismid":"",
-//"createdtime":"2018-03-21 15:34:54",
 //"score":0,
-//"subjecttype":"2",
-//"seqid":1,
 //"status":1
 
-/**
- 需要，但是返回值没有的数据
-    1.本题的正确答案
 
- */
+/** 题干 */
+@property (strong,nonatomic) NSString *subject;
+/** 1:单选 2:多选 */
+@property (assign,nonatomic) NSInteger subjecttype;
+/** YES: 表示该题是否选对 */
+@property (assign,nonatomic) BOOL isright;
+/** 用户选择的选项(单选) */
+@property (strong,nonatomic) OLExamSingleLineModel *selectOption;
+/** 多选题用户选择的选项(多选) */
+@property (strong,nonatomic) NSMutableArray<OLExamSingleLineModel *> *selectOptions;
+/** 题目的正确值 */
+@property (assign,nonatomic) NSInteger rightValue;
+/** 用户所选的值 */
+@property (assign,nonatomic) NSInteger selectValue;
 
+@property (strong,nonatomic) NSString *createdtime;
+/** 题目选项 */
+@property (strong,nonatomic) NSMutableArray<OLExamSingleLineModel *> *frontSubjectsDetail;
+@property (strong,nonatomic) NSString *analysis;
+@property (strong,nonatomic) NSString *titleid;
 
-@property (strong,nonatomic) NSArray<OLExamSingleLineModel *> *contents;
+/** 添加题干 */
+- (void)addSubjectModel;
+// --------------------------以上是新加属性
+
 
 /// textcode
 @property (assign,nonatomic) NSInteger index;
@@ -104,7 +85,5 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 
 /** 是否是回看状态 */
 @property (assign,nonatomic) BOOL backLook;
-
-
 
 @end

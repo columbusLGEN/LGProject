@@ -110,8 +110,10 @@ static NSString * const testjigouUserid = @"63";
 
 - (NSDictionary *)unitAddMemIdWithParam:(id)param{
     NSMutableDictionary *argu = [NSMutableDictionary dictionaryWithDictionary:param];
-    argu[@"mechanismid"] = testjigouid;// [DJUser sharedInstance].mechanismid
-    argu[@"userid"] = testjigouUserid;//[DJUser sharedInstance].userid;
+//    argu[@"mechanismid"] = testjigouid;
+//    argu[@"userid"] = testjigouUserid;
+    argu[@"mechanismid"] = [DJUser sharedInstance].mechanismid;
+    argu[@"userid"] = [DJUser sharedInstance].userid;
     return argu;
 }
 

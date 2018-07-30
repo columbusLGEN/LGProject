@@ -22,6 +22,7 @@
 #import "OLHomeModel.h"
 #import "OLSkipObject.h"
 #import "DJOnlineNetorkManager.h"
+#import "DJOnlineSearchViewController.h"
 
 static CGFloat headLineHeight = 233;
 
@@ -117,8 +118,9 @@ HPNetworkFailureViewDelegate>
     [self beginSearchWithVoice:YES];
 }
 - (void)beginSearchWithVoice:(BOOL)voice{
-    /// TODO: 进入在线搜索
-    
+    DJOnlineSearchViewController *searchvc = DJOnlineSearchViewController.new;
+    searchvc.voice = voice;
+    [self.navigationController pushViewController:searchvc animated:YES];
 }
 /// MARK: HPNetworkFailureView
 - (void)djemptyViewClick{

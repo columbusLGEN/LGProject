@@ -10,4 +10,8 @@
 
 @implementation OLExamSingleLineModel
 
+- (NSInteger)optionValue{
+    return _isright?1:-1;
+}
+
 @end

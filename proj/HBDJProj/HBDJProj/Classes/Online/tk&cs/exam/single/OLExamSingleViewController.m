@@ -20,7 +20,7 @@
 
 - (void)setModel:(OLExamSingleModel *)model{
     _model = model;
-    self.dataArray = model.contents;
+    self.dataArray = model.frontSubjectsDetail;
     if (!model.backLook) {        
         if (model.index == model.questioTotalCount - 1) {
             /// 最后一题
@@ -61,16 +61,16 @@
     OLExamSingleLineModel *questionModel = self.dataArray[0];
     __block BOOL isCorrect = NO;/// 是否回答正确
     if (questionModel.choiceMutiple) {
-        /// TODO:多选题的正确性判断
+        /// TODO:多选题的正确性判断 -- 在 OLExamSingleModel 中判断
         OLExamSingleLineModel *optionModel = self.dataArray[indexPath.row];
         if (optionModel.selected) {
             optionModel.selected = NO;
         }else{
             optionModel.selected = YES;
-            /// textcode
-            if (optionModel.repreAnswer == optionModel.belongTo.answer) {
-                isCorrect = YES;
-            }
+//            /// textcode
+//            if (optionModel.repreAnswer == optionModel.belongTo.answer) {
+//                isCorrect = YES;
+//            }
         }
     }else{
         [self.dataArray enumerateObjectsUsingBlock:^(OLExamSingleLineModel   * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -83,6 +83,11 @@
                 model.selected = NO;
             }
         }];
+    }
+    if (_model.subjecttype == 1) {
+        _model.selectOption = questionModel;
+    }else{
+        [_model.selectOptions addObject:questionModel];
     }
 
     [tableView reloadData];

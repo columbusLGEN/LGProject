@@ -33,11 +33,11 @@ LGVoiceRecoAssistDelegate>
 @property (strong,nonatomic) LGNavigationSearchBar *fakeNavgationBar;
 @property (strong,nonatomic) UITextField *textField;
 /** 语音搜索页面 */
-@property (strong,nonatomic) HPVoiceSearchView *vsView;
+//@property (strong,nonatomic) HPVoiceSearchView *vsView;
 @property (strong,nonatomic) NSString *searchContent;
 
 @property (strong,nonatomic) NSMutableString *voiceString;
-@property (weak,nonatomic) HPSearchHistoryView *searchHistory;
+//@property (weak,nonatomic) HPSearchHistoryView *searchHistory;
 
 /** 本地搜索记录数组 */
 @property (strong,nonatomic) NSArray<NSString *> *records;

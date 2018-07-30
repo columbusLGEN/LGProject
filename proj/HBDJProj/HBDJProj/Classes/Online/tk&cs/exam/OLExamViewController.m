@@ -64,7 +64,6 @@ OLExamViewBottomBarDelegate
     bottomBar.backLook = self.backLook;
     bottomBar.frame = CGRectMake(0, self.view.height - bottomBarHeight, kScreenWidth, bottomBarHeight);
     bottomBar.alreadyCount = 1;
-    bottomBar.totalCount = self.dataArray.count;
     [self.view addSubview:bottomBar];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(turnQuestion:) name:OLExamTurnQuestionNotification object:nil];
@@ -87,12 +86,13 @@ OLExamViewBottomBarDelegate
                 model.backLook = self.backLook;
                 model.index = i;
                 model.questioTotalCount = array.count;
+                [model addSubjectModel];
                 [arrMu addObject:model];
             }
             
             self.dataArray = arrMu.copy;
+            _bottomBar.totalCount = arrMu.count;
             [self.collectionView reloadData];
-            
             
         }
         
@@ -121,6 +121,19 @@ OLExamViewBottomBarDelegate
         index++;
         if (index == self.dataArray.count) {
             /// MARK: 交卷 提交成绩
+            
+            /// TODO: 打印测试结果
+//            NSArray *jsonArray = [OLExamSingleModel mj_keyValuesArrayWithObjectArray:self.dataArray];
+//            NSString *jsonString = [jsonArray mj_JSONString];
+////            NSLog(@"提交成绩的json: %@",jsonString);
+//            char tempChar[10000];
+//
+//            NSString * tempString = jsonString;
+//
+//            strcpy(tempChar,(char *)[tempString UTF8String]);
+//
+//            printf("%s",tempString);
+            
             
             /// TODO: 将答题情况数据保存在本地
             if (!self.backLook) {                
