@@ -1,19 +1,12 @@
 //
-//  HPAudioVideoViewController.m
+//  DJLessonDetailViewController.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/5/22.
+//  Created by Peanut Lee on 2018/7/30.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-/// 第一个cell：播放器
-/// 第二个cell：内容简介，可以展开 收起
-/// 第三个cell：有可能是 图文混排 cell, 可以参考 DCSubPartStateDetailViewController
-///            也有可能是纯文本
-
-/// 暂时先按照纯文本 cell 处理
-
-#import "HPAudioVideoViewController.h"
+#import "DJLessonDetailViewController.h"
 
 #import "HPAudioPlayerView.h"
 #import "HPVideoContainerView.h"
@@ -21,7 +14,8 @@
 #import "LGThreeRightButtonView.h"
 
 #import "HPAudioVideoInfoCell.h"
-#import "HPAudioVideoContentCell.h"
+/// 课程文稿cell
+#import "DJLessonAVTextTableViewCell.h"
 
 #import "HPAudioVideoModel.h"
 #import "EDJHomeImageLoopModel.h"
@@ -33,7 +27,7 @@
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
 
-@interface HPAudioVideoViewController ()<
+@interface DJLessonDetailViewController ()<
 UITableViewDelegate,
 UITableViewDataSource,
 HPAudioVideoInfoCellDelegate,
@@ -50,25 +44,25 @@ LGThreeRightButtonViewDelegate>
 
 @end
 
-@implementation HPAudioVideoViewController
+@implementation DJLessonDetailViewController
 
 /// TODO: 播放之后 调 添加播放接口 homeAddcountWithId
 
 /// MARK: 进入微党课详情页面
-+ (void)avcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
++ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
     /// 在经过 DJMediaDetailTransAssist 实例分发数据之后，这里只有 音视频模板类型的数据,if条件可以省略
     if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
         [baseVc presentFailureTips:@"数据异常"];
     }else{
         /// 如果跳转来自 图片轮播器，那么 需要 EDJHomeImageLoopModel 的frontnews
-        HPAudioVideoViewController *avc = [self new];
+        DJLessonDetailViewController *avc = [self new];
         if ([lesson isMemberOfClass:[EDJHomeImageLoopModel class]]) {
             EDJHomeImageLoopModel *imgLoopModel = (EDJHomeImageLoopModel *)lesson;
             avc.model = imgLoopModel.frontNews;
         }else{
             avc.model = lesson;
         }
-        avc.contentType = lesson.modaltype;
+        avc.lessonMediaType = lesson.modaltype;
         [baseVc.navigationController pushViewController:avc animated:YES];
     }
 }
@@ -76,7 +70,7 @@ LGThreeRightButtonViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
+    NSLog(@"新版微党课音视频控制器 : ");
 }
 - (void)configUI{
     
@@ -110,25 +104,19 @@ LGThreeRightButtonViewDelegate>
                                  TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
                                  TRConfigTitleColorSelectedKey:[UIColor EDJColor_FDBF2D]
                                  }]];
-//    ,
-//    @{TRConfigTitleKey:@"",
-//      TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
-//      TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
-//      TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
-//      TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
-//      }
+    //    ,
+    //    @{TRConfigTitleKey:@"",
+    //      TRConfigImgNameKey:@"uc_icon_fenxiang_gray",
+    //      TRConfigSelectedImgNameKey:@"uc_icon_fenxiang_green",
+    //      TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
+    //      TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
+    //      }
     NSInteger praiseid = 0;
     NSInteger collectionid = 0;
     
     NSInteger likeCount = 0;
     NSInteger collectionCount = 0;
-    
-    if (self.imgLoopModel) {
-        praiseid = self.imgLoopModel.praiseid;
-        collectionid = self.imgLoopModel.collectionid;
-        likeCount = self.imgLoopModel.praisecount;
-        collectionCount = self.imgLoopModel.collectioncount;
-    }
+
     if (self.model) {
         praiseid = self.model.praiseid;
         collectionid = self.model.collectionid;
@@ -152,18 +140,18 @@ LGThreeRightButtonViewDelegate>
     self.array = arr.copy;
     [self.tableView reloadData];
     
-    if (self.contentType == ModelMediaTypeVideo) {
+    if (self.lessonMediaType == ModelMediaTypeVideo) {
         /// MARK: 视频播放器
         HPVideoContainerView *vpv = [[HPVideoContainerView alloc] init];
-        vpv.vc = self;
+        vpv.lessonDetailVc = self;
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
         [self.view addSubview:vpv];
         vpv.model = self.model;
         _vpv = vpv;
-    }else if (self.contentType == ModelMediaTypeAudio){
+    }else if (self.lessonMediaType == ModelMediaTypeAudio){
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
-        apv.vc = self;
+        apv.lessonDetailVc = self;
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
         apv.model = self.model;
@@ -189,11 +177,11 @@ LGThreeRightButtonViewDelegate>
 }
 - (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 分享
-
+    
 }
 
 - (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
-    DJDataBaseModel *model = self.model?self.model:self.imgLoopModel;
+    DJDataBaseModel *model = self.model;
     _task = [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:model collect:collect type:DJDataPraisetypeMicrolesson success:^(NSInteger cbkid, NSInteger cbkCount) {
         if (clickSuccess) clickSuccess(cbkid,cbkCount);
     } failure:^(id failureObj) {
@@ -213,8 +201,10 @@ LGThreeRightButtonViewDelegate>
         return cell;
     }
     if (indexPath.row == _array.count - 1) {
-        HPAudioVideoContentCell *cell = [tableView dequeueReusableCellWithIdentifier:avContentCell];
+        /// 返回课程文稿cell （图文混排）
+        DJLessonAVTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:lessonAVTextCell];
         cell.model = self.model;
+        
         return cell;
     }
     return nil;
@@ -242,13 +232,15 @@ LGThreeRightButtonViewDelegate>
         _tableView.estimatedRowHeight = 100;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-        [_tableView registerNib:[UINib nibWithNibName:avContentCell bundle:nil] forCellReuseIdentifier:avContentCell];
+//        [_tableView registerNib:[UINib nibWithNibName:avContentCell bundle:nil] forCellReuseIdentifier:avContentCell];
+        /// 注册课程文稿cell
+        [_tableView registerClass:[DJLessonAVTextTableViewCell class] forCellReuseIdentifier:lessonAVTextCell];
         
         [_tableView registerNib:[UINib nibWithNibName:avInfoCell bundle:nil] forCellReuseIdentifier:avInfoCell];
-        if (self.contentType == ModelMediaTypeVideo) {
+        if (self.lessonMediaType == DJLessonMediaTypeVideo) {
             /// 视频
             _tableView.contentInset = UIEdgeInsetsMake(videoInsets, 0, 0, 0);
-        }else if (self.contentType == ModelMediaTypeAudio) {
+        }else if (self.lessonMediaType == DJLessonMediaTypeAudio) {
             /// 音频
             _tableView.contentInset = UIEdgeInsetsMake(audioInsets, 0, 0, 0);
         }
@@ -264,7 +256,7 @@ LGThreeRightButtonViewDelegate>
 
 - (void)dealloc{
     [_task cancel];
-
+    
     if (_opreated) {
         [_vpv stop];
         [_apv audioStop];

@@ -15,7 +15,7 @@
 #import <SDCycleScrollView/SDCycleScrollView.h>
 
 // controller
-#import "HPSearchViewController.h"
+#import "DJHomeSearchViewController.h"
 #import "HPBookInfoViewController.h"
 #import "HPBuildTableViewController.h"
 #import "HPAlbumTableViewController.h"
@@ -353,7 +353,7 @@ static NSInteger requestLength = 10;
     [self beginSearchWithVoice:YES];
 }
 - (void)beginSearchWithVoice:(BOOL)voice{
-    HPSearchViewController *searchVc = [HPSearchViewController new];
+    DJHomeSearchViewController *searchVc = [DJHomeSearchViewController new];
     searchVc.voice = voice;
     [self.navigationController pushViewController:searchVc animated:YES];
 }

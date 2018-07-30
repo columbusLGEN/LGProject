@@ -14,12 +14,14 @@
 #import "EDJMicroLessionAlbumModel.h"
 
 #import "HPPartyBuildDetailViewController.h"
-#import "HPAudioVideoViewController.h"
 #import "HPPointNewsTableViewController.h"
 #import "HPAlbumTableViewController.h"
 #import "HPBookInfoViewController.h"
 
-#import "DJRichTextShowWithYYKitViewController.h"
+//#import "HPAudioVideoViewController.h"
+#import "DJLessonDetailViewController.h"
+
+//#import "DJRichTextShowWithYYKitViewController.h"
 
 #import "LGDidSelectedNotification.h"
 
@@ -30,7 +32,10 @@
     switch (model.modaltype) {
         case ModelMediaTypeAudio:
         case ModelMediaTypeVideo:{
-            [HPAudioVideoViewController avcPushWithLesson:model baseVc:baseVc];
+//            [HPAudioVideoViewController avcPushWithLesson:model baseVc:baseVc];
+            
+            [DJLessonDetailViewController lessonvcPushWithLesson:model baseVc:baseVc];
+            
         }
             break;
         case ModelMediaTypeRichText:{

@@ -7,10 +7,11 @@
 //
 
 #import "LGBaseView.h"
-@class DJDataBaseModel,HPAudioVideoViewController;
+@class DJDataBaseModel,HPAudioVideoViewController,DJLessonDetailViewController;
 
 @interface HPVideoContainerView : LGBaseView
 @property (weak,nonatomic) HPAudioVideoViewController *vc;
+@property (weak,nonatomic) DJLessonDetailViewController *lessonDetailVc;
 @property (strong,nonatomic) DJDataBaseModel *model;
 - (void)stop;
 

@@ -9,7 +9,7 @@
 #import "LGBaseTableViewCell.h"
 #import "DTAttributedTextCell.h"
 
-static NSString *contentCell = @"DCStateContentsCell";
+static NSString * const richContentCell = @"DCStateContentsCell";
 
 @interface DCStateContentsCell : DTAttributedTextCell
 

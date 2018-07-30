@@ -52,6 +52,10 @@
     
     _titleBgLeft.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
     _titleBgRight.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
+    
+    _titleBgLeft.hidden = YES;
+    _titleBgRight.hidden = YES;
+    
 }
 
 

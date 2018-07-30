@@ -24,6 +24,8 @@
 #import "LGUserLimitsManager.h"// 隐私权限检查
 #import "LGVoiceRecoAssist.h"// 语音识别辅助
 
+static NSString * const notFirstLaunch = @"notFirstLaunch";
+
 @interface DJUnitSearchViewController ()<
 LGNavigationSearchBarDelelgate,
 UITextFieldDelegate,
@@ -151,15 +153,24 @@ LGVoiceRecoAssistDelegate>
             [self presentFailureTips:@"网络异常，无法进行语音识别"];
         }else{
             if (!_speaking) {
-                /// 检查用户 麦克风权限
-                [self.limitsMgr microPhoneLimitCheck:^{
+                
+                /// 如果是首次打开应用，直接 start listening
+                /// 否则，先检查权限
+                if (![[NSUserDefaults standardUserDefaults] objectForKey:notFirstLaunch]) {
                     [self.voiceAssist start];
-                    
-                } denied:^{
-                    UIAlertController *alertVc = [self.limitsMgr showSetMicroPhoneAlertView];
-                    [self presentViewController:alertVc animated:YES completion:nil];
-                }];
-                _speaking = YES;
+                    _speaking = YES;
+                    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:notFirstLaunch];
+                }else{
+                    [self.limitsMgr microPhoneLimitCheck:^{
+                        [self.voiceAssist start];
+                        _speaking = YES;
+                        
+                    } denied:^{
+                        UIAlertController *alertVc = [self.limitsMgr showSetMicroPhoneAlertView];
+                        [self presentViewController:alertVc animated:YES completion:nil];
+                    }];
+                }
+                
             }
         }
     }];

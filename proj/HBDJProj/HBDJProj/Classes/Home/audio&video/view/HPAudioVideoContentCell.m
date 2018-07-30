@@ -22,6 +22,7 @@
 - (void)setModel:(DJDataBaseModel *)model{
     _model = model;
     _content.text = model.content;
+    
 }
 
 - (void)awakeFromNib {

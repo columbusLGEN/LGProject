@@ -22,10 +22,9 @@
 @implementation LGVoiceRecoganizer
 
 /// TODO: 适当的时候清空 voiceString
-
 #pragma mark - IFlySpeechRecognizerDelegate
 - (void)onCompleted:(IFlySpeechError *)errorCode{
-    NSLog(@"errorCode.errorDesc -- %@",errorCode.errorDesc);
+    NSLog(@"onCompleted -- %@",errorCode.errorDesc);
 }
 ////识别结果返回代理
 - (void)onResults:(NSArray *)results isLast:(BOOL)isLast{
@@ -52,33 +51,39 @@
 
 //识别会话结束返回代理
 - (void)onError: (IFlySpeechError *) error{
-
+    NSLog(@"onError: %@",error.errorDesc);
+    [self callBack];
 }
 //停止录音回调
-- (void) onEndOfSpeech{
-    NSDictionary *dict = @{LGVoiceRecoganizerTextKey:_voiceString?_voiceString:@""};
-    [[NSNotificationCenter defaultCenter] postNotificationName:LGVoiceRecoganizerEndOfSpeechNotification object:nil userInfo:dict];
-    _voiceString = nil;        
+- (void)onEndOfSpeech{
+    [self callBack];
     
 }
 //开始录音回调
-- (void) onBeginOfSpeech{
+- (void)onBeginOfSpeech{
     NSLog(@"开始识别 -- ");
 }
 //音量回调函数
-- (void) onVolumeChanged: (int)volume{
+- (void)onVolumeChanged: (int)volume{
     
 }
 //会话取消回调
-- (void) onCancel{
-
+- (void)onCancel{
+    [self callBack];
 }
 
+- (void)callBack{
+    NSDictionary *dict = @{LGVoiceRecoganizerTextKey:_voiceString?_voiceString:@""};
+    [[NSNotificationCenter defaultCenter] postNotificationName:LGVoiceRecoganizerEndOfSpeechNotification object:nil userInfo:dict];
+    _voiceString = nil;
+}
 
 - (void)lg_start{
+    
     //启动识别服务
     BOOL success = [_iFlySpeechRecognizer startListening];
     NSLog(@"voiceRecoSuccess -- %d",success);
+
 }
 
 - (instancetype)init{

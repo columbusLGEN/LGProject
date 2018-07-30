@@ -12,6 +12,7 @@
 #import "DJDataBaseModel.h"
 
 #import "HPAudioVideoViewController.h"
+#import "DJLessonDetailViewController.h"
 
 static NSString * const testVideo = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXS3WAMVzsAV8r1CUcVnM988.mp4";
 
@@ -89,6 +90,7 @@ PLPlayerViewDelegate>
 
 - (void)lg_played{
     self.vc.opreated = YES;
+    self.lessonDetailVc.opreated = YES;
 }
 
 - (void)exitFullScreen{

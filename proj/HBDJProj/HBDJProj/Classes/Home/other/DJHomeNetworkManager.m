@@ -82,16 +82,16 @@
     }
     NSDictionary *dict = @{@"addordel":[NSString stringWithFormat:@"%d",add],
                            @"seqid":seqid,
-                           type:[NSString stringWithFormat:@"%ld",praisetype]};
+                           type:[NSString stringWithFormat:@"%lu",(unsigned long)praisetype]};
     return [self taskForPOSTRequestWithiName:iName param:dict needUserid:YES success:success failure:failure];
 }
 - (void)homeChairmanPoineNewsClassid:(NSInteger)classid offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *dict = @{@"classid":[NSString stringWithFormat:@"%ld",classid],
+    NSDictionary *dict = @{@"classid":[NSString stringWithFormat:@"%ld",(long)classid],
                            };
     [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontNews/selectList" param:dict success:success failure:failure];
 }
 - (void)homeSearchWithString:(NSString *)string type:(NSInteger)type offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSString *type_string = [NSString stringWithFormat:@"%ld",type];
+    NSString *type_string = [NSString stringWithFormat:@"%ld",(long)type];
     NSDictionary *dict = @{@"type":type_string,
                            @"search":string};
     [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontIndex/lectureSearch" param:dict success:success failure:failure];

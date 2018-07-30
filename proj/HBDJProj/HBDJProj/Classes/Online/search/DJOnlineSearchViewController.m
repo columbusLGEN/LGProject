@@ -24,24 +24,24 @@
 
 @implementation DJOnlineSearchViewController
 
-@synthesize vsView = _vsView;
-@synthesize searchHistory = _searchHistory;
-
 - (void)setChildvcSearchContent:(NSString *)searchContent{
 //    HPSearchLessonController *microvc = self.childViewControllers[0];
     
     /// TODO 创建 投票、题库列表的 搜索控制器, 
 //    OLVoteListController *voteListvc = self.childViewControllers[1];
 //    OLTkcsTableViewController *testListvc = self.childViewControllers[2];
-
+    HPSearchLessonController *microvc = self.childViewControllers[0];
+    HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
+    microvc.searchContent = searchContent;
+    partyvc.searchContent = searchContent;
     
 }
 - (void)sendSerachRequestWithSearchContent:(NSString *)searchContent{
         [[LGLoadingAssit sharedInstance] homeAddLoadingViewTo:self.view];
         [DJHomeNetworkManager homeSearchWithString:searchContent type:0 offset:0 length:10 sort:0 success:^(id responseObj) {
             /// MARK: 刷新子可控制器视图
-            [_vsView removeFromSuperview];
-            _vsView = nil;
+            [self.vsView removeFromSuperview];
+            self.vsView = nil;
             [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
     
             NSArray *classes = responseObj[@"classes"];
@@ -78,10 +78,10 @@
             }
     
             if (classes.count || news.count) {
-                _searchHistory.hidden = YES;
+                self.searchHistory.hidden = YES;
             }
             if (classes.count == 0 && news.count == 0) {
-                _searchHistory.hidden = NO;
+                self.searchHistory.hidden = NO;
                 [self.view presentFailureTips:@"没有搜到想要的内容"];
             }
     

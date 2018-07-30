@@ -100,6 +100,8 @@ WKNavigationDelegate>
     _pbdBottom.leftIsSelected = !(contentModel.praiseid == 0);
     _pbdBottom.middleIsSelected = !(contentModel.collectionid == 0);
     
+//    NSLog(@"[contentModel.content class]: %@",[contentModel.content class]);
+    
     [LGHTMLParser HTMLSaxWithHTMLString:contentModel.content success:^(NSAttributedString *attrString) {
         NSAttributedString *string = attrString;
 
@@ -209,8 +211,7 @@ WKNavigationDelegate>
 
 #pragma mark Custom Views on Text
 
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
-{
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame{
     NSDictionary *attributes = [string attributesAtIndex:0 effectiveRange:NULL];
     
     NSURL *URL = [attributes objectForKey:DTLinkAttribute];
@@ -265,10 +266,6 @@ WKNavigationDelegate>
         
         // use normal push action for opening URL
         [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
-        
-        // demonstrate combination with long press
-//        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
-//        [button addGestureRecognizer:longPress];
         
         [imageView addSubview:button];
     }

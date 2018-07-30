@@ -128,7 +128,7 @@ DTLazyImageViewDelegate>
     DCStateContentsCell *cell = [_cellCache objectForKey:key];
     
     if (!cell) {
-        cell = [[DCStateContentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:contentCell];
+        cell = [[DCStateContentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:richContentCell];
         cell.attributedTextContextView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
         cell.hasFixedRowHeight = NO;
         cell.textDelegate = self;
@@ -258,7 +258,7 @@ DTLazyImageViewDelegate>
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        _tableView.estimatedRowHeight = 80;/// 该值不给也行
-        [_tableView registerClass:[DCStateContentsCell class] forCellReuseIdentifier:contentCell];
+        [_tableView registerClass:[DCStateContentsCell class] forCellReuseIdentifier:richContentCell];
         [_tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
         
     }
