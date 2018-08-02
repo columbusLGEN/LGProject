@@ -23,6 +23,7 @@
 #import "LGPlayer.h"
 #import "DJUserInteractionMgr.h"
 #import "HPAddBroseCountMgr.h"
+#import <DTCoreText/DTCoreText.h>
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -32,7 +33,9 @@ UITableViewDelegate,
 UITableViewDataSource,
 HPAudioVideoInfoCellDelegate,
 LGVideoInterfaceViewDelegate,
-LGThreeRightButtonViewDelegate>
+LGThreeRightButtonViewDelegate,
+DTAttributedTextContentViewDelegate,
+DTLazyImageViewDelegate>
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray *array;
 
@@ -41,6 +44,11 @@ LGThreeRightButtonViewDelegate>
 @property (weak,nonatomic) HPAudioPlayerView *apv;
 
 @property (strong,nonatomic) NSURLSessionTask *task;
+
+/** 缓存core text cell */
+@property (strong,nonatomic) NSCache *cellCache;
+/** 图片尺寸缓存 */
+@property (nonatomic, strong) NSCache *imageSizeCache;
 
 @end
 
@@ -70,9 +78,13 @@ LGThreeRightButtonViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    NSLog(@"新版微党课音视频控制器 : ");
 }
 - (void)configUI{
+    
+    _imageSizeCache = [[NSCache alloc] init];
+    _cellCache = [[NSCache alloc] init];
+    _cellCache.totalCostLimit = 10;
+    _cellCache.countLimit = 10;
     
     CGFloat bottomHeight = 60;
     BOOL isiPhoneX = ([LGDevice sharedInstance].currentDeviceType == LGDeviecType_iPhoneX);
@@ -202,20 +214,111 @@ LGThreeRightButtonViewDelegate>
     }
     if (indexPath.row == _array.count - 1) {
         /// 返回课程文稿cell （图文混排）
-        DJLessonAVTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:lessonAVTextCell];
-        cell.model = self.model;
-        
+        DJLessonAVTextTableViewCell *cell = [self tableView:tableView prepareCellForIndexPath:indexPath];
         return cell;
     }
     return nil;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == _array.count - 1) {
+        DJLessonAVTextTableViewCell *cell = [self tableView:tableView prepareCellForIndexPath:indexPath];
+        return [cell requiredRowHeightInTableView:tableView];
+    }else{
+        HPAudioVideoInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:avInfoCell];
+        cell.model = self.model;
+        return [cell cellHeight];
+    }
+}
+
+- (DJLessonAVTextTableViewCell *)tableView:(UITableView *)tableView prepareCellForIndexPath:(NSIndexPath *)indexPath{
+    NSString *key = [NSString stringWithFormat:@"dcSubPartyCoreTextCell_%ld_%ld",indexPath.section,indexPath.row];
+    DJLessonAVTextTableViewCell *cell = [_cellCache objectForKey:key];
+    
+    if (!cell) {
+        cell = [[DJLessonAVTextTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:richContentCell];
+        cell.hasFixedRowHeight = NO;
+        cell.textDelegate = self;
+        cell.attributedTextContextView.shouldDrawImages = YES;
+        
+        [_cellCache setObject:cell forKey:key];
+        
+    }
+    
+    /// TODO: 设置富文本数据
+    [cell setHTMLString:self.model.content];
+    
+    /// 为每个占位图设置大小
+    for (DTTextAttachment *oneAttachment in cell.attributedTextContextView.layoutFrame.textAttachments) {
+        NSValue *sizeValue = [_imageSizeCache objectForKey:oneAttachment.contentURL];
+        if (sizeValue) {
+            cell.attributedTextContextView.layouter = nil;
+            oneAttachment.displaySize = [sizeValue CGSizeValue];
+            [cell.attributedTextContextView relayoutText];
+        }
+    }
+    [cell.attributedTextContextView relayoutText];
+    return cell;
+}
+#pragma mark - DTAttributedTextContentViewDelegate
+//对于没有在Html标签里设置宽高的图片，在这里为其设置占位
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame{
+    if([attachment isKindOfClass:[DTImageTextAttachment class]]){
+        DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
+        
+        imageView.delegate = self;
+        
+        // sets the image if there is one
+        imageView.image = [(DTImageTextAttachment *)attachment image];
+        
+        // url for deferred loading
+        imageView.url = attachment.contentURL;
+        
+        imageView.contentView = attributedTextContentView;
+        
+        return imageView;
+    }
+    return nil;
+}
+
+#pragma mark - DTLazyImageViewDelegate
+- (void)lazyImageView:(DTLazyImageView *)lazyImageView didChangeImageSize:(CGSize)size{
+    BOOL needUpdate = NO;
+    NSURL *url = lazyImageView.url;
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
+    
+    for (DTTextAttachment *oneAttachment in [lazyImageView.contentView.layoutFrame textAttachmentsWithPredicate:pred]){
+        // update attachments that have no original size, that also sets the display size
+        if (CGSizeEqualToSize(oneAttachment.originalSize, CGSizeZero)){
+            oneAttachment.originalSize = size;
+            NSValue *sizeValue = [_imageSizeCache objectForKey:oneAttachment.contentURL];
+            if (!sizeValue) {
+                //将图片大小记录在缓存中，但是这种图片的原始尺寸可能很大，所以这里设置图片的最大宽
+                //并且计算高
+                CGFloat aspectRatio = size.height / size.width;
+                CGFloat width = kScreenWidth - 100;
+                CGFloat height = width * aspectRatio;
+                CGSize newSize = CGSizeMake(width, height);
+                [_imageSizeCache setObject:[NSValue valueWithCGSize:newSize]forKey:url];
+            }
+            needUpdate = YES;
+        }
+    }
+    
+    if (needUpdate) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
+    }
+    
+}
+
 #pragma mark - HPAudioVideoInfoCellDelegate
 - (void)avInfoCellOpen:(HPAudioVideoInfoCell *)cell isOpen:(BOOL)isOpen{
     /// 课程信息的展开与收起
     [self.tableView reloadData];
-    if (!isOpen) {
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
-    }
+//    if (!isOpen) {
+//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+//    }
     
 }
 #pragma mark - LGVideoInterfaceViewDelegate
@@ -229,7 +332,7 @@ LGThreeRightButtonViewDelegate>
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.estimatedRowHeight = 100;
+//        _tableView.estimatedRowHeight = 100;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
 //        [_tableView registerNib:[UINib nibWithNibName:avContentCell bundle:nil] forCellReuseIdentifier:avContentCell];
@@ -237,6 +340,7 @@ LGThreeRightButtonViewDelegate>
         [_tableView registerClass:[DJLessonAVTextTableViewCell class] forCellReuseIdentifier:lessonAVTextCell];
         
         [_tableView registerNib:[UINib nibWithNibName:avInfoCell bundle:nil] forCellReuseIdentifier:avInfoCell];
+        
         if (self.lessonMediaType == DJLessonMediaTypeVideo) {
             /// 视频
             _tableView.contentInset = UIEdgeInsetsMake(videoInsets, 0, 0, 0);

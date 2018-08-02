@@ -18,10 +18,12 @@ static NSString * const avInfoCell = @"HPAudioVideoInfoCell";
 
 @property (strong,nonatomic) DJDataBaseModel *model;
 @property (weak,nonatomic) id<HPAudioVideoInfoCellDelegate> delegate;
+- (CGFloat)cellHeight;
 
 @end
 
 @protocol HPAudioVideoInfoCellDelegate <NSObject>
 - (void)avInfoCellOpen:(HPAudioVideoInfoCell *)cell isOpen:(BOOL)isOpen;
+
 
 @end

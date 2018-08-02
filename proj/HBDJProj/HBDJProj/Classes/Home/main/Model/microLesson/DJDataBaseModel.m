@@ -31,7 +31,7 @@
 
 - (NSString *)createdDate{
     if (!_createdDate) {
-        _createdDate = [_createdtime timestampToDate];
+        _createdDate = [_createdtime timestampToMin];
         
     }
     return _createdDate;

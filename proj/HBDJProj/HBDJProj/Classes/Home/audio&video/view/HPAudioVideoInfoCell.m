@@ -22,6 +22,17 @@
 
 @implementation HPAudioVideoInfoCell
 
+- (CGFloat)cellHeight{
+    if (!(_model.lessonInfoCellShowAll)) {
+        
+        return 240;
+    }else{
+        CGFloat textHeight = [self.model.contentvalidity sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:15]].height;
+        
+        return textHeight + 144 + 50;
+    }
+}
+
 - (void)setModel:(DJDataBaseModel *)model{
     _model = model;
     [_title setText:model.title];
@@ -33,15 +44,18 @@
 }
 
 - (IBAction)open:(UIButton *)sender {
-    if (sender.isSelected) {
-        sender.selected = NO;
+    if (_model.lessonInfoCellShowAll) {
+        _model.lessonInfoCellShowAll = NO;
         _content.numberOfLines = 3;
+        sender.selected = NO;
     }else{
-        sender.selected = YES;
+        _model.lessonInfoCellShowAll = YES;
         _content.numberOfLines = 0;
+        sender.selected = YES;
     }
+    
     if ([self.delegate respondsToSelector:@selector(avInfoCellOpen:isOpen:)]) {
-        [self.delegate avInfoCellOpen:self isOpen:sender.isSelected];
+        [self.delegate avInfoCellOpen:self isOpen:_model.lessonInfoCellShowAll];
     }
 }
 

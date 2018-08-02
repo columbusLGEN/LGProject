@@ -123,6 +123,15 @@
         return @"1分钟前";
     }
 }
+// MARK: 时间戳 --> 分钟
+- (NSString *)timestampToMin{
+    NSTimeInterval temp = [self doubleValue];
+    NSDate *date = [[NSDate date] initWithTimeIntervalSince1970:temp];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd hh:mm";
+    
+    return [df stringFromDate:date];
+}
 
 // MARK: MD5
 - (NSString *)md5String{

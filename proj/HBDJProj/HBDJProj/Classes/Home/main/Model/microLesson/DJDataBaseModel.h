@@ -100,4 +100,7 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 /** 分享链接 */
 @property (strong,nonatomic) NSString *shareUrl;
 
+/** 微党课音视频信息cell是否展开,默认为NO */
+@property (assign,nonatomic) BOOL lessonInfoCellShowAll;
+
 @end

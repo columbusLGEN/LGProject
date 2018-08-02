@@ -34,6 +34,11 @@
  */
 - (NSString *)timestampToDescription;
 /**
+ 时间戳 --> 分钟
+ 2018-8-1 11:02
+ */
+- (NSString *)timestampToMin;
+/**
  MD5
  @return 加密后的字符串
  */

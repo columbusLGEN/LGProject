@@ -8,13 +8,14 @@
 
 /// 新版党课 影视频 课程文稿cell
 
-#import "LGBaseTableViewCell.h"
+//#import "LGBaseTableViewCell.h"
+#import "DCStateContentsCell.h"
 
 static NSString * const lessonAVTextCell = @"DJLessonAVTextTableViewCell";
 
 @class DJDataBaseModel;
 
-@interface DJLessonAVTextTableViewCell : LGBaseTableViewCell
+@interface DJLessonAVTextTableViewCell : DCStateContentsCell
 @property (strong,nonatomic) DJDataBaseModel *model;
 
 @end
