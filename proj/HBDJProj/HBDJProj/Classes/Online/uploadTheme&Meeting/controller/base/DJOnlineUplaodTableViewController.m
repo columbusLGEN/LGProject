@@ -302,7 +302,11 @@ DJInputContentViewControllerDelegate>
             
             NSInteger index = [self.dataArray indexOfObject:model] + 1;
             DJOnlineUploadTableModel *absentModel = self.dataArray[index];
-            absentModel.content = [self.peopleAbsentNames componentsJoinedByString:@"、"];
+            NSString *absentString = [self.peopleAbsentNames componentsJoinedByString:@"、"];
+            if ([absentString isEqualToString:@""] || absentString == nil) {
+                absentString = @"无";
+            }
+            absentModel.content = absentString;
             [_uploadDataManager setUploadValue:[self.peopleAbsent componentsJoinedByString:@","] key:absentModel.uploadJsonKey];/// 提交给后台的数据 人的id
             
             peoples = [self.peoplePresent componentsJoinedByString:@","];
