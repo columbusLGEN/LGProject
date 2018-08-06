@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017思想汇报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5d-v9-q7y">
-                        <rect key="frame" x="15" y="41.5" width="106.5" height="21"/>
+                        <rect key="frame" x="15" y="41.5" width="341" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -54,6 +54,7 @@
                 <constraints>
                     <constraint firstItem="6sG-Cg-GPu" firstAttribute="leading" secondItem="N5d-v9-q7y" secondAttribute="leading" id="1OF-JA-yBc"/>
                     <constraint firstItem="N5d-v9-q7y" firstAttribute="top" secondItem="naj-fB-pf3" secondAttribute="top" id="1oB-bY-JnO"/>
+                    <constraint firstItem="naj-fB-pf3" firstAttribute="leading" secondItem="N5d-v9-q7y" secondAttribute="trailing" constant="10" id="80g-K6-55b"/>
                     <constraint firstItem="Eai-wY-Ocp" firstAttribute="leading" secondItem="Q5z-1g-2UW" secondAttribute="trailing" constant="20" id="8hp-40-GHF"/>
                     <constraint firstAttribute="trailing" secondItem="naj-fB-pf3" secondAttribute="trailing" constant="15" id="9sc-bp-tFt"/>
                     <constraint firstItem="Eai-wY-Ocp" firstAttribute="bottom" secondItem="Q5z-1g-2UW" secondAttribute="bottom" id="GvV-gL-fDg"/>

@@ -54,9 +54,9 @@ DJSelectMeetingTagViewControllerDelegate>
     [self setFormDataDictValue:urls_string indexPath:[NSIndexPath indexPathForRow:9 inSection:0]];
 }
 
-/// 上传
+/// 上传 三会一课
 - (void)requestUploadWithFormData:(NSDictionary *)formData success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    [DJOnlineNetorkManager.sharedInstance addThemeWithFormdict:[formData mutableCopy] success:success failure:failure];
+    [DJOnlineNetorkManager.sharedInstance addSessionsWithFormdict:[formData mutableCopy] success:success failure:failure];
     
 }
 

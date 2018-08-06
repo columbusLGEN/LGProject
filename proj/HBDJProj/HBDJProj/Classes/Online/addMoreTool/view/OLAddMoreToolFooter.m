@@ -30,13 +30,13 @@
 - (UILabel *)title{
     if (_title == nil) {
         _title = [UILabel new];
-        _title.numberOfLines = 2;
+        _title.numberOfLines = 0;
         _title.textColor = [UIColor EDJGrayscale_33];
         _title.font = [UIFont systemFontOfSize:15];
         
         NSString *phoneNumber = @"027-87679599";
         NSDictionary *attrStrDict = @{NSForegroundColorAttributeName:[UIColor EDJColor_FC774E]};
-        NSString *originString = [@"特别提示:定制工具需用户所在单位党组织开通后方可添加。开通咨询电话:" stringByAppendingString:phoneNumber];
+        NSString *originString = [@"特别提示:定制工具需用户所在单位党组织开通后方可添加。\n开通咨询电话:" stringByAppendingString:phoneNumber];
         
         NSMutableAttributedString *destiStr = [[NSMutableAttributedString alloc] initWithString:originString];
         [destiStr setAttributes:attrStrDict range:NSMakeRange([originString rangeOfString:phoneNumber].location, [originString rangeOfString:phoneNumber].length)];

@@ -12,7 +12,7 @@
 @implementation OLVoteDetailTableViewCell
 
 + (NSString *)cellReuseIdWithModel:(OLVoteDetailModel *)model{
-    switch (model.status) {
+    switch (model.localStatus) {
         case VoteModelStatusNormal:
         case VoteModelStatusSelected:
             return @"OLVoteDetailNormalTableViewCell";
@@ -23,7 +23,7 @@
     }
 }
 + (CGFloat)cellHeightWithModel:(OLVoteDetailModel *)model{
-    switch (model.status) {
+    switch (model.localStatus) {
         case VoteModelStatusNormal:
         case VoteModelStatusSelected:
             return 60;

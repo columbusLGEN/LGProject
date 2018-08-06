@@ -34,7 +34,7 @@
 }
 
 - (void)setUploadValue:(id)value key:(NSString *)key{
-    NSAssert(value == nil, @"value 不能为空");
+    NSAssert(value != nil, @"value 不能为空");
     [_formData setValue:value forKey:key];
     NSLog(@"表单数据_formData: %@",_formData);
 }

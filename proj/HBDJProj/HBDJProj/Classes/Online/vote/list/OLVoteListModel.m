@@ -17,6 +17,13 @@
     return _starttime;
 }
 
+- (NSString *)endtime{
+    if (_endtime.length > 10) {
+        _endtime = [_endtime substringToIndex:11];
+    }
+    return _endtime;
+}
+
 //- (BOOL)isEnd{
 //    
 //    NSDate *date = [NSDate date];

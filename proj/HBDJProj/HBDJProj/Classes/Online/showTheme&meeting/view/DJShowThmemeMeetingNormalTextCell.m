@@ -19,6 +19,7 @@
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     [super setModel:model];
     self.contentLabel.text = model.content;
+    
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{

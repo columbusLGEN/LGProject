@@ -55,10 +55,11 @@ UICollectionViewDataSource>
             _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         
-        UIEdgeInsets insets = UIEdgeInsetsMake([[self class] headerHeight], 0, kTabBarHeight, 0);
+        UIEdgeInsets insets = UIEdgeInsetsMake([[self class] headerHeight], 0, kTabBarHeight + 20, 0);
         [_collectionView setContentInset:insets];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.dataSource = self;
+        _collectionView.showsVerticalScrollIndicator = NO;
         
         [_collectionView registerNib:[UINib nibWithNibName:onlinCell bundle:nil] forCellWithReuseIdentifier:onlinCell];
         _collectionView.scrollIndicatorInsets = insets;
@@ -73,6 +74,7 @@ UICollectionViewDataSource>
 }
 
 + (CGFloat)headerHeight{
+    /// TODO: 高度屏幕适配
     return 242;
 }
 @end

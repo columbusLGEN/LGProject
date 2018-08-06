@@ -46,7 +46,7 @@
 		<key>itemName</key>
 		<string>会议主持人</string>
 		<key>itemClass</key>
-		<integer>7</integer>
+		<integer>0</integer>
 		<key>uploadJsonKey</key>
 		<string>organizer</string>
 		<key>necess</key>

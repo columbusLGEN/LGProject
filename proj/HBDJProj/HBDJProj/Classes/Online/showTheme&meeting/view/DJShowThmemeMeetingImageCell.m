@@ -8,27 +8,32 @@
 
 #import "DJShowThmemeMeetingImageCell.h"
 #import "DJOnlineUploadTableModel.h"
+#import "HZPhotoGroup.h"
+
 #import "LGNineImgView.h"
+
+@interface DJShowThmemeMeetingImageCell ()
+@property (nonatomic,strong) HZPhotoGroup *groupView;
+
+
+@end
 
 @implementation DJShowThmemeMeetingImageCell
 
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     [super setModel:model];
     
+    self.groupView.urlArray = [model.content componentsSeparatedByString:@","];
     CGFloat nineImageViewHeight = niImgWidth;
-
-    LGNineImgView *nine = LGNineImgView.new;
-    [self.contentView addSubview:nine];
-    nine.dataSource = [model.content componentsSeparatedByString:@","];
     
-    if (nine.dataSource.count < 4) {
-    }else if (nine.dataSource.count < 7){
+    if (self.groupView.urlArray.count < 4) {
+    }else if (self.groupView.urlArray.count < 7){
         nineImageViewHeight += (niImgWidth + niMargin);
     }else{
         nineImageViewHeight += (niImgWidth + niMargin) * 2;
     }
     
-    [nine mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_groupView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(marginTen);
         make.left.equalTo(self.item.mas_right).offset(marginEight);
         make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
@@ -38,14 +43,23 @@
     
     [self.item mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(marginTen);
-        make.top.equalTo(nine.mas_top);
+        make.top.equalTo(_groupView.mas_top);
     }];
-    
-    /// 九宫格点击回调
-    nine.tapBlock = ^(NSInteger index, NSArray *dataSource) {
-        NSLog(@"idnex -- %ld",index);
-    };
 }
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.groupView];
+        
+    }
+    return self;
+}
+
+- (HZPhotoGroup *)groupView{
+    if (!_groupView) {
+        _groupView = [[HZPhotoGroup alloc] init];
+    }
+    return _groupView;
+}
 
 @end

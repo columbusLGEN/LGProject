@@ -8,10 +8,12 @@
 
 #import "DJThoughtReportDetailNineImageCell.h"
 #import "DJThoughtReportDetailModel.h"
+#import "HZPhotoGroup.h"
+
 #import "LGNineImgView.h"
 
 @interface DJThoughtReportDetailNineImageCell ()
-
+@property (nonatomic,strong) HZPhotoGroup *groupView;
 
 @end
 
@@ -22,35 +24,41 @@
     
     CGFloat nineImageViewHeight = niImgWidth;
     
-    /// 九宫格展示图片
-    LGNineImgView *nine = LGNineImgView.new;
-    [self.contentView addSubview:nine];
-    nine.dataSource = [model.fileurl componentsSeparatedByString:@","];
+    NSArray *dataSource = [model.fileurl componentsSeparatedByString:@","];
     
-    if (nine.dataSource.count < 4) {
-    }else if (nine.dataSource.count < 7){
+    self.groupView.urlArray = dataSource;
+    
+    if (dataSource.count < 4) {
+    }else if (dataSource.count < 7){
         nineImageViewHeight += (niImgWidth + niMargin);
     }else{
         nineImageViewHeight += (niImgWidth + niMargin) * 2;
     }
-    
-    [nine mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.groupView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(marginTen);
-        make.left.equalTo(self.contentView.mas_left).offset(30);
-//        make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
+        make.left.equalTo(self.contentView.mas_left).offset(marginTwenty);
+        make.right.equalTo(self.contentView.mas_right).offset(-marginTwenty);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginTen);
         make.height.mas_equalTo(nineImageViewHeight);
     }];
-    
-    /// 九宫格点击回调
-    nine.tapBlock = ^(NSInteger index, NSArray *dataSource) {
-        NSLog(@"idnex -- %ld",(long)index);
-    };
+
 }
 
-- (void)awakeFromNib{
-    [super awakeFromNib];
-    
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.groupView];
+        NSLog(@"cell.userInteractionEnabled: %d",self.userInteractionEnabled);
+        NSLog(@"cell.contentView.userInteractionEnabled: %d",self.contentView.userInteractionEnabled);
+    }
+    return self;
 }
+
+- (HZPhotoGroup *)groupView{
+    if (!_groupView) {
+        _groupView = [[HZPhotoGroup alloc] init];
+    }
+    return _groupView;
+}
+
 
 @end

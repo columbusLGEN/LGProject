@@ -151,7 +151,7 @@ HPNetworkFailureViewDelegate>
 }
 - (UIImageView *)headLine{
     if (_headLine == nil) {
-        _headLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, - [EDJOnlineController headerHeight] - 9, kScreenWidth, headLineHeight)];
+        _headLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, - [EDJOnlineController headerHeight], kScreenWidth, headLineHeight)];
         _headLine.clipsToBounds = YES;
         _headLine.contentMode = UIViewContentModeScaleAspectFill;
         _headLine.image = [UIImage imageNamed:@"party_history"];

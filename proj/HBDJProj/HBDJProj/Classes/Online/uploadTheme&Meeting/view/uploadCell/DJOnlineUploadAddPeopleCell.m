@@ -22,8 +22,8 @@ static NSString * const olupTimeKeyPath = @"content";
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change context:(nullable void *)context{
     if ([keyPath isEqualToString:olupTimeKeyPath] && object == self.model) {
         NSString *timeString;
-        if (self.model.content.length > 10) {
-            timeString = [self.model.content substringToIndex:11];
+        if (self.model.content.length > length_timeString) {
+            timeString = [self.model.content substringToIndex:(length_timeString + 1)];
         }
         _content.text = timeString;
         _content.textColor = [UIColor EDJGrayscale_11];

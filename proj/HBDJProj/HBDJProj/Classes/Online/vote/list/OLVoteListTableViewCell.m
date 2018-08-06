@@ -9,6 +9,8 @@
 #import "OLVoteListTableViewCell.h"
 #import "OLVoteListModel.h"
 
+static NSString * const ob_key_poth = @"votestatus";
+
 @interface OLVoteListTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *time;
@@ -36,17 +38,31 @@
     }
     _title.text = model.title;
     _time.text = model.starttime;
+    
+    [model addObserver:self forKeyPath:ob_key_poth options:NSKeyValueObservingOptionNew context:nil];
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:ob_key_poth] && object == _model) {
+        if (_model.votestatus == 1) {
+            _vote.text = @"已投票";
+            _vote.textColor = [UIColor EDJGrayscale_66];
+        }else if (_model.votestatus == 0){
+            _vote.text = @"待投票";
+            _vote.textColor = [UIColor EDJColor_57C6FF];
+        }else if(_model.votestatus == 3){
+            _vote.text = @"已结束";
+            _vote.textColor = [UIColor EDJGrayscale_C2];
+        }else{
+            /// 未开始
+            
+        }
+    }
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)dealloc{
+    [_model removeObserver:self forKeyPath:ob_key_poth];
+    
 }
 
 @end

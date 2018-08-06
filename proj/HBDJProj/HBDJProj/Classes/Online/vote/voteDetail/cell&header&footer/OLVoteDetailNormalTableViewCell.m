@@ -10,7 +10,7 @@
 #import "OLVoteDetailModel.h"
 
 
-static NSString * statusKey = @"status";
+static NSString * statusKey = @"localStatus";
 
 @interface OLVoteDetailNormalTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *voteBtn;
@@ -39,7 +39,7 @@ static NSString * statusKey = @"status";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:statusKey] && object == self.model) {
-        if (self.model.status == VoteModelStatusVoted || self.model.status == VoteModelStatusSelected) {
+        if (self.model.localStatus == VoteModelStatusVoted || self.model.localStatus == VoteModelStatusSelected) {
             _content.textColor = [UIColor EDJMainColor];
             _voteBtn.selected = YES;
             self.backgroundColor = [UIColor EDJGrayscale_FA];

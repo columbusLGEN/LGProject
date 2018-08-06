@@ -58,6 +58,9 @@
 + (UIColor *)EDJGrayscale_FA{/// 247
     return [self colorWithHexString:@"FAFAFA"];
 }
++ (UIColor *)EDJGrayscale_AD{/// 173
+    return [self colorWithHexString:@"adadad"];
+}
 
 + (UIColor *)EDJColor_9B1212{
     return [self colorWithHexString:@"9B1212"];

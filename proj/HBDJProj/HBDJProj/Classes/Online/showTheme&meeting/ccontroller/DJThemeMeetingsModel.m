@@ -11,6 +11,13 @@
 
 @implementation DJThemeMeetingsModel
 
+- (NSString *)date{
+    if (_date.length > length_timeString) {
+        _date = [_date substringToIndex:(length_timeString + 1)];
+    }
+    return _date;
+}
+
 - (NSString *)createdtime{
     if (_createdtime.length > 10) {
         _createdtime = [_createdtime substringToIndex:10];

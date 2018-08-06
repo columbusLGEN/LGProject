@@ -26,6 +26,9 @@ static const CGFloat richTextTopInfoViewHeight = 110;
 static const CGFloat plusScreenHeight = 736;
 static const CGFloat plusScreenWidth = 414;
 
+/** 时间字符串统一判定长度 */
+static const NSInteger length_timeString = 15;
+
 static NSString * const UserCenterStoryboardName = @"UserCenter";
 static NSString * const OnlineStoryboardName = @"Online";
 static NSString * const textBold = @"Helvetica-Bold";

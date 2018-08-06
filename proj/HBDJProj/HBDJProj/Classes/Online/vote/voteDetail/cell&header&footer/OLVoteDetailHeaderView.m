@@ -27,7 +27,7 @@ static NSString *keyPath_totalVotesCount = @"totalVotesCount";
     _title.text = model.title;
     _time.text = model.time;
     _voteDes.text = model.voteDescripetion;
-    if (model.status == VoteModelStatusVoted) {
+    if (model.localStatus == VoteModelStatusVoted) {
         _totalVotes.hidden = NO;
         _totalVotes.text = [NSString stringWithFormat:@"共%ld票",(long)model.totalVotesCount];
     }else{

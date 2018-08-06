@@ -33,16 +33,19 @@ UITableViewDataSource>
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [_tableView registerNib:[UINib nibWithNibName:trdHeaderCell bundle:nil] forCellReuseIdentifier:trdHeaderCell];
     [_tableView registerNib:[UINib nibWithNibName:trdTextCell bundle:nil] forCellReuseIdentifier:trdTextCell];
     [_tableView registerClass:[NSClassFromString(trdNineImageCell) class] forCellReuseIdentifier:trdNineImageCell];
-    [self.view addSubview:_tableView];
     
+    [self.view addSubview:_tableView];
     
 }
 
 - (void)setModel:(DJThoutghtRepotListModel *)model{
     _model = model;
+    
+    self.title = model.title;
     
     NSMutableArray *arrmu = NSMutableArray.new;
     for (NSInteger i = 0; i < 3; i++) {
@@ -82,7 +85,6 @@ UITableViewDataSource>
     cell.model = model;
     return cell;
 }
-
 
 
 @end

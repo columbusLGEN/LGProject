@@ -31,7 +31,7 @@
         _title = [UILabel new];
         _title.textColor = [UIColor EDJGrayscale_33];
         _title.font = [UIFont systemFontOfSize:17];
-        _title.text = @"请选择要添加的工具:";
+        _title.text = @"可选择开通的工具:";
     }
     return _title;
 }

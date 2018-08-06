@@ -27,7 +27,8 @@
 }
 - (void)getNetDataWithOffset:(NSInteger)offset{
     /// request data
-    NSLog(@"self.listtype: %lu",(unsigned long)self.listType);
+//    NSLog(@"self.listtype: %lu",(unsigned long)self.listType);
+    NSLog(@"述职述廉思想汇报offset: %ld",offset);
     
     /**
      listType

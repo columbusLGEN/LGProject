@@ -15,6 +15,7 @@
 #import "DJOnlineNetorkManager.h"
 #import "OLVoteListModel.h"
 #import "DJOnlineNetorkManager.h"
+#import "OLVoteDetailBottomTimeCell.h"
 
 static NSString * const normalCellID = @"OLVoteDetailNormalTableViewCell";
 static NSString * const votedCellID = @"OLVoteDetailVotedTableViewCell";
@@ -43,6 +44,7 @@ OLVoteDetailHeaderViewDelegate>
     
     [self.tableView registerNib:[UINib nibWithNibName:normalCellID bundle:nil] forCellReuseIdentifier:normalCellID];
     [self.tableView registerNib:[UINib nibWithNibName:votedCellID bundle:nil] forCellReuseIdentifier:votedCellID];
+    [self.tableView registerClass:[OLVoteDetailBottomTimeCell class] forCellReuseIdentifier:bottomTimeCell];
     self.tableView.estimatedRowHeight = 1.0;
     
     OLVoteDetailHeaderView *header = [OLVoteDetailHeaderView headerForVoteDetail];
@@ -60,11 +62,17 @@ OLVoteDetailHeaderViewDelegate>
     }
     
     _optionIds = NSMutableArray.new;
+    
+    /// TODO: 如果是已经投票的数据
+//    1.commited = YES      //
+//    2.显示正确的 cell 样式  //
+//    3.新增footer显示时间   //
+    NSLog(@"viewdidload: ");
 }
 
 - (void)setModel:(OLVoteListModel *)model{
     _model = model;
-    
+    NSLog(@"setmodel: ");
     /**
         header 需要
         title
@@ -77,8 +85,8 @@ OLVoteDetailHeaderViewDelegate>
     headerModel.time = model.starttime;
     headerModel.voteDescripetion = @"单选(匿名投票)";
     _headerModel = headerModel;
-    if (model.votestatus == 1) {
-        headerModel.status = VoteModelStatusVoted;
+    if ([self voteStatusIsDone:model.votestatus]) {
+        headerModel.localStatus = VoteModelStatusVoted;
     }
     
     [DJOnlineNetorkManager.sharedInstance frontVotes_selectDetailWithVoteid:model.seqid success:^(id responseObj) {
@@ -90,9 +98,9 @@ OLVoteDetailHeaderViewDelegate>
             NSInteger voteAllCount = 0;
             for (NSInteger i = 0; i < array.count; i++) {
                 OLVoteDetailModel *modelDetail = [OLVoteDetailModel mj_objectWithKeyValues:array[i]];
-                modelDetail.status = VoteModelStatusNormal;
-                if (model.votestatus == 1) {
-                    modelDetail.status = VoteModelStatusVoted;
+                modelDetail.localStatus = VoteModelStatusNormal;
+                if ([self voteStatusIsDone:model.votestatus] ) {
+                    modelDetail.localStatus = VoteModelStatusVoted;
                 }
                 voteAllCount += modelDetail.votecount;
                 [arrMu addObject:modelDetail];
@@ -118,32 +126,41 @@ OLVoteDetailHeaderViewDelegate>
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return self.dataArray.count + 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OLVoteDetailModel *model = self.dataArray[indexPath.row];
-    OLVoteDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[OLVoteDetailTableViewCell cellReuseIdWithModel:model] forIndexPath:indexPath];
-    cell.model = model;
-    
-    return cell;
+    if (indexPath.row == self.dataArray.count) {
+        OLVoteDetailBottomTimeCell *cell = [tableView dequeueReusableCellWithIdentifier:bottomTimeCell];
+        cell.endTime = self.model.endtime;
+        return cell;
+    }else{
+        OLVoteDetailModel *model = self.dataArray[indexPath.row];
+        OLVoteDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[OLVoteDetailTableViewCell cellReuseIdWithModel:model] forIndexPath:indexPath];
+        cell.model = model;
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    OLVoteDetailModel *currentClickModel = self.dataArray[indexPath.row];
-    _currentOption = currentClickModel;
-    if (!_commited) {
-        for (OLVoteDetailModel *model in self.dataArray) {
-            if (model == currentClickModel) {
-                model.status = VoteModelStatusSelected;
-                _selectedSomeItem = YES;
-                [_optionIds addObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
-            }else{
-                model.status = VoteModelStatusNormal;
-                [_optionIds removeObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
-            }
-        }
-    }else{
+    if (indexPath.row == self.dataArray.count) {
         
+    }else{
+        OLVoteDetailModel *currentClickModel = self.dataArray[indexPath.row];
+        _currentOption = currentClickModel;
+        if (!_commited) {
+            for (OLVoteDetailModel *model in self.dataArray) {
+                if (model == currentClickModel) {
+                    model.localStatus = VoteModelStatusSelected;
+                    _selectedSomeItem = YES;
+                    [_optionIds addObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
+                }else{
+                    model.localStatus = VoteModelStatusNormal;
+                    [_optionIds removeObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
+                }
+            }
+        }else{
+            
+        }
     }
     
 }
@@ -162,16 +179,18 @@ OLVoteDetailHeaderViewDelegate>
         _commited = YES;
         
         /// 判断是否选择了某一项，如果没有选择，直接返回
-        _headerModel.status = VoteModelStatusVoted;
+        _headerModel.localStatus = VoteModelStatusVoted;
         _header.model = _headerModel;
         
         [DJOnlineNetorkManager.sharedInstance frontVotes_addWithVoteid:_model.seqid votedetailid:_optionIds.copy success:^(id responseObj) {
             
             /// 修改数据
+            _model.votestatus = 1;
+            
             _currentOption.votecount += 1;
             for (OLVoteDetailModel *detailModel in self.dataArray) {
                 detailModel.totalVotesCount += 1;
-                detailModel.status = VoteModelStatusVoted;
+                detailModel.localStatus = VoteModelStatusVoted;
             }
             _header.model.totalVotesCount += 1;
             
@@ -190,5 +209,9 @@ OLVoteDetailHeaderViewDelegate>
     }
 }
 
+/** 是否 已经投票 或者 投票已结束 */
+- (BOOL)voteStatusIsDone:(NSInteger)status{
+    return (status == 1 || status == 3);
+}
 
 @end

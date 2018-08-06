@@ -18,7 +18,7 @@ static NSString * const onlinCell = @"OLHomeCollectionCell";
 static NSString * const headerReuseID = @"OLAddMoreToolHeader";
 static NSString * const footerReuseID = @"OLAddMoreToolFooter";
 static CGFloat midHeight = 40;
-static CGFloat footerHeight = 60;
+static CGFloat footerHeight = 80;
 
 @interface OLAddMoreToolViewController ()<
 UICollectionViewDelegate,
