@@ -54,8 +54,6 @@ DTLazyImageViewDelegate>
 
 @implementation DJLessonDetailViewController
 
-/// TODO: 播放之后 调 添加播放接口 homeAddcountWithId
-
 /// MARK: 进入微党课详情页面
 + (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
     /// 在经过 DJMediaDetailTransAssist 实例分发数据之后，这里只有 音视频模板类型的数据,if条件可以省略
@@ -236,15 +234,29 @@ DTLazyImageViewDelegate>
     
     if (!cell) {
         cell = [[DJLessonAVTextTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:richContentCell];
+        cell.attributedTextContextView.edgeInsets = UIEdgeInsetsMake(24, marginTen, 0, marginTen);
         cell.hasFixedRowHeight = NO;
         cell.textDelegate = self;
         cell.attributedTextContextView.shouldDrawImages = YES;
         
         [_cellCache setObject:cell forKey:key];
         
+        /// 添加cell的头部信息
+        UILabel *titleLabel = UILabel.new;
+        titleLabel.font = [UIFont systemFontOfSize:17];
+        titleLabel.textColor = UIColor.EDJGrayscale_11;
+        titleLabel.text = @"课程文稿";
+        
+        [cell.contentView addSubview:titleLabel];
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(cell.contentView.mas_top).offset(marginEight);
+            make.left.equalTo(cell.contentView.mas_left).offset(marginEight);
+        }];
+        [cell.contentView bringSubviewToFront:titleLabel];
+        
     }
     
-    /// TODO: 设置富文本数据
+    /// MARK: 设置富文本数据
     [cell setHTMLString:self.model.content];
     
     /// 为每个占位图设置大小
