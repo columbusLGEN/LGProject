@@ -46,7 +46,7 @@ OLExamViewBottomBarDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    NSLog(@"题目控制器viewdidload");
+    
 }
 
 - (void)setModel:(OLTkcsModel *)model{
@@ -61,7 +61,7 @@ OLExamViewBottomBarDelegate
     OLExamViewBottomBar *bottomBar = [OLExamViewBottomBar examViewBottomBar];
     _bottomBar = bottomBar;
     bottomBar.delegate = self;
-    bottomBar.backLook = self.backLook;
+//    bottomBar.backLook = self.backLook;
     bottomBar.frame = CGRectMake(0, self.view.height - bottomBarHeight, kScreenWidth, bottomBarHeight);
     bottomBar.alreadyCount = 1;
     [self.view addSubview:bottomBar];
@@ -73,6 +73,7 @@ OLExamViewBottomBarDelegate
 
 - (void)getNetData{
     
+    /// 请求一套题
     [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTitleDetailWithPortName:_portName titleid:_model.seqid offset:0 success:^(id responseObj) {
         
         NSArray *array = responseObj;
@@ -83,9 +84,15 @@ OLExamViewBottomBarDelegate
             NSMutableArray *arrMu = [NSMutableArray new];
             for (NSInteger i = 0; i < array.count; i++) {
                 OLExamSingleModel *model = [OLExamSingleModel mj_objectWithKeyValues:array[i]];
-                model.backLook = self.backLook;
+                if (i == 0) {
+                    model.first = YES;
+                }
+                if (i == array.count - 1) {
+                    model.last = YES;
+                }
+                /// TODO: 回看
+//                model.backLook = self.backLook;
                 model.index = i;
-                model.questioTotalCount = array.count;
                 [model addSubjectModel];
                 [arrMu addObject:model];
             }
@@ -120,30 +127,38 @@ OLExamViewBottomBarDelegate
     }else{
         index++;
         if (index == self.dataArray.count) {
-            /// MARK: 交卷 提交成绩
+            /// MARK: 交卷
+            NSString *testid = [NSString stringWithFormat:@"%ld",self.model.seqid];
             
-            /// TODO: 打印测试结果
-//            NSArray *jsonArray = [OLExamSingleModel mj_keyValuesArrayWithObjectArray:self.dataArray];
-//            NSString *jsonString = [jsonArray mj_JSONString];
-////            NSLog(@"提交成绩的json: %@",jsonString);
-//            char tempChar[10000];
-//
-//            NSString * tempString = jsonString;
-//
-//            strcpy(tempChar,(char *)[tempString UTF8String]);
-//
-//            printf("%s",tempString);
+            NSMutableArray *answers = NSMutableArray.new;
+            for (NSInteger i = 0; i < self.dataArray.count; i++) {
+                OLExamSingleModel *singleModel = self.dataArray[i];
+                NSDictionary *dict = @{@"subjectid":singleModel.subjectid,
+                                       @"answer":singleModel.answer?singleModel.answer:@"",
+                                       @"isright":[NSString stringWithFormat:@"%d",singleModel.isright],
+                                       @"testid":testid};
+                [answers addObject:dict];
+            }
+            
+            NSDictionary *dict = @{@"testid":testid,
+                                   @"timeused":@"1",
+                                   @"answers":answers.copy};
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+            NSString *json = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
+            NSLog(@"需要提交的测试结果json: %@",json);
+            
             
             
             /// TODO: 将答题情况数据保存在本地
-            if (!self.backLook) {                
-                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-                trvc.pushWay = LGBaseViewControllerPushWayModal;
-                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
-                
-                [self.navigationController presentViewController:nav animated:YES completion:nil];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
+            /// TODO: 回看
+//            if (!self.backLook) {
+//                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+//                trvc.pushWay = LGBaseViewControllerPushWayModal;
+//                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
+//
+//                [self.navigationController presentViewController:nav animated:YES completion:nil];
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }
             return;
         }else{
         }

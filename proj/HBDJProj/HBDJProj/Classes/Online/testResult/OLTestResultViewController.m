@@ -58,7 +58,7 @@
     /// 试题回看
     /// 获取刚才试题的 id 重新打开
     OLExamViewController *backLookExamVc = [OLExamViewController new];
-    backLookExamVc.backLook = YES;
+//    backLookExamVc.backLook = YES;
 //    backLookExamVc.pushWay = self.pushWay;/// 如果打开此行代码，则关闭试题回看页面时，连同成绩页面一起关闭
     [self.navigationController pushViewController:backLookExamVc animated:YES];
 }

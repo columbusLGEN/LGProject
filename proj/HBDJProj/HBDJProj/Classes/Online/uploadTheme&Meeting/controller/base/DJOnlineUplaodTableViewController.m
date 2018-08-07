@@ -303,6 +303,7 @@ DJInputContentViewControllerDelegate>
             NSInteger index = [self.dataArray indexOfObject:model] + 1;
             DJOnlineUploadTableModel *absentModel = self.dataArray[index];
             NSString *absentString = [self.peopleAbsentNames componentsJoinedByString:@"、"];
+            /// 如果没有缺席人员，给缺席人员赋值为 无
             if ([absentString isEqualToString:@""] || absentString == nil) {
                 absentString = @"无";
             }

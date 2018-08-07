@@ -10,7 +10,7 @@
 #import "DJThoughtReportDetailModel.h"
 
 @interface DJThoughtReportDetailTextCell ()
-@property (weak, nonatomic) IBOutlet UITextView *infoText;
+@property (weak, nonatomic) IBOutlet UILabel *infoText;
 
 @end
 
@@ -19,7 +19,6 @@
 - (void)setModel:(DJThoughtReportDetailModel *)model{
     [super setModel:model];
     _infoText.text = model.content;
-    
 }
 
 

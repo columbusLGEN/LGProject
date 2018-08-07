@@ -28,7 +28,7 @@
         /// 测试列表 显示状态 
         _count.text = model.statusDesc;
         _count.textColor = model.statusDescColor;
-        
+        NSLog(@"model.statusDesc: %@",model.statusDesc);
     }
 
 }

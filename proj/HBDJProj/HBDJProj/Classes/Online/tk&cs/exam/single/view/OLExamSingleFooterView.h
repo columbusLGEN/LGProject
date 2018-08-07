@@ -22,6 +22,8 @@ typedef NS_ENUM(NSUInteger, ExamTurnTo) {
 @property (assign,nonatomic) NSInteger currenIndex;
 + (instancetype)examSingleFooter;
 
+/** 是否是第一题 */
+@property (assign,nonatomic) BOOL isFirst;
 /** 是否是最后一题 */
 @property (assign,nonatomic) BOOL isLast;
 

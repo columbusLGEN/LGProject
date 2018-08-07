@@ -234,7 +234,7 @@ DTLazyImageViewDelegate>
     
     if (!cell) {
         cell = [[DJLessonAVTextTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:richContentCell];
-        cell.attributedTextContextView.edgeInsets = UIEdgeInsetsMake(24, marginTen, 0, marginTen);
+        cell.attributedTextContextView.edgeInsets = UIEdgeInsetsMake(38, marginTen, 0, marginTen);
         cell.hasFixedRowHeight = NO;
         cell.textDelegate = self;
         cell.attributedTextContextView.shouldDrawImages = YES;

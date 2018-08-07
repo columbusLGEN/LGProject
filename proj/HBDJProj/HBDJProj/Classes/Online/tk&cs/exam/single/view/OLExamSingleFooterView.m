@@ -17,9 +17,19 @@
 
 @implementation OLExamSingleFooterView
 
+- (void)setIsFirst:(BOOL)isFirst{
+    if (isFirst) {
+        _last.hidden = YES;
+    }else{
+        _last.hidden = NO;
+    }
+}
+
 - (void)setIsLast:(BOOL)isLast{
     if (isLast) {
         [_next setTitle:@"交卷" forState:UIControlStateNormal];
+    }else{
+        [_next setTitle:@"下一题" forState:UIControlStateNormal];
     }
 }
 

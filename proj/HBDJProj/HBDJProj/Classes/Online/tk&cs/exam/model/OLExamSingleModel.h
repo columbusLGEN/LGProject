@@ -21,24 +21,8 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 
 @interface OLExamSingleModel : LGBaseModel
 
-//"frontUserTest":[
-//
-//],
-//"creatorid":1,
-//"frontSubjectsDetail":[{
-//                           "isright":"1",
-//                           "creatorid":1,
-//                           "options":"作风",
-//                           "type":0,
-//                           "createdtime":"2018-04-18 13:59:26",
-//                           "seqid":198,
-//                           "subjectid":"1",
-//                           "status":1
-//                       }
-//                       ],
-//"mechanismid":"",
-//"score":0,
-//"status":1
+/** 用于提交答案的题目id */
+@property (strong,nonatomic) NSString *subjectid;
 
 
 /** 题干 */
@@ -51,8 +35,8 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 @property (strong,nonatomic) OLExamSingleLineModel *selectOption;
 /** 多选题用户选择的选项(多选) */
 @property (strong,nonatomic) NSMutableArray<OLExamSingleLineModel *> *selectOptions;
-/** 题目的正确值 */
-@property (assign,nonatomic) NSInteger rightValue;
+/** 题目正确选项数量 */
+@property (assign,nonatomic) NSInteger rightOptionCount;
 /** 用户所选的值 */
 @property (assign,nonatomic) NSInteger selectValue;
 
@@ -62,6 +46,11 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 @property (strong,nonatomic) NSString *analysis;
 @property (strong,nonatomic) NSString *titleid;
 
+/** 是否为第一题 */
+@property (assign,nonatomic) BOOL first;
+/** 是否为最后一题 */
+@property (assign,nonatomic) BOOL last;
+
 /** 添加题干 */
 - (void)addSubjectModel;
 // --------------------------以上是新加属性
@@ -70,11 +59,10 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 /// textcode
 @property (assign,nonatomic) NSInteger index;
 
-/** 本套试题总数 */
-@property (assign,nonatomic) NSInteger questioTotalCount;
-
-/** 本题答案 */
-@property (assign,nonatomic) ExamSingleAnswer answer;
+/** 本题答案,用于本地显示 */
+@property (strong,nonatomic) NSString *answer_display;
+/** 本题答案,用于提交接口 */
+@property (strong,nonatomic) NSString *answer;
 
 /** 回答状态
  0 未作答
@@ -84,6 +72,6 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 @property (assign,nonatomic) ExamSingleRespondState respondState;
 
 /** 是否是回看状态 */
-@property (assign,nonatomic) BOOL backLook;
+//@property (assign,nonatomic) BOOL backLook;
 
 @end

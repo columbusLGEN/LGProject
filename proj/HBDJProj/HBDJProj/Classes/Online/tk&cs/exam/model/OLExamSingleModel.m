@@ -16,6 +16,13 @@
 
 @implementation OLExamSingleModel
 
+- (NSString *)subjectid{
+    if (!_subjectid) {
+        _subjectid = [NSString stringWithFormat:@"%ld",self.seqid];
+    }
+    return _subjectid;
+}
+
 - (void)addSubjectModel{
     /// 添加题干
     OLExamSingleLineModel *subject = OLExamSingleLineModel.new;
@@ -37,10 +44,12 @@
 - (BOOL)isright{
     if (_subjecttype == 1) {
         /// 单选题目
+        
         return _selectOption.isright;
     }else{
         /// 多选题目
-        return (self.selectValue == self.rightValue);
+        
+        return (self.selectValue == self.rightOptionCount);
     }
 }
 - (NSInteger)selectValue{
@@ -57,23 +66,62 @@
     }
     return value;
 }
-- (NSInteger)rightValue{
-    if (!_rightValue) {
+- (NSInteger)rightOptionCount{
+    if (!_rightOptionCount) {
         NSInteger value = 0;
         for (OLExamSingleLineModel *option in _frontSubjectsDetail) {
             if (option.isright) {
                 value++;
             }
         }
-        _rightValue = value;
+        _rightOptionCount = value;
     }
-    return _rightValue;
+    
+    return _rightOptionCount;
 }
 
+- (NSString *)answer_display{
+    if (!_answer_display) {
+        NSString *string = @"";
+        for (NSInteger i = 0; i < _frontSubjectsDetail.count; i++) {
+            OLExamSingleLineModel *option = _frontSubjectsDetail[i];
+            option.answerString = [NSString stringWithFormat:@"%@ ",
+                                   [self abcdStringWithIndex:i]];
+            
+            if (option.isright) {
+                string = [string stringByAppendingString:[NSString stringWithFormat:@"、%@",
+                                                          [self abcdStringWithIndex:i]]];
+            }
+        }
+        
+        if ([string hasPrefix:@"、"]) {/// 去掉最前面的 、
+            string = [string substringFromIndex:1];
+        }
+        _answer_display = string;
+        
+    }
+    return _answer_display;
+}
+
+- (NSString *)abcdStringWithIndex:(NSInteger)index{
+    /// 因为 题干模型插入了 frontSubjectsDetail 的第一个位置 , 所以 index 需要 -1
+    index--;
+    NSString *letter = @"";
+    char char_A = 'A';
+    for (NSInteger i = 0; i < 26; i++) {
+        char char_letter = char_A + i;
+        if (index == i) {
+            letter = [NSString stringWithFormat:@"%c",char_letter];
+        }
+    }
+    return letter;
+}
 
 + (NSDictionary *)mj_objectClassInArray{
     return @{@"frontSubjectsDetail":@"OLExamSingleLineModel"};
 }
+
+/// 一下的代码有可能会删除
 
 - (void)setFrontSubjectsDetail:(NSMutableArray<OLExamSingleLineModel *> *)frontSubjectsDetail{
     for (OLExamSingleLineModel *option in frontSubjectsDetail) {
@@ -82,81 +130,11 @@
     _frontSubjectsDetail = frontSubjectsDetail;
 }
 
-///// testcode
-//- (NSArray<OLExamSingleLineModel *> *)contents{
-//    if (!_contents) {
-//        self.answer = arc4random_uniform(4);
-//        NSMutableArray *arrMu = [NSMutableArray new];
-//
-//        for (NSInteger i = 0; i < 5; i++) {
-//            OLExamSingleLineModel *model = [OLExamSingleLineModel new];
-//            model.belongTo = self;
-//
-//            if (i > 0) {
-//                model.repreAnswer = i - 1;///i==0为题干, 选项从 i==1时开始
-//            }
-//
-//            if (i == 0) {
-//                model.lineType = ExamSingleLineTypeContent;
-//            }else{
-//                model.lineType = ExamSingleLineTypeOption;
-//            }
-//            model.choiceMutiple = (arc4random_uniform(2) == 1);
-//            model.questionContent = [NSString stringWithFormat:@"%ld.领导干部的()，不仅关系自己的家庭，而且关系党风政风。",self.index + 1];
-//            model.optionContent = [NSString stringWithFormat:@"%@ 作风",abcdStringWithAnswer(model.repreAnswer)];
-//            [arrMu addObject:model];
-//        }
-//            OLExamSingleLineModel *standAnswer = [OLExamSingleLineModel new];
-//            standAnswer.belongTo = self;
-//            standAnswer.lineType = ExamSingleLineTypeAnswer;
-//            standAnswer.optionContent = [self answerStringWithState:ExamSingleRespondStateDefault];
-//            [arrMu addObject:standAnswer];
-//            _standAnswer = standAnswer;
-//
-//        _contents = arrMu.copy;
-//        if (self.backLook) {
-//            /// 如果是回看，随机取一个模型选中
-//            NSInteger number = arc4random_uniform(4) + 1;
-//            OLExamSingleLineModel *random = _contents[number];
-//            random.selected = YES;
-//            if (random.repreAnswer == self.answer) {
-//                _standAnswer.optionContent = [self answerStringWithState:ExamSingleRespondStateCorrect];
-//            }else{
-//
-//                _standAnswer.optionContent = [self answerStringWithState:ExamSingleRespondStateWrong];
-//            }
-//        }
-//    }
-//
-//    return _contents;
-//}
-
 - (void)setRespondState:(ExamSingleRespondState)respondState{
     _respondState = respondState;
     /// 回答正确，回答错误，时，分别修改 standAnswer 的 optionContent
     _standAnswer.optionContent = [self answerStringWithState:respondState];
     NSLog(@"_standAnswer -- %@ optionContent -- %@",_standAnswer,_standAnswer.optionContent);
-}
-
-NSString *abcdStringWithAnswer(ExamSingleAnswer answer){
-    switch (answer) {
-        case ExamSingleAnswerA:{
-            return @"A";
-        }
-            break;
-        case ExamSingleAnswerB:{
-            return @"B";
-        }
-            break;
-        case ExamSingleAnswerC:{
-            return @"C";
-        }
-            break;
-        case ExamSingleAnswerD:{
-            return @"D";
-        }
-            break;
-    }
 }
 
 - (NSString *)answerStringWithState:(ExamSingleRespondState)state{
@@ -176,7 +154,7 @@ NSString *abcdStringWithAnswer(ExamSingleAnswer answer){
         }
             break;
     }
-    return [NSString stringWithFormat:@"%@: %@",string,abcdStringWithAnswer(self.answer)];
+    return [NSString stringWithFormat:@"%@: %@",string,self.answer_display];
 }
 
 - (NSMutableArray<OLExamSingleLineModel *> *)selectOptions{

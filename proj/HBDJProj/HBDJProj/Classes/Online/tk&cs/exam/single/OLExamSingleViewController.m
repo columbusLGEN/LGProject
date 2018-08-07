@@ -21,14 +21,15 @@
 - (void)setModel:(OLExamSingleModel *)model{
     _model = model;
     self.dataArray = model.frontSubjectsDetail;
-    if (!model.backLook) {        
-        if (model.index == model.questioTotalCount - 1) {
-            /// 最后一题
-            _footer.isLast = YES;
-        }
-    }
+    /// TODO: 回看
+    
+    _footer.isLast = model.last;
+    _footer.isFirst = model.first;
+    
     _footer.currenIndex = self.model.index;
     [self.tableView reloadData];
+    NSLog(@"本题的正确答案为: %@",model.answer_display);
+//    NSLog(@"本题的正确答案为_用于提交接口: %@",model.answer);
 }
 
 - (void)viewDidLoad {
@@ -46,9 +47,7 @@
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (!self.model.backLook) {
-        return self.dataArray.count - 1;
-    }
+    /// TODO: 回看
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -57,85 +56,49 @@
     cell.model = model;
     return cell;
 }
+/// MARK: 用户选中某个选项
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    /// 获取题干模型
     OLExamSingleLineModel *questionModel = self.dataArray[0];
-    __block BOOL isCorrect = NO;/// 是否回答正确
     if (questionModel.choiceMutiple) {
-        /// TODO:多选题的正确性判断 -- 在 OLExamSingleModel 中判断
+        /// MARK: 多选
         OLExamSingleLineModel *optionModel = self.dataArray[indexPath.row];
         if (optionModel.selected) {
             optionModel.selected = NO;
+            [_model.selectOptions removeObject:optionModel];
         }else{
             optionModel.selected = YES;
-//            /// textcode
-//            if (optionModel.repreAnswer == optionModel.belongTo.answer) {
-//                isCorrect = YES;
-//            }
+            [_model.selectOptions addObject:optionModel];
         }
+        
+        /// 拼接需要提交的用户选项
+        _model.answer = @"";
+        for (NSInteger i = 0 ; i < _model.selectOptions.count; i++) {
+            OLExamSingleLineModel *singleLineModel = _model.selectOptions[i];
+            _model.answer = [_model.answer stringByAppendingString:[NSString stringWithFormat:@",%ld",singleLineModel.seqid]];
+        }
+        if ([_model.answer hasPrefix:@","]) {
+            _model.answer = [_model.answer substringFromIndex:1];
+        }
+        
     }else{
+        /// MARK: 单选
         [self.dataArray enumerateObjectsUsingBlock:^(OLExamSingleLineModel   * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
             if (idx == indexPath.row) {
                 model.selected = YES;
-                if (model.repreAnswer == model.belongTo.answer) {
-                    isCorrect = YES;
-                }
+                _model.selectOption = model;
+                _model.answer = [NSString stringWithFormat:@"%ld",model.seqid];
             }else{
                 model.selected = NO;
             }
         }];
     }
-    if (_model.subjecttype == 1) {
-        _model.selectOption = questionModel;
-    }else{
-        [_model.selectOptions addObject:questionModel];
-    }
+    
+//    NSLog(@"本题是否回答正确: %d",self.model.isright);
 
     [tableView reloadData];
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

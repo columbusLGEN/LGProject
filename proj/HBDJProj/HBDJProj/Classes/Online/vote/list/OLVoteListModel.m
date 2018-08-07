@@ -11,15 +11,16 @@
 @implementation OLVoteListModel
 
 - (NSString *)starttime{
-    if (_starttime.length > 10) {
-        _starttime = [_starttime substringToIndex:11];
+    if (_starttime.length > length_timeString) {
+        _starttime = [_starttime substringToIndex:(length_timeString + 1)];
     }
     return _starttime;
 }
 
 - (NSString *)endtime{
-    if (_endtime.length > 10) {
-        _endtime = [_endtime substringToIndex:11];
+    NSLog(@"endtime: %@",_endtime);
+    if (_endtime.length > length_timeString) {
+        _endtime = [_endtime substringToIndex:(length_timeString + 1)];
     }
     return _endtime;
 }

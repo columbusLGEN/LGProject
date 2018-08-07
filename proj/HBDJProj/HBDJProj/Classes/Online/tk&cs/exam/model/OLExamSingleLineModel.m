@@ -14,4 +14,11 @@
     return _isright?1:-1;
 }
 
+- (NSString *)optionContent{
+    if (!_optionContent) {
+        _optionContent = [self.answerString stringByAppendingString:_options?_options:@""];
+    }
+    return _optionContent;
+}
+
 @end

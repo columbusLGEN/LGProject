@@ -10,6 +10,17 @@
 
 @implementation OLTkcsModel
 
+//- (NSMutableArray<OLExamSingleModel *> *)answers{
+//    if (!_answers) {
+//        _answers = NSMutableArray.new;
+//    }
+//    return _answers;
+//}
+
+- (NSInteger)testid{
+    return self.seqid;
+}
+
 - (NSString *)statusDesc{
     if (!_statusDesc) {
         switch (_teststatus) {
@@ -18,6 +29,9 @@
                 break;
             case OLTkcsModelStateDone:
                 _statusDesc = @"已答题";
+                break;
+            case OLTkcsModelStateNotBegin:
+                _statusDesc = @"未开始";
                 break;
             case OLTkcsModelStateEnd:
                 _statusDesc = @"已结束";
@@ -36,12 +50,19 @@
             case OLTkcsModelStateDone:
                 _statusDescColor = UIColor.EDJGrayscale_11;
                 break;
+            case OLTkcsModelStateNotBegin:
+                _statusDescColor = UIColor.blackColor;
+                break;
             case OLTkcsModelStateEnd:
                 _statusDescColor = UIColor.EDJGrayscale_F3;
                 break;
         }
     }
     return _statusDescColor;
+}
+
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"answers":@"OLExamSingleModel"};
 }
 
 @end

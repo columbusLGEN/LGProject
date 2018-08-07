@@ -8,16 +8,28 @@
 
 #import "LGBaseModel.h"
 
+@class OLExamSingleModel;
+
 typedef NS_ENUM(NSUInteger, OLTkcsModelState) {
     /** 进行中 */
     OLTkcsModelStateTesting,
     /** 答题完成 */
     OLTkcsModelStateDone,
+    /** 未开始 */
+    OLTkcsModelStateNotBegin,
     /** 已经结束 */
     OLTkcsModelStateEnd
 };
 
 @interface OLTkcsModel : LGBaseModel
+/// ----- 最终提交答案时需要用到
+/** 题目id */
+@property (assign,nonatomic) NSInteger testid;
+/** 这套题中的所有题目（每道题包含了用户的回答情况） */
+//@property (strong,nonatomic) NSArray<OLExamSingleModel *> *answers;
+/** 耗时 */
+@property (strong,nonatomic) NSString *timeused;
+/// -----
 
 /** 试题名称 */
 @property (copy,nonatomic) NSString *subjecttitle;
@@ -25,8 +37,8 @@ typedef NS_ENUM(NSUInteger, OLTkcsModelState) {
 @property (assign,nonatomic) NSInteger subcount;
 /** 答题进度 */
 @property (assign,nonatomic) NSInteger progress;
-/** 耗时 */
-@property (strong,nonatomic) NSString *timeused;
+
+
 /**
  0 进行中
  1 答题完成
