@@ -9,6 +9,8 @@
 #import "OLTkcsTableViewCell.h"
 #import "OLTkcsModel.h"
 
+static NSString * const teststatus_keyPath = @"teststatus";
+
 @interface OLTkcsTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *count;
@@ -26,11 +28,23 @@
         _count.text = [NSString stringWithFormat:@"%ld题",(long)model.subcount];
     }else{
         /// 测试列表 显示状态 
-        _count.text = model.statusDesc;
-        _count.textColor = model.statusDescColor;
-        NSLog(@"model.statusDesc: %@",model.statusDesc);
+        _count.text = self.model.statusDesc;
+        _count.textColor = self.model.statusDescColor;
+        
+        [model addObserver:self forKeyPath:teststatus_keyPath options:NSKeyValueObservingOptionNew context:nil];
     }
 
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if (object == self.model && [keyPath isEqualToString:teststatus_keyPath]) {
+        _count.text = self.model.statusDesc;
+        _count.textColor = self.model.statusDescColor;
+    }
+}
+
+- (void)dealloc{
+    [self.model removeObserver:self forKeyPath:teststatus_keyPath];
 }
 
 

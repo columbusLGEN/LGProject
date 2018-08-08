@@ -10,7 +10,9 @@
 #import "DJTestScoreListModel.h"
 #import "DJTestScoreListTableViewCell.h"
 #import "DJTestScoreListHeader.h"
-#import "DJTestScoreListHeader.h"
+#import "DJOnlineNetorkManager.h"
+#import "OLTkcsModel.h"
+#import "OLTestResultViewController.h"
 
 static CGFloat const bottomInset = 50;
 
@@ -26,6 +28,8 @@ UITableViewDataSource>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"成绩统计";
     
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:testScoreListHeader bundle:nil] forHeaderFooterViewReuseIdentifier:testScoreListHeader];
@@ -44,27 +48,40 @@ UITableViewDataSource>
     [footerButton setTitle:@"个人测试成绩" forState:UIControlStateNormal];
     [footerButton addTarget:self action:@selector(personalScore:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:footerButton];
-    
-    NSMutableArray *tempArray = NSMutableArray.new;
-    for (int i = 0; i < 30; i++) {
-        DJTestScoreListModel *testModel = DJTestScoreListModel.new;
-        testModel.rank = [NSString stringWithFormat:@"%d",i];
-        testModel.name = @"党伟大";
-        testModel.timeConsume = @"1分02秒";
-        testModel.correctRate = @"0.9876";
-        [tempArray addObject:testModel];
-    }
-    self.dataArray = tempArray.copy;
-    [self.tableView reloadData];
-    
+ 
+    [self getScoreList];
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
+- (void)getScoreList{
+    [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTestRankWithTestid:self.model.seqid success:^(id responseObj) {
+        NSArray *array = responseObj;
+        if (array == nil || array.count == 0) {
+            return ;
+        }else{
+            NSMutableArray *arrmu = NSMutableArray.new;
+            for (NSInteger i = 0; i < array.count; i++) {
+                DJTestScoreListModel *model = [DJTestScoreListModel mj_objectWithKeyValues:array[i]];
+                [arrmu addObject:model];
+            }
+            self.dataArray = arrmu.copy;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        
+    }];
 }
 
 - (void)personalScore:(id)sender{
-    NSLog(@"查看个人成绩");
+    /// 进入个人成绩页面
+    OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+    trvc.pushWay = LGBaseViewControllerPushWayPush;
+    trvc.model = self.model;
+    
+    [self.navigationController pushViewController:trvc animated:YES];
+    
 }
 
 #pragma mark - Table view data source
@@ -77,6 +94,7 @@ UITableViewDataSource>
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(DJTestScoreListTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     DJTestScoreListModel *model = self.dataArray[indexPath.row];
+    cell.indexPath = indexPath;
     cell.model = model;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -93,6 +111,11 @@ UITableViewDataSource>
         
     }
     return _tableView;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 @end

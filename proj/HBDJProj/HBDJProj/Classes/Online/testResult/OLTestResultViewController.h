@@ -8,7 +8,9 @@
 
 #import "LGBaseViewController.h"
 
-@interface OLTestResultViewController : LGBaseViewController
+@class OLTkcsModel;
 
+@interface OLTestResultViewController : LGBaseViewController
+@property (strong,nonatomic) OLTkcsModel *model;
 
 @end

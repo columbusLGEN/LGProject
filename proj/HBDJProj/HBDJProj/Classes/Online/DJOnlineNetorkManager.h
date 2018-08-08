@@ -16,7 +16,15 @@ typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
 
 @interface DJOnlineNetorkManager : NSObject
 
+/** 请求测试成绩排行榜 */
+- (void)frontSubjects_selectTestRankWithTestid:(NSInteger)testid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
+/**
+ 提交答案
+
+ @param jsonDict 答题情况json字典
+ */
+- (void)frontSubjects_addTestWithPJSONDict:(NSDictionary *)jsonDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**
  题目接口
 

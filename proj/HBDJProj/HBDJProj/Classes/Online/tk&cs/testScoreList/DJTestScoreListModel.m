@@ -10,8 +10,9 @@
 
 @implementation DJTestScoreListModel
 
-- (NSString *)correctRate{
-    return [[[NSString stringWithFormat:@"%f",[_correctRate floatValue] * 100] substringToIndex:2] stringByAppendingString:@"%"];
+- (NSTimeInterval)timeused_timeInterval{
+    return [_timeused integerValue];
 }
+
 
 @end

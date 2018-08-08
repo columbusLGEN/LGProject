@@ -18,6 +18,15 @@ static NSString * const testjigouUserid = @"63";
 
 @implementation DJOnlineNetorkManager
 
+- (void)frontSubjects_selectTestRankWithTestid:(NSInteger)testid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"testid":[NSString stringWithFormat:@"%ld",testid]};
+    [self sendPOSTRequestWithiName:@"frontSubjects/selectTestRank" param:param success:success failure:failure];
+}
+
+- (void)frontSubjects_addTestWithPJSONDict:(NSDictionary *)jsonDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontSubjects/addTest" param:jsonDict success:success failure:failure];
+}
+
 - (void)frontSubjects_selectTitleDetailWithPortName:(NSString *)portName titleid:(NSInteger)titleid offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     
 //    frontSubjects/selectTitleDetail

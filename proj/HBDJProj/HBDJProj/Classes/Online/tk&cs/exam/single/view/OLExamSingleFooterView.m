@@ -11,7 +11,7 @@
 @interface OLExamSingleFooterView ()
 @property (weak, nonatomic) IBOutlet UIButton *last;
 @property (weak, nonatomic) IBOutlet UIButton *next;
-
+@property (weak, nonatomic) IBOutlet UIButton *next_mid;
 
 @end
 
@@ -20,8 +20,12 @@
 - (void)setIsFirst:(BOOL)isFirst{
     if (isFirst) {
         _last.hidden = YES;
+        _next.hidden = YES;
+        _next_mid.hidden = NO;
     }else{
         _last.hidden = NO;
+        _next.hidden = NO;
+        _next_mid.hidden = YES;
     }
 }
 
@@ -53,6 +57,7 @@
     CGFloat cornerRadius = _last.height / 2;
     [_last cutBorderWithBorderWidth:1 borderColor:[UIColor EDJMainColor] cornerRadius:cornerRadius];
     [_next cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:cornerRadius];
+    [_next_mid cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:cornerRadius];
     
 }
 
@@ -65,6 +70,12 @@
     [_next setBackgroundColor:[UIColor EDJMainColor]];
     [_next setTitle:@"下一题" forState:UIControlStateNormal];
     [_next setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    [_next_mid setBackgroundColor:[UIColor EDJMainColor]];
+    [_next_mid setTitle:@"下一题" forState:UIControlStateNormal];
+    [_next_mid setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    _next_mid.hidden = YES;
 }
 
 + (instancetype)examSingleFooter{

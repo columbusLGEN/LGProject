@@ -13,6 +13,7 @@
 static NSString * testScoreListCell = @"DJTestScoreListTableViewCell";
 
 @interface DJTestScoreListTableViewCell : LGBaseTableViewCell
+@property (strong,nonatomic) NSIndexPath *indexPath;
 @property (strong,nonatomic) DJTestScoreListModel *model;
 
 @end

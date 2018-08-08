@@ -34,6 +34,9 @@ OLExamViewBottomBarDelegate
 @property (assign,nonatomic) NSInteger willIndex;
 @property (assign,nonatomic) NSInteger didEndIndex;
 
+/// 记录用户开始答题的时间点
+@property (assign,nonatomic) NSTimeInterval beginTimeInterval;
+
 @end
 
 @implementation OLExamViewController
@@ -49,11 +52,6 @@ OLExamViewBottomBarDelegate
     
 }
 
-- (void)setModel:(OLTkcsModel *)model{
-    _model = model;
-    
-}
-
 - (void)configUI{
     
     [self.view addSubview:self.collectionView];
@@ -61,6 +59,7 @@ OLExamViewBottomBarDelegate
     OLExamViewBottomBar *bottomBar = [OLExamViewBottomBar examViewBottomBar];
     _bottomBar = bottomBar;
     bottomBar.delegate = self;
+    /// TODO: 回看状态
 //    bottomBar.backLook = self.backLook;
     bottomBar.frame = CGRectMake(0, self.view.height - bottomBarHeight, kScreenWidth, bottomBarHeight);
     bottomBar.alreadyCount = 1;
@@ -76,6 +75,9 @@ OLExamViewBottomBarDelegate
     /// 请求一套题
     [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTitleDetailWithPortName:_portName titleid:_model.seqid offset:0 success:^(id responseObj) {
         
+        /// MARK: 记录获取到题目是的时间
+        _beginTimeInterval = [self currentTimeinterval];
+        
         NSArray *array = responseObj;
         BOOL arrIsNil = (array == nil || array.count == 0);
         if (arrIsNil) {
@@ -83,18 +85,22 @@ OLExamViewBottomBarDelegate
         }else{
             NSMutableArray *arrMu = [NSMutableArray new];
             for (NSInteger i = 0; i < array.count; i++) {
-                OLExamSingleModel *model = [OLExamSingleModel mj_objectWithKeyValues:array[i]];
+                OLExamSingleModel *singleModel = [OLExamSingleModel mj_objectWithKeyValues:array[i]];
+                singleModel.testPaper = self.model;
+                /// 添加题干前的数字序号
+                singleModel.subject = [[NSString stringWithFormat:@"%ld.",i + 1] stringByAppendingString:singleModel.subject];
+                
                 if (i == 0) {
-                    model.first = YES;
+                    singleModel.first = YES;
                 }
                 if (i == array.count - 1) {
-                    model.last = YES;
+                    singleModel.last = YES;
                 }
                 /// TODO: 回看
 //                model.backLook = self.backLook;
-                model.index = i;
-                [model addSubjectModel];
-                [arrMu addObject:model];
+                singleModel.index = i;
+                [singleModel addSubjectModel];
+                [arrMu addObject:singleModel];
             }
             
             self.dataArray = arrMu.copy;
@@ -127,7 +133,27 @@ OLExamViewBottomBarDelegate
     }else{
         index++;
         if (index == self.dataArray.count) {
-            /// MARK: 交卷
+            
+            /// TODO: 回看重构
+            
+            /// MARK: 提交答案
+            
+            /// 计算用户正确题数，错误题数，正确率
+            self.model.rightCount = 0;
+            for (NSInteger i = 0; i < self.dataArray.count; i++) {
+                OLExamSingleModel *singleModel = self.dataArray[i];
+                if (singleModel.isright) {
+                    self.model.rightCount++;
+                }
+            }
+            NSLog(@"rightCOUNT: %ld",self.model.rightCount);
+            NSLog(@"wrongCOUNT: %ld",self.model.wrongCount);
+            NSLog(@"总数: %ld",self.model.subcount);
+            
+            /// 计算用户耗时
+            [self countUserTimeConsumed];
+            
+            /// 拼接需要提交的数据
             NSString *testid = [NSString stringWithFormat:@"%ld",self.model.seqid];
             
             NSMutableArray *answers = NSMutableArray.new;
@@ -141,24 +167,41 @@ OLExamViewBottomBarDelegate
             }
             
             NSDictionary *dict = @{@"testid":testid,
-                                   @"timeused":@"1",
+                                   @"timeused":[NSString stringWithFormat:@"%f",self.model.timeused_timeInterval],
                                    @"answers":answers.copy};
-            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
-            NSString *json = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
-            NSLog(@"需要提交的测试结果json: %@",json);
             
+//            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+//            NSString *json = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
+//            NSLog(@"需要提交的测试结果json: %@",json);
             
+            OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+            trvc.pushWay = LGBaseViewControllerPushWayModal;
+            trvc.model = self.model;
+            LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
             
-            /// TODO: 将答题情况数据保存在本地
-            /// TODO: 回看
-//            if (!self.backLook) {
+            [self.navigationController presentViewController:nav animated:YES completion:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+//            [DJOnlineNetorkManager.sharedInstance frontSubjects_addTestWithPJSONDict:dict success:^(id responseObj) {
+//                self.model.teststatus = 1;
+//
+//                /// 退出到试题列表控制器 & 展示用户答题正确率页面
+//                /**
+//                    将用户的答题数，正确率等信息，记录在 OLTkcsModel 模型中
+//                 */
+//
 //                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
 //                trvc.pushWay = LGBaseViewControllerPushWayModal;
+//                trvc.model = self.model;
 //                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
 //
 //                [self.navigationController presentViewController:nav animated:YES completion:nil];
 //                [self.navigationController popViewControllerAnimated:YES];
-//            }
+//
+//            } failure:^(id failureObj) {
+//                [self presentFailureTips:@"提交失败，请检查网络后重试"];
+//            }];
+
             return;
         }else{
         }
@@ -229,6 +272,17 @@ OLExamViewBottomBarDelegate
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (NSTimeInterval)currentTimeinterval{
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    return [date timeIntervalSince1970];
+}
+
+- (void)countUserTimeConsumed{
+    NSTimeInterval endTimeinterval = [self currentTimeinterval];
+    NSTimeInterval timeConsumed = floor(endTimeinterval - _beginTimeInterval);
+    self.model.timeused_timeInterval = timeConsumed;
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "OLExamSingleLineModel.h"
 #import "OLExamSingleTableViewCell.h"
 #import "OLExamSingleModel.h"
+#import "OLTkcsModel.h"
 
 @interface OLExamSingleViewController ()
 @property (weak,nonatomic) OLExamSingleFooterView *footer;
@@ -20,6 +21,7 @@
 
 - (void)setModel:(OLExamSingleModel *)model{
     _model = model;
+    model.answer_display;/// 必须调用
     self.dataArray = model.frontSubjectsDetail;
     /// TODO: 回看
     
@@ -28,7 +30,7 @@
     
     _footer.currenIndex = self.model.index;
     [self.tableView reloadData];
-    NSLog(@"本题的正确答案为: %@",model.answer_display);
+//    NSLog(@"本题的正确答案为: %@",model.answer_display);
 //    NSLog(@"本题的正确答案为_用于提交接口: %@",model.answer);
 }
 
@@ -95,7 +97,7 @@
     }
     
 //    NSLog(@"本题是否回答正确: %d",self.model.isright);
-
+    
     [tableView reloadData];
 }
 

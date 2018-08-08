@@ -27,9 +27,25 @@ typedef NS_ENUM(NSUInteger, OLTkcsModelState) {
 @property (assign,nonatomic) NSInteger testid;
 /** 这套题中的所有题目（每道题包含了用户的回答情况） */
 //@property (strong,nonatomic) NSArray<OLExamSingleModel *> *answers;
-/** 耗时 */
-@property (strong,nonatomic) NSString *timeused;
+/** 耗时， 格式: 00:00:00 */
+@property (strong,nonatomic) NSString *timeused_string;
+/** 用户耗时，单位:秒 */
+@property (assign,nonatomic) NSTimeInterval timeused_timeInterval;
 /// -----
+
+/// ----- 需要记录到本地的数据
+/** 用户答题的正确数量 */
+@property (assign,nonatomic) NSInteger rightCount;
+/** 用户答题的错误数量 */
+@property (assign,nonatomic) NSInteger wrongCount;
+/** 用户答题的正确率 */
+@property (assign,nonatomic) NSInteger rightRate;
+/** 用户当前答题的索引，用于用户退出后再次进入时，直接跳转到当前试题 */
+@property (assign,nonatomic) NSInteger currentIndex;
+/// -----
+
+/** 当前试题模型 */
+//@property (assign,nonatomic) OLExamSingleModel *currentSingleModel;
 
 /** 试题名称 */
 @property (copy,nonatomic) NSString *subjecttitle;
@@ -37,6 +53,7 @@ typedef NS_ENUM(NSUInteger, OLTkcsModelState) {
 @property (assign,nonatomic) NSInteger subcount;
 /** 答题进度 */
 @property (assign,nonatomic) NSInteger progress;
+
 
 
 /**
@@ -56,6 +73,8 @@ typedef NS_ENUM(NSUInteger, OLTkcsModelState) {
 
 /** 0:题库 1:测试 */
 @property (assign,nonatomic) NSInteger tkcsType;
+
+@property (strong,nonatomic) NSString *separator;
 
 
 @end

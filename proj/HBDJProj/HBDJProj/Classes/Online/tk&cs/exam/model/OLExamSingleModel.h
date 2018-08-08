@@ -11,6 +11,8 @@
 #import "LGBaseModel.h"
 #import "OLExamSingleLineModel.h"
 
+@class OLTkcsModel;
+
 typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
     ExamSingleRespondStateDefault,/// 默认状态
     ExamSingleRespondStateCorrect,/// 回答正确
@@ -59,9 +61,9 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 /// textcode
 @property (assign,nonatomic) NSInteger index;
 
-/** 本题答案,用于本地显示 */
+/** 本题的正确答案,用于回看时显示 */
 @property (strong,nonatomic) NSString *answer_display;
-/** 本题答案,用于提交接口 */
+/** 用户所选 本题答案,用于提交接口 */
 @property (strong,nonatomic) NSString *answer;
 
 /** 回答状态
@@ -73,5 +75,8 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 
 /** 是否是回看状态 */
 //@property (assign,nonatomic) BOOL backLook;
+
+/** 这道题所属的试卷模型 */
+@property (strong,nonatomic) OLTkcsModel *testPaper;
 
 @end

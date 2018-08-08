@@ -21,12 +21,19 @@
 
 @implementation DJTestScoreListTableViewCell
 
+- (void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = indexPath;
+    _rank.text = [NSString stringWithFormat:@"%ld",(indexPath.row + 1)];
+}
+
 - (void)setModel:(DJTestScoreListModel *)model{
     _model = model;
-    _rank.text = model.rank;
+//    _rank.text = model.rank;
     _name.text = model.name;
-    _time.text = model.timeConsume;
-    _rate.text = model.correctRate;
+    /// TODO: 格式：1分20秒
+    _time.text = model.timeused_string;//model.timeused;
+    _rate.text = [NSString stringWithFormat:@"%@%%",model.score];
+    
 }
 
 - (void)awakeFromNib {

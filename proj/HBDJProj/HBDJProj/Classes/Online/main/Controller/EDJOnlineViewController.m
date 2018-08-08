@@ -15,9 +15,6 @@
 #import "OLAddMoreToolViewController.h"
 #import "OLMindReportViewController.h"
 
-/// 成绩统计排行榜，入口在哪？
-#import "DJTestScoreListTableViewController.h"
-
 #import "DJOnlineHomeModel.h"
 #import "OLHomeModel.h"
 #import "OLSkipObject.h"
@@ -100,10 +97,6 @@ HPNetworkFailureViewDelegate>
             vc.pushWay = LGBaseViewControllerPushWayModal;
             [self presentViewController:vc animated:YES completion:nil];
         }
-        
-        /// 跳转测试 -- 进入成绩统计排行，此页面入口在哪里
-//        DJTestScoreListTableViewController *vc = DJTestScoreListTableViewController.new;
-//        [self.navigationController pushViewController:vc animated:YES];
         
     }else{
         /// 其余跳转

@@ -8,6 +8,7 @@
 
 #import "OLTestResultViewController.h"
 #import "OLExamViewController.h"
+#import "OLTkcsModel.h"
 
 @interface OLTestResultViewController ()
 /** 正确率 */
@@ -42,11 +43,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
 }
 
 - (void)configUI{
     [_totalCount setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.3]];
+    _rate.text = [NSString stringWithFormat:@"%ld",self.model.rightRate];
+    [_totalCount setTitle:[NSString stringWithFormat:@"总题数: %ld",self.model.subcount] forState:UIControlStateNormal];
+    [_rightCount setTitle:[NSString stringWithFormat:@"正确: %ld",self.model.rightCount] forState:UIControlStateNormal];
+    [_wrongCount setTitle:[NSString stringWithFormat:@"错误: %ld",self.model.wrongCount] forState:UIControlStateNormal];
+    [_timeConsume setTitle:[NSString stringWithFormat:@"用时: %@",self.model.timeused_string] forState:UIControlStateNormal];
 }
 
 - (IBAction)close:(id)sender {
@@ -55,12 +60,14 @@
 }
 
 - (IBAction)backLookClick:(UIButton *)sender {
-    /// 试题回看
+    
+    /// TODO: 试题回看
     /// 获取刚才试题的 id 重新打开
-    OLExamViewController *backLookExamVc = [OLExamViewController new];
-//    backLookExamVc.backLook = YES;
-//    backLookExamVc.pushWay = self.pushWay;/// 如果打开此行代码，则关闭试题回看页面时，连同成绩页面一起关闭
-    [self.navigationController pushViewController:backLookExamVc animated:YES];
+//    OLExamViewController *backLookExamVc = [OLExamViewController new];
+//    self.model;
+////    backLookExamVc.backLook = YES;
+////    backLookExamVc.pushWay = self.pushWay;/// 如果打开此行代码，则关闭试题回看页面时，连同成绩页面一起关闭
+//    [self.navigationController pushViewController:backLookExamVc animated:YES];
 }
 
 

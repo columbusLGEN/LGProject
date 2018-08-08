@@ -11,6 +11,8 @@
 #import "OLTkcsModel.h"
 #import "DJOnlineNetorkManager.h"
 #import "OLExamViewController.h"
+#import "OLTestResultViewController.h"
+#import "DJTestScoreListTableViewController.h"
 
 @interface OLTkcsTableViewController ()
 
@@ -37,9 +39,9 @@
     [self getNetDataWithOffset:_offset];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self.tableView.mj_footer resetNoMoreData];
         _offset = 0;
         [self getNetDataWithOffset:_offset];
+        [self.tableView.mj_footer resetNoMoreData];
     }];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self getNetDataWithOffset:_offset];
@@ -108,12 +110,38 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    /// 进入测试页面
     OLTkcsModel *model = self.dataArray[indexPath.row];
-    OLExamViewController *vc = OLExamViewController.new;
-    vc.portName = _portName;
-    vc.model = model;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    switch (model.teststatus) {
+        case 0:{/// 进行中
+            /// 进入测试页面
+            OLExamViewController *vc = OLExamViewController.new;
+            vc.portName = _portName;
+            NSLog(@"测试题模型: %@",model);
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:{/// 已答题
+            /// 进入个人成绩页面
+            OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+            trvc.pushWay = LGBaseViewControllerPushWayPush;
+            trvc.model = model;
+            
+            [self.navigationController pushViewController:trvc animated:YES];
+        }
+            break;
+        case 3:{/// 已结束
+            DJTestScoreListTableViewController *vc = DJTestScoreListTableViewController.new;
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
 
 }
 

@@ -9,7 +9,9 @@
 /// 成绩统计排行榜
 
 #import "LGBaseViewController.h"
+@class OLTkcsModel;
 
 @interface DJTestScoreListTableViewController : LGBaseViewController
+@property (strong,nonatomic) OLTkcsModel *model;
 
 @end
