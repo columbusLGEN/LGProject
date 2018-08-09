@@ -15,9 +15,14 @@
 #import "OLTestResultViewController.h"
 #import "OLTkcsModel.h"
 #import "DJOnlineNetorkManager.h"
+#import "LGCountTimeLabel.h"
+#import "LGFilePathManager.h"
 
 static CGFloat bottomBarHeight = 60;
 static NSString * const cellID = @"OLExamCollectionViewCell";
+
+static NSString * const timeused_key = @"timeused";
+static NSString * const index_key = @"currIndex";
 
 @interface OLExamViewController ()<
 UICollectionViewDelegate,
@@ -34,8 +39,10 @@ OLExamViewBottomBarDelegate
 @property (assign,nonatomic) NSInteger willIndex;
 @property (assign,nonatomic) NSInteger didEndIndex;
 
-/// 记录用户开始答题的时间点
-@property (assign,nonatomic) NSTimeInterval beginTimeInterval;
+@property (weak,nonatomic) LGCountTimeLabel *ctlabel;
+
+/** 本地答题记录 */
+@property (strong,nonatomic) NSDictionary *localRecord;
 
 @end
 
@@ -52,9 +59,53 @@ OLExamViewBottomBarDelegate
     
 }
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    if (_tkcsType == OLTkcsTypecs) {
+        NSLog(@"_ctlabel.sec: %ld",_ctlabel.sec);
+        /// 用户退出测试页面，记录用户耗时 & 用户答题index
+        NSDictionary *dict = @{timeused_key:@(_ctlabel.sec),
+                               index_key:@(self.willIndex)};
+        
+        NSString *fileName = [self testRecordFileName];
+        
+        BOOL write = [dict writeToFile:fileName atomically:YES];
+        NSLog(@"写入: %d",write);
+        
+        /// TODO: 记录用户每道题选了哪些内容，再次打开时，将其选中
+        
+    }
+    
+}
+
 - (void)configUI{
     
     [self.view addSubview:self.collectionView];
+    
+    /// 获取本地记录
+    _localRecord = [NSDictionary dictionaryWithContentsOfFile:[self testRecordFileName]];
+    
+    if (_tkcsType == OLTkcsTypecs) {
+        /// 从本地获取用户耗时
+        NSNumber *sec_record = _localRecord[timeused_key];
+        NSInteger sec = sec_record.integerValue;
+        
+        /// 答题计时
+        LGCountTimeLabel *ctlabel = [LGCountTimeLabel.alloc initWithFrame:CGRectMake(0, 0, 75, 20) sec:sec];
+        UIBarButtonItem *rightItem = [UIBarButtonItem.alloc initWithCustomView:ctlabel];
+        _ctlabel = ctlabel;
+        self.navigationItem.rightBarButtonItem = rightItem;
+        
+        if (self.backLook) {
+            /// 回看状态
+            UILabel *timeused = [LGCountTimeLabel.alloc initWithFrame:CGRectMake(0, 0, 75, 20)];
+            timeused.text = self.model.timeused_string;
+            UIBarButtonItem *rightItem = [UIBarButtonItem.alloc initWithCustomView:timeused];
+            self.navigationItem.rightBarButtonItem = rightItem;
+        }
+    }
+    
     
     OLExamViewBottomBar *bottomBar = [OLExamViewBottomBar examViewBottomBar];
     _bottomBar = bottomBar;
@@ -74,9 +125,6 @@ OLExamViewBottomBarDelegate
     
     /// 请求一套题
     [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTitleDetailWithPortName:_portName titleid:_model.seqid offset:0 success:^(id responseObj) {
-        
-        /// MARK: 记录获取到题目是的时间
-        _beginTimeInterval = [self currentTimeinterval];
         
         NSArray *array = responseObj;
         BOOL arrIsNil = (array == nil || array.count == 0);
@@ -105,7 +153,17 @@ OLExamViewBottomBarDelegate
             
             self.dataArray = arrMu.copy;
             _bottomBar.totalCount = arrMu.count;
-            [self.collectionView reloadData];
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.collectionView reloadData];
+                
+                /// 如果本地有答题记录，直接跳转
+                NSNumber *index = _localRecord[index_key];
+                if (index.integerValue != 0) {
+                    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index.integerValue inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+                    _bottomBar.alreadyCount = index.integerValue + 1;
+                }
+            }];
             
         }
         
@@ -174,33 +232,34 @@ OLExamViewBottomBarDelegate
 //            NSString *json = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
 //            NSLog(@"需要提交的测试结果json: %@",json);
             
-            OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-            trvc.pushWay = LGBaseViewControllerPushWayModal;
-            trvc.model = self.model;
-            LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
+//            OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+//            trvc.pushWay = LGBaseViewControllerPushWayModal;
+//            trvc.model = self.model;
+//            LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
+//            
+//            [self.navigationController presentViewController:nav animated:YES completion:nil];
+//            [self.navigationController popViewControllerAnimated:YES];
             
-            [self.navigationController presentViewController:nav animated:YES completion:nil];
-            [self.navigationController popViewControllerAnimated:YES];
-            
-//            [DJOnlineNetorkManager.sharedInstance frontSubjects_addTestWithPJSONDict:dict success:^(id responseObj) {
-//                self.model.teststatus = 1;
-//
-//                /// 退出到试题列表控制器 & 展示用户答题正确率页面
-//                /**
-//                    将用户的答题数，正确率等信息，记录在 OLTkcsModel 模型中
-//                 */
-//
-//                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-//                trvc.pushWay = LGBaseViewControllerPushWayModal;
-//                trvc.model = self.model;
-//                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
-//
-//                [self.navigationController presentViewController:nav animated:YES completion:nil];
-//                [self.navigationController popViewControllerAnimated:YES];
-//
-//            } failure:^(id failureObj) {
-//                [self presentFailureTips:@"提交失败，请检查网络后重试"];
-//            }];
+            /// TODO: 提交试卷,打开即可
+            [DJOnlineNetorkManager.sharedInstance frontSubjects_addTestWithPJSONDict:dict success:^(id responseObj) {
+                self.model.teststatus = 1;
+
+                /// 退出到试题列表控制器 & 展示用户答题正确率页面
+                /**
+                    将用户的答题数，正确率等信息，记录在 OLTkcsModel 模型中
+                 */
+
+                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+                trvc.pushWay = LGBaseViewControllerPushWayModal;
+                trvc.model = self.model;
+                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
+
+                [self.navigationController presentViewController:nav animated:YES completion:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+
+            } failure:^(id failureObj) {
+                [self presentFailureTips:@"提交失败，请检查网络后重试"];
+            }];
 
             return;
         }else{
@@ -238,6 +297,7 @@ OLExamViewBottomBarDelegate
             /// 上一题
         }
         _bottomBar.alreadyCount = willIndex + 1;
+
     }
 }
 
@@ -270,19 +330,18 @@ OLExamViewBottomBarDelegate
     return kScreenHeight - kNavHeight - bottomBarHeight;
 }
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (NSTimeInterval)currentTimeinterval{
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
     return [date timeIntervalSince1970];
 }
 
 - (void)countUserTimeConsumed{
-    NSTimeInterval endTimeinterval = [self currentTimeinterval];
-    NSTimeInterval timeConsumed = floor(endTimeinterval - _beginTimeInterval);
-    self.model.timeused_timeInterval = timeConsumed;
+    NSNumber *sec_record = _localRecord[timeused_key];
+    self.model.timeused_timeInterval = sec_record.integerValue;
+}
+
+- (NSString *)testRecordFileName{
+    return [LGFilePathManager.sharedInstance dj_testFileNamePathWithTestid:self.model.testid];
 }
 
 @end

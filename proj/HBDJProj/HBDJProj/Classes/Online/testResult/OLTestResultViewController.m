@@ -10,6 +10,8 @@
 #import "OLExamViewController.h"
 #import "OLTkcsModel.h"
 
+#import "DJNotOpenViewController.h"
+
 @interface OLTestResultViewController ()
 /** 正确率 */
 @property (weak, nonatomic) IBOutlet UILabel *rate;
@@ -61,12 +63,14 @@
 
 - (IBAction)backLookClick:(UIButton *)sender {
     
-    /// TODO: 试题回看
-    /// 获取刚才试题的 id 重新打开
+    DJNotOpenViewController *vc = [DJNotOpenViewController new];
+    vc.showBackItem = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    /// 进入 试题回看
 //    OLExamViewController *backLookExamVc = [OLExamViewController new];
-//    self.model;
-////    backLookExamVc.backLook = YES;
-////    backLookExamVc.pushWay = self.pushWay;/// 如果打开此行代码，则关闭试题回看页面时，连同成绩页面一起关闭
+//    backLookExamVc.model = self.model;
+//    backLookExamVc.backLook = YES;
 //    [self.navigationController pushViewController:backLookExamVc animated:YES];
 }
 

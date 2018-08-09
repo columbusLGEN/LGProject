@@ -75,7 +75,8 @@ HPNetworkFailureViewDelegate>
         self.model = [DJOnlineHomeModel mj_objectWithKeyValues:responseObj];
         self.onlineController.onlineModels = self.model.activation;
         
-        [self.headLine sd_setImageWithURL:[NSURL URLWithString:self.model.headlineImg] placeholderImage:DJImgloopPImage];
+        /// TODO: online 首页顶部图片，暂时用本地 
+//        [self.headLine sd_setImageWithURL:[NSURL URLWithString:self.model.headlineImg] placeholderImage:DJImgloopPImage];
         
     } failure:^(id failureObj) {
         [self.onlineController.collectionView.mj_header endRefreshing];
@@ -147,7 +148,7 @@ HPNetworkFailureViewDelegate>
         _headLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, - [EDJOnlineController headerHeight], kScreenWidth, headLineHeight)];
         _headLine.clipsToBounds = YES;
         _headLine.contentMode = UIViewContentModeScaleAspectFill;
-        _headLine.image = [UIImage imageNamed:@"party_history"];
+        _headLine.image = [UIImage imageNamed:@"online_top_icon"];
     }
     return _headLine;
 }

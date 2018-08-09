@@ -112,37 +112,49 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     OLTkcsModel *model = self.dataArray[indexPath.row];
     
-    switch (model.teststatus) {
-        case 0:{/// 进行中
-            /// 进入测试页面
-            OLExamViewController *vc = OLExamViewController.new;
-            vc.portName = _portName;
-            NSLog(@"测试题模型: %@",model);
-            vc.model = model;
-            [self.navigationController pushViewController:vc animated:YES];
+    if (self.tkcsType == OLTkcsTypetk) {
+        [self testvcWithType:_tkcsType model:model];
+    }
+    
+    if (self.tkcsType == OLTkcsTypecs) {
+        switch (model.teststatus) {
+            case 0:{/// 进行中
+                [self testvcWithType:_tkcsType model:model];
+            }
+                break;
+            case 1:{/// 已答题
+                /// 进入个人成绩页面
+                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+                trvc.pushWay = LGBaseViewControllerPushWayPush;
+                trvc.model = model;
+                
+                [self.navigationController pushViewController:trvc animated:YES];
+            }
+                break;
+            case 3:{/// 已结束
+                DJTestScoreListTableViewController *vc = DJTestScoreListTableViewController.new;
+                vc.model = model;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }
+                break;
+                
+            default:
+                break;
         }
-            break;
-        case 1:{/// 已答题
-            /// 进入个人成绩页面
-            OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-            trvc.pushWay = LGBaseViewControllerPushWayPush;
-            trvc.model = model;
-            
-            [self.navigationController pushViewController:trvc animated:YES];
-        }
-            break;
-        case 3:{/// 已结束
-            DJTestScoreListTableViewController *vc = DJTestScoreListTableViewController.new;
-            vc.model = model;
-            [self.navigationController pushViewController:vc animated:YES];
-            
-        }
-            break;
-            
-        default:
-            break;
+        
     }
 
+}
+
+- (void)testvcWithType:(OLTkcsType)type model:(OLTkcsModel *)model{
+    /// 进入答题页面
+    OLExamViewController *vc = OLExamViewController.new;
+    vc.tkcsType = type;
+    vc.portName = _portName;
+    NSLog(@"测试题模型: %@",model);
+    vc.model = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

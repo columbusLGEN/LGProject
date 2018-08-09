@@ -7,85 +7,14 @@
 //
 
 #import "OLTkcsModel.h"
+#import "LGCountTimeLabel.h"
 
 @implementation OLTkcsModel
 
 - (NSString *)timeused_string{
     if (!_timeused_string) {
-        NSTimeInterval timeConsumed = self.timeused_timeInterval;
-        //    NSLog(@"耗时: %f",timeConsumed);
         
-        /// 将时间转化为 时:分:秒
-        NSString *timeStr;
-        if (timeConsumed > 3599 && timeConsumed <= 86400) {
-            /// 超过一个小时
-            NSInteger hour = timeConsumed / 3600;
-            NSInteger hourOfSecond = hour * 3600;
-            
-            NSInteger min = (timeConsumed - hourOfSecond) / 60;
-            NSInteger minOfSecond = min * 60;
-            
-            NSInteger sec = timeConsumed - hourOfSecond - minOfSecond;
-            
-            NSString *hourStr;
-            if (hour < 10) {
-                hourStr = [NSString stringWithFormat:@"0%ld",hour];
-            }else{
-                hourStr = [NSString stringWithFormat:@"%ld",hour];
-            }
-            
-            NSString *minStr;
-            if (min < 10) {
-                minStr = [NSString stringWithFormat:@"0%ld",min];
-            }else{
-                minStr = [NSString stringWithFormat:@"%ld",min];
-            }
-            
-            NSString *secStr;
-            if (sec < 10) {
-                secStr = [NSString stringWithFormat:@"0%ld",sec];
-            }else{
-                secStr = [NSString stringWithFormat:@"%ld",sec];
-            }
-            
-            timeStr = [NSString stringWithFormat:@"%@:%@:%@",hourStr,minStr,secStr];
-            
-        }else if (timeConsumed > 59){
-            /// 超过一分钟
-            NSInteger min = timeConsumed / 60;
-            NSInteger minOfSecond = min * 60;
-            
-            NSInteger sec = timeConsumed - minOfSecond;
-            
-            NSString *minStr;
-            if (min < 10) {
-                minStr = [NSString stringWithFormat:@"0%ld",min];
-            }else{
-                minStr = [NSString stringWithFormat:@"%ld",min];
-            }
-            
-            NSString *secStr;
-            if (sec < 10) {
-                secStr = [NSString stringWithFormat:@"0%ld",sec];
-            }else{
-                secStr = [NSString stringWithFormat:@"%ld",sec];
-            }
-            
-            timeStr = [NSString stringWithFormat:@"%@:%@",minStr,secStr];
-        }else{
-            
-            NSInteger sec = timeConsumed;
-            
-            NSString *secStr;
-            if (timeConsumed < 10) {
-                secStr = [NSString stringWithFormat:@"0%ld",sec];
-            }else{
-                secStr = [NSString stringWithFormat:@"%ld",sec];
-            }
-            
-            timeStr = [NSString stringWithFormat:@"00:%@",secStr];
-        }
-        _timeused_string = timeStr;
+        _timeused_string = timeStrWithSec(self.timeused_timeInterval);
     }
     return _timeused_string;
 }

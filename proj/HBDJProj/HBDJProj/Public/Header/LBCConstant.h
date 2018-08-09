@@ -28,6 +28,7 @@ static const CGFloat plusScreenWidth = 414;
 
 /** 时间字符串统一判定长度 */
 static const NSInteger length_timeString = 15;
+static const NSInteger length_timeString_1 = 10;
 
 static NSString * const UserCenterStoryboardName = @"UserCenter";
 static NSString * const OnlineStoryboardName = @"Online";
