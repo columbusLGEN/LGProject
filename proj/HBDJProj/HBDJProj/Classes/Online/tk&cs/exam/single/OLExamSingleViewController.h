@@ -13,5 +13,6 @@
 
 @interface OLExamSingleViewController : LGBaseTableViewController
 @property (strong,nonatomic) OLExamSingleModel *model;
+@property (assign,nonatomic) BOOL backLook;
 
 @end

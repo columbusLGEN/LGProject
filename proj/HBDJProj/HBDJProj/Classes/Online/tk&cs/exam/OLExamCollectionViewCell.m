@@ -19,6 +19,7 @@
 
 - (void)setModel:(OLExamSingleModel *)model{
     _model = model;
+    self.controller.backLook = _backLook;
     self.controller.model = model;
 }
 

@@ -25,6 +25,9 @@ typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
  @param jsonDict 答题情况json字典
  */
 - (void)frontSubjects_addTestWithPJSONDict:(NSDictionary *)jsonDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 回看试题 */
+- (void)frontSubjects_selectTestsPlayBackWithTestid:(NSInteger)testid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**
  题目接口
 

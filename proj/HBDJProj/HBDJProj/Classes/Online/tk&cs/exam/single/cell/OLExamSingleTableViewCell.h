@@ -15,5 +15,6 @@ static NSString * const examSingleOptionCell = @"OLExamSingleOptionCell";
 
 @interface OLExamSingleTableViewCell : LGBaseTableViewCell
 @property (strong,nonatomic) OLExamSingleLineModel *model;
+@property (assign,nonatomic) BOOL backLook;
 
 @end

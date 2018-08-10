@@ -10,7 +10,10 @@
 #import "OLExamSingleLineModel.h"
 
 @interface OLExamSingleModel ()
-@property (weak,nonatomic) OLExamSingleLineModel *standAnswer;
+/** 题干模型 */
+@property (strong,nonatomic) OLExamSingleLineModel *questionStem;
+/** 参考答案模型 */
+@property (strong,nonatomic) OLExamSingleLineModel *standAnswer;
 
 @end
 
@@ -25,11 +28,13 @@
 
 - (void)addSubjectModel{
     /// 添加题干
-    OLExamSingleLineModel *subject = OLExamSingleLineModel.new;
-    subject.lineType = ExamSingleLineTypeContent;
-    subject.questionContent = self.subject;
-    subject.choiceMutiple = (self.subjecttype == 2);
-    [self.frontSubjectsDetail insertObject:subject atIndex:0];
+    if (!_questionStem) {
+        _questionStem = OLExamSingleLineModel.new;
+        _questionStem.lineType = ExamSingleLineTypeContent;
+        _questionStem.questionContent = self.subject;
+        _questionStem.choiceMutiple = (self.subjecttype == 2);
+        [self.frontSubjectsDetail insertObject:_questionStem atIndex:0];
+    }
 }
 
 /**
@@ -120,9 +125,6 @@
 + (NSDictionary *)mj_objectClassInArray{
     return @{@"frontSubjectsDetail":@"OLExamSingleLineModel"};
 }
-
-/// 一下的代码有可能会删除
-
 - (void)setFrontSubjectsDetail:(NSMutableArray<OLExamSingleLineModel *> *)frontSubjectsDetail{
     for (OLExamSingleLineModel *option in frontSubjectsDetail) {
         option.lineType = ExamSingleLineTypeOption;
@@ -130,11 +132,25 @@
     _frontSubjectsDetail = frontSubjectsDetail;
 }
 
+- (void)addReferAnswer{
+    if (!_standAnswer) {
+        if (self.right) {
+            self.respondState = ExamSingleRespondStateCorrect;
+        }else{
+            self.respondState = ExamSingleRespondStateWrong;
+        }
+        [self.frontSubjectsDetail addObject:_standAnswer];
+    }
+}
+/// 以下的代码有可能会删除
+
 - (void)setRespondState:(ExamSingleRespondState)respondState{
     _respondState = respondState;
     /// 回答正确，回答错误，时，分别修改 standAnswer 的 optionContent
+    _standAnswer = OLExamSingleLineModel.new;
+    _standAnswer.lineType = ExamSingleLineTypeAnswer;
     _standAnswer.optionContent = [self answerStringWithState:respondState];
-    NSLog(@"_standAnswer -- %@ optionContent -- %@",_standAnswer,_standAnswer.optionContent);
+//    NSLog(@"_standAnswer -- %@ optionContent -- %@",_standAnswer,_standAnswer.optionContent);
 }
 
 - (NSString *)answerStringWithState:(ExamSingleRespondState)state{

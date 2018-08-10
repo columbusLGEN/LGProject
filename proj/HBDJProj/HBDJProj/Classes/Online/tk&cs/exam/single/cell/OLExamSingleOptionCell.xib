@@ -37,11 +37,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="reg-T9-F42" firstAttribute="centerY" secondItem="vrS-nB-6nJ" secondAttribute="centerY" id="8Vw-Qr-XwT"/>
-                    <constraint firstItem="cvH-FC-3Lc" firstAttribute="leading" secondItem="vrS-nB-6nJ" secondAttribute="leading" priority="750" constant="25" id="NMp-ec-oYo"/>
+                    <constraint firstItem="cvH-FC-3Lc" firstAttribute="leading" secondItem="vrS-nB-6nJ" secondAttribute="leading" constant="50" id="M3n-eo-KuZ"/>
                     <constraint firstAttribute="trailing" secondItem="cvH-FC-3Lc" secondAttribute="trailing" constant="20" id="POA-oP-93U"/>
                     <constraint firstItem="cvH-FC-3Lc" firstAttribute="centerY" secondItem="reg-T9-F42" secondAttribute="centerY" id="RgE-Es-LPU"/>
                     <constraint firstItem="cvH-FC-3Lc" firstAttribute="top" secondItem="vrS-nB-6nJ" secondAttribute="top" constant="10" id="UiK-EV-jLg"/>
-                    <constraint firstItem="cvH-FC-3Lc" firstAttribute="leading" secondItem="reg-T9-F42" secondAttribute="trailing" constant="10" id="Uu3-um-xAf"/>
                     <constraint firstItem="reg-T9-F42" firstAttribute="leading" secondItem="vrS-nB-6nJ" secondAttribute="leading" constant="25" id="e8S-2m-1iE"/>
                     <constraint firstAttribute="bottom" secondItem="cvH-FC-3Lc" secondAttribute="bottom" constant="10" id="wk5-lb-lnW"/>
                 </constraints>
@@ -49,6 +48,7 @@
             <connections>
                 <outlet property="icon" destination="reg-T9-F42" id="q6T-vq-gjw"/>
                 <outlet property="optionContent" destination="cvH-FC-3Lc" id="uJi-DK-mfV"/>
+                <outlet property="optionContentLeading" destination="M3n-eo-KuZ" id="NQB-WT-ldF"/>
             </connections>
             <point key="canvasLocation" x="141" y="64"/>
         </tableViewCell>

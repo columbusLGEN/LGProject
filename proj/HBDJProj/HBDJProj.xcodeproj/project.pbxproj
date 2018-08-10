@@ -228,6 +228,7 @@
 		8885D24020A2EC8500DC06A1 /* LGSegmentBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8885D23F20A2EC8500DC06A1 /* LGSegmentBottomView.xib */; };
 		888E3A6C211BDDD800ED2DA3 /* LGCountTimeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A6A211BDDD800ED2DA3 /* LGCountTimeLabel.m */; };
 		888E3A6F211BF22900ED2DA3 /* LGFilePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A6E211BF22900ED2DA3 /* LGFilePathManager.m */; };
+		888E3A72211D2B0000ED2DA3 /* OLTestBackLookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A71211D2B0000ED2DA3 /* OLTestBackLookModel.m */; };
 		8891A43520F9CF110059D220 /* LGAttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8891A43420F9CF110059D220 /* LGAttributedTextView.m */; };
 		8891A43C20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8891A43B20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m */; };
 		889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889E7DB62099685000BB9084 /* HPBookInfoModel.m */; };
@@ -864,6 +865,8 @@
 		888E3A6B211BDDD800ED2DA3 /* LGCountTimeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGCountTimeLabel.h; sourceTree = "<group>"; };
 		888E3A6D211BF22900ED2DA3 /* LGFilePathManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFilePathManager.h; sourceTree = "<group>"; };
 		888E3A6E211BF22900ED2DA3 /* LGFilePathManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGFilePathManager.m; sourceTree = "<group>"; };
+		888E3A70211D2B0000ED2DA3 /* OLTestBackLookModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTestBackLookModel.h; sourceTree = "<group>"; };
+		888E3A71211D2B0000ED2DA3 /* OLTestBackLookModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestBackLookModel.m; sourceTree = "<group>"; };
 		8891A43320F9CF110059D220 /* LGAttributedTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGAttributedTextView.h; sourceTree = "<group>"; };
 		8891A43420F9CF110059D220 /* LGAttributedTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGAttributedTextView.m; sourceTree = "<group>"; };
 		8891A43A20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJRichTextShowWithYYKitViewController.h; sourceTree = "<group>"; };
@@ -3082,6 +3085,8 @@
 			children = (
 				88DD814B209C3C3E00F297D6 /* OLTestResultViewController.h */,
 				88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */,
+				888E3A70211D2B0000ED2DA3 /* OLTestBackLookModel.h */,
+				888E3A71211D2B0000ED2DA3 /* OLTestBackLookModel.m */,
 			);
 			path = testResult;
 			sourceTree = "<group>";
@@ -3744,6 +3749,7 @@
 				884312C5208737BF00321F84 /* UCMsgTableViewController.m in Sources */,
 				889E7DC02099969A00BB9084 /* UCMemberStageTransitionView.m in Sources */,
 				8877742320C0F7390011DFF3 /* LGBookReaderManager.m in Sources */,
+				888E3A72211D2B0000ED2DA3 /* OLTestBackLookModel.m in Sources */,
 				884312CB2087380700321F84 /* UCMsgTableViewCell.m in Sources */,
 				88C5F14120B7E08D0075D5F2 /* EDJMicroLessionAlbumModel.m in Sources */,
 				8851C63720F5E47A00C91575 /* OLMindReportViewController.m in Sources */,

@@ -12,6 +12,9 @@
 #import "OLExamSingleModel.h"
 #import "OLTkcsModel.h"
 
+static NSString * const options_key = @"options";
+static NSString * const id_key = @"id";
+
 @interface OLExamSingleViewController ()
 @property (weak,nonatomic) OLExamSingleFooterView *footer;
 
@@ -21,43 +24,55 @@
 
 - (void)setModel:(OLExamSingleModel *)model{
     _model = model;
-    model.answer_display;/// 必须调用
-    self.dataArray = model.frontSubjectsDetail;
-    /// TODO: 回看
+    model.userRecord = NSMutableDictionary.new;
     
-    _footer.isLast = model.last;
+    model.answer_display;/// 必须调用
+    /// 回看
+    _footer.backLook = _backLook;
+    
+    self.dataArray = model.frontSubjectsDetail;
     _footer.isFirst = model.first;
+    _footer.isLast = model.last;
     
     _footer.currenIndex = self.model.index;
     [self.tableView reloadData];
-//    NSLog(@"本题的正确答案为: %@",model.answer_display);
-//    NSLog(@"本题的正确答案为_用于提交接口: %@",model.answer);
+    
+    model.userRecord[id_key] = @(model.seqid);
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     self.tableView.estimatedRowHeight = 50.0f;
     [self.tableView registerNib:[UINib nibWithNibName:examSingleOptionCell bundle:nil] forCellReuseIdentifier:examSingleOptionCell];
     [self.tableView registerNib:[UINib nibWithNibName:examSingleStemCell bundle:nil] forCellReuseIdentifier:examSingleStemCell];
     
     OLExamSingleFooterView *footer = [OLExamSingleFooterView examSingleFooter];
+    
     footer.frame = CGRectMake(0, 0, kScreenWidth, 180);
     self.tableView.tableFooterView = footer;
     _footer = footer;
+    
 }
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    /// TODO: 回看
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OLExamSingleLineModel *model = self.dataArray[indexPath.row];
     OLExamSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[OLExamSingleTableViewCell cellReuseIdWithModel:model] forIndexPath:indexPath];
+    cell.backLook = _backLook;
     cell.model = model;
+    if (model.selected) {
+        _footer.selectSomeOption = YES;
+    }
     return cell;
 }
+
 /// MARK: 用户选中某个选项
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 获取题干模型
@@ -68,13 +83,16 @@
         if (optionModel.selected) {
             optionModel.selected = NO;
             [_model.selectOptions removeObject:optionModel];
+            
         }else{
             optionModel.selected = YES;
             [_model.selectOptions addObject:optionModel];
+
         }
         
         /// 拼接需要提交的用户选项
         _model.answer = @"";
+        
         for (NSInteger i = 0 ; i < _model.selectOptions.count; i++) {
             OLExamSingleLineModel *singleLineModel = _model.selectOptions[i];
             _model.answer = [_model.answer stringByAppendingString:[NSString stringWithFormat:@",%ld",singleLineModel.seqid]];
@@ -83,6 +101,9 @@
             _model.answer = [_model.answer substringFromIndex:1];
         }
         
+        _model.userRecord[options_key] = _model.answer;
+//        NSLog(@"_model.userRecord[options_key]: %@",_model.userRecord[options_key]);
+//        NSLog(@"_model.answer;: %@",_model.answer);
     }else{
         /// MARK: 单选
         [self.dataArray enumerateObjectsUsingBlock:^(OLExamSingleLineModel   * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -90,17 +111,20 @@
                 model.selected = YES;
                 _model.selectOption = model;
                 _model.answer = [NSString stringWithFormat:@"%ld",model.seqid];
+                _model.userRecord[options_key] = [NSString stringWithFormat:@"%ld",model.seqid];
             }else{
                 model.selected = NO;
             }
         }];
+        
     }
     
 //    NSLog(@"本题是否回答正确: %d",self.model.isright);
     
     [tableView reloadData];
+    _footer.selectSomeOption = YES;
+//    NSLog(@"_userRecord: %@",_model.userRecord);
 }
-
 
 
 @end

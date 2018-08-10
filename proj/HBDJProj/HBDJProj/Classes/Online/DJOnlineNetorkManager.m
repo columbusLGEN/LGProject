@@ -27,6 +27,11 @@ static NSString * const testjigouUserid = @"63";
     [self sendPOSTRequestWithiName:@"frontSubjects/addTest" param:jsonDict success:success failure:failure];
 }
 
+- (void)frontSubjects_selectTestsPlayBackWithTestid:(NSInteger)testid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *dict = @{@"testid":[NSString stringWithFormat:@"%ld",testid]};
+    [self sendPOSTRequestWithiName:@"frontSubjects/selectTestsPlayBack" param:dict success:success failure:failure];
+}
+
 - (void)frontSubjects_selectTitleDetailWithPortName:(NSString *)portName titleid:(NSInteger)titleid offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     
 //    frontSubjects/selectTitleDetail

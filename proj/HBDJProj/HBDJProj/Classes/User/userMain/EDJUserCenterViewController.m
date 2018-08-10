@@ -131,30 +131,30 @@ UITableViewDataSource>
 }
 - (void)headerButtonCick:(UIButton *)sender{
 
-    [self showNotOpenvc];
+//    [self showNotOpenvc];
     /// MARK: 提问、收藏、上传、消息
-//    switch (sender.tag) {
-//        case 0:{
-//            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
-//                                            controllerId:@"UCMyQuestionViewController"
-//                                                animated:YES];
-//        }
-//            break;
-//        case 1:{
-//            NSLog(@"收藏");
-//        }
-//            break;
-//        case 2:{
-//            [self lgPushViewControllerWithClassName:@"UCUploadHomePageViewController"];
-//        }
-//            break;
-//        case 3:{
-//            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
-//                                            controllerId:@"UCMsgTableViewController"
-//                                                animated:YES];
-//        }
-//            break;
-//    }
+    switch (sender.tag) {
+        case 0:{
+            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
+                                            controllerId:@"UCMyQuestionViewController"
+                                                animated:YES];
+        }
+            break;
+        case 1:{
+            NSLog(@"收藏");
+        }
+            break;
+        case 2:{
+            [self lgPushViewControllerWithClassName:@"UCUploadHomePageViewController"];
+        }
+            break;
+        case 3:{
+            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
+                                            controllerId:@"UCMsgTableViewController"
+                                                animated:YES];
+        }
+            break;
+    }
 
 }
 

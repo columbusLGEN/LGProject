@@ -11,6 +11,7 @@
 static NSString * const OLExamTurnQuestionNotification = @"OLExamTurnQuestionNotification";
 static NSString * const OLExamTurnQuestionNotificationTurnToKey = @"OLExamTurnQuestionNotificationTurnToKey";
 static NSString * const OLExamTurnQuestionNotificationIndexKey = @"OLExamTurnQuestionNotificationIndexKey";
+static NSString * const OLExamTurnQuestionNotificationCanNextKey = @"OLExamTurnQuestionNotificationCanNextKey";
 
 typedef NS_ENUM(NSUInteger, ExamTurnTo) {
     ExamTurnToLast,
@@ -26,5 +27,10 @@ typedef NS_ENUM(NSUInteger, ExamTurnTo) {
 @property (assign,nonatomic) BOOL isFirst;
 /** 是否是最后一题 */
 @property (assign,nonatomic) BOOL isLast;
+
+@property (assign,nonatomic) BOOL backLook;
+
+/** 是否选中某项 */
+@property (assign,nonatomic) BOOL selectSomeOption;
 
 @end

@@ -20,5 +20,6 @@
 
 /** 是否是回看状态 */
 @property (assign,nonatomic) BOOL backLook;
+@property (strong,nonatomic) NSArray *backLookArray;
 
 @end

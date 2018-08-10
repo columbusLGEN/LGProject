@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, ExamSingleLineType) {
 /** 接口返回的选项描述 */
 @property (strong,nonatomic) NSString *options;
 @property (strong,nonatomic) NSString *createdtime;
+/** 是否是用户所选答案 */
 @property (assign,nonatomic) NSInteger type;
 @property (assign,nonatomic) NSInteger subjectid;
 /** A B C D ... */
@@ -50,5 +51,6 @@ typedef NS_ENUM(NSUInteger, ExamSingleLineType) {
 
 /** 所属题目 */
 @property (strong,nonatomic) OLExamSingleModel *belongTo;
+
 
 @end

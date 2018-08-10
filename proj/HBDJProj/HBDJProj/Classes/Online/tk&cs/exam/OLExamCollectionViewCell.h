@@ -11,5 +11,6 @@
 
 @interface OLExamCollectionViewCell : LGBaseCollectionViewCell
 @property (strong,nonatomic) OLExamSingleModel *model;
+@property (assign,nonatomic) BOOL backLook;
 
 @end

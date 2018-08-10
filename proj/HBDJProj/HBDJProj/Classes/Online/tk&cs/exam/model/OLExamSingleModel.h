@@ -33,6 +33,8 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 @property (assign,nonatomic) NSInteger subjecttype;
 /** YES: 表示该题是否选对 */
 @property (assign,nonatomic) BOOL isright;
+/** 0:错误，1:正确，回看试题时判断正误 */
+@property (assign,nonatomic) BOOL right;
 /** 用户选择的选项(单选) */
 @property (strong,nonatomic) OLExamSingleLineModel *selectOption;
 /** 多选题用户选择的选项(多选) */
@@ -55,6 +57,8 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 
 /** 添加题干 */
 - (void)addSubjectModel;
+/** 添加参考答案 用于回看试题时，显示答案行 */
+- (void)addReferAnswer;
 // --------------------------以上是新加属性
 
 
@@ -74,9 +78,12 @@ typedef NS_ENUM(NSUInteger, ExamSingleRespondState) {
 @property (assign,nonatomic) ExamSingleRespondState respondState;
 
 /** 是否是回看状态 */
-//@property (assign,nonatomic) BOOL backLook;
+@property (assign,nonatomic) BOOL backLook;
 
 /** 这道题所属的试卷模型 */
 @property (strong,nonatomic) OLTkcsModel *testPaper;
+
+/** 记录用户本地选中的答案 */
+@property (strong,nonatomic) NSMutableDictionary *userRecord;
 
 @end

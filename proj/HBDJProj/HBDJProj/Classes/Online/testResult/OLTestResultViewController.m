@@ -9,6 +9,8 @@
 #import "OLTestResultViewController.h"
 #import "OLExamViewController.h"
 #import "OLTkcsModel.h"
+#import "DJOnlineNetorkManager.h"
+#import "OLTestBackLookModel.h"
 
 #import "DJNotOpenViewController.h"
 
@@ -26,6 +28,7 @@
 /** 回看按钮 */
 @property (weak, nonatomic) IBOutlet UIButton *backLook;
 
+@property (strong,nonatomic) OLTestBackLookModel *backLookModel;
 
 @end
 
@@ -45,6 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
+    [self getNetData];
 }
 
 - (void)configUI{
@@ -56,6 +60,15 @@
     [_timeConsume setTitle:[NSString stringWithFormat:@"用时: %@",self.model.timeused_string] forState:UIControlStateNormal];
 }
 
+- (void)getNetData{
+    [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTestsPlayBackWithTestid:_model.seqid success:^(id responseObj) {
+        OLTestBackLookModel *model = [OLTestBackLookModel mj_objectWithKeyValues:responseObj];
+        _backLookModel = model;
+    } failure:^(id failureObj) {
+        
+    }];
+}
+
 - (IBAction)close:(id)sender {
     /// MARK: 关闭
     [self lg_dismissViewController];
@@ -63,15 +76,19 @@
 
 - (IBAction)backLookClick:(UIButton *)sender {
     
-    DJNotOpenViewController *vc = [DJNotOpenViewController new];
-    vc.showBackItem = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    DJNotOpenViewController *vc = [DJNotOpenViewController new];
+//    vc.showBackItem = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
     
     /// 进入 试题回看
-//    OLExamViewController *backLookExamVc = [OLExamViewController new];
-//    backLookExamVc.model = self.model;
-//    backLookExamVc.backLook = YES;
-//    [self.navigationController pushViewController:backLookExamVc animated:YES];
+    if (_backLookModel) {
+        OLExamViewController *backLookExamVc = [OLExamViewController new];
+        backLookExamVc.model = self.model;
+        backLookExamVc.backLook = YES;
+        backLookExamVc.backLookArray = _backLookModel.subjects;
+        backLookExamVc.tkcsType = OLTkcsTypecs;
+        [self.navigationController pushViewController:backLookExamVc animated:YES];
+    }
 }
 
 

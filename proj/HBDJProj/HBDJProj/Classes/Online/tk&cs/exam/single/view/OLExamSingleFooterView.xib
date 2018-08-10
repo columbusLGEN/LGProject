@@ -41,11 +41,18 @@
                         <action selector="turnTo:" destination="e0M-oO-KaC" eventType="touchUpInside" id="4ug-l5-y0Y"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhO-BO-mA6">
+                    <rect key="frame" x="65.5" y="179" width="391.5" height="40"/>
+                    <state key="normal" title="上一题"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="NhO-BO-mA6" firstAttribute="height" secondItem="0uh-L8-qxk" secondAttribute="height" id="0Sk-cY-sxe"/>
+                <constraint firstItem="NhO-BO-mA6" firstAttribute="centerX" secondItem="e0M-oO-KaC" secondAttribute="centerX" id="8w0-49-q9J"/>
                 <constraint firstItem="0uh-L8-qxk" firstAttribute="leading" secondItem="Jyl-og-fc8" secondAttribute="trailing" constant="40" id="BGa-Cj-Gm5"/>
                 <constraint firstItem="5Dz-vO-6Kt" firstAttribute="height" secondItem="0uh-L8-qxk" secondAttribute="height" id="IbA-dy-5h0"/>
+                <constraint firstAttribute="bottom" secondItem="NhO-BO-mA6" secondAttribute="bottom" constant="10" id="Q9p-KC-HPA"/>
                 <constraint firstItem="2UX-l8-xSL" firstAttribute="trailing" secondItem="0uh-L8-qxk" secondAttribute="trailing" constant="30" id="S6l-VZ-zQY"/>
                 <constraint firstItem="0uh-L8-qxk" firstAttribute="height" secondItem="Jyl-og-fc8" secondAttribute="height" id="UAt-yc-ebP"/>
                 <constraint firstItem="0uh-L8-qxk" firstAttribute="centerY" secondItem="Jyl-og-fc8" secondAttribute="centerY" id="fnX-gS-x1q"/>
@@ -54,12 +61,14 @@
                 <constraint firstItem="0uh-L8-qxk" firstAttribute="width" secondItem="Jyl-og-fc8" secondAttribute="width" id="odn-Lb-vrv"/>
                 <constraint firstItem="2UX-l8-xSL" firstAttribute="bottom" secondItem="Jyl-og-fc8" secondAttribute="bottom" constant="10" id="v36-d2-bDX"/>
                 <constraint firstItem="5Dz-vO-6Kt" firstAttribute="centerX" secondItem="e0M-oO-KaC" secondAttribute="centerX" id="wa0-RU-mpq"/>
+                <constraint firstItem="NhO-BO-mA6" firstAttribute="width" secondItem="e0M-oO-KaC" secondAttribute="width" multiplier="0.75" id="xVc-5R-K5Q"/>
                 <constraint firstItem="5Dz-vO-6Kt" firstAttribute="width" secondItem="e0M-oO-KaC" secondAttribute="width" multiplier="0.75" id="yGZ-dR-lNt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="2UX-l8-xSL"/>
             <connections>
                 <outlet property="last" destination="Jyl-og-fc8" id="Uo1-yc-Jb2"/>
+                <outlet property="last_mid" destination="NhO-BO-mA6" id="i69-lw-ja7"/>
                 <outlet property="next" destination="0uh-L8-qxk" id="HhR-vx-R4O"/>
                 <outlet property="next_mid" destination="5Dz-vO-6Kt" id="MDJ-n0-j8x"/>
             </connections>
