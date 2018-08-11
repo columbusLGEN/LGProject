@@ -170,7 +170,6 @@ OLExamViewBottomBarDelegate
     
 }
 
-
 - (void)dataTranWith:(id)responseObj{
     NSArray *array = responseObj;
     BOOL arrIsNil = (array == nil || array.count == 0);
@@ -202,6 +201,7 @@ OLExamViewBottomBarDelegate
             [arrMu addObject:singleModel];
         }
         
+        // 处理本地用户选中记录
         if (userAlreadySelect) {/// 如果本地有用户选中的记录
             for (NSDictionary *dict in userAlreadySelect) {
                 NSNumber *optionSeqid = dict[@"id"];// 获取本地选中的题目id
@@ -275,6 +275,11 @@ OLExamViewBottomBarDelegate
         index++;
         if (index == self.dataArray.count) {
             
+            if (_tkcsType == 0) {
+                /// 如果是题库，直接返回
+                return;
+            }
+            
             if (!_backLook) {/// 如果不是回看
                 /// MARK: 提交答案
                 
@@ -286,9 +291,9 @@ OLExamViewBottomBarDelegate
                         self.model.rightCount++;
                     }
                 }
-                NSLog(@"rightCOUNT: %ld",self.model.rightCount);
-                NSLog(@"wrongCOUNT: %ld",self.model.wrongCount);
-                NSLog(@"总数: %ld",self.model.subcount);
+//                NSLog(@"rightCOUNT: %ld",self.model.rightCount);
+//                NSLog(@"wrongCOUNT: %ld",self.model.wrongCount);
+//                NSLog(@"总数: %ld",self.model.subcount);
                 
                 /// 计算用户耗时
                 [self countUserTimeConsumed];
@@ -307,41 +312,43 @@ OLExamViewBottomBarDelegate
                 }
                 
                 NSDictionary *dict = @{@"testid":testid,
-                                       @"timeused":[NSString stringWithFormat:@"%f",self.model.timeused_timeInterval],
+                                       @"timeused":[NSString stringWithFormat:@"%.0f",self.model.timeused_timeInterval],
                                        @"answers":answers.copy};
                 
                 //            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
                 //            NSString *json = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
                 //            NSLog(@"需要提交的测试结果json: %@",json);
+
+                ///-----------
+//                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+//                trvc.pushWay = LGBaseViewControllerPushWayModal;
+//                trvc.model = self.model;
+//                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
+//
+//                [self.navigationController presentViewController:nav animated:YES completion:nil];
+//                [self.navigationController popViewControllerAnimated:YES];
+                ///-----------
                 
-                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-                trvc.pushWay = LGBaseViewControllerPushWayModal;
-                trvc.model = self.model;
-                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
-                
-                [self.navigationController presentViewController:nav animated:YES completion:nil];
-                [self.navigationController popViewControllerAnimated:YES];
-                
-                /// TODO: 提交试卷,打开即可
-                //            [DJOnlineNetorkManager.sharedInstance frontSubjects_addTestWithPJSONDict:dict success:^(id responseObj) {
-                //                self.model.teststatus = 1;
-                //
-                //                /// 退出到试题列表控制器 & 展示用户答题正确率页面
-                //                /**
-                //                    将用户的答题数，正确率等信息，记录在 OLTkcsModel 模型中
-                //                 */
-                //
-                //                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-                //                trvc.pushWay = LGBaseViewControllerPushWayModal;
-                //                trvc.model = self.model;
-                //                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
-                //
-                //                [self.navigationController presentViewController:nav animated:YES completion:nil];
-                //                [self.navigationController popViewControllerAnimated:YES];
-                //
-                //            } failure:^(id failureObj) {
-                //                [self presentFailureTips:@"提交失败，请检查网络后重试"];
-                //            }];
+                /// 提交试卷
+                [DJOnlineNetorkManager.sharedInstance frontSubjects_addTestWithPJSONDict:dict success:^(id responseObj) {
+                    self.model.teststatus = 1;
+                    
+                    /// 退出到试题列表控制器 & 展示用户答题正确率页面
+                    /**
+                     将用户的答题数，正确率等信息，记录在 OLTkcsModel 模型中
+                     */
+                    
+                    OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
+                    trvc.pushWay = LGBaseViewControllerPushWayModal;
+                    trvc.model = self.model;
+                    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
+                    
+                    [self.navigationController presentViewController:nav animated:YES completion:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                } failure:^(id failureObj) {
+                    [self presentFailureTips:@"提交失败，请检查网络后重试"];
+                }];
                 
             }else{
             }
@@ -423,6 +430,10 @@ OLExamViewBottomBarDelegate
 
 - (void)countUserTimeConsumed{
     NSNumber *sec_record = _localRecord[timeused_key];
+    if (sec_record.integerValue == 0) {
+        sec_record = @(_ctlabel.sec);
+    }
+    NSLog(@"答题耗时: %ld",sec_record.integerValue);
     self.model.timeused_timeInterval = sec_record.integerValue;
 }
 

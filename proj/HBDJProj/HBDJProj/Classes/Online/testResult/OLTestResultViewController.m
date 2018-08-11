@@ -81,13 +81,13 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
     /// 进入 试题回看
+    OLExamViewController *backLookExamVc = [OLExamViewController new];
+    backLookExamVc.model = self.model;
+    backLookExamVc.backLook = YES;
+    backLookExamVc.backLookArray = _backLookModel.subjects;
+    backLookExamVc.tkcsType = OLTkcsTypecs;
+    [self.navigationController pushViewController:backLookExamVc animated:YES];
     if (_backLookModel) {
-        OLExamViewController *backLookExamVc = [OLExamViewController new];
-        backLookExamVc.model = self.model;
-        backLookExamVc.backLook = YES;
-        backLookExamVc.backLookArray = _backLookModel.subjects;
-        backLookExamVc.tkcsType = OLTkcsTypecs;
-        [self.navigationController pushViewController:backLookExamVc animated:YES];
     }
 }
 

@@ -78,7 +78,19 @@
         }else{
             [_next setTitle:@"下一题" forState:UIControlStateNormal];
         }
-        
+        if (!_isFirst) {
+            if (_tk && isLast) {
+                /// 题库
+                _last_mid.hidden = NO;
+                _next.hidden = YES;
+                _last.hidden = YES;
+            }else{
+                _last_mid.hidden = YES;
+                _next.hidden = NO;
+                _last.hidden = NO;
+                
+            }
+        }
     }
     
 }

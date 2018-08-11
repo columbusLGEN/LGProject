@@ -30,7 +30,15 @@ static NSString * const id_key = @"id";
     /// 回看
     _footer.backLook = _backLook;
     
+    if (self.model.testPaper.tkcsType == 0) {
+        /// 题库不限制用户必须选中
+        _footer.selectSomeOption = YES;
+        _footer.tk = YES;
+    }
+    
     self.dataArray = model.frontSubjectsDetail;
+    
+    /// * 必须先给isFirst赋值
     _footer.isFirst = model.first;
     _footer.isLast = model.last;
     
@@ -44,8 +52,6 @@ static NSString * const id_key = @"id";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     self.tableView.estimatedRowHeight = 50.0f;
     [self.tableView registerNib:[UINib nibWithNibName:examSingleOptionCell bundle:nil] forCellReuseIdentifier:examSingleOptionCell];
     [self.tableView registerNib:[UINib nibWithNibName:examSingleStemCell bundle:nil] forCellReuseIdentifier:examSingleStemCell];
@@ -55,6 +61,8 @@ static NSString * const id_key = @"id";
     footer.frame = CGRectMake(0, 0, kScreenWidth, 180);
     self.tableView.tableFooterView = footer;
     _footer = footer;
+    
+
     
 }
 
