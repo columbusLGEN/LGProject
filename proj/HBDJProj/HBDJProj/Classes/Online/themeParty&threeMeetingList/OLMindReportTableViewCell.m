@@ -23,7 +23,11 @@
 - (void)setModel:(DJThemeMeetingsModel *)model{
     _model = model;
     _title.text = model.title;
-    _time.text = model.date;
+    if (model.date.length > length_timeString_1) {
+        _time.text = [model.date substringToIndex:(length_timeString_1 + 1)];
+    }else{
+        _time.text = model.date;
+    }
     _author.text = [NSString stringWithFormat:@"上传者：%@",model.uploader?model.uploader:@""];
     [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
 }

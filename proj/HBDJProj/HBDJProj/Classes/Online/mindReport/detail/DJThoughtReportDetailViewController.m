@@ -54,7 +54,12 @@ UITableViewDataSource>
         switch (i) {
             case 0:{
                 lineModel.title = model.title;
-                lineModel.createdtime = model.createdtime;
+                if (model.createdtime.length > length_timeString) {
+                    lineModel.createdtime = [model.createdtime substringToIndex:(length_timeString + 1)];
+                }else{
+                    lineModel.createdtime = model.createdtime;
+                }
+                
                 lineModel.uploader = model.uploader;
             }
                 break;

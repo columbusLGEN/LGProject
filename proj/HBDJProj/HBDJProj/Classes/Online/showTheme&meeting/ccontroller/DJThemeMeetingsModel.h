@@ -16,7 +16,7 @@
 @property (strong,nonatomic) NSString *sessiontype;
 /** 主题 */
 @property (strong,nonatomic) NSString *title;
-/** 时间 */
+/** 时间,列表展示，精确到日 */
 @property (strong,nonatomic) NSString *date;
 /** 地点 */
 @property (strong,nonatomic) NSString *address;

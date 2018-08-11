@@ -9,14 +9,14 @@
 #import "DJOnlineNetorkManager.h"
 #import "DJUser.h"
 
-// 机构id 180630014315001
-// 用户id 63
-
-/** 涉及机构的用户 测试机构id 和 测试用户id */
-static NSString * const testjigouid = @"180630014315001";
-static NSString * const testjigouUserid = @"63";
-
 @implementation DJOnlineNetorkManager
+
+- (void)frontIndex_onlineSearchWithContent:(NSString *)content type:(NSInteger)type offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    /// TODO: 接口文档中没有 content?
+    NSDictionary *dict = @{@"content":content,
+                           @"type":@(type)};
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontIndex/onlineSearch" param:dict success:success failure:failure];
+}
 
 - (void)frontSubjects_selectTestRankWithTestid:(NSInteger)testid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"testid":[NSString stringWithFormat:@"%ld",testid]};
@@ -124,8 +124,6 @@ static NSString * const testjigouUserid = @"63";
 
 - (NSDictionary *)unitAddMemIdWithParam:(id)param{
     NSMutableDictionary *argu = [NSMutableDictionary dictionaryWithDictionary:param];
-//    argu[@"mechanismid"] = testjigouid;
-//    argu[@"userid"] = testjigouUserid;
     argu[@"mechanismid"] = [DJUser sharedInstance].mechanismid;
     argu[@"userid"] = [DJUser sharedInstance].userid;
     return argu;

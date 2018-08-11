@@ -72,13 +72,13 @@ UICollectionViewDelegateFlowLayout>
     cell.model = model;
     return cell;
 }
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    OLHomeModel *model = self.array[indexPath.row];
-    LGBaseViewController *vc = (LGBaseViewController *)[OLSkipObject viewControllerWithOLHomeModelType:model];
-    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:vc];
-    vc.pushWay = LGBaseViewControllerPushWayModal;
-    [self showViewController:nav sender:nil];
-}
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    OLHomeModel *model = self.array[indexPath.row];
+//    LGBaseViewController *vc = (LGBaseViewController *)[OLSkipObject viewControllerWithOLHomeModelType:model];
+//    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:vc];
+//    vc.pushWay = LGBaseViewControllerPushWayModal;
+//    [self showViewController:nav sender:nil];
+//}
 
 #pragma mark - header & footer
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

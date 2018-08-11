@@ -57,7 +57,8 @@ NSString *controllerClassWithModelType(OnlineModelType modelType){
         }
             break;
         case OnlineModelTypePayPartyFee:{
-            return @"OLPayPartyChargeViewController";
+//            return @"OLPayPartyChargeViewController";
+            return @"DJNotOpenViewController";
         }
             break;
         case OnlineModelTypeVote:{

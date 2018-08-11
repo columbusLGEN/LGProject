@@ -10,4 +10,6 @@
 
 @interface OLVoteListController : LGBaseTableViewController
 
+- (void)getNetDataWithOffset:(NSInteger)offset;
+
 @end

@@ -22,7 +22,11 @@
 - (void)setModel:(DJThoutghtRepotListModel *)model{
     _model = model;
     _title.text = model.title;
-    _time.text = model.createdtime;
+    if (model.createdtime.length > length_timeString_1) {
+        _time.text = [model.createdtime substringToIndex:(length_timeString_1 + 1)];
+    }else{
+        _time.text = model.createdtime;
+    }
     _author.text = model.uploader;
     [_image sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     

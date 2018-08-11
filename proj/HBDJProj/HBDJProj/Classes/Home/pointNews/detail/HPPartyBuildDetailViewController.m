@@ -104,6 +104,10 @@ WKNavigationDelegate>
     
     [LGHTMLParser HTMLSaxWithHTMLString:contentModel.content success:^(NSAttributedString *attrString) {
         NSAttributedString *string = attrString;
+        
+        /// 计算表态高度
+        CGFloat titleHeight = [contentModel.title sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:25]].height;
+        CGFloat topInfoViewHeight = titleHeight + 81;
 
         /// 目标frame: 可以显示 string 的大小 --> 只需知道 string 的最大高度即可
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -111,7 +115,7 @@ WKNavigationDelegate>
             textView.userInteractionEnabled = YES;
             _coreTextView = textView;
             /// 设置insets 以显示 top info view
-            _coreTextView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
+            _coreTextView.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(topInfoViewHeight, marginFifteen, 0, marginFifteen);
             _coreTextView.textDelegate = self;
             _coreTextView.attributedString = string;
             _coreTextView.shouldDrawLinks = NO;/// 实现超链接点击，该属性设为NO，代理方法中创建DTLinkButton
@@ -123,8 +127,9 @@ WKNavigationDelegate>
 
             /// MARK: 顶部信息view （标题，时间，来源等）
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
-            topInfoView.frame = CGRectMake(0, 0, kScreenWidth, richTextTopInfoViewHeight);
+            topInfoView.frame = CGRectMake(0, 0, kScreenWidth, topInfoViewHeight);
             topInfoView.model = contentModel;
+
             topInfoView.displayCounts = self.displayCounts;
             [textView addSubview:topInfoView];
             _topInfoView = topInfoView;
@@ -143,7 +148,6 @@ WKNavigationDelegate>
 - (void)linkPushed:(DTLinkButton *)button {
     NSURL *URL = button.URL;
     
-    /// TODO: 打开URL
     NSLog(@"linkPushedurl: %@",URL);
     LGWKWebViewController *webVc = [LGWKWebViewController.alloc initWithUrl:URL];
     [self.navigationController pushViewController:webVc animated:YES];

@@ -65,6 +65,11 @@ UITextViewDelegate>
 }
 
 - (void)inputDone{
+    
+    if (_textView.text == nil || [_textView.text isEqualToString:@""]) {
+        [self presentFailureTips:@"请输入内容"];
+        return;
+    }
     /// 通知代理
     if (_textView.text.length > 0) {
         self.model.content = _textView.text;

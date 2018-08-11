@@ -19,4 +19,6 @@ typedef NS_ENUM(NSUInteger, OLTkcsType) {
 @interface OLTkcsTableViewController : LGBaseTableViewController
 @property (assign,nonatomic) OLTkcsType tkcsType;
 
+- (void)getNetDataWithOffset:(NSInteger)offset;
+
 @end

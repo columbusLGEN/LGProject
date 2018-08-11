@@ -11,14 +11,15 @@
 
 @implementation DJThemeMeetingsModel
 
-- (NSString *)date{
-    if (_date.length > length_timeString_1) {
-        _date = [_date substringToIndex:(length_timeString_1 + 1)];
-    }
-    return _date;
-}
+//- (NSString *)date{
+//    if (_date.length > length_timeString_1) {
+//        _date = [_date substringToIndex:(length_timeString_1 + 1)];
+//    }
+//    return _date;
+//}
 
 - (NSString *)createdtime{
+    // length_timeString 15 -- 精确到分
     if (_createdtime.length > 10) {
         _createdtime = [_createdtime substringToIndex:10];
     }
@@ -58,6 +59,14 @@
         }
         NSString *key = pArray[i];
         id value = [self valueForKey:key];
+        if ([key isEqualToString:@"date"]) {
+            /// 详情页面展示的时间，精确到分
+            NSString *timeString = value;
+            if (timeString.length > length_timeString) {
+                timeString = [timeString substringToIndex:length_timeString + 1];
+            }
+            value = timeString;
+        }
         model.content = value;
 
     }

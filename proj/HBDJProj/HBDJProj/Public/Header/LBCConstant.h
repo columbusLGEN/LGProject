@@ -26,8 +26,9 @@ static const CGFloat richTextTopInfoViewHeight = 110;
 static const CGFloat plusScreenHeight = 736;
 static const CGFloat plusScreenWidth = 414;
 
-/** 时间字符串统一判定长度 */
+/** 时间字符串统一判定长度,精确到分 */
 static const NSInteger length_timeString = 15;
+/** 时间字符串统一判定长度,精确到日 */
 static const NSInteger length_timeString_1 = 10;
 
 static NSString * const UserCenterStoryboardName = @"UserCenter";

@@ -16,6 +16,14 @@ typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
 
 @interface DJOnlineNetorkManager : NSObject
 
+/**
+ 在线模块搜索接口
+ type:
+ 1 搜索三会一课主题当日述职述廉思想汇报 (党建工作台账)
+ 2 在线投票
+ 3 在现测试 */
+- (void)frontIndex_onlineSearchWithContent:(NSString *)content type:(NSInteger)type offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
 /** 请求测试成绩排行榜 */
 - (void)frontSubjects_selectTestRankWithTestid:(NSInteger)testid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
