@@ -18,13 +18,13 @@
 //    return _date;
 //}
 
-- (NSString *)createdtime{
-    // length_timeString 15 -- 精确到分
-    if (_createdtime.length > 10) {
-        _createdtime = [_createdtime substringToIndex:10];
-    }
-    return _createdtime;
-}
+//- (NSString *)createdtime{
+//    // length_timeString 15 -- 精确到分
+//    if (_createdtime.length > 10) {
+//        _createdtime = [_createdtime substringToIndex:10];
+//    }
+//    return _createdtime;
+//}
 
 - (NSArray<DJOnlineUploadTableModel *> *)tableModelsWithType:(NSInteger)type{
     /// 获取自身属性列表

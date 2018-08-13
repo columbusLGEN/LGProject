@@ -18,8 +18,6 @@
 
 @property (assign,nonatomic) NSInteger offset;
 
-@property (strong,nonatomic) NSString *portName;
-
 @end
 
 @implementation OLTkcsTableViewController

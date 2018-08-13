@@ -22,6 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
+    [self upload_reloadData];
+}
+
+- (void)upload_reloadData{
     _offset = 0;
     [self getNetDataWithOffset:_offset];
 }

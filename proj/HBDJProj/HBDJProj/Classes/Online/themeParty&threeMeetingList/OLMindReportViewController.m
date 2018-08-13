@@ -15,12 +15,14 @@
 
 #import "DJOnlineNetorkManager.h"
 
-@interface OLMindReportViewController ()
+@interface OLMindReportViewController ()<DJOnlineUplaodTableViewControllerDelegate>
 @property (assign,nonatomic) NSInteger offset;
 
 @end
 
 @implementation OLMindReportViewController
+
+/// TODO: 限制用户权限，只有机构管理员才显示 上传 功能
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,12 +87,19 @@
 
 #pragma mark - target
 - (void)createContent{
+    
     /// 创建主题党日
     DJUploadThemePartyDayTableViewController *olupvc = [[DJUploadThemePartyDayTableViewController alloc] init];
+    olupvc.delegate = self;
     [self.navigationController pushViewController:olupvc animated:YES];
 }
 
 #pragma mark - delegate
+- (void)threeMeetingOrThemeUploadDone{
+    _offset = 0;
+    [self getNetDataWithOffset:_offset];
+}
+
 /// MARK: tablview 代理、数据源
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;

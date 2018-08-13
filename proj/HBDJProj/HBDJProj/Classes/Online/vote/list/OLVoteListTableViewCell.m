@@ -37,6 +37,9 @@ static NSString * const ob_key_poth = @"votestatus";
         
     }
     _title.text = model.title;
+    if (model.starttime.length > length_timeString_1) {
+        model.starttime = [model.starttime substringToIndex:length_timeString_1];
+    }
     _time.text = model.starttime;
     
     [model addObserver:self forKeyPath:ob_key_poth options:NSKeyValueObservingOptionNew context:nil];

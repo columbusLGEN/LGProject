@@ -27,7 +27,7 @@
     }else{
         _time.text = model.createdtime;
     }
-    _author.text = model.uploader;
+    _author.text = [@"上传者: " stringByAppendingString:model.uploader];
     [_image sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     
 }

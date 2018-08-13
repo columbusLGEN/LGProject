@@ -144,6 +144,9 @@ DJInputContentViewControllerDelegate>
 //            NSLog(@"上传成功: %@",responseObj);
             [self presentMessageTips:@"上传完成"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if ([self.delegate respondsToSelector:@selector(threeMeetingOrThemeUploadDone)]) {
+                    [self.delegate threeMeetingOrThemeUploadDone];
+                }
                 [self.navigationController popViewControllerAnimated:YES];
             });
         } failure:^(id failureObj) {

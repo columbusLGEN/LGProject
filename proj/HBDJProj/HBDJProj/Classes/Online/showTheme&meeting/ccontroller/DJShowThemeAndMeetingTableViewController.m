@@ -35,8 +35,6 @@
     
 }
 
-
-
 - (void)setDataArray:(NSArray *)dataArray{
     NSMutableArray *arrmu = [NSMutableArray arrayWithArray:dataArray];
     for (NSInteger i = 0; i < arrmu.count; i++) {
@@ -73,5 +71,9 @@
     [self.tableView reloadData];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 @end

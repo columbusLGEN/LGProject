@@ -16,7 +16,8 @@ static CGFloat channelScrollViewHeight = 51;
 #define contentScrollViewHeight (kScreenHeight - channelScrollViewHeight - kNavHeight)
 
 @interface OLThreeMeetingsViewController ()<
-UIScrollViewDelegate>
+UIScrollViewDelegate,
+DJOnlineUplaodTableViewControllerDelegate>
 @property (strong,nonatomic) UIScrollView *channelScrollView;
 @property (weak,nonatomic) UIView *elf;
 
@@ -116,7 +117,14 @@ UIScrollViewDelegate>
 - (void)createContent{
     /// MARK: 创建三会一课
     DJUploadThreeMeetingsTableViewController *olupvc = [[DJUploadThreeMeetingsTableViewController alloc] init];
+    olupvc.delegate = self;
     [self.navigationController pushViewController:olupvc animated:YES];
+}
+
+- (void)threeMeetingOrThemeUploadDone{
+    for (DJThreemeetListViewController *vc in self.childViewControllers) {
+        [vc upload_reloadData];
+    }
 }
 
 #pragma mark - scroll view delegate

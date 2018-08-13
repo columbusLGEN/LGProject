@@ -9,12 +9,13 @@
 #import "LGSegmentView.h"
 #import "LGSegmentViewController.h"
 
-static CGFloat flyW = 50;
+static CGFloat flyW = 60;
 
 @interface LGSegmentView ()
 @property (strong,nonatomic) NSMutableArray<NSString *> *buttonTitleFrames;
 @property (weak,nonatomic) UIView *fly;
 @property (strong,nonatomic) NSArray *segmentItems;
+@property (strong,nonatomic) NSArray *buttons;
 @end
 
 @implementation LGSegmentView
@@ -38,6 +39,16 @@ static CGFloat flyW = 50;
 }
 
 - (void)setFlyLocationWithIndex:(NSInteger)index{
+    
+    UIButton *curButton = self.buttons[index];
+    for (UIButton *button in self.buttons) {
+        if (curButton == button) {
+            button.selected = YES;
+        }else{
+            button.selected = NO;
+        }
+    }
+    
     CGRect flyFrame = self.fly.frame;
     flyFrame.origin.x = [self flyXWithIndex:index];
     [UIView animateWithDuration:0.2 animations:^{
@@ -56,6 +67,7 @@ static CGFloat flyW = 50;
     _buttonTitleFrames = [NSMutableArray array];
     
     CGRect firstButtonFrame;
+    NSMutableArray *arrmu = NSMutableArray.new;
     for (int i = 0; i < self.segmentItems.count; i++) {
         NSString *content = self.segmentItems[i];
         
@@ -63,17 +75,20 @@ static CGFloat flyW = 50;
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, self.buttonW, 40)];
         if (i == 0) {
             firstButtonFrame = button.frame;
+            button.selected = YES;
         }
         button.tag = i;
         
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
         [button setTitle:content forState:UIControlStateNormal];
         [button setTitleColor:[UIColor EDJGrayscale_33] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor EDJMainColor] forState:UIControlStateSelected];
         button.titleLabel.font = [UIFont systemFontOfSize:14];
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
-        
+        [arrmu addObject:button];
     }
+    self.buttons = arrmu.copy;
     
     CGRect flyDefaultFrame = CGRectMake([self flyXWithIndex:0], firstButtonFrame.size.height - 2, flyW, 2);
     

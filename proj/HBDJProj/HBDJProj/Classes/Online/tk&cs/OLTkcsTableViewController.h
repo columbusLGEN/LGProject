@@ -20,5 +20,6 @@ typedef NS_ENUM(NSUInteger, OLTkcsType) {
 @property (assign,nonatomic) OLTkcsType tkcsType;
 
 - (void)getNetDataWithOffset:(NSInteger)offset;
+@property (strong,nonatomic) NSString *portName;
 
 @end

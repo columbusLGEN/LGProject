@@ -26,4 +26,6 @@ typedef NS_ENUM(NSUInteger, DJSessionType) {
 /** 三会一课数据列表类型 */
 @property (assign,nonatomic) DJSessionType sessionType;
 
+- (void)upload_reloadData;
+
 @end

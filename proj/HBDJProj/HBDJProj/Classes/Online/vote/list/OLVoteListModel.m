@@ -10,12 +10,12 @@
 
 @implementation OLVoteListModel
 
-- (NSString *)starttime{
-    if (_starttime.length > length_timeString) {
-        _starttime = [_starttime substringToIndex:(length_timeString + 1)];
-    }
-    return _starttime;
-}
+//- (NSString *)starttime{
+//    if (_starttime.length > length_timeString) {
+//        _starttime = [_starttime substringToIndex:(length_timeString + 1)];
+//    }
+//    return _starttime;
+//}
 
 - (NSString *)endtime{
     NSLog(@"endtime: %@",_endtime);

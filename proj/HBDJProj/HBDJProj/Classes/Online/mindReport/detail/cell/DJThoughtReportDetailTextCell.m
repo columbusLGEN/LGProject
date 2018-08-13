@@ -19,6 +19,7 @@
 - (void)setModel:(DJThoughtReportDetailModel *)model{
     [super setModel:model];
     _infoText.text = model.content;
+    NSLog(@"model.content: %@",model.content);
 }
 
 

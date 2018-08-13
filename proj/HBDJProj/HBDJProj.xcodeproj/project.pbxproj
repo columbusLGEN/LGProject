@@ -232,7 +232,6 @@
 		8891A43520F9CF110059D220 /* LGAttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8891A43420F9CF110059D220 /* LGAttributedTextView.m */; };
 		8891A43C20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8891A43B20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m */; };
 		88949C1B211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88949C1A211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.m */; };
-		88949C1F211ECCB200B80AEE /* DJSearchWorkPlantformModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88949C1E211ECCB200B80AEE /* DJSearchWorkPlantformModel.m */; };
 		88949C22211ECCC400B80AEE /* DJSearchWorkPlantformCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88949C21211ECCC400B80AEE /* DJSearchWorkPlantformCell.m */; };
 		88949C24211ECCDA00B80AEE /* DJSearchWorkPlantformCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88949C23211ECCDA00B80AEE /* DJSearchWorkPlantformCell.xib */; };
 		88949C27211ECF8200B80AEE /* DJSearchReultVoteListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88949C26211ECF8200B80AEE /* DJSearchReultVoteListController.m */; };
@@ -879,8 +878,6 @@
 		8891A43B20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJRichTextShowWithYYKitViewController.m; sourceTree = "<group>"; };
 		88949C19211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSearchWorkPlantformListViewController.h; sourceTree = "<group>"; };
 		88949C1A211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSearchWorkPlantformListViewController.m; sourceTree = "<group>"; };
-		88949C1D211ECCB200B80AEE /* DJSearchWorkPlantformModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSearchWorkPlantformModel.h; sourceTree = "<group>"; };
-		88949C1E211ECCB200B80AEE /* DJSearchWorkPlantformModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSearchWorkPlantformModel.m; sourceTree = "<group>"; };
 		88949C20211ECCC400B80AEE /* DJSearchWorkPlantformCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSearchWorkPlantformCell.h; sourceTree = "<group>"; };
 		88949C21211ECCC400B80AEE /* DJSearchWorkPlantformCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSearchWorkPlantformCell.m; sourceTree = "<group>"; };
 		88949C23211ECCDA00B80AEE /* DJSearchWorkPlantformCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJSearchWorkPlantformCell.xib; sourceTree = "<group>"; };
@@ -2538,8 +2535,6 @@
 			children = (
 				88949C19211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.h */,
 				88949C1A211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.m */,
-				88949C1D211ECCB200B80AEE /* DJSearchWorkPlantformModel.h */,
-				88949C1E211ECCB200B80AEE /* DJSearchWorkPlantformModel.m */,
 				88949C20211ECCC400B80AEE /* DJSearchWorkPlantformCell.h */,
 				88949C21211ECCC400B80AEE /* DJSearchWorkPlantformCell.m */,
 				88949C23211ECCDA00B80AEE /* DJSearchWorkPlantformCell.xib */,
@@ -3932,7 +3927,6 @@
 				88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */,
 				884312EC2089BC7D00321F84 /* UCMyFeedbackViewController.m in Sources */,
 				88D13C30209013EB00A32236 /* LGBaseCollectionViewCell.m in Sources */,
-				88949C1F211ECCB200B80AEE /* DJSearchWorkPlantformModel.m in Sources */,
 				884311F12084B80C00321F84 /* LGSegmentControl.m in Sources */,
 				88A47130207EF58B002F93E0 /* EDJUserCenterHomePageCell.m in Sources */,
 				883D475920DB4E5F00FD9971 /* LGLoadingAssit.m in Sources */,

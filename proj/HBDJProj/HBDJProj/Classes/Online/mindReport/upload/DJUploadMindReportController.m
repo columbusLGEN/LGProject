@@ -77,23 +77,28 @@ DJUploadMindReportCoverCellDelegate>
     NSString *msg = [_uploadDataManager msgByFormdataVerifyWithTableModels:self.dataArray];
     
     if (msg) {
-        /// TODO: 弹窗提示改为系统弹窗
+        /// TODO: 弹窗提示改为系统弹窗吗？
         [self presentFailureTips:[NSString stringWithFormat:@"%@不能为空",msg]];
         return;
     }
     
+    /// MARK: 上传内容图片
+    MBProgressHUD *uploadTipView = [MBProgressHUD wb_showActivityMessage:@"上传中..." toView:self.view];
+    
     /// 上传图片
     [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
+        
+        [uploadTipView hideAnimated:YES];
         
         DJUploadMindReportLineModel *imageLineModle = [self.dataArray lastObject];
         [_uploadDataManager setUploadValue:[imageUrls componentsJoinedByString:@","] key:imageLineModle.uploadJsonKey];
         
         [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:[formData mutableCopy] ugctype:(self.listType - 4) filetype:1 success:^(id responseObj) {
-            NSLog(@"上传成功: %@",responseObj);
+            [self presentMessageTips:@"上传完成"];
             [self baseViewControllerDismiss];
             
         } failure:^(id failureObj) {
-            NSLog(@"上传失败: %@",failureObj);
+            [self presentMessageTips:@"上传失败，请稍后重试"];
             
         }];
         

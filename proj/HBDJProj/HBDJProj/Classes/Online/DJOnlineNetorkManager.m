@@ -12,10 +12,11 @@
 @implementation DJOnlineNetorkManager
 
 - (void)frontIndex_onlineSearchWithContent:(NSString *)content type:(NSInteger)type offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    /// TODO: 接口文档中没有 content?
-    NSDictionary *dict = @{@"content":content,
-                           @"type":@(type)};
-    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontIndex/onlineSearch" param:dict success:success failure:failure];
+    if (content) {    
+        NSDictionary *dict = @{@"search":content,
+                               @"type":[NSString stringWithFormat:@"%ld",type]};
+        [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontIndex/onlineSearch" param:dict success:success failure:failure];
+    }
 }
 
 - (void)frontSubjects_selectTestRankWithTestid:(NSInteger)testid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{

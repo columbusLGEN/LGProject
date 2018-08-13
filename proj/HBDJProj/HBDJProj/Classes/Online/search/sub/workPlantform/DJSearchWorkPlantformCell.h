@@ -7,11 +7,11 @@
 //
 
 #import "LGBaseTableViewCell.h"
-@class DJSearchWorkPlantformModel;
+@class DJThemeMeetingsModel;
 
 static NSString * const searchWPCell = @"DJSearchWorkPlantformCell";
 
 @interface DJSearchWorkPlantformCell : LGBaseTableViewCell
-@property (strong,nonatomic) DJSearchWorkPlantformModel *model;
+@property (strong,nonatomic) DJThemeMeetingsModel *model;
 
 @end

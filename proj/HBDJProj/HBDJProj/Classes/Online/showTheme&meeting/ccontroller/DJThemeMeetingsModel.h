@@ -39,6 +39,13 @@
 @property (strong,nonatomic) NSString *createdtime;
 @property (strong,nonatomic) NSString *issent;
 @property (strong,nonatomic) NSString *mechanismid;
+/**
+ 1: 党支部委员会，支部党员大会，党小组会， 党课
+ 2: 思想汇报，述职述廉
+ 3: 主题党日
+ */
+@property (assign,nonatomic) NSInteger searchtype;
+@property (strong,nonatomic) NSString *content;
 
 /**
  将服务器返回的单个数据转换成表单
