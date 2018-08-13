@@ -137,6 +137,9 @@ OLExamViewBottomBarDelegate
         /// 回看
         for (NSInteger i = 0; i < _backLookArray.count; i++) {
             OLExamSingleModel *singleModel = _backLookArray[i];
+            for (OLExamSingleLineModel *optionModel in singleModel.frontSubjectsDetail) {
+                optionModel.belongTo = singleModel;
+            }
             singleModel.index = i;
             /// 设置回看状态
             singleModel.backLook = _backLook;
@@ -185,6 +188,7 @@ OLExamViewBottomBarDelegate
         NSMutableArray *arrMu = [NSMutableArray new];
         for (NSInteger i = 0; i < array.count; i++) {
             OLExamSingleModel *singleModel = [OLExamSingleModel mj_objectWithKeyValues:array[i]];
+
             singleModel.testPaper = self.model;
             /// 添加题干前的数字序号
             singleModel.subject = [[NSString stringWithFormat:@"%ld.",i + 1] stringByAppendingString:singleModel.subject];
@@ -239,6 +243,9 @@ OLExamViewBottomBarDelegate
             /// 如果本地有答题记录，直接跳转
             NSNumber *index = _localRecord[index_key];
             if (index.integerValue != 0) {
+                if (index.integerValue >= self.dataArray.count) {
+                    return;
+                }
                 [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index.integerValue inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                 _bottomBar.alreadyCount = index.integerValue + 1;
             }
@@ -318,16 +325,6 @@ OLExamViewBottomBarDelegate
                 //            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
                 //            NSString *json = [NSString.alloc initWithData:jsonData encoding:NSUTF8StringEncoding];
                 //            NSLog(@"需要提交的测试结果json: %@",json);
-
-                ///-----------
-//                OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
-//                trvc.pushWay = LGBaseViewControllerPushWayModal;
-//                trvc.model = self.model;
-//                LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:trvc];
-//
-//                [self.navigationController presentViewController:nav animated:YES completion:nil];
-//                [self.navigationController popViewControllerAnimated:YES];
-                ///-----------
                 
                 /// 提交试卷
                 [DJOnlineNetorkManager.sharedInstance frontSubjects_addTestWithPJSONDict:dict success:^(id responseObj) {

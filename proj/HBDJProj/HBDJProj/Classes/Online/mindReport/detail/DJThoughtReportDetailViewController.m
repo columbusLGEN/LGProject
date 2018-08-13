@@ -45,7 +45,7 @@ UITableViewDataSource>
 - (void)setModel:(DJThoutghtRepotListModel *)model{
     _model = model;
     
-    self.title = model.title;
+//    self.title = model.title;
     
     NSMutableArray *arrmu = NSMutableArray.new;
     for (NSInteger i = 0; i < 3; i++) {

@@ -10,7 +10,7 @@
 #import "DJThoughtReportDetailModel.h"
 
 @interface DJThoughtReportDetailHeaderCell ()
-//@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UILabel *uploader;
 
@@ -22,7 +22,7 @@
 
 - (void)setModel:(DJThoughtReportDetailModel *)model{
     [super setModel:model];
-//    _title.text = model.title;
+    _title.text = model.title;
     _time.text = model.createdtime;
     _uploader.text = [@"上传者: " stringByAppendingString:model.uploader];
     

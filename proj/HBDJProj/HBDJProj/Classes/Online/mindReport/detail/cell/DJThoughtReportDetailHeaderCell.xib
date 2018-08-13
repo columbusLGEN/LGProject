@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-08-01 12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNb-UW-USr">
-                        <rect key="frame" x="15" y="26" width="145" height="20.5"/>
+                        <rect key="frame" x="15" y="78.5" width="145" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20.5" id="Uh6-qL-tmR"/>
                             <constraint firstAttribute="width" constant="145" id="pXi-IS-A3a"/>
@@ -30,22 +29,35 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7Y-bk-Vsd">
-                        <rect key="frame" x="15" y="54.5" width="42" height="73"/>
+                        <rect key="frame" x="15" y="107" width="42" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20.5" id="ngJ-3l-Kth"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApL-mC-upi">
+                        <rect key="frame" x="15" y="15" width="337" height="43.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dNb-UW-USr" firstAttribute="leading" secondItem="MuU-1q-ORB" secondAttribute="leading" constant="15" id="3Gi-24-dTs"/>
+                    <constraint firstItem="dNb-UW-USr" firstAttribute="top" secondItem="ApL-mC-upi" secondAttribute="bottom" constant="20" id="7vd-4M-qmR"/>
+                    <constraint firstAttribute="trailing" secondItem="ApL-mC-upi" secondAttribute="trailing" constant="15" id="C5P-BM-ezY"/>
                     <constraint firstAttribute="bottom" secondItem="O7Y-bk-Vsd" secondAttribute="bottom" constant="10" id="F0f-Wi-bOn"/>
+                    <constraint firstItem="ApL-mC-upi" firstAttribute="leading" secondItem="dNb-UW-USr" secondAttribute="leading" id="JW2-Pm-Fqi"/>
+                    <constraint firstItem="ApL-mC-upi" firstAttribute="top" secondItem="MuU-1q-ORB" secondAttribute="top" constant="15" id="LNm-gt-1rw"/>
                     <constraint firstItem="O7Y-bk-Vsd" firstAttribute="top" secondItem="dNb-UW-USr" secondAttribute="bottom" constant="8" id="Tbh-IO-HDs"/>
-                    <constraint firstItem="dNb-UW-USr" firstAttribute="top" secondItem="MuU-1q-ORB" secondAttribute="topMargin" constant="15" id="uSC-if-DNK"/>
                     <constraint firstItem="O7Y-bk-Vsd" firstAttribute="leading" secondItem="dNb-UW-USr" secondAttribute="leading" id="wDY-uR-pzq"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="time" destination="dNb-UW-USr" id="std-Lh-w9U"/>
+                <outlet property="title" destination="ApL-mC-upi" id="eSL-CK-NHO"/>
                 <outlet property="uploader" destination="O7Y-bk-Vsd" id="rYO-Be-zR6"/>
             </connections>
             <point key="canvasLocation" x="-165" y="100"/>

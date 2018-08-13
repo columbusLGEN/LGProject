@@ -26,19 +26,23 @@
     /// 如果处于试题回看状态
     if (self.backLook) {
         self.userInteractionEnabled = NO;/// 回看状态，不允许有选中交互
-
-        if (model.isright) {
-            /// MARK: 如果该选项是正确答案，标蓝
-            [self optionStateWithRespondState:ExamSingleRespondStateCorrect];
+        
+        if (model.belongTo.right) {
+            /// 如果该题 用户答对了，
+            if (model.isright) {
+                [self optionStateWithRespondState:ExamSingleRespondStateCorrect];
+            }else{
+                [self optionStateWithRespondState:ExamSingleRespondStateDefault];
+            }
         }else{
             if (model.type) {
-                /// MARK: 如果用户选中，标红，
+                /// 用户选错了，标红
                 [self optionStateWithRespondState:ExamSingleRespondStateWrong];
             }else{
-                /// MARK: 如果用户未选中，默认显示
                 [self optionStateWithRespondState:ExamSingleRespondStateDefault];
             }
         }
+        
 
         if (model.lineType == ExamSingleLineTypeAnswer) {/// 该行为 答案行
             
