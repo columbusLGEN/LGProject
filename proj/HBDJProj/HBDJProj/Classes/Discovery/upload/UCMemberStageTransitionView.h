@@ -7,25 +7,21 @@
 //
 
 #import "LGBaseView.h"
-
-typedef NS_ENUM(NSUInteger, UCMemberStageTransitionViewAction) {
-    UCMemberStageTransitionViewActionImg,
-    UCMemberStageTransitionViewActionVideo,
-    UCMemberStageTransitionViewActionAudio,
-    UCMemberStageTransitionViewActionText
-};
+#import "DJUploadPyqHeader.h"
 
 @protocol UCMemberStageTransitionViewDelegate;
 
 @interface UCMemberStageTransitionView : LGBaseView
 + (instancetype)memberStateTransitionView;
 @property (weak,nonatomic) id<UCMemberStageTransitionViewDelegate> delegate;
+- (void)setBigCloseBackgroundColor;
+- (void)setBigCloseBackgroundColorClear;
 
 @end
 
 @protocol UCMemberStageTransitionViewDelegate <NSObject>
 - (void)mstViewClose:(UCMemberStageTransitionView *)mstView;
 @optional
-- (void)mstView:(UCMemberStageTransitionView *)mstView action:(UCMemberStageTransitionViewAction)action;
+- (void)mstView:(UCMemberStageTransitionView *)mstView action:(DJUploadPyqAction)action;
 
 @end

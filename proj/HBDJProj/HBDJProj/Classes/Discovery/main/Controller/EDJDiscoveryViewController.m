@@ -10,6 +10,7 @@
 #import "LGNavigationSearchBar.h"
 #import "DCWriteQuestionViewController.h"
 #import "UCMemberStageTransitionView.h"
+#import "UCUploadPyqViewController.h"
 
 typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
     DiscoveryChannelQuestionCommunity,
@@ -57,16 +58,11 @@ LGNavigationSearchBarDelelgate>
         [self presentViewController:nav animated:YES completion:nil];
     }else if (_currentChannel == 2){
         /// 上传党员舞台 （朋友圈）
-        UCMemberStageTransitionView *mstView = [UCMemberStageTransitionView memberStateTransitionView];
-        mstView.delegate = self;
-        CGFloat mstH = kScreenHeight + kStatusBarHeight;
-        if (kScreenHeight == 812) {
-            mstH += 34;
-        }
-        mstView.frame = CGRectMake(0, -kStatusBarHeight, kScreenWidth, mstH);
-        //            [self.view addSubview:mstView];
-        /// TODO:添加到self.view上 无法遮挡导航栏，所以 暂时加到 keywindow上，不是最优解
-        [[UIApplication sharedApplication].keyWindow addSubview:mstView];
+        UCUploadPyqViewController *upvc = UCUploadPyqViewController.new;
+        upvc.pushWay = LGBaseViewControllerPushWayModal;
+        upvc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [self presentViewController:upvc animated:YES completion:nil];
+        
     }else{
         
     }

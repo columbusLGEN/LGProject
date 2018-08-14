@@ -10,11 +10,13 @@
 
 typedef NS_ENUM(NSUInteger, LGDeviecType) {
     LGDeviecTypeDefault,
-    LGDeviecType_iPhoneX/// 表示iPhone X
+    LGDeviecType_iPhoneX,/// 表示iPhone X
+    LGDeviecType_iPad
 };
 
 @interface LGDevice : NSObject
 
++ (BOOL)isiPad;
 /** 当前设备是否iPhone X */
 + (BOOL)isiPhoneX;
 /// 当前设备类型，启动时获取一次，然后记录在该属性里

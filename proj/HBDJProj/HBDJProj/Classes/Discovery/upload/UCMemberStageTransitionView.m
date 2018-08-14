@@ -27,7 +27,6 @@
     }
 }
 - (void)upload:(UIButton *)sender{
-    NSLog(@"sender.tag -- %ld",sender.tag);
     if ([self.delegate respondsToSelector:@selector(mstView:action:)]) {
         [self.delegate mstView:self action:sender.tag];
     }
@@ -37,20 +36,27 @@
     return [[[NSBundle mainBundle] loadNibNamed:@"UCMemberStageTransitionView" owner:nil options:nil] lastObject];
 }
 
+- (void)setBigCloseBackgroundColor{
+    [_close setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+}
+- (void)setBigCloseBackgroundColorClear{
+    [_close setBackgroundColor:UIColor.clearColor];
+}
+
 - (void)awakeFromNib{
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
-    [_close setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+    [self setBigCloseBackgroundColorClear];
     
     NSString *txtColor = @"000000";
     [_upload_img setupWithImgName:@"uc_icon_upload_tran_img" labelText:@"图片" labelTextColor:txtColor];
     [_upload_video setupWithImgName:@"uc_icon_upload_tran_video" labelText:@"视频" labelTextColor:txtColor];
     [_upload_audio setupWithImgName:@"uc_icon_upload_tran_music" labelText:@"音频" labelTextColor:txtColor];
     [_upload_txt setupWithImgName:@"uc_icon_upload_tran_txt" labelText:@"文字" labelTextColor:txtColor];
-    _upload_img.button.tag = 0;
-    _upload_video.button.tag = 1;
-    _upload_audio.button.tag = 2;
-    _upload_txt.button.tag = 3;
+    _upload_img.button.tag = DJUPloadPyqActionImg;
+    _upload_video.button.tag = DJUPloadPyqActionVideo;
+    _upload_audio.button.tag = DJUPloadPyqActionAudio;
+    _upload_txt.button.tag = DJUPloadPyqActionText;
     
     [_upload_img addTarget:self action:@selector(upload:) forControlEvents:UIControlEventTouchUpInside];
     [_upload_video addTarget:self action:@selector(upload:) forControlEvents:UIControlEventTouchUpInside];

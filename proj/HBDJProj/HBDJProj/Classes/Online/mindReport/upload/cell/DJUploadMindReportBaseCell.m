@@ -22,6 +22,12 @@
         case DJUploadMindReportLineTypeImage:
             return uploadMRAddImageCell;
             break;
+        case DJUploadMindReportLineTypePyqImage:
+            return uploadPYQImageCell;
+            break;
+        case DJUploadMindReportLineTypePyqText:
+            return uploadPYQTextCell;
+            break;
     }
 }
 

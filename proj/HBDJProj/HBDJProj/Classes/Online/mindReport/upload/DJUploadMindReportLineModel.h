@@ -11,7 +11,9 @@
 typedef NS_ENUM(NSUInteger, DJUploadMindReportLineType) {
     DJUploadMindReportLineTypeText,
     DJUploadMindReportLineTypeCover,
-    DJUploadMindReportLineTypeImage
+    DJUploadMindReportLineTypeImage,
+    DJUploadMindReportLineTypePyqImage,
+    DJUploadMindReportLineTypePyqText
 };
 
 @interface DJUploadMindReportLineModel : DJOnlineUploadTableModel

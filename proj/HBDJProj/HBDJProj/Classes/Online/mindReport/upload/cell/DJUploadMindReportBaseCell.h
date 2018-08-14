@@ -10,6 +10,8 @@
 static NSString * const uploadMRTextCell = @"DJUploadMindReportTextCell";
 static NSString * const uploadMRAddCoverCell = @"DJUploadMindReportCoverCell";
 static NSString * const uploadMRAddImageCell = @"DJUploadMindReportImageCell";
+static NSString * const uploadPYQImageCell = @"DJUploadPYQImageCell";
+static NSString * const uploadPYQTextCell = @"DJUploadPYQTextCell";
 
 
 @class DJUploadMindReportLineModel;

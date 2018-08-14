@@ -24,7 +24,7 @@
 
 - (void)commonSettins{
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
     /// MARK: 设置tintColor (按钮颜色)
     self.navigationBar.tintColor = [UIColor blackColor];
     /// MARK: 设置导航栏字体颜色
