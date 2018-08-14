@@ -51,6 +51,9 @@ DJInputContentViewControllerDelegate>
 /** 主持人 */
 @property (strong,nonatomic) NSMutableArray *peopleHost;
 
+/** 若为YES，表示正在上传中，禁止用户重复操作 */
+@property (assign,nonatomic) BOOL uploading;
+
 @end
 
 @implementation DJOnlineUplaodTableViewController
@@ -119,6 +122,10 @@ DJInputContentViewControllerDelegate>
 #pragma mark - 上传数据
 - (void)uploadData{
     
+    if (_uploading) {
+        return;
+    }
+    
     /// MARK: 数据校验
     NSString *msg = [_uploadDataManager msgByFormdataVerifyWithTableModels:self.dataArray];
     
@@ -130,6 +137,7 @@ DJInputContentViewControllerDelegate>
     
     /// MARK: 上传内容图片
     MBProgressHUD *uploadTipView = [MBProgressHUD wb_showActivityMessage:@"上传中..." toView:self.view];
+    _uploading = YES;
 
     [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
         
@@ -142,14 +150,17 @@ DJInputContentViewControllerDelegate>
         /// MARK: 发送上传数据请求
         [self requestUploadWithFormData:formData success:^(id responseObj) {
 //            NSLog(@"上传成功: %@",responseObj);
+            
             [self presentMessageTips:@"上传完成"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if ([self.delegate respondsToSelector:@selector(threeMeetingOrThemeUploadDone)]) {
                     [self.delegate threeMeetingOrThemeUploadDone];
                 }
+                _uploading = NO;
                 [self.navigationController popViewControllerAnimated:YES];
             });
         } failure:^(id failureObj) {
+            _uploading = NO;
             [self presentMessageTips:@"上传失败，请稍后重试"];
 //            NSLog(@"上传失败: %@",failureObj);
         }];

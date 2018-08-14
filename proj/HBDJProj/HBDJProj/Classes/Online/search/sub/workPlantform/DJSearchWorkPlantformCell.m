@@ -24,9 +24,10 @@
     _model = model;
     _title.text = model.title;
     if (model.date.length > length_timeString_1) {
-        model.date = [model.date substringToIndex:length_timeString_1 + 1];
+        _time.text = [model.date substringToIndex:length_timeString_1 + 1];
+    }else{
+        _time.text = model.date;        
     }
-    _time.text = model.date;
     _uploader.text = [@"上传者: " stringByAppendingString:model.uploader];
     
     [_icon sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];

@@ -29,6 +29,8 @@ DJUploadMindReportCoverCellDelegate>
 @property (strong,nonatomic) NSMutableArray *tempImageUrls;
 
 @property (strong,nonatomic) DJUploadDataManager *uploadDataManager;
+/** 若为YES，表示正在上传中，禁止用户重复操作 */
+@property (assign,nonatomic) BOOL uploading;
 
 @end
 
@@ -73,6 +75,11 @@ DJUploadMindReportCoverCellDelegate>
 
 - (void)uploadData{
     
+    if (_uploading) {
+        NSLog(@"return避免: ");
+        return;
+    }
+    
     /// MARK: 数据校验
     NSString *msg = [_uploadDataManager msgByFormdataVerifyWithTableModels:self.dataArray];
     
@@ -84,6 +91,7 @@ DJUploadMindReportCoverCellDelegate>
     
     /// MARK: 上传内容图片
     MBProgressHUD *uploadTipView = [MBProgressHUD wb_showActivityMessage:@"上传中..." toView:self.view];
+    _uploading = YES;
     
     /// 上传图片
     [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
@@ -95,11 +103,12 @@ DJUploadMindReportCoverCellDelegate>
         
         [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:[formData mutableCopy] ugctype:(self.listType - 4) filetype:1 success:^(id responseObj) {
             [self presentMessageTips:@"上传完成"];
+            _uploading = NO;
             [self baseViewControllerDismiss];
             
         } failure:^(id failureObj) {
+            _uploading = NO;
             [self presentMessageTips:@"上传失败，请稍后重试"];
-            
         }];
         
     }];
