@@ -885,6 +885,7 @@
 		88949C26211ECF8200B80AEE /* DJSearchReultVoteListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSearchReultVoteListController.m; sourceTree = "<group>"; };
 		88949C28211ECFBB00B80AEE /* DJSearchResultTestListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSearchResultTestListController.h; sourceTree = "<group>"; };
 		88949C29211ECFBB00B80AEE /* DJSearchResultTestListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSearchResultTestListController.m; sourceTree = "<group>"; };
+		889C6ABB212283C7002404C5 /* HBDJProj.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HBDJProj.entitlements; sourceTree = "<group>"; };
 		889E7DB52099685000BB9084 /* HPBookInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPBookInfoModel.h; sourceTree = "<group>"; };
 		889E7DB62099685000BB9084 /* HPBookInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPBookInfoModel.m; sourceTree = "<group>"; };
 		889E7DB920998D5100BB9084 /* UCUploadTransitionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadTransitionView.h; sourceTree = "<group>"; };
@@ -1375,6 +1376,7 @@
 		881C948A2068EA5A009D6A52 /* HBDJProj */ = {
 			isa = PBXGroup;
 			children = (
+				889C6ABB212283C7002404C5 /* HBDJProj.entitlements */,
 				88BCED5420C2898C00B5C1DB /* iflyMSC.framework */,
 				8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */,
 				886A1BCA20D0CB320007AD63 /* EpubResource */,
@@ -3379,6 +3381,14 @@
 					881C94872068EA5A009D6A52 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.ClassKit = {
+								enabled = 0;
+							};
+						};
 					};
 					881C949F2068EA5A009D6A52 = {
 						CreatedOnToolsVersion = 9.2;

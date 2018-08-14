@@ -23,16 +23,16 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-01-22 11:02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-B8-MeA">
-                    <rect key="frame" x="10" y="50" width="130" height="18"/>
+                    <rect key="frame" x="10" y="50" width="138" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="130" id="zBc-Xa-BQC"/>
+                        <constraint firstAttribute="width" constant="138" id="zBc-Xa-BQC"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源：人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQF-RF-I5d">
-                    <rect key="frame" x="150" y="50" width="328" height="18"/>
+                    <rect key="frame" x="158" y="50" width="320" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

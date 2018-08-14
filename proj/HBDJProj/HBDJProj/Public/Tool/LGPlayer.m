@@ -80,7 +80,9 @@ PLPlayerDelegate>
 }
 
 - (void)initPlayerWithUrl:(NSString *)url{
+
     self.audioPlayer = [[PLPlayer alloc] initWithURL:[NSURL URLWithString:url] option:nil];
+    
     [self addTimer];
     self.audioPlayer.delegate = self;
     
@@ -92,6 +94,7 @@ PLPlayerDelegate>
     
 }
 - (void)lg_play{
+    
     /// 因为在init中已经play了，所以play方法直接调用resume即可
     if (!_playTimer) {
         [self addTimer];

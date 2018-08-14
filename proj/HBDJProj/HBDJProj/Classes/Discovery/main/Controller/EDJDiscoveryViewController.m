@@ -9,6 +9,7 @@
 #import "EDJDiscoveryViewController.h"
 #import "LGNavigationSearchBar.h"
 #import "DCWriteQuestionViewController.h"
+#import "UCMemberStageTransitionView.h"
 
 typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
     DiscoveryChannelQuestionCommunity,
@@ -48,10 +49,28 @@ LGNavigationSearchBarDelelgate>
 }
 #pragma mark - LGNavigationSearchBarDelelgate
 - (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
-    DCWriteQuestionViewController *question = [DCWriteQuestionViewController new];
-    question.pushWay = LGBaseViewControllerPushWayModal;
-    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:question];
-    [self presentViewController:nav animated:YES completion:nil];
+    if (_currentChannel == 0) {
+        /// 提问
+        DCWriteQuestionViewController *question = [DCWriteQuestionViewController new];
+        question.pushWay = LGBaseViewControllerPushWayModal;
+        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:question];
+        [self presentViewController:nav animated:YES completion:nil];
+    }else if (_currentChannel == 2){
+        /// 上传党员舞台 （朋友圈）
+        UCMemberStageTransitionView *mstView = [UCMemberStageTransitionView memberStateTransitionView];
+        mstView.delegate = self;
+        CGFloat mstH = kScreenHeight + kStatusBarHeight;
+        if (kScreenHeight == 812) {
+            mstH += 34;
+        }
+        mstView.frame = CGRectMake(0, -kStatusBarHeight, kScreenWidth, mstH);
+        //            [self.view addSubview:mstView];
+        /// TODO:添加到self.view上 无法遮挡导航栏，所以 暂时加到 keywindow上，不是最优解
+        [[UIApplication sharedApplication].keyWindow addSubview:mstView];
+    }else{
+        
+    }
+    
 }
 
 
@@ -65,6 +84,7 @@ LGNavigationSearchBarDelelgate>
         self.fakeNavgationBar.isShowRightBtn = YES;
         self.fakeNavgationBar.rightButtonTitle = @"投稿";
     }
+    _currentChannel = index;
 }
 
 - (NSArray<NSDictionary *> *)segmentItems{

@@ -79,6 +79,9 @@ DTLazyImageViewDelegate>
 }
 - (void)configUI{
     
+    NSError *error = nil;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+    
     _imageSizeCache = [[NSCache alloc] init];
     _cellCache = [[NSCache alloc] init];
     _cellCache.totalCostLimit = 10;

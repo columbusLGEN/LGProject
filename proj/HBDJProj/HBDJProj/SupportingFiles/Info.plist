@@ -115,6 +115,10 @@
 	<string>是否允许访问您的麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许访问您的相册</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

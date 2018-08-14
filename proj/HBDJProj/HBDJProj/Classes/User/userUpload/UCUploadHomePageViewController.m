@@ -55,6 +55,7 @@ LGSegmentBottomViewDelegate
     utView = nil;
     switch (action) {
         case UploadTransitionActionMemeberStage:{
+            /// MARK: 党员舞台（朋友圈）
             UCMemberStageTransitionView *mstView = [UCMemberStageTransitionView memberStateTransitionView];
             mstView.delegate = self;
             CGFloat mstH = kScreenHeight + kStatusBarHeight;
@@ -69,10 +70,12 @@ LGSegmentBottomViewDelegate
         }
             break;
         case UploadTransitionActionMindReport:{
+            /// TODO: 思想汇报
             [self editToUploadWithType:UploadTyleMindReport];
         }
             break;
         case UploadTransitionActionSpeakCheap:{
+            /// TODO: 述职述廉
             [self editToUploadWithType:UploadTyleSpeakCheap];
         }
             break;
