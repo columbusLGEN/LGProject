@@ -10,8 +10,10 @@
 #import "DCSubStageBaseTableViewCell.h"
 #import "DCSubStageModel.h"
 #import "DCSubStageCommentsModel.h"
+#import "DJDiscoveryNetworkManager.h"
 
 @interface DCSubStageTableviewController ()
+@property (assign,nonatomic) NSInteger offset;
 
 @end
 
@@ -24,42 +26,78 @@
     [self.tableView registerClass:[NSClassFromString(oneImgCell) class] forCellReuseIdentifier:oneImgCell];
     [self.tableView registerClass:[NSClassFromString(audioCell) class] forCellReuseIdentifier:audioCell];
     
-    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
-    for (NSInteger i = 0; i < 20; i++) {
-        DCSubStageModel *model = [DCSubStageModel new];
-        model.nick = [NSString stringWithFormat:@"王建国_%ld",i];
-        model.modelType = StageModelTypeMoreImg;
-        if (i < 3) {
-            model.modelType = StageModelTypeAImg;
-            if (!i) {
-                model.aTestImg = [UIImage imageNamed:@"ver_test_img"];
-            }else{
-                model.aTestImg = [UIImage imageNamed:@"party_history"];
-            }
-            if (i == 2) {
-                model.isVideo = YES;
-                model.modelType = StageModelTypeVideo;
-            }
-        }
-        if (i == 3) {
-            model.modelType = StageModelTypeAudio;
-            model.content = @"";
-        }
-        
-        /// 评论
-        NSMutableArray *arrM = [NSMutableArray array];
-        for (NSInteger j = 0; j < arc4random_uniform(5); j++) {
-            DCSubStageCommentsModel *commentsModel = [DCSubStageCommentsModel new];
-            commentsModel.sender = @"李楠";
-            commentsModel.content = @"我也听了这个宣讲";
-            [arrM addObject:commentsModel];
-        }
-        model.comments = arrM.copy;
-        
-        [arrMu addObject:model];
-    }
-    self.dataArray = arrMu.copy;
+//    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
+//    for (NSInteger i = 0; i < 20; i++) {
+//        DCSubStageModel *model = [DCSubStageModel new];
+//        model.nick = [NSString stringWithFormat:@"王建国_%ld",i];
+//        model.modelType = StageModelTypeMoreImg;
+//        if (i < 3) {
+//            model.modelType = StageModelTypeAImg;
+//            if (!i) {
+//                model.aTestImg = [UIImage imageNamed:@"ver_test_img"];
+//            }else{
+//                model.aTestImg = [UIImage imageNamed:@"party_history"];
+//            }
+//            if (i == 2) {
+//                model.isVideo = YES;
+//                model.modelType = StageModelTypeVideo;
+//            }
+//        }
+//        if (i == 3) {
+//            model.modelType = StageModelTypeAudio;
+//            model.content = @"";
+//        }
+//        
+//        /// 评论
+//        NSMutableArray *arrM = [NSMutableArray array];
+//        for (NSInteger j = 0; j < arc4random_uniform(5); j++) {
+//            DCSubStageCommentsModel *commentsModel = [DCSubStageCommentsModel new];
+//            commentsModel.sender = @"李楠";
+//            commentsModel.content = @"我也听了这个宣讲";
+//            [arrM addObject:commentsModel];
+//        }
+//        model.comments = arrM.copy;
+//        
+//        [arrMu addObject:model];
+//    }
+//    self.dataArray = arrMu.copy;
+//    [self.tableView reloadData];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    
+}
+- (void)setDataArray:(NSArray *)dataArray{
+    [super setDataArray:dataArray];
+    _offset = dataArray.count;
     [self.tableView reloadData];
+}
+
+- (void)getData{
+    [DJDiscoveryNetworkManager.sharedInstance frontUgc_selectmechanismWithOffset:_offset success:^(id responseObj) {
+        NSArray *array = responseObj;
+        if (array == nil || array.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            return;
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+            
+            NSMutableArray *arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            for (NSInteger i = 0; i < array.count; i++) {
+                DCSubStageModel *model = [DCSubStageModel mj_objectWithKeyValues:array[i]];
+                [arrmu addObject:model];
+            }
+            self.dataArray = arrmu.copy;
+            _offset = self.dataArray.count;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -82,48 +120,5 @@
     return model.cellHeight;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "DCSubPartStateOneImgCell.h"
+#import "DCSubPartStateModel.h"
 
 @interface DCSubPartStateOneImgCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -18,8 +19,9 @@
 @implementation DCSubPartStateOneImgCell
 
 - (void)setModel:(DCSubPartStateModel *)model{
-    UIImage *testImg = [UIImage imageNamed:@"party_history"];
-    [_img setImage:testImg];
+    [super setModel:model];
+    [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
+    _title.text = model.title;
 }
 
 - (void)awakeFromNib {

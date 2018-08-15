@@ -7,6 +7,7 @@
 //
 
 #import "DCSubPartStateThreeImgCell.h"
+#import "DCSubPartStateModel.h"
 
 @interface DCSubPartStateThreeImgCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *leftImg;
@@ -21,11 +22,21 @@
 @implementation DCSubPartStateThreeImgCell
 
 - (void)setModel:(DCSubPartStateModel *)model{
-//    _title.text = model
-    UIImage *testImg = [UIImage imageNamed:@"party_history"];
-    [_leftImg setImage:testImg];
-    [_midImg setImage:testImg];
-    [_rightImg setImage:testImg];
+    [super setModel:model];
+    _title.text = model.title;
+    
+    NSURL *url0;
+    NSURL *url1;
+    NSURL *url2;
+    if (model.imgUrls.count > 2) {
+        url0 = [NSURL URLWithString:model.imgUrls[0]];
+        url1 = [NSURL URLWithString:model.imgUrls[1]];
+        url2 = [NSURL URLWithString:model.imgUrls[2]];
+    }
+    
+    [_leftImg sd_setImageWithURL:url0 placeholderImage:DJPlaceholderImage];
+    [_midImg sd_setImageWithURL:url1 placeholderImage:DJPlaceholderImage];
+    [_rightImg sd_setImageWithURL:url2 placeholderImage:DJPlaceholderImage];
 }
 
 - (void)layoutSubviews{

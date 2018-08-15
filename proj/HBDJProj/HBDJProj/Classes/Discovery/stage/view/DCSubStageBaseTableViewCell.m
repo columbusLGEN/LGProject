@@ -35,8 +35,7 @@ UITableViewDataSource>
 
 - (void)setModel:(DCSubStageModel *)model{
     _model = model;
-    _time.text = model.time;
-    _time.text = @"2018年5月21日";
+//    _time.text = model.;
     _content.text = model.content;
     _icon.image = model.testIcon;
     _nick.text = model.nick;

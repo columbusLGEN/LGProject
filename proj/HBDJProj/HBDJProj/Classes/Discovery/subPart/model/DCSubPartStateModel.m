@@ -10,23 +10,36 @@
 
 @implementation DCSubPartStateModel
 
-- (CGFloat)cellHeight{
-    CGFloat defaultHeight = 96;
-    switch (self.imgCount) {
-        case 0:
-            return defaultHeight;
-            break;
-        case 1:
-            return 144;
-            break;
-        case 3:
-            return 201;
-            break;
-        default:
-            return defaultHeight;
-            break;
-    }
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"frontComments":@"DCSubPartStateCommentModel"};
 }
 
+//- (CGFloat)cellHeight{
+//    CGFloat defaultHeight = 96 + 40;
+//    switch (self.imgCount) {
+//        case 0:
+//            return defaultHeight;
+//            break;
+//        case 1:
+//            return 144;
+//            break;
+//        case 3:
+//            return 201 + 40;
+//            break;
+//        default:
+//            return defaultHeight;
+//            break;
+//    }
+//}
+
+- (NSInteger)imgCount{
+    if ([self.cover isEqualToString:@""] || self.cover == nil) {
+        return 0;
+    }
+    return self.imgUrls.count;
+}
+- (NSArray *)imgUrls{
+    return [self.cover componentsSeparatedByString:@","];
+}
 
 @end

@@ -11,13 +11,15 @@
 #import "LGThreeRightButtonView.h"
 
 @interface DCSubPartStateBaseCell ()
-@property (strong, nonatomic) LGThreeRightButtonView *boInterView;
 
 @end
 
 @implementation DCSubPartStateBaseCell
 
 + (NSString *)cellReuseIdWithModel:(DCSubPartStateModel *)model{
+//    if ([model.cover isEqualToString:@""] || model.cover == nil) {
+//        return withoutImgCell;
+//    }
     switch (model.imgCount) {
         case 0:
             return withoutImgCell;
@@ -35,26 +37,51 @@
     return withoutImgCell;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
+- (void)setupUI{
     UIView *rect = [UIView new];
     rect.backgroundColor = [UIColor EDJGrayscale_F3];
     [self.contentView addSubview:rect];
     
+    [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.boInterView];
+    
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
+        make.bottom.equalTo(self.boInterView.mas_top).offset(-marginFifteen);
+        make.height.mas_equalTo(17);
+    }];
     [self.boInterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(rect.mas_top);
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
+        make.left.equalTo(self.contentView.mas_left);
+        make.right.equalTo(self.contentView.mas_right);
         make.height.mas_equalTo(45);
     }];
     [rect mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.mas_bottom);
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.left.equalTo(self.contentView.mas_left);
+        make.right.equalTo(self.contentView.mas_right);
         make.height.mas_equalTo(5);
     }];
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self setupUI];
+
+}
+
+- (UILabel *)timeLabel{
+    if (!_timeLabel) {
+        _timeLabel = UILabel.new;
+    }
+    return _timeLabel;
 }
 
 - (LGThreeRightButtonView *)boInterView{
@@ -81,9 +108,5 @@
     }
     return _boInterView;
 }
-
-
-
-
 
 @end

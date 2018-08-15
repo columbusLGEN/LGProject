@@ -23,7 +23,7 @@
 
 - (void)setModel:(DCSubStageModel *)model{
     [super setModel:model];
-    _aImage.image = model.aTestImg;
+    [_aImage sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     
     CGFloat aImgTopOffset = contentTopOffset + model.heightForContent + 10;
     

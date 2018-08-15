@@ -11,19 +11,18 @@
 #import "DCSubPartStateBaseCell.h"
 #import "DCSubPartStateWithoutImgCell.h"
 #import "DCSubPartStateDetailViewController.h"
+#import "DJDiscoveryNetworkManager.h"
 
 @interface DCSubPartStateTableViewController ()
-
+@property (assign,nonatomic) NSInteger offset;
 
 @end
 
 @implementation DCSubPartStateTableViewController
 
-@synthesize dataArray = _dataArray;
-
 - (void)setDataArray:(NSArray *)dataArray{
-    _dataArray = dataArray;
-    
+    [super setDataArray:dataArray];
+    _offset = dataArray.count;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];
@@ -32,48 +31,86 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:withoutImgCell bundle:nil]
-         forCellReuseIdentifier:withoutImgCell];
+    self.tableView.estimatedRowHeight = 1.0;
+    [self.tableView registerClass:[DCSubPartStateWithoutImgCell class] forCellReuseIdentifier:withoutImgCell];
     [self.tableView registerNib:[UINib nibWithNibName:oneImgCell bundle:nil]
          forCellReuseIdentifier:oneImgCell];
     [self.tableView registerNib:[UINib nibWithNibName:threeImgCell bundle:nil]
          forCellReuseIdentifier:threeImgCell];
     
-    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
-    for (NSInteger i = 0; i < 20; i++) {
-        DCSubPartStateModel *model = [DCSubPartStateModel new];
-        NSInteger num = arc4random_uniform(3) + 1;/// 1 2 3
-        if (num == 2) {
-            num -= 2;/// 2 --> 0
-        }
-        model.imgCount = num;
-        [arrMu addObject:model];
-    }
-    self.dataArray = arrMu.copy;
-    [self.tableView reloadData];
+//    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
+//    for (NSInteger i = 0; i < 20; i++) {
+//        DCSubPartStateModel *model = [DCSubPartStateModel new];
+//        NSInteger num = arc4random_uniform(3) + 1;/// 1 2 3
+//        if (num == 2) {
+//            num -= 2;/// 2 --> 0
+//        }
+//        model.imgCount = num;
+//        [arrMu addObject:model];
+//    }
+//    self.dataArray = arrMu.copy;
+//    [self.tableView reloadData];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _offset = 0;
+        [self getData];
+    }];
 
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
 }
 
+- (void)getData{
+    [DJDiscoveryNetworkManager.sharedInstance frontBranch_selectWithOffset:_offset success:^(id responseObj) {
+        
+        NSArray *array = responseObj;
+        
+        if (_offset == 0) {
+            [self.tableView.mj_footer resetNoMoreData];
+            [self.tableView.mj_header endRefreshing];
+        }
+        
+        if (array == nil || array.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            return;
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+            
+            
+            NSMutableArray *arrmu;
+            if (_offset == 0) {
+                arrmu = NSMutableArray.new;
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            }
+            for (NSInteger i = 0; i < array.count; i++) {
+                DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:array[i]];
+                [arrmu addObject:model];
+            }
+            self.dataArray = arrmu.copy;
+            _offset = self.dataArray.count;
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        [self.tableView.mj_footer endRefreshing];
+        
+    }];
+}
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DCSubPartStateModel *model = self.dataArray[indexPath.row];
     DCSubPartStateBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DCSubPartStateBaseCell cellReuseIdWithModel:model]];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(DCSubPartStateBaseCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    DCSubPartStateModel *model = self.dataArray[indexPath.row];
     cell.model = model;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DCSubPartStateModel *model = self.dataArray[indexPath.row];
-    return model.cellHeight;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -81,49 +118,5 @@
     [self.navigationController pushViewController:dvc animated:YES];
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

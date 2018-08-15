@@ -7,9 +7,16 @@
 //
 
 #import "LGBaseTableViewCell.h"
-#import "UCQuestionModel.h"
+@class UCQuestionModel;
+
+@protocol UCQuestionTableViewCellDelegate <NSObject>
+- (void)qaCellshowAllClickWith:(NSIndexPath *)indexPath;
+
+@end
 
 @interface UCQuestionTableViewCell : LGBaseTableViewCell
+@property (strong,nonatomic) NSIndexPath *indexPath;
 @property (strong,nonatomic) UCQuestionModel *model;
+@property (weak,nonatomic) id<UCQuestionTableViewCellDelegate> delegate;
 
 @end

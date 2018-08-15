@@ -8,7 +8,7 @@
 
 /// 党员舞台模型
 
-#import "DCSubPartStateModel.h"
+#import "LGBaseModel.h"
 @class DCSubStageCommentsModel;
 
 typedef NS_ENUM(NSUInteger, StageModelType) {
@@ -34,7 +34,7 @@ static const CGFloat aImgHoriWidth = 177;
 /** 评论单元格行高 */
 static const CGFloat commentsCellHeight = 25;
 
-@interface DCSubStageModel : DCSubPartStateModel
+@interface DCSubStageModel : LGBaseModel
 
 @property (strong,nonatomic) NSString *nick;
 @property (strong,nonatomic) NSString *time;
@@ -59,5 +59,7 @@ static const CGFloat commentsCellHeight = 25;
 
 /** 评论数据 */
 @property (strong,nonatomic) NSArray<DCSubStageCommentsModel *> *comments;
+
+- (CGFloat)cellHeight;
 
 @end
