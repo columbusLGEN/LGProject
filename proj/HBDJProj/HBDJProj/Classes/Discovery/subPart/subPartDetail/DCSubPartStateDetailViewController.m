@@ -17,6 +17,7 @@
 
 #import "DCRichTextTopInfoView.h"
 #import "DCRichTextBottomInfoView.h"
+#import "DJSendCommentsViewController.h"
 
 //static const CGFloat richTextTopInfoViewHeight = 100;
 static const CGFloat richTextBottomInfoViewHeight = 77;
@@ -25,7 +26,8 @@ static const CGFloat richTextBottomInfoViewHeight = 77;
 UITableViewDelegate,
 UITableViewDataSource,
 DTAttributedTextContentViewDelegate,
-DTLazyImageViewDelegate>
+DTLazyImageViewDelegate,
+LGThreeRightButtonViewDelegate>
 @property (strong,nonatomic) LGThreeRightButtonView *bottom;
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray * array;
@@ -52,6 +54,8 @@ DTLazyImageViewDelegate>
 }
 
 - (void)configUI{
+    
+    
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottom];
@@ -227,6 +231,21 @@ DTLazyImageViewDelegate>
     
 }
 
+/// MARK: 底部交互按钮点击
+- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    
+}
+- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    
+}
+- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    DJSendCommentsViewController *vc = DJSendCommentsViewController.new;
+    vc.pushWay = LGBaseViewControllerPushWayModal;
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 #pragma mark - notifications
 - (void)keyboardWillChangeFrame:(NSNotification *)notification{
     NSDictionary *userInfo = notification.userInfo;
@@ -238,15 +257,16 @@ DTLazyImageViewDelegate>
     //    NSLog(@"frameEnd -- %@",NSStringFromCGRect(frameEnd));
     CGFloat offsetY = frameBegin.origin.y - frameEnd.origin.y;
     NSLog(@"willchangeframe.y -- %f",offsetY);
+    
 }
 - (void)keyboardDidChangeFrame:(NSNotification *)notification{
-    //    NSDictionary *userInfo = notification.userInfo;
-    //    CGRect frameBegin = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    //    CGRect frameEnd = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    //    NSLog(@"frameBegin -- %@ ",NSStringFromCGRect(frameBegin));
-    //    NSLog(@"frameEnd -- %@",NSStringFromCGRect(frameEnd));
-    //    CGFloat offsetY = frameEnd.origin.y - frameBegin.origin.y;
-    //    NSLog(@"didchangeframe.y -- %f",offsetY);
+//        NSDictionary *userInfo = notification.userInfo;
+//        CGRect frameBegin = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+//        CGRect frameEnd = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//        NSLog(@"frameBegin -- %@ ",NSStringFromCGRect(frameBegin));
+//        NSLog(@"frameEnd -- %@",NSStringFromCGRect(frameEnd));
+//        CGFloat offsetY = frameEnd.origin.y - frameBegin.origin.y;
+//        NSLog(@"didchangeframe.y -- %f",offsetY);
 }
 
 
@@ -257,7 +277,7 @@ DTLazyImageViewDelegate>
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        _tableView.estimatedRowHeight = 80;/// 该值不给也行
+//        _tableView.estimatedRowHeight = 80;
         [_tableView registerClass:[DCStateContentsCell class] forCellReuseIdentifier:richContentCell];
         [_tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
         
@@ -268,6 +288,7 @@ DTLazyImageViewDelegate>
     if (!_bottom) {
         _bottom = [LGThreeRightButtonView new];
         _bottom.bothSidesClose = YES;
+        _bottom.delegate = self;
         [_bottom setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
                                         TRConfigImgNameKey:@"dc_like_normal",
                                         TRConfigSelectedImgNameKey:@"dc_like_selected",

@@ -140,6 +140,8 @@
 		88435EA4208EFB0800188CE9 /* DJDataBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA3208EFB0800188CE9 /* DJDataBaseModel.m */; };
 		88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */; };
 		88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */; };
+		88493C082125681300ADC971 /* DJSendCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88493C072125681300ADC971 /* DJSendCommentsViewController.m */; };
+		88493C0C21256D7000ADC971 /* DJCommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88493C0B21256D7000ADC971 /* DJCommentInputView.m */; };
 		884EB402210174E6005D5CA9 /* DJThreemeetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB401210174E6005D5CA9 /* DJThreemeetListViewController.m */; };
 		884EB4052102FB1A005D5CA9 /* DJUploadMindReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB4042102FB1A005D5CA9 /* DJUploadMindReportController.m */; };
 		884EB4092102FB86005D5CA9 /* DJUploadMindReportBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB4082102FB86005D5CA9 /* DJUploadMindReportBaseCell.m */; };
@@ -730,6 +732,10 @@
 		88435EA5208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPartyLessonSubCell.h; sourceTree = "<group>"; };
 		88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJMicroPartyLessonSubCell.m; sourceTree = "<group>"; };
 		88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJMicroPartyLessonSubCell.xib; sourceTree = "<group>"; };
+		88493C062125681300ADC971 /* DJSendCommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSendCommentsViewController.h; sourceTree = "<group>"; };
+		88493C072125681300ADC971 /* DJSendCommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSendCommentsViewController.m; sourceTree = "<group>"; };
+		88493C0A21256D7000ADC971 /* DJCommentInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJCommentInputView.h; sourceTree = "<group>"; };
+		88493C0B21256D7000ADC971 /* DJCommentInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJCommentInputView.m; sourceTree = "<group>"; };
 		884EB400210174E6005D5CA9 /* DJThreemeetListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJThreemeetListViewController.h; sourceTree = "<group>"; };
 		884EB401210174E6005D5CA9 /* DJThreemeetListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJThreemeetListViewController.m; sourceTree = "<group>"; };
 		884EB4032102FB1A005D5CA9 /* DJUploadMindReportController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUploadMindReportController.h; sourceTree = "<group>"; };
@@ -1659,6 +1665,7 @@
 			children = (
 				8857B5F22123BAFE00BFCA16 /* DJDiscoveryNetworkManager.h */,
 				8857B5F32123BAFE00BFCA16 /* DJDiscoveryNetworkManager.m */,
+				88493C052125679D00ADC971 /* other */,
 				889C6ABC21229FD2002404C5 /* upload */,
 				8831E1422092F20B001D038E /* main */,
 				8831E1432092F221001D038E /* QA */,
@@ -2222,6 +2229,25 @@
 				8835B2BC207209EA00722010 /* View */,
 			);
 			path = main;
+			sourceTree = "<group>";
+		};
+		88493C052125679D00ADC971 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				88493C0921256D4D00ADC971 /* commentUserInterface */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		88493C0921256D4D00ADC971 /* commentUserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				88493C062125681300ADC971 /* DJSendCommentsViewController.h */,
+				88493C072125681300ADC971 /* DJSendCommentsViewController.m */,
+				88493C0A21256D7000ADC971 /* DJCommentInputView.h */,
+				88493C0B21256D7000ADC971 /* DJCommentInputView.m */,
+			);
+			path = commentUserInterface;
 			sourceTree = "<group>";
 		};
 		884EB4062102FB6E005D5CA9 /* upload */ = {
@@ -3819,6 +3845,7 @@
 				8835B2CD20720B1500722010 /* EDJOnlineController.m in Sources */,
 				8876E3FE20EDC4AB001C6A1A /* DJSelectPeopleModel.m in Sources */,
 				88C5F14520B7EEEA0075D5F2 /* LGPlayer.m in Sources */,
+				88493C0C21256D7000ADC971 /* DJCommentInputView.m in Sources */,
 				884EB41821030332005D5CA9 /* DJUploadMindReportImageCell.m in Sources */,
 				88EA132F20AD5314007AB886 /* LGHTMLParser.m in Sources */,
 				8831E18D20941A78001D038E /* DCSubStageModel.m in Sources */,
@@ -3958,6 +3985,7 @@
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
 				88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */,
 				8851C63A20F5EB6400C91575 /* DJThoutghtRepotListViewController.m in Sources */,
+				88493C082125681300ADC971 /* DJSendCommentsViewController.m in Sources */,
 				88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */,
 				889FCD0B20B3A78B0045746D /* LGTriangleView.m in Sources */,
 				88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */,

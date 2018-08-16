@@ -19,6 +19,7 @@ typedef void(^UserLikeCollectSuccess)(NSInteger cbkid,NSInteger cbkCount);
 @interface DJUserInteractionMgr : NSObject
 
 
+
 /**
  点赞(取消)/收藏(取消)
 

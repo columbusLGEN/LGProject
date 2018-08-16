@@ -92,6 +92,14 @@
     }
     return @"0";
 }
+- (NSString *)timestampToDate_nyr{
+    NSTimeInterval temp = [self doubleValue];
+    NSDate *date = [[NSDate date] initWithTimeIntervalSince1970:temp];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy年MM月dd日";
+    
+    return [df stringFromDate:date];
+}
 // MARK: 时间戳 --> 日期
 - (NSString *)timestampToDate{
     NSTimeInterval temp = [self doubleValue];

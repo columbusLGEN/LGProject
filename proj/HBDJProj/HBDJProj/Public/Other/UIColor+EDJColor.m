@@ -65,7 +65,9 @@
     return [self colorWithHexString:@"A4A4A4"];
 }
 
-
++ (UIColor *)EDJColor_FFF5F5{
+    return [self colorWithHexString:@"FFF5F5"];
+}
 + (UIColor *)EDJColor_9B1212{
     return [self colorWithHexString:@"9B1212"];
 }

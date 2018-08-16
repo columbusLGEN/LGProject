@@ -6,9 +6,9 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-/// 党员舞台模型
+/// 党员舞台模型 (朋友圈)
 
-#import "LGBaseModel.h"
+#import "DJDataBaseModel.h"
 @class DCSubStageCommentsModel;
 
 typedef NS_ENUM(NSUInteger, StageModelType) {
@@ -34,10 +34,9 @@ static const CGFloat aImgHoriWidth = 177;
 /** 评论单元格行高 */
 static const CGFloat commentsCellHeight = 25;
 
-@interface DCSubStageModel : LGBaseModel
+@interface DCSubStageModel : DJDataBaseModel
 
-@property (strong,nonatomic) NSString *nick;
-@property (strong,nonatomic) NSString *time;
+//@property (strong,nonatomic) NSString *time;
 @property (strong,nonatomic) NSArray *imgs;
 
 @property (assign,nonatomic) CGFloat nineImgViewHeight;
@@ -52,37 +51,61 @@ static const CGFloat commentsCellHeight = 25;
 @property (assign,nonatomic) BOOL isVideo;
 
 @property (assign,nonatomic) CGFloat heightForContent;
-@property (strong,nonatomic) NSString *content;
+//@property (strong,nonatomic) NSString *content;
 
 @property (strong,nonatomic) UIImage *testIcon;
 @property (strong,nonatomic) UIImage *aTestImg;
 
 /** 评论数据 */
 @property (strong,nonatomic) NSArray<DCSubStageCommentsModel *> *comments;
-
 - (CGFloat)cellHeight;
 
+/// -----------------------------
+/** 朋友圈单图的图片宽高 */
+@property (strong,nonatomic) NSString *widthheigth;
+/** 单图宽度 */
+@property (assign,nonatomic) CGFloat single_pic_width;
+/** 单图高度 */
+@property (assign,nonatomic) CGFloat single_pic_height;
+@property (strong,nonatomic) NSString *fileurl;
+/**
+ 1图片
+ 2视频
+ 3音频
+ 4文本
+ */
+@property (assign,nonatomic) NSInteger filetype;
+/** 评论模型数组 */
+@property (strong,nonatomic) NSArray<DCSubStageCommentsModel *> *frontComments;
+/** 资源链接 */
 
-//    "filetype":0,
-//    "frontComments":[
-//    
-//    ],
+/** 时间戳 */
+@property (strong,nonatomic) NSString *timestamp;
+@property (strong,nonatomic) NSString *createdtime;
+/**
+ 1党员舞台
+ 2思想汇报
+ 3述职述廉
+ */
+@property (assign,nonatomic) NSInteger ugctype;
+/** 点赞id */
+@property (assign,nonatomic) NSInteger praiseid;
+/** 点赞数 */
+@property (assign,nonatomic) NSInteger praisecount;
+/** 收藏id */
+@property (assign,nonatomic) NSInteger collectionid;
+/** 收藏数 */
+@property (assign,nonatomic) NSInteger collectioncount;
+/** 上传用户 */
+@property (strong,nonatomic) NSString *uploader;
+
 //    "creatorid":1,
-//    "praisecount":1,
 //    "sort":0,
 //    "title":"",
 //    "auditstate":"1",
 //    "mechanismid":"180607092010002",
 //    "userid":"长孙无极",
-//    "content":"小时候",
-//    "createdtime":"2018-01-24 13:54:21",
-//    "ugctype":"1",
 //    "cover":"",
-//    "uploader":"长孙无极",
-//    "fileurl":"http://123.59.199.170/group1/M00/00/00/CgoKC1tAi_qAGpx7AV8r1CUcVnM424.mp4",
-//    "praiseid":0,
-//    "collectioncount":1,
-//    "collectionid":0,
 //    "seqid":1,
 //    "status":1
 

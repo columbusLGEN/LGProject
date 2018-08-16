@@ -18,14 +18,10 @@
 
 - (void)setModel:(DCSubPartStateModel *)model{
     _model = model;
-    /// TODO: 时间 显示为 2018年8月8日 使用时间戳转
-    _timeLabel.text = model.createdtime;
+    _timeLabel.text = [model.timestamp timestampToDate_nyr];;
 }
 
 + (NSString *)cellReuseIdWithModel:(DCSubPartStateModel *)model{
-//    if ([model.cover isEqualToString:@""] || model.cover == nil) {
-//        return withoutImgCell;
-//    }
     switch (model.imgCount) {
         case 0:
             return withoutImgCell;

@@ -23,4 +23,7 @@
 + (NSArray *)loadLocalPlist;
 + (NSArray *)loadLocalPlistWithPlistName:(NSString *)plistName;
 
+/** 用户头像 */
+@property (strong,nonatomic) NSString *headpic;
+
 @end

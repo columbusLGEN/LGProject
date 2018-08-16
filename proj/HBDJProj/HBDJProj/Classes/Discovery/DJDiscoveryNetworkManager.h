@@ -10,6 +10,9 @@
 
 @interface DJDiscoveryNetworkManager : NSObject
 
+/** 提问感谢接口 */
+- (void)frontQuestionanswer_updateWithQAId:(NSInteger)qaid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/// -------
 /** 党员舞台列表 */
 - (void)frontUgc_selectmechanismWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 查看支部动态列表 */

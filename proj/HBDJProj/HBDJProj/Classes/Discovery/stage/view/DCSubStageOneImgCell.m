@@ -23,8 +23,14 @@
 
 - (void)setModel:(DCSubStageModel *)model{
     [super setModel:model];
-    [_aImage sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     
+    if (model.filetype == 1) {
+        [_aImage sd_setImageWithURL:[NSURL URLWithString:model.fileurl] placeholderImage:DJPlaceholderImage];
+    }
+    if (model.filetype == 2) {
+        [_aImage sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
+    }
+
     CGFloat aImgTopOffset = contentTopOffset + model.heightForContent + 10;
     
     if (model.aImgType == StageModelTypeAImgTypeVer) {

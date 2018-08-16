@@ -29,8 +29,11 @@
 + (UIColor *)EDJGrayscale_FA;
 + (UIColor *)EDJGrayscale_11;
 + (UIColor *)EDJGrayscale_AD;
+/** 略深的灰色 */
 + (UIColor *)EDJGrayscale_A4;
 
+/** 评论框背景色 */
++ (UIColor *)EDJColor_FFF5F5;
 + (UIColor *)EDJColor_9B1212;
 + (UIColor *)EDJColor_A2562C;
 + (UIColor *)EDJColor_FC774E;

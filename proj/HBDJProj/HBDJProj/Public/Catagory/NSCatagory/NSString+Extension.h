@@ -28,6 +28,7 @@
  @return 日期 eg: 2018-1-5
  */
 - (NSString *)timestampToDate;
+- (NSString *)timestampToDate_nyr;
 /**
  时间戳 --> x分钟前，x小时前，x天前
  @return 描述性结果

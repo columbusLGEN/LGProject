@@ -25,7 +25,6 @@
     if (_nineImg) {
         [_nineImg removeFromSuperview];
     }
-    
 
     LGNineImgView *nine = [[LGNineImgView alloc] initWithFrame:CGRectMake(leftOffset, contentTopOffset + model.heightForContent + 10, kScreenWidth, model.nineImgViewHeight)];
     [self.contentView addSubview:nine];

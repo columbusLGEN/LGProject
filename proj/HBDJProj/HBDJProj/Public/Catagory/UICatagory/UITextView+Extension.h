@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UITextView (Extension)
+
+/** UITextView 添加占位文字 */
 - (void)lg_setplaceHolderTextWithText:(NSString *)text textColor:(UIColor *)color font:(NSInteger)font;
 
 @end

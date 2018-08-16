@@ -63,6 +63,11 @@
 //    self.dataArray = arrMu.copy;
 //    [self.tableView reloadData];
     
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _offset = 0;
+        [self getData];
+    }];
+    
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self getData];
     }];
@@ -76,14 +81,28 @@
 
 - (void)getData{
     [DJDiscoveryNetworkManager.sharedInstance frontUgc_selectmechanismWithOffset:_offset success:^(id responseObj) {
+        
+        if (_offset == 0) {
+            [self.tableView.mj_footer resetNoMoreData];
+            [self.tableView.mj_header endRefreshing];
+        }
+        
         NSArray *array = responseObj;
+    
         if (array == nil || array.count == 0) {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
             return;
         }else{
             [self.tableView.mj_footer endRefreshing];
             
-            NSMutableArray *arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            NSMutableArray *arrmu;
+            if (_offset == 0) {
+                arrmu = NSMutableArray.new;
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+                
+            }
+            
             for (NSInteger i = 0; i < array.count; i++) {
                 DCSubStageModel *model = [DCSubStageModel mj_objectWithKeyValues:array[i]];
                 [arrmu addObject:model];

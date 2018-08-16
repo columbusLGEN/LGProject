@@ -11,6 +11,13 @@
 
 @implementation DJDiscoveryNetworkManager
 
+//    frontUserCollections/add -- 提问收藏
+
+- (void)frontQuestionanswer_updateWithQAId:(NSInteger)qaid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+    [self sendPOSTRequestWithiName:@"frontQuestionanswer/update" param:@{@"seqid":[NSString stringWithFormat:@"%ld",qaid]} success:success failure:failure];
+}
+
 - (void)frontUgc_selectmechanismWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
 /**
  //ugctype:

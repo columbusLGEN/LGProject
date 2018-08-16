@@ -35,10 +35,10 @@ UITableViewDataSource>
 
 - (void)setModel:(DCSubStageModel *)model{
     _model = model;
-//    _time.text = model.;
+    _time.text = [model.timestamp timestampToDate_nyr];
     _content.text = model.content;
-    _icon.image = model.testIcon;
-    _nick.text = model.nick;
+    [_icon sd_setImageWithURL:[NSURL URLWithString:model.headpic] placeholderImage:DJHeadIconPImage];
+    _nick.text = model.uploader;
     
     _comments = model.comments;
     [_tbvForComments reloadData];
@@ -72,6 +72,12 @@ UITableViewDataSource>
     }
     
 }
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [self.icon cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:self.icon.height * 0.5];
+}
+
 - (void)configUI {
     
     [self.contentView addSubview:self.icon];
@@ -109,7 +115,7 @@ UITableViewDataSource>
     [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(marginTen);
         make.centerY.equalTo(self.boInterView.mas_centerY);
-        make.width.mas_equalTo(110);
+        make.width.mas_equalTo(120);
     }];
     [self.boInterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.bottomRect.mas_top);
