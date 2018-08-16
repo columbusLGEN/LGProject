@@ -12,6 +12,8 @@
 #import "DCSubPartStateWithoutImgCell.h"
 #import "DCSubPartStateDetailViewController.h"
 #import "DJDiscoveryNetworkManager.h"
+#import "DCSubPartStateOneImgCell.h"
+#import "DCSubPartStateThreeImgCell.h"
 
 @interface DCSubPartStateTableViewController ()
 @property (assign,nonatomic) NSInteger offset;
@@ -33,9 +35,8 @@
     
     self.tableView.estimatedRowHeight = 1.0;
     [self.tableView registerClass:[DCSubPartStateWithoutImgCell class] forCellReuseIdentifier:withoutImgCell];
-    [self.tableView registerNib:[UINib nibWithNibName:oneImgCell bundle:nil]
-         forCellReuseIdentifier:oneImgCell];
-    [self.tableView registerNib:[UINib nibWithNibName:threeImgCell bundle:nil]
+    [self.tableView registerClass:[DCSubPartStateOneImgCell class] forCellReuseIdentifier:oneImgCell];
+    [self.tableView registerClass:[DCSubPartStateThreeImgCell class]
          forCellReuseIdentifier:threeImgCell];
     
 //    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];

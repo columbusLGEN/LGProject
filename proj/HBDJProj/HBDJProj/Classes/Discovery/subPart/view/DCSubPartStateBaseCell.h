@@ -17,7 +17,10 @@ static NSString * const threeImgCell = @"DCSubPartStateThreeImgCell";
 
 @interface DCSubPartStateBaseCell : LGBaseTableViewCell
 @property (strong,nonatomic) DCSubPartStateModel *model;
+
+/** 显示时间 */
 @property (strong,nonatomic) UILabel *timeLabel;
+/** 点赞，收藏，评论view */
 @property (strong, nonatomic) LGThreeRightButtonView *boInterView;
 
 @end

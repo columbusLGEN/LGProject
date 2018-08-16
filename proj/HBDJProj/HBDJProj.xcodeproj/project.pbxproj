@@ -59,9 +59,7 @@
 		8831E15F20931211001D038E /* DCSubPartStateWithoutImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E15E20931211001D038E /* DCSubPartStateWithoutImgCell.m */; };
 		8831E16220931332001D038E /* DCSubPartStateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E16120931332001D038E /* DCSubPartStateTableViewController.m */; };
 		8831E1672094012A001D038E /* DCSubPartStateOneImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1662094012A001D038E /* DCSubPartStateOneImgCell.m */; };
-		8831E16920940131001D038E /* DCSubPartStateOneImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E16820940131001D038E /* DCSubPartStateOneImgCell.xib */; };
 		8831E16C2094019D001D038E /* DCSubPartStateThreeImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E16B2094019D001D038E /* DCSubPartStateThreeImgCell.m */; };
-		8831E16E209401A3001D038E /* DCSubPartStateThreeImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E16D209401A3001D038E /* DCSubPartStateThreeImgCell.xib */; };
 		8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E17020941590001D038E /* DCSubStageTableviewController.m */; };
 		8831E17620941674001D038E /* DCSubStageBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E17520941674001D038E /* DCSubStageBaseTableViewCell.m */; };
 		8831E18120941797001D038E /* DCSubStageOneImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E18020941797001D038E /* DCSubStageOneImgCell.m */; };
@@ -578,10 +576,8 @@
 		8831E16120931332001D038E /* DCSubPartStateTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateTableViewController.m; sourceTree = "<group>"; };
 		8831E1652094012A001D038E /* DCSubPartStateOneImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateOneImgCell.h; sourceTree = "<group>"; };
 		8831E1662094012A001D038E /* DCSubPartStateOneImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateOneImgCell.m; sourceTree = "<group>"; };
-		8831E16820940131001D038E /* DCSubPartStateOneImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCSubPartStateOneImgCell.xib; sourceTree = "<group>"; };
 		8831E16A2094019D001D038E /* DCSubPartStateThreeImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateThreeImgCell.h; sourceTree = "<group>"; };
 		8831E16B2094019D001D038E /* DCSubPartStateThreeImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateThreeImgCell.m; sourceTree = "<group>"; };
-		8831E16D209401A3001D038E /* DCSubPartStateThreeImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCSubPartStateThreeImgCell.xib; sourceTree = "<group>"; };
 		8831E16F20941590001D038E /* DCSubStageTableviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageTableviewController.h; sourceTree = "<group>"; };
 		8831E17020941590001D038E /* DCSubStageTableviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubStageTableviewController.m; sourceTree = "<group>"; };
 		8831E17420941674001D038E /* DCSubStageBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubStageBaseTableViewCell.h; sourceTree = "<group>"; };
@@ -1781,10 +1777,8 @@
 				8831E15E20931211001D038E /* DCSubPartStateWithoutImgCell.m */,
 				8831E1652094012A001D038E /* DCSubPartStateOneImgCell.h */,
 				8831E1662094012A001D038E /* DCSubPartStateOneImgCell.m */,
-				8831E16820940131001D038E /* DCSubPartStateOneImgCell.xib */,
 				8831E16A2094019D001D038E /* DCSubPartStateThreeImgCell.h */,
 				8831E16B2094019D001D038E /* DCSubPartStateThreeImgCell.m */,
-				8831E16D209401A3001D038E /* DCSubPartStateThreeImgCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3467,7 +3461,6 @@
 				88435E79208DA88700188CE9 /* EDJLevelInfoCollectionViewCell.xib in Resources */,
 				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
 				886A1BE420D0CB330007AD63 /* hj.bundle in Resources */,
-				8831E16920940131001D038E /* DCSubPartStateOneImgCell.xib in Resources */,
 				8885D23B20A2BCB800DC06A1 /* PBDBottomView.xib in Resources */,
 				88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */,
 				886A1BE720D0CB330007AD63 /* IAPProducts.plist in Resources */,
@@ -3540,7 +3533,6 @@
 				8857B5F92123F8AA00BFCA16 /* testJson.txt in Resources */,
 				884312D620873B6900321F84 /* UCSetting.plist in Resources */,
 				886A1BEF20D0CB330007AD63 /* Fangsong.ttf in Resources */,
-				8831E16E209401A3001D038E /* DCSubPartStateThreeImgCell.xib in Resources */,
 				88C5F16920B7FF6D0075D5F2 /* HPAudioPlayerView.xib in Resources */,
 				88DD8137209C0D8900F297D6 /* OLVoteDetailVotedTableViewCell.xib in Resources */,
 				880B74D621183259008C7500 /* MBProgressHUD.bundle in Resources */,

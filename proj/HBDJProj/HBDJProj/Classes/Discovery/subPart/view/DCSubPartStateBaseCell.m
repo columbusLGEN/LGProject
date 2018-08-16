@@ -16,6 +16,12 @@
 
 @implementation DCSubPartStateBaseCell
 
+- (void)setModel:(DCSubPartStateModel *)model{
+    _model = model;
+    /// TODO: 时间 显示为 2018年8月8日 使用时间戳转
+    _timeLabel.text = model.createdtime;
+}
+
 + (NSString *)cellReuseIdWithModel:(DCSubPartStateModel *)model{
 //    if ([model.cover isEqualToString:@""] || model.cover == nil) {
 //        return withoutImgCell;
@@ -80,6 +86,7 @@
 - (UILabel *)timeLabel{
     if (!_timeLabel) {
         _timeLabel = UILabel.new;
+        _timeLabel.textColor = UIColor.EDJGrayscale_A4;
     }
     return _timeLabel;
 }

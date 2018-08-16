@@ -62,4 +62,28 @@ static const CGFloat commentsCellHeight = 25;
 
 - (CGFloat)cellHeight;
 
+
+//    "filetype":0,
+//    "frontComments":[
+//    
+//    ],
+//    "creatorid":1,
+//    "praisecount":1,
+//    "sort":0,
+//    "title":"",
+//    "auditstate":"1",
+//    "mechanismid":"180607092010002",
+//    "userid":"长孙无极",
+//    "content":"小时候",
+//    "createdtime":"2018-01-24 13:54:21",
+//    "ugctype":"1",
+//    "cover":"",
+//    "uploader":"长孙无极",
+//    "fileurl":"http://123.59.199.170/group1/M00/00/00/CgoKC1tAi_qAGpx7AV8r1CUcVnM424.mp4",
+//    "praiseid":0,
+//    "collectioncount":1,
+//    "collectionid":0,
+//    "seqid":1,
+//    "status":1
+
 @end
