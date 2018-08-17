@@ -21,8 +21,6 @@
 //#import "HPAudioVideoViewController.h"
 #import "DJLessonDetailViewController.h"
 
-//#import "DJRichTextShowWithYYKitViewController.h"
-
 #import "LGDidSelectedNotification.h"
 
 @implementation DJMediaDetailTransAssist
@@ -41,9 +39,6 @@
         case ModelMediaTypeRichText:{
             [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc];
             
-            //            DJRichTextShowWithYYKitViewController *vc = DJRichTextShowWithYYKitViewController.new;
-            //            vc.contentModel = model;
-            //            [baseVc.navigationController pushViewController:vc animated:YES];
         }
             break;
         case ModelMediaTypeCustom:

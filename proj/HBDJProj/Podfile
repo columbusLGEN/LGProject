@@ -19,6 +19,7 @@ pod 'XHNetworkCache'#网络请求缓存
 pod 'JGProgressHUD'#playerView 需要用到
 pod 'MMMaterialDesignSpinner'#playerView 需要用到
 pod 'LTScrollView', '~> 0.1.6'#首页用
+pod 'WMPlayer'
 
 
 # UM基础sdk

@@ -61,54 +61,54 @@ static CGFloat baseHeight = 152;
         }
     }
 }
-
-- (CGFloat)cellHeight{
-    CGFloat cellHeight;
-    switch (self.modelType) {
-        case StageModelTypeDefault:
-        case StageModelTypeMoreImg:
-            cellHeight = baseHeight + self.nineImgViewHeight;
-            break;
-        case StageModelTypeAImg:{
-            if (self.aImgType == StageModelTypeAImgTypeVer) {
-                cellHeight = baseHeight + aImgVerHeight;
-            }else{
-                cellHeight = baseHeight + aImgHoriHeight;
-            }
-        }
-            break;
-        case StageModelTypeAudio:
-            cellHeight = baseHeight + 20;
-            break;
-        case StageModelTypeVideo:
-            cellHeight = baseHeight + aImgHoriHeight;
-            break;
-    }
-    CGFloat commentsHeight = 0;
-    if (self.comments.count) {
-        commentsHeight = 28 + self.commentsTbvHeight;
-    }
-    return cellHeight + commentsHeight;
-}
+//
+//- (CGFloat)cellHeight{
+//    CGFloat cellHeight;
+//    switch (self.modelType) {
+//        case StageModelTypeDefault:
+//        case StageModelTypeMoreImg:
+//            cellHeight = baseHeight + self.nineImgViewHeight;
+//            break;
+//        case StageModelTypeAImg:{
+//            if (self.aImgType == StageModelTypeAImgTypeVer) {
+//                cellHeight = baseHeight + aImgVerHeight;
+//            }else{
+//                cellHeight = baseHeight + aImgHoriHeight;
+//            }
+//        }
+//            break;
+//        case StageModelTypeAudio:
+//            cellHeight = baseHeight + 20;
+//            break;
+//        case StageModelTypeVideo:
+//            cellHeight = baseHeight + aImgHoriHeight;
+//            break;
+//    }
+//    CGFloat commentsHeight = 0;
+//    if (self.comments.count) {
+//        commentsHeight = 28 + self.commentsTbvHeight;
+//    }
+//    return cellHeight + commentsHeight;
+//}
 - (CGFloat)commentsTbvHeight{
     if (!_commentsTbvHeight) {
-        _commentsTbvHeight = self.comments.count * commentsCellHeight;
+        _commentsTbvHeight = self.frontComments.count * commentsCellHeight;
     }
     return _commentsTbvHeight;
 }
 
-- (CGFloat)nineImgViewHeight{
-    CGFloat nineHeight = 0;
-    if (self.imgs.count == 0) {
-    }else if (self.imgs.count < 4) {
-        nineHeight = 84;
-    }else if (self.imgs.count < 7){
-        nineHeight = 84 * 2 + 7;
-    }else{
-        nineHeight = 84 * 3 + 7 * 2;
-    }
-    return nineHeight;
-}
+//- (CGFloat)nineImgViewHeight{
+//    CGFloat nineHeight = 0;
+//    if (self.imgs.count == 0) {
+//    }else if (self.imgs.count < 4) {
+//        nineHeight = 84;
+//    }else if (self.imgs.count < 7){
+//        nineHeight = 84 * 2 + 7;
+//    }else{
+//        nineHeight = 84 * 3 + 7 * 2;
+//    }
+//    return nineHeight;
+//}
 
 - (NSArray *)imgs{
     if (!_imgs) {

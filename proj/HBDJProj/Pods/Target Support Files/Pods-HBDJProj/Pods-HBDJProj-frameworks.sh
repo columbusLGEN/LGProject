@@ -157,6 +157,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WMPlayer/WMPlayer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XHNetworkCache/XHNetworkCache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYText/YYText.framework"
 fi
@@ -175,6 +176,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WMPlayer/WMPlayer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XHNetworkCache/XHNetworkCache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYText/YYText.framework"
 fi

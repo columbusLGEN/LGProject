@@ -11,9 +11,15 @@
 #import "DCSubStageModel.h"
 #import "DCSubStageCommentsModel.h"
 #import "DJDiscoveryNetworkManager.h"
+#import "DJUserInteractionMgr.h"
+#import <WMPlayer/WMPlayer.h>
+#import "HZPhotoBrowser.h"
 
-@interface DCSubStageTableviewController ()
+@interface DCSubStageTableviewController ()<
+DCSubStageBaseTableViewCellDelegate,
+WMPlayerDelegate>
 @property (assign,nonatomic) NSInteger offset;
+@property (weak,nonatomic) WMPlayer * wmPlayer;
 
 @end
 
@@ -22,46 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.estimatedRowHeight = 1.0;
     [self.tableView registerClass:[NSClassFromString(threeImgCell) class] forCellReuseIdentifier:threeImgCell];
     [self.tableView registerClass:[NSClassFromString(oneImgCell) class] forCellReuseIdentifier:oneImgCell];
     [self.tableView registerClass:[NSClassFromString(audioCell) class] forCellReuseIdentifier:audioCell];
-    
-//    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
-//    for (NSInteger i = 0; i < 20; i++) {
-//        DCSubStageModel *model = [DCSubStageModel new];
-//        model.nick = [NSString stringWithFormat:@"王建国_%ld",i];
-//        model.modelType = StageModelTypeMoreImg;
-//        if (i < 3) {
-//            model.modelType = StageModelTypeAImg;
-//            if (!i) {
-//                model.aTestImg = [UIImage imageNamed:@"ver_test_img"];
-//            }else{
-//                model.aTestImg = [UIImage imageNamed:@"party_history"];
-//            }
-//            if (i == 2) {
-//                model.isVideo = YES;
-//                model.modelType = StageModelTypeVideo;
-//            }
-//        }
-//        if (i == 3) {
-//            model.modelType = StageModelTypeAudio;
-//            model.content = @"";
-//        }
-//        
-//        /// 评论
-//        NSMutableArray *arrM = [NSMutableArray array];
-//        for (NSInteger j = 0; j < arc4random_uniform(5); j++) {
-//            DCSubStageCommentsModel *commentsModel = [DCSubStageCommentsModel new];
-//            commentsModel.sender = @"李楠";
-//            commentsModel.content = @"我也听了这个宣讲";
-//            [arrM addObject:commentsModel];
-//        }
-//        model.comments = arrM.copy;
-//        
-//        [arrMu addObject:model];
-//    }
-//    self.dataArray = arrMu.copy;
-//    [self.tableView reloadData];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _offset = 0;
@@ -126,18 +96,74 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DCSubStageModel *model = self.dataArray[indexPath.row];
     DCSubStageBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[DCSubStageBaseTableViewCell cellReuseIdWithModel:model]];
+    cell.delegate = self;
     cell.model = model;
+    
     return cell;
 }
-- (void)tableView:(UITableView *)tableView willDisplayCell:(DCSubStageBaseTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    DCSubStageModel *model = self.dataArray[indexPath.row];
-    cell.model = model;
+
+- (void)pyqLikeWithModel:(DCSubStageModel *)model{
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeStage success:^(NSInteger cbkid, NSInteger cbkCount) {
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"点赞失败，请稍后重试"];
+    }];
+}
+- (void)pyqCollectWithModel:(DCSubStageModel *)model{
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeStage success:^(NSInteger cbkid, NSInteger cbkCount) {
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"收藏失败，请稍后重试"];
+    }];
+}
+- (void)pyqCommentWithModel:(DCSubStageModel *)model{
+    [DJDiscoveryNetworkManager.sharedInstance frontComments_addWithCommentid:model.seqid commenttype:1 comment:@"测试评论" success:^(id responseObj) {
+        
+    } failure:^(id failureObj) {
+        
+    }];
+    
+}
+- (void)pyqCellOneImageClick:(DCSubStageBaseTableViewCell *)cell model:(DCSubStageModel *)model imageView:(UIImageView *)imageView{
+    //启动图片浏览器
+    HZPhotoBrowser *browser = [[HZPhotoBrowser alloc] init];
+    browser.isFullWidthForLandScape = YES;
+    browser.isNeedLandscape = YES;
+    browser.sourceImagesContainerView = cell.contentView; // 原图的父控件
+//    browser.currentImageIndex = (int)button.tag;
+//    browser.imageCount = 1; // 图片总数
+    browser.imageArray = @[model.fileurl];
+    
+    browser.delegate = cell;
+    [browser show];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DCSubStageModel *model = self.dataArray[indexPath.row];
-    return model.cellHeight;
+- (void)pyqCellplayVideoWithModel:(DCSubStageModel *)model{
+    
+    WMPlayerModel *playerModel = [WMPlayerModel new];
+//    playerModel.title = model.title;
+    playerModel.videoURL = [NSURL URLWithString:model.fileurl];
+    playerModel.verticalVideo = (model.aImgType == StageModelTypeAImgTypeVer);
+    WMPlayer * wmPlayer = [[WMPlayer alloc]initPlayerModel:playerModel];
+    _wmPlayer = wmPlayer;
+    _wmPlayer.backBtnStyle = BackBtnStylePop;
+    _wmPlayer.delegate = self;
+    _wmPlayer.tintColor = UIColor.EDJMainColor;
+    _wmPlayer.loopPlay = NO;
+    _wmPlayer.playerLayerGravity = WMPlayerLayerGravityResizeAspect;
+    [UIApplication.sharedApplication.keyWindow addSubview:_wmPlayer];
+    
+    [_wmPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.trailing.top.equalTo(UIApplication.sharedApplication.keyWindow);
+//        make.height.mas_equalTo(wmPlayer.mas_width).multipliedBy(9.0/16);
+        make.edges.equalTo(UIApplication.sharedApplication.keyWindow);
+    }];
+    [_wmPlayer play];
+    
 }
 
+-(void)wmplayer:(WMPlayer *)wmplayer clickedCloseButton:(UIButton *)backBtn{
+    [wmplayer pause];
+    [wmplayer removeFromSuperview];
+    _wmPlayer = nil;
+}
 
 @end

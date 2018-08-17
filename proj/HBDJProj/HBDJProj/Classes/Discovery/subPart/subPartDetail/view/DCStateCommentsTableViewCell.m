@@ -22,20 +22,23 @@
 
 - (void)setModel:(DCStateCommentsModel *)model{
     _model = model;
-    _content.text = model.content;
-    _nick.text = model.nick;
+    _content.text = model.comment;
+    _nick.text = model.username;
     
+    [_icon sd_setImageWithURL:[NSURL URLWithString:model.headpic] placeholderImage:DJHeadIconPImage];
+    
+    if (model.createdtime.length > length_timeString) {
+        _time.text = [model.createdtime substringToIndex:length_timeString + 1];
+    }else{
+        _time.text = model.createdtime;
+    }
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    [_icon cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:_icon.height * 0.5];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

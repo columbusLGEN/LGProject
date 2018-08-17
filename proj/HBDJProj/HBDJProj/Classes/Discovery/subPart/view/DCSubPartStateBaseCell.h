@@ -15,8 +15,16 @@ static NSString * const withoutImgCell = @"DCSubPartStateWithoutImgCell";
 static NSString * const oneImgCell = @"DCSubPartStateOneImgCell";
 static NSString * const threeImgCell = @"DCSubPartStateThreeImgCell";
 
+@protocol DCSubPartStateBaseCellDelegate <NSObject>
+- (void)branchLikeWithModel:(DCSubPartStateModel *)model;
+- (void)branchCollectWithModel:(DCSubPartStateModel *)model;
+- (void)branchCommentWithModel:(DCSubPartStateModel *)model;
+
+@end
+
 @interface DCSubPartStateBaseCell : LGBaseTableViewCell
 @property (strong,nonatomic) DCSubPartStateModel *model;
+@property (weak,nonatomic) id<DCSubPartStateBaseCellDelegate> delegate;
 
 /** 显示时间 */
 @property (strong,nonatomic) UILabel *timeLabel;

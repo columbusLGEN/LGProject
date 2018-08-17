@@ -30,6 +30,10 @@ static CGFloat buttonH = 30;
     _middleIsSelected = middleIsSelected;
     self.midBtn.selected = middleIsSelected;
 }
+- (void)setRightIsSelected:(BOOL)rightIsSelected{
+    _rightIsSelected = rightIsSelected;
+    self.rightBtn.selected = rightIsSelected;
+}
 - (void)setLikeCount:(NSInteger)likeCount{
     _likeCount = likeCount;
     [self.leftBtn setTitle:[self formatterWithCount:likeCount] forState:UIControlStateNormal];
@@ -37,6 +41,10 @@ static CGFloat buttonH = 30;
 - (void)setCollectionCount:(NSInteger)collectionCount{
     _collectionCount = collectionCount;
     [self.midBtn setTitle:[self formatterWithCount:collectionCount] forState:UIControlStateNormal];
+}
+- (void)setCommentCount:(NSInteger)commentCount{
+    _commentCount = commentCount;
+    [self.rightBtn setTitle:[self formatterWithCount:commentCount] forState:UIControlStateNormal];
 }
 
 - (NSString *)formatterWithCount:(NSInteger)count{

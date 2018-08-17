@@ -9,7 +9,9 @@
 /// 支部动态详情页面
 
 #import "LGBaseViewController.h"
+@class DCSubPartStateModel;
 
 @interface DCSubPartStateDetailViewController : LGBaseViewController
+@property (strong,nonatomic) DCSubPartStateModel *model;
 
 @end

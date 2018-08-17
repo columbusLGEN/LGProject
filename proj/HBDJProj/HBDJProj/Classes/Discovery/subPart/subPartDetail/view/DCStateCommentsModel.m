@@ -10,8 +10,6 @@
 
 @implementation DCStateCommentsModel
 
-- (CGFloat)cellHeight{
-    return [self.content sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 82, MAXFLOAT) font:[UIFont systemFontOfSize:16]].height + 71;
-}
+
 
 @end

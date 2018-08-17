@@ -11,12 +11,14 @@
 
 @implementation DJDiscoveryNetworkManager
 
-//    frontUserCollections/add -- 提问收藏
-
-- (void)frontQuestionanswer_updateWithQAId:(NSInteger)qaid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    
-    [self sendPOSTRequestWithiName:@"frontQuestionanswer/update" param:@{@"seqid":[NSString stringWithFormat:@"%ld",qaid]} success:success failure:failure];
+- (void)frontComments_addWithCommentid:(NSInteger)commentid commenttype:(NSInteger)commenttype comment:(NSString *)comment success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *dict = @{@"commentid":[NSString stringWithFormat:@"%ld",commentid],
+                           @"commenttype":[NSString stringWithFormat:@"%ld",commenttype],
+                           @"comment":comment
+                           };
+    [self sendPOSTRequestWithiName:@"frontComments/add" param:dict success:success failure:failure];
 }
+
 
 - (void)frontUgc_selectmechanismWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
 /**

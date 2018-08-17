@@ -13,15 +13,20 @@
 #import "DCSubStageCommentsCell.h"
 #import "LGTriangleView.h"
 
+static NSString * const praiseid_keyPath = @"praiseid";
+static NSString * const collectionid_keyPath = @"collectionid";
+static NSString * const praisecount_keyPath = @"praisecount";
+static NSString * const collectioncount_keyPath = @"collectioncount";
+
 @interface DCSubStageBaseTableViewCell ()<
 UITableViewDelegate,
-UITableViewDataSource>
+UITableViewDataSource,
+LGThreeRightButtonViewDelegate>
 
 @property (strong, nonatomic) UIImageView *icon;/// 头像
 @property (strong, nonatomic) UILabel *nick;/// 昵称
-@property (strong, nonatomic) UILabel *content;/// 文本内容
 @property (strong,nonatomic) UILabel *time;/// 时间
-@property (strong, nonatomic) LGThreeRightButtonView *boInterView;/// 底部交互按钮
+
 @property (weak,nonatomic) UIView *bottomRect;/// 如果有评论，则隐藏 bottomRect
 
 @property (strong,nonatomic) UITableView *tbvForComments;
@@ -40,7 +45,7 @@ UITableViewDataSource>
     [_icon sd_setImageWithURL:[NSURL URLWithString:model.headpic] placeholderImage:DJHeadIconPImage];
     _nick.text = model.uploader;
     
-    _comments = model.comments;
+    _comments = model.frontComments;
     [_tbvForComments reloadData];
     
     if (_comments.count) {
@@ -71,6 +76,55 @@ UITableViewDataSource>
         }];
     }
     
+    _boInterView.leftIsSelected = !(model.praiseid <= 0);
+    _boInterView.middleIsSelected = !(model.collectionid <= 0);
+    _boInterView.rightIsSelected = model.iscomment;
+    
+    _boInterView.likeCount = model.praisecount;
+    _boInterView.collectionCount = model.collectioncount;
+    _boInterView.commentCount = model.frontComments.count;
+    
+    [model addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if (object == self.model) {
+        if ([keyPath isEqualToString:praiseid_keyPath]) {
+            _boInterView.leftIsSelected = !(self.model.praiseid <= 0);
+        }
+        if ([keyPath isEqualToString:collectionid_keyPath]) {
+            _boInterView.middleIsSelected = !(self.model.collectionid <= 0);
+        }
+        if ([keyPath isEqualToString:praisecount_keyPath]) {
+            _boInterView.likeCount = self.model.praisecount;
+        }
+        if ([keyPath isEqualToString:collectioncount_keyPath]) {
+            _boInterView.collectionCount = self.model.collectioncount;
+        }
+    }
+}
+
+- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 党员舞台点赞
+    if ([self.delegate respondsToSelector:@selector(pyqLikeWithModel:)]) {
+        [self.delegate pyqLikeWithModel:self.model];
+    }
+}
+- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 党员舞台收藏
+    if ([self.delegate respondsToSelector:@selector(pyqCollectWithModel:)]) {
+        [self.delegate pyqCollectWithModel:self.model];
+    }
+}
+- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 党员舞台评论
+    if ([self.delegate respondsToSelector:@selector(pyqCommentWithModel:)]) {
+        [self.delegate pyqCommentWithModel:self.model];
+    }
 }
 
 - (void)layoutSubviews{
@@ -84,8 +138,8 @@ UITableViewDataSource>
     [self.contentView addSubview:self.nick];
     
     [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(marginFifteen);
-        make.left.equalTo(self.mas_left).offset(leftOffset);
+        make.top.equalTo(self.contentView.mas_top).offset(marginFifteen);
+        make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
         make.width.mas_equalTo(30);
         make.height.mas_equalTo(30);
     }];
@@ -97,43 +151,43 @@ UITableViewDataSource>
     
     [self.contentView addSubview:self.content];
     [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(leftOffset);
-        make.right.equalTo(self.mas_right).offset(-marginFifteen);
-        make.top.equalTo(self.mas_top).offset(contentTopOffset);
+        make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+        make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
+        make.top.equalTo(self.contentView.mas_top).offset(contentTopOffset);
     }];
     
     /// cell底部 矩形分割线
     UIView *bottomRect = [UIView new];
     _bottomRect = bottomRect;
-    bottomRect.backgroundColor = [UIColor EDJGrayscale_F3];
-    [self.contentView addSubview:bottomRect];
+    _bottomRect.backgroundColor = [UIColor EDJGrayscale_F3];
+    [self.contentView addSubview:_bottomRect];
     
     [self.contentView addSubview:self.boInterView];
     [self.contentView addSubview:self.time];
     [self.contentView addSubview:self.tbvForComments];
     
     [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(marginTen);
+        make.left.equalTo(self.contentView.mas_left).offset(marginTen);
         make.centerY.equalTo(self.boInterView.mas_centerY);
         make.width.mas_equalTo(120);
     }];
     [self.boInterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottomRect.mas_top);
+        make.bottom.equalTo(_bottomRect.mas_top);
         make.left.equalTo(self.time.mas_right).offset(-marginTen);
-        make.right.equalTo(self.mas_right);
+        make.right.equalTo(self.contentView.mas_right);
         make.height.mas_equalTo(45);
     }];
-    [bottomRect mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.mas_bottom);
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
+    [_bottomRect mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.left.equalTo(self.contentView.mas_left);
+        make.right.equalTo(self.contentView.mas_right);
         make.height.mas_equalTo(5);
     }];
     
     [self.tbvForComments mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(leftOffset);
-        make.right.equalTo(self.mas_right).offset(-30);
-        make.bottom.equalTo(self.mas_bottom);
+        make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+        make.right.equalTo(self.contentView.mas_right).offset(-30);
+        make.bottom.equalTo(self.contentView.mas_bottom);
     }];
     
     LGTriangleView *triangle = [LGTriangleView new];
@@ -170,7 +224,6 @@ UITableViewDataSource>
         _time = [UILabel new];
         _time.textColor = [UIColor EDJGrayscale_66];
         _time.font = [UIFont systemFontOfSize:15];
-//        _time.text = @"2018年5月21日";
     }
     return _time;
 }
@@ -178,6 +231,7 @@ UITableViewDataSource>
     if (_boInterView == nil) {
         _boInterView = [LGThreeRightButtonView new];
         _boInterView.hideTopLine = YES;
+        _boInterView.delegate = self;
         [_boInterView setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
                                         TRConfigImgNameKey:@"dc_like_normal",
                                         TRConfigSelectedImgNameKey:@"dc_like_selected",
@@ -257,5 +311,11 @@ UITableViewDataSource>
     }
 }
 
+- (void)dealloc{
+    [self.model removeObserver:self forKeyPath:praiseid_keyPath];
+    [self.model removeObserver:self forKeyPath:collectionid_keyPath];
+    [self.model removeObserver:self forKeyPath:praisecount_keyPath];
+    [self.model removeObserver:self forKeyPath:collectioncount_keyPath];
+}
 
 @end

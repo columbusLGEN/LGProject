@@ -21,8 +21,6 @@
 @property (strong,nonatomic) NSString *createdtime;
 /** ??? */
 @property (strong,nonatomic) NSString *username;
-//    "creatorid":1,
-//    "status":1,
-//}
+- (CGFloat)cellHeight;
 
 @end

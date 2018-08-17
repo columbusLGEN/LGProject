@@ -25,5 +25,7 @@
 
 /** 用户头像 */
 @property (strong,nonatomic) NSString *headpic;
+@property (strong,nonatomic) NSString *timestamp;
+@property (strong,nonatomic) NSString *createdtime;
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import "LGBaseView.h"
+@class DCSubPartStateModel;
 
 @interface DCRichTextBottomInfoView : LGBaseView
+@property (strong,nonatomic) DCSubPartStateModel *model;
 + (instancetype)richTextBottomInfo;
 
 @end

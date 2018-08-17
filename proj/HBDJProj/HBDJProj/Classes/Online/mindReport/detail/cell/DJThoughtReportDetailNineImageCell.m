@@ -47,8 +47,6 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.groupView];
-        NSLog(@"cell.userInteractionEnabled: %d",self.userInteractionEnabled);
-        NSLog(@"cell.contentView.userInteractionEnabled: %d",self.contentView.userInteractionEnabled);
     }
     return self;
 }

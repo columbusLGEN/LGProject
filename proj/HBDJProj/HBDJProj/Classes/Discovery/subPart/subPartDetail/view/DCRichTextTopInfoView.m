@@ -30,8 +30,8 @@
     _title.text = model.title;
 //    _time.text = model.createdDate;
     _time.text = [model.createdtime timestampToMin];
-    _source.text = [NSString stringWithFormat:@"来源: %@",model.source];
-    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",model.playcount];
+//    _source.text = [NSString stringWithFormat:@"来源: %@",model.source];
+//    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",model.playcount];
 }
 
 - (void)setDisplayCounts:(BOOL)displayCounts{
@@ -42,6 +42,7 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     _counts.hidden = YES;
+    _source.hidden = YES;
 }
 
 + (instancetype)richTextTopInfoView{

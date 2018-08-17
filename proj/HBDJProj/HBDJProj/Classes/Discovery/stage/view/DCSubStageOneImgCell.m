@@ -8,6 +8,8 @@
 
 #import "DCSubStageOneImgCell.h"
 #import "DCSubStageModel.h"
+#import "LGThreeRightButtonView.h"
+#import "HZPhotoBrowser.h"
 
 @interface DCSubStageOneImgCell ()
 @property (strong,nonatomic) UIImageView *aImage;
@@ -18,8 +20,31 @@
 @implementation DCSubStageOneImgCell
 
 - (void)play:(UIButton *)sender{
-    NSLog(@"播放视频 -- ");
+    if ([self.delegate respondsToSelector:@selector(pyqCellplayVideoWithModel:)]) {
+        [self.delegate pyqCellplayVideoWithModel:self.model];
+    }
 }
+
+- (void)imageTap:(UIGestureRecognizer *)tap{
+    if (self.model.filetype == 1) {
+        if ([self.delegate respondsToSelector:@selector(pyqCellOneImageClick:model:imageView:)]) {
+            [self.delegate pyqCellOneImageClick:self model:self.model imageView:_aImage];
+        }
+    }
+}
+
+#pragma mark - photobrowser代理方法
+// 返回临时占位图片（即原来的小图）
+- (UIImage *)photoBrowser:(HZPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index{
+    return self.aImage.image;
+}
+
+//// 返回高质量图片的url
+//- (NSURL *)photoBrowser:(HZPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+//{
+//    NSString *urlStr = [self.urlArray[index] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+//    return [NSURL URLWithString:urlStr];
+//}
 
 - (void)setModel:(DCSubStageModel *)model{
     [super setModel:model];
@@ -35,15 +60,17 @@
     
     if (model.aImgType == StageModelTypeAImgTypeVer) {
         [self.aImage mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(aImgTopOffset);
+            make.top.equalTo(self.contentView.mas_top).offset(aImgTopOffset);
             make.width.mas_equalTo(aImgVerWidth);
             make.height.mas_equalTo(aImgVerHeight);
+            make.bottom.equalTo(self.boInterView).offset(-marginEight);
         }];
     }else{
         [self.aImage mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(aImgTopOffset);
+            make.top.equalTo(self.contentView.mas_top).offset(aImgTopOffset);
             make.width.mas_equalTo(aImgHoriWidth);
             make.height.mas_equalTo(aImgHoriHeight);
+            make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
         }];
     }
     
@@ -57,7 +84,7 @@
         self.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.aImage];
         [self.aImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mas_left).offset(leftOffset);
+            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
         }];
         CGFloat playWidth = 40;
         [self.contentView addSubview:self.play];
@@ -76,6 +103,10 @@
         _aImage = [UIImageView new];
         _aImage.clipsToBounds = YES;
         _aImage.contentMode = UIViewContentModeScaleAspectFill;
+        
+        UITapGestureRecognizer *tapImg = [UITapGestureRecognizer.alloc initWithTarget:self action:@selector(imageTap:)];
+        _aImage.userInteractionEnabled = YES;
+        [_aImage addGestureRecognizer:tapImg];
     }
     return _aImage;
 }

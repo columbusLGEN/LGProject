@@ -21,7 +21,6 @@ static const CGFloat homeMicroLessonHeaderHeight = 128;
 static const CGFloat homeMicroLessonSubCellBaseHeight = 90;
 static const CGFloat homeMicroLessonHeaderFooterHeight = 55;
 static const CGFloat tabBarHeight = 49;
-static const CGFloat richTextTopInfoViewHeight = 110;
 
 static const CGFloat plusScreenHeight = 736;
 static const CGFloat plusScreenWidth = 414;

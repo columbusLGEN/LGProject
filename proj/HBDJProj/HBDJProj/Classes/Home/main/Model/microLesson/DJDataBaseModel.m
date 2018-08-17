@@ -10,6 +10,8 @@
 
 @implementation DJDataBaseModel
 
+@synthesize createdtime = _createdtime;
+
 - (NSInteger)praisecount{
     if (_praisecount < 0) {
         _praisecount = 0;

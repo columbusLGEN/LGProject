@@ -73,9 +73,9 @@ LGNavigationSearchBarDelelgate>
     
     [DJDiscoveryNetworkManager.sharedInstance frontIndex_findIndexWithSuccess:^(id responseObj) {
 
-        NSArray *questionanswer = responseObj[@"questionanswer"];
-        NSArray *branch = responseObj[@"branch"];
-        NSArray *ugc = responseObj[@"ugc"];
+        NSArray *questionanswer = responseObj[@"questionanswer"];// 学习问答
+        NSArray *branch = responseObj[@"branch"];// 支部动态
+        NSArray *ugc = responseObj[@"ugc"];// 朋友圈
         
         /// 学习问答
         DCQuestionCommunityViewController *qavc = self.childViewControllers[0];

@@ -19,12 +19,12 @@
 - (void)setModel:(DCSubStageCommentsModel *)model{
     _model = model;
     
-    NSString *desContent = [model.sender stringByAppendingString:[NSString stringWithFormat:@": %@",model.content]];
+    NSString *desContent = [model.username stringByAppendingString:[NSString stringWithFormat:@": %@",model.comment]];
     NSDictionary *attrDict = @{NSForegroundColorAttributeName:[UIColor EDJColor_6CBEFC]};
     
     NSMutableAttributedString *desAttContent = [[NSMutableAttributedString alloc] initWithString:desContent];
     
-    NSString *blueString = [model.sender stringByAppendingString:@":"];
+    NSString *blueString = [model.username stringByAppendingString:@":"];
     [desAttContent setAttributes:attrDict range:NSMakeRange([desContent rangeOfString:blueString].location, [desContent rangeOfString:blueString].length)];
     
     _content.attributedText = desAttContent;

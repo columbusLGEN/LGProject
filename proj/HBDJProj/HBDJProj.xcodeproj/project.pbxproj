@@ -233,7 +233,6 @@
 		888E3A6F211BF22900ED2DA3 /* LGFilePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A6E211BF22900ED2DA3 /* LGFilePathManager.m */; };
 		888E3A72211D2B0000ED2DA3 /* OLTestBackLookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A71211D2B0000ED2DA3 /* OLTestBackLookModel.m */; };
 		8891A43520F9CF110059D220 /* LGAttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8891A43420F9CF110059D220 /* LGAttributedTextView.m */; };
-		8891A43C20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8891A43B20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m */; };
 		88949C1B211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88949C1A211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.m */; };
 		88949C22211ECCC400B80AEE /* DJSearchWorkPlantformCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88949C21211ECCC400B80AEE /* DJSearchWorkPlantformCell.m */; };
 		88949C24211ECCDA00B80AEE /* DJSearchWorkPlantformCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88949C23211ECCDA00B80AEE /* DJSearchWorkPlantformCell.xib */; };
@@ -886,8 +885,6 @@
 		888E3A71211D2B0000ED2DA3 /* OLTestBackLookModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestBackLookModel.m; sourceTree = "<group>"; };
 		8891A43320F9CF110059D220 /* LGAttributedTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGAttributedTextView.h; sourceTree = "<group>"; };
 		8891A43420F9CF110059D220 /* LGAttributedTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGAttributedTextView.m; sourceTree = "<group>"; };
-		8891A43A20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJRichTextShowWithYYKitViewController.h; sourceTree = "<group>"; };
-		8891A43B20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJRichTextShowWithYYKitViewController.m; sourceTree = "<group>"; };
 		88949C19211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSearchWorkPlantformListViewController.h; sourceTree = "<group>"; };
 		88949C1A211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSearchWorkPlantformListViewController.m; sourceTree = "<group>"; };
 		88949C20211ECCC400B80AEE /* DJSearchWorkPlantformCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSearchWorkPlantformCell.h; sourceTree = "<group>"; };
@@ -2546,8 +2543,6 @@
 				8885D23620A2BC1F00DC06A1 /* view */,
 				8885D23320A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.h */,
 				8885D23420A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m */,
-				8891A43A20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.h */,
-				8891A43B20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -3614,6 +3609,7 @@
 				"${PODS_ROOT}/PLPlayerKit/Pod/Library/PLPlayerKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/WMPlayer/WMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/XHNetworkCache/XHNetworkCache.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 			);
@@ -3633,6 +3629,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PLPlayerKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WMPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XHNetworkCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 			);
@@ -3942,7 +3939,6 @@
 				8831E1512092FE22001D038E /* LGButton.m in Sources */,
 				8876E40220F063CF001C6A1A /* DJUploadThemePartyDayTableViewController.m in Sources */,
 				8877742220C0F7390011DFF3 /* ECRPDFRelateder.m in Sources */,
-				8891A43C20F9E97A0059D220 /* DJRichTextShowWithYYKitViewController.m in Sources */,
 				88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */,
 				884312B2208721F400321F84 /* LGBaseTableViewController.m in Sources */,
 				884312B52087222600321F84 /* EDJLevelInsTableViewController.m in Sources */,

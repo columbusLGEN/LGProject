@@ -11,6 +11,9 @@
 
 @protocol UCQuestionTableViewCellDelegate <NSObject>
 - (void)qaCellshowAllClickWith:(NSIndexPath *)indexPath;
+- (void)qaCellLikeWithModel:(UCQuestionModel *)model;
+- (void)qaCellCollectWithModel:(UCQuestionModel *)model;
+- (void)qaCellShareWithModel:(UCQuestionModel *)model;
 
 @end
 

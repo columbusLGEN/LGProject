@@ -12,8 +12,18 @@
 
 @interface DCSubStageCommentsModel : LGBaseModel
 
-/** 此条评论发布者 */
-@property (strong,nonatomic) NSString *sender;
-@property (strong,nonatomic) NSString *content;
+/** 评论内容 */
+@property (strong,nonatomic) NSString *comment;
+
+/** 此条评论属于的数据的id */
+@property (assign,nonatomic) NSInteger commentid;
+/**
+ 1党员舞台
+ 2支部动态 */
+@property (assign,nonatomic) NSInteger commenttype;
+/** 发出该条评论的 用户名 */
+@property (strong,nonatomic) NSString *username;
+@property (strong,nonatomic) NSString *userid;
+
 
 @end

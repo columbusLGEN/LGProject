@@ -14,8 +14,6 @@
 #import "HPAudioVideoViewController.h"
 #import "DJLessonDetailViewController.h"
 
-static NSString * const testVideo = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXS3WAMVzsAV8r1CUcVnM988.mp4";
-
 @interface HPVideoContainerView ()<
 PLPlayerViewDelegate>
 
@@ -32,8 +30,7 @@ PLPlayerViewDelegate>
     /// 设置数据
     PLMediaInfo *media = [PLMediaInfo new];
     /// TODO: 封面？ /// 视频连接？
-    media.thumbURL = model.cover;// @"http://a.hiphotos.baidu.com/image/pic/item/0df3d7ca7bcb0a46aa1f61a36763f6246b60af6f.jpg";
-//    media.videoURL = testVideo;
+    media.thumbURL = model.cover;
     media.videoURL = model.vedio;
     
     _playerView.media = media;

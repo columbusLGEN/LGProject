@@ -8,6 +8,7 @@
 
 #import "DCSubStageAudioCell.h"
 #import "LGAudioPlayerView.h"
+#import "LGThreeRightButtonView.h"
 
 @interface DCSubStageAudioCell ()
 @property (strong,nonatomic) LGAudioPlayerView *audio;
@@ -20,10 +21,11 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.audio];
         [_audio mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mas_top).offset(contentTopOffset);
-            make.left.equalTo(self.mas_left).offset(leftOffset);
-            make.right.equalTo(self.mas_right).offset(-leftOffset);
+            make.top.equalTo(self.content.mas_bottom).offset(marginEight);
+            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+            make.right.equalTo(self.contentView.mas_right).offset(-leftOffset);
             make.height.mas_equalTo(62);
+            make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
         }];
 //        CFIndex audioRetainCount = CFGetRetainCount((__bridge CFTypeRef)(self.audio));
 //        NSLog(@"audioRetainCount -- %ld",audioRetainCount);

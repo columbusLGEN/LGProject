@@ -10,6 +10,8 @@
 #import "UCQuestionTableViewCell.h"
 #import "DJDiscoveryNetworkManager.h"
 #import "UCQuestionModel.h"
+#import "DJUserInteractionMgr.h"
+#import "LGSocialShareManager.h"
 
 static NSString * const cellID = @"UCQuestionTableViewCell";
 
@@ -107,6 +109,28 @@ UCQuestionTableViewCellDelegate>
 - (void)qaCellshowAllClickWith:(NSIndexPath *)indexPath{
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
-
+- (void)qaCellLikeWithModel:(UCQuestionModel *)model{
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"点赞失败，请稍后重试"];
+    }];
+}
+- (void)qaCellCollectWithModel:(UCQuestionModel *)model{
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"收藏失败，请稍后重试"];
+    }];
+}
+- (void)qaCellShareWithModel:(UCQuestionModel *)model{
+    
+    /// TODO: 分享链接等内容
+    NSDictionary *param = @{LGSocialShareParamKeyWebPageUrl:model.shareUrl?model.shareUrl:@"",
+                            LGSocialShareParamKeyTitle:model.title?model.title:@"",
+                            LGSocialShareParamKeyDesc:model.contentvalidity?model.contentvalidity:@"",
+                            LGSocialShareParamKeyThumbUrl:model.thumbnail?model.thumbnail:@"",
+                            LGSocialShareParamKeyVc:self};
+    
+    [[LGSocialShareManager new] showShareMenuWithParam:param];
+}
 
 @end

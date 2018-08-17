@@ -18,8 +18,8 @@
 #import "DCRichTextTopInfoView.h"
 #import "DCRichTextBottomInfoView.h"
 #import "DJSendCommentsViewController.h"
+#import "DCSubPartStateModel.h"
 
-//static const CGFloat richTextTopInfoViewHeight = 100;
 static const CGFloat richTextBottomInfoViewHeight = 77;
 
 @interface DCSubPartStateDetailViewController ()<
@@ -82,20 +82,7 @@ LGThreeRightButtonViewDelegate>
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
     
-    NSString *str = @"爱琴海";
-    NSMutableArray *arrMu = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
-        DCStateCommentsModel *model = [DCStateCommentsModel new];
-        model.nick = [NSString stringWithFormat:@"阿明_%d",i];
-        int strCount = arc4random_uniform(50) + 1;
-        NSMutableString *string = [NSMutableString string];
-        for (int j = 0; j < strCount; j++) {
-            [string appendString:str];
-        }
-        model.content = string;
-        [arrMu addObject:model];
-    }
-    self.array = arrMu.copy;
+    self.array = self.model.frontComments;
     [self.tableView reloadData];
     
     _imageSizeCache = [[NSCache alloc] init];
@@ -132,8 +119,12 @@ LGThreeRightButtonViewDelegate>
     DCStateContentsCell *cell = [_cellCache objectForKey:key];
     
     if (!cell) {
+        
+        CGFloat titleHeight = [self.model.title sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:25]].height;
+        CGFloat topInfoViewHeight = titleHeight + 81;
+        
         cell = [[DCStateContentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:richContentCell];
-        cell.attributedTextContextView.edgeInsets = UIEdgeInsetsMake(richTextTopInfoViewHeight, marginFifteen, 0, marginFifteen);
+        cell.attributedTextContextView.edgeInsets = UIEdgeInsetsMake(topInfoViewHeight, marginFifteen, richTextBottomInfoViewHeight, marginFifteen);
         cell.hasFixedRowHeight = NO;
         cell.textDelegate = self;
         cell.attributedTextContextView.shouldDrawImages = YES;
@@ -147,11 +138,12 @@ LGThreeRightButtonViewDelegate>
             make.top.equalTo(cell.mas_top);
             make.left.equalTo(cell.mas_left);
             make.right.equalTo(cell.mas_right);
-            make.height.mas_equalTo(richTextTopInfoViewHeight);
+            make.height.mas_equalTo(topInfoViewHeight);
         }];
         
         /// MARK: 富文本cell底部信息view
         DCRichTextBottomInfoView *infoView = [DCRichTextBottomInfoView richTextBottomInfo];
+        infoView.model = self.model;
         [cell.contentView addSubview:infoView];
         [infoView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(cell.mas_left);
@@ -163,8 +155,8 @@ LGThreeRightButtonViewDelegate>
         [cell.contentView bringSubviewToFront:infoView];
     }
     
-    /// TODO: 设置富文本数据
-    [cell setHTMLString:[[[LGHTMLParser alloc] init] HTMLStringWithPlistName:@"detaiTtest"]];
+    /// MARK: 设置富文本数据
+    [cell setHTMLString:self.model.content];
     
     /// 为每个占位图设置大小
     for (DTTextAttachment *oneAttachment in cell.attributedTextContextView.layoutFrame.textAttachments) {

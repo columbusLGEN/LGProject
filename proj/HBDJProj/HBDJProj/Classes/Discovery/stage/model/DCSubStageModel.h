@@ -57,8 +57,7 @@ static const CGFloat commentsCellHeight = 25;
 @property (strong,nonatomic) UIImage *aTestImg;
 
 /** 评论数据 */
-@property (strong,nonatomic) NSArray<DCSubStageCommentsModel *> *comments;
-- (CGFloat)cellHeight;
+//@property (strong,nonatomic) NSArray<DCSubStageCommentsModel *> *comments;
 
 /// -----------------------------
 /** 朋友圈单图的图片宽高 */
@@ -80,22 +79,22 @@ static const CGFloat commentsCellHeight = 25;
 /** 资源链接 */
 
 /** 时间戳 */
-@property (strong,nonatomic) NSString *timestamp;
-@property (strong,nonatomic) NSString *createdtime;
+//@property (strong,nonatomic) NSString *timestamp;
+//@property (strong,nonatomic) NSString *createdtime;
 /**
  1党员舞台
  2思想汇报
  3述职述廉
  */
 @property (assign,nonatomic) NSInteger ugctype;
-/** 点赞id */
-@property (assign,nonatomic) NSInteger praiseid;
-/** 点赞数 */
-@property (assign,nonatomic) NSInteger praisecount;
-/** 收藏id */
-@property (assign,nonatomic) NSInteger collectionid;
-/** 收藏数 */
-@property (assign,nonatomic) NSInteger collectioncount;
+///** 点赞id */
+//@property (assign,nonatomic) NSInteger praiseid;
+///** 点赞数 */
+//@property (assign,nonatomic) NSInteger praisecount;
+///** 收藏id */
+//@property (assign,nonatomic) NSInteger collectionid;
+///** 收藏数 */
+//@property (assign,nonatomic) NSInteger collectioncount;
 /** 上传用户 */
 @property (strong,nonatomic) NSString *uploader;
 

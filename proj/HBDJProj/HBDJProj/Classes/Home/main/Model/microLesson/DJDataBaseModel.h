@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (assign,nonatomic) NSInteger status;
 /** resourcestate */
 @property (strong,nonatomic) NSString *resourcestate;
-/** label */
+/** 标签 */
 @property (strong,nonatomic) NSString *label;
 /** playcount */
 @property (assign,nonatomic) NSInteger playcount;
@@ -79,6 +79,9 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (assign,nonatomic) ModelMediaType modaltype;
 /** contentvalidity */
 @property (strong,nonatomic) NSString *contentvalidity;
+
+/** 是否评论 */
+@property (assign,nonatomic) BOOL iscomment;
 
 /** 对于党建要闻类型的数据，sort为0的需要置顶 */
 //@property (assign,nonatomic) NSInteger sort;

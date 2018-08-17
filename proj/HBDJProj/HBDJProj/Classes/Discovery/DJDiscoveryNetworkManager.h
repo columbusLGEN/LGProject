@@ -10,9 +10,15 @@
 
 @interface DJDiscoveryNetworkManager : NSObject
 
-/** 提问感谢接口 */
-- (void)frontQuestionanswer_updateWithQAId:(NSInteger)qaid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
-/// -------
+
+/**
+ 发表评论
+
+ @param commentid 对应的党员舞台或支部动态id
+ @param commenttype 评论类型：1党员舞台,2支部动态
+ @param comment 评论内容
+ */
+- (void)frontComments_addWithCommentid:(NSInteger)commentid commenttype:(NSInteger)commenttype comment:(NSString *)comment success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 党员舞台列表 */
 - (void)frontUgc_selectmechanismWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 查看支部动态列表 */

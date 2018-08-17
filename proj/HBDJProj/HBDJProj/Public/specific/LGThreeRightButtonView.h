@@ -23,8 +23,10 @@ static NSString * const TRConfigSelectedImgNameKey = @"TRConfigSelectedImgNameKe
 
 @property (assign,nonatomic) BOOL leftIsSelected;
 @property (assign,nonatomic) BOOL middleIsSelected;
+@property (assign,nonatomic) BOOL rightIsSelected;
 @property (assign,nonatomic) NSInteger likeCount;
 @property (assign,nonatomic) NSInteger collectionCount;
+@property (assign,nonatomic) NSInteger commentCount;
 
 @property (weak,nonatomic) NSArray<NSDictionary *> *btnConfigs;
 /** 分割线是否顶头 */

@@ -6,13 +6,17 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGBaseModel.h"
+#import "DCSubPartStateCommentModel.h"
 
-@interface DCStateCommentsModel : LGBaseModel
-@property (strong,nonatomic) NSString *nick;
-@property (strong,nonatomic) NSString *imgUrl;
-@property (strong,nonatomic) NSString *time;
-@property (strong,nonatomic) NSString *content;
-- (CGFloat)cellHeight;
+@interface DCStateCommentsModel : DCSubPartStateCommentModel
+
+//@property (assign,nonatomic) NSInteger userid;
+//@property (strong,nonatomic) NSString *username;
+///** ??? */
+//@property (assign,nonatomic) NSInteger commenttype;
+//@property (assign,nonatomic) NSInteger commentid;
+//@property (strong,nonatomic) NSString *createdtime;
+//@property (strong,nonatomic) NSString *comment;
+
 
 @end

@@ -14,8 +14,9 @@
 #import "DJDiscoveryNetworkManager.h"
 #import "DCSubPartStateOneImgCell.h"
 #import "DCSubPartStateThreeImgCell.h"
+#import "DJUserInteractionMgr.h"
 
-@interface DCSubPartStateTableViewController ()
+@interface DCSubPartStateTableViewController ()<DCSubPartStateBaseCellDelegate>
 @property (assign,nonatomic) NSInteger offset;
 
 @end
@@ -38,19 +39,6 @@
     [self.tableView registerClass:[DCSubPartStateOneImgCell class] forCellReuseIdentifier:oneImgCell];
     [self.tableView registerClass:[DCSubPartStateThreeImgCell class]
          forCellReuseIdentifier:threeImgCell];
-    
-//    NSMutableArray *arrMu = [NSMutableArray arrayWithCapacity:10];
-//    for (NSInteger i = 0; i < 20; i++) {
-//        DCSubPartStateModel *model = [DCSubPartStateModel new];
-//        NSInteger num = arc4random_uniform(3) + 1;/// 1 2 3
-//        if (num == 2) {
-//            num -= 2;/// 2 --> 0
-//        }
-//        model.imgCount = num;
-//        [arrMu addObject:model];
-//    }
-//    self.dataArray = arrMu.copy;
-//    [self.tableView reloadData];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _offset = 0;
@@ -110,14 +98,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DCSubPartStateModel *model = self.dataArray[indexPath.row];
     DCSubPartStateBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DCSubPartStateBaseCell cellReuseIdWithModel:model]];
+    cell.delegate = self;
     cell.model = model;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DCSubPartStateModel *model = self.dataArray[indexPath.row];
     DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
+    dvc.model = model;
     [self.navigationController pushViewController:dvc animated:YES];
 }
 
+- (void)branchLikeWithModel:(DCSubPartStateModel *)model{
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"点赞失败，请稍后重试"];
+    }];
+}
+- (void)branchCollectWithModel:(DCSubPartStateModel *)model{
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"收藏失败，请稍后重试"];
+    }];
+}
+- (void)branchCommentWithModel:(DCSubPartStateModel *)model{
+    /// 跳转到详情页面，并弹出评论
+//    DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
+//    [self.navigationController pushViewController:dvc animated:YES];
+}
 
 @end
