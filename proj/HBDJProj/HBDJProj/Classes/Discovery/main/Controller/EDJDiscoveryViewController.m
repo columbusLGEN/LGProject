@@ -60,17 +60,6 @@ LGNavigationSearchBarDelelgate>
 
 - (void)getData{
     
-    /// 测试数据
-//    NSString *filePaht = [[NSBundle mainBundle] pathForResource:@"testJson" ofType:@"txt"];
-//    NSString *jsonString = [NSString stringWithContentsOfFile:filePaht encoding:NSUTF8StringEncoding error:nil];
-//    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-//    NSError *error;
-//    id responseObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-//    if (error) {
-//        NSLog(@"error: %@",error);
-//        NSLog(@"anything: %@",error.localizedDescription);
-//    }
-    
     [DJDiscoveryNetworkManager.sharedInstance frontIndex_findIndexWithSuccess:^(id responseObj) {
 
         NSArray *questionanswer = responseObj[@"questionanswer"];// 学习问答

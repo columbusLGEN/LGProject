@@ -8,22 +8,30 @@
 
 #import "UCUploadViewController.h"
 #import "DJUploadDataManager.h"
-
+#import "DJDisUploadTextView.h"
 #import "DJUploadMindReportBaseCell.h"
-#import "DJUploadPYQTextCell.h"
 #import "DJUploadPYQImageCell.h"
 #import "DJUploadMindReportLineModel.h"
-#import "DJInputContentViewController.h"
 
-@interface UCUploadViewController ()<DJInputContentViewControllerDelegate>
+@interface UCUploadViewController ()
 @property (strong,nonatomic) NSArray *array;
-@property (strong,nonatomic) HXPhotoView *cellSelectedImageView;
+/** 选择图片view */
+@property (strong,nonatomic) HXPhotoView *selectedImageView;
+/** 选择图片管理者 */
 @property (strong,nonatomic) HXPhotoManager *nineImageManager;
 @property (strong,nonatomic) DJUploadDataManager *uploadDataManager;
+
+@property (weak,nonatomic) DJDisUploadTextView *textCon;
+@property (assign,nonatomic) CGFloat textHeight;
 
 @end
 
 @implementation UCUploadViewController
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    NSLog(@"_textCon: %@",NSStringFromCGRect(_textCon.frame));
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,9 +52,16 @@
     
     self.navigationItem.rightBarButtonItem = send;
     
-    [self.tableView registerClass:[DJUploadPYQTextCell class] forCellReuseIdentifier:uploadPYQTextCell];
-    [self.tableView registerClass:[DJUploadPYQImageCell class] forCellReuseIdentifier:uploadPYQImageCell];
-    self.tableView.estimatedRowHeight = 1.0;
+    DJDisUploadTextView *textCon = DJDisUploadTextView.new;
+    _textCon = textCon;
+    [self.view addSubview:_textCon];
+    
+    _textHeight = 20 + 10 + 10;
+    [_textCon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(kNavHeight);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(_textHeight);
+    }];
     
     /// 图片 & 视频
     if (_uploadAction == DJUPloadPyqActionImg) {
@@ -55,55 +70,22 @@
     if (_uploadAction == DJUPloadPyqActionVideo) {
         _nineImageManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypeVideo];
     }
-    _cellSelectedImageView = [HXPhotoView.alloc initWithManager:_nineImageManager];
-    _cellSelectedImageView.delegate = _uploadDataManager;
+    _selectedImageView = [HXPhotoView.alloc initWithManager:_nineImageManager];
+    _selectedImageView.delegate = _uploadDataManager;
     
     /// TODO: 音频 从上个页面拿到音频文件（链接）
     if (_uploadAction == DJUPloadPyqActionAudio) {
         /// 音频
-        self.dataArray = [DJUploadMindReportLineModel loadLocalPlistWithPlistName:@"UCUploadPyqAudioConfig"];
+        
     }else{
-        /// 视频和图片
-        /// 备注：文字上传页面不在此页面进行操作
-        self.dataArray = [DJUploadMindReportLineModel loadLocalPlistWithPlistName:@"UCUploadPyqPhotoConfig"];
+        /// 视频、图片、文字
+        /// 文字不展示图片选择框
+        
     }
     
-    [self.tableView reloadData];
-}
-
-/// MARK: 文本输入控制器代理回调
-- (void)inputContentViewController:(DJInputContentViewController *)vc model:(DJOnlineUploadTableModel *)model{
-    /// MARK: 设置表单数据
-    [_uploadDataManager setUploadValue:model.content key:model.uploadJsonKey];
-    [self.tableView reloadData];
-}
-
-#pragma mark - delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DJUploadMindReportLineModel *model = self.dataArray[indexPath.row];
-    DJUploadMindReportBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DJUploadMindReportBaseCell cellReuseIdWithModel:model] forIndexPath:indexPath];
     
-    cell.model = model;
-    
-    if ([cell isMemberOfClass:[DJUploadPYQImageCell class]]) {
-        DJUploadPYQImageCell *pyqImageCell  = (DJUploadPYQImageCell *)cell;
-        pyqImageCell.photoView = _cellSelectedImageView;
-    }
-    
-    return cell;
-
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DJUploadMindReportLineModel *model = self.dataArray[indexPath.row];
-    if (model.lineType == DJUploadMindReportLineTypePyqText) {
-        /// 进入文本输入
-        [self presentViewController:[DJInputContentViewController modalInputvcWithModel:model delegate:self] animated:YES completion:nil];
-    }
-}
 
 #pragma mark - target
 - (void)cancelClick{

@@ -80,7 +80,6 @@
 		8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B30D2072143300722010 /* EDJMicroPartyLessonCell.m */; };
 		8835B314207216DB00722010 /* LGNavigationSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B312207216DA00722010 /* LGNavigationSearchBar.m */; };
 		8835B3172072189D00722010 /* LGBaseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B3162072189D00722010 /* LGBaseButton.m */; };
-		883618502122D17D002F55FD /* DJUploadPYQTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8836184F2122D17D002F55FD /* DJUploadPYQTextCell.m */; };
 		88397814207F56D700F3D131 /* UCPersonInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88397813207F56D700F3D131 /* UCPersonInfoModel.m */; };
 		88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88397816207F592700F3D131 /* UCPersonInfoTableViewCell.m */; };
 		883D474D20D9F08E00FD9971 /* HPMicrolessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883D474C20D9F08E00FD9971 /* HPMicrolessonViewController.m */; };
@@ -173,7 +172,6 @@
 		8851C64B20F9A0D600C91575 /* LGWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C64A20F9A0D600C91575 /* LGWKWebViewController.m */; };
 		8857B5F42123BAFE00BFCA16 /* DJDiscoveryNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8857B5F32123BAFE00BFCA16 /* DJDiscoveryNetworkManager.m */; };
 		8857B5F72123CCCC00BFCA16 /* DCSubPartStateCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8857B5F62123CCCC00BFCA16 /* DCSubPartStateCommentModel.m */; };
-		8857B5F92123F8AA00BFCA16 /* testJson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8857B5F82123F8AA00BFCA16 /* testJson.txt */; };
 		886A1B6020CBDD2F0007AD63 /* LGRecordButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */; };
 		886A1B6320CE53220007AD63 /* LGSocialShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6220CE53220007AD63 /* LGSocialShareManager.m */; };
 		886A1B6620CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1B6520CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.m */; };
@@ -239,8 +237,6 @@
 		88949C27211ECF8200B80AEE /* DJSearchReultVoteListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88949C26211ECF8200B80AEE /* DJSearchReultVoteListController.m */; };
 		88949C2A211ECFBB00B80AEE /* DJSearchResultTestListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88949C29211ECFBB00B80AEE /* DJSearchResultTestListController.m */; };
 		889C6ABF21229FF9002404C5 /* UCUploadPyqViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889C6ABE21229FF9002404C5 /* UCUploadPyqViewController.m */; };
-		889C6AC62122BBFD002404C5 /* UCUploadPyqPhotoConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 889C6AC52122BBFD002404C5 /* UCUploadPyqPhotoConfig.plist */; };
-		889C6ACA2122BE73002404C5 /* UCUploadPyqAudioConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 889C6AC92122BE73002404C5 /* UCUploadPyqAudioConfig.plist */; };
 		889C6ACD2122BFCB002404C5 /* DJUploadPYQImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 889C6ACC2122BFCB002404C5 /* DJUploadPYQImageCell.m */; };
 		889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889E7DB62099685000BB9084 /* HPBookInfoModel.m */; };
 		889E7DBB20998D5100BB9084 /* UCUploadTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889E7DBA20998D5100BB9084 /* UCUploadTransitionView.m */; };
@@ -303,6 +299,7 @@
 		88A955C720F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C620F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m */; };
 		88A955CA20F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C920F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m */; };
 		88A955CD20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955CC20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m */; };
+		88B500F82127FDDC000F25BD /* DJDisUploadTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B500F72127FDDC000F25BD /* DJDisUploadTextView.m */; };
 		88BA906720F33E5D007DD4B4 /* DJTestScoreListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */; };
 		88BA906A20F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906920F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m */; };
 		88BA906C20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA906B20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib */; };
@@ -621,8 +618,6 @@
 		8835B3152072189D00722010 /* LGBaseButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGBaseButton.h; sourceTree = "<group>"; };
 		8835B3162072189D00722010 /* LGBaseButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGBaseButton.m; sourceTree = "<group>"; };
 		8835B31B2072256A00722010 /* LBCConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBCConstant.h; sourceTree = "<group>"; };
-		8836184E2122D17D002F55FD /* DJUploadPYQTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUploadPYQTextCell.h; sourceTree = "<group>"; };
-		8836184F2122D17D002F55FD /* DJUploadPYQTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUploadPYQTextCell.m; sourceTree = "<group>"; };
 		88397812207F56D700F3D131 /* UCPersonInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPersonInfoModel.h; sourceTree = "<group>"; };
 		88397813207F56D700F3D131 /* UCPersonInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPersonInfoModel.m; sourceTree = "<group>"; };
 		88397815207F592700F3D131 /* UCPersonInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPersonInfoTableViewCell.h; sourceTree = "<group>"; };
@@ -791,7 +786,6 @@
 		8857B5F32123BAFE00BFCA16 /* DJDiscoveryNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDiscoveryNetworkManager.m; sourceTree = "<group>"; };
 		8857B5F52123CCCC00BFCA16 /* DCSubPartStateCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateCommentModel.h; sourceTree = "<group>"; };
 		8857B5F62123CCCC00BFCA16 /* DCSubPartStateCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateCommentModel.m; sourceTree = "<group>"; };
-		8857B5F82123F8AA00BFCA16 /* testJson.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testJson.txt; sourceTree = "<group>"; };
 		886A1B5E20CBDD2F0007AD63 /* LGRecordButtonLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGRecordButtonLoader.h; sourceTree = "<group>"; };
 		886A1B5F20CBDD2F0007AD63 /* LGRecordButtonLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGRecordButtonLoader.m; sourceTree = "<group>"; };
 		886A1B6120CE53220007AD63 /* LGSocialShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSocialShareManager.h; sourceTree = "<group>"; };
@@ -898,8 +892,6 @@
 		889C6ABD21229FF9002404C5 /* UCUploadPyqViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadPyqViewController.h; sourceTree = "<group>"; };
 		889C6ABE21229FF9002404C5 /* UCUploadPyqViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadPyqViewController.m; sourceTree = "<group>"; };
 		889C6AC02122B2B6002404C5 /* DJUploadPyqHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUploadPyqHeader.h; sourceTree = "<group>"; };
-		889C6AC52122BBFD002404C5 /* UCUploadPyqPhotoConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UCUploadPyqPhotoConfig.plist; sourceTree = "<group>"; };
-		889C6AC92122BE73002404C5 /* UCUploadPyqAudioConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UCUploadPyqAudioConfig.plist; sourceTree = "<group>"; };
 		889C6ACB2122BFCB002404C5 /* DJUploadPYQImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUploadPYQImageCell.h; sourceTree = "<group>"; };
 		889C6ACC2122BFCB002404C5 /* DJUploadPYQImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUploadPYQImageCell.m; sourceTree = "<group>"; };
 		889E7DB52099685000BB9084 /* HPBookInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPBookInfoModel.h; sourceTree = "<group>"; };
@@ -1011,6 +1003,8 @@
 		88A955C920F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJShowThmemeMeetingMoreTextCell.m; sourceTree = "<group>"; };
 		88A955CB20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJShowThmemeMeetingImageCell.h; sourceTree = "<group>"; };
 		88A955CC20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJShowThmemeMeetingImageCell.m; sourceTree = "<group>"; };
+		88B500F62127FDDC000F25BD /* DJDisUploadTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDisUploadTextView.h; sourceTree = "<group>"; };
+		88B500F72127FDDC000F25BD /* DJDisUploadTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDisUploadTextView.m; sourceTree = "<group>"; };
 		88BA906520F33E5D007DD4B4 /* DJTestScoreListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListModel.h; sourceTree = "<group>"; };
 		88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTestScoreListModel.m; sourceTree = "<group>"; };
 		88BA906820F33EB3007DD4B4 /* DJTestScoreListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListTableViewCell.h; sourceTree = "<group>"; };
@@ -1724,7 +1718,6 @@
 		8831E1422092F20B001D038E /* main */ = {
 			isa = PBXGroup;
 			children = (
-				8857B5F82123F8AA00BFCA16 /* testJson.txt */,
 				8835B2D820720B6500722010 /* Controller */,
 				8835B2D720720B6500722010 /* Model */,
 				8835B2D420720B6500722010 /* View */,
@@ -1968,8 +1961,6 @@
 			children = (
 				889C6ACB2122BFCB002404C5 /* DJUploadPYQImageCell.h */,
 				889C6ACC2122BFCB002404C5 /* DJUploadPYQImageCell.m */,
-				8836184E2122D17D002F55FD /* DJUploadPYQTextCell.h */,
-				8836184F2122D17D002F55FD /* DJUploadPYQTextCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1977,8 +1968,6 @@
 		883618542122D1CC002F55FD /* other */ = {
 			isa = PBXGroup;
 			children = (
-				889C6AC52122BBFD002404C5 /* UCUploadPyqPhotoConfig.plist */,
-				889C6AC92122BE73002404C5 /* UCUploadPyqAudioConfig.plist */,
 				889C6AC02122B2B6002404C5 /* DJUploadPyqHeader.h */,
 			);
 			path = other;
@@ -2602,6 +2591,8 @@
 				889E7DBE2099969A00BB9084 /* UCMemberStageTransitionView.h */,
 				889E7DBF2099969A00BB9084 /* UCMemberStageTransitionView.m */,
 				889E7DC1209996A100BB9084 /* UCMemberStageTransitionView.xib */,
+				88B500F62127FDDC000F25BD /* DJDisUploadTextView.h */,
+				88B500F72127FDDC000F25BD /* DJDisUploadTextView.m */,
 			);
 			path = upload;
 			sourceTree = "<group>";
@@ -3517,9 +3508,7 @@
 				884EB40E2102FE53005D5CA9 /* DJOnlineUploadConfig.plist in Resources */,
 				886A1BF220D0CB330007AD63 /* SimHei.ttf in Resources */,
 				88BCEDE720C67D7500B5C1DB /* HPAlbumHeaderCell.xib in Resources */,
-				889C6AC62122BBFD002404C5 /* UCUploadPyqPhotoConfig.plist in Resources */,
 				88BA907620F34381007DD4B4 /* DJTestScoreListHeader.xib in Resources */,
-				889C6ACA2122BE73002404C5 /* UCUploadPyqAudioConfig.plist in Resources */,
 				886A1BF020D0CB330007AD63 /* GB2312.ttf in Resources */,
 				884312AB2086F2D400321F84 /* EDJLeverInfoHeader.xib in Resources */,
 				886A1BE320D0CB330007AD63 /* day.bundle in Resources */,
@@ -3551,7 +3540,6 @@
 				88BCED5020C271E700B5C1DB /* HPVoiceSearchView.xib in Resources */,
 				88435E75208D6DF400188CE9 /* UCQuestionTableViewCell.xib in Resources */,
 				886A1BE920D0CB330007AD63 /* night.bundle in Resources */,
-				8857B5F92123F8AA00BFCA16 /* testJson.txt in Resources */,
 				884312D620873B6900321F84 /* UCSetting.plist in Resources */,
 				886A1BEF20D0CB330007AD63 /* Fangsong.ttf in Resources */,
 				88C5F16920B7FF6D0075D5F2 /* HPAudioPlayerView.xib in Resources */,
@@ -3737,7 +3725,6 @@
 				883D475320D9F1DE00FD9971 /* HPDigitalCollectionViewController.m in Sources */,
 				886A1B6320CE53220007AD63 /* LGSocialShareManager.m in Sources */,
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
-				883618502122D17D002F55FD /* DJUploadPYQTextCell.m in Sources */,
 				88A47133207EF5EB002F93E0 /* EDJUserCenterHomePageModel.m in Sources */,
 				88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */,
 				88BA906A20F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m in Sources */,
@@ -3799,6 +3786,7 @@
 				88A470FA207C8615002F93E0 /* LGImageView.m in Sources */,
 				880363B520E629FF00E97FA3 /* DJChangePwdViewController.m in Sources */,
 				8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */,
+				88B500F82127FDDC000F25BD /* DJDisUploadTextView.m in Sources */,
 				8876E3CF20EB67C1001C6A1A /* DJOnlineUploadCell.m in Sources */,
 				88BCEDEE20C7A6E100B5C1DB /* LGNetworkManager.m in Sources */,
 				88ECF060209FF6D30071A98A /* OLExamSingleTableViewCell.m in Sources */,
