@@ -8,6 +8,10 @@
 
 #import "LGBaseViewController.h"
 
+@class DJDataBaseModel;
+
 @interface DJSendCommentsViewController : LGBaseViewController
++ (instancetype)sendCommentvcWithModel:(DJDataBaseModel *)model;
+@property (strong,nonatomic) DJDataBaseModel *model;
 
 @end

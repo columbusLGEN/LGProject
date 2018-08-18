@@ -14,6 +14,7 @@
 #import "DJUserInteractionMgr.h"
 #import <WMPlayer/WMPlayer.h>
 #import "HZPhotoBrowser.h"
+#import "DJSendCommentsViewController.h"
 
 @interface DCSubStageTableviewController ()<
 DCSubStageBaseTableViewCellDelegate,
@@ -114,14 +115,14 @@ WMPlayerDelegate>
         [self presentFailureTips:@"收藏失败，请稍后重试"];
     }];
 }
+/// MARK: 发表评论
 - (void)pyqCommentWithModel:(DCSubStageModel *)model{
-    [DJDiscoveryNetworkManager.sharedInstance frontComments_addWithCommentid:model.seqid commenttype:1 comment:@"测试评论" success:^(id responseObj) {
-        
-    } failure:^(id failureObj) {
-        
-    }];
+    
+    DJSendCommentsViewController *vc = [DJSendCommentsViewController sendCommentvcWithModel:model];
+    [self presentViewController:vc animated:YES completion:nil];
     
 }
+/// MARK: 单图点击
 - (void)pyqCellOneImageClick:(DCSubStageBaseTableViewCell *)cell model:(DCSubStageModel *)model imageView:(UIImageView *)imageView{
     //启动图片浏览器
     HZPhotoBrowser *browser = [[HZPhotoBrowser alloc] init];
@@ -136,6 +137,7 @@ WMPlayerDelegate>
     [browser show];
 }
 
+/// MARK:播放视频
 - (void)pyqCellplayVideoWithModel:(DCSubStageModel *)model{
     
     WMPlayerModel *playerModel = [WMPlayerModel new];
@@ -159,7 +161,7 @@ WMPlayerDelegate>
     [_wmPlayer play];
     
 }
-
+/// MARK: 关闭视频
 -(void)wmplayer:(WMPlayer *)wmplayer clickedCloseButton:(UIButton *)backBtn{
     [wmplayer pause];
     [wmplayer removeFromSuperview];

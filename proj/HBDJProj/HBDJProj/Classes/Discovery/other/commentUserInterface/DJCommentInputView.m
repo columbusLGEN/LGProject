@@ -10,9 +10,6 @@
 #import "UITextView+Extension.h"
 
 @interface DJCommentInputView ()
-@property (weak,nonatomic) UITextView *input;
-@property (weak,nonatomic) UIButton *cancel;
-@property (weak,nonatomic) UIButton *done;
 
 @end
 
@@ -40,6 +37,7 @@
         _cancel = cancel;
         [_cancel setTitleColor:UIColor.EDJGrayscale_11 forState:UIControlStateNormal];
         [_cancel setTitle:@"取消" forState:UIControlStateNormal];
+        
         
         [self addSubview:_cancel];
         

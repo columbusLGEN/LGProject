@@ -9,5 +9,8 @@
 #import "LGBaseView.h"
 
 @interface DJCommentInputView : LGBaseView
+@property (weak,nonatomic) UITextView *input;
+@property (weak,nonatomic) UIButton *cancel;
+@property (weak,nonatomic) UIButton *done;
 
 @end

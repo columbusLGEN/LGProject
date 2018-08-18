@@ -231,10 +231,7 @@ LGThreeRightButtonViewDelegate>
     
 }
 - (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    DJSendCommentsViewController *vc = DJSendCommentsViewController.new;
-    vc.pushWay = LGBaseViewControllerPushWayModal;
-    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    DJSendCommentsViewController *vc = [DJSendCommentsViewController sendCommentvcWithModel:self.model];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
