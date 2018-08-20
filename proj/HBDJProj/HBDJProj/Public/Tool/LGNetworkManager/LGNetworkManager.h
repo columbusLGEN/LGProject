@@ -14,9 +14,27 @@ typedef void (^LGUploadImageProgressBlock)(NSProgress *uploadProgress);
 typedef void (^LGUploadImageSuccess)(NSString *imgUrl_sub);
 typedef void (^LGUploadImageFailure)(id uploadFailure);
 
+typedef void (^LGUploadFileSuccess)(id dict);
+
 typedef void(^LGNetworkCompletion)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error);
 
 @interface LGNetworkManager : NSObject
+
+
+/**
+ 上传文件
+
+ @param url 接口连接
+ @param param 参数
+ @param localFileUrl 本地文件路径
+ @param fieldName 接口接受文件的字段名
+ @param fileName 文件名(存到服务器上的)
+ @param mimeType 文件类型
+ @param progress 进度
+ @param success 成功
+ @param failure 失败
+ */
+- (void)lg_uploadFileWithUrl:(NSString *)url param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName mimeType:(NSString *)mimeType uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadFileSuccess)success failure:(LGUploadImageFailure)failure;
 
 /**
  上传图片

@@ -17,7 +17,8 @@ typedef void(^DJNetworkFailure)(id failureObj);
 
 @interface DJNetworkManager : NSObject
 
-
+/** 上传文件 */
+- (void)uploadFileWithLocalFileUrl:(NSURL *)localFileUrl mimeType:(NSString *)mimeType uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadFileSuccess)success failure:(LGUploadImageFailure)failure;
 /**
  上传图片
 

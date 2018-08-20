@@ -12,6 +12,7 @@
 @interface EDJSearchTagHeader ()
 @property (weak, nonatomic) IBOutlet UILabel *itemLabel;
 @property (weak, nonatomic) IBOutlet UIButton *removeBtn;
+@property (weak, nonatomic) IBOutlet UILabel *metionLabel;
 
 
 @end
@@ -27,6 +28,9 @@
     _itemLabel.text = model.itemName;
     if (model.isHot) {
         _removeBtn.hidden = YES;
+        _metionLabel.hidden = NO;
+    }else{
+        _metionLabel.hidden = YES;
     }
 }
 

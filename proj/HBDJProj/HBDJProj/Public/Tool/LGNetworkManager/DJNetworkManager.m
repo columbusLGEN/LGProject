@@ -19,9 +19,16 @@ static NSString *param_key_userid = @"userid";
 
 @implementation DJNetworkManager
 
+- (void)uploadFileWithLocalFileUrl:(NSURL *)localFileUrl mimeType:(NSString *)mimeType uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadFileSuccess)success failure:(LGUploadImageFailure)failure{
+    
+    NSString *url = [self urlStringWithiName:@"frontUserinfo/uploadFile"];
+    NSDictionary *param = @{@"userid":[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""};
+    
+    [[LGNetworkManager sharedInstance] lg_uploadFileWithUrl:url param:param localFileUrl:localFileUrl fieldName:@"pic" fileName:@"" mimeType:mimeType uploadProgress:progress success:success failure:failure];
+}
+
 - (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
     
-//    NSString *url = @"http://123.59.199.170:8081/APMKAFService/frontUserinfo/uploadFile";
     NSString *url = [self urlStringWithiName:@"frontUserinfo/uploadFile"];
     NSDictionary *param = @{@"userid":[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""};
     

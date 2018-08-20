@@ -16,6 +16,7 @@ typedef void(^DJSelectCoverSuccess)(NSURL *coverFileUrl);
 //typedef void(^DJUploadCoverSuccess)(NSString *imageUrl);
 //typedef void(^DJUploadCoverFailure)(id error);
 typedef void (^DJUploadImageComplete)(NSArray *imageUrls,NSDictionary *formData);
+typedef void (^DJUploadFileComplete)(id dict);
 
 @interface DJUploadDataManager : NSObject<HXPhotoViewDelegate>
 
@@ -37,6 +38,9 @@ typedef void (^DJUploadImageComplete)(NSArray *imageUrls,NSDictionary *formData)
  @param key 键
  */
 - (void)setUploadValue:(id)value key:(NSString *)key;
+
+/** 发现党员舞台上传文件接口 */
+- (void)ugc_uploadFileWithMimeType:(NSString *)mimeType success:(DJUploadImageComplete)completeBlock singleFileComplete:(DJUploadFileComplete)singleFileComplete;
 
 /**
  上传图片

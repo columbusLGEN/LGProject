@@ -63,7 +63,7 @@
             make.top.equalTo(self.contentView.mas_top).offset(aImgTopOffset);
             make.width.mas_equalTo(aImgVerWidth);
             make.height.mas_equalTo(aImgVerHeight);
-            make.bottom.equalTo(self.boInterView).offset(-marginEight);
+            make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
         }];
     }else{
         [self.aImage mas_updateConstraints:^(MASConstraintMaker *make) {

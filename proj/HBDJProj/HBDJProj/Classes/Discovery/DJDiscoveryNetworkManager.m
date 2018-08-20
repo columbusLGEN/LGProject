@@ -11,6 +11,14 @@
 
 @implementation DJDiscoveryNetworkManager
 
+- (void)frontQuestionanswer_addWithQuestion:(NSString *)question label:(NSString *)label success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontQuestionanswer/add" param:@{@"question":question,@"label":label} success:success failure:failure];
+}
+
+- (void)frontLabel_selectWithSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontLabel/select" param:@{} success:success failure:failure];
+}
+
 - (void)frontComments_addWithCommentid:(NSInteger)commentid commenttype:(NSInteger)commenttype comment:(NSString *)comment success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *dict = @{@"commentid":[NSString stringWithFormat:@"%ld",commentid],
                            @"commenttype":[NSString stringWithFormat:@"%ld",commenttype],

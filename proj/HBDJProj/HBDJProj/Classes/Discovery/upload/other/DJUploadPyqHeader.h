@@ -11,7 +11,7 @@
 
 typedef NS_ENUM(NSUInteger, DJUploadPyqAction) {
     /** 图片 */
-    DJUPloadPyqActionImg,
+    DJUPloadPyqActionImg = 1,
     /** 视频 */
     DJUPloadPyqActionVideo,
     /** 音频 */

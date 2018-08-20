@@ -9,6 +9,7 @@
 #import "UCUploadPyqViewController.h"
 #import "UCMemberStageTransitionView.h"
 #import "UCUploadViewController.h"
+#import "DJRecordVoiceViewController.h"
 
 @interface UCUploadPyqViewController ()<
 UCMemberStageTransitionViewDelegate>
@@ -46,10 +47,19 @@ UCMemberStageTransitionViewDelegate>
 }
 - (void)mstView:(UCMemberStageTransitionView *)mstView action:(DJUploadPyqAction)action{
     
-    UCUploadViewController *upvc = [UCUploadViewController new];
-    upvc.uploadAction = action;
-    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:upvc];
-    [self presentViewController:nav animated:YES completion:nil];
+    if (action == DJUPloadPyqActionAudio) {
+        DJRecordVoiceViewController *video = DJRecordVoiceViewController.new;
+        video.pushWay = LGBaseViewControllerPushWayModal;
+        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:video];
+        [self presentViewController:nav animated:YES completion:nil];
+    }else{
+        UCUploadViewController *upvc = [UCUploadViewController new];
+        upvc.uploadAction = action;
+        upvc.pushWay = LGBaseViewControllerPushWayModal;
+        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:upvc];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+    
 }
 
 

@@ -15,6 +15,7 @@
 
 #import "EDJSearchTagHeader.h"
 #import "EDJSearchTagHeaderModel.h"
+#import "DJDiscoveryNetworkManager.h"
 
 @interface DCWriteQuestionViewController ()<
 UICollectionViewDelegate,
@@ -25,7 +26,9 @@ UICollectionViewDataSource>
 @property (strong,nonatomic) UICollectionView *collectionView;
 @property (strong,nonatomic) EDJSearchTagCollectionViewFlowLayout *flowLayout;
 @property (strong,nonatomic) NSArray *headerModels;
-@property (strong,nonatomic) NSArray *cellModels;
+@property (strong,nonatomic) NSMutableArray *selectTags;
+@property (strong,nonatomic) NSMutableArray *netTags;
+//@property (strong,nonatomic) NSArray *AllTags;
 
 @end
 
@@ -48,6 +51,30 @@ UICollectionViewDataSource>
     [super viewDidLoad];
     [self configUI];
     
+    _selectTags = NSMutableArray.new;
+    
+    /// 获取标签
+    [DJDiscoveryNetworkManager.sharedInstance frontLabel_selectWithSuccess:^(id responseObj) {
+        NSArray *array = responseObj;
+        if (array == nil || array.count == 0) {
+            return;
+        }else{
+            NSMutableArray *arrmu = NSMutableArray.new;
+            for (NSInteger i = 0; i < array.count; i++) {
+                EDJSearchTagModel *model = [EDJSearchTagModel mj_objectWithKeyValues:array[i]];
+                model.oriIndex = i;
+                [arrmu addObject:model];
+            }
+            _netTags = arrmu;
+//            _AllTags = arrmu.copy;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.collectionView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"网络异常"];
+    }];
 }
 
 #pragma mark - data source & delegate
@@ -57,34 +84,102 @@ UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (section == 0) {
-        return 4;
+        return _selectTags.count;
     }
     if (section == 1) {
-        return 20;
+        return _netTags.count;
     }
     return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    EDJSearchTagModel *model;
+    if (indexPath.section == 0) {
+        model = _selectTags[indexPath.item];
+    }
+    if (indexPath.section == 1) {
+        model = _netTags[indexPath.item];
+    }
     EDJSearchTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[EDJSearchTagCollectionViewCell cellIdWithIndexPath:indexPath] forIndexPath:indexPath];
-    
+    cell.model = model;
     return cell;
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     EDJSearchTagHeaderModel *headerModel = _headerModels[indexPath.section];
     EDJSearchTagHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:reuseHeaderID forIndexPath:indexPath];
+    
+    UITapGestureRecognizer *tap = [UITapGestureRecognizer.alloc initWithTarget:self action:@selector(tapHeader:)];
+    header.userInteractionEnabled = YES;
+    [header addGestureRecognizer:tap];
+    
     header.model = headerModel;
     return header;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self.view endEditing:YES];
+    EDJSearchTagModel *model;
+    if (indexPath.section == 0) {
+        model = _selectTags[indexPath.item];
+        [_selectTags removeObject:model];
+        [_netTags addObject:model];
+        
+        /// 根据oriIndex 重新排序，保证标签回到原来的位置
+        for (NSInteger i = 0; i < _netTags.count; i++) {
+            for (NSInteger j = 0; j < _netTags.count - 1 - i; j++) {
+                EDJSearchTagModel *tag_j = _netTags[j];
+                EDJSearchTagModel *tag_j_next = _netTags[j+1];
+                if (tag_j.oriIndex > tag_j_next.oriIndex) {
+                    [_netTags exchangeObjectAtIndex:j withObjectAtIndex:j+1];
+                }
+            }
+        }
+        
+    }
+    if (indexPath.section == 1) {
+        model = _netTags[indexPath.item];
+        if (_selectTags.count >= 3) {
+            [self presentFailureTips:@"最多添加三个"];
+            return;
+        }
+        [_selectTags addObject:model];
+        [_netTags removeObject:model];
+        
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.collectionView reloadData];
+    }];
+    
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(kScreenWidth, 40);
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+}
+- (void)tapHeader:(UITapGestureRecognizer *)tap{
+    [self.view endEditing:YES];
+}
 
 #pragma mark - target
 - (void)commitQuestion{
-    NSLog(@"提交 -- ");
+    
+    NSMutableArray *tag_ids = NSMutableArray.new;
+    for (NSInteger i = 0; i < _selectTags.count; i++) {
+        EDJSearchTagModel *model = _selectTags[i];
+        [tag_ids addObject:@(model.seqid)];
+    }
+    
+    NSString *label = [tag_ids componentsJoinedByString:@","];
+    [DJDiscoveryNetworkManager.sharedInstance frontQuestionanswer_addWithQuestion:_textView.text label:label success:^(id responseObj) {
+        [self presentSuccessTips:@"提交成功"];
+        [self lg_dismissViewController];
+    } failure:^(id failureObj) {
+        [self presentSuccessTips:@"提交失败，请稍后重试"];
+    }];
+    
 }
 
 - (void)configUI{
@@ -189,6 +284,7 @@ UICollectionViewDataSource>
     }
     return _flowLayout;
 }
+
 
 
 @end

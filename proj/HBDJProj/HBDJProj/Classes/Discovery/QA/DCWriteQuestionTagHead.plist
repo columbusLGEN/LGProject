@@ -12,7 +12,7 @@
 		<key>itemName</key>
 		<string>全部标签</string>
 		<key>isHot</key>
-		<true/>
+		<false/>
 	</dict>
 </array>
 </plist>

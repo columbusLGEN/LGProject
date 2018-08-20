@@ -10,7 +10,10 @@
 
 @interface DJDiscoveryNetworkManager : NSObject
 
-
+/** 提交提问 */
+- (void)frontQuestionanswer_addWithQuestion:(NSString *)question label:(NSString *)label success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/** 请求标签,上传提问时用 */
+- (void)frontLabel_selectWithSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**
  发表评论
 

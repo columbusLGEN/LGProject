@@ -9,5 +9,7 @@
 #import "LGBaseModel.h"
 
 @interface EDJSearchTagModel : LGBaseModel
+@property (strong,nonatomic) NSString *name;
+@property (assign,nonatomic) NSInteger oriIndex;
 
 @end

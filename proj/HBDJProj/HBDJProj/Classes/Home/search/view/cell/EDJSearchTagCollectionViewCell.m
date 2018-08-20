@@ -15,6 +15,8 @@
 @end
 
 @implementation EDJSearchTagCollectionViewCell
+
+
 + (NSString *)cellIdWithIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return @"EDJSearchTagHotCell";
