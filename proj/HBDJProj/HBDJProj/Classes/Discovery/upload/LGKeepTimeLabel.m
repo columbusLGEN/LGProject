@@ -9,7 +9,6 @@
 #import "LGKeepTimeLabel.h"
 
 @interface LGKeepTimeLabel ()
-@property (assign,nonatomic) NSInteger sec;
 @property (weak,nonatomic) NSTimer *timer;
 
 @end

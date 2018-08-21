@@ -17,6 +17,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import <MJExtension/MJExtension.h>
 #import "MBProgressHUD+WBAddtional.h"
+#import "PLAudioPath.h"
 
 #import "Macros+Singleton.h"
 #import "LGDefines.h"

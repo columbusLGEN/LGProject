@@ -12,6 +12,7 @@
 #import "DJUploadMindReportLineModel.h"
 #import "UITextView+Extension.h"
 #import "DJOnlineNetorkManager.h"
+#import "LGAudioPlayerManager.h"
 
 @interface UCUploadViewController ()<UIScrollViewDelegate>
 @property (strong,nonatomic) NSArray *array;
@@ -24,6 +25,9 @@
 @property (strong,nonatomic) HXPhotoManager *nineImageManager;
 @property (strong,nonatomic) DJUploadDataManager *uploadDataManager;
 
+/** 音频播放控件 */
+@property (weak,nonatomic) LGAudioPlayerView *apv;
+
 @property (weak,nonatomic) UIView *colorLump;
 @property (weak,nonatomic) UITextView *textView;
 @property (assign,nonatomic) CGFloat textHeight;
@@ -32,6 +36,15 @@
 
 @implementation UCUploadViewController{
     CGFloat _textViewWidth;
+    LGAudioPlayerManager *apm;
+    /** 防止用户重复上传 */
+    BOOL uploading;
+    MBProgressHUD *uploadTipView;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -40,7 +53,7 @@
     
 }
 - (void)configUI{
-    
+    uploading = NO;
     /// 导航部分
     UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancelClick)];
     self.navigationItem.leftBarButtonItem = cancel;
@@ -103,26 +116,36 @@
     if (_uploadAction == DJUPloadPyqActionVideo) {
         _nineImageManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypeVideo];
     }
-    HXPhotoView *siv = [HXPhotoView.alloc initWithManager:_nineImageManager];
-    _selectedImageView = siv;
-    _uploadDataManager = DJUploadDataManager.new;
-    _selectedImageView.delegate = _uploadDataManager;
-    [self.scrollView addSubview:_selectedImageView];
-    [_selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_textView.mas_bottom).offset(marginTen);
-        make.left.equalTo(self.scrollView.mas_left).offset(marginFifteen);
-        make.width.mas_equalTo(280);
-        make.height.mas_equalTo(280);
-        make.bottom.equalTo(self.scrollView.mas_bottom);
-    }];
+    if (_uploadAction == DJUPloadPyqActionImg || _uploadAction == DJUPloadPyqActionVideo) {
+        HXPhotoView *siv = [HXPhotoView.alloc initWithManager:_nineImageManager];
+        _selectedImageView = siv;
+        _uploadDataManager = DJUploadDataManager.new;
+        _selectedImageView.delegate = _uploadDataManager;
+        [self.scrollView addSubview:_selectedImageView];
+        [_selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_textView.mas_bottom).offset(marginTen);
+            make.left.equalTo(self.scrollView.mas_left).offset(marginFifteen);
+            make.width.mas_equalTo(280);
+            make.height.mas_equalTo(280);
+            make.bottom.equalTo(self.scrollView.mas_bottom);
+        }];
+    }
     
-    /// TODO: 音频 从上个页面拿到音频文件（链接）
+    /// 音频
     if (_uploadAction == DJUPloadPyqActionAudio) {
-        /// 音频
-        
-    }else{
-        /// 文字不展示图片选择框 & 重写 文本框的约束条件
-        
+        apm = LGAudioPlayerManager.new;
+        apm.audioTotalTime = _audioTotalTime;
+        LGAudioPlayerView *apv = [apm audioPlayerView];
+        _apv = apv;
+        [_apv cutBorderWithBorderWidth:1 borderColor:UIColor.EDJGrayscale_F3 cornerRadius:0];
+        [self.scrollView addSubview:_apv];
+        [_apv mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_textView.mas_bottom).offset(marginTen);
+            make.left.equalTo(self.scrollView.mas_left).offset(marginFifteen);
+            make.width.mas_equalTo(kScreenWidth - 20);
+            make.height.mas_equalTo(55);
+            make.bottom.equalTo(self.scrollView.mas_bottom);
+        }];
     }
     
     
@@ -152,50 +175,113 @@
 /// MARK: 上传数据
 - (void)sendClick{
     
-    /// TODO: 上传 视频
-    
     [self.view endEditing:YES];
     
-    NSMutableDictionary *param = NSMutableDictionary.new;
-    param[@"content"] = _textView.text?_textView.text:@"";
+    NSString *content = _textView.text?_textView.text:@"";
     
-    [_uploadDataManager ugc_uploadFileWithMimeType:@"" success:^(NSArray *imageUrls, NSDictionary *formData) {
+    NSMutableDictionary *param = NSMutableDictionary.new;
+    param[@"content"] = content;
+    
+    uploadTipView = [MBProgressHUD wb_showActivityMessage:@"上传中..." toView:self.view];
+    uploading = YES;
+    
+    //  ugctype   1图片; 2视频; 3音频; 4文本
+    /// 上传音频
+    if (_uploadAction == DJUPloadPyqActionAudio) {
         
-        if (imageUrls == nil || imageUrls.count == 0) {
-            [self presentFailureTips:@"您未选择任何图片"];
-            return;
-        }
+        /// TODO: 上传音频文件
+        NSURL *audioURL = [NSURL URLWithString:[PLAudioPath recordPathOriginToAMR]];
+        /// TODO: 上传音频文件 mimetype = ?
+        [DJOnlineNetorkManager.sharedInstance uploadFileWithLocalFileUrl:audioURL mimeType:@"" uploadProgress:^(NSProgress *uploadProgress) {
+            
+        } success:^(id dict) {
+            /// TODO: 上传音频文件成功
+            [self endUpload];
+            
+        } failure:^(id uploadFailure) {
+            [self endUpload];
+            [self presentFailureTips:@"上传音频文件失败，请稍后重试"];
+        }];
         
-        NSString *fileurl = [imageUrls componentsJoinedByString:@","];
-        param[@"fileurl"] = fileurl;
-        
-        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
+    }else if (_uploadAction == DJUPloadPyqActionText) {
+        /// 上传纯文本
+        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:4 filetype:_uploadAction success:^(id responseObj) {
+            [self endUpload];
             [self presentSuccessTips:@"上传成功，审核中"];
             [self lg_dismissViewController];
         } failure:^(id failureObj) {
+            [self endUpload];
             [self presentSuccessTips:@"上传失败，请稍后重试"];
         }];
         
-    } singleFileComplete:^(id dict) {
-        /// 单图、音频分支
-        /// TODO: 上传音频
+    }else if (_uploadAction == DJUPloadPyqActionVideo){
+        /// TODO: 上传视频
+//        [self endUpload];
         
-        param[@"fileurl"] = dict[@"path"];
-        param[@"widthheigth"] = dict[@"widthheigth"];
-//        dict[@"cover"];
-//        NSLog(@"dict: %@",dict);
-        
-        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
-            [self presentSuccessTips:@"上传成功，审核中"];
-            [self lg_dismissViewController];
-        } failure:^(id failureObj) {
-            [self presentSuccessTips:@"上传失败，请稍后重试"];
+    }else{
+        /// 上传图片
+        [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
+            if (imageUrls == nil || imageUrls.count == 0) {
+                [self presentFailureTips:@"您未选择任何图片"];
+                return;
+            }
+            
+            NSString *fileurl = [imageUrls componentsJoinedByString:@","];
+            param[@"fileurl"] = fileurl;
+            
+            [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
+                [self endUpload];
+                [self presentSuccessTips:@"上传成功，审核中"];
+                [self lg_dismissViewController];
+            } failure:^(id failureObj) {
+                [self endUpload];
+                [self presentSuccessTips:@"上传失败，请稍后重试"];
+            }];
         }];
         
-    }];
+    }
+    
+
+    //    @"image/jpeg"
+    
+//    [_uploadDataManager ugc_uploadFileWithMimeType:@"" success:^(NSArray *imageUrls, NSDictionary *formData) {
+//
+//        if (imageUrls == nil || imageUrls.count == 0) {
+//            [self presentFailureTips:@"您未选择任何图片"];
+//            return;
+//        }
+//
+//        NSString *fileurl = [imageUrls componentsJoinedByString:@","];
+//        param[@"fileurl"] = fileurl;
+//
+//        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
+//            [self presentSuccessTips:@"上传成功，审核中"];
+//            [self lg_dismissViewController];
+//        } failure:^(id failureObj) {
+//            [self presentSuccessTips:@"上传失败，请稍后重试"];
+//        }];
+//
+//    } singleFileComplete:^(id dict) {
+//
+//        param[@"fileurl"] = dict[@"path"];
+//        param[@"widthheigth"] = dict[@"widthheigth"];
+////        dict[@"cover"];
+////        NSLog(@"dict: %@",dict);
+//
+//        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
+//            [self presentSuccessTips:@"上传成功，审核中"];
+//            [self lg_dismissViewController];
+//        } failure:^(id failureObj) {
+//            [self presentSuccessTips:@"上传失败，请稍后重试"];
+//        }];
+//
+//    }];
     
 }
-
+- (void)endUpload{
+    [uploadTipView hideAnimated:YES];
+    uploading = NO;
+}
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

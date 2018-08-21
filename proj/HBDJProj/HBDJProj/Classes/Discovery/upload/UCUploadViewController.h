@@ -11,5 +11,7 @@
 
 @interface UCUploadViewController : LGBaseViewController
 @property (assign,nonatomic) DJUploadPyqAction uploadAction;
+/** 音频录制时间 */
+@property (assign,nonatomic) NSInteger audioTotalTime;
 
 @end

@@ -24,8 +24,8 @@ LGPlayerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UIView *iconBg;
 @property (weak, nonatomic) IBOutlet LGAudioPlayerView *audioPlayer;
-@property (weak, nonatomic) IBOutlet UIImageView *bgImg;
 @property (strong,nonatomic) LGPlayer *audio;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImg;
 
 /** if (played == YES),不是首次播放*/
 @property (assign,nonatomic) BOOL played;

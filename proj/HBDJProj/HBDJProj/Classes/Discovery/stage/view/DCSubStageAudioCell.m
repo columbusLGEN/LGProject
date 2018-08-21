@@ -17,6 +17,11 @@
 
 @implementation DCSubStageAudioCell
 
+- (void)setModel:(DCSubStageModel *)model{
+    [super setModel:model];
+    
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.audio];

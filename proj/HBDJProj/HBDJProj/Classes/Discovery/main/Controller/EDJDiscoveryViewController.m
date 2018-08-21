@@ -113,8 +113,10 @@ LGNavigationSearchBarDelelgate>
         /// 上传党员舞台 （朋友圈）
         UCUploadPyqViewController *upvc = UCUploadPyqViewController.new;
         upvc.pushWay = LGBaseViewControllerPushWayModal;
-        upvc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-        [self presentViewController:upvc animated:YES completion:nil];
+//        upvc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        LGBaseNavigationController *nav = [LGBaseNavigationController.alloc initWithRootViewController:upvc];
+        nav.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [self presentViewController:nav animated:YES completion:nil];
         
     }else{
         

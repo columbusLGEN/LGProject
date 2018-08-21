@@ -15,4 +15,7 @@
 
 @property (assign,nonatomic) CGFloat progressValue;
 
+@property (assign,nonatomic) NSInteger cTime;
+@property (assign,nonatomic) NSInteger tTime;
+
 @end

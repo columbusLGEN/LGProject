@@ -19,13 +19,32 @@ static CGFloat progressRectWidth = 3;
 
 @implementation LGAudioPlayerView
 
+- (NSDateFormatter *)formatter{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"mm:ss"];
+    return formatter;
+}
+
+- (void)setTTime:(NSInteger)tTime{
+    _tTime = tTime;
+    NSString *totalString = [self.formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:tTime]];
+    self.totalTime.text = totalString;
+}
+- (void)setCTime:(NSInteger)cTime{
+    _cTime = cTime;
+    NSString *currentString = [self.formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:cTime]];
+    self.currentTime.text = currentString;
+}
+
 - (void)setProgressValue:(CGFloat)progressValue{
     _progressValue = progressValue;
     _progress.progress = progressValue;
+
     [UIView animateWithDuration:0 animations:^{
         CGRect frame = _rect.frame;
         if (_progress.progress == 1) {
             frame.origin.x = roundf(_progress.progress * _progress.width + _progress.x - progressRectWidth);
+            self.play.selected = NO;
         }else{
             frame.origin.x = roundf(_progress.progress * _progress.width + _progress.x);
         }

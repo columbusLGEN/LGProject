@@ -27,8 +27,15 @@ UCMemberStageTransitionViewDelegate>
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    self.view.backgroundColor = [UIColor clearColor];
 
     UCMemberStageTransitionView *tv = UCMemberStageTransitionView.memberStateTransitionView;
     tv.delegate = self;
@@ -50,14 +57,16 @@ UCMemberStageTransitionViewDelegate>
     if (action == DJUPloadPyqActionAudio) {
         DJRecordVoiceViewController *video = DJRecordVoiceViewController.new;
         video.pushWay = LGBaseViewControllerPushWayModal;
-        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:video];
-        [self presentViewController:nav animated:YES completion:nil];
+//        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:video];
+//        [self presentViewController:nav animated:YES completion:nil];
+        [self.navigationController pushViewController:video animated:YES];
     }else{
         UCUploadViewController *upvc = [UCUploadViewController new];
         upvc.uploadAction = action;
         upvc.pushWay = LGBaseViewControllerPushWayModal;
-        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:upvc];
-        [self presentViewController:nav animated:YES completion:nil];
+//        LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:upvc];
+//        [self presentViewController:nav animated:YES completion:nil];
+        [self.navigationController pushViewController:upvc animated:YES];
     }
     
 }

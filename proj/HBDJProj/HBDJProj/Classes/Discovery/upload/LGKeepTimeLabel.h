@@ -13,5 +13,6 @@
 - (void)pause;
 - (void)stop;
 - (instancetype)initWithFrame:(CGRect)frame sec:(NSInteger)sec;
+@property (assign,nonatomic) NSInteger sec;
 
 @end

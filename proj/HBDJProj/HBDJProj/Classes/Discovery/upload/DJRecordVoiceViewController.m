@@ -8,6 +8,8 @@
 
 #import "DJRecordVoiceViewController.h"
 #import "LGKeepTimeLabel.h"
+#import "PLAudioRecorder.h"
+#import "UCUploadViewController.h"
 
 @interface DJRecordVoiceViewController ()
 @property (weak,nonatomic) UIImageView *timerBg;
@@ -18,17 +20,14 @@
 
 @end
 
-@implementation DJRecordVoiceViewController
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+@implementation DJRecordVoiceViewController{
+    PLAudioRecorder *audioRecorder;
     
 }
 
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-//    NSLog(@"bg.size: %@",NSStringFromCGSize(_timerBg.size));
-    
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -53,6 +52,7 @@
     _time = time;
     _time.textColor = UIColor.whiteColor;
     _time.font = [UIFont systemFontOfSize:44];
+    _time.text = @"00:00:00";
     [self.view addSubview:_time];
     
     UIButton *button = UIButton.new;
@@ -78,27 +78,160 @@
     }];
     
     _began = NO;
+    
+    [self initVoiceRecoder];
 }
 
+- (void)initVoiceRecoder{
+    audioRecorder = [[PLAudioRecorder alloc] init];
+    
+    /**
+     *  是否需要转码的逻辑判断，默认为NO
+     当为NO是录制的格式是默认的wav格式，这种格式iOS是支持的；
+     因为iOS支持的格式基本android都不支持，android支持的iOS全部都不支持，但是为了实现与android平台的IM互通，所以把iOS支持的wav转为android支持的amr
+     所以这里可以设置isNeedConvert为yes，表示在录制完成后会转换成amr格式
+     */
+    audioRecorder.isNeedConvert=YES;
+    
+    
+}
+
+- (void)startRecord{
+
+    [audioRecorder startRecordWithFilePath:[PLAudioPath recordPathOrigin]
+                              updateMeters:^(float meters){
+//                                  [self updateVolumeUI:meters];
+                                  
+                                  
+                              }
+                                   success:^(NSData *recordData){
+                                       NSLog(@"录音成功");
+                                       
+                                       
+                                   }
+                                    failed:^(NSError *error){
+                                        NSLog(@"录音失败");
+                                        
+                                        
+                                    }];
+    
+}
+- (void)endRecord{
+    [audioRecorder stopRecord];
+}
+- (void)pauseRecord{
+    [audioRecorder pause];
+}
+- (void)resumeRecord{
+    [audioRecorder resume];
+}
+/// MARK: 点击完成
 - (void)recordDone:(UIButton *)button{
     [_time stop];
     
+    [self endRecord];
+    
+    UCUploadViewController *vc = UCUploadViewController.new;
+    vc.pushWay = LGBaseViewControllerPushWayModal;
+    vc.uploadAction = DJUPloadPyqActionAudio;
+    vc.audioTotalTime = _time.sec;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
-
+/// MARK: 录制按钮点击事件
 - (void)buttonClick:(UIButton *)button{
+    
     if (!button.isSelected) {
-        [_time fire];
-        /// TODO: 开始录音
+
+        if (_began) {
+            [_time fire];
+            /// 继续
+            [self resumeRecord];
+        }else{
+            [_time fire];
+            /// 首次播放
+            [self startRecord];
+            _began = YES;
+        }
         
     }else{
         [_time pause];
-        /// TODO: 暂停录音
+        /// 暂停
+        [self pauseRecord];
     }
+    
     button.selected = !button.isSelected;
     /// 次   点击之前.isSelected   点击之后.isSelected
     /// 1   NO                      YES
     /// 2   YES                     NO
+    
+}
+
+
+//- (void)startPlay{
+//
+//    [audioPlayer startPlayAudioFile:[PLAudioPath recordPathOriginToAMR]
+//                       updateMeters:^(float meters){
+//                           [self updateVolumeUI:meters];
+//
+//                       }
+//                            success:^{
+//                                // 停止UI的播放
+//                                //
+//                                NSLog(@"播放成功");
+//
+//
+//
+//                            } failed:^(NSError *error) {
+//                                // 停止UI的播放
+//
+//
+//                            } ];
+//
+//}
+//
+//
+//- (void)endPlayBtAction{
+//    [audioPlayer stopPlay];
+//
+//}
+
+- (void)updateVolumeUI:(float )meters{
+    /// 可设置波形
+    //    float m = fabsf(meters);
+    //
+    //    NSInteger iconNumber = 3;
+    //
+    //    float scale = (60 - m )/60;
+    
+    //    if (scale <= 0.2f ){
+    //        iconNumber = 1;
+    //    } else if (scale > 0.2f && scale <= 0.4f) {
+    //        iconNumber = 2;
+    //    }else if (scale > 0.4f && scale <= 0.6f) {
+    //        iconNumber = 3;
+    //    }else if (scale > 0.6f && scale <= 0.8f) {
+    //        iconNumber = 4;
+    //    } else {
+    //        iconNumber = 5;
+    //    }
+    //    label.hidden=NO;
+    //    if (iconNumber==1) {
+    //        label.font=[UIFont systemFontOfSize:10    ];
+    //    }else if (iconNumber==2){
+    //
+    //        label.font=[UIFont systemFontOfSize:15    ];
+    //    }else if (iconNumber==3){
+    //        label.font=[UIFont systemFontOfSize:25    ];
+    //
+    //    }else if (iconNumber==4){
+    //        label.font=[UIFont systemFontOfSize:45    ];
+    //
+    //    }else if (iconNumber==5){
+    //        label.font=[UIFont systemFontOfSize:85    ];
+    //
+    //    }
+    
     
 }
 
