@@ -11,5 +11,7 @@
 @interface EDJSearchTagModel : LGBaseModel
 @property (strong,nonatomic) NSString *name;
 @property (assign,nonatomic) NSInteger oriIndex;
+/** YES: 是历史搜索记录 */
+@property (assign,nonatomic) BOOL isHis;
 
 @end

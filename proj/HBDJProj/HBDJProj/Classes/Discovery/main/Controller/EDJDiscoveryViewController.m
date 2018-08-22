@@ -18,6 +18,7 @@
 #import "DCSubPartStateModel.h"
 #import "DCSubStageTableviewController.h"
 #import "DCSubStageModel.h"
+#import "HPSearchViewController.h"
 
 typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
     DiscoveryChannelQuestionCommunity,
@@ -122,6 +123,10 @@ LGNavigationSearchBarDelelgate>
         
     }
     
+}
+- (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
+    HPSearchViewController *svc = HPSearchViewController.new;
+    [self.navigationController pushViewController:svc animated:YES];
 }
 
 

@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-/// 旧版--首页搜索控制器 (已经废弃，待新版稳定之后完全删除)
+/// 旧版--首页搜索控制器 --- 变更为发现也搜索控制器
 
 #import "LGSegmentViewController.h"
 

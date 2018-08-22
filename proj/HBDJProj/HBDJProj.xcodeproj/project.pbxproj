@@ -302,6 +302,8 @@
 		88A47139207F0C74002F93E0 /* EDJUserCenterHomePageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A47138207F0C74002F93E0 /* EDJUserCenterHomePageCell.xib */; };
 		88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A4713C207F320F002F93E0 /* LGCustomButton.m */; };
 		88A47142207F5242002F93E0 /* UCPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A47141207F5242002F93E0 /* UCPersonInfoViewController.m */; };
+		88A53065212D5B0500D79075 /* DJDisSearchHisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A53064212D5B0500D79075 /* DJDisSearchHisCell.m */; };
+		88A53068212D5B4C00D79075 /* DJDisSearchHisReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A53067212D5B4C00D79075 /* DJDisSearchHisReusableView.m */; };
 		88A80BE920D9E46000AB274B /* HPChairmanSpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A80BE820D9E46000AB274B /* HPChairmanSpeechViewController.m */; };
 		88A955C120F59D77009AB70F /* DJThemeMeetingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C020F59D77009AB70F /* DJThemeMeetingsModel.m */; };
 		88A955C420F5A40A009AB70F /* DJShowThemeMeetingBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C320F5A40A009AB70F /* DJShowThemeMeetingBaseCell.m */; };
@@ -1016,6 +1018,10 @@
 		88A4713C207F320F002F93E0 /* LGCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGCustomButton.m; sourceTree = "<group>"; };
 		88A47140207F5242002F93E0 /* UCPersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPersonInfoViewController.h; sourceTree = "<group>"; };
 		88A47141207F5242002F93E0 /* UCPersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPersonInfoViewController.m; sourceTree = "<group>"; };
+		88A53063212D5B0500D79075 /* DJDisSearchHisCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDisSearchHisCell.h; sourceTree = "<group>"; };
+		88A53064212D5B0500D79075 /* DJDisSearchHisCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDisSearchHisCell.m; sourceTree = "<group>"; };
+		88A53066212D5B4C00D79075 /* DJDisSearchHisReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDisSearchHisReusableView.h; sourceTree = "<group>"; };
+		88A53067212D5B4C00D79075 /* DJDisSearchHisReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDisSearchHisReusableView.m; sourceTree = "<group>"; };
 		88A80BE620D9E3AB00AB274B /* HBDJProj-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HBDJProj-Bridging-Header.h"; sourceTree = "<group>"; };
 		88A80BE720D9E46000AB274B /* HPChairmanSpeechViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPChairmanSpeechViewController.h; sourceTree = "<group>"; };
 		88A80BE820D9E46000AB274B /* HPChairmanSpeechViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPChairmanSpeechViewController.m; sourceTree = "<group>"; };
@@ -1685,6 +1691,7 @@
 			children = (
 				8857B5F22123BAFE00BFCA16 /* DJDiscoveryNetworkManager.h */,
 				8857B5F32123BAFE00BFCA16 /* DJDiscoveryNetworkManager.m */,
+				88A53061212D5A5E00D79075 /* search */,
 				88493C052125679D00ADC971 /* other */,
 				889C6ABC21229FD2002404C5 /* upload */,
 				8831E1422092F20B001D038E /* main */,
@@ -2213,8 +2220,6 @@
 			children = (
 				88176FDB210EAA15004B8F2F /* DJHomeSearchViewController.h */,
 				88176FDC210EAA15004B8F2F /* DJHomeSearchViewController.m */,
-				881F1A8120C125A7005D9261 /* HPSearchViewController.h */,
-				881F1A8220C125A7005D9261 /* HPSearchViewController.m */,
 				881F1A8420C12915005D9261 /* HPSearchLessonController.h */,
 				881F1A8520C12915005D9261 /* HPSearchLessonController.m */,
 				886A1B6420CF7B6A0007AD63 /* HPSearchBuildPoineNewsController.h */,
@@ -2857,6 +2862,27 @@
 				88435E76208D84E000188CE9 /* userInfoConfig.plist */,
 			);
 			path = userPersonInfo;
+			sourceTree = "<group>";
+		};
+		88A53061212D5A5E00D79075 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				88A53062212D5A6600D79075 /* view */,
+				881F1A8120C125A7005D9261 /* HPSearchViewController.h */,
+				881F1A8220C125A7005D9261 /* HPSearchViewController.m */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		88A53062212D5A6600D79075 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88A53063212D5B0500D79075 /* DJDisSearchHisCell.h */,
+				88A53064212D5B0500D79075 /* DJDisSearchHisCell.m */,
+				88A53066212D5B4C00D79075 /* DJDisSearchHisReusableView.h */,
+				88A53067212D5B4C00D79075 /* DJDisSearchHisReusableView.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		88A955CE20F5DBDA009AB70F /* mindReport */ = {
@@ -3960,12 +3986,14 @@
 				8831E15420931090001D038E /* DCSubPartStateBaseCell.m in Sources */,
 				88EA131420AD1766007AB886 /* UCAccountHitTableViewCell.m in Sources */,
 				88EA133C20AD5E31007AB886 /* NSAttributedString+Extension.m in Sources */,
+				88A53068212D5B4C00D79075 /* DJDisSearchHisReusableView.m in Sources */,
 				884312D920873C1B00321F84 /* UCSettingTableViewCell.m in Sources */,
 				8876E3E820EB7559001C6A1A /* DJOnlineUplaodBaseCell.m in Sources */,
 				8806C82B210EEFB600685DEF /* DJCoreTextViewManager.m in Sources */,
 				8876E3E320EB72C3001C6A1A /* DJOnlineUploadAddPeopleCell.m in Sources */,
 				88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */,
 				8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */,
+				88A53065212D5B0500D79075 /* DJDisSearchHisCell.m in Sources */,
 				884EB42621073D15005D5CA9 /* DJThoughtReportDetailModel.m in Sources */,
 				889E7DC52099A45500BB9084 /* UCMemberStageTransitionButton.m in Sources */,
 				8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */,

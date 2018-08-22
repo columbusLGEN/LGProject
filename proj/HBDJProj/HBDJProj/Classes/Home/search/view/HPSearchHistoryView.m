@@ -69,7 +69,8 @@
         _searchRecord = searchRecord;
         _deleteRecord = deleteRecord;
         _scrollv = scrollv;
-        NSLog(@"scrollview: %@",_scrollv);
+        
+        
     }
     return self;
 }

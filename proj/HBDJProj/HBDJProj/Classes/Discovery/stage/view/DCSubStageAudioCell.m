@@ -41,6 +41,7 @@ static NSString * const key_playState = @"playState";
     [model addObserver:self forKeyPath:key_playState options:NSKeyValueObservingOptionNew context:nil];
 }
 
+/// TODO: cell 停止播放
 - (void)audioCellStopPlay{
     [self.model.player lg_stop_play];
 }

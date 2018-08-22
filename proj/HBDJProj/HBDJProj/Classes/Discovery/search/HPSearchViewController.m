@@ -10,7 +10,6 @@
 
 #import "LGNavigationSearchBar.h"
 #import "HPVoiceSearchView.h"
-#import "HPSearchHistoryView.h"
 
 #import "HPSearchLessonController.h"
 #import "HPSearchBuildPoineNewsController.h"
@@ -23,12 +22,16 @@
 #import "LGVoiceRecoganizer.h"// 声音识别管理者
 #import "LGUserLimitsManager.h"// 隐私权限检查
 #import "LGVoiceRecoAssist.h"// 语音识别辅助
+#import "EDJSearchTagModel.h"
+#import "DJDisSearchHisCell.h"
 
 @interface HPSearchViewController ()<
 LGNavigationSearchBarDelelgate,
 UITextFieldDelegate,
 HPVoiceSearchViewDelegate,
-LGVoiceRecoAssistDelegate>
+LGVoiceRecoAssistDelegate,
+UICollectionViewDelegate,
+UICollectionViewDataSource>
 
 @property (strong,nonatomic) LGNavigationSearchBar *fakeNavgationBar;
 @property (strong,nonatomic) UITextField *textField;
@@ -37,11 +40,12 @@ LGVoiceRecoAssistDelegate>
 @property (strong,nonatomic) NSString *searchContent;
 
 @property (strong,nonatomic) NSMutableString *voiceString;
-@property (weak,nonatomic) HPSearchHistoryView *searchHistory;
+@property (strong,nonatomic) UICollectionView *searchHistory;
 
 /** 本地搜索记录数组 */
 @property (strong,nonatomic) NSArray<NSString *> *records;
 @property (strong,nonatomic) LGRecordButtonLoader *rbLoader;
+@property (strong,nonatomic) NSArray *hisTagModels;
 
 @property (strong,nonatomic) LGUserLimitsManager *limitsMgr;
 @property (strong,nonatomic) LGVoiceRecoAssist *voiceAssist;
@@ -75,23 +79,15 @@ LGVoiceRecoAssistDelegate>
     [self.view addSubview:fakeNavgationBar];
     _fakeNavgationBar = fakeNavgationBar;
     
-    /// 历史记录视图
-    HPSearchHistoryView *hisView = [[HPSearchHistoryView alloc] init];
-    _searchHistory = hisView;
-    
     /// 获取本地历史记录数据
     [self getLocalRecord];
     
-    [hisView.deleteRecord addTarget:self
-                             action:@selector(deleteSearchRecord:)
-                   forControlEvents:UIControlEventTouchUpInside];
-    hisView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:hisView];
-    [hisView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.searchHistory];
+    [self.searchHistory mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(fakeNavgationBar.mas_bottom);
-        make.left.equalTo(self.view.mas_left);
+        make.left.equalTo(self.view.mas_left).offset(marginFive);
         make.bottom.equalTo(self.view.mas_bottom);
-        make.right.equalTo(self.view.mas_right);
+        make.right.equalTo(self.view.mas_right).offset(-marginFive);
     }];
     
     /// 监听语音识别结束
@@ -142,6 +138,37 @@ LGVoiceRecoAssistDelegate>
 }
 
 #pragma mark - delegate
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 2;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if (section == 0) {
+        /// 热门标签，网络请求的
+        
+//        return 0;
+        return self.records.count;
+    }else{
+        /// 本地历史数据
+        
+        return self.records.count;
+    }
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        
+        EDJSearchTagModel *model = self.hisTagModels[indexPath.item];
+        DJDisSearchHisCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:djdsSearchHisCell forIndexPath:indexPath];
+        cell.model = model;
+        return cell;
+    }else{
+        EDJSearchTagModel *model = self.hisTagModels[indexPath.item];
+        DJDisSearchHisCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:djdsSearchHisCell forIndexPath:indexPath];
+        cell.model = model;
+        return cell;
+    }
+
+}
+
 /// MARK: 语音搜索视图 HPVoiceSearchViewDelegate
 - (void)voiceViewRecording:(HPVoiceSearchView *)voiceView{
     /// 检查网络状态
@@ -351,12 +378,15 @@ LGVoiceRecoAssistDelegate>
 /// 获取搜索历史记录
 - (void)getLocalRecord{
     self.records = [LGLocalSearchRecord getLocalRecordWithPart:SearchRecordExePartHome];
-    NSMutableArray *buttonArray = [NSMutableArray array];
-    [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *button = [self.rbLoader buttonWith:obj frame:CGRectZero];
-        [buttonArray addObject:button];
-    }];
-    [self.rbLoader addButtonTo:_searchHistory.scrollv viewController:self array:buttonArray.copy action:@selector(recordClick:)];
+    NSMutableArray *arrmu = [NSMutableArray array];
+    for (NSInteger i = 0; i < self.records.count; i++) {
+        EDJSearchTagModel *model = EDJSearchTagModel.new;
+        model.name = self.records[i];
+        model.isHis = YES;
+        [arrmu addObject:model];
+    }
+    _hisTagModels = arrmu.copy;
+    [self.searchHistory reloadData];
 }
 /// 添加输入框
 - (void)addTextFieldToNav:(LGNavigationSearchBar *)navigationSearchBar{
@@ -387,4 +417,25 @@ LGVoiceRecoAssistDelegate>
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (UICollectionView *)searchHistory{
+    if (!_searchHistory) {
+        UICollectionViewFlowLayout *flowLayout = UICollectionViewFlowLayout.new;
+        flowLayout.minimumLineSpacing = 0;
+        flowLayout.minimumInteritemSpacing = 0;
+        /// collectionview leftmargin 5 rightmargin 5
+        CGFloat itemW = floor((kScreenWidth - 20) / 3);
+        flowLayout.itemSize = CGSizeMake(itemW, 50);
+        
+        _searchHistory = [UICollectionView.alloc initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _searchHistory.backgroundColor = UIColor.whiteColor;
+        _searchHistory.dataSource = self;
+        _searchHistory.delegate = self;
+        
+        [_searchHistory registerClass:[DJDisSearchHisCell class] forCellWithReuseIdentifier:djdsSearchHisCell];
+//        _searchHistory registerNib:<#(nullable UINib *)#> forSupplementaryViewOfKind:<#(nonnull NSString *)#> withReuseIdentifier:<#(nonnull NSString *)#>
+    }
+    return _searchHistory;
+}
+
 @end
