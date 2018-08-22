@@ -30,7 +30,8 @@
 
 - (void)startPlay{
 /// 开始播放
-    [audioPlayer startPlayAudioFile:[PLAudioPath recordPathOriginToAMR]
+//    [audioPlayer startPlayAudioFile:[PLAudioPath recordPathOriginToAMR]
+    [audioPlayer startPlayAudioFile:[PLAudioPath recordPathOrigin]
                        updateMeters:^(float meters){
 //                           [self updateVolumeUI:meters];
                        }

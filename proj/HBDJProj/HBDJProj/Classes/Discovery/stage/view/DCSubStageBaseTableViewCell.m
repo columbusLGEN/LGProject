@@ -40,6 +40,7 @@ LGThreeRightButtonViewDelegate>
 
 - (void)setModel:(DCSubStageModel *)model{
     _model = model;
+//    NSLog(@"model.fileurl: %@",model.fileurl);
     _time.text = [model.timestamp timestampToDate_nyr];
     _content.text = model.content;
     [_icon sd_setImageWithURL:[NSURL URLWithString:model.headpic] placeholderImage:DJHeadIconPImage];

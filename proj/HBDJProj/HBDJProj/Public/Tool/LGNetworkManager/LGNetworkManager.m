@@ -29,6 +29,9 @@
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:url parameters:argu constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSError *error;
         [formData appendPartWithFileURL:localFileUrl name:fieldName fileName:fileName mimeType:mimeType error:&error];
+        if (error) {
+            NSLog(@"appendDataError.debugDescription: %@",error.debugDescription);
+        }
     } error:nil];
     
     NSURLSessionUploadTask *uploadTask = [self.manager uploadTaskWithStreamedRequest:request progress:progress completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
@@ -39,6 +42,7 @@
             NSString *returnJson = [responseObject objectForKey:@"returnJson"];
             NSData *data = [returnJson dataUsingEncoding:NSUTF8StringEncoding];
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSLog(@"上传文件回调: %@",responseObject);
             if (result.intValue == 0) {/// 成功
                 if (success) success(dict);
             }else{

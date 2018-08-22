@@ -26,12 +26,7 @@ PLPlayerDelegate>
         [self removeTimer];
     }
     NSInteger lg_state = state;
-
-    if (state == 5 && _firstPlay) {
-        /// MARK: 如果是首次播放，先暂停
-        [self.audioPlayer pause];
-        _firstPlay = NO;
-    }
+    
     if ([self.delegate respondsToSelector:@selector(playerStateChanged:state:)]) {
         [self.delegate playerStateChanged:self state:lg_state];
     }
@@ -47,6 +42,7 @@ PLPlayerDelegate>
 - (void)addTimer{
     [self removeTimer];
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+//    [[NSRunLoop currentRunLoop] addTimer:self.playTimer forMode:NSRunLoopCommonModes];
 }
 - (void)removeTimer{
     if (self.playTimer) {
@@ -87,10 +83,9 @@ PLPlayerDelegate>
     self.audioPlayer.delegate = self;
     
     /// 为了获取到频频的总时间， 先play，并且设置音量为0，让用户听不到，在代理回调中再暂停
-    [self.audioPlayer play];
-    [self.audioPlayer setVolume:0.0];
+    // 预加载，以获取时间
+    [self.audioPlayer openPlayerWithURL:[NSURL URLWithString:url]];
     _firstPlay = YES;
-    
     
 }
 - (void)lg_play{
@@ -99,11 +94,11 @@ PLPlayerDelegate>
     if (!_playTimer) {
         [self addTimer];
     }
-    [self.audioPlayer setVolume:1.0];
-    [self.audioPlayer resume];
+    
+    [self.audioPlayer play];
+    _firstPlay = NO;
 }
 - (void)lg_pause{
-    /// 记录当前进度
     [self.audioPlayer pause];
 }
 - (void)lg_resume{
@@ -114,5 +109,13 @@ PLPlayerDelegate>
     [self.audioPlayer stop];
 }
 
+///** 预加载 */
+//- (void)openPlayerWithURL:(nullable NSURL *)URL{
+//    [self.audioPlayer openPlayerWithURL:URL];
+//}
+//- (void)playAfterOpen{
+//    [self.audioPlayer play];
+//
+//}
 
 @end

@@ -155,7 +155,7 @@
     UITextView *tv = noti.object;
     CGFloat txtHeight = [tv.text sizeOfTextWithMaxSize:CGSizeMake(tv.size.width - 5, MAXFLOAT) font:tv.font].height;
     
-    NSLog(@"txtHeight: %f",txtHeight);
+//    NSLog(@"txtHeight: %f",txtHeight);
     
     if (txtHeight > 30) {
         [_textView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -189,14 +189,19 @@
     /// 上传音频
     if (_uploadAction == DJUPloadPyqActionAudio) {
         
-        /// TODO: 上传音频文件
-        NSURL *audioURL = [NSURL URLWithString:[PLAudioPath recordPathOriginToAMR]];
-        /// TODO: 上传音频文件 mimetype = ?
-        [DJOnlineNetorkManager.sharedInstance uploadFileWithLocalFileUrl:audioURL mimeType:@"" uploadProgress:^(NSProgress *uploadProgress) {
-            
+//        NSString *recordPath = [PLAudioPath recordPathOriginToAMR];
+        NSString *recordPath = [PLAudioPath recordPathOrigin];
+        NSURL *audioURL = [NSURL fileURLWithPath:recordPath];
+        /// 上传音频文件 mimetype = audio/wav
+//        audio/amr
+        NSString *mimeType = @"audio/mp3";
+        NSLog(@"recordPath: %@",recordPath);
+        [DJOnlineNetorkManager.sharedInstance uploadFileWithLocalFileUrl:audioURL mimeType:mimeType uploadProgress:^(NSProgress *uploadProgress) {
+            //            NSLog(@"上传音频文件: %f",(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
         } success:^(id dict) {
-            /// TODO: 上传音频文件成功
-            [self endUpload];
+            //            NSLog(@"上传音频文件成功: %@",dict);
+            param[@"fileurl"] = dict[@"path"];
+            [self frontUgc_addWithParam:param];
             
         } failure:^(id uploadFailure) {
             [self endUpload];
@@ -205,18 +210,13 @@
         
     }else if (_uploadAction == DJUPloadPyqActionText) {
         /// 上传纯文本
-        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:4 filetype:_uploadAction success:^(id responseObj) {
-            [self endUpload];
-            [self presentSuccessTips:@"上传成功，审核中"];
-            [self lg_dismissViewController];
-        } failure:^(id failureObj) {
-            [self endUpload];
-            [self presentSuccessTips:@"上传失败，请稍后重试"];
-        }];
+        [self frontUgc_addWithParam:param];
         
     }else if (_uploadAction == DJUPloadPyqActionVideo){
         /// TODO: 上传视频
-//        [self endUpload];
+        /// 获取视频封面
+        
+        //        [self endUpload];
         
     }else{
         /// 上传图片
@@ -229,55 +229,24 @@
             NSString *fileurl = [imageUrls componentsJoinedByString:@","];
             param[@"fileurl"] = fileurl;
             
-            [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
-                [self endUpload];
-                [self presentSuccessTips:@"上传成功，审核中"];
-                [self lg_dismissViewController];
-            } failure:^(id failureObj) {
-                [self endUpload];
-                [self presentSuccessTips:@"上传失败，请稍后重试"];
-            }];
+            [self frontUgc_addWithParam:param];
         }];
         
     }
     
-
-    //    @"image/jpeg"
-    
-//    [_uploadDataManager ugc_uploadFileWithMimeType:@"" success:^(NSArray *imageUrls, NSDictionary *formData) {
-//
-//        if (imageUrls == nil || imageUrls.count == 0) {
-//            [self presentFailureTips:@"您未选择任何图片"];
-//            return;
-//        }
-//
-//        NSString *fileurl = [imageUrls componentsJoinedByString:@","];
-//        param[@"fileurl"] = fileurl;
-//
-//        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
-//            [self presentSuccessTips:@"上传成功，审核中"];
-//            [self lg_dismissViewController];
-//        } failure:^(id failureObj) {
-//            [self presentSuccessTips:@"上传失败，请稍后重试"];
-//        }];
-//
-//    } singleFileComplete:^(id dict) {
-//
-//        param[@"fileurl"] = dict[@"path"];
-//        param[@"widthheigth"] = dict[@"widthheigth"];
-////        dict[@"cover"];
-////        NSLog(@"dict: %@",dict);
-//
-//        [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
-//            [self presentSuccessTips:@"上传成功，审核中"];
-//            [self lg_dismissViewController];
-//        } failure:^(id failureObj) {
-//            [self presentSuccessTips:@"上传失败，请稍后重试"];
-//        }];
-//
-//    }];
-    
 }
+
+- (void)frontUgc_addWithParam:(NSMutableDictionary *)param {
+    [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
+        [self endUpload];
+        [self presentSuccessTips:@"上传成功，审核中"];
+        [self lg_dismissViewController];
+    } failure:^(id failureObj) {
+        [self endUpload];
+        [self presentSuccessTips:@"上传失败，请稍后重试"];
+    }];
+}
+
 - (void)endUpload{
     [uploadTipView hideAnimated:YES];
     uploading = NO;

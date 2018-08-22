@@ -7,10 +7,48 @@
 //
 
 #import "DCSubStageModel.h"
+#import "LGPlayer.h"
 
 static CGFloat baseHeight = 152;
 
-@implementation DCSubStageModel
+@interface DCSubStageModel ()<LGPlayerDelegate>
+
+
+@end
+
+@implementation DCSubStageModel{
+    
+    BOOL totalTimeSet;
+}
+
+#pragma mark - LGPlayerDelegate
+- (void)playProgress:(LGPlayer *)player progress:(float)progress currentTime:(float)currentTime totalTime:(float)totalTime{
+    
+    //    if (currentTime < 0) {
+    //        currentTime = 0;
+    //    }
+    
+    self.progress = progress;
+    self.cTime = currentTime;
+    //    NSLog(@"给 model.cTime 赋值: %f",currentTime);
+    /// 总时间，只设置一次
+    if (!totalTimeSet) {
+        //        NSLog(@"给 总时间 赋值: %f",totalTime);
+        self.tTime = totalTime;
+        totalTimeSet = YES;
+    }
+    
+}
+- (void)playerStateChanged:(LGPlayer *)player state:(LGPlayerState)state{
+    self.playState = state;
+}
+- (LGPlayer *)player{
+    if (!_player) {
+        _player = LGPlayer.new;
+        _player.delegate = self;
+    }
+    return _player;
+}
 
 - (CGFloat)single_pic_width{
     if (!_single_pic_width) {

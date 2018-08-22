@@ -100,7 +100,6 @@
 
     [audioRecorder startRecordWithFilePath:[PLAudioPath recordPathOrigin]
                               updateMeters:^(float meters){
-//                                  [self updateVolumeUI:meters];
                                   
                                   
                               }
@@ -166,35 +165,6 @@
     /// 2   YES                     NO
     
 }
-
-
-//- (void)startPlay{
-//
-//    [audioPlayer startPlayAudioFile:[PLAudioPath recordPathOriginToAMR]
-//                       updateMeters:^(float meters){
-//                           [self updateVolumeUI:meters];
-//
-//                       }
-//                            success:^{
-//                                // 停止UI的播放
-//                                //
-//                                NSLog(@"播放成功");
-//
-//
-//
-//                            } failed:^(NSError *error) {
-//                                // 停止UI的播放
-//
-//
-//                            } ];
-//
-//}
-//
-//
-//- (void)endPlayBtAction{
-//    [audioPlayer stopPlay];
-//
-//}
 
 - (void)updateVolumeUI:(float )meters{
     /// 可设置波形

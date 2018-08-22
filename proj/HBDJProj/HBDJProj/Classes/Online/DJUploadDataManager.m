@@ -134,10 +134,17 @@
 /// MARK: HXPhotoViewDelegate
 - (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal{
     
-    [HXPhotoTools selectListWriteToTempPath:photos requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
+    NSArray *array;
+    if (photos.count == 0) {
+        array = videos;
+    }else{
+        array = photos;
+    }
+    
+    [HXPhotoTools selectListWriteToTempPath:array requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
     } completion:^(NSArray<NSURL *> *allUrl, NSArray<NSURL *> *imageUrls, NSArray<NSURL *> *videoUrls) {
-        _tempImageUrls = imageUrls.copy;
-        NSLog(@"_tempImageUrls: %@",_tempImageUrls);
+        _tempImageUrls = allUrl.copy;
+        
     } error:^{
         NSLog(@"selectPhotoError");
     }];

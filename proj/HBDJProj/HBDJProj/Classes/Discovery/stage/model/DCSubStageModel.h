@@ -9,7 +9,7 @@
 /// 党员舞台模型 (朋友圈)
 
 #import "DJDataBaseModel.h"
-@class DCSubStageCommentsModel;
+@class DCSubStageCommentsModel,LGPlayer;
 
 typedef NS_ENUM(NSUInteger, StageModelType) {
     StageModelTypeDefault,/// 只有文字 --> 加载 MoreImg 的cell, imgs.count == 0
@@ -107,5 +107,11 @@ static const CGFloat commentsCellHeight = 25;
 //    "cover":"",
 //    "seqid":1,
 //    "status":1
+/// 朋友圈列表音频cell需要使用的属性
+@property (assign,nonatomic) NSInteger cTime;
+@property (assign,nonatomic) NSInteger tTime;
+@property (assign,nonatomic) CGFloat progress;
+@property (assign,nonatomic) NSInteger playState;
+@property (strong,nonatomic) LGPlayer *player;
 
 @end

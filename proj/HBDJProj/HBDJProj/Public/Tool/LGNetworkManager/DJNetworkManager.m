@@ -223,7 +223,7 @@ static NSString *param_key_userid = @"userid";
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-//        _baseUrl = @"http://192.168.12.37:8080/";
+//        _baseUrl = @"http://192.168.12.42:8080/";
 //        _baseUrl = @"http://123.59.197.176:8480/";
         _baseUrl = @"http://123.59.199.170:8081/";
 //        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒

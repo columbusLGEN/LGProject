@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LGAudioPlayerView.h"
 
+/// 该管理者用于管理录音的播放
+
 @interface LGAudioPlayerManager : NSObject
 
 /// 返回 player view
