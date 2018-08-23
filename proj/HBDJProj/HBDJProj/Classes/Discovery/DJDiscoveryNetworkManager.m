@@ -11,6 +11,15 @@
 
 @implementation DJDiscoveryNetworkManager
 
+- (void)frontIndex_findSearchWithContent:(NSString *)content label:(NSInteger)labelid offset:(NSInteger)offset type:(NSInteger)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+    NSDictionary *dict = @{@"search":content?content:@"",
+                           @"label":[NSString stringWithFormat:@"%ld",labelid],
+                           @"type":[NSString stringWithFormat:@"%ld",type]};
+    
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontIndex/findSearch" param:dict success:success failure:failure];
+}
+
 - (void)frontQuestionanswer_addWithQuestion:(NSString *)question label:(NSString *)label success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [self sendPOSTRequestWithiName:@"frontQuestionanswer/add" param:@{@"question":question,@"label":label} success:success failure:failure];
 }

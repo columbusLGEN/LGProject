@@ -20,7 +20,6 @@
 @interface DCSubStageTableviewController ()<
 DCSubStageBaseTableViewCellDelegate,
 WMPlayerDelegate>
-@property (assign,nonatomic) NSInteger offset;
 @property (weak,nonatomic) WMPlayer * wmPlayer;
 
 @end

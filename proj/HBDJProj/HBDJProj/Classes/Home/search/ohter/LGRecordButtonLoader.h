@@ -40,5 +40,6 @@
  @return UIButton
  */
 - (UIButton *)buttonWithText:(NSString *)text frame:(CGRect)frame;
+- (UIButton *)hotButtonWithText:(NSString *)text frame:(CGRect)frame;
 
 @end

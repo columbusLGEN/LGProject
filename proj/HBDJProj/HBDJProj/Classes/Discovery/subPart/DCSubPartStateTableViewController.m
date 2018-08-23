@@ -17,7 +17,6 @@
 #import "DJUserInteractionMgr.h"
 
 @interface DCSubPartStateTableViewController ()<DCSubPartStateBaseCellDelegate>
-@property (assign,nonatomic) NSInteger offset;
 
 @end
 

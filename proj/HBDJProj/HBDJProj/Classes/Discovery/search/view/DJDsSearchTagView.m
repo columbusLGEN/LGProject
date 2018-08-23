@@ -32,25 +32,21 @@
         }];
         
         [_scrollView addSubview:self.conHot];
-        [_scrollView addSubview:self.conHis];
+        [_scrollView addSubview:self.hisConView];
         
-        CGFloat oriConHeight = 600;//50;
+        CGFloat oriConHeight = 50;
         
         /// 热门标签容器视图
         [_conHot mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(_scrollView);
-            
-//            make.top.equalTo(_scrollView.mas_top);
-//            make.left.equalTo(_scrollView.mas_left);
-//            make.right.equalTo(_scrollView.mas_right);
-            
-            make.bottom.equalTo(_conHis.mas_top);
+            make.bottom.equalTo(_hisConView.mas_top);
             make.width.mas_equalTo(kScreenWidth);
             make.height.mas_equalTo(oriConHeight);
         }];
         
         /// 热门标签
         UILabel *tagHot = UILabel.new;
+        tagHot.tag = -1;
         tagHot.text = @"热门标签";
         tagHot.textColor = UIColor.EDJGrayscale_11;
         tagHot.font = [UIFont systemFontOfSize:15];
@@ -64,37 +60,34 @@
         
         
         /// 历史记录容器视图
-        [_conHis mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_hisConView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(_scrollView);
-            
-//            make.left.equalTo(_scrollView.mas_left);
-//            make.right.equalTo(_scrollView.mas_right);
-//            make.bottom.equalTo(_scrollView.mas_bottom);
-            
             make.height.mas_equalTo(oriConHeight);
             make.width.equalTo(_conHot);
         }];
         
         /// 历史记录
         UILabel *tagHis = UILabel.new;
+        tagHis.tag = -1;
         tagHis.text = @"历史记录";
         tagHis.textColor = UIColor.EDJGrayscale_11;
         tagHis.font = [UIFont systemFontOfSize:15];
         _tagHis = tagHis;
-        [_conHis addSubview:_tagHis];
+        [_hisConView addSubview:_tagHis];
         [_tagHis mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_conHis.mas_top).offset(marginFifteen);
+            make.top.equalTo(_hisConView.mas_top).offset(marginFifteen);
             make.left.equalTo(_tagHot);
         }];
         
         /// 删除历史记录按钮
         UIButton *removeHis = UIButton.new;
+        removeHis.tag = -1;
         [removeHis setImage:[UIImage imageNamed:@"home_icon_remove"] forState:UIControlStateNormal];
         _removeHis = removeHis;
         [_tagHis addSubview:_removeHis];
         [_removeHis mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(_tagHis);
-            make.right.equalTo(_conHis.mas_right).offset(-marginTen);
+            make.right.equalTo(_hisConView.mas_right).offset(-marginTen);
         }];
         
     }
@@ -104,16 +97,16 @@
 - (UIView *)conHot{
     if (!_conHot) {
         _conHot = UIView.new;
-        _conHot.backgroundColor = UIColor.orangeColor;
+//        _conHot.backgroundColor = UIColor.grayColor;
     }
     return _conHot;
 }
-- (UIView *)conHis{
-    if (!_conHis) {
-        _conHis = UIView.new;
-        _conHis.backgroundColor = UIColor.cyanColor;
+- (UIView *)hisConView{
+    if (!_hisConView) {
+        _hisConView = UIView.new;
+//        _hisConView.backgroundColor = UIColor.cyanColor;
     }
-    return _conHis;
+    return _hisConView;
 }
 
 @end

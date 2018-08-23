@@ -197,6 +197,9 @@
 		886A1BF720D101700007AD63 /* HPNetworkFailureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1BF620D101700007AD63 /* HPNetworkFailureView.m */; };
 		886A1BF920D101A00007AD63 /* HPNetworkFailureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BF820D101A00007AD63 /* HPNetworkFailureView.xib */; };
 		886FFDCD212E44BE000E1890 /* DJDsSearchTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFDCC212E44BE000E1890 /* DJDsSearchTagView.m */; };
+		886FFE0F212ED6D5000E1890 /* DCQuestionSearchResultVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFE0E212ED6D5000E1890 /* DCQuestionSearchResultVc.m */; };
+		886FFE12212ED708000E1890 /* DCBranchSearchResultVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFE11212ED708000E1890 /* DCBranchSearchResultVc.m */; };
+		886FFE15212ED726000E1890 /* DCPyqSearchResultVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFE14212ED726000E1890 /* DCPyqSearchResultVc.m */; };
 		8876E3C320EA0DBE001C6A1A /* DJOnlineHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3C220EA0DBE001C6A1A /* DJOnlineHomeModel.m */; };
 		8876E3CB20EB5C12001C6A1A /* DJOnlineUplaodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3CA20EB5C12001C6A1A /* DJOnlineUplaodTableViewController.m */; };
 		8876E3CF20EB67C1001C6A1A /* DJOnlineUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E3CE20EB67C1001C6A1A /* DJOnlineUploadCell.m */; };
@@ -825,6 +828,12 @@
 		886A1BF820D101A00007AD63 /* HPNetworkFailureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPNetworkFailureView.xib; sourceTree = "<group>"; };
 		886FFDCB212E44BE000E1890 /* DJDsSearchTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDsSearchTagView.h; sourceTree = "<group>"; };
 		886FFDCC212E44BE000E1890 /* DJDsSearchTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDsSearchTagView.m; sourceTree = "<group>"; };
+		886FFE0D212ED6D5000E1890 /* DCQuestionSearchResultVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCQuestionSearchResultVc.h; sourceTree = "<group>"; };
+		886FFE0E212ED6D5000E1890 /* DCQuestionSearchResultVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCQuestionSearchResultVc.m; sourceTree = "<group>"; };
+		886FFE10212ED708000E1890 /* DCBranchSearchResultVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCBranchSearchResultVc.h; sourceTree = "<group>"; };
+		886FFE11212ED708000E1890 /* DCBranchSearchResultVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCBranchSearchResultVc.m; sourceTree = "<group>"; };
+		886FFE13212ED726000E1890 /* DCPyqSearchResultVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCPyqSearchResultVc.h; sourceTree = "<group>"; };
+		886FFE14212ED726000E1890 /* DCPyqSearchResultVc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCPyqSearchResultVc.m; sourceTree = "<group>"; };
 		8876E3C120EA0DBE001C6A1A /* DJOnlineHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJOnlineHomeModel.h; sourceTree = "<group>"; };
 		8876E3C220EA0DBE001C6A1A /* DJOnlineHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJOnlineHomeModel.m; sourceTree = "<group>"; };
 		8876E3C920EB5C12001C6A1A /* DJOnlineUplaodTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJOnlineUplaodTableViewController.h; sourceTree = "<group>"; };
@@ -2431,6 +2440,19 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		886FFE0C212ED30E000E1890 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+				886FFE0D212ED6D5000E1890 /* DCQuestionSearchResultVc.h */,
+				886FFE0E212ED6D5000E1890 /* DCQuestionSearchResultVc.m */,
+				886FFE10212ED708000E1890 /* DCBranchSearchResultVc.h */,
+				886FFE11212ED708000E1890 /* DCBranchSearchResultVc.m */,
+				886FFE13212ED726000E1890 /* DCPyqSearchResultVc.h */,
+				886FFE14212ED726000E1890 /* DCPyqSearchResultVc.m */,
+			);
+			path = sub;
+			sourceTree = "<group>";
+		};
 		8876E3C720EB5BDB001C6A1A /* uploadTheme&Meeting */ = {
 			isa = PBXGroup;
 			children = (
@@ -2873,9 +2895,10 @@
 		88A53061212D5A5E00D79075 /* search */ = {
 			isa = PBXGroup;
 			children = (
-				886FFDCA212E43C4000E1890 /* view */,
 				881F1A8120C125A7005D9261 /* HPSearchViewController.h */,
 				881F1A8220C125A7005D9261 /* HPSearchViewController.m */,
+				886FFE0C212ED30E000E1890 /* sub */,
+				886FFDCA212E43C4000E1890 /* view */,
 			);
 			path = search;
 			sourceTree = "<group>";
@@ -3897,6 +3920,7 @@
 				88493C0C21256D7000ADC971 /* DJCommentInputView.m in Sources */,
 				884EB41821030332005D5CA9 /* DJUploadMindReportImageCell.m in Sources */,
 				88EA132F20AD5314007AB886 /* LGHTMLParser.m in Sources */,
+				886FFE15212ED726000E1890 /* DCPyqSearchResultVc.m in Sources */,
 				8831E18D20941A78001D038E /* DCSubStageModel.m in Sources */,
 				88EA131020AD144C007AB886 /* UCAccountHitViewController.m in Sources */,
 				883D475620DB4A2300FD9971 /* UIView+MBProgressHUD.m in Sources */,
@@ -3920,6 +3944,7 @@
 				888223B4212BD7860094D3EF /* PLAudioPath.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
 				88435E82208DBD2C00188CE9 /* EDJLevelInsTableViewCell.m in Sources */,
+				886FFE0F212ED6D5000E1890 /* DCQuestionSearchResultVc.m in Sources */,
 				88ECF05A209FF5050071A98A /* OLExamSingleLineModel.m in Sources */,
 				888223C6212BECB00094D3EF /* LGAudioPlayerManager.m in Sources */,
 				884EB44121097116005D5CA9 /* DJSegmentView.m in Sources */,
@@ -3985,6 +4010,7 @@
 				884312D920873C1B00321F84 /* UCSettingTableViewCell.m in Sources */,
 				8876E3E820EB7559001C6A1A /* DJOnlineUplaodBaseCell.m in Sources */,
 				8806C82B210EEFB600685DEF /* DJCoreTextViewManager.m in Sources */,
+				886FFE12212ED708000E1890 /* DCBranchSearchResultVc.m in Sources */,
 				8876E3E320EB72C3001C6A1A /* DJOnlineUploadAddPeopleCell.m in Sources */,
 				88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */,
 				8877742520C0F7390011DFF3 /* LGDownloadManager.m in Sources */,

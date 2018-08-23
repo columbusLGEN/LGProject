@@ -12,52 +12,59 @@
 
 #define btnH 30
 
+static CGFloat oriHeight1 = 40;
+
 @interface LGRecordButtonLoader ()
 
 @property (assign,nonatomic) CGFloat btnTotalW;
 @property (assign,nonatomic) CGFloat btnTotalH;
 /// 是否将button 都添加至该数组中？
 
+@property (assign,nonatomic) CGFloat bW_con;
+@property (assign,nonatomic) CGFloat bH_con;
+
 @end
 
 @implementation LGRecordButtonLoader{
     
-    CGFloat bW_con;
-    CGFloat bH_con;
+    
+    
 }
 
 - (void)addButtonToContainerView:(UIView *)container viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action{
-    bW_con = 0;
-    bH_con = 0;
-    
+    _bW_con = 0;
+    _bH_con = 0;
     if (container.subviews.count) {
-        [container.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj removeFromSuperview];
-        }];
+        for (UIView *subView in container.subviews) {
+            if (subView.tag != -1) {
+                [subView removeFromSuperview];
+            }
+        }
     }
     
-    /// 初始化buttonarray
     if (!(array.count == 0 || array == nil)) {
-        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        for (NSInteger i = 0; i < array.count; i++) {
+            id obj = array[i];
             UIButton *button;
-            if (idx > 0) {
+            if (i > 0) {
                 /// MARK: 其余按钮
-                button = [self traverseButtonWithArray:array idx:idx];
+                button = [self traverseButtonWithArray:array idx:i];
                 [container addSubview:button];
             }else{
                 /// MARK: 第一个按钮
                 button = (UIButton *)obj;
-                button.frame = CGRectMake(marginFive, marginFive, button.bounds.size.width, btnH);
+                button.frame = CGRectMake(marginFive, marginFive + oriHeight1, button.bounds.size.width, btnH);
                 [container addSubview:button];
-                bW_con += button.frame.size.width + marginFive;
-                bH_con = btnH + marginFive;
+                _bW_con += button.frame.size.width + marginFive;
+                _bH_con = btnH + marginFive;
             }
             [button addTarget:vc action:action forControlEvents:UIControlEventTouchUpInside];
-        }];
+        }
+
     }
     
     [container mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(bH_con);
+        make.height.mas_equalTo(_bH_con + oriHeight1 + 10);
     }];
 }
 
@@ -131,13 +138,13 @@
     
     CGRect frame = CGRectZero;
     UIButton *button = (UIButton *)array[idx];
-    bW_con += button.frame.size.width + marginFive;
-    if (bW_con >= [UIScreen mainScreen].bounds.size.width) {
+    _bW_con += button.frame.size.width + marginFive;
+    if (_bW_con >= [UIScreen mainScreen].bounds.size.width) {
         // 换行
         x = marginFive;
         y = CGRectGetMaxY(lastFrame) + marginFive;
-        bW_con = button.frame.size.width + marginFive;
-        bH_con += btnH + marginFive;
+        _bW_con = button.frame.size.width + marginFive;
+        _bH_con += btnH + marginFive;
         
     }else{
         
@@ -164,6 +171,23 @@
     button.backgroundColor = [UIColor whiteColor];
     [button setTitleColor:[UIColor EDJMainColor] forState:UIControlStateNormal];
     [button cutBorderWithBorderWidth:1 borderColor:[UIColor EDJMainColor] cornerRadius:15];
+    
+    return button;
+}
+- (UIButton *)hotButtonWithText:(NSString *)text frame:(CGRect)frame{
+    UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    
+    button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+    [button setTitle:text forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    [button sizeToFit];
+    
+    frame.size.height = 30;
+    frame.size.width = button.bounds.size.width;
+    
+    button.backgroundColor = [UIColor EDJMainColor];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:15];
     
     return button;
 }

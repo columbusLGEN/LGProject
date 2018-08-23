@@ -10,6 +10,19 @@
 
 @interface DJDiscoveryNetworkManager : NSObject
 
+
+/**
+ 发现搜索
+
+ @param content 搜索内容
+ @param labelid 搜索标签id
+ @param offset 偏移
+ @param type 类型 0所有,1学习问答,2支部动态,3党员舞台
+ @param success
+ @param failure
+ */
+- (void)frontIndex_findSearchWithContent:(NSString *)content label:(NSInteger)labelid offset:(NSInteger)offset type:(NSInteger)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
 /** 提交提问 */
 - (void)frontQuestionanswer_addWithQuestion:(NSString *)question label:(NSString *)label success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 请求标签,上传提问时用 */

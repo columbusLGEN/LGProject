@@ -11,5 +11,7 @@
 #import "LGBaseTableViewController.h"
 
 @interface DCSubStageTableviewController : LGBaseTableViewController
+@property (assign,nonatomic) NSInteger offset;
+- (void)getData;
 
 @end

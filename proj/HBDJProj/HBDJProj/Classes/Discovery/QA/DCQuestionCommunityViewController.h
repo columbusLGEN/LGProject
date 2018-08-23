@@ -9,5 +9,7 @@
 #import "LGBaseTableViewController.h"
 
 @interface DCQuestionCommunityViewController : LGBaseTableViewController
+@property (assign,nonatomic) NSInteger offset;
+- (void)getData;
 
 @end

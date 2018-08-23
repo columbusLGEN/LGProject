@@ -11,5 +11,6 @@
 
 @interface DCSubPartStateTableViewController : LGBaseTableViewController
 //@property (assign,nonatomic) BOOL isSearchResult;
-
+@property (assign,nonatomic) NSInteger offset;
+- (void)getData;
 @end

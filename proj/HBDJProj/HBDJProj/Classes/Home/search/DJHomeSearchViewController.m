@@ -97,10 +97,6 @@
 
 /// testcode
 - (NSArray<NSDictionary *> *)segmentItems{
-    /**
-     DCQuestionCommunityViewController
-     HPSearchBuildPoineNewsController
-     */
     return @[@{LGSegmentItemNameKey:@"微党课",
                LGSegmentItemViewControllerClassKey:@"HPSearchLessonController",/// HPSearchLessonController
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode

@@ -17,7 +17,6 @@ static NSString * const cellID = @"UCQuestionTableViewCell";
 
 @interface DCQuestionCommunityViewController ()<
 UCQuestionTableViewCellDelegate>
-@property (assign,nonatomic) NSInteger offset;
 
 @end
 
@@ -84,6 +83,10 @@ UCQuestionTableViewCellDelegate>
             }
             self.dataArray = arrmu.copy;
             _offset = self.dataArray.count;
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
         }
         
     } failure:^(id failureObj) {

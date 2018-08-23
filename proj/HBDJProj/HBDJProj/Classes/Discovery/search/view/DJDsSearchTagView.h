@@ -16,6 +16,6 @@
 /** 热们标签容器 */
 @property (strong,nonatomic) UIView *conHot;
 /** 历史记录容器 */
-@property (strong,nonatomic) UIView *conHis;
+@property (strong,nonatomic) UIView *hisConView;
 
 @end
