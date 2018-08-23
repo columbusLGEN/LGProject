@@ -39,7 +39,7 @@ typedef void (^DJUploadFileComplete)(id dict);
  */
 - (void)setUploadValue:(id)value key:(NSString *)key;
 
-/** 发现党员舞台上传文件接口 */
+/** 发现党员舞台上传文件接口,目前仅用作上传视频 */
 - (void)ugc_uploadFileWithMimeType:(NSString *)mimeType success:(DJUploadImageComplete)completeBlock singleFileComplete:(DJUploadFileComplete)singleFileComplete;
 
 /**

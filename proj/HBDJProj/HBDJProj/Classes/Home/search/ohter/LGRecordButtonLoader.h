@@ -13,6 +13,8 @@
 @interface LGRecordButtonLoader : NSObject
 
 
+- (void)addButtonToContainerView:(UIView *)container viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action;
+
 /**
  将array中的按钮添加到界面上
 
@@ -21,7 +23,7 @@
  @param array 原始数组
  @param action 按钮点击方法
  */
-- (void)addButtonTo:(UIScrollView *)scrollView viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action;
+- (void)addButtonToScrollView:(UIScrollView *)scrollView viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action;
 
 ///**
 // 添加一个新的按钮到界面上
@@ -37,6 +39,6 @@
  @param frame CGRectZero
  @return UIButton
  */
-- (UIButton *)buttonWith:(NSString *)text frame:(CGRect)frame;
+- (UIButton *)buttonWithText:(NSString *)text frame:(CGRect)frame;
 
 @end

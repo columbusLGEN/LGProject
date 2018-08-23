@@ -70,7 +70,7 @@
         _deleteRecord = deleteRecord;
         _scrollv = scrollv;
         
-        
+//        _scrollv.backgroundColor = UIColor.EDJGrayscale_A4;
     }
     return self;
 }

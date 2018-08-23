@@ -20,6 +20,10 @@ PLPlayerDelegate>
 
 @implementation LGPlayer
 
+- (BOOL)isPlaying{
+    return self.audioPlayer.isPlaying;
+}
+
 #pragma mark - PLPlayerDelegate
 - (void)player:(PLPlayer *)player statusDidChange:(PLPlayerStatus)state{
     if (state == 10 || state == 8) {

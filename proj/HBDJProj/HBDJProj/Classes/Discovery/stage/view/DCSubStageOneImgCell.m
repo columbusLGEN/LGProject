@@ -75,7 +75,9 @@
     }
     
     if (!model.isVideo) {
-        [self.play removeFromSuperview];
+        self.play.hidden = YES;
+    }else{
+        self.play.hidden = NO;
     }
 }
 

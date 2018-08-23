@@ -192,14 +192,12 @@
 //        NSString *recordPath = [PLAudioPath recordPathOriginToAMR];
         NSString *recordPath = [PLAudioPath recordPathOrigin];
         NSURL *audioURL = [NSURL fileURLWithPath:recordPath];
-        /// 上传音频文件 mimetype = audio/wav
-//        audio/amr
+
+        /// TODO: 转mp3格式
         NSString *mimeType = @"audio/mp3";
         NSLog(@"recordPath: %@",recordPath);
         [DJOnlineNetorkManager.sharedInstance uploadFileWithLocalFileUrl:audioURL mimeType:mimeType uploadProgress:^(NSProgress *uploadProgress) {
-            //            NSLog(@"上传音频文件: %f",(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
         } success:^(id dict) {
-            //            NSLog(@"上传音频文件成功: %@",dict);
             param[@"fileurl"] = dict[@"path"];
             [self frontUgc_addWithParam:param];
             
@@ -215,6 +213,12 @@
     }else if (_uploadAction == DJUPloadPyqActionVideo){
         /// TODO: 上传视频
         /// 获取视频封面
+        [_uploadDataManager ugc_uploadFileWithMimeType:@"video/mp4" success:nil singleFileComplete:^(id dict) {
+            param[@"fileurl"] = dict[@"path"];
+            param[@"cover"] = dict[@"cover"];
+            param[@"widthheigth"] = dict[@"widthheigth"];
+            [self frontUgc_addWithParam:param];
+        }];
         
         //        [self endUpload];
         

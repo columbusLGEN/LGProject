@@ -39,6 +39,12 @@ static NSString * const key_playState = @"playState";
     [model addObserver:self forKeyPath:key_tTime options:NSKeyValueObservingOptionNew context:nil];
     [model addObserver:self forKeyPath:key_progress options:NSKeyValueObservingOptionNew context:nil];
     [model addObserver:self forKeyPath:key_playState options:NSKeyValueObservingOptionNew context:nil];
+    
+    if (model.player.isPlaying) {
+        _audioPlayerView.play.selected = YES;
+    }else{
+        _audioPlayerView.play.selected = NO;
+    }
 }
 
 /// TODO: cell 停止播放

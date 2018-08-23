@@ -39,7 +39,6 @@ LGVoiceRecoAssistDelegate>
 @property (strong,nonatomic) NSString *searchContent;
 
 @property (strong,nonatomic) NSMutableString *voiceString;
-//@property (weak,nonatomic) HPSearchHistoryView *searchHistory;
 
 /** 本地搜索记录数组 */
 @property (strong,nonatomic) NSArray<NSString *> *records;
@@ -298,12 +297,13 @@ LGVoiceRecoAssistDelegate>
 /// 获取搜索历史记录
 - (void)getLocalRecord{
     self.records = [LGLocalSearchRecord getLocalRecordWithPart:[self searchRecordExePart]];
+    
     NSMutableArray *buttonArray = [NSMutableArray array];
     [self.records enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *button = [self.rbLoader buttonWith:obj frame:CGRectZero];
+        UIButton *button = [self.rbLoader buttonWithText:obj frame:CGRectZero];
         [buttonArray addObject:button];
     }];
-    [self.rbLoader addButtonTo:_searchHistory.scrollv viewController:self array:buttonArray.copy action:@selector(recordClick:)];
+    [self.rbLoader addButtonToScrollView:_searchHistory.scrollv viewController:self array:buttonArray.copy action:@selector(recordClick:)];
 }
 /// 添加输入框
 - (void)addTextFieldToNav:(LGNavigationSearchBar *)navigationSearchBar{

@@ -11,6 +11,9 @@
 #import "DJOnlineNetorkManager.h"
 #import "DJOnlineUploadTableModel.h"
 
+static NSString * const key_path = @"path";
+static NSString * const key_widthheigth = @"widthheigth";
+
 @interface DJUploadDataManager ()
 /** 要上传的表单数据 */
 @property (strong,nonatomic) NSMutableDictionary *formData;
@@ -19,24 +22,97 @@
 
 @implementation DJUploadDataManager
 
-/// 朋友圈 上传单图、音频、视频
+/** 获取视频封面 */
+- (UIImage *) thumbnailImageForVideo:(NSURL *)videoURL {
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    
+    gen.appliesPreferredTrackTransform = YES;
+    
+    CMTime time = CMTimeMakeWithSeconds(2.0, 600);
+    
+    NSError *error = nil;
+    
+    CMTime actualTime;
+    
+    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    
+    UIImage *thumbImg = [[UIImage alloc] initWithCGImage:image];
+    
+    return thumbImg;
+    
+}
+
+/// 朋友圈 上传 ，目前仅做上传视频用
 - (void)ugc_uploadFileWithMimeType:(NSString *)mimeType success:(DJUploadImageComplete)completeBlock singleFileComplete:(DJUploadFileComplete)singleFileComplete{
     if (_tempImageUrls.count == 1) {
         
+        // 1.获取视频封面，并上传封面
+        
+        // 2.上传视频文件，并将封面链接、宽高，视频连接、宽高一并回调
+        
+//        __block NSInteger coverSuccess = 0;
+//        __block NSInteger videoSuccess = 0;
+//        __block NSInteger coverFailure = 0;
+//        __block NSInteger videoFailure = 0;
+//
+//        void (^coverAndVideoUploadSuccess)(id dict) = ^(id dict){
+//            if (singleFileComplete) singleFileComplete(dict);
+//        };
+        
         NSURL *localUrl = self.tempImageUrls[0];
         
-        [self uploadFileWithLocalFileUrl:localUrl mimeType:mimeType uploadProgress:^(NSProgress *uploadProgress) {
-            NSLog(@"ugc上传进度: %f",(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-        } success:^(id dict) {
-            if (singleFileComplete) singleFileComplete(dict);
-            
-        } failure:^(id uploadFailure) {
-            if (singleFileComplete) singleFileComplete(nil);
-        }];
+        /// 将封面写入本地
+        UIImage *cover = [self thumbnailImageForVideo:localUrl];
+        NSString *tmp = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *coverPath = [tmp stringByAppendingPathComponent:@"tmpCover.jpeg"];
+        NSData *imageData = UIImageJPEGRepresentation(cover, 0.8);
+        BOOL writeSuccess = [imageData writeToFile:coverPath atomically:NO];
+        
+        NSLog(@"封面本地连接 %d : %@",writeSuccess,coverPath);
+        
+        if (writeSuccess) {
+            /// 上传封面
+            [self uploadFileWithLocalFileUrl:[NSURL fileURLWithPath:coverPath] mimeType:@"image/jpeg" uploadProgress:^(NSProgress *uploadProgress) {
+                NSLog(@"ugc上传封面进度: %f",(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+                
+            } success:^(id dict) {
+                NSLog(@"上传封面成功: %@",dict);
+                /// 上传视频 & 删除封面
+                NSDictionary *param = @{@"cover":dict[key_path],
+                                        key_widthheigth:dict[key_widthheigth]};
+                
+                [self uploadVideoWithLocalUrl:localUrl mimeType:mimeType coverLocalPath:coverPath coverResponseObject:[param mutableCopy] singleFileComplete:singleFileComplete];
+            } failure:^(id uploadFailure) {
+                [self uploadVideoWithLocalUrl:localUrl mimeType:mimeType coverLocalPath:coverPath coverResponseObject:NSMutableDictionary.new singleFileComplete:singleFileComplete];
+            }];
+        }
+        
+        
         
     }else{
         [self uploadFileWithSuccess:completeBlock];
     }
+}
+
+- (void)uploadVideoWithLocalUrl:(NSURL *)localUrl mimeType:(NSString *)mimeType coverLocalPath:(NSString *)coverLocalPath coverResponseObject:(NSMutableDictionary *)coverResponseObject singleFileComplete:(DJUploadFileComplete)singleFileComplete{
+    NSError *error;
+    [[NSFileManager defaultManager] removeItemAtPath:coverLocalPath error:&error];
+    if (error) {
+        NSLog(@"封面删除失败: %@",error);
+    }
+    
+    [self uploadFileWithLocalFileUrl:localUrl mimeType:mimeType uploadProgress:^(NSProgress *uploadProgress) {
+        NSLog(@"ugc上传视频进度: %f",(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(id dict) {
+        NSLog(@"上传视频成功: %@",dict);
+        coverResponseObject[key_path] = dict[key_path];
+        if (singleFileComplete) singleFileComplete(coverResponseObject);
+    } failure:^(id uploadFailure) {
+        if (singleFileComplete) singleFileComplete(nil);
+    }];
 }
 
 /// MARK: 上传内容图片
@@ -144,7 +220,7 @@
     [HXPhotoTools selectListWriteToTempPath:array requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
     } completion:^(NSArray<NSURL *> *allUrl, NSArray<NSURL *> *imageUrls, NSArray<NSURL *> *videoUrls) {
         _tempImageUrls = allUrl.copy;
-        
+        NSLog(@"_tempImageUrls: %@",_tempImageUrls);
     } error:^{
         NSLog(@"selectPhotoError");
     }];
