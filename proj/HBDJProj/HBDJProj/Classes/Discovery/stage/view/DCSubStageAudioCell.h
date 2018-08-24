@@ -9,5 +9,5 @@
 #import "DCSubStageBaseTableViewCell.h"
 
 @interface DCSubStageAudioCell : DCSubStageBaseTableViewCell
-- (void)audioCellStopPlay;
+
 @end

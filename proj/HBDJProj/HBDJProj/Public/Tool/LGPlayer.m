@@ -26,7 +26,7 @@ PLPlayerDelegate>
 
 #pragma mark - PLPlayerDelegate
 - (void)player:(PLPlayer *)player statusDidChange:(PLPlayerStatus)state{
-    if (state == 10 || state == 8) {
+    if (state == 10 ) {// || state == 8
         [self removeTimer];
     }
     NSInteger lg_state = state;
@@ -34,12 +34,6 @@ PLPlayerDelegate>
     if ([self.delegate respondsToSelector:@selector(playerStateChanged:state:)]) {
         [self.delegate playerStateChanged:self state:lg_state];
     }
-}
-
-- (void)seekToProgress:(float)progress{
-    float totalTime = CMTimeGetSeconds(self.audioPlayer.totalDuration);
-    float destiTime = progress * totalTime;
-    [self.audioPlayer seekTo:CMTimeMake(destiTime * 1000, 1000)];
 }
 
 /// MARK: timer相关,获取播放进度
@@ -65,8 +59,13 @@ PLPlayerDelegate>
         [self removeTimer];
     }
     
-//    float progress = floorfCurrentTime / floorfTotalTime;
-    float progress = currentTime / totalTime;
+    float progress;
+    if (totalTime == 0) {
+        progress = 0;
+        NSLog(@"LGPlayer获取时间异常");
+    }else{
+        progress = currentTime / totalTime;
+    }
     
     if ([self.delegate respondsToSelector:@selector(playProgress:
                                                     progress:
@@ -82,19 +81,16 @@ PLPlayerDelegate>
 - (void)initPlayerWithUrl:(NSString *)url{
 
     self.audioPlayer = [[PLPlayer alloc] initWithURL:[NSURL URLWithString:url] option:nil];
-    
-    [self addTimer];
     self.audioPlayer.delegate = self;
     
-    /// 为了获取到频频的总时间， 先play，并且设置音量为0，让用户听不到，在代理回调中再暂停
-    // 预加载，以获取时间
+    [self addTimer];
     [self.audioPlayer openPlayerWithURL:[NSURL URLWithString:url]];
+
     _firstPlay = YES;
     
 }
 - (void)lg_play{
     
-    /// 因为在init中已经play了，所以play方法直接调用resume即可
     if (!_playTimer) {
         [self addTimer];
     }
@@ -113,13 +109,15 @@ PLPlayerDelegate>
     [self.audioPlayer stop];
 }
 
-///** 预加载 */
-//- (void)openPlayerWithURL:(nullable NSURL *)URL{
-//    [self.audioPlayer openPlayerWithURL:URL];
-//}
-//- (void)playAfterOpen{
-//    [self.audioPlayer play];
-//
-//}
+- (void)seekToProgress:(float)progress{
+    float totalTime = CMTimeGetSeconds(self.audioPlayer.totalDuration);
+    float destiTime = progress * totalTime;
+    [self.audioPlayer seekTo:CMTimeMake(destiTime * 1000, 1000)];
+}
+
+- (void)dealloc{
+    NSLog(@"销毁音频播放器: ");
+    [self removeTimer];
+}
 
 @end

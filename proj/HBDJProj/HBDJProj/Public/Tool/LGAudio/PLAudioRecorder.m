@@ -134,11 +134,12 @@ NSString * const RecordErrorPermissionDenied = @"RecordErrorPermissionDenied";
      使用kAudioSessionProperty_OverrideCategoryDefaultToSpeaker则除非你更改category，否则会一直生效。
      
      */
-    
+//    44100.f
+//    8000.f
     NSDictionary *recordSetting = @{
                                     AVFormatIDKey               : @(kAudioFormatLinearPCM),
-                                    AVSampleRateKey             : @(8000.f),
-                                    AVNumberOfChannelsKey       : @(1),
+                                    AVSampleRateKey             : @(44100.f),
+                                    AVNumberOfChannelsKey       : @(2),
                                     AVLinearPCMBitDepthKey      : @(16),
                                     AVLinearPCMIsNonInterleaved : @NO,
                                     AVLinearPCMIsFloatKey       : @NO,
@@ -193,8 +194,7 @@ NSString * const RecordErrorPermissionDenied = @"RecordErrorPermissionDenied";
     }
 }
 
-- (void)stopRecord
-{
+- (void)stopRecord{
 
     [self.recorder stop];
     self.recorder = nil;

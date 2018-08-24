@@ -112,6 +112,7 @@ static const CGFloat commentsCellHeight = 25;
 @property (assign,nonatomic) NSInteger tTime;
 @property (assign,nonatomic) CGFloat progress;
 @property (assign,nonatomic) NSInteger playState;
-@property (strong,nonatomic) LGPlayer *player;
+/** 音频时长 */
+@property (strong,nonatomic) NSString *audiolength;
 
 @end

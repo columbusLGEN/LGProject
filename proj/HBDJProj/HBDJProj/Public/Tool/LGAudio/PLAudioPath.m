@@ -8,7 +8,28 @@
 
 #import "PLAudioPath.h"
 #import <sys/xattr.h>
+
+static NSString * const fileName = @"userSpeech.mp3";// @"recordTest.wav";
+
 @implementation PLAudioPath
+
++ (NSString *)mp3Path{
+    NSString * filePath;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *str1 = NSHomeDirectory();
+    filePath = [NSString stringWithFormat:@"%@/Documents/RecordTest/%@",str1,fileName];
+    
+    if(![fileManager fileExistsAtPath:filePath]){
+        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString *directryPath = [path stringByAppendingPathComponent:@"RecordTest"];
+        [fileManager createDirectoryAtPath:directryPath withIntermediateDirectories:YES attributes:nil error:nil];
+        NSString *filePath = [directryPath stringByAppendingPathComponent:fileName];
+        [fileManager createFileAtPath:filePath contents:nil attributes:nil];
+    }
+    
+    return filePath;
+}
+
 + (NSString *)recordPathOrigin{
     NSString * filePath;
     NSFileManager *fileManager = [NSFileManager defaultManager];

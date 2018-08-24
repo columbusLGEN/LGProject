@@ -44,6 +44,10 @@
 		881C94E82068EFAA009D6A52 /* LIGMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881C94E72068EFAA009D6A52 /* LIGMainTabBarController.m */; };
 		881F1A8320C125A7005D9261 /* HPSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F1A8220C125A7005D9261 /* HPSearchViewController.m */; };
 		881F1A8620C12915005D9261 /* HPSearchLessonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F1A8520C12915005D9261 /* HPSearchLessonController.m */; };
+		882AFCDF212FE05000DB8005 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 882AFCD9212FE04F00DB8005 /* libmp3lame.a */; };
+		882AFCE0212FE05000DB8005 /* LGAudioWav2Mp3Mgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 882AFCDB212FE04F00DB8005 /* LGAudioWav2Mp3Mgr.mm */; };
+		882AFCE1212FE05000DB8005 /* mp3Encoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 882AFCDD212FE04F00DB8005 /* mp3Encoder.mm */; };
+		882AFCE42130133400DB8005 /* DJPyqAudioPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882AFCE32130133400DB8005 /* DJPyqAudioPlayViewController.m */; };
 		882B118620D23D3400917374 /* NSObject+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B117D20D23D3300917374 /* NSObject+Auth.m */; };
 		882B118720D23D3400917374 /* PLMediaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B117F20D23D3300917374 /* PLMediaInfo.m */; };
 		882B118820D23D3400917374 /* PLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B118120D23D3300917374 /* PLPlayerView.m */; };
@@ -556,6 +560,14 @@
 		881F1A8420C12915005D9261 /* HPSearchLessonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPSearchLessonController.h; sourceTree = "<group>"; };
 		881F1A8520C12915005D9261 /* HPSearchLessonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchLessonController.m; sourceTree = "<group>"; };
 		882AFC74212F9B8B00DB8005 /* DJDsSearchChildVcDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDsSearchChildVcDelegate.h; sourceTree = "<group>"; };
+		882AFCD8212FE04F00DB8005 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		882AFCD9212FE04F00DB8005 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		882AFCDA212FE04F00DB8005 /* LGAudioWav2Mp3Mgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAudioWav2Mp3Mgr.h; sourceTree = "<group>"; };
+		882AFCDB212FE04F00DB8005 /* LGAudioWav2Mp3Mgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LGAudioWav2Mp3Mgr.mm; sourceTree = "<group>"; };
+		882AFCDD212FE04F00DB8005 /* mp3Encoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mp3Encoder.mm; sourceTree = "<group>"; };
+		882AFCDE212FE04F00DB8005 /* mp3Encoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mp3Encoder.hpp; sourceTree = "<group>"; };
+		882AFCE22130133400DB8005 /* DJPyqAudioPlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJPyqAudioPlayViewController.h; sourceTree = "<group>"; };
+		882AFCE32130133400DB8005 /* DJPyqAudioPlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJPyqAudioPlayViewController.m; sourceTree = "<group>"; };
 		882B117B20D23D3300917374 /* MacroDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDefine.h; sourceTree = "<group>"; };
 		882B117C20D23D3300917374 /* NSObject+Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Auth.h"; sourceTree = "<group>"; };
 		882B117D20D23D3300917374 /* NSObject+Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Auth.m"; sourceTree = "<group>"; };
@@ -1275,6 +1287,7 @@
 				88C5F14920B7F1900075D5F2 /* QuartzCore.framework in Frameworks */,
 				88BCED5F20C289DC00B5C1DB /* SystemConfiguration.framework in Frameworks */,
 				8805127420D3826D0027B3B1 /* YMEpubReaderKit.framework in Frameworks */,
+				882AFCDF212FE05000DB8005 /* libmp3lame.a in Frameworks */,
 				88BCED5D20C289CE00B5C1DB /* Contacts.framework in Frameworks */,
 				88BCED5B20C289C100B5C1DB /* AddressBook.framework in Frameworks */,
 				8805127320D381E10027B3B1 /* YMEpubReaderKit.framework in Frameworks */,
@@ -1533,6 +1546,7 @@
 				8806C82A210EEFB600685DEF /* DJCoreTextViewManager.m */,
 				888E3A6D211BF22900ED2DA3 /* LGFilePathManager.h */,
 				888E3A6E211BF22900ED2DA3 /* LGFilePathManager.m */,
+				882AFCD4212FE04F00DB8005 /* 2mp3 */,
 				888223AD212BD7850094D3EF /* LGAudio */,
 				882B117A20D23D3300917374 /* playerview */,
 				88BCEDA120C29B8700B5C1DB /* voice */,
@@ -1731,6 +1745,51 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		882AFCD4212FE04F00DB8005 /* 2mp3 */ = {
+			isa = PBXGroup;
+			children = (
+				882AFCD5212FE04F00DB8005 /* Lame */,
+				882AFCDA212FE04F00DB8005 /* LGAudioWav2Mp3Mgr.h */,
+				882AFCDB212FE04F00DB8005 /* LGAudioWav2Mp3Mgr.mm */,
+				882AFCDC212FE04F00DB8005 /* Mp3Encoder */,
+			);
+			path = 2mp3;
+			sourceTree = "<group>";
+		};
+		882AFCD5212FE04F00DB8005 /* Lame */ = {
+			isa = PBXGroup;
+			children = (
+				882AFCD6212FE04F00DB8005 /* include */,
+				882AFCD9212FE04F00DB8005 /* libmp3lame.a */,
+			);
+			path = Lame;
+			sourceTree = "<group>";
+		};
+		882AFCD6212FE04F00DB8005 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				882AFCD7212FE04F00DB8005 /* lame */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		882AFCD7212FE04F00DB8005 /* lame */ = {
+			isa = PBXGroup;
+			children = (
+				882AFCD8212FE04F00DB8005 /* lame.h */,
+			);
+			path = lame;
+			sourceTree = "<group>";
+		};
+		882AFCDC212FE04F00DB8005 /* Mp3Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				882AFCDD212FE04F00DB8005 /* mp3Encoder.mm */,
+				882AFCDE212FE04F00DB8005 /* mp3Encoder.hpp */,
+			);
+			path = Mp3Encoder;
+			sourceTree = "<group>";
+		};
 		882B117A20D23D3300917374 /* playerview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1802,6 +1861,8 @@
 			children = (
 				8831E16F20941590001D038E /* DCSubStageTableviewController.h */,
 				8831E17020941590001D038E /* DCSubStageTableviewController.m */,
+				882AFCE22130133400DB8005 /* DJPyqAudioPlayViewController.h */,
+				882AFCE32130133400DB8005 /* DJPyqAudioPlayViewController.m */,
 				8831E18A209419D0001D038E /* model */,
 				8831E17320941657001D038E /* view */,
 			);
@@ -3958,6 +4019,7 @@
 				88397817207F592700F3D131 /* UCPersonInfoTableViewCell.m in Sources */,
 				884EB40C2102FDC6005D5CA9 /* DJUploadMindReportLineModel.m in Sources */,
 				88BA90CA20F4A9A3007DD4B4 /* DJShowThemeAndMeetingTableViewController.m in Sources */,
+				882AFCE42130133400DB8005 /* DJPyqAudioPlayViewController.m in Sources */,
 				88DD8151209C4A1600F297D6 /* OLThreeMeetingsViewController.m in Sources */,
 				88FE68AB209AF777008C28A0 /* OLSkipObject.m in Sources */,
 				881C94D12068ECF3009D6A52 /* UIColor+Extension.m in Sources */,
@@ -4000,6 +4062,7 @@
 				88CD739D20995A1400E80058 /* HPBookInfoHeaderCell.m in Sources */,
 				88A47109207DBE00002F93E0 /* EDJMicroBuildNoImgCell.m in Sources */,
 				88CD739A209959FD00E80058 /* HPBookInfoBaseCell.m in Sources */,
+				882AFCE1212FE05000DB8005 /* mp3Encoder.mm in Sources */,
 				8831E19A2094639E001D038E /* UCLoginViewController.m in Sources */,
 				884EB402210174E6005D5CA9 /* DJThreemeetListViewController.m in Sources */,
 				88BCEDC520C63EBF00B5C1DB /* LGBaseCollectionView.m in Sources */,
@@ -4059,6 +4122,7 @@
 				88949C22211ECCC400B80AEE /* DJSearchWorkPlantformCell.m in Sources */,
 				8835B3172072189D00722010 /* LGBaseButton.m in Sources */,
 				8851C63D20F5EB8800C91575 /* DJThoutghtRepotListModel.m in Sources */,
+				882AFCE0212FE05000DB8005 /* LGAudioWav2Mp3Mgr.mm in Sources */,
 				88D033872079EB8600665D2F /* EDJUserCenterViewController.m in Sources */,
 				884EB42D21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.m in Sources */,
 				88D13C2A2090138100A32236 /* EDJSearchTagModel.m in Sources */,
@@ -4272,6 +4336,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBDJProj",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4283,6 +4348,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBDJProj/Public/Tool/LGAudio/VoiceConvert",
+					"$(PROJECT_DIR)/HBDJProj/Public/Tool/2mp3/Lame",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -4371,6 +4437,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBDJProj",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBDJProj/Public/Header/HbdjPrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4382,6 +4449,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBDJProj/Public/Tool/LGAudio/VoiceConvert",
+					"$(PROJECT_DIR)/HBDJProj/Public/Tool/2mp3/Lame",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

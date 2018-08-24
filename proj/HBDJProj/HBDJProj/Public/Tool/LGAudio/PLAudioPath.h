@@ -12,4 +12,6 @@
 + (NSString *)recordPathOrigin;  
 + (NSString *)recordPathOriginToAMR;
 + (NSString *)recordPathAMRToWAV;
+
++ (NSString *)mp3Path;
 @end

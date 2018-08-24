@@ -10,6 +10,7 @@
 #import "LGKeepTimeLabel.h"
 #import "PLAudioRecorder.h"
 #import "UCUploadViewController.h"
+#import "LGAudioWav2Mp3Mgr.h"
 
 @interface DJRecordVoiceViewController ()
 @property (weak,nonatomic) UIImageView *timerBg;
@@ -22,7 +23,7 @@
 
 @implementation DJRecordVoiceViewController{
     PLAudioRecorder *audioRecorder;
-    
+    MBProgressHUD *uploadTipView;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -98,26 +99,27 @@
 
 - (void)startRecord{
 
-    [audioRecorder startRecordWithFilePath:[PLAudioPath recordPathOrigin]
+    NSString *oriPath = [PLAudioPath recordPathOrigin];
+    
+    NSString *mp3Path = [PLAudioPath mp3Path];
+    
+    [audioRecorder startRecordWithFilePath:oriPath
                               updateMeters:^(float meters){
-                                  
                                   
                               }
                                    success:^(NSData *recordData){
                                        NSLog(@"录音成功");
-                                       
-                                       
+                                       /// MARK: WAV 2 mp3
+                                       [LGAudioWav2Mp3Mgr.new localPCMToMp3WithOriPath:oriPath desPath:mp3Path complete:^{
+                                           [self pushUpvc];
+                                       }];
                                    }
                                     failed:^(NSError *error){
-                                        NSLog(@"录音失败");
-                                        
                                         
                                     }];
     
 }
-- (void)endRecord{
-    [audioRecorder stopRecord];
-}
+
 - (void)pauseRecord{
     [audioRecorder pause];
 }
@@ -127,16 +129,21 @@
 /// MARK: 点击完成
 - (void)recordDone:(UIButton *)button{
     [_time stop];
-    
-    [self endRecord];
-    
+    [audioRecorder stopRecord];
+    /// 添加提示 “资源文件处理中”
+    uploadTipView = [MBProgressHUD wb_showActivityMessage:@"正在保存录音，请稍候..." toView:self.view];
+}
+
+- (void)pushUpvc{
+    [uploadTipView hideAnimated:YES];
+    uploadTipView = nil;
     UCUploadViewController *vc = UCUploadViewController.new;
     vc.pushWay = LGBaseViewControllerPushWayModal;
     vc.uploadAction = DJUPloadPyqActionAudio;
     vc.audioTotalTime = _time.sec;
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
+
 /// MARK: 录制按钮点击事件
 - (void)buttonClick:(UIButton *)button{
     

@@ -185,17 +185,17 @@
     uploadTipView = [MBProgressHUD wb_showActivityMessage:@"上传中..." toView:self.view];
     uploading = YES;
     
-    //  ugctype   1图片; 2视频; 3音频; 4文本
+    //  filetype   1图片; 2视频; 3音频; 4文本
     /// 上传音频
     if (_uploadAction == DJUPloadPyqActionAudio) {
         
-//        NSString *recordPath = [PLAudioPath recordPathOriginToAMR];
-        NSString *recordPath = [PLAudioPath recordPathOrigin];
+        NSString *recordPath = [PLAudioPath mp3Path];
         NSURL *audioURL = [NSURL fileURLWithPath:recordPath];
 
-        /// TODO: 转mp3格式
         NSString *mimeType = @"audio/mp3";
-        NSLog(@"recordPath: %@",recordPath);
+        
+        param[@"audiolength"] = [NSString stringWithFormat:@"%ld",_audioTotalTime];
+        
         [DJOnlineNetorkManager.sharedInstance uploadFileWithLocalFileUrl:audioURL mimeType:mimeType uploadProgress:^(NSProgress *uploadProgress) {
         } success:^(id dict) {
             param[@"fileurl"] = dict[@"path"];
@@ -211,7 +211,6 @@
         [self frontUgc_addWithParam:param];
         
     }else if (_uploadAction == DJUPloadPyqActionVideo){
-        /// TODO: 上传视频
         /// 获取视频封面
         [_uploadDataManager ugc_uploadFileWithMimeType:@"video/mp4" success:nil singleFileComplete:^(id dict) {
             param[@"fileurl"] = dict[@"path"];

@@ -16,6 +16,7 @@
 #import "HZPhotoBrowser.h"
 #import "DJSendCommentsViewController.h"
 #import "DCSubStageAudioCell.h"
+#import "DJPyqAudioPlayViewController.h"
 
 @interface DCSubStageTableviewController ()<
 DCSubStageBaseTableViewCellDelegate,
@@ -102,12 +103,16 @@ WMPlayerDelegate>
     
     return cell;
 }
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    DCSubStageAudioCell
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DCSubStageModel *model = self.dataArray[indexPath.row];
-    /// 如果音频cell 结束显示，那么停止当前播放
-    /// 如果另一个音频cell 开始播放，则停止当前播放的音频cell
-    
+    if (model.filetype == 3) {
+        DJPyqAudioPlayViewController *audioPlayVc = DJPyqAudioPlayViewController.new;
+        audioPlayVc.model = model;
+        audioPlayVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        audioPlayVc.pushWay = LGBaseViewControllerPushWayModal;
+        audioPlayVc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [self presentViewController:audioPlayVc animated:YES completion:nil];
+    }
 }
 
 - (void)pyqLikeWithModel:(DCSubStageModel *)model{

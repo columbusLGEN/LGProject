@@ -25,7 +25,6 @@ typedef NS_ENUM(NSUInteger, LGPlayerState) {
 - (BOOL)isPlaying;
 
 - (void)initPlayerWithUrl:(NSString *)url;
-
 - (void)seekToProgress:(float)progress;
 - (void)lg_stop_play;
 - (void)lg_play;

@@ -38,15 +38,17 @@ static CGFloat progressRectWidth = 3;
 
 - (void)setProgressValue:(CGFloat)progressValue{
     _progressValue = progressValue;
-    _progress.progress = progressValue;
+    
+    
+//    _progress.progress = progressValue;
 
-    [UIView animateWithDuration:0 animations:^{
+    [UIView animateWithDuration:1.0 animations:^{
         CGRect frame = _rect.frame;
         if (_progress.progress == 1) {
-            frame.origin.x = roundf(_progress.progress * _progress.width + _progress.x - progressRectWidth);
+            frame.origin.x = roundf(progressValue * _progress.width + _progress.x - progressRectWidth);
             self.play.selected = NO;
         }else{
-            frame.origin.x = roundf(_progress.progress * _progress.width + _progress.x);
+            frame.origin.x = roundf(progressValue * _progress.width + _progress.x);
         }
         _rect.frame = frame;
     }];
