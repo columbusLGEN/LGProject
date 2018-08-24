@@ -54,7 +54,7 @@
     _currentExePart = part;
     
     NSArray *record = [NSArray arrayWithContentsOfFile:self.filePath];
-    NSLog(@"userid: %@,:%@,lg_record: %@",self.userId,[self currentExePartWith:part],record);
+//    NSLog(@"userid: %@,:%@,lg_record: %@",self.userId,[self currentExePartWith:part],record);
     
     return record;
 }

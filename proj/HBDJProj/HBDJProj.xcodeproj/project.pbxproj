@@ -555,6 +555,7 @@
 		881F1A8220C125A7005D9261 /* HPSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchViewController.m; sourceTree = "<group>"; };
 		881F1A8420C12915005D9261 /* HPSearchLessonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPSearchLessonController.h; sourceTree = "<group>"; };
 		881F1A8520C12915005D9261 /* HPSearchLessonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPSearchLessonController.m; sourceTree = "<group>"; };
+		882AFC74212F9B8B00DB8005 /* DJDsSearchChildVcDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDsSearchChildVcDelegate.h; sourceTree = "<group>"; };
 		882B117B20D23D3300917374 /* MacroDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDefine.h; sourceTree = "<group>"; };
 		882B117C20D23D3300917374 /* NSObject+Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Auth.h"; sourceTree = "<group>"; };
 		882B117D20D23D3300917374 /* NSObject+Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Auth.m"; sourceTree = "<group>"; };
@@ -2449,6 +2450,7 @@
 				886FFE11212ED708000E1890 /* DCBranchSearchResultVc.m */,
 				886FFE13212ED726000E1890 /* DCPyqSearchResultVc.h */,
 				886FFE14212ED726000E1890 /* DCPyqSearchResultVc.m */,
+				882AFC74212F9B8B00DB8005 /* DJDsSearchChildVcDelegate.h */,
 			);
 			path = sub;
 			sourceTree = "<group>";

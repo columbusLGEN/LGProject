@@ -7,9 +7,11 @@
 //
 
 #import "DCSubPartStateTableViewController.h"
+@protocol DJDsSearchChildVcDelegate;
 
 @interface DCBranchSearchResultVc : DCSubPartStateTableViewController
 @property (strong,nonatomic) NSString *searchContent;
 @property (assign,nonatomic) NSInteger tagId;
+@property (weak,nonatomic) id<DJDsSearchChildVcDelegate> delegate;
 
 @end

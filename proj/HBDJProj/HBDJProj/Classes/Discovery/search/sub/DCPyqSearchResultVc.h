@@ -7,9 +7,11 @@
 //
 
 #import "DCSubStageTableviewController.h"
+@protocol DJDsSearchChildVcDelegate;
 
 @interface DCPyqSearchResultVc : DCSubStageTableviewController
 @property (strong,nonatomic) NSString *searchContent;
 @property (assign,nonatomic) NSInteger tagId;
+@property (weak,nonatomic) id<DJDsSearchChildVcDelegate> delegate;
 
 @end

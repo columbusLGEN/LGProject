@@ -7,9 +7,11 @@
 //
 
 #import "DCQuestionCommunityViewController.h"
+@protocol DJDsSearchChildVcDelegate;
 
 @interface DCQuestionSearchResultVc : DCQuestionCommunityViewController
 @property (strong,nonatomic) NSString *searchContent;
 @property (assign,nonatomic) NSInteger tagId;
+@property (weak,nonatomic) id<DJDsSearchChildVcDelegate> delegate;
 
 @end

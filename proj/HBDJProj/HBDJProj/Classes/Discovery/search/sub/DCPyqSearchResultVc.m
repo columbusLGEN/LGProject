@@ -9,6 +9,7 @@
 #import "DCPyqSearchResultVc.h"
 #import "DJDiscoveryNetworkManager.h"
 #import "DCSubStageModel.h"
+#import "DJDsSearchChildVcDelegate.h"
 
 @interface DCPyqSearchResultVc ()
 
@@ -16,14 +17,14 @@
 
 @implementation DCPyqSearchResultVc
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if ([self.delegate respondsToSelector:@selector(childVcDidScroll)]) {
+        [self.delegate childVcDidScroll];
+    }
 }
 
 - (void)getData{
-    [DJDiscoveryNetworkManager.sharedInstance frontIndex_findSearchWithContent:self.searchContent label:_tagId offset:0 type:0 success:^(id responseObj) {
+    [DJDiscoveryNetworkManager.sharedInstance frontIndex_findSearchWithContent:self.searchContent label:_tagId offset:0 type:3 success:^(id responseObj) {
         /// MARK: 刷新子可控制器视图
         NSArray *array = responseObj;
         if (array == nil || array.count == 0) {

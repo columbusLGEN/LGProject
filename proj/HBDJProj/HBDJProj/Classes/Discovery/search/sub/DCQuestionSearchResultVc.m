@@ -9,6 +9,7 @@
 #import "DCQuestionSearchResultVc.h"
 #import "DJDiscoveryNetworkManager.h"
 #import "UCQuestionModel.h"
+#import "DJDsSearchChildVcDelegate.h"
 
 @interface DCQuestionSearchResultVc ()
 
@@ -16,10 +17,10 @@
 
 @implementation DCQuestionSearchResultVc
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if ([self.delegate respondsToSelector:@selector(childVcDidScroll)]) {
+        [self.delegate childVcDidScroll];
+    }
 }
 
 - (void)getData{

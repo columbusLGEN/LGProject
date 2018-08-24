@@ -9,6 +9,7 @@
 #import "DCBranchSearchResultVc.h"
 #import "DJDiscoveryNetworkManager.h"
 #import "DCSubPartStateModel.h"
+#import "DJDsSearchChildVcDelegate.h"
 
 @interface DCBranchSearchResultVc ()
 
@@ -16,11 +17,12 @@
 
 @implementation DCBranchSearchResultVc
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if ([self.delegate respondsToSelector:@selector(childVcDidScroll)]) {
+        [self.delegate childVcDidScroll];
+    }
 }
+
 - (void)getData{
     [DJDiscoveryNetworkManager.sharedInstance frontIndex_findSearchWithContent:self.searchContent label:_tagId offset:self.offset type:2 success:^(id responseObj) {
         /// MARK: 刷新子可控制器视图

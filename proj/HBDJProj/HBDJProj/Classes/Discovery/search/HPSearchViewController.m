@@ -26,12 +26,14 @@
 #import "EDJSearchTagModel.h"
 #import "DJDsSearchTagView.h"
 #import "DJDiscoveryNetworkManager.h"
+#import "DJDsSearchChildVcDelegate.h"
 
 @interface HPSearchViewController ()<
 LGNavigationSearchBarDelelgate,
 UITextFieldDelegate,
 HPVoiceSearchViewDelegate,
-LGVoiceRecoAssistDelegate>
+LGVoiceRecoAssistDelegate,
+DJDsSearchChildVcDelegate>
 
 @property (strong,nonatomic) LGNavigationSearchBar *fakeNavgationBar;
 @property (strong,nonatomic) UITextField *textField;
@@ -110,6 +112,9 @@ LGVoiceRecoAssistDelegate>
     DCQuestionSearchResultVc *qavc = self.childViewControllers[0];
     DCBranchSearchResultVc *brvc = self.childViewControllers[1];
     DCPyqSearchResultVc *pyqvc = self.childViewControllers[2];
+    qavc.delegate = self;
+    brvc.delegate = self;
+    pyqvc.delegate = self;
     qavc.searchContent = searchContent;
     brvc.searchContent = searchContent;
     pyqvc.searchContent = searchContent;
@@ -120,6 +125,9 @@ LGVoiceRecoAssistDelegate>
     DCQuestionSearchResultVc *qavc = self.childViewControllers[0];
     DCBranchSearchResultVc *brvc = self.childViewControllers[1];
     DCPyqSearchResultVc *pyqvc = self.childViewControllers[2];
+    qavc.delegate = self;
+    brvc.delegate = self;
+    pyqvc.delegate = self;
     qavc.tagId = searchTagModel.seqid;
     brvc.tagId = searchTagModel.seqid;
     pyqvc.tagId = searchTagModel.seqid;
@@ -130,7 +138,7 @@ LGVoiceRecoAssistDelegate>
 - (void)hotTagClick:(UIButton *)button{
     NSInteger index = button.tag;
     EDJSearchTagModel *hotTagModel = _hotTags[index];
-    self.searchContent = nil;
+//    self.searchContent = nil;
     self.textField.text = hotTagModel.name;
     self.searchTagModel = hotTagModel;
     [self sendSearchRequest:NO isTagSearch:YES];
@@ -138,9 +146,20 @@ LGVoiceRecoAssistDelegate>
 /// MARK: 点击搜索历史
 - (void)recordClick:(UIButton *)record{
     _textField.text = record.titleLabel.text;
-    self.searchContent = self.textField.text;
     self.searchTagModel = nil;
     [self sendSearchRequest:NO isTagSearch:NO];
+}
+/// MARK: 点击搜索按钮
+- (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
+    BOOL isTag = NO;
+    if (self.searchTagModel) {
+        isTag = YES;
+        _textField.text = self.searchTagModel.name;
+    }else{
+        
+    }
+    [self sendSearchRequest:YES isTagSearch:isTag];
+    
 }
 /// MARK: 删除历史记录
 - (void)deleteSearchRecord:(UIButton *)sender{
@@ -216,23 +235,21 @@ LGVoiceRecoAssistDelegate>
         [self.view addSubview:self.vsView];
     }
 }
-- (void)navRightButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
-    BOOL isTag = NO;
-    if (self.searchTagModel) {
-        /// 如果用户点击了标签，再次点击搜索按钮时，仍按照标签去搜索
-        self.searchContent = nil;
-        isTag = YES;
-    }else{
-        self.searchContent = _textField.text;
-    }
-    [self sendSearchRequest:YES isTagSearch:isTag];
-    
-}
 
 /// MARK: 输入框 UITextfieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self navRightButtonClick:nil];
     return YES;
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+
+    if (self.searchHistory.hidden) {
+        self.searchHistory.hidden = NO;
+    }
+}
+
+- (void)childVcDidScroll{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - lazy load & getter
@@ -277,10 +294,7 @@ LGVoiceRecoAssistDelegate>
     return _voiceAssist;
 }
 - (NSArray<NSDictionary *> *)segmentItems{
-    /**
-     
-     
-     */
+
     return @[@{LGSegmentItemNameKey:@"学习问答",
                LGSegmentItemViewControllerClassKey:@"DCQuestionSearchResultVc",///
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
@@ -310,6 +324,7 @@ LGVoiceRecoAssistDelegate>
      */
     
     NSInteger tagId = 0;
+    self.searchContent = self.textField.text;
     if (!isTagSearch) {/// 此分支 不是标签搜索，所以要记录历史记录
         BOOL scHasNoValue = (self.searchContent == nil || [self.searchContent isEqualToString:@""]);
         if (scHasNoValue) {
@@ -451,24 +466,20 @@ LGVoiceRecoAssistDelegate>
         [self.view addSubview:self.textField];
         self.textField.frame = frame;
         if (!_voice) {
-//            [self.textField becomeFirstResponder];
+            [self.textField becomeFirstResponder];
         }
         
     }
 }
-/// 退出输入状态
-- (void)endInput{
+
+- (void)viewSwitched:(NSInteger)index{
     [self.view endEditing:YES];
-    _fakeNavgationBar.isEditing = NO;
-    [_textField removeFromSuperview];
-    _textField = nil;
 }
 
 #pragma mark - system method
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
-}
+
 - (void)dealloc{
+    [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

@@ -216,6 +216,11 @@ LGVoiceRecoAssistDelegate>
     [self navRightButtonClick:nil];
     return YES;
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (self.searchHistory.hidden) {
+        self.searchHistory.hidden = NO;
+    }
+}
 
 #pragma mark - lazy load & getter
 /// MARK: 分页列表控制，子类实现
