@@ -10,6 +10,8 @@
 
 @interface DJUserNetworkManager : NSObject
 
+/** 请求个人信息 */
+- (void)frontUserinfo_selectSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /**
  修改密码

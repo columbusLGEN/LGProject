@@ -338,20 +338,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="先锋党员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSQ-Cs-pWl">
-                                                <rect key="frame" x="136.5" y="66" width="69.5" height="30"/>
+                                                <rect key="frame" x="136.5" y="66" width="69.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_diamond_small" translatesAutoresizingMaskIntoConstraints="NO" id="ogN-Bn-zTK">
-                                                <rect key="frame" x="112.5" y="73" width="16" height="16"/>
+                                                <rect key="frame" x="112.5" y="68.5" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="FlN-7x-YYJ"/>
                                                     <constraint firstAttribute="width" constant="16" id="Nxr-cb-0ER"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gp2-Jq-AYX">
-                                                <rect key="frame" x="16" y="104" width="311" height="1"/>
+                                                <rect key="frame" x="16" y="94.5" width="311" height="1"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="dCg-Zp-yUA"/>
@@ -377,23 +377,26 @@
                                                 </constraints>
                                             </view>
                                             <view tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0E-tl-4ez" customClass="LGCustomButton">
-                                                <rect key="frame" x="0.0" y="105" width="86" height="95"/>
+                                                <rect key="frame" x="0.0" y="95.5" width="86" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="23" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLU-lM-xvu" customClass="LGCustomButton">
-                                                <rect key="frame" x="258" y="105" width="85" height="95"/>
+                                                <rect key="frame" x="258" y="95.5" width="85" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view tag="22" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-dr-Ppc" customClass="LGCustomButton">
-                                                <rect key="frame" x="171.5" y="105" width="86.5" height="95"/>
+                                                <rect key="frame" x="171.5" y="95.5" width="86.5" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="21" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-D0-N9G" customClass="LGCustomButton">
-                                                <rect key="frame" x="86" y="105" width="85.5" height="95"/>
+                                                <rect key="frame" x="86" y="95.5" width="85.5" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gud-sL-xcH">
-                                                <rect key="frame" x="112.5" y="66" width="93.5" height="30"/>
+                                                <rect key="frame" x="112.5" y="56.5" width="93.5" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="4AB-CW-vqr"/>
+                                                </constraints>
                                                 <connections>
                                                     <segue destination="WdZ-nI-Rhn" kind="push" id="qbv-OT-S2z"/>
                                                 </connections>
@@ -429,7 +432,6 @@
                                             <constraint firstAttribute="trailing" secondItem="aLU-lM-xvu" secondAttribute="trailing" id="s0N-ZY-WTY"/>
                                             <constraint firstItem="gud-sL-xcH" firstAttribute="trailing" secondItem="XSQ-Cs-pWl" secondAttribute="trailing" id="t8g-wQ-RKS"/>
                                             <constraint firstItem="gud-sL-xcH" firstAttribute="centerY" secondItem="XSQ-Cs-pWl" secondAttribute="centerY" id="uCb-S5-H98"/>
-                                            <constraint firstItem="gud-sL-xcH" firstAttribute="height" secondItem="XSQ-Cs-pWl" secondAttribute="height" id="uf4-UL-iKB"/>
                                             <constraint firstItem="aLU-lM-xvu" firstAttribute="leading" secondItem="2cb-dr-Ppc" secondAttribute="trailing" id="v6q-hO-Eyt"/>
                                             <constraint firstItem="EpU-Gt-X8q" firstAttribute="centerX" secondItem="1FI-tQ-iWB" secondAttribute="centerX" id="w7r-Bd-bT5"/>
                                             <constraint firstAttribute="bottom" secondItem="V0E-tl-4ez" secondAttribute="bottom" id="wAv-eZ-SL7"/>

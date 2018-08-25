@@ -10,6 +10,8 @@
 #import "UCSettingModel.h"
 #import "UCSettingTableViewCell.h"
 #import "UCLoginViewController.h"
+#import "LGCacheClear.h"
+#import "LGUserLimitsManager.h"
 
 static NSString * const settingCell = @"UCSettingTableViewCell";
 static CGFloat cellHeight = 59;
@@ -93,6 +95,18 @@ UITableViewDelegate>
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UCSettingModel *model = _array[indexPath.row];
+    if (model.contentType == 2) {
+        LGCacheClear  *cc = LGCacheClear.new;
+        [cc clearCacheWithAlertCallBack:^(UIAlertController *alertvc) {
+            [self presentViewController:alertvc animated:YES completion:nil];
+        } completion:^{
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        }];
+    }
+    if (model.contentType == 1) {/// 系统通知
+        UIAlertController *alertvc = [LGUserLimitsManager.new showSetPushNotificationAlertViewWithViewController:self];
+        [self presentViewController:alertvc animated:YES completion:nil];
+    }
     if ([model.itemName isEqualToString:@"修改密码"]) {
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"DJChangePwdViewController" animated:YES];
     }

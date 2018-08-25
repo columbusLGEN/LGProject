@@ -4,14 +4,6 @@
 <array>
 	<dict>
 		<key>itemName</key>
-		<string>修改密码</string>
-		<key>contentType</key>
-		<integer>0</integer>
-		<key>content</key>
-		<string>********</string>
-	</dict>
-	<dict>
-		<key>itemName</key>
 		<string>系统推送</string>
 		<key>contentType</key>
 		<integer>1</integer>
@@ -22,17 +14,17 @@
 		<key>itemName</key>
 		<string>清除缓存</string>
 		<key>contentType</key>
-		<integer>0</integer>
+		<integer>2</integer>
 		<key>content</key>
 		<string>1MB</string>
 	</dict>
 	<dict>
 		<key>itemName</key>
-		<string>字体大小</string>
+		<string>非WiFi网络播放提醒</string>
 		<key>contentType</key>
 		<integer>0</integer>
 		<key>content</key>
-		<string>中</string>
+		<string>提醒一次</string>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -41,6 +33,14 @@
 		<integer>0</integer>
 		<key>content</key>
 		<string>1.0</string>
+	</dict>
+	<dict>
+		<key>itemName</key>
+		<string>修改密码</string>
+		<key>contentType</key>
+		<integer>0</integer>
+		<key>content</key>
+		<string></string>
 	</dict>
 </array>
 </plist>

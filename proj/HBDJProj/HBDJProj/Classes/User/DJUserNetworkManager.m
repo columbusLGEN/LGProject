@@ -16,6 +16,10 @@
 
 @implementation DJUserNetworkManager
 
+- (void)frontUserinfo_selectSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+    [self sendPOSTRequestWithiName:@"frontUserinfo/select" param:@{} success:success failure:failure];
+}
 - (void)userUpdatePwdWithOld:(NSString *)oldPwd newPwd:(NSString *)newPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"newpassword":newPwd,
                             @"password":oldPwd};
@@ -69,6 +73,21 @@
 
 - (void)sendTableWithiName:(NSString *)iName param:(id)param needUserid:(BOOL)needUserid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [[DJNetworkManager sharedInstance] sendTableWithiName:iName param:param needUserid:needUserid success:success failure:failure];
+}
+
+/// MARK: 发送请求数据的统一方法
+- (void)sendPOSTRequestWithiName:(NSString *)iName param:(id)param success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [[DJNetworkManager sharedInstance] sendPOSTRequestWithiName:iName param:[self unitAddMemIdWithParam:param] success:success failure:failure];
+}
+- (void)commenPOSTWithOffset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort iName:(NSString *)iName param:(id)param success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+    [[DJNetworkManager sharedInstance] commenPOSTWithOffset:offset length:length sort:sort iName:iName param:[self unitAddMemIdWithParam:param] success:success failure:failure];
+}
+- (NSDictionary *)unitAddMemIdWithParam:(id)param{
+    NSMutableDictionary *argu = [NSMutableDictionary dictionaryWithDictionary:param];
+    argu[@"mechanismid"] = [DJUser sharedInstance].mechanismid;
+    argu[@"userid"] = [DJUser sharedInstance].userid;
+    return argu;
 }
 
 CM_SINGLETON_IMPLEMENTION

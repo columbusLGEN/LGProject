@@ -30,20 +30,27 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"我的等级";
     
-    /// TODO: 设置导航栏透明
-//    [self.navigationController.navigationBar setTranslucent:YES];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsCompact];
-//    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage new]];
-    
+    /// 修改标题颜色
+    //    [self.navigationController.navigationBar setBarTintColor:UIColor.whiteColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,nil]];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    
 }
 
 - (void)configUI{
+    
+    /// MARK: 设置导航栏透明
+    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:UIImage.new];
     
     /// 设置背景图片
     UIView *bg = [[UIView alloc] initWithFrame:self.view.bounds];

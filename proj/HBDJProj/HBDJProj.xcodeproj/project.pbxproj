@@ -75,6 +75,7 @@
 		8831E1A420947000001D038E /* HPPointNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1A320947000001D038E /* HPPointNewsTableViewController.m */; };
 		8831E1AF20947079001D038E /* HPPointNewsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1AE20947079001D038E /* HPPointNewsHeader.m */; };
 		8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8831E1B02094708A001D038E /* HPPointNewsHeader.xib */; };
+		8833A18321311F6E001564E0 /* LGCacheClear.m in Sources */ = {isa = PBXBuildFile; fileRef = 8833A18221311F6E001564E0 /* LGCacheClear.m */; };
 		8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2A22071FBE000722010 /* LGBaseViewController.m */; };
 		8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2A52071FBFB00722010 /* LGBaseNavigationController.m */; };
 		8835B2AC207201DD00722010 /* LGBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835B2AB207201DD00722010 /* LGBaseTabBarController.m */; };
@@ -622,6 +623,8 @@
 		8831E1AD20947079001D038E /* HPPointNewsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPPointNewsHeader.h; sourceTree = "<group>"; };
 		8831E1AE20947079001D038E /* HPPointNewsHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPPointNewsHeader.m; sourceTree = "<group>"; };
 		8831E1B02094708A001D038E /* HPPointNewsHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPPointNewsHeader.xib; sourceTree = "<group>"; };
+		8833A18121311F6E001564E0 /* LGCacheClear.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGCacheClear.h; sourceTree = "<group>"; };
+		8833A18221311F6E001564E0 /* LGCacheClear.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGCacheClear.m; sourceTree = "<group>"; };
 		8835B2A02071F8DE00722010 /* LGDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGDefines.h; sourceTree = "<group>"; };
 		8835B2A12071FBE000722010 /* LGBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGBaseViewController.h; sourceTree = "<group>"; };
 		8835B2A22071FBE000722010 /* LGBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGBaseViewController.m; sourceTree = "<group>"; };
@@ -1546,6 +1549,8 @@
 				8806C82A210EEFB600685DEF /* DJCoreTextViewManager.m */,
 				888E3A6D211BF22900ED2DA3 /* LGFilePathManager.h */,
 				888E3A6E211BF22900ED2DA3 /* LGFilePathManager.m */,
+				8833A18121311F6E001564E0 /* LGCacheClear.h */,
+				8833A18221311F6E001564E0 /* LGCacheClear.m */,
 				882AFCD4212FE04F00DB8005 /* 2mp3 */,
 				888223AD212BD7850094D3EF /* LGAudio */,
 				882B117A20D23D3300917374 /* playerview */,
@@ -1726,9 +1731,9 @@
 		881C94ED2068F3B0009D6A52 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				883D475E20DCD98F00FD9971 /* DJUserNetworkManager.h */,
 				883D475F20DCD98F00FD9971 /* DJUserNetworkManager.m */,
-				88A47129207E02D4002F93E0 /* UserCenter.storyboard */,
 				883D475A20DB69E700FD9971 /* DJUser.h */,
 				883D475B20DB69E700FD9971 /* DJUser.m */,
 				88A4713E207F5170002F93E0 /* userMain */,
@@ -3859,6 +3864,7 @@
 				880363A620E363FB00E97FA3 /* HPAddBroseCountMgr.m in Sources */,
 				881C94D32068ECF3009D6A52 /* UIView+Extension.m in Sources */,
 				8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */,
+				8833A18321311F6E001564E0 /* LGCacheClear.m in Sources */,
 				889E7DBB20998D5100BB9084 /* UCUploadTransitionView.m in Sources */,
 				8876E3FB20EDBCB5001C6A1A /* DJSelectPeopleCell.m in Sources */,
 				889FCCC120B2A7840045746D /* DCSubStageAudioCell.m in Sources */,

@@ -39,7 +39,8 @@ UITableViewDataSource>
 
 @implementation EDJUserCenterViewController
 
-- (void)viewDidLayoutSubviews{/// 先执行viewdidload再执行该方法
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
     [_containerHeadIcon cutToCycle];
     [_headIcon cutToCycle];
     CGFloat shadowOffset = 2;
@@ -74,6 +75,9 @@ UITableViewDataSource>
     [_headIcon sd_setImageWithURL:[NSURL URLWithString:user.image] placeholderImage:DJHeadIconPImage];
     _userNick.text = user.name;
     _level.text = user.gradename;
+    if (user.gradename == nil || [user.gradename isEqualToString:@""]) {
+        _level.text = @"先锋党员";
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -94,16 +98,15 @@ UITableViewDataSource>
 - (IBAction)headerIconClick:(id)sender {
     [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
 }
-/// MARK: 跳转到我的等级
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    return NO;
-}
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    
-}
+///// MARK: 跳转到我的等级
+//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+//    return NO;/// 返回no 为禁止 segue跳转
+//}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    
+//    
+//}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"点击第%ld行: ",indexPath.row);
     
     /// MARK: 我的信息、党员统计信息、帮助与反馈、设置
     if (indexPath.row == 0) {
@@ -116,16 +119,17 @@ UITableViewDataSource>
     }
     
     
-    if (indexPath.row == 1 || indexPath.row == 2) {
-        [self showNotOpenvc];
+//    if (indexPath.row == 1 || indexPath.row == 2) {
+//        [self showNotOpenvc];
+//    }
+    if (indexPath.row == 1) {
+        /// 党员统计信息
+        NSLog(@"党员统计报表: ");
     }
-//    if (indexPath.row == 1) {
-//        /// 党员统计信息
-//    }
-//    if (indexPath.row == 2) {
-//        /// 第三行 帮助与反馈
-//        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCHelpFadebackViewController" animated:YES];
-//    }
+    if (indexPath.row == 2) {
+        /// 第三行 帮助与反馈
+        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCHelpFadebackViewController" animated:YES];
+    }
     
     
 }

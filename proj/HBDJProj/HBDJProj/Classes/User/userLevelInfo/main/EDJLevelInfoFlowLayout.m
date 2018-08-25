@@ -30,7 +30,8 @@
 }
 
 - (void)customConfig{
-    CGFloat itemW = (kScreenWidth - 20) / 2;
+//    CGFloat itemW = (kScreenWidth - 20) / 2;
+    CGFloat itemW = (kScreenWidth - 20);
     CGFloat itemH = 87 + 30;
     self.itemSize = CGSizeMake(itemW, itemH);
     self.minimumLineSpacing = 0;

@@ -30,10 +30,32 @@
 
 - (void)configUI{
     self.title = @"个人信息";
-//    _array = [UCPersonInfoModel loadLocalPlistWithPlistName:@"userInfoConfig"];
     _array = [UCPersonInfoModel userInfoArray];
-//    NSLog(@"array: %@",_array);
     [self.tableView reloadData];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getUserinfo)];
+}
+
+- (void)getUserinfo{
+    [DJUserNetworkManager.sharedInstance frontUserinfo_selectSuccess:^(id responseObj) {
+        [self.tableView.mj_header endRefreshing];
+        DJUser *user = [DJUser mj_objectWithKeyValues:responseObj];
+        
+        /// 用户信息本地化
+        [user keepUserInfo];
+        
+        /// 将本地用户信息赋值给单利对象,保证每次用户重新登录之后，都会重新赋值
+        [[DJUser sharedInstance] getLocalUserInfo];
+        
+        _array = [UCPersonInfoModel userInfoArray];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
+        
+    } failure:^(id failureObj) {
+        [self.tableView.mj_header endRefreshing];
+    }];
 }
 
 #pragma mark - Table view data source

@@ -11,9 +11,10 @@
 @implementation UCSettingModel
 
 + (NSArray *)loadLocalPlist{
-    NSArray *originArray = [self loadLocalPlistWithPlistName:@"UCSetting"];
-    NSMutableArray *desArray = [NSMutableArray arrayWithArray:originArray];
-    return [desArray subarrayWithRange:NSMakeRange(0, 1)];
+    return [self loadLocalPlistWithPlistName:@"UCSetting"];
+//    NSArray *originArray = [self loadLocalPlistWithPlistName:@"UCSetting"];
+//    NSMutableArray *desArray = [NSMutableArray arrayWithArray:originArray];
+//    return [desArray subarrayWithRange:NSMakeRange(0, 1)];
 //    return [self loadLocalPlistWithPlistName:@"UCSetting"];
 }
 
