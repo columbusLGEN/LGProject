@@ -32,9 +32,7 @@ LGSegmentBottomViewDelegate
     [super configUI];
     self.title = @"我的上传";
     
-    _isEditState = NO;
-    
-    /// 导航栏 右按钮
+    self.isEditState = NO;
 
     /// nav item
     UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_icon_remove"] style:UIBarButtonItemStyleDone target:self action:@selector(navDeleteClick)];
@@ -71,20 +69,22 @@ LGSegmentBottomViewDelegate
     }
 }
 
+- (void)setIsEditState:(BOOL)isEditState{
+    _isEditState = isEditState;
+    self.isEdit = isEditState;/// 父类属性
+}
 
 #pragma mark - target
 /// MARK: 进入编辑状态
 - (void)navDeleteClick{
     /// TODO: 判断当前位置，党员舞台，思想汇报，述廉报告 分别处理
-    if (!_isEditState) {
-        _isEditState = YES;
-        self.isEdit = YES;/// 父类属性
+    if (!self.isEditState) {
+        self.isEditState = YES;
         [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj startEdit];
         }];
     }else{
-        _isEditState = NO;
-        self.isEdit = NO;
+        self.isEditState = NO;
         [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj endEdit];
         }];
@@ -112,8 +112,8 @@ LGSegmentBottomViewDelegate
 - (void)viewSwitched:(NSInteger)index{
     NSLog(@"index -- %ld",index);
     /// TODO: 切换分页，或者刷新的时候 恢复默认状态
-    if (_isEditState) {
-        _isEditState = NO;
+    if (self.isEditState) {
+        self.isEditState = NO;
         [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj endEdit];
         }];

@@ -23,7 +23,7 @@
 
 /** 头像链接 */
 @property (strong,nonatomic) NSString *image;
-/** 姓名 */
+/** 姓名，用户名 */
 @property (strong,nonatomic) NSString *name;
 /** 手机号 */
 @property (strong,nonatomic) NSString *phone;

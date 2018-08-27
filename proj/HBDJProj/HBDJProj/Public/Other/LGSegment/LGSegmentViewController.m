@@ -79,15 +79,12 @@ LGSegmentBottomViewDelegate
 
     [self.scrollView setContentSize:CGSizeMake(self.segmentItems.count * kScreenWidth, 0)];
     
-    /// TODO: 增加删除视图
+    /// MARK: 增加删除视图
     LGSegmentBottomView *bottom = [LGSegmentBottomView segmentBottom];
     bottom.delegate = self;
     [self.view addSubview:bottom];
     _bottom = bottom;
-    CGFloat bottomHeight = 50;
-    if ([LGDevice isiPhoneX]) {
-        bottomHeight = 70;
-    }
+    CGFloat bottomHeight = [LGSegmentBottomView bottomHeight];
     [bottom mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.bottom.equalTo(self.view.mas_bottom);

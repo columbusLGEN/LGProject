@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+// 全选底部view
+
 #import "LGBaseView.h"
 
 @protocol LGSegmentBottomViewDelegate;
@@ -13,6 +15,7 @@
 @interface LGSegmentBottomView : LGBaseView
 
 @property (weak,nonatomic) id<LGSegmentBottomViewDelegate> delegate;
++ (CGFloat)bottomHeight;
 + (instancetype)segmentBottom;
 @end
 

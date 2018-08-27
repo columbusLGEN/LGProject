@@ -46,4 +46,12 @@
     
 }
 
++ (CGFloat)bottomHeight{
+    CGFloat bottomHeight = 50;
+    if ([LGDevice isiPhoneX]) {
+        bottomHeight = 70;
+    }
+    return bottomHeight;
+}
+
 @end

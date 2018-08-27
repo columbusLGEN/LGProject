@@ -153,9 +153,7 @@ UITableViewDataSource>
         }
             break;
         case 3:{
-            [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
-                                            controllerId:@"UCMsgTableViewController"
-                                                animated:YES];
+            [self lgPushViewControllerWithClassName:@"UCMsgTableViewController"];
         }
             break;
     }

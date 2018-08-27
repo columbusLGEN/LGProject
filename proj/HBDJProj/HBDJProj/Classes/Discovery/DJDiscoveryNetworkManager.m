@@ -8,6 +8,7 @@
 
 #import "DJDiscoveryNetworkManager.h"
 #import "DJNetworkManager.h"
+//#import "DJUser.h"
 
 @implementation DJDiscoveryNetworkManager
 
@@ -31,7 +32,8 @@
 - (void)frontComments_addWithCommentid:(NSInteger)commentid commenttype:(NSInteger)commenttype comment:(NSString *)comment success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *dict = @{@"commentid":[NSString stringWithFormat:@"%ld",commentid],
                            @"commenttype":[NSString stringWithFormat:@"%ld",commenttype],
-                           @"comment":comment
+                           @"comment":comment,
+                           @"username":DJUser.sharedInstance.name
                            };
     [self sendPOSTRequestWithiName:@"frontComments/add" param:dict success:success failure:failure];
 }

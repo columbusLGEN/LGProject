@@ -441,6 +441,8 @@
 		88ECF07920A032540071A98A /* OLExamViewBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ECF07820A032540071A98A /* OLExamViewBottomBar.xib */; };
 		88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF07B20A03FE00071A98A /* OLExamCollectionViewCell.m */; };
 		88ECF0C920A19E6A0071A98A /* DCSubPartStateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF0C820A19E6A0071A98A /* DCSubPartStateDetailViewController.m */; };
+		88FD6DCB2133908700200B56 /* UCMsgEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FD6DCA2133908700200B56 /* UCMsgEditTableViewCell.m */; };
+		88FD6DCD2133909200200B56 /* UCMsgEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FD6DCC2133909200200B56 /* UCMsgEditTableViewCell.xib */; };
 		88FE68AB209AF777008C28A0 /* OLSkipObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68AA209AF777008C28A0 /* OLSkipObject.m */; };
 		88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68AE209AFAE3008C28A0 /* OLPayPartyChargeViewController.m */; };
 		88FE68B2209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68B1209AFB04008C28A0 /* OLPayPartyChargeTableViewCell.m */; };
@@ -1260,6 +1262,9 @@
 		88ECF07B20A03FE00071A98A /* OLExamCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamCollectionViewCell.m; sourceTree = "<group>"; };
 		88ECF0C720A19E6A0071A98A /* DCSubPartStateDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSubPartStateDetailViewController.h; sourceTree = "<group>"; };
 		88ECF0C820A19E6A0071A98A /* DCSubPartStateDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSubPartStateDetailViewController.m; sourceTree = "<group>"; };
+		88FD6DC92133908700200B56 /* UCMsgEditTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCMsgEditTableViewCell.h; sourceTree = "<group>"; };
+		88FD6DCA2133908700200B56 /* UCMsgEditTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCMsgEditTableViewCell.m; sourceTree = "<group>"; };
+		88FD6DCC2133909200200B56 /* UCMsgEditTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UCMsgEditTableViewCell.xib; sourceTree = "<group>"; };
 		88FE68A9209AF777008C28A0 /* OLSkipObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLSkipObject.h; sourceTree = "<group>"; };
 		88FE68AA209AF777008C28A0 /* OLSkipObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLSkipObject.m; sourceTree = "<group>"; };
 		88FE68AD209AFAE3008C28A0 /* OLPayPartyChargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLPayPartyChargeViewController.h; sourceTree = "<group>"; };
@@ -2119,6 +2124,9 @@
 				884312C92087380700321F84 /* UCMsgTableViewCell.h */,
 				884312CA2087380700321F84 /* UCMsgTableViewCell.m */,
 				884312CC2087380E00321F84 /* UCMsgTableViewCell.xib */,
+				88FD6DC92133908700200B56 /* UCMsgEditTableViewCell.h */,
+				88FD6DCA2133908700200B56 /* UCMsgEditTableViewCell.m */,
+				88FD6DCC2133909200200B56 /* UCMsgEditTableViewCell.xib */,
 			);
 			path = userMsgCenter;
 			sourceTree = "<group>";
@@ -3640,6 +3648,7 @@
 				886A1BF920D101A00007AD63 /* HPNetworkFailureView.xib in Resources */,
 				88ECF07920A032540071A98A /* OLExamViewBottomBar.xib in Resources */,
 				88DD8149209C298600F297D6 /* OLVoteDetailFooterView.xib in Resources */,
+				88FD6DCD2133909200200B56 /* UCMsgEditTableViewCell.xib in Resources */,
 				88CD73A420995A5A00E80058 /* HPBookInfoBriefCell.xib in Resources */,
 				8876E40720F06CF1001C6A1A /* OLUplaodThreeMeetingsTable.plist in Resources */,
 				88A47137207F06D3002F93E0 /* UserCenterHomeForm.plist in Resources */,
@@ -3947,6 +3956,7 @@
 				88BCEDEE20C7A6E100B5C1DB /* LGNetworkManager.m in Sources */,
 				88ECF060209FF6D30071A98A /* OLExamSingleTableViewCell.m in Sources */,
 				88A47105207DB266002F93E0 /* EDJMicroBuildCell.m in Sources */,
+				88FD6DCB2133908700200B56 /* UCMsgEditTableViewCell.m in Sources */,
 				880363B220E5FA3600E97FA3 /* LGVoiceRecoAssist.m in Sources */,
 				8876E3F120ECB38A001C6A1A /* DJSelectDateViewController.m in Sources */,
 				88BA906720F33E5D007DD4B4 /* DJTestScoreListModel.m in Sources */,

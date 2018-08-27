@@ -9,5 +9,8 @@
 #import "LGBaseModel.h"
 
 @interface UCMsgModel : LGBaseModel
+@property (strong,nonatomic) NSString *content;
+@property (assign,nonatomic) BOOL isEdit;
+@property (assign,nonatomic) BOOL select;
 
 @end

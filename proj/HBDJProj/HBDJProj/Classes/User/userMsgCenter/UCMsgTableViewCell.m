@@ -13,14 +13,24 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UILabel *content;
+@property (weak, nonatomic) IBOutlet UIImageView *alreadyReadIcon;
 
 
 @end
 
 @implementation UCMsgTableViewCell
 
++ (NSString *)cellReuseIdWithModel:(UCMsgModel *)model{
+    if (model.isEdit) {
+        return msgEditCell;
+    }else{
+        return msgCell;
+    }
+}
+
 - (void)setModel:(UCMsgModel *)model{
     _model = model;
+    _content.text = model.content;
     
 }
 
