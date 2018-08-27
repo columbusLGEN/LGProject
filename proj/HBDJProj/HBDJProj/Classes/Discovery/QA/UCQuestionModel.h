@@ -34,9 +34,10 @@
 @property (assign,nonatomic) NSInteger auditstate;
 
 @property (strong,nonatomic) NSArray *tags;
-@property (strong,nonatomic) NSString *tag0;
-@property (strong,nonatomic) NSString *tag1;
-@property (strong,nonatomic) NSString *tag2;
+@property (strong,nonatomic) NSString *tagString;
+//@property (strong,nonatomic) NSString *tag0;
+//@property (strong,nonatomic) NSString *tag1;
+//@property (strong,nonatomic) NSString *tag2;
 
 //"sort":0,
 //"userid":"4", -- > 貌似这里

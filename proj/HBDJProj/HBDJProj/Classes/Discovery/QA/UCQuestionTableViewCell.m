@@ -20,8 +20,6 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 @property (weak, nonatomic) IBOutlet UILabel *question;
 @property (weak, nonatomic) IBOutlet UILabel *content;
 @property (weak, nonatomic) IBOutlet UILabel *tagLabel0;
-@property (weak, nonatomic) IBOutlet UILabel *tagLabel1;
-@property (weak, nonatomic) IBOutlet UILabel *tagLabel2;
 @property (strong, nonatomic) IBOutlet LGThreeRightButtonView *boInterView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *arrow;
@@ -42,9 +40,7 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     _question.numberOfLines = lines;
     _question.text = model.question;
     
-    _tagLabel0.text = model.tag0;
-    _tagLabel1.text = model.tag1;
-    _tagLabel2.text = model.tag2;
+    _tagLabel0.text = model.tagString;
     
     _content.text = model.answer;
 
@@ -127,8 +123,6 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     
     _question.textColor = [UIColor EDJColor_A2562C];
     _tagLabel0.textColor = [UIColor EDJMainColor];
-    _tagLabel1.textColor = [UIColor EDJMainColor];
-    _tagLabel2.textColor = [UIColor EDJMainColor];
     _content.textColor = [UIColor EDJGrayscale_33];
     _boInterView.delegate = self;
     [_boInterView setBtnConfigs:@[@{TRConfigTitleKey:@"99+",

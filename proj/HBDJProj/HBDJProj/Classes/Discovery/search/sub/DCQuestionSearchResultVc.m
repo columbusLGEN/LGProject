@@ -29,10 +29,20 @@
         /// MARK: 刷新子可控制器视图
         NSArray *array = responseObj;
         if (array == nil || array.count == 0) {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            if (self.offset == 0) {
+                [self.tableView.mj_header endRefreshing];
+            }else{
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
         }else{
-            [self.tableView.mj_footer endRefreshing];
-            NSMutableArray *arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            NSMutableArray *arrmu;
+            if (self.offset == 0) {
+                [self.tableView.mj_header endRefreshing];
+                arrmu = [NSMutableArray new];
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+                [self.tableView.mj_footer endRefreshing];
+            }
             
             for (NSInteger i = 0; i < array.count; i++) {
                 UCQuestionModel *model = [UCQuestionModel mj_objectWithKeyValues:array[i]];

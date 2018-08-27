@@ -41,6 +41,7 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
         [self getData];
     }];
 
@@ -123,8 +124,9 @@
 }
 - (void)branchCommentWithModel:(DCSubPartStateModel *)model{
     /// 跳转到详情页面，并弹出评论
-//    DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
-//    [self.navigationController pushViewController:dvc animated:YES];
+    DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
+    dvc.showCommentView = YES;
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 @end

@@ -59,6 +59,7 @@ LGThreeRightButtonViewDelegate>
             make.right.equalTo(self.mas_right);
             make.height.mas_equalTo(45);
         }];
+        
         [self.tbvForComments mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(model.commentsTbvHeight);
         }];
@@ -269,7 +270,8 @@ LGThreeRightButtonViewDelegate>
         _tbvForComments = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tbvForComments.dataSource = self;
         _tbvForComments.delegate = self;
-        _tbvForComments.rowHeight = commentsCellHeight;
+//        _tbvForComments.estimatedRowHeight = 1.0f;
+        _tbvForComments.rowHeight = 40;
         _tbvForComments.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tbvForComments registerClass:[DCSubStageCommentsCell class] forCellReuseIdentifier:stageCommentsCell];
     }

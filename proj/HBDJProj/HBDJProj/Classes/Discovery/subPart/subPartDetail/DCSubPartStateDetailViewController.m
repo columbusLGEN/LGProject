@@ -19,8 +19,15 @@
 #import "DCRichTextBottomInfoView.h"
 #import "DJSendCommentsViewController.h"
 #import "DCSubPartStateModel.h"
+#import "DJUserInteractionMgr.h"
 
-static const CGFloat richTextBottomInfoViewHeight = 77;
+//static const CGFloat richTextBottomInfoViewHeight = 77;
+static const CGFloat richTextBottomInfoViewHeight = 40;
+
+static NSString * const praiseid_keyPath = @"praiseid";
+static NSString * const collectionid_keyPath = @"collectionid";
+static NSString * const praisecount_keyPath = @"praisecount";
+static NSString * const collectioncount_keyPath = @"collectioncount";
 
 @interface DCSubPartStateDetailViewController ()<
 UITableViewDelegate,
@@ -28,7 +35,7 @@ UITableViewDataSource,
 DTAttributedTextContentViewDelegate,
 DTLazyImageViewDelegate,
 LGThreeRightButtonViewDelegate>
-@property (strong,nonatomic) LGThreeRightButtonView *bottom;
+@property (strong,nonatomic) LGThreeRightButtonView *bottomUserInterView;
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray * array;
 
@@ -47,6 +54,12 @@ LGThreeRightButtonViewDelegate>
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (_showCommentView) {
+        [self rightClick:nil success:nil failure:nil];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
@@ -54,16 +67,14 @@ LGThreeRightButtonViewDelegate>
 }
 
 - (void)configUI{
-    
-    
-    
+  
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.bottom];
+    [self.view addSubview:self.bottomUserInterView];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top);
         make.left.equalTo(self.view.mas_left);
-        make.bottom.equalTo(self.bottom.mas_top);
+        make.bottom.equalTo(self.bottomUserInterView.mas_top);
         make.right.equalTo(self.view.mas_right);
     }];
     
@@ -71,16 +82,41 @@ LGThreeRightButtonViewDelegate>
     if ([LGDevice isiPhoneX]) {
         bottomHeight = 70;
     }
-    [self.bottom mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.bottomUserInterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(bottomHeight);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
     
+    NSInteger praiseid = 0;
+    NSInteger collectionid = 0;
+    
+    NSInteger likeCount = 0;
+    NSInteger collectionCount = 0;
+    
+    if (self.model) {
+        praiseid = self.model.praiseid;
+        collectionid = self.model.collectionid;
+        
+        likeCount = self.model.praisecount;
+        collectionCount = self.model.collectioncount;
+    }
+    
+    _bottomUserInterView.leftIsSelected = !(praiseid <= 0);
+    _bottomUserInterView.middleIsSelected = !(collectionid <= 0);
+    _bottomUserInterView.likeCount = likeCount;
+    _bottomUserInterView.collectionCount = collectionCount;
+    _bottomUserInterView.rightIsSelected = self.model.iscomment;
+    _bottomUserInterView.commentCount = self.model.frontComments.count;
+    
+    [self.model addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [self.model addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [self.model addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [self.model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    
+    
     /// 注册键盘相关通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
     
     self.array = self.model.frontComments;
     [self.tableView reloadData];
@@ -90,7 +126,26 @@ LGThreeRightButtonViewDelegate>
     _cellCache.totalCostLimit = 10;
     _cellCache.countLimit = 10;
     
+    
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if (object == self.model) {
+        if ([keyPath isEqualToString:praiseid_keyPath]) {
+            _bottomUserInterView.leftIsSelected = !(self.model.praiseid <= 0);
+        }
+        if ([keyPath isEqualToString:collectionid_keyPath]) {
+            _bottomUserInterView.middleIsSelected = !(self.model.collectionid <= 0);
+        }
+        if ([keyPath isEqualToString:praisecount_keyPath]) {
+            _bottomUserInterView.likeCount = self.model.praisecount;
+        }
+        if ([keyPath isEqualToString:collectioncount_keyPath]) {
+            _bottomUserInterView.collectionCount = self.model.collectioncount;
+        }
+    }
+}
+
 #pragma mark - delegate & data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _array.count + 1;
@@ -134,6 +189,7 @@ LGThreeRightButtonViewDelegate>
         /// MARK: 富文本cell顶部信息view
         DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
         [cell.contentView addSubview:topInfoView];
+        topInfoView.model = self.model;
         [topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(cell.mas_top);
             make.left.equalTo(cell.mas_left);
@@ -225,38 +281,24 @@ LGThreeRightButtonViewDelegate>
 
 /// MARK: 底部交互按钮点击
 - (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:self.model collect:NO type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"点赞失败，请稍后重试"];
+    }];
 }
 - (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:self.model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"点赞失败，请稍后重试"];
+    }];
 }
 - (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     DJSendCommentsViewController *vc = [DJSendCommentsViewController sendCommentvcWithModel:self.model];
+    vc.commenttype = 2;
     [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - notifications
-- (void)keyboardWillChangeFrame:(NSNotification *)notification{
-    NSDictionary *userInfo = notification.userInfo;
-    CGRect frameBegin = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGRect frameEnd = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    /// TODO: 为什么键盘的起始frame 异常？
-    NSLog(@"frameBegin -- %@ ",NSStringFromCGRect(frameBegin));
-    //    NSLog(@"frameEnd -- %@",NSStringFromCGRect(frameEnd));
-    CGFloat offsetY = frameBegin.origin.y - frameEnd.origin.y;
-    NSLog(@"willchangeframe.y -- %f",offsetY);
-    
-}
-- (void)keyboardDidChangeFrame:(NSNotification *)notification{
-//        NSDictionary *userInfo = notification.userInfo;
-//        CGRect frameBegin = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-//        CGRect frameEnd = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//        NSLog(@"frameBegin -- %@ ",NSStringFromCGRect(frameBegin));
-//        NSLog(@"frameEnd -- %@",NSStringFromCGRect(frameEnd));
-//        CGFloat offsetY = frameEnd.origin.y - frameBegin.origin.y;
-//        NSLog(@"didchangeframe.y -- %f",offsetY);
-}
 
 
 #pragma mark - getter
@@ -273,12 +315,12 @@ LGThreeRightButtonViewDelegate>
     }
     return _tableView;
 }
-- (LGThreeRightButtonView *)bottom{
-    if (!_bottom) {
-        _bottom = [LGThreeRightButtonView new];
-        _bottom.bothSidesClose = YES;
-        _bottom.delegate = self;
-        [_bottom setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
+- (LGThreeRightButtonView *)bottomUserInterView{
+    if (!_bottomUserInterView) {
+        _bottomUserInterView = [LGThreeRightButtonView new];
+        _bottomUserInterView.bothSidesClose = YES;
+        _bottomUserInterView.delegate = self;
+        [_bottomUserInterView setBtnConfigs:@[@{TRConfigTitleKey:@"99+",
                                         TRConfigImgNameKey:@"dc_like_normal",
                                         TRConfigSelectedImgNameKey:@"dc_like_selected",
                                         TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
@@ -297,15 +339,14 @@ LGThreeRightButtonViewDelegate>
                                         TRConfigTitleColorSelectedKey:[UIColor EDJColor_CEB0E7]
                                         }]];
     }
-    return _bottom;
+    return _bottomUserInterView;
 }
 
 - (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
+    [self.model removeObserver:self forKeyPath:praiseid_keyPath];
+    [self.model removeObserver:self forKeyPath:collectionid_keyPath];
+    [self.model removeObserver:self forKeyPath:praisecount_keyPath];
+    [self.model removeObserver:self forKeyPath:collectioncount_keyPath];
 }
 
 @end

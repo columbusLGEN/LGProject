@@ -17,29 +17,12 @@
     return _tags;
 }
 
-- (NSString *)tag0{
-    if (self.tags.count > 0) {
-        if (!_tag0) {
-            _tag0 = _tags[0];
-        }
+- (NSString *)tagString{
+    if (!_tagString) {
+        _tagString = [self.tags componentsJoinedByString:@"  "];
     }
-    return _tag0;
+    return _tagString;
 }
-- (NSString *)tag1{
-    if (self.tags.count > 1) {
-        if (!_tag1) {
-            _tag1 = _tags[1];
-        }
-    }
-    return _tag1;
-}
-- (NSString *)tag2{
-    if (self.tags.count > 2) {
-        if (!_tag2) {
-            _tag2 = _tags[2];
-        }
-    }
-    return _tag2;
-}
+
 
 @end

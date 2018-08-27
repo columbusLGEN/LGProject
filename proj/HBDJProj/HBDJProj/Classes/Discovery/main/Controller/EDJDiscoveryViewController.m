@@ -128,7 +128,11 @@ LGNavigationSearchBarDelelgate>
     HPSearchViewController *svc = HPSearchViewController.new;
     [self.navigationController pushViewController:svc animated:YES];
 }
-
+- (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
+    HPSearchViewController *svc = HPSearchViewController.new;
+    svc.voice = YES;
+    [self.navigationController pushViewController:svc animated:YES];
+}
 
 - (void)viewSwitched:(NSInteger)index{
     if (index == 0) {

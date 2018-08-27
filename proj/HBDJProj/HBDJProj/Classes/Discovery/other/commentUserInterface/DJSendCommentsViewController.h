@@ -14,4 +14,7 @@
 + (instancetype)sendCommentvcWithModel:(DJDataBaseModel *)model;
 @property (strong,nonatomic) DJDataBaseModel *model;
 
+/** 1党员舞台,2支部动态 */
+@property (assign,nonatomic) NSInteger commenttype;
+
 @end

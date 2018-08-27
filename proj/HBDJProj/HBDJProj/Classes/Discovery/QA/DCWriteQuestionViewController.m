@@ -166,6 +166,8 @@ UICollectionViewDataSource>
 #pragma mark - target
 - (void)commitQuestion{
     
+    [self.view endEditing:YES];
+    
     NSMutableArray *tag_ids = NSMutableArray.new;
     for (NSInteger i = 0; i < _selectTags.count; i++) {
         EDJSearchTagModel *model = _selectTags[i];
@@ -174,8 +176,11 @@ UICollectionViewDataSource>
     
     NSString *label = [tag_ids componentsJoinedByString:@","];
     [DJDiscoveryNetworkManager.sharedInstance frontQuestionanswer_addWithQuestion:_textView.text label:label success:^(id responseObj) {
-        [self presentSuccessTips:@"提交成功"];
-        [self lg_dismissViewController];
+        [self presentSuccessTips:@"发布成功，请耐心等待管理员审核"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+            [self lg_dismissViewController];
+        });
     } failure:^(id failureObj) {
         [self presentSuccessTips:@"提交失败，请稍后重试"];
     }];

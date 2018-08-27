@@ -13,5 +13,6 @@
 
 @interface DCSubPartStateDetailViewController : LGBaseViewController
 @property (strong,nonatomic) DCSubPartStateModel *model;
+@property (assign,nonatomic) BOOL showCommentView;
 
 @end

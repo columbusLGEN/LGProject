@@ -175,6 +175,10 @@
 /// MARK: 上传数据
 - (void)sendClick{
     
+    if (uploading) {
+        return;
+    }
+    
     [self.view endEditing:YES];
     
     NSString *content = _textView.text?_textView.text:@"";
@@ -226,6 +230,8 @@
         [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
             if (imageUrls == nil || imageUrls.count == 0) {
                 [self presentFailureTips:@"您未选择任何图片"];
+                [uploadTipView hideAnimated:YES];
+                uploading = NO;
                 return;
             }
             

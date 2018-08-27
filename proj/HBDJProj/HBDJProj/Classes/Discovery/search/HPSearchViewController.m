@@ -95,6 +95,8 @@ DJDsSearchChildVcDelegate>
     /// 监听语音识别结束
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lg_endOfSpeech:) name:LGVoiceRecoganizerEndOfSpeechNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+    
     /// 默认进入页面自动响应输入
     [self addTextFieldToNav:_fakeNavgationBar];
     
@@ -242,9 +244,13 @@ DJDsSearchChildVcDelegate>
     return YES;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-
     if (self.searchHistory.hidden) {
         self.searchHistory.hidden = NO;
+    }
+}
+- (void)textFieldDidChanged:(NSNotification *)noti{
+    if (self.searchTagModel) {
+        self.searchTagModel = nil;
     }
 }
 

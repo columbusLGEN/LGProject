@@ -111,7 +111,7 @@ UITextViewDelegate>
         [self presentFailureTips:@"请输入评论内容"];
         return;
     }
-    [DJDiscoveryNetworkManager.sharedInstance frontComments_addWithCommentid:self.model.seqid commenttype:1 comment:_inputView.input.text success:^(id responseObj) {
+    [DJDiscoveryNetworkManager.sharedInstance frontComments_addWithCommentid:self.model.seqid commenttype:_commenttype comment:_inputView.input.text success:^(id responseObj) {
         [self presentSuccessTips:@"发表成功，后台审核中"];
         [self lg_dismissViewController];
     } failure:^(id failureObj) {

@@ -128,6 +128,10 @@
 }
 /// MARK: 点击完成
 - (void)recordDone:(UIButton *)button{
+    if (!_began) {
+        [self presentFailureTips:@"请先录音"];
+        return;
+    }
     [_time stop];
     [audioRecorder stopRecord];
     /// 添加提示 “资源文件处理中”

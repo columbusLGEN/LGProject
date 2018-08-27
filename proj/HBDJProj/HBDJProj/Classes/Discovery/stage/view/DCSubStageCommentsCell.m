@@ -35,9 +35,10 @@
         self.backgroundColor = [UIColor EDJGrayscale_F5];
         [self.contentView addSubview:self.content];
         [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mas_left).offset(marginFive);
-            make.right.equalTo(self.mas_right).offset(-marginFive);
-            make.centerY.equalTo(self.mas_centerY);
+            make.left.equalTo(self.contentView.mas_left).offset(marginFive);
+            make.right.equalTo(self.contentView.mas_right).offset(-marginFive);
+            make.top.equalTo(self.contentView.mas_top);
+            make.bottom.equalTo(self.contentView.mas_bottom);
         }];
     }
     return self;
@@ -47,6 +48,7 @@
     if (!_content){
         _content = [UILabel new];
         _content.font = [UIFont systemFontOfSize:14];
+        _content.numberOfLines = 0;
     }
     return _content;
 }

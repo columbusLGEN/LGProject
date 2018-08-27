@@ -13,9 +13,14 @@
 @implementation DJDiscoveryNetworkManager
 
 - (void)frontIndex_findSearchWithContent:(NSString *)content label:(NSInteger)labelid offset:(NSInteger)offset type:(NSInteger)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    
+    NSString *label;
+    if (labelid) {
+        label = [NSString stringWithFormat:@"%ld",labelid];
+    }else{
+        label = @"";
+    }
     NSDictionary *dict = @{@"search":content?content:@"",
-                           @"label":[NSString stringWithFormat:@"%ld",labelid],
+                           @"label":label,
                            @"type":[NSString stringWithFormat:@"%ld",type]};
     
     [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontIndex/findSearch" param:dict success:success failure:failure];

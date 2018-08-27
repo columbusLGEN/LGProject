@@ -30,6 +30,11 @@
     }
 }
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    _sourceLabel.hidden = YES;
+}
+
 + (instancetype)richTextBottomInfo{
     return [[[NSBundle mainBundle] loadNibNamed:@"DCRichTextBottomInfoView" owner:nil options:nil] lastObject];
 }

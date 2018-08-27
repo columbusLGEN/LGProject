@@ -24,15 +24,28 @@
 }
 
 - (void)getData{
-    [DJDiscoveryNetworkManager.sharedInstance frontIndex_findSearchWithContent:self.searchContent label:_tagId offset:0 type:3 success:^(id responseObj) {
+    [DJDiscoveryNetworkManager.sharedInstance frontIndex_findSearchWithContent:self.searchContent label:_tagId offset:self.offset type:3 success:^(id responseObj) {
+        
         /// MARK: 刷新子可控制器视图
         NSArray *array = responseObj;
         if (array == nil || array.count == 0) {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        }else{
-            [self.tableView.mj_footer endRefreshing];
             
-            NSMutableArray *arrmu  = [NSMutableArray arrayWithArray:self.dataArray];
+            if (self.offset == 0) {
+                [self.tableView.mj_header endRefreshing];
+            }else{
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            
+        }else{
+            NSMutableArray *arrmu;
+            
+            if (self.offset == 0) {
+                [self.tableView.mj_header endRefreshing];
+                arrmu = [NSMutableArray new];
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+                [self.tableView.mj_footer endRefreshing];
+            }
 
             for (NSInteger i = 0; i < array.count; i++) {
                 DCSubStageModel *model = [DCSubStageModel mj_objectWithKeyValues:array[i]];
@@ -47,8 +60,8 @@
         }
         
     } failure:^(id failureObj) {
+        [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        NSLog(@"faillureObject -- %@",failureObj);
         if ([failureObj isKindOfClass:[NSError class]]) {
             [self presentFailureTips:@"网络异常"];
         }else{

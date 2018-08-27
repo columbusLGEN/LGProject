@@ -38,6 +38,7 @@ UCQuestionTableViewCellDelegate>
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
         [self getData];
     }];
     

@@ -37,6 +37,7 @@ WMPlayerDelegate>
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
         [self getData];
     }];
     
@@ -131,6 +132,7 @@ WMPlayerDelegate>
 - (void)pyqCommentWithModel:(DCSubStageModel *)model{
     
     DJSendCommentsViewController *vc = [DJSendCommentsViewController sendCommentvcWithModel:model];
+    vc.commenttype = 1;
     [self presentViewController:vc animated:YES completion:nil];
     
 }
