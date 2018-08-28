@@ -174,6 +174,11 @@ UICollectionViewDataSource>
         [tag_ids addObject:@(model.seqid)];
     }
     
+    if ([_textView.text isEqualToString:@""] || _textView.text == nil) {
+        [self presentMessageTips:@"请输入您的问题"];
+        return;
+    }
+    
     NSString *label = [tag_ids componentsJoinedByString:@","];
     [DJDiscoveryNetworkManager.sharedInstance frontQuestionanswer_addWithQuestion:_textView.text label:label success:^(id responseObj) {
         [self presentSuccessTips:uploadNeedsCheckString];

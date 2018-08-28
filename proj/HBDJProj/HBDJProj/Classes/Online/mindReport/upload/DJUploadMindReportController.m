@@ -98,7 +98,9 @@ DJUploadMindReportCoverCellDelegate>
         [uploadTipView hideAnimated:YES];
         
         DJUploadMindReportLineModel *imageLineModle = [self.dataArray lastObject];
-        [_uploadDataManager setUploadValue:[imageUrls componentsJoinedByString:@","] key:imageLineModle.uploadJsonKey];
+        if (imageUrls) {        
+            [_uploadDataManager setUploadValue:[imageUrls componentsJoinedByString:@","] key:imageLineModle.uploadJsonKey];
+        }
         
         [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:[formData mutableCopy] ugctype:(self.listType - 4) filetype:1 success:^(id responseObj) {
             

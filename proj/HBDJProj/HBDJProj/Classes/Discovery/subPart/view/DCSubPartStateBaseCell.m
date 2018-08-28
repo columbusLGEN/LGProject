@@ -58,22 +58,23 @@ LGThreeRightButtonViewDelegate>
     }
 }
 
-- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// TODO: liketodo
     /// 支部动态点赞
-    if ([self.delegate respondsToSelector:@selector(branchLikeWithModel:)]) {
-        [self.delegate branchLikeWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(branchLikeWithModel:sender:)]) {
+        [self.delegate branchLikeWithModel:self.model sender:sender];
     }
 }
-- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 支部动态收藏
-    if ([self.delegate respondsToSelector:@selector(branchCollectWithModel:)]) {
-        [self.delegate branchCollectWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(branchCollectWithModel:sender:)]) {
+        [self.delegate branchCollectWithModel:self.model sender:sender];
     }
 }
-- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 支部动态评论
-    if ([self.delegate respondsToSelector:@selector(branchCommentWithModel:)]) {
-        [self.delegate branchCommentWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(branchCommentWithModel:sender:)]) {
+        [self.delegate branchCommentWithModel:self.model sender:sender];
     }
 }
 

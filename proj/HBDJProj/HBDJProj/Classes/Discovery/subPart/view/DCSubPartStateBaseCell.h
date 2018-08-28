@@ -16,9 +16,9 @@ static NSString * const oneImgCell = @"DCSubPartStateOneImgCell";
 static NSString * const threeImgCell = @"DCSubPartStateThreeImgCell";
 
 @protocol DCSubPartStateBaseCellDelegate <NSObject>
-- (void)branchLikeWithModel:(DCSubPartStateModel *)model;
-- (void)branchCollectWithModel:(DCSubPartStateModel *)model;
-- (void)branchCommentWithModel:(DCSubPartStateModel *)model;
+- (void)branchLikeWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender;
+- (void)branchCollectWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender;
+- (void)branchCommentWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender;
 
 @end
 

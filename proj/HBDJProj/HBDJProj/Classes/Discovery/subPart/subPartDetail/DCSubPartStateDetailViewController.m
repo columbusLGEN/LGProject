@@ -280,15 +280,23 @@ LGThreeRightButtonViewDelegate>
 }
 
 /// MARK: 底部交互按钮点击
-- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+/// 点赞
+- (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:self.model collect:NO type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
     }];
 }
-- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+/// 收藏
+- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success sender:(UIButton *)sender failure:(ClickRequestFailure)failure{
+    sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:self.model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
     }];
 }

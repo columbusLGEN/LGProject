@@ -96,22 +96,23 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     3.cell 通过KVO 监听模型的属性变化，修改状态
  */
 
-- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// TODO: liketodo
     /// 提问感谢（点赞）
-    if ([self.delegate respondsToSelector:@selector(qaCellLikeWithModel:)]) {
-        [self.delegate qaCellLikeWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(qaCellLikeWithModel:sender:)]) {
+        [self.delegate qaCellLikeWithModel:self.model sender:sender];
     }
 }
-- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 提问收藏
-    if ([self.delegate respondsToSelector:@selector(qaCellCollectWithModel:)]) {
-        [self.delegate qaCellCollectWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(qaCellCollectWithModel:sender:)]) {
+        [self.delegate qaCellCollectWithModel:self.model sender:sender];
     }
 }
-- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 提问分享
-    if ([self.delegate respondsToSelector:@selector(qaCellShareWithModel:)]) {
-        [self.delegate qaCellShareWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(qaCellShareWithModel:sender:)]) {
+        [self.delegate qaCellShareWithModel:self.model sender:sender];
     }
 }
 

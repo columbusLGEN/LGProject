@@ -37,8 +37,8 @@
         [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView.mas_left).offset(marginFive);
             make.right.equalTo(self.contentView.mas_right).offset(-marginFive);
-            make.top.equalTo(self.contentView.mas_top);
-            make.bottom.equalTo(self.contentView.mas_bottom);
+            make.top.equalTo(self.contentView.mas_top).offset(marginFive);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginFive);
         }];
     }
     return self;

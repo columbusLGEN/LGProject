@@ -36,7 +36,10 @@ LGThreeRightButtonViewDelegate>
 
 @end
 
-@implementation DCSubStageBaseTableViewCell
+@implementation DCSubStageBaseTableViewCell{
+    
+    CGFloat tbvWidth;
+}
 
 - (void)setModel:(DCSubStageModel *)model{
     _model = model;
@@ -53,6 +56,14 @@ LGThreeRightButtonViewDelegate>
         _bottomRect.hidden = YES;
         _triangle.hidden = NO;
         
+        CGFloat commentTextTotalHeight = 0;
+        for (DCSubStageCommentsModel *commentModel in model.frontComments) {
+            NSString *needCalHeightString = [commentModel.username stringByAppendingFormat:@":%@",commentModel.comment];
+            CGFloat singleCommentTextHeight = [needCalHeightString sizeOfTextWithMaxSize:CGSizeMake(tbvWidth, MAXFLOAT) font:[UIFont systemFontOfSize:14]].height;
+            commentTextTotalHeight += singleCommentTextHeight;
+            NSLog(@"%@ :height %f,tbvWidth: %f",needCalHeightString,singleCommentTextHeight,tbvWidth);
+        }
+        
         [self.boInterView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.tbvForComments.mas_top);
             make.left.equalTo(self.time.mas_right).offset(-marginTen);
@@ -60,9 +71,12 @@ LGThreeRightButtonViewDelegate>
             make.height.mas_equalTo(45);
         }];
         
+        NSLog(@"%@ 评论视图高度: %f",model.content,commentTextTotalHeight);
         [self.tbvForComments mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(model.commentsTbvHeight);
+            /// 10 * _comments.count 为每个cell 上下间距各 5
+            make.height.mas_equalTo(commentTextTotalHeight + (10 * _comments.count));
         }];
+        
     }else{
         _bottomRect.hidden = NO;
         _triangle.hidden = YES;
@@ -110,28 +124,30 @@ LGThreeRightButtonViewDelegate>
     }
 }
 
-- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// TODO: liketodo
     /// 党员舞台点赞
-    if ([self.delegate respondsToSelector:@selector(pyqLikeWithModel:)]) {
-        [self.delegate pyqLikeWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(pyqLikeWithModel:sender:)]) {
+        [self.delegate pyqLikeWithModel:self.model sender:sender];
     }
 }
-- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 党员舞台收藏
-    if ([self.delegate respondsToSelector:@selector(pyqCollectWithModel:)]) {
-        [self.delegate pyqCollectWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(pyqCollectWithModel:sender:)]) {
+        [self.delegate pyqCollectWithModel:self.model sender:sender];
     }
 }
-- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 党员舞台评论
-    if ([self.delegate respondsToSelector:@selector(pyqCommentWithModel:)]) {
-        [self.delegate pyqCommentWithModel:self.model];
+    if ([self.delegate respondsToSelector:@selector(pyqCommentWithModel:sender:)]) {
+        [self.delegate pyqCommentWithModel:self.model sender:sender];
     }
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.icon cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:self.icon.height * 0.5];
+    tbvWidth = _tbvForComments.width;
 }
 
 - (void)configUI {
@@ -270,8 +286,8 @@ LGThreeRightButtonViewDelegate>
         _tbvForComments = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tbvForComments.dataSource = self;
         _tbvForComments.delegate = self;
-//        _tbvForComments.estimatedRowHeight = 1.0f;
-        _tbvForComments.rowHeight = 40;
+        _tbvForComments.estimatedRowHeight = 1.0f;
+        _tbvForComments.scrollEnabled = NO;
         _tbvForComments.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tbvForComments registerClass:[DCSubStageCommentsCell class] forCellReuseIdentifier:stageCommentsCell];
     }

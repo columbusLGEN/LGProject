@@ -110,21 +110,28 @@
     [self.navigationController pushViewController:dvc animated:YES];
 }
 
-- (void)branchLikeWithModel:(DCSubPartStateModel *)model{
+- (void)branchLikeWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{
+    sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
     }];
 }
-- (void)branchCollectWithModel:(DCSubPartStateModel *)model{
+- (void)branchCollectWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{
+    sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"收藏失败，请稍后重试"];
     }];
 }
 - (void)branchCommentWithModel:(DCSubPartStateModel *)model{
     /// 跳转到详情页面，并弹出评论
     DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
+    dvc.model = model;
     dvc.showCommentView = YES;
     [self.navigationController pushViewController:dvc animated:YES];
 }

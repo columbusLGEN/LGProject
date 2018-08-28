@@ -186,7 +186,10 @@
     NSMutableDictionary *param = NSMutableDictionary.new;
     param[@"content"] = content;
     
-    uploadTipView = [MBProgressHUD wb_showActivityMessage:@"上传中..." toView:self.view];
+    uploadTipView = [MBProgressHUD.alloc initWithView:self.view];
+    uploadTipView.mode = MBProgressHUDModeText;
+    uploadTipView.label.text = @"上传中...";
+    
     uploading = YES;
     
     //  filetype   1图片; 2视频; 3音频; 4文本
@@ -200,6 +203,9 @@
         
         param[@"audiolength"] = [NSString stringWithFormat:@"%ld",_audioTotalTime];
         
+        [self.view addSubview:uploadTipView];
+        [uploadTipView showAnimated:YES];
+        
         [DJOnlineNetorkManager.sharedInstance uploadFileWithLocalFileUrl:audioURL mimeType:mimeType uploadProgress:^(NSProgress *uploadProgress) {
         } success:^(id dict) {
             param[@"fileurl"] = dict[@"path"];
@@ -212,25 +218,44 @@
         
     }else if (_uploadAction == DJUPloadPyqActionText) {
         /// 上传纯文本
+        if ([content isEqualToString:@""] || content == nil) {
+            [uploadTipView hideAnimated:NO];
+            [self presentMessageTips:@"请输入要发表的内容"];
+            uploading = NO;
+            return;
+        }
+        
+        [self.view addSubview:uploadTipView];
+        [uploadTipView showAnimated:YES];
+        
         [self frontUgc_addWithParam:param];
         
     }else if (_uploadAction == DJUPloadPyqActionVideo){
+        
+        [self.view addSubview:uploadTipView];
+        [uploadTipView showAnimated:YES];
+        
         /// 获取视频封面
-        [_uploadDataManager ugc_uploadFileWithMimeType:@"video/mp4" success:nil singleFileComplete:^(id dict) {
+        [_uploadDataManager ugc_uploadFileWithMimeType:@"video/mp4" success:^(NSArray *imageUrls, NSDictionary *formData) {
+            [self presentMessageTips:@"请选择想要发布的视频"];
+            [self endUpload];
+            
+        } singleFileComplete:^(id dict) {
             param[@"fileurl"] = dict[@"path"];
             param[@"cover"] = dict[@"cover"];
             param[@"widthheigth"] = dict[@"widthheigth"];
             [self frontUgc_addWithParam:param];
         }];
         
-        //        [self endUpload];
-        
     }else{
         /// 上传图片
+        [self.view addSubview:uploadTipView];
+        [uploadTipView showAnimated:YES];
+        
         [_uploadDataManager uploadContentImageWithSuccess:^(NSArray *imageUrls, NSDictionary *formData) {
             if (imageUrls == nil || imageUrls.count == 0) {
-                [self presentFailureTips:@"您未选择任何图片"];
                 [uploadTipView hideAnimated:YES];
+                [self presentFailureTips:@"您未选择任何图片"];
                 uploading = NO;
                 return;
             }
@@ -247,9 +272,12 @@
 
 - (void)frontUgc_addWithParam:(NSMutableDictionary *)param {
     [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:param.mutableCopy ugctype:1 filetype:_uploadAction success:^(id responseObj) {
-        [self endUpload];
-        [self presentSuccessTips:@"上传成功，审核中"];
-        [self lg_dismissViewController];
+        [self presentSuccessTips:uploadNeedsCheckString];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self endUpload];
+            [self lg_dismissViewController];
+        });
     } failure:^(id failureObj) {
         [self endUpload];
         [self presentSuccessTips:@"上传失败，请稍后重试"];

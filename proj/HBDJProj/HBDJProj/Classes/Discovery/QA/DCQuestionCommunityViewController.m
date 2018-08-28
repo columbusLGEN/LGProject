@@ -113,19 +113,28 @@ UCQuestionTableViewCellDelegate>
 - (void)qaCellshowAllClickWith:(NSIndexPath *)indexPath{
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
-- (void)qaCellLikeWithModel:(UCQuestionModel *)model{
+// 点赞
+- (void)qaCellLikeWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
+    sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
     }];
 }
-- (void)qaCellCollectWithModel:(UCQuestionModel *)model{
+// 收藏
+- (void)qaCellCollectWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
+    sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"收藏失败，请稍后重试"];
     }];
 }
-- (void)qaCellShareWithModel:(UCQuestionModel *)model{
+// 分享
+- (void)qaCellShareWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
     
     /// TODO: 分享链接等内容
     NSDictionary *param = @{LGSocialShareParamKeyWebPageUrl:model.shareUrl?model.shareUrl:@"",

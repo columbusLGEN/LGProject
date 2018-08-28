@@ -116,15 +116,21 @@ WMPlayerDelegate>
     }
 }
 
-- (void)pyqLikeWithModel:(DCSubStageModel *)model{
+- (void)pyqLikeWithModel:(DCSubStageModel *)model sender:(UIButton *)sender{
+    sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeStage success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
     }];
 }
-- (void)pyqCollectWithModel:(DCSubStageModel *)model{
+- (void)pyqCollectWithModel:(DCSubStageModel *)model sender:(UIButton *)sender{
+    sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeStage success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"收藏失败，请稍后重试"];
     }];
 }

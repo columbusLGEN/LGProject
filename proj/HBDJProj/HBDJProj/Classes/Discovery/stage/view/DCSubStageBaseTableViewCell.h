@@ -14,9 +14,11 @@
 @class DCSubStageModel,LGThreeRightButtonView,DCSubStageBaseTableViewCell;
 
 @protocol DCSubStageBaseTableViewCellDelegate <NSObject>
-- (void)pyqLikeWithModel:(DCSubStageModel *)model;
-- (void)pyqCollectWithModel:(DCSubStageModel *)model;
-- (void)pyqCommentWithModel:(DCSubStageModel *)model;
+
+- (void)pyqLikeWithModel:(DCSubStageModel *)model sender:(UIButton *)sender;
+- (void)pyqCollectWithModel:(DCSubStageModel *)model sender:(UIButton *)sender;
+- (void)pyqCommentWithModel:(DCSubStageModel *)model sender:(UIButton *)sender;
+
 - (void)pyqCellplayVideoWithModel:(DCSubStageModel *)model;
 - (void)pyqCellOneImageClick:(DCSubStageBaseTableViewCell *)cell model:(DCSubStageModel *)model imageView:(UIImageView *)imageView;
 

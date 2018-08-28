@@ -179,24 +179,27 @@ LGThreeRightButtonViewDelegate>
 }
 
 #pragma mark - LGThreeRightButtonViewDelegate
-- (void)leftClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 点赞
-    [self likeCollectWithClickSuccess:success collect:NO];
+    [self likeCollectWithClickSuccess:success collect:NO sender:sender];
 }
-- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 收藏
-    [self likeCollectWithClickSuccess:success collect:YES];
+    [self likeCollectWithClickSuccess:success collect:YES sender:sender];
 }
-- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 分享
 
 }
 
-- (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect{
+- (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect sender:(UIButton *)sender{
     DJDataBaseModel *model = self.model?self.model:self.imgLoopModel;
+    sender.userInteractionEnabled = NO;
     _task = [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:model collect:collect type:DJDataPraisetypeMicrolesson success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
         if (clickSuccess) clickSuccess(cbkid,cbkCount);
     } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
         NSLog(@"点赞收藏失败: ");
     }];
 }

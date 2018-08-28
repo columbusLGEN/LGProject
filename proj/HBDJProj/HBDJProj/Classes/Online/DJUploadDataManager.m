@@ -47,6 +47,8 @@ static NSString * const key_widthheigth = @"widthheigth";
 
 /// 朋友圈 上传 ，目前仅做上传视频用
 - (void)ugc_uploadFileWithMimeType:(NSString *)mimeType success:(DJUploadImageComplete)completeBlock singleFileComplete:(DJUploadFileComplete)singleFileComplete{
+    
+    
     if (_tempImageUrls.count == 1) {
         
         // 1.获取视频封面，并上传封面
