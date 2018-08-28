@@ -76,7 +76,6 @@ DJUploadMindReportCoverCellDelegate>
 - (void)uploadData{
     
     if (_uploading) {
-        NSLog(@"return避免: ");
         return;
     }
     
@@ -102,9 +101,14 @@ DJUploadMindReportCoverCellDelegate>
         [_uploadDataManager setUploadValue:[imageUrls componentsJoinedByString:@","] key:imageLineModle.uploadJsonKey];
         
         [DJOnlineNetorkManager.sharedInstance frontUgc_addWithFormData:[formData mutableCopy] ugctype:(self.listType - 4) filetype:1 success:^(id responseObj) {
-            [self presentMessageTips:@"上传完成"];
-            _uploading = NO;
-            [self baseViewControllerDismiss];
+            
+            [self presentMessageTips:uploadNeedsCheckString];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                _uploading = NO;
+                [self baseViewControllerDismiss];
+
+            });
             
         } failure:^(id failureObj) {
             _uploading = NO;

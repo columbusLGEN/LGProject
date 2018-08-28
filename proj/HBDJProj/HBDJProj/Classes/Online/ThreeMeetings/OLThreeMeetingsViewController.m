@@ -46,8 +46,12 @@ DJOnlineUplaodTableViewControllerDelegate>
 
 - (void)configUI{
     
-    UIBarButtonItem *item_create = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStyleDone target:self action:@selector(createContent)];
-    self.navigationItem.rightBarButtonItem = item_create;
+    /// 只有支部管理员才能创建三会一课和主题党日
+    if (DJUser.sharedInstance.ismanager) {
+        UIBarButtonItem *item_create = [[UIBarButtonItem alloc] initWithTitle:@"创建" style:UIBarButtonItemStyleDone target:self action:@selector(createContent)];
+        self.navigationItem.rightBarButtonItem = item_create;
+    }
+    
     
     [self.view addSubview:self.channelScrollView];
     

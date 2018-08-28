@@ -62,6 +62,7 @@ UITextViewDelegate>
     if (_model.content) {
         _textView.text = _model.content;
     }
+    [_textView becomeFirstResponder];
 }
 
 - (void)inputDone{

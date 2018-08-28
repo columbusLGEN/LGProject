@@ -176,7 +176,7 @@ UICollectionViewDataSource>
     
     NSString *label = [tag_ids componentsJoinedByString:@","];
     [DJDiscoveryNetworkManager.sharedInstance frontQuestionanswer_addWithQuestion:_textView.text label:label success:^(id responseObj) {
-        [self presentSuccessTips:@"发布成功，请耐心等待管理员审核"];
+        [self presentSuccessTips:uploadNeedsCheckString];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     
             [self lg_dismissViewController];
