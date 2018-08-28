@@ -145,7 +145,8 @@ UITableViewDataSource>
         }
             break;
         case 1:{
-            NSLog(@"收藏");
+            [self lgPushViewControllerWithClassName:@"DJMyCollectViewController"];
+            
         }
             break;
         case 2:{

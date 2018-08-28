@@ -93,7 +93,7 @@
 - (void)homeSearchWithString:(NSString *)string type:(NSInteger)type offset:(NSInteger)offset length:(NSInteger)length sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSString *type_string = [NSString stringWithFormat:@"%ld",(long)type];
     NSDictionary *dict = @{@"type":type_string,
-                           @"search":string};
+                           @"search":string?string:@""};
     [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontIndex/lectureSearch" param:dict success:success failure:failure];
 }
 - (void)homeIndexWithSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
