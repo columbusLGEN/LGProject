@@ -20,6 +20,7 @@ static NSString *LGSegmentVcInitTypeCode = @"LGSegmentVcInitTypeCode";
 
 @property (weak,nonatomic) LGSegmentScrollView *segment;
 @property (weak,nonatomic) UIScrollView *scrollView;
+
 @property (strong,nonatomic) NSArray<NSDictionary *> *segmentItems;
 @property (assign,nonatomic) CGFloat segmentHeight;
 
@@ -30,11 +31,9 @@ static NSString *LGSegmentVcInitTypeCode = @"LGSegmentVcInitTypeCode";
 /// 子类重写该方法,以便在切换时获取到当前index
 - (void)viewSwitched:(NSInteger)index;
 
-/** 管理控制器的编辑状态 */
-@property (assign,nonatomic) BOOL isEdit;
-
 @end
 
+/// 子类仅需实现下面的方法即可
 //- (NSArray<NSDictionary *> *)segmentItems{
 //    return @[@{LGSegmentItemNameKey:@"微党课",
 //               LGSegmentItemViewControllerClassKey:@"HPSearchLessonController",/// HPSearchLessonController

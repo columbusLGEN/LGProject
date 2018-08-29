@@ -57,7 +57,7 @@ LGThreeRightButtonViewDelegate>
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (_showCommentView) {
-        [self rightClick:nil success:nil failure:nil];
+        [self rightClick:nil sender:nil success:nil failure:nil];
     }
 }
 - (void)viewDidLoad {
@@ -188,6 +188,7 @@ LGThreeRightButtonViewDelegate>
         
         /// MARK: 富文本cell顶部信息view
         DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
+        topInfoView.tabIndex = 1;
         [cell.contentView addSubview:topInfoView];
         topInfoView.model = self.model;
         [topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -291,7 +292,7 @@ LGThreeRightButtonViewDelegate>
     }];
 }
 /// 收藏
-- (void)middleClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success sender:(UIButton *)sender failure:(ClickRequestFailure)failure{
+- (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:self.model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
@@ -300,7 +301,7 @@ LGThreeRightButtonViewDelegate>
         [self presentFailureTips:@"点赞失败，请稍后重试"];
     }];
 }
-- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     DJSendCommentsViewController *vc = [DJSendCommentsViewController sendCommentvcWithModel:self.model];
     vc.commenttype = 2;
     [self presentViewController:vc animated:YES completion:nil];

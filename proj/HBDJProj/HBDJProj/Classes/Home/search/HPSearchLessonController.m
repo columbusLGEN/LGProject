@@ -39,14 +39,6 @@
     self.tableView.rowHeight = homeMicroLessonSubCellBaseHeight * rateForMicroLessonCellHeight();
     [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
     
-//    NSMutableArray *arr = [NSMutableArray array];
-//    for (int i = 0; i < 20; i++) {
-//        DJDataBaseModel *model = [DJDataBaseModel new];
-//        [arr addObject:model];
-//    }
-//    self.dataArray = arr.copy;
-//    [self.tableView reloadData];
-    
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreLesson)];
 }
 - (void)getMoreLesson{

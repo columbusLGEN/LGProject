@@ -108,17 +108,11 @@ UIScrollViewDelegate>
         }
         button.tag = i;
         
-        [button setBackgroundColor:UIColor.randomColor];
-        
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
-        NSLog(@"content: %@-- ",content);
         [button setTitle:content forState:UIControlStateNormal];
-//        [button setAttributedTitle:[NSAttributedString.alloc initWithString:content] forState:UIControlStateNormal];
         [button sizeToFit];
         
-        /// 为什么button 不显示 文字后面的空格？
-        
-        NSLog(@"button.titleLabel.text: %@-- ",button.titleLabel.text);
+        /// TODO: 为什么button 不显示 文字后面的空格？
         
         /// normal文字颜色
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

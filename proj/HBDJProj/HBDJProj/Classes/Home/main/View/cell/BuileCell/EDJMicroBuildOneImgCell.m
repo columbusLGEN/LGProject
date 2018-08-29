@@ -36,6 +36,11 @@
     }
 }
 
+- (void)setCollectModel:(DJUcMyCollectModel *)collectModel{
+    [super setCollectModel:collectModel];
+    
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

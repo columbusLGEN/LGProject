@@ -8,10 +8,10 @@
 
 /// 党建要闻模型
 
-#import "DJDataBaseModel.h"
-@class DJDataBaseModel;
+//#import "DJDataBaseModel.h"
+#import "DJUcMyCollectModel.h"
 
-@interface EDJMicroBuildModel : DJDataBaseModel
+@interface EDJMicroBuildModel : DJUcMyCollectModel
 
 @property (strong,nonatomic) NSArray *imgs;
 

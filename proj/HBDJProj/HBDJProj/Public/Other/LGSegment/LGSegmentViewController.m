@@ -136,9 +136,7 @@ LGSegmentBottomViewDelegate
 }
 
 - (void)viewSwitched:(NSInteger)index{
-    
 }
-
 - (CGFloat)segmentHeight{
     return 40;
 }

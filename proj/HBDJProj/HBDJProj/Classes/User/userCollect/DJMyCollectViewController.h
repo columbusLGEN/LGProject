@@ -6,8 +6,10 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGSwitchViewController.h"
+/// 我的收藏 总控制器
 
-@interface DJMyCollectViewController : LGSwitchViewController
+#import "LGSwitchCanEditViewController.h"
+
+@interface DJMyCollectViewController : LGSwitchCanEditViewController
 
 @end

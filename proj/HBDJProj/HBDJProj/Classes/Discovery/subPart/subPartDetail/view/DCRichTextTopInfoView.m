@@ -27,16 +27,27 @@
 
 - (void)setModel:(DJDataBaseModel *)model{
     _model = model;
+    
+    /// 冲突：支部动态详情 & 党建要闻、微党课图文详情
+    
     _title.text = model.title;
-//    _time.text = model.createdDate;
-    _time.text = [model.timestamp timestampToMin];
-//    _source.text = [NSString stringWithFormat:@"来源: %@",model.source];
+    
+    if (_tabIndex == 0) {
+        /// 讲习
+//        _time.text = model.createdDate;
+        _time.text = [model.createdtime timestampToMin];
+        _source.hidden = NO;
+        _source.text = [NSString stringWithFormat:@"来源: %@",model.source];
+    }else{
+        /// 发现
+        _time.text = [model.timestamp timestampToMin];/// 支部动态
+    }
+    
 //    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",model.playcount];
 }
 
 - (void)setDisplayCounts:(BOOL)displayCounts{
     if (displayCounts) _counts.hidden = NO;
-    NSLog(@"_counts.hidden: %d",_counts.hidden);
 }
 
 - (void)awakeFromNib{

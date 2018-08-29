@@ -150,7 +150,6 @@
     OLExamViewController *vc = OLExamViewController.new;
     vc.tkcsType = type;
     vc.portName = _portName;
-    NSLog(@"测试题模型: %@",model);
     vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];
 }

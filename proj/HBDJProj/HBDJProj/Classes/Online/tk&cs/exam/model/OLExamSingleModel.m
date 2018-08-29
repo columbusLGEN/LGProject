@@ -128,6 +128,7 @@
 - (void)setFrontSubjectsDetail:(NSMutableArray<OLExamSingleLineModel *> *)frontSubjectsDetail{
     for (OLExamSingleLineModel *option in frontSubjectsDetail) {
         option.lineType = ExamSingleLineTypeOption;
+        option.belongTo = self;// 选项属于某题
     }
     _frontSubjectsDetail = frontSubjectsDetail;
 }

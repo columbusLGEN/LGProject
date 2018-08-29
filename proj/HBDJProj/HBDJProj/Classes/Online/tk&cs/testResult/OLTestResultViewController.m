@@ -12,8 +12,6 @@
 #import "DJOnlineNetorkManager.h"
 #import "OLTestBackLookModel.h"
 
-#import "DJNotOpenViewController.h"
-
 @interface OLTestResultViewController ()
 /** 正确率 */
 @property (weak, nonatomic) IBOutlet UILabel *rate;
@@ -75,10 +73,6 @@
 }
 
 - (IBAction)backLookClick:(UIButton *)sender {
-    
-//    DJNotOpenViewController *vc = [DJNotOpenViewController new];
-//    vc.showBackItem = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
     
     /// 进入 试题回看
     OLExamViewController *backLookExamVc = [OLExamViewController new];

@@ -37,9 +37,9 @@
     }
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (void)setCollectModel:(DJUcMyCollectModel *)collectModel{
+    [super setCollectModel:collectModel];
+    
 }
 
 - (void)layoutSubviews{

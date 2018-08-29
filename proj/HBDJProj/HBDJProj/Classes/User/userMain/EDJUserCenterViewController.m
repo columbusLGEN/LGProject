@@ -98,7 +98,7 @@ UITableViewDataSource>
 - (IBAction)headerIconClick:(id)sender {
     [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
 }
-///// MARK: 跳转到我的等级
+/// MARK: 跳转到我的等级
 //- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
 //    return NO;/// 返回no 为禁止 segue跳转
 //}
@@ -131,7 +131,6 @@ UITableViewDataSource>
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCHelpFadebackViewController" animated:YES];
     }
     
-    
 }
 - (void)headerButtonCick:(UIButton *)sender{
 
@@ -146,7 +145,7 @@ UITableViewDataSource>
             break;
         case 1:{
             [self lgPushViewControllerWithClassName:@"DJMyCollectViewController"];
-            
+
         }
             break;
         case 2:{

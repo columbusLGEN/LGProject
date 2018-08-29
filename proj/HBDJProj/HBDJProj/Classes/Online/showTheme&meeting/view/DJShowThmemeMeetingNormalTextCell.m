@@ -41,6 +41,10 @@
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginFifteen);
         }];
         
+        [self.item mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(marginTen);
+            make.top.equalTo(_contentLabel.mas_top);
+        }];
         
     }
     return self;

@@ -128,7 +128,7 @@
         [self presentFailureTips:@"收藏失败，请稍后重试"];
     }];
 }
-- (void)branchCommentWithModel:(DCSubPartStateModel *)model{
+- (void)branchCommentWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{
     /// 跳转到详情页面，并弹出评论
     DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
     dvc.model = model;

@@ -112,8 +112,10 @@ UITextViewDelegate>
         return;
     }
     [DJDiscoveryNetworkManager.sharedInstance frontComments_addWithCommentid:self.model.seqid commenttype:_commenttype comment:_inputView.input.text success:^(id responseObj) {
-        [self presentSuccessTips:@"发表成功，后台审核中"];
-        [self lg_dismissViewController];
+        [self presentSuccessTips:uploadNeedsCheckString];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self lg_dismissViewController];
+        });
     } failure:^(id failureObj) {
         [self presentSuccessTips:@"发表失败，稍后重试"];
     }];

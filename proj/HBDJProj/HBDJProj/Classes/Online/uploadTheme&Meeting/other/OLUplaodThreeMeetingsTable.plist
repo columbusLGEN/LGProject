@@ -94,7 +94,7 @@
 	</dict>
 	<dict>
 		<key>itemName</key>
-		<string>添加图片</string>
+		<string>会议图片</string>
 		<key>itemClass</key>
 		<integer>3</integer>
 		<key>uploadJsonKey</key>

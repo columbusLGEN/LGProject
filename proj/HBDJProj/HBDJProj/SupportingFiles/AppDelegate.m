@@ -62,8 +62,16 @@
     return result;
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    NSString *dts = [NSString stringWithFormat:@"%@",deviceToken];
+    NSLog(@"deviceTokenString: %@",dts);
+}
+
 #pragma mark - 私有方法
 - (void)baseConfigWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions{
+    
+//    /// 配置推送
+    [UIApplication.sharedApplication registerForRemoteNotifications];
     
     self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
     

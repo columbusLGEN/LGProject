@@ -1,0 +1,86 @@
+//
+//  DJUcMyCollectNewsListController.m
+//  HBDJProj
+//
+//  Created by Peanut Lee on 2018/8/29.
+//  Copyright © 2018年 Lee. All rights reserved.
+//
+
+#import "DJUcMyCollectNewsListController.h"
+#import "EDJMicroBuildCell.h"
+#import "EDJMicroBuildModel.h"
+#import "DJMediaDetailTransAssist.h"
+
+@interface DJUcMyCollectNewsListController ()
+@property (strong,nonatomic) DJMediaDetailTransAssist *transAssist;
+
+@end
+
+@implementation DJUcMyCollectNewsListController{
+    NSInteger offset;
+}
+
+- (void)setDataArray:(NSArray *)dataArray{
+    [super setDataArray:dataArray];
+    
+    offset = dataArray.count;
+    [self.tableView.mj_footer resetNoMoreData];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    /// EDJMicroBuildCell
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellNoImg bundle:nil] forCellReuseIdentifier:buildCellNoImg];
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellOneImg bundle:nil] forCellReuseIdentifier:buildCellOneImg];
+    [self.tableView registerNib:[UINib nibWithNibName:buildCellThreeImg bundle:nil] forCellReuseIdentifier:buildCellThreeImg];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+}
+
+- (void)getData{
+    
+}
+
+#pragma mark - Table view data source
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataArray.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    EDJMicroBuildCell *cell = [EDJMicroBuildCell cellWithTableView:tableView model:model];
+    cell.collectModel = model;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(EDJMicroBuildCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat height = [EDJMicroBuildCell cellHeightWithModel:self.dataArray[indexPath.row]];
+    return height;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+    [self.transAssist skipWithType:2 model:model baseVc:self];
+    
+}
+
+- (DJMediaDetailTransAssist *)transAssist{
+    if (!_transAssist) {
+        _transAssist = [DJMediaDetailTransAssist new];
+    }
+    return _transAssist;
+}
+
+@end

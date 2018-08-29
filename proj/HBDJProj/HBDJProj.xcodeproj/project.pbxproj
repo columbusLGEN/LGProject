@@ -58,6 +58,18 @@
 		882FBFBA2134DF73005F7187 /* LGSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FBFB92134DF73005F7187 /* LGSwitchViewController.m */; };
 		882FBFBD2134DF89005F7187 /* DJMyCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FBFBC2134DF89005F7187 /* DJMyCollectViewController.m */; };
 		882FC0272134FC48005F7187 /* LGSegmentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC0262134FC48005F7187 /* LGSegmentScrollView.m */; };
+		882FC02C21363602005F7187 /* LGSwitchCanEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC02B21363602005F7187 /* LGSwitchCanEditViewController.m */; };
+		882FC02F2136777A005F7187 /* DJUcMyCollectLessonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC02E2136777A005F7187 /* DJUcMyCollectLessonModel.m */; };
+		882FC03321367931005F7187 /* DJUcMyCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC03221367931005F7187 /* DJUcMyCollectModel.m */; };
+		882FC036213679AC005F7187 /* DJUcMyCollectNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC035213679AC005F7187 /* DJUcMyCollectNewsModel.m */; };
+		882FC039213679B9005F7187 /* DJUcMyCollectQAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC038213679B9005F7187 /* DJUcMyCollectQAModel.m */; };
+		882FC03C213679C7005F7187 /* DJUcMyCollectBranchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC03B213679C7005F7187 /* DJUcMyCollectBranchModel.m */; };
+		882FC03F213679D4005F7187 /* DJUcMyCollectPYQModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC03E213679D4005F7187 /* DJUcMyCollectPYQModel.m */; };
+		882FC04421367B59005F7187 /* DJUcMyCollectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC04321367B59005F7187 /* DJUcMyCollectTableViewCell.m */; };
+		882FC04721367C33005F7187 /* DJUcMyCollectLessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC04621367C33005F7187 /* DJUcMyCollectLessonCell.m */; };
+		882FC04A213683B1005F7187 /* DJUcMyCollectLessonListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC049213683B1005F7187 /* DJUcMyCollectLessonListController.m */; };
+		882FC04E2136918A005F7187 /* DJUcMyCollectBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC04D2136918A005F7187 /* DJUcMyCollectBaseViewController.m */; };
+		882FC05121369AE7005F7187 /* DJUcMyCollectNewsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC05021369AE7005F7187 /* DJUcMyCollectNewsListController.m */; };
 		8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */; };
 		8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E14B2092F699001D038E /* LGThreeRightButtonView.m */; };
 		8831E1512092FE22001D038E /* LGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1502092FE22001D038E /* LGButton.m */; };
@@ -595,6 +607,30 @@
 		882FBFBC2134DF89005F7187 /* DJMyCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJMyCollectViewController.m; sourceTree = "<group>"; };
 		882FC0252134FC48005F7187 /* LGSegmentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSegmentScrollView.h; sourceTree = "<group>"; };
 		882FC0262134FC48005F7187 /* LGSegmentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSegmentScrollView.m; sourceTree = "<group>"; };
+		882FC02A21363602005F7187 /* LGSwitchCanEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSwitchCanEditViewController.h; sourceTree = "<group>"; };
+		882FC02B21363602005F7187 /* LGSwitchCanEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSwitchCanEditViewController.m; sourceTree = "<group>"; };
+		882FC02D2136777A005F7187 /* DJUcMyCollectLessonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectLessonModel.h; sourceTree = "<group>"; };
+		882FC02E2136777A005F7187 /* DJUcMyCollectLessonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectLessonModel.m; sourceTree = "<group>"; };
+		882FC03121367931005F7187 /* DJUcMyCollectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectModel.h; sourceTree = "<group>"; };
+		882FC03221367931005F7187 /* DJUcMyCollectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectModel.m; sourceTree = "<group>"; };
+		882FC034213679AC005F7187 /* DJUcMyCollectNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectNewsModel.h; sourceTree = "<group>"; };
+		882FC035213679AC005F7187 /* DJUcMyCollectNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectNewsModel.m; sourceTree = "<group>"; };
+		882FC037213679B9005F7187 /* DJUcMyCollectQAModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectQAModel.h; sourceTree = "<group>"; };
+		882FC038213679B9005F7187 /* DJUcMyCollectQAModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectQAModel.m; sourceTree = "<group>"; };
+		882FC03A213679C7005F7187 /* DJUcMyCollectBranchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectBranchModel.h; sourceTree = "<group>"; };
+		882FC03B213679C7005F7187 /* DJUcMyCollectBranchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectBranchModel.m; sourceTree = "<group>"; };
+		882FC03D213679D4005F7187 /* DJUcMyCollectPYQModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectPYQModel.h; sourceTree = "<group>"; };
+		882FC03E213679D4005F7187 /* DJUcMyCollectPYQModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectPYQModel.m; sourceTree = "<group>"; };
+		882FC04221367B59005F7187 /* DJUcMyCollectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectTableViewCell.h; sourceTree = "<group>"; };
+		882FC04321367B59005F7187 /* DJUcMyCollectTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectTableViewCell.m; sourceTree = "<group>"; };
+		882FC04521367C33005F7187 /* DJUcMyCollectLessonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectLessonCell.h; sourceTree = "<group>"; };
+		882FC04621367C33005F7187 /* DJUcMyCollectLessonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectLessonCell.m; sourceTree = "<group>"; };
+		882FC048213683B1005F7187 /* DJUcMyCollectLessonListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectLessonListController.h; sourceTree = "<group>"; };
+		882FC049213683B1005F7187 /* DJUcMyCollectLessonListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectLessonListController.m; sourceTree = "<group>"; };
+		882FC04C2136918A005F7187 /* DJUcMyCollectBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectBaseViewController.h; sourceTree = "<group>"; };
+		882FC04D2136918A005F7187 /* DJUcMyCollectBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectBaseViewController.m; sourceTree = "<group>"; };
+		882FC04F21369AE7005F7187 /* DJUcMyCollectNewsListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectNewsListController.h; sourceTree = "<group>"; };
+		882FC05021369AE7005F7187 /* DJUcMyCollectNewsListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectNewsListController.m; sourceTree = "<group>"; };
 		8831E1472092F292001D038E /* DCQuestionCommunityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCQuestionCommunityViewController.h; sourceTree = "<group>"; };
 		8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCQuestionCommunityViewController.m; sourceTree = "<group>"; };
 		8831E14A2092F699001D038E /* LGThreeRightButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGThreeRightButtonView.h; sourceTree = "<group>"; };
@@ -1715,7 +1751,6 @@
 				8876E3C720EB5BDB001C6A1A /* uploadTheme&Meeting */,
 				88BA90C320F4A650007DD4B4 /* showTheme&meeting */,
 				88DD814E209C49E500F297D6 /* ThreeMeetings */,
-				88DD814A209C3C1300F297D6 /* testResult */,
 				88DD8114209BFF3800F297D6 /* tk&cs */,
 				88A955CE20F5DBDA009AB70F /* mindReport */,
 				88BB64D4209BEB4100FE6103 /* knowleageTest */,
@@ -1840,14 +1875,86 @@
 		882FBFB72134DC2B005F7187 /* userCollect */ = {
 			isa = PBXGroup;
 			children = (
-				882FBFB82134DF73005F7187 /* LGSwitchViewController.h */,
-				882FBFB92134DF73005F7187 /* LGSwitchViewController.m */,
-				882FC0252134FC48005F7187 /* LGSegmentScrollView.h */,
-				882FC0262134FC48005F7187 /* LGSegmentScrollView.m */,
+				882FC02921362DD1005F7187 /* base */,
 				882FBFBB2134DF89005F7187 /* DJMyCollectViewController.h */,
 				882FBFBC2134DF89005F7187 /* DJMyCollectViewController.m */,
+				882FC02821362DBA005F7187 /* sub */,
 			);
 			path = userCollect;
+			sourceTree = "<group>";
+		};
+		882FC02821362DBA005F7187 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+				882FC04121367A6F005F7187 /* controller */,
+				882FC04021367A40005F7187 /* view */,
+				882FC0302136791B005F7187 /* model */,
+			);
+			path = sub;
+			sourceTree = "<group>";
+		};
+		882FC02921362DD1005F7187 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				882FBFB82134DF73005F7187 /* LGSwitchViewController.h */,
+				882FBFB92134DF73005F7187 /* LGSwitchViewController.m */,
+				882FC02A21363602005F7187 /* LGSwitchCanEditViewController.h */,
+				882FC02B21363602005F7187 /* LGSwitchCanEditViewController.m */,
+				882FC0252134FC48005F7187 /* LGSegmentScrollView.h */,
+				882FC0262134FC48005F7187 /* LGSegmentScrollView.m */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		882FC0302136791B005F7187 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				882FC03121367931005F7187 /* DJUcMyCollectModel.h */,
+				882FC03221367931005F7187 /* DJUcMyCollectModel.m */,
+				882FC02D2136777A005F7187 /* DJUcMyCollectLessonModel.h */,
+				882FC02E2136777A005F7187 /* DJUcMyCollectLessonModel.m */,
+				882FC034213679AC005F7187 /* DJUcMyCollectNewsModel.h */,
+				882FC035213679AC005F7187 /* DJUcMyCollectNewsModel.m */,
+				882FC037213679B9005F7187 /* DJUcMyCollectQAModel.h */,
+				882FC038213679B9005F7187 /* DJUcMyCollectQAModel.m */,
+				882FC03A213679C7005F7187 /* DJUcMyCollectBranchModel.h */,
+				882FC03B213679C7005F7187 /* DJUcMyCollectBranchModel.m */,
+				882FC03D213679D4005F7187 /* DJUcMyCollectPYQModel.h */,
+				882FC03E213679D4005F7187 /* DJUcMyCollectPYQModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		882FC04021367A40005F7187 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				882FC04221367B59005F7187 /* DJUcMyCollectTableViewCell.h */,
+				882FC04321367B59005F7187 /* DJUcMyCollectTableViewCell.m */,
+				882FC04521367C33005F7187 /* DJUcMyCollectLessonCell.h */,
+				882FC04621367C33005F7187 /* DJUcMyCollectLessonCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		882FC04121367A6F005F7187 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				882FC04C2136918A005F7187 /* DJUcMyCollectBaseViewController.h */,
+				882FC04D2136918A005F7187 /* DJUcMyCollectBaseViewController.m */,
+				882FC04B21369163005F7187 /* sub */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		882FC04B21369163005F7187 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+				882FC048213683B1005F7187 /* DJUcMyCollectLessonListController.h */,
+				882FC049213683B1005F7187 /* DJUcMyCollectLessonListController.m */,
+				882FC04F21369AE7005F7187 /* DJUcMyCollectNewsListController.h */,
+				882FC05021369AE7005F7187 /* DJUcMyCollectNewsListController.m */,
+			);
+			path = sub;
 			sourceTree = "<group>";
 		};
 		8831E1422092F20B001D038E /* main */ = {
@@ -3296,6 +3403,7 @@
 		88DD8114209BFF3800F297D6 /* tk&cs */ = {
 			isa = PBXGroup;
 			children = (
+				88DD814A209C3C1300F297D6 /* testResult */,
 				8876E40E20F30AE0001C6A1A /* testScoreList */,
 				88ECF004209FE2670071A98A /* exam */,
 				88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */,
@@ -3612,6 +3720,9 @@
 							};
 							com.apple.ClassKit = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -3991,6 +4102,8 @@
 				883D476320DCDFC400FD9971 /* DJHomeNetworkManager.m in Sources */,
 				8806C831210F0A5700685DEF /* DJLessonAVTextTableViewCell.m in Sources */,
 				883D474D20D9F08E00FD9971 /* HPMicrolessonViewController.m in Sources */,
+				882FC02C21363602005F7187 /* LGSwitchCanEditViewController.m in Sources */,
+				882FC04E2136918A005F7187 /* DJUcMyCollectBaseViewController.m in Sources */,
 				88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */,
 				881C94D22068ECF3009D6A52 /* UIImage+Extension.m in Sources */,
 				88D13C412090253200A32236 /* EDJSearchTagHeaderModel.m in Sources */,
@@ -4003,6 +4116,7 @@
 				8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */,
 				888E3A6C211BDDD800ED2DA3 /* LGCountTimeLabel.m in Sources */,
 				88ECF0C920A19E6A0071A98A /* DCSubPartStateDetailViewController.m in Sources */,
+				882FC03321367931005F7187 /* DJUcMyCollectModel.m in Sources */,
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
 				881C94D02068ECF3009D6A52 /* NSString+Extension.m in Sources */,
 				880B74D521183259008C7500 /* MBProgressHUD+WBAddtional.m in Sources */,
@@ -4025,6 +4139,7 @@
 				886FFE15212ED726000E1890 /* DCPyqSearchResultVc.m in Sources */,
 				8831E18D20941A78001D038E /* DCSubStageModel.m in Sources */,
 				88EA131020AD144C007AB886 /* UCAccountHitViewController.m in Sources */,
+				882FC039213679B9005F7187 /* DJUcMyCollectQAModel.m in Sources */,
 				883D475620DB4A2300FD9971 /* UIView+MBProgressHUD.m in Sources */,
 				884312C5208737BF00321F84 /* UCMsgTableViewController.m in Sources */,
 				889E7DC02099969A00BB9084 /* UCMemberStageTransitionView.m in Sources */,
@@ -4043,6 +4158,7 @@
 				889FCD4220B400B60045746D /* HPAudioVideoModel.m in Sources */,
 				886FFDCD212E44BE000E1890 /* DJDsSearchTagView.m in Sources */,
 				88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */,
+				882FC04721367C33005F7187 /* DJUcMyCollectLessonCell.m in Sources */,
 				8806C82E210EFD4F00685DEF /* DJLessonDetailViewController.m in Sources */,
 				888223B4212BD7860094D3EF /* PLAudioPath.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,
@@ -4074,7 +4190,10 @@
 				88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */,
 				8885D23120A2917800DC06A1 /* LGDevice.m in Sources */,
 				88D13C542090442F00A32236 /* EDJDigitalCell.m in Sources */,
+				882FC036213679AC005F7187 /* DJUcMyCollectNewsModel.m in Sources */,
+				882FC02F2136777A005F7187 /* DJUcMyCollectLessonModel.m in Sources */,
 				88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */,
+				882FC05121369AE7005F7187 /* DJUcMyCollectNewsListController.m in Sources */,
 				880363AC20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m in Sources */,
 				8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */,
 				884EB41B210567A4005D5CA9 /* DJUploadDataManager.m in Sources */,
@@ -4097,6 +4216,7 @@
 				889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */,
 				88ECF07720A032340071A98A /* OLExamViewBottomBar.m in Sources */,
 				889E7DCD2099BB0A00BB9084 /* UCUploadCollectionViewFlowLayout.m in Sources */,
+				882FC04A213683B1005F7187 /* DJUcMyCollectLessonListController.m in Sources */,
 				88BCEDE520C67D6C00B5C1DB /* HPAlbumHeaderCell.m in Sources */,
 				88EA131920AD1780007AB886 /* UCAccountHitModel.m in Sources */,
 				88435EA4208EFB0800188CE9 /* DJDataBaseModel.m in Sources */,
@@ -4188,10 +4308,12 @@
 				889E7DC92099B19F00BB9084 /* UCUploadViewController.m in Sources */,
 				88A47123207DF342002F93E0 /* EDJOnlineViewController.m in Sources */,
 				882B118620D23D3400917374 /* NSObject+Auth.m in Sources */,
+				882FC03F213679D4005F7187 /* DJUcMyCollectPYQModel.m in Sources */,
 				884312A82086ED1200321F84 /* EDJLevelInfoFlowLayout.m in Sources */,
 				88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */,
 				881F1A8620C12915005D9261 /* HPSearchLessonController.m in Sources */,
 				880B74E3211832AD008C7500 /* HZWaitingView.m in Sources */,
+				882FC03C213679C7005F7187 /* DJUcMyCollectBranchModel.m in Sources */,
 				883E082820CA560900BB62BA /* DJUserInteractionMgr.m in Sources */,
 				88FE68C2209B0690008C28A0 /* OLVoteListTableViewCell.m in Sources */,
 				88949C1B211EC44F00B80AEE /* DJSearchWorkPlantformListViewController.m in Sources */,
@@ -4218,6 +4340,7 @@
 				88A955CD20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m in Sources */,
 				886A1BF720D101700007AD63 /* HPNetworkFailureView.m in Sources */,
 				889C6ABF21229FF9002404C5 /* UCUploadPyqViewController.m in Sources */,
+				882FC04421367B59005F7187 /* DJUcMyCollectTableViewCell.m in Sources */,
 				884EB41521030328005D5CA9 /* DJUploadMindReportCoverCell.m in Sources */,
 				889FCD1920B3E6050045746D /* DCRichTextBottomInfoView.m in Sources */,
 				88BA90C220F4510B007DD4B4 /* DJInputContentViewController.m in Sources */,
@@ -4370,6 +4493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2DANKBZTCS;
@@ -4471,6 +4595,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2DANKBZTCS;

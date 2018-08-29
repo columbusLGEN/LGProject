@@ -135,7 +135,7 @@ WMPlayerDelegate>
     }];
 }
 /// MARK: 发表评论
-- (void)pyqCommentWithModel:(DCSubStageModel *)model{
+- (void)pyqCommentWithModel:(DCSubStageModel *)model sender:(UIButton *)sender{
     
     DJSendCommentsViewController *vc = [DJSendCommentsViewController sendCommentvcWithModel:model];
     vc.commenttype = 1;

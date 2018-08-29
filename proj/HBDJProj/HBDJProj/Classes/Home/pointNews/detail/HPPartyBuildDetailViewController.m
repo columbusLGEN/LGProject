@@ -127,6 +127,7 @@ WKNavigationDelegate>
 
             /// MARK: 顶部信息view （标题，时间，来源等）
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
+            topInfoView.tabIndex = 0;
             topInfoView.frame = CGRectMake(0, 0, kScreenWidth, topInfoViewHeight);
             topInfoView.model = contentModel;
 
@@ -199,7 +200,7 @@ WKNavigationDelegate>
 }
 
 /// MARK: 分享
-- (void)rightClick:(LGThreeRightButtonView *)rbview success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+- (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     NSDictionary *param = @{LGSocialShareParamKeyWebPageUrl:_contentModel.shareUrl,
                             LGSocialShareParamKeyTitle:_contentModel.title,
                             LGSocialShareParamKeyDesc:_contentModel.contentvalidity,

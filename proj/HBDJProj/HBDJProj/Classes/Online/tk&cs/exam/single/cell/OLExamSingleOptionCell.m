@@ -9,6 +9,7 @@
 #import "OLExamSingleOptionCell.h"
 #import "OLExamSingleLineModel.h"
 #import "OLExamSingleModel.h"
+#import "OLTkcsModel.h"
 
 @interface OLExamSingleOptionCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
@@ -22,7 +23,6 @@
 - (void)setModel:(OLExamSingleLineModel *)model{
     [super setModel:model];
     
-    /// TODO: 回看
     /// 如果处于试题回看状态
     if (self.backLook) {
         self.userInteractionEnabled = NO;/// 回看状态，不允许有选中交互
@@ -58,6 +58,19 @@
     }else{
         [self optionStateWithSelected:model.selected];
     }
+    
+    if (model.belongTo.testPaper == nil) {
+    }else{
+        if (model.belongTo.testPaper.tkcsType == 0) {
+            self.userInteractionEnabled = NO;
+            if (model.isright) {
+                /// 题库 -- 正确选项 标蓝
+                [self optionStateWithRespondState:ExamSingleRespondStateCorrect];
+            }
+        }
+        
+    }
+    
 //    [self optionStateWithSelected:model.selected];
     _optionContent.text = model.optionContent;
 }

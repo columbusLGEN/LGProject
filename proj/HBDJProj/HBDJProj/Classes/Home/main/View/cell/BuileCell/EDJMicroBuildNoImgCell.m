@@ -32,6 +32,27 @@
     }
 }
 
+- (void)setCollectModel:(DJUcMyCollectModel *)collectModel{
+    [super setCollectModel:collectModel];
+    
+    if (collectModel.edit) {
+        /// 编辑状态
+        [self.contentView addSubview:self.seButon];
+        [self.seButon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(marginFifteen);
+            make.top.equalTo(self.title.mas_top).offset(3);
+            make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
+        }];
+        /// TODO: 修改title的约束
+        self.seButon.selected = collectModel.select;
+
+    }else{
+        [self.seButon removeFromSuperview];
+        /// TODO: 修改title的约束
+        
+    }
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     

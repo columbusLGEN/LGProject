@@ -8,14 +8,11 @@
 
 #import "LGSwitchViewController.h"
 #import "LGSegmentScrollView.h"
-#import "LGSegmentBottomView.h"
 
 @interface LGSwitchViewController ()<
 UIScrollViewDelegate,
-LGSegmentScrollViewDelegate,
-LGSegmentBottomViewDelegate
+LGSegmentScrollViewDelegate
 >
-@property (weak,nonatomic) LGSegmentBottomView *bottom;
 
 @end
 
@@ -32,6 +29,7 @@ LGSegmentBottomViewDelegate
     
 }
 - (void)configUI{
+    
     self.view.backgroundColor = [UIColor EDJGrayscale_F3];
     
     NSMutableArray *itemTitles = NSMutableArray.new;
@@ -86,42 +84,7 @@ LGSegmentBottomViewDelegate
     
     [self.scrollView setContentSize:CGSizeMake(self.segmentItems.count * kScreenWidth, 0)];
     
-    /// MARK: 增加删除视图
-    LGSegmentBottomView *bottom = [LGSegmentBottomView segmentBottom];
-    bottom.delegate = self;
-    [self.view addSubview:bottom];
-    _bottom = bottom;
-    CGFloat bottomHeight = [LGSegmentBottomView bottomHeight];
-    [bottom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left);
-        make.bottom.equalTo(self.view.mas_bottom);
-        make.width.mas_equalTo(kScreenWidth);
-        make.height.mas_equalTo(bottomHeight);
-    }];
-    bottom.hidden = YES;
 }
-
-- (void)setIsEdit:(BOOL)isEdit{
-    _isEdit = isEdit;
-    if (isEdit) {
-        _bottom.hidden = NO;
-        [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view.mas_left);
-            make.right.equalTo(self.view.mas_right);
-            make.bottom.equalTo(_bottom.mas_top);
-            make.top.equalTo(_segment.mas_bottom).offset(marginTen);
-        }];
-    }else{
-        _bottom.hidden = YES;
-        [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view.mas_left);
-            make.right.equalTo(self.view.mas_right);
-            make.bottom.equalTo(self.view.mas_bottom);
-            make.top.equalTo(_segment.mas_bottom).offset(marginTen);
-        }];
-    }
-}
-
 
 #pragma mark - scroll view delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -137,11 +100,6 @@ LGSegmentBottomViewDelegate
     [self viewSwitched:index];
 }
 
-#pragma mark - LGSegmentBottomViewDelegate
-- (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
-}
-- (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
-}
 - (void)viewSwitched:(NSInteger)index{
 }
 
