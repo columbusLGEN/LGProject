@@ -10,6 +10,7 @@
 #import "LGAudioPlayerView.h"
 #import "LGThreeRightButtonView.h"
 #import "DCSubStageModel.h"
+#import "DJUcMyCollectPYQModel.h"
 
 @interface DCSubStageAudioCell ()
 @property (strong,nonatomic) LGAudioPlayerView *audioPlayerView;
@@ -22,11 +23,18 @@
 - (void)setModel:(DCSubStageModel *)model{
     [super setModel:model];
     
+    [self assiDataWithModel:model];
+}
+
+- (void)setMc_pyq_model:(DJUcMyCollectPYQModel *)mc_pyq_model{
+    [super setMc_pyq_model:mc_pyq_model];
+    [self assiDataWithModel:mc_pyq_model];
+}
+
+- (void)assiDataWithModel:(DCSubStageModel *)model{
     self.audioPlayerView.tTime = [model.audiolength integerValue];
     
     _audioPlayerView.play.selected = NO;
-    
-
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -36,7 +44,7 @@
         
         [_audioPlayerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.content.mas_bottom).offset(marginEight);
-            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+            make.left.equalTo(self.icon.mas_left);
             make.right.equalTo(self.contentView.mas_right).offset(-leftOffset);
             make.height.mas_equalTo(62);
             make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);

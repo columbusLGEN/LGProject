@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="省直机关" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKj-c1-57x">
-                        <rect key="frame" x="12" y="58.5" width="61.5" height="18"/>
+                        <rect key="frame" x="12" y="113.5" width="61.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -43,18 +43,19 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="KKj-c1-57x" firstAttribute="top" secondItem="LjQ-NX-nnn" secondAttribute="bottom" constant="8" id="20W-WP-s2G"/>
                     <constraint firstItem="KKj-c1-57x" firstAttribute="leading" secondItem="iHr-w8-mpv" secondAttribute="leading" constant="12" id="Acb-a8-Oo0"/>
                     <constraint firstItem="3pd-2s-Pb9" firstAttribute="top" secondItem="LjQ-NX-nnn" secondAttribute="top" id="E0b-j3-hDO"/>
                     <constraint firstItem="LjQ-NX-nnn" firstAttribute="top" secondItem="iHr-w8-mpv" secondAttribute="top" constant="10" id="Ec6-q6-9Th"/>
                     <constraint firstItem="3pd-2s-Pb9" firstAttribute="leading" secondItem="KKj-c1-57x" secondAttribute="leading" constant="-5" id="To0-B0-wcb"/>
                     <constraint firstAttribute="trailing" secondItem="LjQ-NX-nnn" secondAttribute="trailing" constant="12" id="hTk-aK-8UO"/>
                     <constraint firstItem="LjQ-NX-nnn" firstAttribute="leading" secondItem="3pd-2s-Pb9" secondAttribute="trailing" constant="5" id="iSM-t9-LVy"/>
+                    <constraint firstAttribute="bottom" secondItem="KKj-c1-57x" secondAttribute="bottom" constant="10" id="qgp-FC-wl3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="sub_title" destination="KKj-c1-57x" id="sGf-ir-M7Q"/>
                 <outlet property="title" destination="LjQ-NX-nnn" id="v1Y-cO-uPH"/>
+                <outlet property="titleLeadingConstraint" destination="iSM-t9-LVy" id="xL2-h7-UtD"/>
                 <outlet property="toTop" destination="3pd-2s-Pb9" id="OnK-q0-Yi4"/>
                 <outlet property="toTopWidth" destination="MXg-mb-qq2" id="s3g-mc-ofF"/>
             </connections>

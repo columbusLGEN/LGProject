@@ -49,48 +49,50 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DJUcMyCollectLessonModel *model = self.dataArray[indexPath.row];
+    
+    /// 编辑状态
+    DJUcMyCollectModel *model = self.dataArray[indexPath.row];
     model.select = !model.select;
 }
 
-/// 继承自父类的方法
-- (void)startEdit{
-    for (DJUcMyCollectLessonModel *model in self.dataArray) {
-        model.edit = YES;
-    }
-    [self.tableView reloadData];
-}
-- (void)endEdit{
-    for (DJUcMyCollectLessonModel *model in self.dataArray) {
-        model.edit = NO;
-    }
-    [self.tableView reloadData];
-}
-- (void)allSelect{
-    /// 全选判定条件
-    /// 如果全部是选中状态，则取消全部选中状态；否则全部选中
-    
-    /// 判断是否全部选中
-    BOOL allAlreadySelect = YES;
-    for (DJUcMyCollectLessonModel *model in self.dataArray) {
-        if (!model.select) {
-            allAlreadySelect = NO;
-            break;
-        }
-    }
-    
-    BOOL select;
-    if (allAlreadySelect) {
-        select = NO;
-    }else{
-        select = YES;
-    }
-    
-    for (DJUcMyCollectLessonModel *model in self.dataArray) {
-        model.select = select;
-    }
-    [self.tableView reloadData];
-}
+///// 继承自父类的方法
+//- (void)startEdit{
+//    for (DJUcMyCollectLessonModel *model in self.dataArray) {
+//        model.edit = YES;
+//    }
+//    [self.tableView reloadData];
+//}
+//- (void)endEdit{
+//    for (DJUcMyCollectLessonModel *model in self.dataArray) {
+//        model.edit = NO;
+//    }
+//    [self.tableView reloadData];
+//}
+//- (void)allSelect{
+//    /// 全选判定条件
+//    /// 如果全部是选中状态，则取消全部选中状态；否则全部选中
+//    
+//    /// 判断是否全部选中
+//    BOOL allAlreadySelect = YES;
+//    for (DJUcMyCollectLessonModel *model in self.dataArray) {
+//        if (!model.select) {
+//            allAlreadySelect = NO;
+//            break;
+//        }
+//    }
+//    
+//    BOOL select;
+//    if (allAlreadySelect) {
+//        select = NO;
+//    }else{
+//        select = YES;
+//    }
+//    
+//    for (DJUcMyCollectLessonModel *model in self.dataArray) {
+//        model.select = select;
+//    }
+//    [self.tableView reloadData];
+//}
 
 
 @end

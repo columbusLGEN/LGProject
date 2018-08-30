@@ -11,24 +11,24 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EDJMicroBuildThreeImgCell" rowHeight="135" id="gVP-Pc-3Un" customClass="EDJMicroBuildThreeImgCell">
-            <rect key="frame" x="0.0" y="0.0" width="453" height="135"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EDJMicroBuildThreeImgCell" rowHeight="189" id="gVP-Pc-3Un" customClass="EDJMicroBuildThreeImgCell">
+            <rect key="frame" x="0.0" y="0.0" width="475" height="189"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gVP-Pc-3Un" id="nTp-Hh-STR">
-                <rect key="frame" x="0.0" y="0.0" width="453" height="134.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="475" height="188.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="n1x-Vg-LUk">
-                        <rect key="frame" x="12" y="44" width="131.5" height="80.5"/>
+                        <rect key="frame" x="12" y="44" width="139" height="109.5"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="0LS-Fj-Gyd">
-                        <rect key="frame" x="160.5" y="44" width="132" height="80.5"/>
+                        <rect key="frame" x="168" y="44" width="139" height="109.5"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="YxY-4L-b3g">
-                        <rect key="frame" x="309.5" y="44" width="131.5" height="80.5"/>
+                        <rect key="frame" x="324" y="44" width="139" height="109.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物资公司认真查摆物资公司认真查摆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij9-oF-lzw">
-                        <rect key="frame" x="52" y="11.5" width="389" height="20.5"/>
+                        <rect key="frame" x="52" y="11.5" width="411" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20.5" id="XLg-uj-8MU"/>
                         </constraints>
@@ -47,6 +47,15 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgz-RC-k0N">
+                        <rect key="frame" x="12" y="163.5" width="38" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="ftR-bE-TiB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Ij9-oF-lzw" firstAttribute="leading" secondItem="Kjq-um-mln" secondAttribute="trailing" constant="5" id="0Ys-a5-Tnb"/>
@@ -54,12 +63,14 @@
                     <constraint firstItem="Ij9-oF-lzw" firstAttribute="trailing" secondItem="YxY-4L-b3g" secondAttribute="trailing" id="HA5-fw-tSg"/>
                     <constraint firstItem="n1x-Vg-LUk" firstAttribute="top" secondItem="Ij9-oF-lzw" secondAttribute="bottom" constant="12" id="Kvl-cG-lXv"/>
                     <constraint firstItem="YxY-4L-b3g" firstAttribute="height" secondItem="0LS-Fj-Gyd" secondAttribute="height" id="QW1-38-zeV"/>
+                    <constraint firstItem="wgz-RC-k0N" firstAttribute="leading" secondItem="n1x-Vg-LUk" secondAttribute="leading" id="Sy2-On-p06"/>
                     <constraint firstItem="n1x-Vg-LUk" firstAttribute="leading" secondItem="nTp-Hh-STR" secondAttribute="leading" constant="12" id="bJZ-UA-Q22"/>
                     <constraint firstItem="YxY-4L-b3g" firstAttribute="centerY" secondItem="0LS-Fj-Gyd" secondAttribute="centerY" id="cXp-Fa-z6u"/>
                     <constraint firstItem="YxY-4L-b3g" firstAttribute="leading" secondItem="0LS-Fj-Gyd" secondAttribute="trailing" constant="17" id="cl8-qK-mkX"/>
                     <constraint firstItem="0LS-Fj-Gyd" firstAttribute="width" secondItem="n1x-Vg-LUk" secondAttribute="width" id="kwG-jH-JJP"/>
                     <constraint firstItem="Kjq-um-mln" firstAttribute="leading" secondItem="n1x-Vg-LUk" secondAttribute="leading" constant="-5" id="lt2-6o-DwV"/>
-                    <constraint firstAttribute="bottom" secondItem="n1x-Vg-LUk" secondAttribute="bottom" constant="10" id="pIu-BB-l9w"/>
+                    <constraint firstItem="wgz-RC-k0N" firstAttribute="top" secondItem="n1x-Vg-LUk" secondAttribute="bottom" constant="10" id="oTN-07-ZXS"/>
+                    <constraint firstAttribute="bottom" secondItem="wgz-RC-k0N" secondAttribute="bottom" constant="8" id="qBf-I3-w4r"/>
                     <constraint firstItem="0LS-Fj-Gyd" firstAttribute="centerY" secondItem="n1x-Vg-LUk" secondAttribute="centerY" id="qXI-Dl-Jfk"/>
                     <constraint firstItem="Kjq-um-mln" firstAttribute="top" secondItem="nTp-Hh-STR" secondAttribute="top" constant="12" id="sFn-BI-XVV"/>
                     <constraint firstItem="0LS-Fj-Gyd" firstAttribute="leading" secondItem="n1x-Vg-LUk" secondAttribute="trailing" constant="17" id="sRu-9v-SsL"/>
@@ -72,11 +83,13 @@
                 <outlet property="img1" destination="n1x-Vg-LUk" id="hJW-AS-98L"/>
                 <outlet property="img2" destination="0LS-Fj-Gyd" id="l8M-Dc-GPY"/>
                 <outlet property="img3" destination="YxY-4L-b3g" id="RZt-tz-gxo"/>
+                <outlet property="sourceLabel" destination="wgz-RC-k0N" id="pCG-Jd-qne"/>
                 <outlet property="title" destination="Ij9-oF-lzw" id="GFv-qN-YmN"/>
+                <outlet property="titleLeadingConstraint" destination="0Ys-a5-Tnb" id="L1E-Fl-2Rp"/>
                 <outlet property="toTop" destination="Kjq-um-mln" id="5CR-Ka-hhI"/>
                 <outlet property="toTopWidth" destination="iDf-tD-i3O" id="8oH-Q4-uaN"/>
             </connections>
-            <point key="canvasLocation" x="57" y="227"/>
+            <point key="canvasLocation" x="67.5" y="253.5"/>
         </tableViewCell>
     </objects>
     <resources>

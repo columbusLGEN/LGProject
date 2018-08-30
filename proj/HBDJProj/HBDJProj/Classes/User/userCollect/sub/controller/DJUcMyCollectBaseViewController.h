@@ -11,7 +11,7 @@
 #import "LGBaseTableViewController.h"
 
 @interface DJUcMyCollectBaseViewController : LGBaseTableViewController
-
+@property (assign,nonatomic) NSInteger offset;
 - (void)startEdit;
 - (void)endEdit;
 - (void)allSelect;

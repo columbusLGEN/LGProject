@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-/// 我的收藏 新闻列表控制器
+/// 我的收藏 -- 新闻列表控制器
 
 #import "DJUcMyCollectBaseViewController.h"
 

@@ -8,8 +8,8 @@
 
 /// 我的收藏 党员舞台模型
 
-#import "DJUcMyCollectModel.h"
+#import "DCSubStageModel.h"
 
-@interface DJUcMyCollectPYQModel : DJUcMyCollectModel
+@interface DJUcMyCollectPYQModel : DCSubStageModel
 
 @end

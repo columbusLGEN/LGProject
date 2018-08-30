@@ -14,6 +14,8 @@
 #import "DJOnlineNetorkManager.h"
 #import "LGAudioPlayerManager.h"
 
+static NSString * const fileurl_key = @"fileurl";
+
 @interface UCUploadViewController ()<UIScrollViewDelegate>
 @property (strong,nonatomic) NSArray *array;
 
@@ -208,7 +210,7 @@
         
         [DJOnlineNetorkManager.sharedInstance uploadFileWithLocalFileUrl:audioURL mimeType:mimeType uploadProgress:^(NSProgress *uploadProgress) {
         } success:^(id dict) {
-            param[@"fileurl"] = dict[@"path"];
+            param[fileurl_key] = dict[path_key];
             [self frontUgc_addWithParam:param];
             
         } failure:^(id uploadFailure) {
@@ -241,9 +243,9 @@
             [self endUpload];
             
         } singleFileComplete:^(id dict) {
-            param[@"fileurl"] = dict[@"path"];
-            param[@"cover"] = dict[@"cover"];
-            param[@"widthheigth"] = dict[@"widthheigth"];
+            param[fileurl_key] = dict[path_key];
+            param[cover_key] = dict[cover_key];
+            param[widthheigth] = dict[widthheigth];
             [self frontUgc_addWithParam:param];
         }];
         
@@ -261,7 +263,8 @@
             }
             
             NSString *fileurl = [imageUrls componentsJoinedByString:@","];
-            param[@"fileurl"] = fileurl;
+            param[fileurl_key] = fileurl;
+            param[widthheigth] = formData[widthheigth];
             
             [self frontUgc_addWithParam:param];
         }];

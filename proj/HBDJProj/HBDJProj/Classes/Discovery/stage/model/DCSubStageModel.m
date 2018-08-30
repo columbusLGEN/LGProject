@@ -72,10 +72,8 @@
     return _commentsTbvHeight;
 }
 
-
 - (NSArray *)imgs{
     if (!_imgs) {
-
         _imgs = [self.fileurl componentsSeparatedByString:@","];
     }
     return _imgs;
@@ -85,13 +83,9 @@
     if (!_heightForContent) {
         _heightForContent = [self.content sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 30, MAXFLOAT) font:[UIFont systemFontOfSize:15]].height;
     }
-//    NSLog(@"_heightForContent -- %f",_heightForContent);
     return _heightForContent;
 }
 
-- (UIImage *)testIcon{
-    return [UIImage imageNamed:@"icon_applePay"];
-}
 
 - (StageModelTypeAImgType)aImgType{
     if (self.single_pic_height > self.single_pic_width) {

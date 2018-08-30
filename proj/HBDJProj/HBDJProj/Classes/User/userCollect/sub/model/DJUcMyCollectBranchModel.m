@@ -10,4 +10,8 @@
 
 @implementation DJUcMyCollectBranchModel
 
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"frontComments":@"DCSubPartStateCommentModel"};
+}
+
 @end

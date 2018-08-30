@@ -10,10 +10,6 @@
 
 @implementation DCSubPartStateModel
 
-+ (NSDictionary *)mj_objectClassInArray{
-    return @{@"frontComments":@"DCSubPartStateCommentModel"};
-}
-
 - (NSInteger)imgCount{
     if ([self.cover isEqualToString:@""] || self.cover == nil) {
         return 0;

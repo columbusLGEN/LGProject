@@ -70,6 +70,10 @@
 		882FC04A213683B1005F7187 /* DJUcMyCollectLessonListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC049213683B1005F7187 /* DJUcMyCollectLessonListController.m */; };
 		882FC04E2136918A005F7187 /* DJUcMyCollectBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC04D2136918A005F7187 /* DJUcMyCollectBaseViewController.m */; };
 		882FC05121369AE7005F7187 /* DJUcMyCollectNewsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC05021369AE7005F7187 /* DJUcMyCollectNewsListController.m */; };
+		882FC05421379201005F7187 /* DJUcMyCollectQAListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC05321379201005F7187 /* DJUcMyCollectQAListController.m */; };
+		882FC05721379877005F7187 /* DJUcMyCollectBranchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC05621379877005F7187 /* DJUcMyCollectBranchListController.m */; };
+		882FC05A2137BB25005F7187 /* DJUcMyCollectPYQListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC0592137BB25005F7187 /* DJUcMyCollectPYQListController.m */; };
+		882FC05D2137EE7D005F7187 /* DJBanIndicateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC05C2137EE7D005F7187 /* DJBanIndicateView.m */; };
 		8831E1492092F292001D038E /* DCQuestionCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */; };
 		8831E14C2092F699001D038E /* LGThreeRightButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E14B2092F699001D038E /* LGThreeRightButtonView.m */; };
 		8831E1512092FE22001D038E /* LGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831E1502092FE22001D038E /* LGButton.m */; };
@@ -631,6 +635,14 @@
 		882FC04D2136918A005F7187 /* DJUcMyCollectBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectBaseViewController.m; sourceTree = "<group>"; };
 		882FC04F21369AE7005F7187 /* DJUcMyCollectNewsListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectNewsListController.h; sourceTree = "<group>"; };
 		882FC05021369AE7005F7187 /* DJUcMyCollectNewsListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectNewsListController.m; sourceTree = "<group>"; };
+		882FC05221379201005F7187 /* DJUcMyCollectQAListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectQAListController.h; sourceTree = "<group>"; };
+		882FC05321379201005F7187 /* DJUcMyCollectQAListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectQAListController.m; sourceTree = "<group>"; };
+		882FC05521379877005F7187 /* DJUcMyCollectBranchListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectBranchListController.h; sourceTree = "<group>"; };
+		882FC05621379877005F7187 /* DJUcMyCollectBranchListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectBranchListController.m; sourceTree = "<group>"; };
+		882FC0582137BB25005F7187 /* DJUcMyCollectPYQListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyCollectPYQListController.h; sourceTree = "<group>"; };
+		882FC0592137BB25005F7187 /* DJUcMyCollectPYQListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyCollectPYQListController.m; sourceTree = "<group>"; };
+		882FC05B2137EE7D005F7187 /* DJBanIndicateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJBanIndicateView.h; sourceTree = "<group>"; };
+		882FC05C2137EE7D005F7187 /* DJBanIndicateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJBanIndicateView.m; sourceTree = "<group>"; };
 		8831E1472092F292001D038E /* DCQuestionCommunityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCQuestionCommunityViewController.h; sourceTree = "<group>"; };
 		8831E1482092F292001D038E /* DCQuestionCommunityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCQuestionCommunityViewController.m; sourceTree = "<group>"; };
 		8831E14A2092F699001D038E /* LGThreeRightButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGThreeRightButtonView.h; sourceTree = "<group>"; };
@@ -1953,6 +1965,12 @@
 				882FC049213683B1005F7187 /* DJUcMyCollectLessonListController.m */,
 				882FC04F21369AE7005F7187 /* DJUcMyCollectNewsListController.h */,
 				882FC05021369AE7005F7187 /* DJUcMyCollectNewsListController.m */,
+				882FC05221379201005F7187 /* DJUcMyCollectQAListController.h */,
+				882FC05321379201005F7187 /* DJUcMyCollectQAListController.m */,
+				882FC05521379877005F7187 /* DJUcMyCollectBranchListController.h */,
+				882FC05621379877005F7187 /* DJUcMyCollectBranchListController.m */,
+				882FC0582137BB25005F7187 /* DJUcMyCollectPYQListController.h */,
+				882FC0592137BB25005F7187 /* DJUcMyCollectPYQListController.m */,
 			);
 			path = sub;
 			sourceTree = "<group>";
@@ -3064,6 +3082,8 @@
 				8831E1502092FE22001D038E /* LGButton.m */,
 				8891A43320F9CF110059D220 /* LGAttributedTextView.h */,
 				8891A43420F9CF110059D220 /* LGAttributedTextView.m */,
+				882FC05B2137EE7D005F7187 /* DJBanIndicateView.h */,
+				882FC05C2137EE7D005F7187 /* DJBanIndicateView.m */,
 			);
 			path = specific;
 			sourceTree = "<group>";
@@ -4020,6 +4040,7 @@
 				88BCEDF720C8FC0E00B5C1DB /* HPSearchHistoryView.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,
 				882C61D92117F5A200C0D887 /* OLVoteDetailBottomTimeCell.m in Sources */,
+				882FC05721379877005F7187 /* DJUcMyCollectBranchListController.m in Sources */,
 				883D475320D9F1DE00FD9971 /* HPDigitalCollectionViewController.m in Sources */,
 				886A1B6320CE53220007AD63 /* LGSocialShareManager.m in Sources */,
 				884312BB208725C900321F84 /* EDJTodayScoreViewController.m in Sources */,
@@ -4113,6 +4134,7 @@
 				884312D420873B2800321F84 /* UCSettingViewController.m in Sources */,
 				88ECF07220A01F290071A98A /* OLExamSingleFooterView.m in Sources */,
 				8831E18720941985001D038E /* DCSubStageThreeImgCell.m in Sources */,
+				882FC05421379201005F7187 /* DJUcMyCollectQAListController.m in Sources */,
 				8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */,
 				888E3A6C211BDDD800ED2DA3 /* LGCountTimeLabel.m in Sources */,
 				88ECF0C920A19E6A0071A98A /* DCSubPartStateDetailViewController.m in Sources */,
@@ -4259,6 +4281,7 @@
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
 				880B74E1211832AD008C7500 /* HZPhotoBrowser.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,
+				882FC05D2137EE7D005F7187 /* DJBanIndicateView.m in Sources */,
 				882B118D20D24A2700917374 /* HPVideoContainerView.m in Sources */,
 				88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */,
 				884EB4122103031C005D5CA9 /* DJUploadMindReportTextCell.m in Sources */,
@@ -4299,6 +4322,7 @@
 				88FE68AF209AFAE3008C28A0 /* OLPayPartyChargeViewController.m in Sources */,
 				884312EC2089BC7D00321F84 /* UCMyFeedbackViewController.m in Sources */,
 				88D13C30209013EB00A32236 /* LGBaseCollectionViewCell.m in Sources */,
+				882FC05A2137BB25005F7187 /* DJUcMyCollectPYQListController.m in Sources */,
 				884311F12084B80C00321F84 /* LGSegmentControl.m in Sources */,
 				88A47130207EF58B002F93E0 /* EDJUserCenterHomePageCell.m in Sources */,
 				8857B5F42123BAFE00BFCA16 /* DJDiscoveryNetworkManager.m in Sources */,

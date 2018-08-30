@@ -22,6 +22,46 @@
 
 - (void)setModel:(DCSubPartStateModel *)model{
     [super setModel:model];
+    [self assiDataWithModel:model];
+}
+
+- (void)setBranchCollectModel:(DCSubPartStateModel *)branchCollectModel{
+    [super setBranchCollectModel:branchCollectModel];
+    
+    if (branchCollectModel.edit) {
+        /// 编辑状态
+        [self.contentView addSubview:self.seButon];
+        [self.seButon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(marginFifteen);
+            make.top.equalTo(self.title.mas_top).offset(2);
+            make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
+        }];
+        self.seButon.selected = branchCollectModel.select;
+        self.seButon.selected = YES;
+        
+        [_title mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView.mas_top).offset(marginTen);
+            make.left.equalTo(self.seButon.mas_right).offset(marginEight);
+            make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
+            make.bottom.equalTo(self.timeLabel.mas_top).offset(-marginTen);
+        }];
+        
+    }else{
+        [self.seButon removeFromSuperview];
+        
+        /// 默认值
+        [_title mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView.mas_top).offset(marginTen);
+            make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
+            make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
+            make.bottom.equalTo(self.timeLabel.mas_top).offset(-marginTen);
+        }];
+    }
+    
+    [self assiDataWithModel:branchCollectModel];
+}
+
+- (void)assiDataWithModel:(DCSubPartStateModel *)model{
     _title.text = model.title;
     
     NSURL *url0;
@@ -41,7 +81,7 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     /// 保证图片的宽高比为 16 : 9 = 1.77
-    NSLog(@"self.leftImg.width: %f",self.leftImg.width);
+//    NSLog(@"self.leftImg.width: %f",self.leftImg.width);
 //    [_leftImg mas_updateConstraints:^(MASConstraintMaker *make) {
 //        make.height.mas_equalTo(self.leftImg.width / 1.77);
 //    }];

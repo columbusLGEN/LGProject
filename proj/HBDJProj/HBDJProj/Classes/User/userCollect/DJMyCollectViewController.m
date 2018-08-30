@@ -7,8 +7,12 @@
 //
 
 #import "DJMyCollectViewController.h"
-#import "DJUcMyCollectLessonListController.h"
 #import "LGSegmentBottomView.h"
+#import "DJUcMyCollectLessonListController.h"
+#import "DJUcMyCollectNewsListController.h"
+#import "DJUcMyCollectQAListController.h"
+#import "DJUcMyCollectBranchListController.h"
+#import "DJUcMyCollectPYQListController.h"
 
 @interface DJMyCollectViewController ()<LGSegmentBottomViewDelegate>
 
@@ -18,6 +22,8 @@
 
 - (void)configUI{
     [super configUI];
+    
+    self.title = @"我的收藏";
     
     UIButton *deButton = UIButton.new;
     [deButton setImage:[UIImage imageNamed:@"home_icon_remove"] forState:UIControlStateNormal];
@@ -32,9 +38,17 @@
 
 #pragma mark - LGSegmentBottomViewDelegate
 - (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
-    /// TODO: 全选
+    /// TODO: 全选 删除操作 仅对当前所在列表生效
     DJUcMyCollectLessonListController *mcllv = self.childViewControllers[0];
+    DJUcMyCollectNewsListController *mcnlvc = self.childViewControllers[1];
+    DJUcMyCollectQAListController *mcqalvc = self.childViewControllers[2];
+    DJUcMyCollectBranchListController *mcblvc = self.childViewControllers[3];
+    DJUcMyCollectPYQListController *mcpyqvc = self.childViewControllers[4];
     [mcllv allSelect];
+    [mcnlvc allSelect];
+    [mcqalvc allSelect];
+    [mcblvc allSelect];
+    [mcpyqvc allSelect];
 }
 - (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
     /// TODO: 删除
@@ -44,12 +58,24 @@
 - (void)changeEditState:(UIButton *)sender{
     /// TODO: 点击删除/取消
     DJUcMyCollectLessonListController *mcllv = self.childViewControllers[0];
+    DJUcMyCollectNewsListController *mcnlvc = self.childViewControllers[1];
+    DJUcMyCollectQAListController *mcqalvc = self.childViewControllers[2];
+    DJUcMyCollectBranchListController *mcblvc = self.childViewControllers[3];
+    DJUcMyCollectPYQListController *mcpyqvc = self.childViewControllers[4];
     sender.selected = !sender.isSelected;
     self.isEdit = sender.selected;
     if (sender.isSelected) {
         [mcllv startEdit];
+        [mcnlvc startEdit];
+        [mcqalvc startEdit];
+        [mcblvc startEdit];
+        [mcpyqvc startEdit];
     }else{
         [mcllv endEdit];
+        [mcnlvc endEdit];
+        [mcqalvc endEdit];
+        [mcblvc endEdit];
+        [mcpyqvc endEdit];
     }
 }
 
@@ -59,19 +85,19 @@
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"新闻",
-               LGSegmentItemViewControllerClassKey:@"HPSearchBuildPoineNewsController",///
+               LGSegmentItemViewControllerClassKey:@"DJUcMyCollectNewsListController",///
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"学习问答",
-               LGSegmentItemViewControllerClassKey:@"HPSearchBuildPoineNewsController",///
+               LGSegmentItemViewControllerClassKey:@"DJUcMyCollectQAListController",///
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"支部动态",
-               LGSegmentItemViewControllerClassKey:@"HPSearchBuildPoineNewsController",///
+               LGSegmentItemViewControllerClassKey:@"DJUcMyCollectBranchListController",///
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"党员舞台",
-               LGSegmentItemViewControllerClassKey:@"HPSearchBuildPoineNewsController",///
+               LGSegmentItemViewControllerClassKey:@"DJUcMyCollectPYQListController",///
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                }];
 }

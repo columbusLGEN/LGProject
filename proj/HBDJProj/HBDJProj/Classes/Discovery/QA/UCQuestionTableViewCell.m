@@ -10,6 +10,8 @@
 #import "LGThreeRightButtonView.h"
 #import "UCQuestionModel.h"
 
+#import "DJBanIndicateView.h"
+
 static NSString * const showAll_key = @"showAll";
 static NSString * const praiseid_keyPath = @"praiseid";
 static NSString * const collectionid_keyPath = @"collectionid";
@@ -17,6 +19,7 @@ static NSString * const praisecount_keyPath = @"praisecount";
 static NSString * const collectioncount_keyPath = @"collectioncount";
 
 @interface UCQuestionTableViewCell ()<LGThreeRightButtonViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *question;
 @property (weak, nonatomic) IBOutlet UILabel *content;
 @property (weak, nonatomic) IBOutlet UILabel *tagLabel0;
@@ -25,27 +28,61 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 @property (weak, nonatomic) IBOutlet UIImageView *arrow;
 @property (weak, nonatomic) IBOutlet UIButton *showAll;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingNeedsChangeWhenEdit;
+
 @end
 
 @implementation UCQuestionTableViewCell
 
+/// TODO: 我的提问 -- 根据模型状态显示 未通过状态
+
 - (void)setModel:(UCQuestionModel *)model{
     _model = model;
     
+    [self displayDataWithModel:model];
+    
+}
+
+- (void)setCollectModel:(UCQuestionModel *)collectModel{
+    [super setCollectModel:collectModel];
+    
+    if (collectModel.edit) {
+        /// 编辑状态
+        [self.contentView addSubview:self.seButon];
+        [self.seButon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(marginFifteen);
+            make.top.equalTo(self.question.mas_top);
+            make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
+        }];
+        self.seButon.selected = collectModel.select;
+
+        _leadingNeedsChangeWhenEdit.constant = 38;
+        
+    }else{
+        [self.seButon removeFromSuperview];
+        
+        /// 默认值
+        _leadingNeedsChangeWhenEdit.constant = 18;
+    }
+    
+    [self displayDataWithModel:collectModel];
+}
+
+- (void)displayDataWithModel:(UCQuestionModel *)qaModel{
     /// 计算 问题 文本的高度
-    CGFloat questionHeight = [model.question sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 57, MAXFLOAT) font:[UIFont systemFontOfSize:16]].height;
+    CGFloat questionHeight = [qaModel.question sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 57, MAXFLOAT) font:[UIFont systemFontOfSize:16]].height;
     NSInteger lines = questionHeight / 19;
     
     _questionTextHeight.constant = lines * 20;
     _question.numberOfLines = lines;
-    _question.text = model.question;
+    _question.text = qaModel.question;
     
-    _tagLabel0.text = model.tagString;
+    _tagLabel0.text = qaModel.tagString;
     
-    _content.text = model.answer;
-
-    _showAll.selected = model.showAll;
-    if (model.showAll) {
+    _content.text = qaModel.answer;
+    
+    _showAll.selected = qaModel.showAll;
+    if (qaModel.showAll) {
         _content.numberOfLines = 0;
         _arrow.transform = CGAffineTransformMakeRotation(-M_PI);
     }else{
@@ -53,17 +90,16 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
         _arrow.transform = CGAffineTransformIdentity;
     }
     
-    _boInterView.leftIsSelected = !(model.praiseid <= 0);
-    _boInterView.middleIsSelected = !(model.collectionid <= 0);
-
-    _boInterView.likeCount = model.praisecount;
-    _boInterView.collectionCount = model.collectioncount;
+    _boInterView.leftIsSelected = !(qaModel.praiseid <= 0);
+    _boInterView.middleIsSelected = !(qaModel.collectionid <= 0);
     
-    [model addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [model addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [model addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    _boInterView.likeCount = qaModel.praisecount;
+    _boInterView.collectionCount = qaModel.collectioncount;
     
+    [qaModel addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [qaModel addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [qaModel addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [qaModel addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
@@ -118,6 +154,14 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    DJBanIndicateView *banin = DJBanIndicateView.new;
+    [self.contentView addSubview:banin];
+    [banin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.contentView);
+        make.bottom.equalTo(self.boInterView.mas_bottom);
+    }];
+    
     
 //    NSLog(@"[_content.font fontName]: %@",[_content.font fontName]);
 //    NSLog(@"[_content.font familyName]: %@",[_content.font familyName]);

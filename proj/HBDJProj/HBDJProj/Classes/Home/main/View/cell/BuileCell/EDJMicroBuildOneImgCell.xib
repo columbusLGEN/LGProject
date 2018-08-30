@@ -84,6 +84,7 @@
                 <outlet property="img" destination="Rjk-Q4-FLd" id="1gd-Jg-J2O"/>
                 <outlet property="sub_title" destination="Lmc-jt-CLp" id="srX-8z-UP8"/>
                 <outlet property="title" destination="Gcr-sc-3TA" id="wI0-OT-DrW"/>
+                <outlet property="titleLeadingConstraint" destination="zXe-MZ-mOB" id="XVj-E2-ety"/>
                 <outlet property="toTop" destination="6ZY-1M-JQ7" id="BIa-lx-LzH"/>
                 <outlet property="toTopWidth" destination="vqQ-aF-0mf" id="nag-IL-5D9"/>
             </connections>

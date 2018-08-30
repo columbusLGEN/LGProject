@@ -8,7 +8,7 @@
 
 /// 党员舞台模型 (朋友圈)
 
-#import "DJDataBaseModel.h"
+#import "DJUcMyCollectModel.h"
 @class DCSubStageCommentsModel,LGPlayer;
 
 typedef NS_ENUM(NSUInteger, StageModelType) {
@@ -34,9 +34,8 @@ static const CGFloat aImgHoriWidth = 177;
 /** 评论单元格行高 */
 static const CGFloat commentsCellHeight = 25;
 
-@interface DCSubStageModel : DJDataBaseModel
+@interface DCSubStageModel : DJUcMyCollectModel
 
-//@property (strong,nonatomic) NSString *time;
 @property (strong,nonatomic) NSArray *imgs;
 
 @property (assign,nonatomic) CGFloat nineImgViewHeight;
@@ -51,13 +50,6 @@ static const CGFloat commentsCellHeight = 25;
 @property (assign,nonatomic) BOOL isVideo;
 
 @property (assign,nonatomic) CGFloat heightForContent;
-//@property (strong,nonatomic) NSString *content;
-
-@property (strong,nonatomic) UIImage *testIcon;
-@property (strong,nonatomic) UIImage *aTestImg;
-
-/** 评论数据 */
-//@property (strong,nonatomic) NSArray<DCSubStageCommentsModel *> *comments;
 
 /// -----------------------------
 /** 朋友圈单图的图片宽高 */
@@ -66,47 +58,19 @@ static const CGFloat commentsCellHeight = 25;
 @property (assign,nonatomic) CGFloat single_pic_width;
 /** 单图高度 */
 @property (assign,nonatomic) CGFloat single_pic_height;
+/** 资源链接 */
 @property (strong,nonatomic) NSString *fileurl;
-/**
- 1图片
- 2视频
- 3音频
- 4文本
- */
+/** 1图片 2视频 3音频 4文本 */
 @property (assign,nonatomic) NSInteger filetype;
 /** 评论模型数组 */
 @property (strong,nonatomic) NSArray<DCSubStageCommentsModel *> *frontComments;
-/** 资源链接 */
 
-/** 时间戳 */
-//@property (strong,nonatomic) NSString *timestamp;
-//@property (strong,nonatomic) NSString *createdtime;
-/**
- 1党员舞台
- 2思想汇报
- 3述职述廉
- */
+/** 1党员舞台 2思想汇报 3述职述廉 */
 @property (assign,nonatomic) NSInteger ugctype;
-///** 点赞id */
-//@property (assign,nonatomic) NSInteger praiseid;
-///** 点赞数 */
-//@property (assign,nonatomic) NSInteger praisecount;
-///** 收藏id */
-//@property (assign,nonatomic) NSInteger collectionid;
-///** 收藏数 */
-//@property (assign,nonatomic) NSInteger collectioncount;
+
 /** 上传用户 */
 @property (strong,nonatomic) NSString *uploader;
 
-//    "creatorid":1,
-//    "sort":0,
-//    "title":"",
-//    "auditstate":"1",
-//    "mechanismid":"180607092010002",
-//    "userid":"长孙无极",
-//    "cover":"",
-//    "seqid":1,
-//    "status":1
 /// 朋友圈列表音频cell需要使用的属性
 @property (assign,nonatomic) NSInteger cTime;
 @property (assign,nonatomic) NSInteger tTime;

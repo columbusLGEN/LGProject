@@ -24,21 +24,32 @@ LGThreeRightButtonViewDelegate>
 
 - (void)setModel:(DCSubPartStateModel *)model{
     _model = model;
-    _timeLabel.text = [model.timestamp timestampToDate_nyr];
     
-    _boInterView.leftIsSelected = !(model.praiseid <= 0);
-    _boInterView.middleIsSelected = !(model.collectionid <= 0);
-    _boInterView.rightIsSelected = model.iscomment;
+    [self displayDataWithModel:model];
     
-    _boInterView.likeCount = model.praisecount;
-    _boInterView.collectionCount = model.collectioncount;
-    _boInterView.commentCount = model.frontComments.count;
+}
+
+- (void)setBranchCollectModel:(DCSubPartStateModel *)branchCollectModel{
+    _branchCollectModel = branchCollectModel;
+    [self displayDataWithModel:branchCollectModel];
     
-    [model addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [model addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [model addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)displayDataWithModel:(DJUcMyCollectBranchModel *)branchModel{
+    _timeLabel.text = [branchModel.timestamp timestampToDate_nyr];
     
+    _boInterView.leftIsSelected = !(branchModel.praiseid <= 0);
+    _boInterView.middleIsSelected = !(branchModel.collectionid <= 0);
+    _boInterView.rightIsSelected = branchModel.iscomment;
+    
+    _boInterView.likeCount = branchModel.praisecount;
+    _boInterView.collectionCount = branchModel.collectioncount;
+    _boInterView.commentCount = branchModel.frontComments.count;
+    
+    [branchModel addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [branchModel addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [branchModel addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [branchModel addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{

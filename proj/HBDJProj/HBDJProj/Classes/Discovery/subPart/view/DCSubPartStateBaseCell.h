@@ -8,7 +8,7 @@
 
 /// 发现  支部动态 单元格
 
-#import "LGBaseTableViewCell.h"
+#import "DJUcMyCollectTableViewCell.h"
 @class DCSubPartStateModel,LGThreeRightButtonView;
 
 static NSString * const withoutImgCell = @"DCSubPartStateWithoutImgCell";
@@ -22,8 +22,12 @@ static NSString * const threeImgCell = @"DCSubPartStateThreeImgCell";
 
 @end
 
-@interface DCSubPartStateBaseCell : LGBaseTableViewCell
+@interface DCSubPartStateBaseCell : DJUcMyCollectTableViewCell
+
 @property (strong,nonatomic) DCSubPartStateModel *model;
+
+@property (strong,nonatomic) DCSubPartStateModel *branchCollectModel;
+
 @property (weak,nonatomic) id<DCSubPartStateBaseCellDelegate> delegate;
 
 /** 显示时间 */

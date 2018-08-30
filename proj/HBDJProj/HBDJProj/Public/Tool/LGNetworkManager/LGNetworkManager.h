@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 
 typedef void (^LGUploadImageProgressBlock)(NSProgress *uploadProgress);
-typedef void (^LGUploadImageSuccess)(NSString *imgUrl_sub);
+typedef void (^LGUploadImageSuccess)(id dict);
 typedef void (^LGUploadImageFailure)(id uploadFailure);
 
 typedef void (^LGUploadFileSuccess)(id dict);

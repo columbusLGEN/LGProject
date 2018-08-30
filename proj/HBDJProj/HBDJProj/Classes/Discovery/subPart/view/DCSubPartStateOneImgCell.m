@@ -20,9 +20,47 @@
 
 - (void)setModel:(DCSubPartStateModel *)model{
     [super setModel:model];
+    [self assiDataWithModel:model];
+
+}
+
+- (void)setBranchCollectModel:(DCSubPartStateModel *)branchCollectModel{
+    [super setBranchCollectModel:branchCollectModel];
+    
+    if (branchCollectModel.edit) {
+        /// 编辑状态
+        [self.contentView addSubview:self.seButon];
+        [self.seButon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(marginFifteen);
+            make.top.equalTo(self.title.mas_top).offset(2);
+            make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
+        }];
+        self.seButon.selected = branchCollectModel.select;
+        self.seButon.selected = YES;
+        
+        [_title mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.seButon.mas_right).offset(marginEight);
+            make.top.equalTo(_img.mas_top);
+            make.right.equalTo(_img.mas_left).offset(-marginEight);
+        }];
+    }else{
+        [self.seButon removeFromSuperview];
+        
+        /// 默认值
+        [_title mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
+            make.top.equalTo(_img.mas_top);
+            make.right.equalTo(_img.mas_left).offset(-marginEight);
+            //            make.bottom.equalTo(self.timeLabel.mas_top).offset(-marginTen);
+        }];
+    }
+    
+    [self assiDataWithModel:branchCollectModel];
+}
+
+- (void)assiDataWithModel:(DCSubPartStateModel *)model{
     [_img sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     _title.text = model.title;
-
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{

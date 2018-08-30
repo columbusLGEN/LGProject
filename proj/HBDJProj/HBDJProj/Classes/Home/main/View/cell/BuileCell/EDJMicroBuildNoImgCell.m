@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sub_title;
 @property (weak, nonatomic) IBOutlet UILabel *toTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toTopWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLeadingConstraint;
 
 @end
 
@@ -35,6 +36,9 @@
 - (void)setCollectModel:(DJUcMyCollectModel *)collectModel{
     [super setCollectModel:collectModel];
     
+    _title.text = collectModel.title;
+    _sub_title.text = collectModel.source;
+    
     if (collectModel.edit) {
         /// 编辑状态
         [self.contentView addSubview:self.seButon];
@@ -43,13 +47,12 @@
             make.top.equalTo(self.title.mas_top).offset(3);
             make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
         }];
-        /// TODO: 修改title的约束
         self.seButon.selected = collectModel.select;
-
+        _titleLeadingConstraint.constant = 30;
+        
     }else{
         [self.seButon removeFromSuperview];
-        /// TODO: 修改title的约束
-        
+        _titleLeadingConstraint.constant = 5;
     }
 }
 

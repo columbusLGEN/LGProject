@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGBaseTableViewCell.h"
+#import "DJUcMyCollectTableViewCell.h"
 @class UCQuestionModel;
 
 @protocol UCQuestionTableViewCellDelegate <NSObject>
@@ -18,7 +18,7 @@
 
 @end
 
-@interface UCQuestionTableViewCell : LGBaseTableViewCell
+@interface UCQuestionTableViewCell : DJUcMyCollectTableViewCell
 @property (strong,nonatomic) NSIndexPath *indexPath;
 @property (strong,nonatomic) UCQuestionModel *model;
 @property (weak,nonatomic) id<UCQuestionTableViewCellDelegate> delegate;

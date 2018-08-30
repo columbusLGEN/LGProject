@@ -10,6 +10,7 @@
 #import "DCSubStageModel.h"
 #import "LGThreeRightButtonView.h"
 #import "HZPhotoBrowser.h"
+#import "DJUcMyCollectPYQModel.h"
 
 @interface DCSubStageOneImgCell ()
 @property (strong,nonatomic) UIImageView *aImage;
@@ -18,6 +19,57 @@
 @end
 
 @implementation DCSubStageOneImgCell
+
+//// 返回高质量图片的url
+//- (NSURL *)photoBrowser:(HZPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+//{
+//    NSString *urlStr = [self.urlArray[index] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+//    return [NSURL URLWithString:urlStr];
+//}
+
+- (void)setModel:(DCSubStageModel *)model{
+    [super setModel:model];
+    
+    [self assiDataWithModel:model];
+}
+
+- (void)setMc_pyq_model:(DJUcMyCollectPYQModel *)mc_pyq_model{
+    [super setMc_pyq_model:mc_pyq_model];
+    [self assiDataWithModel:mc_pyq_model];
+}
+
+- (void)assiDataWithModel:(DCSubStageModel *)model{
+    if (model.filetype == 1) {
+        [_aImage sd_setImageWithURL:[NSURL URLWithString:model.fileurl] placeholderImage:DJPlaceholderImage];
+    }
+    if (model.filetype == 2) {
+        [_aImage sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
+    }
+    
+    CGFloat aImgTopOffset = contentTopOffset + model.heightForContent + 10;
+    
+    if (model.aImgType == StageModelTypeAImgTypeVer) {
+        [self.aImage mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.icon.mas_top).offset(aImgTopOffset);
+            make.width.mas_equalTo(aImgVerWidth);
+            make.height.mas_equalTo(aImgVerHeight);
+            make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
+        }];
+    }else{
+        [self.aImage mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView.mas_top).offset(aImgTopOffset);
+            make.width.mas_equalTo(aImgHoriWidth);
+            make.height.mas_equalTo(aImgHoriHeight);
+            make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
+        }];
+    }
+    
+    if (!model.isVideo) {
+        self.play.hidden = YES;
+    }else{
+        self.play.hidden = NO;
+    }
+}
 
 - (void)play:(UIButton *)sender{
     if ([self.delegate respondsToSelector:@selector(pyqCellplayVideoWithModel:)]) {
@@ -39,54 +91,12 @@
     return self.aImage.image;
 }
 
-//// 返回高质量图片的url
-//- (NSURL *)photoBrowser:(HZPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
-//{
-//    NSString *urlStr = [self.urlArray[index] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
-//    return [NSURL URLWithString:urlStr];
-//}
-
-- (void)setModel:(DCSubStageModel *)model{
-    [super setModel:model];
-    
-    if (model.filetype == 1) {
-        [_aImage sd_setImageWithURL:[NSURL URLWithString:model.fileurl] placeholderImage:DJPlaceholderImage];
-    }
-    if (model.filetype == 2) {
-        [_aImage sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
-    }
-
-    CGFloat aImgTopOffset = contentTopOffset + model.heightForContent + 10;
-    
-    if (model.aImgType == StageModelTypeAImgTypeVer) {
-        [self.aImage mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top).offset(aImgTopOffset);
-            make.width.mas_equalTo(aImgVerWidth);
-            make.height.mas_equalTo(aImgVerHeight);
-            make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
-        }];
-    }else{
-        [self.aImage mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top).offset(aImgTopOffset);
-            make.width.mas_equalTo(aImgHoriWidth);
-            make.height.mas_equalTo(aImgHoriHeight);
-            make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
-        }];
-    }
-    
-    if (!model.isVideo) {
-        self.play.hidden = YES;
-    }else{
-        self.play.hidden = NO;
-    }
-}
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.aImage];
         [self.aImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+            make.left.equalTo(self.icon.mas_left);
         }];
         CGFloat playWidth = 40;
         [self.contentView addSubview:self.play];

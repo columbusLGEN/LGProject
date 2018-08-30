@@ -39,7 +39,7 @@
     }else if (model.imgs.count == 1){/// 有一张图
         height = 90;
     }else{/// 有三张图
-        height = 120;
+        height = 140;
     }
     return height * rate;
 }

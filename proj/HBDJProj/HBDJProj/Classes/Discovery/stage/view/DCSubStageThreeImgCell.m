@@ -11,6 +11,7 @@
 #import "LGNineImgView.h"
 #import "HZPhotoGroup.h"
 #import "LGThreeRightButtonView.h"
+#import "DJUcMyCollectPYQModel.h"
 
 @interface DCSubStageThreeImgCell ()
 @property (strong,nonatomic) DCSubStageModel *subModel;
@@ -24,12 +25,19 @@
 - (void)setModel:(DCSubStageModel *)model{
     [super setModel:model];
     _subModel = model;
-    
+    [self assiDataWithModel:model];
+}
+
+- (void)setMc_pyq_model:(DJUcMyCollectPYQModel *)mc_pyq_model{
+    [super setMc_pyq_model:mc_pyq_model];
+    [self assiDataWithModel:mc_pyq_model];
+}
+- (void)assiDataWithModel:(DCSubStageModel *)model{
     if (model.imgs.count == 1 && [model.imgs[0] isEqualToString:@""]) {
         /// 说明只有文字
         
         [self.content mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+            make.left.equalTo(self.icon.mas_left);
             make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
             make.top.equalTo(self.contentView.mas_top).offset(contentTopOffset);
             make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
@@ -51,21 +59,19 @@
             nineImageViewHeight += (niImgWidth + niMargin) * 2;
         }
         [self.content mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+            make.left.equalTo(self.icon.mas_left);
             make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
             make.top.equalTo(self.contentView.mas_top).offset(contentTopOffset);
         }];
         [self.groupView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.content.mas_bottom);
-            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+            make.left.equalTo(self.icon.mas_left);
             make.right.equalTo(self.contentView.mas_right).offset(-marginTwenty);
             make.bottom.equalTo(self.boInterView.mas_top).offset(-marginEight);
             make.height.mas_equalTo(nineImageViewHeight);
         }];
     }
-
 }
-
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

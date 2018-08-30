@@ -11,9 +11,6 @@
 #import "DJOnlineNetorkManager.h"
 #import "DJOnlineUploadTableModel.h"
 
-static NSString * const key_path = @"path";
-static NSString * const key_widthheigth = @"widthheigth";
-
 @interface DJUploadDataManager ()
 /** 要上传的表单数据 */
 @property (strong,nonatomic) NSMutableDictionary *formData;
@@ -51,7 +48,7 @@ static NSString * const key_widthheigth = @"widthheigth";
     
     if (_tempImageUrls.count == 1) {
         
-        // 1.获取视频封面，并上传封面
+        // 1.获取视频封面，并上传
         
         // 2.上传视频文件，并将封面链接、宽高，视频连接、宽高一并回调
         
@@ -83,8 +80,8 @@ static NSString * const key_widthheigth = @"widthheigth";
             } success:^(id dict) {
                 NSLog(@"上传封面成功: %@",dict);
                 /// 上传视频 & 删除封面
-                NSDictionary *param = @{@"cover":dict[key_path],
-                                        key_widthheigth:dict[key_widthheigth]};
+                NSDictionary *param = @{cover_key:dict[path_key],
+                                        widthheigth:dict[widthheigth]};
                 
                 [self uploadVideoWithLocalUrl:localUrl mimeType:mimeType coverLocalPath:coverPath coverResponseObject:[param mutableCopy] singleFileComplete:singleFileComplete];
             } failure:^(id uploadFailure) {
@@ -103,14 +100,14 @@ static NSString * const key_widthheigth = @"widthheigth";
     NSError *error;
     [[NSFileManager defaultManager] removeItemAtPath:coverLocalPath error:&error];
     if (error) {
-        NSLog(@"封面删除失败: %@",error);
+//        NSLog(@"封面删除失败: %@",error);
     }
     
     [self uploadFileWithLocalFileUrl:localUrl mimeType:mimeType uploadProgress:^(NSProgress *uploadProgress) {
         NSLog(@"ugc上传视频进度: %f",(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
     } success:^(id dict) {
         NSLog(@"上传视频成功: %@",dict);
-        coverResponseObject[key_path] = dict[key_path];
+        coverResponseObject[path_key] = dict[path_key];
         if (singleFileComplete) singleFileComplete(coverResponseObject);
     } failure:^(id uploadFailure) {
         if (singleFileComplete) singleFileComplete(nil);
@@ -142,7 +139,7 @@ static NSString * const key_widthheigth = @"widthheigth";
     
     /** 上传图片完成block */
     NSMutableArray *imageUrls = [NSMutableArray arrayWithArray:self.tempImageUrls.copy];
-    void (^uploadImageCompleteBlock)(NSDictionary *urls) = ^(NSDictionary *urls){
+    void (^uploadImageCompleteBlock)(NSDictionary *urls,NSDictionary *dict) = ^(NSDictionary *urls,NSDictionary *dict){
         for (NSInteger i = 0; i < imageUrls.count; i++) {
             imageUrls[i] = urls[[NSString stringWithFormat:@"%ld",(long)i]];
         }
@@ -156,11 +153,12 @@ static NSString * const key_widthheigth = @"widthheigth";
         [self uploadImageWithLocalFileUrl:localUrl uploadProgress:^(NSProgress *uploadProgress) {
             NSLog(@"%ld: %f",(long)i,(CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
             
-        } success:^(NSString *imgUrl_sub) {
-            [urlDict setValue:imgUrl_sub forKey:[NSString stringWithFormat:@"%ld",(long)i]];
+        } success:^(NSDictionary *dict) {
+            [urlDict setValue:dict[path_key] forKey:[NSString stringWithFormat:@"%ld",(long)i]];
+            _formData[widthheigth] = dict[widthheigth];
             successCount++;
             if ((successCount + failureCount) == self.tempImageUrls.count) {
-                uploadImageCompleteBlock(urlDict.copy);
+                uploadImageCompleteBlock(urlDict.copy,_formData);
             }
             
         } failure:^(id uploadFailure) {
@@ -168,7 +166,7 @@ static NSString * const key_widthheigth = @"widthheigth";
             failureCount++;
             
             if ((successCount + failureCount) == self.tempImageUrls.count) {
-                uploadImageCompleteBlock(urlDict.copy);
+                uploadImageCompleteBlock(urlDict.copy,_formData);
             }
             
         }];

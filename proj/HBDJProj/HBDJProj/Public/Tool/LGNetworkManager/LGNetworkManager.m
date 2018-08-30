@@ -57,7 +57,7 @@
 - (void)uploadImageWithUrl:(NSString *)url param:(NSDictionary *)param localFileUrl:(NSURL *)localFileUrl fieldName:(NSString *)fieldName fileName:(NSString *)fileName uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
     
     [self lg_uploadFileWithUrl:url param:param localFileUrl:localFileUrl fieldName:fieldName fileName:fileName mimeType:@"image/jpeg" uploadProgress:progress success:^(id dict) {
-        if (success) success(dict[@"path"]);
+        if (success) success(dict);
     } failure:failure];
     
 }

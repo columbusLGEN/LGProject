@@ -12,6 +12,7 @@
 #import "DCSubStageCommentsModel.h"
 #import "DCSubStageCommentsCell.h"
 #import "LGTriangleView.h"
+#import "DJUcMyCollectPYQModel.h"
 
 static NSString * const praiseid_keyPath = @"praiseid";
 static NSString * const collectionid_keyPath = @"collectionid";
@@ -22,8 +23,6 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 UITableViewDelegate,
 UITableViewDataSource,
 LGThreeRightButtonViewDelegate>
-
-@property (strong, nonatomic) UIImageView *icon;/// 头像
 @property (strong, nonatomic) UILabel *nick;/// 昵称
 @property (strong,nonatomic) UILabel *time;/// 时间
 
@@ -43,7 +42,47 @@ LGThreeRightButtonViewDelegate>
 
 - (void)setModel:(DCSubStageModel *)model{
     _model = model;
-//    NSLog(@"model.fileurl: %@",model.fileurl);
+    
+    [self assiCommenDataWithModel:model];
+}
+
+- (void)setMc_pyq_model:(DJUcMyCollectPYQModel *)mc_pyq_model{
+    _mc_pyq_model = mc_pyq_model;
+    
+    [self assiCommenDataWithModel:mc_pyq_model];
+    
+    if (mc_pyq_model.edit) {
+        /// 编辑状态
+        [self.contentView addSubview:self.seButon];
+        [self.seButon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(marginFifteen);
+            make.top.equalTo(self.icon.mas_top);
+            make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
+        }];
+        self.seButon.selected = mc_pyq_model.select;
+        
+        [self.icon mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView.mas_top).offset(marginFifteen);
+            make.left.equalTo(self.seButon.mas_right).offset(marginEight);
+            make.width.mas_equalTo(30);
+            make.height.mas_equalTo(30);
+        }];
+        
+    }else{
+        [self.seButon removeFromSuperview];
+        
+        /// 默认值
+        [self.icon mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView.mas_top).offset(marginFifteen);
+            make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+            make.width.mas_equalTo(30);
+            make.height.mas_equalTo(30);
+        }];
+    }
+}
+
+- (void)assiCommenDataWithModel:(DCSubStageModel *)model{
+    
     _time.text = [model.timestamp timestampToDate_nyr];
     _content.text = model.content;
     [_icon sd_setImageWithURL:[NSURL URLWithString:model.headpic] placeholderImage:DJHeadIconPImage];
@@ -104,7 +143,6 @@ LGThreeRightButtonViewDelegate>
     [model addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
     [model addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
     [model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
@@ -169,7 +207,7 @@ LGThreeRightButtonViewDelegate>
     
     [self.contentView addSubview:self.content];
     [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+        make.left.equalTo(self.icon.mas_left);
         make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
         make.top.equalTo(self.contentView.mas_top).offset(contentTopOffset);
     }];
@@ -185,7 +223,7 @@ LGThreeRightButtonViewDelegate>
     [self.contentView addSubview:self.tbvForComments];
     
     [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(marginTen);
+        make.left.equalTo(self.icon.mas_left);
         make.centerY.equalTo(self.boInterView.mas_centerY);
         make.width.mas_equalTo(120);
     }];
@@ -203,7 +241,7 @@ LGThreeRightButtonViewDelegate>
     }];
     
     [self.tbvForComments mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(leftOffset);
+        make.left.equalTo(self.icon.mas_left);
         make.right.equalTo(self.contentView.mas_right).offset(-30);
         make.bottom.equalTo(self.contentView.mas_bottom);
     }];

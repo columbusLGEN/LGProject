@@ -10,6 +10,9 @@
 
 #import "DJUcMyCollectModel.h"
 
+@class DCSubPartStateCommentModel;
+
 @interface DJUcMyCollectBranchModel : DJUcMyCollectModel
+@property (strong,nonatomic) NSArray<DCSubPartStateCommentModel *> *frontComments;
 
 @end

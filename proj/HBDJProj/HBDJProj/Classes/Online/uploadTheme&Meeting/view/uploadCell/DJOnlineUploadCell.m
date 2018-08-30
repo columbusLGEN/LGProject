@@ -11,8 +11,6 @@
 
 #import "DJOnlineUplaodTableViewController.h"
 
-//static NSString * const keyPath_content = @"content";
-
 @interface DJOnlineUploadCell ()<
 UITextViewDelegate>
 
