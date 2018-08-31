@@ -38,6 +38,7 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 - (void)viewDidLoad {

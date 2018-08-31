@@ -10,4 +10,6 @@
 
 @interface DJUcMyCollectPYQListController : DJUcMyCollectBaseViewController
 
+- (void)getData;
+
 @end

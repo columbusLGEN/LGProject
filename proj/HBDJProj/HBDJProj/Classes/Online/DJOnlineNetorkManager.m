@@ -75,7 +75,7 @@
 }
 
 - (void)frontUgcWithType:(DJOnlineUGCType)ugcType offset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"ugctype":[NSString stringWithFormat:@"%lu",(unsigned long)ugcType]};
+    NSDictionary *param = @{ugctype_key:[NSString stringWithFormat:@"%lu",(unsigned long)ugcType]};
     [self commenPOSTWithOffset:offset length:length sort:0 iName:@"frontUgc/selectmechanism" param:param success:success failure:failure];
 }
 
@@ -93,7 +93,7 @@
 }
 
 - (void)frontUgc_addWithFormData:(NSMutableDictionary *)formDict ugctype:(NSInteger)ugctype filetype:(NSInteger)filetype success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    formDict[@"ugctype"] = [NSString stringWithFormat:@"%ld",(long)ugctype];
+    formDict[ugctype_key] = [NSString stringWithFormat:@"%ld",(long)ugctype];
     formDict[@"filetype"] = [NSString stringWithFormat:@"%ld",(long)filetype];
     [self sendPOSTRequestWithiName:@"frontUgc/add" param:formDict success:success failure:failure];
 }
@@ -128,8 +128,8 @@
 
 - (NSDictionary *)unitAddMemIdWithParam:(id)param{
     NSMutableDictionary *argu = [NSMutableDictionary dictionaryWithDictionary:param];
-    argu[@"mechanismid"] = [DJUser sharedInstance].mechanismid;
-    argu[@"userid"] = [DJUser sharedInstance].userid;
+    argu[mechanismid_key] = [DJUser sharedInstance].mechanismid;
+    argu[userid_key] = [DJUser sharedInstance].userid;
     return argu;
 }
 

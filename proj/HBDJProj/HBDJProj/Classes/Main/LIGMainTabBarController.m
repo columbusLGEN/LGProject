@@ -7,7 +7,6 @@
 //
 
 #import "LIGMainTabBarController.h"
-#import "UIViewController+Extension.h"
 
 #import "LGBaseViewController.h"// test
 

@@ -20,6 +20,7 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 
 @interface UCQuestionTableViewCell ()<LGThreeRightButtonViewDelegate>
 
+@property (weak,nonatomic) DJBanIndicateView *banin;
 @property (weak, nonatomic) IBOutlet UILabel *question;
 @property (weak, nonatomic) IBOutlet UILabel *content;
 @property (weak, nonatomic) IBOutlet UILabel *tagLabel0;
@@ -33,8 +34,6 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 @end
 
 @implementation UCQuestionTableViewCell
-
-/// TODO: 我的提问 -- 根据模型状态显示 未通过状态
 
 - (void)setModel:(UCQuestionModel *)model{
     _model = model;
@@ -100,6 +99,14 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     [qaModel addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
     [qaModel addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
     [qaModel addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    
+    if (qaModel.auditstate == 0) {
+        /// 不通过
+        _banin.hidden = NO;
+    }else{
+        _banin.hidden = YES;
+        
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
@@ -157,11 +164,12 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     
     DJBanIndicateView *banin = DJBanIndicateView.new;
     [self.contentView addSubview:banin];
+    _banin = banin;
     [banin mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.contentView);
         make.bottom.equalTo(self.boInterView.mas_bottom);
     }];
-    
+    banin.hidden = YES;
     
 //    NSLog(@"[_content.font fontName]: %@",[_content.font fontName]);
 //    NSLog(@"[_content.font familyName]: %@",[_content.font familyName]);

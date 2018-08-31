@@ -9,6 +9,7 @@
 #import "DJUcMyCollectLessonListController.h"
 #import "DJUcMyCollectLessonCell.h"
 #import "DJUcMyCollectLessonModel.h"
+#import "DJUserNetworkManager.h"
 
 @interface DJUcMyCollectLessonListController ()
 
@@ -21,18 +22,59 @@
     
     self.tableView.rowHeight = homeMicroLessonSubCellBaseHeight * rateForMicroLessonCellHeight();
     [self.tableView registerClass:[DJUcMyCollectLessonCell class] forCellReuseIdentifier:mclCell];
+
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
+        [self getData];
+    }];
     
-    NSMutableArray *arrmu = NSMutableArray.new;
-    for (NSInteger i = 0;i < 20 ; i++) {
-        DJUcMyCollectLessonModel *model = DJUcMyCollectLessonModel.new;
-        model.title = @"测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题";
-        model.createdDate = @"2018-08-31";
-        model.cover = @"http://c.hiphotos.baidu.com/image/pic/item/8694a4c27d1ed21b3c778fdda06eddc451da3f4f.jpg";
-        model.playcount = 3333;
-        [arrmu addObject:model];
-    }
-    self.dataArray = arrmu.copy;
-    [self.tableView reloadData];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)getData{
+    [DJUserNetworkManager.sharedInstance frontUserCollections_selectWithType:1 offset:self.offset success:^(id responseObj) {
+        
+        if (self.offset == 0) {
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+        }
+        
+        
+        NSArray *array_callback = responseObj;
+        if (array_callback == nil || array_callback.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            return;
+        }else{
+            
+            NSMutableArray *arrmu;
+            if (self.offset == 0) {
+                arrmu = NSMutableArray.new;
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            }
+            
+            for (NSInteger i = 0; i < array_callback.count; i++) {
+                DJUcMyCollectLessonModel *model = [DJUcMyCollectLessonModel mj_objectWithKeyValues:array_callback[i]];
+                [arrmu addObject:model];
+            }
+            
+            self.dataArray = arrmu.copy;
+            self.offset = self.dataArray.count;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -55,44 +97,6 @@
     model.select = !model.select;
 }
 
-///// 继承自父类的方法
-//- (void)startEdit{
-//    for (DJUcMyCollectLessonModel *model in self.dataArray) {
-//        model.edit = YES;
-//    }
-//    [self.tableView reloadData];
-//}
-//- (void)endEdit{
-//    for (DJUcMyCollectLessonModel *model in self.dataArray) {
-//        model.edit = NO;
-//    }
-//    [self.tableView reloadData];
-//}
-//- (void)allSelect{
-//    /// 全选判定条件
-//    /// 如果全部是选中状态，则取消全部选中状态；否则全部选中
-//    
-//    /// 判断是否全部选中
-//    BOOL allAlreadySelect = YES;
-//    for (DJUcMyCollectLessonModel *model in self.dataArray) {
-//        if (!model.select) {
-//            allAlreadySelect = NO;
-//            break;
-//        }
-//    }
-//    
-//    BOOL select;
-//    if (allAlreadySelect) {
-//        select = NO;
-//    }else{
-//        select = YES;
-//    }
-//    
-//    for (DJUcMyCollectLessonModel *model in self.dataArray) {
-//        model.select = select;
-//    }
-//    [self.tableView reloadData];
-//}
 
 
 @end

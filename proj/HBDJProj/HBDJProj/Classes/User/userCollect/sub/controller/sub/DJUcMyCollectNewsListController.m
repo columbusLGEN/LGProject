@@ -38,31 +38,57 @@
     [self.tableView registerNib:[UINib nibWithNibName:buildCellOneImg bundle:nil] forCellReuseIdentifier:buildCellOneImg];
     [self.tableView registerNib:[UINib nibWithNibName:buildCellThreeImg bundle:nil] forCellReuseIdentifier:buildCellThreeImg];
     
-    NSMutableArray *arrmu = NSMutableArray.new;
-    for (NSInteger i = 0; i < 20; i++) {
-        EDJMicroBuildModel *model = EDJMicroBuildModel.new;
-        if (i == 0) {
-            model.cover = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535603406067&di=61e585c1a31ef30586dda25962ea79d8&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D749865265%2C4035234656%26fm%3D214%26gp%3D0.jpg";
-        }else if (i == 1) {
-            model.cover = @"";
-        }else if ((i % 2 == 0)) {
-            model.cover = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535603406067&di=61e585c1a31ef30586dda25962ea79d8&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D749865265%2C4035234656%26fm%3D214%26gp%3D0.jpg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535603406067&di=61e585c1a31ef30586dda25962ea79d8&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D749865265%2C4035234656%26fm%3D214%26gp%3D0.jpg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535603406067&di=61e585c1a31ef30586dda25962ea79d8&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D749865265%2C4035234656%26fm%3D214%26gp%3D0.jpg";
-        }
-        model.title = @"我的收藏新闻列表测试我的收藏新闻列表测试我的收藏新闻列表测试我的收藏新闻列表测试";
-        model.source = @"新华社";
-        [arrmu addObject:model];
-    }
-    self.dataArray = arrmu.copy;
-    [self.tableView reloadData];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
+        [self getData];
+    }];
     
-    
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        [self getData];
-//    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)getData{
-    
+    [DJUserNetworkManager.sharedInstance frontUserCollections_selectWithType:2 offset:self.offset success:^(id responseObj) {
+        
+        if (self.offset == 0) {
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+        }
+        
+        
+        NSArray *array_callback = responseObj;
+        if (array_callback == nil || array_callback.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            return;
+        }else{
+            
+            NSMutableArray *arrmu;
+            if (self.offset == 0) {
+                arrmu = NSMutableArray.new;
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            }
+            
+            for (NSInteger i = 0; i < array_callback.count; i++) {
+                EDJMicroBuildModel *model = [EDJMicroBuildModel mj_objectWithKeyValues:array_callback[i]];
+                [arrmu addObject:model];
+            }
+            
+            self.dataArray = arrmu.copy;
+            self.offset = self.dataArray.count;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - Table view data source

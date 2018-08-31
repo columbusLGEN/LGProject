@@ -38,6 +38,9 @@ static NSString * const uploadNeedsCheckString = @"发布成功，请耐心等�
 static NSString * const widthheigth = @"widthheigth";
 static NSString * const path_key = @"path";
 static NSString * const cover_key = @"cover";
+static NSString * const mechanismid_key = @"mechanismid";
+static NSString * const userid_key = @"userid";
+static NSString * const ugctype_key = @"ugctype";
 
 #pragma mark - 在线页面相关常量、枚举等
 /** 在线首页 实例的 modeltype 与seqid对应 */
@@ -49,6 +52,15 @@ typedef NS_ENUM(NSUInteger, OnlineModelType) {
     OnlineModelTypeThemePartyDay,
     OnlineModelTypeMindReport,
     OnlineModelTypeSpeakCheap
+};
+
+typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
+    /** 党员舞台 */
+    DJOnlineUGCTypeStage = 1,
+    /** 思想汇报 */
+    DJOnlineUGCTypeMindReport,
+    /** 述职述廉 */
+    DJOnlineUGCTypeComponce,
 };
 
 

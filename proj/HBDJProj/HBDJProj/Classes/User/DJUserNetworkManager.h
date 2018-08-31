@@ -8,7 +8,40 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, DJMCType) {
+    /** 所有 */
+    DJMCTypeAll,
+    /** 微党课 */
+    DJMCTypeLesson,
+    /** 新闻 */
+    DJMCTypeNews,
+    /** 学习问答 */
+    DJMCTypeQA,
+    /** 支部动态 */
+    DJMCTypeBrance,
+    /** 党员舞台 */
+    DJMCTypePYQ
+};
+
 @interface DJUserNetworkManager : NSObject
+
+/** 查询我的反馈 */
+- (void)frontFeedback_selectWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/** 请求 帮助与反馈数据 */
+- (void)frontFeedback_selectIndexWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 我的上传 ugctype: 1党员舞台,2思想汇报,3述职述廉 */
+- (void)frontUgc_selectWithUgctype:(DJOnlineUGCType)ugctype offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 我的收藏
+ type: 0所有 1微党课 2新闻 3学习问答 4支部动态 5党员舞台 */
+- (void)frontUserCollections_selectWithType:(DJMCType)type offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 我的消息 */
+- (void)frontUserNotice_selectWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/** 我的提问 */
+- (void)frontQuestionanswer_selectWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /** 请求个人信息 */
 - (void)frontUserinfo_selectSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;

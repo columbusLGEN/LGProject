@@ -51,7 +51,7 @@
  //    2思想汇报
  //    3述职述廉
  */
-    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontUgc/selectmechanism" param:@{@"ugctype":@"1"} success:success failure:failure];
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontUgc/selectmechanism" param:@{ugctype_key:@"1"} success:success failure:failure];
 }
 
 - (void)frontBranch_selectWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
@@ -77,8 +77,8 @@
 
 - (NSDictionary *)unitAddMemIdWithParam:(id)param{
     NSMutableDictionary *argu = [NSMutableDictionary dictionaryWithDictionary:param];
-    argu[@"mechanismid"] = [DJUser sharedInstance].mechanismid;
-    argu[@"userid"] = [DJUser sharedInstance].userid;
+    argu[mechanismid_key] = [DJUser sharedInstance].mechanismid;
+    argu[userid_key] = [DJUser sharedInstance].userid;
     return argu;
 }
 

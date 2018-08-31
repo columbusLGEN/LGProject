@@ -98,7 +98,7 @@
 }
 - (void)homeIndexWithSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     /// 首页额外传递 mechanismid 机构id
-    NSDictionary *param = @{@"mechanismid":[DJUser sharedInstance].mechanismid};
+    NSDictionary *param = @{mechanismid_key:[DJUser sharedInstance].mechanismid};
     [self sendPOSTRequestWithiName:@"/frontIndex/index" param:param success:success failure:failure];
 }
 

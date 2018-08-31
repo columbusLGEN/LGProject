@@ -16,7 +16,7 @@
 @property (strong,nonatomic) NSString *question;
 /** 答案 */
 @property (strong,nonatomic) NSString *answer;
-/** 审核状态 */
+/** 1审核通过 0审核不通过 2审核中 */
 @property (assign,nonatomic) NSInteger auditstate;
 
 @property (strong,nonatomic) NSArray *tags;

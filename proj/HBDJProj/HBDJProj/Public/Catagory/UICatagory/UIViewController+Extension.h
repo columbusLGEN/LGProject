@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (Extension)
+
+//- (NSArray *)callBackCommenHandleWithOffset:(NSInteger)offset tableView:(UITableView *)tableView keyvalueArray:(NSArray *)keyvalueArray dataArray:(NSArray *)dataArray modelClass:(NSString *)modelClass;
+
 - (UIViewController *)lgInstantiateViewControllerWithStoryboardName:(NSString *)name controllerId:(NSString *)controllerId;
 - (void)lgPushViewControllerWithStoryboardName:(NSString *)name controllerId:(NSString *)controllerId animated:(BOOL)animated;
 - (void)lgPushViewControllerWithClassName:(NSString *)className;

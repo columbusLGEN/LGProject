@@ -11,7 +11,7 @@
 #import "DCSubPartStateBaseCell.h"
 #import "DCSubPartStateWithoutImgCell.h"
 #import "DCSubPartStateDetailViewController.h"
-#import "DJDiscoveryNetworkManager.h"
+#import "DJUserNetworkManager.h"
 #import "DCSubPartStateOneImgCell.h"
 #import "DCSubPartStateThreeImgCell.h"
 #import "DJUserInteractionMgr.h"
@@ -39,72 +39,57 @@
     [self.tableView registerClass:[DCSubPartStateThreeImgCell class]
            forCellReuseIdentifier:threeImgCell];
     
-    NSMutableArray *arrmu = NSMutableArray.new;
-    for (NSInteger i = 0 ; i < 15; i++) {
-        DCSubPartStateModel *model = DCSubPartStateModel.new;
-        if (i == 0) {
-            model.cover = @"";
-        }else if (i == 1){
-            model.cover = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535603406067&di=61e585c1a31ef30586dda25962ea79d8&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D749865265%2C4035234656%26fm%3D214%26gp%3D0.jpg";
-            
-        }else if (i % 2 == 0){
-            model.cover = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535603406067&di=61e585c1a31ef30586dda25962ea79d8&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D749865265%2C4035234656%26fm%3D214%26gp%3D0.jpg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535603406067&di=61e585c1a31ef30586dda25962ea79d8&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D749865265%2C4035234656%26fm%3D214%26gp%3D0.jpg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535603406067&di=61e585c1a31ef30586dda25962ea79d8&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D749865265%2C4035234656%26fm%3D214%26gp%3D0.jpg";
-        }
-        model.title = @"我的收藏支部动态测试数据我的收藏支部动态测试数据我的收藏支部动态测试数据我的收藏支部动态测试数据";
-        [arrmu addObject:model];
-    }
-    self.dataArray = arrmu.copy;
-    
-//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        self.offset = 0;
-//        [self.tableView.mj_footer resetNoMoreData];
-//        [self getData];
-//    }];
-//
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        [self getData];
-//    }];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
+        [self getData];
+    }];
+
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)getData{
-//    [DJDiscoveryNetworkManager.sharedInstance frontBranch_selectWithOffset:self.offset success:^(id responseObj) {
-//
-//        NSArray *array = responseObj;
-//
-//        if (self.offset == 0) {
-//            [self.tableView.mj_footer resetNoMoreData];
-//            [self.tableView.mj_header endRefreshing];
-//        }
-//
-//        if (array == nil || array.count == 0) {
-//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//            return;
-//        }else{
-//            [self.tableView.mj_footer endRefreshing];
-//
-//
-//            NSMutableArray *arrmu;
-//            if (self.offset == 0) {
-//                arrmu = NSMutableArray.new;
-//            }else{
-//                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
-//            }
-//            for (NSInteger i = 0; i < array.count; i++) {
-//                DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:array[i]];
-//                [arrmu addObject:model];
-//            }
-//            self.dataArray = arrmu.copy;
-//            self.offset = self.dataArray.count;
-//
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                [self.tableView reloadData];
-//            }];
-//        }
-//
-//    } failure:^(id failureObj) {
-//        [self.tableView.mj_footer endRefreshing];
-//
-//    }];
+    [DJUserNetworkManager.sharedInstance frontUserCollections_selectWithType:4 offset:self.offset success:^(id responseObj) {
+
+        NSArray *array = responseObj;
+
+        if (self.offset == 0) {
+            [self.tableView.mj_footer resetNoMoreData];
+            [self.tableView.mj_header endRefreshing];
+        }
+
+        if (array == nil || array.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            return;
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+
+
+            NSMutableArray *arrmu;
+            if (self.offset == 0) {
+                arrmu = NSMutableArray.new;
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            }
+            for (NSInteger i = 0; i < array.count; i++) {
+                DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:array[i]];
+                [arrmu addObject:model];
+            }
+            self.dataArray = arrmu.copy;
+            self.offset = self.dataArray.count;
+
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+
+    } failure:^(id failureObj) {
+        [self.tableView.mj_footer endRefreshing];
+
+    }];
 }
 
 #pragma mark - Table view data source

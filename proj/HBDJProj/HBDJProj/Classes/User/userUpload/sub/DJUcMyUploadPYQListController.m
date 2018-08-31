@@ -1,12 +1,12 @@
 //
-//  DJUcMyCollectPYQListController.m
+//  DJUcMyUploadPYQListController.m
 //  HBDJProj
 //
-//  Created by Peanut Lee on 2018/8/30.
+//  Created by Peanut Lee on 2018/8/31.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "DJUcMyCollectPYQListController.h"
+#import "DJUcMyUploadPYQListController.h"
 #import "DCSubStageBaseTableViewCell.h"
 #import "DJUcMyCollectPYQModel.h"
 #import "DCSubStageCommentsModel.h"
@@ -18,14 +18,14 @@
 #import "DCSubStageAudioCell.h"
 #import "DJPyqAudioPlayViewController.h"
 
-@interface DJUcMyCollectPYQListController ()<
+@interface DJUcMyUploadPYQListController ()<
 DCSubStageBaseTableViewCellDelegate,
 WMPlayerDelegate>
 @property (weak,nonatomic) WMPlayer * wmPlayer;
 
 @end
 
-@implementation DJUcMyCollectPYQListController
+@implementation DJUcMyUploadPYQListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +40,7 @@ WMPlayerDelegate>
         [self.tableView.mj_footer resetNoMoreData];
         [self getData];
     }];
-
+    
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self getData];
     }];
@@ -55,7 +55,8 @@ WMPlayerDelegate>
 }
 
 - (void)getData{
-    [DJUserNetworkManager.sharedInstance frontUserCollections_selectWithType:5 offset:self.offset success:^(id responseObj) {
+
+    [DJUserNetworkManager.sharedInstance frontUgc_selectWithUgctype:DJOnlineUGCTypeStage offset:self.offset success:^(id responseObj) {
         
         if (self.offset == 0) {
             [self.tableView.mj_footer resetNoMoreData];
@@ -193,5 +194,4 @@ WMPlayerDelegate>
     [wmplayer removeFromSuperview];
     _wmPlayer = nil;
 }
-
 @end

@@ -75,6 +75,7 @@
                 <outlet property="image" destination="naj-fB-pf3" id="AOP-H2-c0p"/>
                 <outlet property="time" destination="Q5z-1g-2UW" id="4bH-q6-cHC"/>
                 <outlet property="title" destination="N5d-v9-q7y" id="dTm-pF-V0i"/>
+                <outlet property="titleLeading" destination="Wbx-yy-O80" id="Rbh-sM-KK7"/>
             </connections>
             <point key="canvasLocation" x="-60" y="1"/>
         </tableViewCell>

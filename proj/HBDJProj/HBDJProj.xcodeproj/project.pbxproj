@@ -157,9 +157,6 @@
 		88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E8C208DC21700188CE9 /* EDJTotayScoreModel.m */; };
 		88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E8F208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m */; };
 		88435E92208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435E91208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib */; };
-		88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E95208DD09500188CE9 /* UCPartyMemberStageController.m */; };
-		88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */; };
-		88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */; };
 		88435EA4208EFB0800188CE9 /* DJDataBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA3208EFB0800188CE9 /* DJDataBaseModel.m */; };
 		88435EA7208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */; };
 		88435EA9208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */; };
@@ -263,6 +260,9 @@
 		8885D23B20A2BCB800DC06A1 /* PBDBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8885D23A20A2BCB800DC06A1 /* PBDBottomView.xib */; };
 		8885D23E20A2EC7600DC06A1 /* LGSegmentBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885D23D20A2EC7600DC06A1 /* LGSegmentBottomView.m */; };
 		8885D24020A2EC8500DC06A1 /* LGSegmentBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8885D23F20A2EC8500DC06A1 /* LGSegmentBottomView.xib */; };
+		888BD19E2138D290005417A4 /* DJUcMyUploadPYQListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BD19D2138D290005417A4 /* DJUcMyUploadPYQListController.m */; };
+		888BD1A12138D84E005417A4 /* DJUcMyUploadMindReportListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BD1A02138D84E005417A4 /* DJUcMyUploadMindReportListController.m */; };
+		888BD1A42138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BD1A32138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m */; };
 		888E3A6C211BDDD800ED2DA3 /* LGCountTimeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A6A211BDDD800ED2DA3 /* LGCountTimeLabel.m */; };
 		888E3A6F211BF22900ED2DA3 /* LGFilePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A6E211BF22900ED2DA3 /* LGFilePathManager.m */; };
 		888E3A72211D2B0000ED2DA3 /* OLTestBackLookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A71211D2B0000ED2DA3 /* OLTestBackLookModel.m */; };
@@ -802,12 +802,6 @@
 		88435E8E208DC27E00188CE9 /* EDJTotayScoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJTotayScoreTableViewCell.h; sourceTree = "<group>"; };
 		88435E8F208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJTotayScoreTableViewCell.m; sourceTree = "<group>"; };
 		88435E91208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJTotayScoreTableViewCell.xib; sourceTree = "<group>"; };
-		88435E94208DD09500188CE9 /* UCPartyMemberStageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPartyMemberStageController.h; sourceTree = "<group>"; };
-		88435E95208DD09500188CE9 /* UCPartyMemberStageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageController.m; sourceTree = "<group>"; };
-		88435E99208DD2DB00188CE9 /* UCPartyMemberStageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPartyMemberStageModel.h; sourceTree = "<group>"; };
-		88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageModel.m; sourceTree = "<group>"; };
-		88435E9C208DD33900188CE9 /* UCPartyMemberStageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCPartyMemberStageCell.h; sourceTree = "<group>"; };
-		88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCPartyMemberStageCell.m; sourceTree = "<group>"; };
 		88435EA2208EFB0800188CE9 /* DJDataBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDataBaseModel.h; sourceTree = "<group>"; };
 		88435EA3208EFB0800188CE9 /* DJDataBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDataBaseModel.m; sourceTree = "<group>"; };
 		88435EA5208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJMicroPartyLessonSubCell.h; sourceTree = "<group>"; };
@@ -982,6 +976,12 @@
 		8885D23C20A2EC7600DC06A1 /* LGSegmentBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSegmentBottomView.h; sourceTree = "<group>"; };
 		8885D23D20A2EC7600DC06A1 /* LGSegmentBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSegmentBottomView.m; sourceTree = "<group>"; };
 		8885D23F20A2EC8500DC06A1 /* LGSegmentBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LGSegmentBottomView.xib; sourceTree = "<group>"; };
+		888BD19C2138D290005417A4 /* DJUcMyUploadPYQListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyUploadPYQListController.h; sourceTree = "<group>"; };
+		888BD19D2138D290005417A4 /* DJUcMyUploadPYQListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyUploadPYQListController.m; sourceTree = "<group>"; };
+		888BD19F2138D84E005417A4 /* DJUcMyUploadMindReportListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyUploadMindReportListController.h; sourceTree = "<group>"; };
+		888BD1A02138D84E005417A4 /* DJUcMyUploadMindReportListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyUploadMindReportListController.m; sourceTree = "<group>"; };
+		888BD1A22138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyUploadCheapSpeechListController.h; sourceTree = "<group>"; };
+		888BD1A32138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyUploadCheapSpeechListController.m; sourceTree = "<group>"; };
 		888E3A6A211BDDD800ED2DA3 /* LGCountTimeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGCountTimeLabel.m; sourceTree = "<group>"; };
 		888E3A6B211BDDD800ED2DA3 /* LGCountTimeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGCountTimeLabel.h; sourceTree = "<group>"; };
 		888E3A6D211BF22900ED2DA3 /* LGFilePathManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFilePathManager.h; sourceTree = "<group>"; };
@@ -2315,8 +2315,8 @@
 			children = (
 				884312F72089C82800321F84 /* UCUploadHomePageViewController.h */,
 				884312F82089C82800321F84 /* UCUploadHomePageViewController.m */,
-				889E7DCA2099BAF400BB9084 /* other */,
 				88435E93208DCE7B00188CE9 /* sub */,
+				889E7DCA2099BAF400BB9084 /* other */,
 			);
 			path = userUpload;
 			sourceTree = "<group>";
@@ -2414,8 +2414,12 @@
 		88435E93208DCE7B00188CE9 /* sub */ = {
 			isa = PBXGroup;
 			children = (
-				88435E94208DD09500188CE9 /* UCPartyMemberStageController.h */,
-				88435E95208DD09500188CE9 /* UCPartyMemberStageController.m */,
+				888BD19C2138D290005417A4 /* DJUcMyUploadPYQListController.h */,
+				888BD19D2138D290005417A4 /* DJUcMyUploadPYQListController.m */,
+				888BD19F2138D84E005417A4 /* DJUcMyUploadMindReportListController.h */,
+				888BD1A02138D84E005417A4 /* DJUcMyUploadMindReportListController.m */,
+				888BD1A22138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.h */,
+				888BD1A32138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m */,
 				88435E98208DD2A200188CE9 /* model */,
 				88435E97208DD29D00188CE9 /* view */,
 			);
@@ -2425,7 +2429,6 @@
 		88435E97208DD29D00188CE9 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				889E7DB820998C2A00BB9084 /* cell */,
 				889E7DB920998D5100BB9084 /* UCUploadTransitionView.h */,
 				889E7DBA20998D5100BB9084 /* UCUploadTransitionView.m */,
 				889E7DBC20998DD200BB9084 /* UCUploadTransitionView.xib */,
@@ -2438,8 +2441,6 @@
 		88435E98208DD2A200188CE9 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				88435E99208DD2DB00188CE9 /* UCPartyMemberStageModel.h */,
-				88435E9A208DD2DB00188CE9 /* UCPartyMemberStageModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2902,15 +2903,6 @@
 				888F7D6A212ABD9F002B43CF /* LGKeepTimeLabel.m */,
 			);
 			path = upload;
-			sourceTree = "<group>";
-		};
-		889E7DB820998C2A00BB9084 /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				88435E9C208DD33900188CE9 /* UCPartyMemberStageCell.h */,
-				88435E9D208DD33900188CE9 /* UCPartyMemberStageCell.m */,
-			);
-			path = cell;
 			sourceTree = "<group>";
 		};
 		889E7DCA2099BAF400BB9084 /* other */ = {
@@ -4039,6 +4031,7 @@
 				88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */,
 				88BCEDF720C8FC0E00B5C1DB /* HPSearchHistoryView.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,
+				888BD19E2138D290005417A4 /* DJUcMyUploadPYQListController.m in Sources */,
 				882C61D92117F5A200C0D887 /* OLVoteDetailBottomTimeCell.m in Sources */,
 				882FC05721379877005F7187 /* DJUcMyCollectBranchListController.m in Sources */,
 				883D475320D9F1DE00FD9971 /* HPDigitalCollectionViewController.m in Sources */,
@@ -4079,7 +4072,6 @@
 				88C5F13E20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.m in Sources */,
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				88DD8142209C246B00F297D6 /* OLVoteDetailHeaderView.m in Sources */,
-				88435E96208DD09500188CE9 /* UCPartyMemberStageController.m in Sources */,
 				8885D23E20A2EC7600DC06A1 /* LGSegmentBottomView.m in Sources */,
 				88949C27211ECF8200B80AEE /* DJSearchReultVoteListController.m in Sources */,
 				88FE68BC209B05F5008C28A0 /* OLVoteListController.m in Sources */,
@@ -4145,7 +4137,6 @@
 				884EB43021073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.m in Sources */,
 				8851C64020F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.m in Sources */,
 				88176FDD210EAA15004B8F2F /* DJHomeSearchViewController.m in Sources */,
-				88435E9B208DD2DB00188CE9 /* UCPartyMemberStageModel.m in Sources */,
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
 				880363A920E4A31A00E97FA3 /* LGUserLimitsManager.m in Sources */,
@@ -4214,7 +4205,6 @@
 				88D13C542090442F00A32236 /* EDJDigitalCell.m in Sources */,
 				882FC036213679AC005F7187 /* DJUcMyCollectNewsModel.m in Sources */,
 				882FC02F2136777A005F7187 /* DJUcMyCollectLessonModel.m in Sources */,
-				88435E9E208DD33900188CE9 /* UCPartyMemberStageCell.m in Sources */,
 				882FC05121369AE7005F7187 /* DJUcMyCollectNewsListController.m in Sources */,
 				880363AC20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m in Sources */,
 				8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */,
@@ -4247,6 +4237,7 @@
 				88CD739A209959FD00E80058 /* HPBookInfoBaseCell.m in Sources */,
 				882AFCE1212FE05000DB8005 /* mp3Encoder.mm in Sources */,
 				8831E19A2094639E001D038E /* UCLoginViewController.m in Sources */,
+				888BD1A12138D84E005417A4 /* DJUcMyUploadMindReportListController.m in Sources */,
 				884EB402210174E6005D5CA9 /* DJThreemeetListViewController.m in Sources */,
 				882FBFBA2134DF73005F7187 /* LGSwitchViewController.m in Sources */,
 				88BCEDC520C63EBF00B5C1DB /* LGBaseCollectionView.m in Sources */,
@@ -4365,6 +4356,7 @@
 				886A1BF720D101700007AD63 /* HPNetworkFailureView.m in Sources */,
 				889C6ABF21229FF9002404C5 /* UCUploadPyqViewController.m in Sources */,
 				882FC04421367B59005F7187 /* DJUcMyCollectTableViewCell.m in Sources */,
+				888BD1A42138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m in Sources */,
 				884EB41521030328005D5CA9 /* DJUploadMindReportCoverCell.m in Sources */,
 				889FCD1920B3E6050045746D /* DCRichTextBottomInfoView.m in Sources */,
 				88BA90C220F4510B007DD4B4 /* DJInputContentViewController.m in Sources */,

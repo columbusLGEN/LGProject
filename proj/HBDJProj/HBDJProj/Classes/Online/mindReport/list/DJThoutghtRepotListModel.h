@@ -13,10 +13,9 @@
 
 @interface DJThoutghtRepotListModel : DJThemeMeetingsModel
 
-//@property (strong,nonatomic) NSString *title;
-//@property (strong,nonatomic) NSString *createdtime;
-//@property (strong,nonatomic) NSString *uploader;
-//@property (strong,nonatomic) NSString *fileurl;
-@property (strong,nonatomic) NSString *content;
+/** YES:编辑状态. NO:默认状态 */
+@property (assign,nonatomic) BOOL edit;
+/** 选中状态 */
+@property (assign,nonatomic) BOOL select;
 
 @end

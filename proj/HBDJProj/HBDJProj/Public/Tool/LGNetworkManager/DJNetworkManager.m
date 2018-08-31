@@ -9,8 +9,6 @@
 #import "DJNetworkManager.h"
 #import "LGNetworkCache.h"
 
-static NSString *param_key_userid = @"userid";
-
 @interface DJNetworkManager ()
 @property (strong,nonatomic) NSString *baseUrl;
 @property (strong,nonatomic) NSString *pakageName;
@@ -22,7 +20,7 @@ static NSString *param_key_userid = @"userid";
 - (void)uploadFileWithLocalFileUrl:(NSURL *)localFileUrl mimeType:(NSString *)mimeType uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadFileSuccess)success failure:(LGUploadImageFailure)failure{
     
     NSString *url = [self urlStringWithiName:@"frontUserinfo/uploadFile"];
-    NSDictionary *param = @{@"userid":[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""};
+    NSDictionary *param = @{userid_key:[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""};
     
     [[LGNetworkManager sharedInstance] lg_uploadFileWithUrl:url param:param localFileUrl:localFileUrl fieldName:@"pic" fileName:@"" mimeType:mimeType uploadProgress:progress success:success failure:failure];
 }
@@ -30,7 +28,7 @@ static NSString *param_key_userid = @"userid";
 - (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
     
     NSString *url = [self urlStringWithiName:@"frontUserinfo/uploadFile"];
-    NSDictionary *param = @{@"userid":[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""};
+    NSDictionary *param = @{userid_key:[DJUser sharedInstance].userid,@"pic":@"",@"filename":@""};
     
     [[LGNetworkManager sharedInstance] uploadImageWithUrl:url param:param localFileUrl:localFileUrl fieldName:@"pic" fileName:@"" uploadProgress:progress success:success failure:failure];
 }
@@ -42,7 +40,7 @@ static NSString *param_key_userid = @"userid";
     /// 添加统一参数
     NSMutableDictionary *paramMutable = [self unitParamDictWithDict:param];
     if (!needUserid) {
-        [paramMutable removeObjectForKey:param_key_userid];
+        [paramMutable removeObjectForKey:userid_key];
     }
     
     /// 拼接请求链接
@@ -206,8 +204,8 @@ static NSString *param_key_userid = @"userid";
     paramMutable[@"imei"] = @"imei";
     paramMutable[@"imsi"] = @"imsi";
     /// 如果没有userid这个键，添加userid，以便测试时，其他接口指定userid
-    if (![paramMutable.allKeys containsObject:param_key_userid]) {
-        paramMutable[param_key_userid] = [DJUser sharedInstance].userid;
+    if (![paramMutable.allKeys containsObject:userid_key]) {
+        paramMutable[userid_key] = [DJUser sharedInstance].userid;
     }
     return paramMutable;
 }

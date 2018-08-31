@@ -31,7 +31,7 @@
 - (void)setModel:(UCMsgModel *)model{
     _model = model;
     _content.text = model.content;
-    
+    NSLog(@"setmsgmodel: %@",model.content);
 }
 
 - (void)awakeFromNib {

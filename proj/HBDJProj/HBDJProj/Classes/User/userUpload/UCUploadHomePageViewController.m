@@ -7,10 +7,11 @@
 //
 
 #import "UCUploadHomePageViewController.h"
-#import "UCPartyMemberStageController.h"
-#import "UCPartyMemberStageModel.h"
 #import "UCUploadTransitionView.h"
 #import "LGSegmentBottomView.h"
+#import "DJUcMyUploadPYQListController.h"
+#import "DJUcMyUploadMindReportListController.h"
+#import "DJUcMyUploadCheapSpeechListController.h"
 
 @interface UCUploadHomePageViewController ()<
 UCUploadTransitionViewDelegate,
@@ -35,9 +36,18 @@ LGSegmentBottomViewDelegate
     self.isEditState = NO;
 
     /// nav item
-    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_icon_remove"] style:UIBarButtonItemStyleDone target:self action:@selector(navDeleteClick)];
+
+    UIButton *deButton = UIButton.new;
+    [deButton setImage:[UIImage imageNamed:@"home_icon_remove"] forState:UIControlStateNormal];
+    [deButton setImage:[UIImage new] forState:UIControlStateSelected];
+    [deButton setTitle:@"取消" forState:UIControlStateSelected];
+    [deButton setTitleColor:UIColor.EDJGrayscale_11 forState:UIControlStateSelected];
+    [deButton addTarget:self action:@selector(navDeleteClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *right = [UIBarButtonItem.alloc initWithCustomView:deButton];
+    
     UIBarButtonItem *upload = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"uc_icon_nav_item_upload"] style:UIBarButtonItemStyleDone target:self action:@selector(navUploadClick)];
-    self.navigationItem.rightBarButtonItems = @[upload,delete];
+    self.navigationItem.rightBarButtonItems = @[upload,right];
 }
 
 #pragma mark - UCUploadTransitionViewDelegate
@@ -72,30 +82,41 @@ LGSegmentBottomViewDelegate
 - (void)setIsEditState:(BOOL)isEditState{
     _isEditState = isEditState;
     self.isEdit = isEditState;/// 父类属性
+    
+    DJUcMyUploadPYQListController *mupyqvc = self.childViewControllers[0];
+    DJUcMyUploadMindReportListController *mumrvc = self.childViewControllers[1];
+    DJUcMyUploadCheapSpeechListController *mucsvc = self.childViewControllers[2];
+    if (isEditState) {
+        [mupyqvc startEdit];
+        [mumrvc startEdit];
+        [mucsvc startEdit];
+        
+    }else{
+        [mupyqvc endEdit];
+        [mumrvc endEdit];
+        [mucsvc endEdit];
+    }
+    
 }
 
 #pragma mark - target
 /// MARK: 进入编辑状态
-- (void)navDeleteClick{
+- (void)navDeleteClick:(UIButton *)sender{
+    sender.selected = !sender.selected;
     /// TODO: 判断当前位置，党员舞台，思想汇报，述廉报告 分别处理
     if (!self.isEditState) {
         self.isEditState = YES;
-        [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj startEdit];
-        }];
+        
     }else{
         self.isEditState = NO;
-        [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj endEdit];
-        }];
+        
     }
 }
 
 #pragma mark - LGSegmentBottomViewDelegate
 - (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
-    [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj allSelect];
-    }];
+    /// TODO: 全选
+    
     
 }
 - (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
@@ -114,25 +135,23 @@ LGSegmentBottomViewDelegate
     /// TODO: 切换分页，或者刷新的时候 恢复默认状态
     if (self.isEditState) {
         self.isEditState = NO;
-        [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UCPartyMemberStageController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj endEdit];
-        }];
+        
     }
 }
 
 #pragma mark - getter
 - (NSArray<NSDictionary *> *)segmentItems{
     return @[@{LGSegmentItemNameKey:@"党员舞台",
-               LGSegmentItemViewControllerClassKey:@"UCPartyMemberStageController",
-               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeStoryboard
+               LGSegmentItemViewControllerClassKey:@"DJUcMyUploadPYQListController",
+               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"思想汇报",
-               LGSegmentItemViewControllerClassKey:@"UCPartyMemberStageController",
-               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeStoryboard
+               LGSegmentItemViewControllerClassKey:@"DJUcMyUploadMindReportListController",
+               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"述廉报告",
-               LGSegmentItemViewControllerClassKey:@"UCPartyMemberStageController",
-               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeStoryboard
+               LGSegmentItemViewControllerClassKey:@"DJUcMyUploadCheapSpeechListController",
+               LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                }];
 }
 

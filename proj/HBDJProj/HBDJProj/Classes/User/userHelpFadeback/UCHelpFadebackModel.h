@@ -11,5 +11,11 @@
 @interface UCHelpFadebackModel : LGBaseModel
 
 @property (assign,nonatomic) BOOL showTimeLabel;
+@property (strong,nonatomic) NSString *answer;
+@property (strong,nonatomic) NSString *title;
+
+//"resourcestate":"1",
+//"seqid":7,
+//"status":1
 
 @end

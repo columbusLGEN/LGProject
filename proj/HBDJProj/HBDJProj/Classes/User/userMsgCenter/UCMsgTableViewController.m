@@ -18,13 +18,15 @@ UITableViewDelegate,
 UITableViewDataSource>
 @property (strong,nonatomic) UITableView *msgListView;
 @property (strong,nonatomic) LGSegmentBottomView *allSelectView;
-@property (strong,nonatomic) NSMutableArray *array;
+@property (strong,nonatomic) NSArray *array;
 /** 是否编辑状态 */
 @property (assign,nonatomic) BOOL edit;
 
 @end
 
-@implementation UCMsgTableViewController
+@implementation UCMsgTableViewController{
+    NSInteger offset;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -56,15 +58,61 @@ UITableViewDataSource>
     [dbtn addTarget:self action:@selector(removeMsg:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButton = [UIBarButtonItem.alloc initWithCustomView:dbtn];
     self.navigationItem.rightBarButtonItem = rightButton;
+
+    _array = @[];
     
-    _array = [NSMutableArray arrayWithCapacity:10];
-    for (int i = 0; i < 20; i++) {
-        UCMsgModel *model = [UCMsgModel new];
-        model.content = @"科目渡无人科目渡无人科目渡无人科目渡无人科目渡无人科目渡无人科目渡无人科目渡无人科目渡无人";
-        model.isEdit = NO;
-        [_array addObject:model];
-    }
-    [self.msgListView reloadData];
+    self.msgListView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        offset = 0;
+        [self.msgListView.mj_footer resetNoMoreData];
+        [self getData];
+    }];
+    
+    self.msgListView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    
+    [self.msgListView.mj_header beginRefreshing];
+}
+
+- (void)getData{
+    [DJUserNetworkManager.sharedInstance frontUserNotice_selectWithOffset:offset success:^(id responseObj) {
+       
+        if (offset == 0) {
+            [self.msgListView.mj_header endRefreshing];
+        }else{
+            [self.msgListView.mj_footer endRefreshing];
+        }
+        
+        
+        NSArray *keyvalueArray = responseObj;
+        if (keyvalueArray == nil || keyvalueArray.count == 0) {
+            [self.msgListView.mj_footer endRefreshingWithNoMoreData];
+            return;
+        }else{
+            
+            NSMutableArray *arrmu;
+            if (offset == 0) {
+                arrmu = NSMutableArray.new;
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.array];
+            }
+            
+            for (NSInteger i = 0; i < keyvalueArray.count; i++) {
+                UCMsgModel *model = [UCMsgModel mj_objectWithKeyValues:keyvalueArray[i]];
+                [arrmu addObject:model];
+            }
+            
+            self.array = arrmu.copy;
+            offset = self.array.count;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.msgListView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        [self.msgListView.mj_header endRefreshing];
+        [self.msgListView.mj_footer endRefreshing];
+    }];
 }
 
 - (void)setEdit:(BOOL)edit{

@@ -6,12 +6,13 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGBaseTableViewCell.h"
+#import "DJUcMyCollectTableViewCell.h"
 @class DJThoutghtRepotListModel;
 
 static NSString * const thoughtRepotrListCell = @"DJThoutghtRepotListTableViewCell";
 
-@interface DJThoutghtRepotListTableViewCell : LGBaseTableViewCell
+@interface DJThoutghtRepotListTableViewCell : DJUcMyCollectTableViewCell
 @property (strong,nonatomic) DJThoutghtRepotListModel *model;
+@property (strong,nonatomic) DJThoutghtRepotListModel *ucmuModel;
 
 @end

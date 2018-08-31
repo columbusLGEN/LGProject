@@ -8,7 +8,7 @@
 
 #import "DJUcMyCollectQAListController.h"
 #import "UCQuestionTableViewCell.h"
-#import "DJDiscoveryNetworkManager.h"
+#import "DJUserNetworkManager.h"
 #import "UCQuestionModel.h"
 #import "DJUserInteractionMgr.h"
 #import "LGSocialShareManager.h"
@@ -28,26 +28,15 @@ UCQuestionTableViewCellDelegate>
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     self.tableView.estimatedRowHeight = 1.0;
     
-    NSMutableArray *arr = [NSMutableArray new];
-    for (int i = 0; i < 15; i++) {
-        UCQuestionModel *model = [UCQuestionModel new];
-        model.question = @"我的收藏学习问答测试";
-        model.label = @"党风廉政,思想汇报,个人中心";
-        model.answer = @"可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔可是我你温柔";
-        [arr addObject:model];
-    }
-    self.dataArray = arr.copy;
-    
-//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        self.offset = 0;
-//        [self.tableView.mj_footer resetNoMoreData];
-//        [self getData];
-//    }];
-//
-//
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        [self getData];
-//    }];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
+        [self getData];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)setDataArray:(NSArray *)dataArray{
@@ -59,44 +48,44 @@ UCQuestionTableViewCellDelegate>
 }
 
 - (void)getData{
-//    [DJDiscoveryNetworkManager.sharedInstance frontQuestionanswer_selectmechanismWithOffset:self.offset success:^(id responseObj) {
-//        NSArray *array = responseObj;
-//
-//        if (self.offset == 0) {
-//            [self.tableView.mj_footer resetNoMoreData];
-//            [self.tableView.mj_header endRefreshing];
-//        }
-//
-//        if (array == nil || array.count == 0) {
-//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//            return;
-//        }else{
-//            [self.tableView.mj_footer endRefreshing];
-//
-//            NSMutableArray *arrmu;
-//            if (self.offset == 0) {
-//                arrmu = NSMutableArray.new;
-//            }else{
-//                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
-//            }
-//
-//            for (NSInteger i = 0; i < array.count; i++) {
-//                UCQuestionModel *model = [UCQuestionModel mj_objectWithKeyValues:array[i]];
-//                [arrmu addObject:model];
-//            }
-//            self.dataArray = arrmu.copy;
-//            self.offset = self.dataArray.count;
-//
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                [self.tableView reloadData];
-//            }];
-//        }
-//
-//    } failure:^(id failureObj) {
-//        [self.tableView.mj_header endRefreshing];
-//        [self.tableView.mj_footer endRefreshing];
-//
-//    }];
+    [DJUserNetworkManager.sharedInstance frontUserCollections_selectWithType:3 offset:self.offset success:^(id responseObj) {
+        NSArray *array = responseObj;
+
+        if (self.offset == 0) {
+            [self.tableView.mj_footer resetNoMoreData];
+            [self.tableView.mj_header endRefreshing];
+        }
+
+        if (array == nil || array.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            return;
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+
+            NSMutableArray *arrmu;
+            if (self.offset == 0) {
+                arrmu = NSMutableArray.new;
+            }else{
+                arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            }
+
+            for (NSInteger i = 0; i < array.count; i++) {
+                UCQuestionModel *model = [UCQuestionModel mj_objectWithKeyValues:array[i]];
+                [arrmu addObject:model];
+            }
+            self.dataArray = arrmu.copy;
+            self.offset = self.dataArray.count;
+
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+
+    } failure:^(id failureObj) {
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+
+    }];
 }
 
 #pragma mark - Table view data source

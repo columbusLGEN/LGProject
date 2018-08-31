@@ -9,6 +9,10 @@
 #import "DJUserNetworkManager.h"
 #import "DJUser.h"
 
+static NSString * const newpassword_key = @"newpassword";
+static NSString * const phone_key = @"phone";
+static NSString * const password_key = @"password";
+
 @interface DJUserNetworkManager ()
 
 
@@ -16,33 +20,61 @@
 
 @implementation DJUserNetworkManager
 
+- (void)frontFeedback_selectWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontFeedback/select" param:@{} success:success failure:failure];
+}
+
+- (void)frontFeedback_selectIndexWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontFeedback/selectIndex" param:@{} success:success failure:failure];
+}
+
+- (void)frontUgc_selectWithUgctype:(DJOnlineUGCType)ugctype offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{ugctype_key:[NSString stringWithFormat:@"%ld",ugctype]};
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontUgc/select" param:param success:success failure:failure];
+}
+
+- (void)frontUserCollections_selectWithType:(DJMCType)type offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"type":[NSString stringWithFormat:@"%ld",type]};
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontUserCollections/select" param:param success:success failure:failure];
+}
+
+- (void)frontUserNotice_selectWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontUserNotice/select" param:@{} success:success failure:failure];
+    
+}
+
+
+- (void)frontQuestionanswer_selectWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontQuestionanswer/select" param:@{} success:success failure:failure];
+}
+
 - (void)frontUserinfo_selectSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     
     [self sendPOSTRequestWithiName:@"frontUserinfo/select" param:@{} success:success failure:failure];
 }
 - (void)userUpdatePwdWithOld:(NSString *)oldPwd newPwd:(NSString *)newPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"newpassword":newPwd,
-                            @"password":oldPwd};
+    NSDictionary *param = @{newpassword_key:newPwd,
+                            password_key:oldPwd};
     [self sendTableWithiName:@"frontUserinfo/updatePwd" param:param needUserid:YES success:success failure:failure];
 }
 
 - (void)userForgetChangePwdWithPhone:(NSString *)phone newPwd:(NSString *)newPwd oldPwd:(NSString *)oldPwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"phone":phone,
-                            @"newpassword":newPwd,
-                            @"password":oldPwd
+    NSDictionary *param = @{phone_key:phone,
+                            newpassword_key:newPwd,
+                            password_key:oldPwd
                             };
     [self sendTableWithiName:@"frontUserinfo/forgetPwd" param:param needUserid:NO success:success failure:failure];
 }
 
 - (void)userVerrifiCodeWithPhone:(NSString *)phone code:(NSString *)code success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"phone":phone,
+    NSDictionary *param = @{phone_key:phone,
                             @"verifi":code
                             };
     [self sendTableWithiName:@"frontUserinfo/checkVerifi" param:param needUserid:NO success:success failure:failure];
     
 }
 - (void)userSendMsgWithPhone:(NSString *)phone success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"phone":phone};
+    NSDictionary *param = @{phone_key:phone};
     [self sendTableWithiName:@"frontUserinfo/sendMsg" param:param needUserid:NO success:success failure:failure];
 }
 
@@ -58,15 +90,15 @@
      token登录应该去掉，因为token是登陆成功服务器返回的，所以，这里的接口设计是错误的
      */
     
-    NSDictionary *param = @{@"phone":tel
-                            ,@"password":pwd_md5
+    NSDictionary *param = @{phone_key:tel
+                            ,password_key:pwd_md5
                             };
     [self sendTableWithiName:@"/frontUserinfo/login" param:param needUserid:NO success:success failure:failure];
 }
 - (void)userActivationWithTel:(NSString *)tel oldPwd:(NSString *)oldPwd pwd:(NSString *)pwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"phone":tel,
+    NSDictionary *param = @{phone_key:tel,
                             @"oldpassword":oldPwd,
-                            @"password":pwd
+                            password_key:pwd
                             };
     [self sendTableWithiName:@"/frontUserinfo/activation" param:param needUserid:NO success:success failure:failure];
 }
@@ -85,8 +117,8 @@
 }
 - (NSDictionary *)unitAddMemIdWithParam:(id)param{
     NSMutableDictionary *argu = [NSMutableDictionary dictionaryWithDictionary:param];
-    argu[@"mechanismid"] = [DJUser sharedInstance].mechanismid;
-    argu[@"userid"] = [DJUser sharedInstance].userid;
+    argu[mechanismid_key] = [DJUser sharedInstance].mechanismid;
+    argu[userid_key] = [DJUser sharedInstance].userid;
     return argu;
 }
 

@@ -8,12 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
-    DJOnlineUGCTypeStage = 1,/// 党员舞台
-    DJOnlineUGCTypeMindReport,/// 思想汇报
-    DJOnlineUGCTypeComponce,/// 述职述廉
-};
-
 @interface DJOnlineNetorkManager : NSObject
 
 /**
