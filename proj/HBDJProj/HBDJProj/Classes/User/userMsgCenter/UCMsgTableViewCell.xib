@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您所在的党支部发起了一条请点击查看" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2f-0M-kuK">
-                        <rect key="frame" x="57" y="39" width="520" height="80.5"/>
+                        <rect key="frame" x="57" y="39" width="515" height="55.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0039215686274509803" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -57,16 +57,34 @@
                             <constraint firstAttribute="height" constant="1" id="BTu-Yw-jXJ"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umJ-Sc-n0k">
+                        <rect key="frame" x="525" y="104.5" width="47" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="1rv-6G-2Ag"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="zBe-Eh-lyH"/>
+                        </constraints>
+                        <inset key="titleEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="55" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="展开" image="home_digital_book_info_arrow_down">
+                            <color key="titleColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <state key="selected" title="收起" image="home_digital_book_info_arrow_up"/>
+                        <connections>
+                            <action selector="showAll:" destination="KNr-uf-dzO" eventType="touchUpInside" id="Yaq-fR-HFO"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="MBa-qV-fh6" firstAttribute="top" secondItem="HCN-Vd-3EY" secondAttribute="top" constant="12" id="2RB-29-LXh"/>
                     <constraint firstItem="ujp-lN-TLo" firstAttribute="centerY" secondItem="MBa-qV-fh6" secondAttribute="centerY" id="2Ve-GD-bbz"/>
                     <constraint firstItem="ujp-lN-TLo" firstAttribute="leading" secondItem="MBa-qV-fh6" secondAttribute="trailing" constant="8" id="3W4-DK-ukp"/>
-                    <constraint firstAttribute="trailing" secondItem="L2f-0M-kuK" secondAttribute="trailing" constant="15" id="4LQ-qr-QFf"/>
+                    <constraint firstAttribute="trailing" secondItem="umJ-Sc-n0k" secondAttribute="trailing" constant="20" id="4PZ-ez-cfo"/>
                     <constraint firstAttribute="bottom" secondItem="91h-Zr-NWQ" secondAttribute="bottom" id="6xA-xm-VCq"/>
-                    <constraint firstItem="91h-Zr-NWQ" firstAttribute="top" secondItem="L2f-0M-kuK" secondAttribute="bottom" constant="15" id="7Sk-3e-B9Q"/>
+                    <constraint firstItem="L2f-0M-kuK" firstAttribute="trailing" secondItem="umJ-Sc-n0k" secondAttribute="trailing" id="C97-XM-vC6"/>
                     <constraint firstAttribute="trailing" secondItem="91h-Zr-NWQ" secondAttribute="trailing" id="GfL-B5-ZrS"/>
+                    <constraint firstItem="umJ-Sc-n0k" firstAttribute="top" secondItem="L2f-0M-kuK" secondAttribute="bottom" constant="10" id="Jak-qc-09D"/>
                     <constraint firstItem="91h-Zr-NWQ" firstAttribute="leading" secondItem="HCN-Vd-3EY" secondAttribute="leading" id="QYH-4y-yaO"/>
+                    <constraint firstItem="91h-Zr-NWQ" firstAttribute="top" secondItem="umJ-Sc-n0k" secondAttribute="bottom" constant="8" id="W75-Wm-Axk"/>
                     <constraint firstItem="L2f-0M-kuK" firstAttribute="top" secondItem="ujp-lN-TLo" secondAttribute="bottom" constant="10" id="bih-bs-qxd"/>
                     <constraint firstItem="MBa-qV-fh6" firstAttribute="leading" secondItem="w98-ZD-WdL" secondAttribute="trailing" constant="8" id="cqq-hf-Qto"/>
                     <constraint firstItem="w98-ZD-WdL" firstAttribute="centerY" secondItem="MBa-qV-fh6" secondAttribute="centerY" id="dbV-um-fgD"/>
@@ -79,14 +97,17 @@
             <connections>
                 <outlet property="alreadyReadIcon" destination="w98-ZD-WdL" id="NSn-Tn-E7c"/>
                 <outlet property="content" destination="L2f-0M-kuK" id="yIA-du-mtD"/>
+                <outlet property="showAllButton" destination="umJ-Sc-n0k" id="4nT-AQ-4Q8"/>
                 <outlet property="time" destination="AXQ-Ng-hlp" id="hGK-06-Oxf"/>
                 <outlet property="title" destination="ujp-lN-TLo" id="9V2-U5-F5p"/>
             </connections>
-            <point key="canvasLocation" x="-79" y="1"/>
+            <point key="canvasLocation" x="-74" y="3"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="home_digital_book_info_arrow_down" width="10" height="5"/>
+        <image name="home_digital_book_info_arrow_up" width="10" height="5"/>
         <image name="uc_icon_level" width="19" height="19"/>
-        <image name="uc_icon_msg_head" width="46" height="46"/>
+        <image name="uc_icon_msg_head" width="25" height="25"/>
     </resources>
 </document>

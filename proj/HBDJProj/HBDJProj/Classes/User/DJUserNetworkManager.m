@@ -20,8 +20,12 @@ static NSString * const password_key = @"password";
 
 @implementation DJUserNetworkManager
 
-- (void)frontIntegralGrade_add{
-    
+//- (void)frontIntegralGrade_add{
+//
+//}
+
+- (void)frontIntegralGrade_selectTaskSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontIntegralGrade/selectTask" param:@{} success:success failure:failure];
 }
 
 - (void)frontIntegralGrade_selectIntegralSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{

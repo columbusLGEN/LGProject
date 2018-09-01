@@ -8,6 +8,7 @@
 
 #import "EDJLevelInfoViewController.h"
 #import "EDJLeverInfoHeaderView.h"
+#import "EDJLevelInfoModel.h"
 
 static CGFloat headerHeight = 345;
 
@@ -68,10 +69,24 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
     
     [self.collectionView registerNib:[UINib nibWithNibName:reuseIdentifier bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     
-    _array = [EDJLevelInfoModel loadLocalPlistWithPlistName:@"LevelBonusRules"];
-    [self.collectionView reloadData];
+//    _array = [EDJLevelInfoModel loadLocalPlistWithPlistName:@"LevelBonusRules"];
+//    [self.collectionView reloadData];
     
     [DJUserNetworkManager.sharedInstance frontIntegralGrade_selectIntegralSuccess:^(id responseObj) {
+        NSArray *array = responseObj;
+        if (array == nil || array.count == 0) {
+            
+        }else{
+            NSMutableArray *arrmu = NSMutableArray.new;
+            for (NSInteger i = 0; i < array.count; i++) {
+                EDJLevelInfoModel *model = [EDJLevelInfoModel mj_objectWithKeyValues:array[i]];
+                [arrmu addObject:model];
+            }
+            self.array = arrmu.copy;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.collectionView reloadData];
+            }];
+        }
         
     } failure:^(id failureObj) {
         
@@ -113,11 +128,6 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
 
 @end
 
-@implementation EDJLevelInfoModel
-
-
-@end
-
 @interface EDJLevelInfoCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *itemTitle;
 @property (weak, nonatomic) IBOutlet UILabel *rate;
@@ -134,11 +144,12 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
 
 - (void)setModel:(EDJLevelInfoModel *)model{
     _model = model;
-    _itemTitle.text = model.itemTitle;
-    _rate.text = model.rate.stringValue;
+    _itemTitle.text = model.item;
+    _rate.text = model.integraldimension;
+    
     _unit.text = model.unit;
-    _bonus.text = model.score.stringValue;
-    _upperLimit.text = [NSString stringWithFormat:@"每日上限%@分",model.upperLimit];
+    _bonus.text = model.singleintegral;
+    _upperLimit.text = [NSString stringWithFormat:@"每日上限%@分",model.total];
 }
 
 - (void)awakeFromNib{

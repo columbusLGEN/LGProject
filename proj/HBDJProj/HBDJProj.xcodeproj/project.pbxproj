@@ -263,6 +263,7 @@
 		888BD19E2138D290005417A4 /* DJUcMyUploadPYQListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BD19D2138D290005417A4 /* DJUcMyUploadPYQListController.m */; };
 		888BD1A12138D84E005417A4 /* DJUcMyUploadMindReportListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BD1A02138D84E005417A4 /* DJUcMyUploadMindReportListController.m */; };
 		888BD1A42138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BD1A32138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m */; };
+		888BD1A7213A94DC005417A4 /* EDJLevelInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888BD1A6213A94DC005417A4 /* EDJLevelInfoModel.m */; };
 		888E3A6C211BDDD800ED2DA3 /* LGCountTimeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A6A211BDDD800ED2DA3 /* LGCountTimeLabel.m */; };
 		888E3A6F211BF22900ED2DA3 /* LGFilePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A6E211BF22900ED2DA3 /* LGFilePathManager.m */; };
 		888E3A72211D2B0000ED2DA3 /* OLTestBackLookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E3A71211D2B0000ED2DA3 /* OLTestBackLookModel.m */; };
@@ -982,6 +983,8 @@
 		888BD1A02138D84E005417A4 /* DJUcMyUploadMindReportListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyUploadMindReportListController.m; sourceTree = "<group>"; };
 		888BD1A22138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJUcMyUploadCheapSpeechListController.h; sourceTree = "<group>"; };
 		888BD1A32138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUcMyUploadCheapSpeechListController.m; sourceTree = "<group>"; };
+		888BD1A5213A94DC005417A4 /* EDJLevelInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJLevelInfoModel.h; sourceTree = "<group>"; };
+		888BD1A6213A94DC005417A4 /* EDJLevelInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJLevelInfoModel.m; sourceTree = "<group>"; };
 		888E3A6A211BDDD800ED2DA3 /* LGCountTimeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGCountTimeLabel.m; sourceTree = "<group>"; };
 		888E3A6B211BDDD800ED2DA3 /* LGCountTimeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGCountTimeLabel.h; sourceTree = "<group>"; };
 		888E3A6D211BF22900ED2DA3 /* LGFilePathManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGFilePathManager.h; sourceTree = "<group>"; };
@@ -2371,6 +2374,8 @@
 				884312A62086ED1200321F84 /* EDJLevelInfoFlowLayout.h */,
 				884312A72086ED1200321F84 /* EDJLevelInfoFlowLayout.m */,
 				88435E7A208DB43800188CE9 /* LevelBonusRules.plist */,
+				888BD1A5213A94DC005417A4 /* EDJLevelInfoModel.h */,
+				888BD1A6213A94DC005417A4 /* EDJLevelInfoModel.m */,
 				88435E7E208DBC9500188CE9 /* view */,
 			);
 			path = main;
@@ -4303,6 +4308,7 @@
 				884EB42D21073DD7005D5CA9 /* DJThoughtReportDetailTextCell.m in Sources */,
 				88D13C2A2090138100A32236 /* EDJSearchTagModel.m in Sources */,
 				8831E19320944BD7001D038E /* DCWriteQuestionViewController.m in Sources */,
+				888BD1A7213A94DC005417A4 /* EDJLevelInfoModel.m in Sources */,
 				883E082B20CA7DCB00BB62BA /* LGLocalSearchRecord.m in Sources */,
 				88D13C69209063F000A32236 /* OLAddMoreToolViewController.m in Sources */,
 				88DD8126209C0B4E00F297D6 /* OLVoteDetailModel.m in Sources */,

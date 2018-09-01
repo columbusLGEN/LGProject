@@ -13,7 +13,13 @@ static NSString * const msgEditCell = @"UCMsgEditTableViewCell";
 
 @class UCMsgModel;
 
+@protocol UCMsgTableViewCellDelegate <NSObject>
+- (void)ucmsgCellShowAllWithIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface UCMsgTableViewCell : LGBaseTableViewCell
 @property (strong,nonatomic) UCMsgModel *model;
+@property (weak,nonatomic) id<UCMsgTableViewCellDelegate> delegate;
 
 @end

@@ -24,16 +24,24 @@ UITableViewDelegate>
     self.title = @"今日加分";
     
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
-    NSMutableArray *arrMu = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
-        EDJTotayScoreModel *model = [EDJTotayScoreModel new];
-        model.item = @"登录";
-        model.rate = @"1次";
-        model.score = @(5);
-        [arrMu addObject:model];
-    }
-    self.array = arrMu.copy;
-    [self.tableView reloadData];
+    
+    [DJUserNetworkManager.sharedInstance frontIntegralGrade_selectTaskSuccess:^(id responseObj) {
+        NSArray *array = responseObj;
+        if (!(array == nil || array.count == 0)) {
+            NSMutableArray *arrmu = NSMutableArray.new;
+            for (NSInteger i = 0; i < array.count; i++) {
+                EDJTotayScoreModel *model = [EDJTotayScoreModel mj_objectWithKeyValues:array[i]];
+                [arrmu addObject:model];
+            }
+            self.array = arrmu.copy;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        
+    }];
 }
 
 

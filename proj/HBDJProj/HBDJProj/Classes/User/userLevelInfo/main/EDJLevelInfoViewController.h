@@ -7,19 +7,10 @@
 //
 
 #import "LGBaseViewController.h"
-#import "LGBaseModel.h"
+
+@class EDJLevelInfoModel;
 
 @interface EDJLevelInfoViewController : LGBaseViewController
-
-@end
-
-
-@interface EDJLevelInfoModel : LGBaseModel
-@property (copy,nonatomic) NSString *itemTitle;
-@property (strong,nonatomic) NSNumber *rate;
-@property (copy,nonatomic) NSString *unit;
-@property (strong,nonatomic) NSNumber *score;
-@property (strong,nonatomic) NSNumber *upperLimit;
 
 @end
 

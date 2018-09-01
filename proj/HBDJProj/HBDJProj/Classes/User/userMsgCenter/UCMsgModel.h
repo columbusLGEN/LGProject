@@ -34,4 +34,7 @@ typedef NS_ENUM(NSUInteger, UCMsgModelResourceType) {
 /** 源id */
 @property (assign,nonatomic) NSInteger resourceid;
 
+@property (assign,nonatomic) BOOL showAll;
+@property (strong,nonatomic) NSIndexPath *indexPath;
+
 @end

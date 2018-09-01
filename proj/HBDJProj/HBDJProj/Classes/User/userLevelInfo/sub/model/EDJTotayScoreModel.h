@@ -6,11 +6,9 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "LGBaseModel.h"
+#import "EDJLevelInfoModel.h"
 
-@interface EDJTotayScoreModel : LGBaseModel
-@property (copy,nonatomic) NSString *item;
-@property (strong,nonatomic) NSString *rate;
-@property (strong,nonatomic) NSNumber *score;
+@interface EDJTotayScoreModel : EDJLevelInfoModel
+
 
 @end

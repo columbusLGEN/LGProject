@@ -15,7 +15,8 @@
 @interface UCMsgTableViewController ()<
 LGSegmentBottomViewDelegate,
 UITableViewDelegate,
-UITableViewDataSource>
+UITableViewDataSource,
+UCMsgTableViewCellDelegate>
 @property (strong,nonatomic) UITableView *msgListView;
 @property (strong,nonatomic) LGSegmentBottomView *allSelectView;
 @property (strong,nonatomic) NSArray *array;
@@ -158,7 +159,9 @@ UITableViewDataSource>
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UCMsgModel *model = _array[indexPath.row];
+    model.indexPath = indexPath;
     UCMsgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[UCMsgTableViewCell cellReuseIdWithModel:model]];
+    cell.delegate = self;
     cell.model = model;
     return cell;
 }
@@ -173,6 +176,11 @@ UITableViewDataSource>
         }
         [self.msgListView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
+}
+
+#pragma mark - UCMsgTableViewCellDelegate
+- (void)ucmsgCellShowAllWithIndexPath:(NSIndexPath *)indexPath{
+    [self.msgListView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (UITableView *)msgListView{

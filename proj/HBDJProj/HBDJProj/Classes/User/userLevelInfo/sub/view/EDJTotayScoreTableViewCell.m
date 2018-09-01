@@ -13,15 +13,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *item;
 @property (weak, nonatomic) IBOutlet UILabel *score;
 
-
 @end
 
 @implementation EDJTotayScoreTableViewCell
 
 - (void)setModel:(EDJTotayScoreModel *)model{
     _model = model;
-    _item.text = [NSString stringWithFormat:@"%@(%@)",model.item,model.rate];
-    _score.text = [NSString stringWithFormat:@"+%@分",model.score];
+    _item.text = [NSString stringWithFormat:@"%@(%@%@)",model.item,model.integraldimension,model.unit];
+    _score.text = [NSString stringWithFormat:@"+%@分",model.singleintegral];
 }
 
 - (void)awakeFromNib {
