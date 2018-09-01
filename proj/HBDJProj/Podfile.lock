@@ -33,12 +33,15 @@ PODS:
     - DTFoundation/Core
   - HXWeiboPhotoPicker (2.1.5):
     - SDWebImage (~> 4.0)
+  - JCore (1.2.2)
   - JGProgressHUD (2.0.3)
+  - JPush (3.1.0):
+    - JCore (~> 1.2.0)
   - LTScrollView (0.1.8)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.15.1)
-  - MJRefresh (3.1.15.3)
+  - MJRefresh (3.1.15.6)
   - MMMaterialDesignSpinner (0.2.5)
   - PLPlayerKit (3.3.2):
     - PLPlayerKit/iphoneos (= 3.3.2)
@@ -85,6 +88,7 @@ DEPENDENCIES:
   - DTCoreText
   - HXWeiboPhotoPicker (~> 2.1.5)
   - JGProgressHUD
+  - JPush
   - LTScrollView (~> 0.1.6)
   - Masonry
   - MBProgressHUD (~> 1.1.0)
@@ -109,7 +113,9 @@ SPEC REPOS:
     - DTCoreText
     - DTFoundation
     - HXWeiboPhotoPicker
+    - JCore
     - JGProgressHUD
+    - JPush
     - LTScrollView
     - Masonry
     - MBProgressHUD
@@ -130,12 +136,14 @@ SPEC CHECKSUMS:
   DTCoreText: e5d688cffc9f6a61eddd1a4f94e2046851230de3
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
   HXWeiboPhotoPicker: b389ed6a2f854270aa391c55591d0616a519c881
+  JCore: f14c0549968a63c22e246a4875aa9d428446f373
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  JPush: 5921e25ad13e0386351079217b009f2039084eac
   LTScrollView: f3ffd9bc0094709e05bfbb8bd902c5dd4e4fe1c5
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  MJRefresh: 0efa19656679d70a0f47cbe76e56c2271fe53a97
   MMMaterialDesignSpinner: a548042720c2e5f04212048483085d7942ac3e81
   PLPlayerKit: 70b3866a615de26030e9c81316f6807b1a8b1808
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
@@ -146,6 +154,6 @@ SPEC CHECKSUMS:
   XHNetworkCache: 6050436268cb44be215ff5cbbe17b87901de649c
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 70cd17967133898e0843345fa6aad422f968f8d6
+PODFILE CHECKSUM: 97da1d85d27e35b570e2f7f319ed0e5b271893e6
 
 COCOAPODS: 1.5.2

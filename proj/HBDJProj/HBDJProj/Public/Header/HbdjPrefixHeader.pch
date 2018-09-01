@@ -49,6 +49,8 @@
 /// QQ appId 的 16进制 0x41FAFE22
 #define DJQQAppKey       @"knMRvC2zPQqhJVLD"
 //cace94b565ab427db78517fcdb21ff2c
+#define JPUSHAppKey @"ef68dc739077ccd5bb68451b"
+#define JPUSHSecret @"de652153017daa1aafb1747a"
 
 #endif /* HbdjPrefixHeader_pch */
 

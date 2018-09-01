@@ -20,6 +20,7 @@ pod 'JGProgressHUD'#playerView 需要用到
 pod 'MMMaterialDesignSpinner'#playerView 需要用到
 pod 'LTScrollView', '~> 0.1.6'#首页用
 pod 'WMPlayer'
+pod 'JPush'
 
 
 # UM基础sdk

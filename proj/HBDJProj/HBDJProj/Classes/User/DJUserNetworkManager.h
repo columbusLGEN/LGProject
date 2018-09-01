@@ -25,6 +25,8 @@ typedef NS_ENUM(NSUInteger, DJMCType) {
 
 @interface DJUserNetworkManager : NSObject
 
+/** 查看积分获取规则 */
+- (void)frontIntegralGrade_selectIntegralSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 等级介绍 */
 - (void)frontIntegralGrade_selectSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 提交反馈 */

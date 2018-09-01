@@ -24,6 +24,10 @@ static NSString * const password_key = @"password";
     
 }
 
+- (void)frontIntegralGrade_selectIntegralSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontIntegralGrade/selectIntegral" param:@{} success:success failure:failure];
+}
+
 - (void)frontIntegralGrade_selectSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [self sendPOSTRequestWithiName:@"frontIntegralGrade/select" param:@{} success:success failure:failure];
 }

@@ -70,6 +70,12 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
     
     _array = [EDJLevelInfoModel loadLocalPlistWithPlistName:@"LevelBonusRules"];
     [self.collectionView reloadData];
+    
+    [DJUserNetworkManager.sharedInstance frontIntegralGrade_selectIntegralSuccess:^(id responseObj) {
+        
+    } failure:^(id failureObj) {
+        
+    }];
 }
 
 #pragma mark <UICollectionViewDataSource>
