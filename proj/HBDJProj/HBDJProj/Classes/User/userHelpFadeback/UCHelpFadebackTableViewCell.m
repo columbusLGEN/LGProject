@@ -26,17 +26,11 @@ static CGFloat timeWidth = 85;
 - (void)setModel:(UCHelpFadebackModel *)model{
     _model = model;
     
-    model.title = @"推送的流程是这样的，程序运行起来以后，会判断是否这个程序要推送，如果要的话会需要将手机和推送证书生成的一个唯一标识字符串（decice token）传到我们自己的服务器去，服务器根据这个token和一个服务器端的证书文件一起将配合，将一个推送消息发给苹果的apns服务器，苹果根据这个token发送给指定的设备。所以只要你在服务器端将登录的用户的用户信息和这个token做一个关联，完全可以指定发给某一个人，而不是发给所有人。--某位网友";
+//    model.title = @"推送的流程是这样的，程序运行起来以后，会判断是否这个程序要推送，如果要的话会需要将手机和推送证书生成的一个唯一标识字符串（decice token）传到我们自己的服务器去，服务器根据这个token和一个服务器端的证书文件一起将配合，将一个推送消息发给苹果的apns服务器，苹果根据这个token发送给指定的设备。所以只要你在服务器端将登录的用户的用户信息和这个token做一个关联，完全可以指定发给某一个人，而不是发给所有人。--某位网友";
+//    model.answer = @"推送的流程是这样的，程序运行起来以后，会判断是否这个程序要推送，如果要的话会需要将手机和推送证书生成的一个唯一标识字符串（decice token）传到我们自己的服务器去，服务器根据这个token和一个服务器端的证书文件一起将配合，将一个推送消息发给苹果的apns服务器，苹果根据这个token发送给指定的设备。所以只要你在服务器端将登录的用户的用户信息和这个token做一个关联，完全可以指定发给某一个人，而不是发给所有人。--某位网友";
+    
     NSString *questionString = [@"问: " stringByAppendingString:model.title];
-    
-    model.answer = @"推送的流程是这样的，程序运行起来以后，会判断是否这个程序要推送，如果要的话会需要将手机和推送证书生成的一个唯一标识字符串（decice token）传到我们自己的服务器去，服务器根据这个token和一个服务器端的证书文件一起将配合，将一个推送消息发给苹果的apns服务器，苹果根据这个token发送给指定的设备。所以只要你在服务器端将登录的用户的用户信息和这个token做一个关联，完全可以指定发给某一个人，而不是发给所有人。--某位网友";
-    
-    CGFloat questionWidth;
-    if (model.showTimeLabel) {
-        questionWidth = kScreenWidth - marginLeft * 2 - timeWidth - 8;
-    }else{
-        questionWidth = kScreenWidth - marginLeft * 2;
-    }
+    CGFloat questionWidth = kScreenWidth - marginLeft * 2;
     
     CGFloat oneLineTitleHeight = 20.3;
     
@@ -47,8 +41,7 @@ static CGFloat timeWidth = 85;
     NSInteger numberOfLines = ceil(lines);
     
     _question.numberOfLines = numberOfLines;
-    NSLog(@"questionHeight: %f -- lines: %f -- %ld",questionHeight,lines,numberOfLines);
-    
+
     [_question mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(marginLeft);
         make.right.equalTo(self.contentView.mas_right).offset(-marginLeft);
@@ -61,15 +54,29 @@ static CGFloat timeWidth = 85;
     _answer.text = [@"答: " stringByAppendingString:model.answer];
     
     if (model.showTimeLabel) {
-        [_question mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView.mas_left).offset(marginLeft);
-            make.right.equalTo(self.time.mas_left).offset(-marginEight);
-            make.top.equalTo(self.contentView.mas_top).offset(marginTop);
-            make.height.mas_equalTo(lines * 20);
-        }];
+        
+//        [_question mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(self.contentView.mas_left).offset(marginLeft);
+//            make.right.equalTo(self.time.mas_left).offset(-marginEight);
+//            make.top.equalTo(self.contentView.mas_top).offset(marginTop);
+//            make.height.mas_equalTo(lines * 20);
+//        }];
         
         /// 显示 时间lable
         _time.text = [model.createdtime substringToIndex:length_timeString_1];
+        [self.answer mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.question.mas_bottom).offset(marginTen);
+            make.left.equalTo(self.question);
+            make.right.equalTo(self.contentView.mas_right).offset(-marginLeft);
+        }];
+    }else{
+        [self.time removeFromSuperview];
+        [self.answer mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.question.mas_bottom).offset(marginTen);
+            make.left.equalTo(self.question);
+            make.right.equalTo(self.contentView.mas_right).offset(-marginLeft);
+            make.bottom.equalTo(_line.mas_top).offset(-marginEight);
+        }];
     }
 }
 
@@ -105,6 +112,7 @@ static CGFloat timeWidth = 85;
         UIView *line = [[UIView alloc] initWithFrame:CGRectZero];
         line.backgroundColor = [UIColor EDJGrayscale_F3];
         [self.contentView addSubview:line];
+        _line = line;
 
         [question mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView.mas_left).offset(marginLeft);
@@ -114,16 +122,18 @@ static CGFloat timeWidth = 85;
         }];
 
         [time mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.contentView.mas_right).offset(-marginLeft);
-            make.top.equalTo(self.contentView.mas_top).offset(marginTop);
+            make.left.equalTo(self.answer);
+            make.top.equalTo(self.answer.mas_bottom).offset(marginEight);
             make.width.mas_equalTo(timeWidth);
+            make.height.mas_equalTo(20);
+            make.bottom.equalTo(line.mas_top).offset(-marginEight);
         }];
         
         [answer mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.question.mas_bottom).offset(marginTen);
             make.left.equalTo(self.question);
             make.right.equalTo(self.contentView.mas_right).offset(-marginLeft);
-            make.bottom.equalTo(line.mas_top).offset(-marginEight);
+//            make.bottom.equalTo(line.mas_top).offset(-marginEight);
         }];
         
         [line mas_makeConstraints:^(MASConstraintMaker *make) {

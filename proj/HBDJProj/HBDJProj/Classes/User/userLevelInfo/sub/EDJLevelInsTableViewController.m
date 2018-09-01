@@ -9,6 +9,7 @@
 #import "EDJLevelInsTableViewController.h"
 #import "view/EDJLevelInsTableViewCell.h"
 #import "model/EDJLevelInsModel.h"
+#import "DJUserNetworkManager.h"
 
 static NSString * const cellID = @"EDJLevelInsTableViewCell";
 
@@ -25,8 +26,30 @@ UITableViewDelegate>
     [super viewDidLoad];
     self.title = @"等级介绍";
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
-    self.array = [EDJLevelInsModel loadLocalPlistWithPlistName:@"EDJLevelIns"];
-    [self.tableView reloadData];
+//    self.array = [EDJLevelInsModel loadLocalPlistWithPlistName:@"EDJLevelIns"];
+    
+//    [self.tableView reloadData];
+    
+    [DJUserNetworkManager.sharedInstance frontIntegralGrade_selectSuccess:^(id responseObj) {
+        
+        NSArray *array = responseObj;
+        if (array == nil || array.count == 0) {
+            
+        }else{
+            NSMutableArray *arrmu = NSMutableArray.new;
+            for (NSInteger i = 0; i < array.count; i++) {
+                EDJLevelInsModel *model = [EDJLevelInsModel mj_objectWithKeyValues:array[i]];
+                [arrmu addObject:model];
+            }
+            self.array = arrmu.copy;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        
+    } failure:^(id failureObj) {
+        
+    }];
 }
 
 

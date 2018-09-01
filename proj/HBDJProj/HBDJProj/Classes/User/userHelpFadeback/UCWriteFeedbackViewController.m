@@ -9,6 +9,7 @@
 #import "UCWriteFeedbackViewController.h"
 #import <objc/runtime.h>
 #import "UITextView+Extension.h"
+#import "DJUserNetworkManager.h"
 
 @interface UCWriteFeedbackViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -36,6 +37,18 @@
 }
 
 - (IBAction)commit:(id)sender {
+    if ([_textView.text isEqualToString:@""] || _textView.text == nil) {
+        [self presentFailureTips:@"请输入您要反馈的内容"];
+        return;
+    }
+    [DJUserNetworkManager.sharedInstance frontFeedback_addWithTitle:_textView.text success:^(id responseObj) {
+        [self presentMessageTips:@"提交成功，请耐心等待管理员恢复"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self lg_dismissViewController];
+        });
+    } failure:^(id failureObj) {
+        [self presentFailureTips:@"提交失败，请检查网络后重试"];
+    }];
     
 }
 - (IBAction)cancel:(id)sender {

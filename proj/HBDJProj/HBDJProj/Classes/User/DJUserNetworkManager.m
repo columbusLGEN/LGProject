@@ -20,6 +20,19 @@ static NSString * const password_key = @"password";
 
 @implementation DJUserNetworkManager
 
+- (void)frontIntegralGrade_add{
+    
+}
+
+- (void)frontIntegralGrade_selectSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontIntegralGrade/select" param:@{} success:success failure:failure];
+}
+
+- (void)frontFeedback_addWithTitle:(NSString *)title success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"title":title};
+    [self sendPOSTRequestWithiName:@"frontFeedback/add" param:param success:success failure:failure];
+}
+
 - (void)frontFeedback_selectWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontFeedback/select" param:@{} success:success failure:failure];
 }

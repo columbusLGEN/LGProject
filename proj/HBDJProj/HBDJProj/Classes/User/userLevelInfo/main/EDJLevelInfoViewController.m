@@ -33,6 +33,7 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
     /// 修改标题颜色
     //    [self.navigationController.navigationBar setBarTintColor:UIColor.whiteColor];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setTranslucent:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

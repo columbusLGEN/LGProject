@@ -36,6 +36,8 @@ UITableViewDataSource>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"消息中心";
+    
     [self.view addSubview:self.msgListView];
     _allSelectView = [LGSegmentBottomView segmentBottom];
     _allSelectView.delegate = self;

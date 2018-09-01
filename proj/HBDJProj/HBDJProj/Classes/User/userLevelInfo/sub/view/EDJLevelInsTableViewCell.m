@@ -22,9 +22,10 @@
 
 - (void)setModel:(EDJLevelInsModel *)model{
     _model = model;
-    _level.text = model.level.stringValue;
-    _levelName.text = model.levelName;
-    _needsScore.text = model.needScore.stringValue;
+    _level.text = [model.grade stringValue];
+    _levelName.text = model.gradename;
+    _needsScore.text = model.neededintegral.stringValue;
+    
 }
 
 - (void)awakeFromNib {
