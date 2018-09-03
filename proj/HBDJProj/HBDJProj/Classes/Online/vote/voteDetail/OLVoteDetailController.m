@@ -68,16 +68,12 @@ OLVoteDetailHeaderViewDelegate>
     
     _optionIds = NSMutableArray.new;
     
-    /// TODO: 如果是已经投票的数据
-//    1.commited = YES      //
-//    2.显示正确的 cell 样式  //
-//    3.新增footer显示时间   //
-    NSLog(@"viewdidload: ");
+
 }
 
 - (void)setModel:(OLVoteListModel *)model{
     _model = model;
-    NSLog(@"setmodel: ");
+
     /**
         header 需要
         title
@@ -88,7 +84,13 @@ OLVoteDetailHeaderViewDelegate>
     OLVoteDetailHeaderModel *headerModel = [OLVoteDetailHeaderModel new];
     headerModel.title = model.title;
     headerModel.time = model.starttime;
-    headerModel.voteDescripetion = @"单选(匿名投票)";
+    
+    if (self.model.ismultiselect) {
+        headerModel.voteDescripetion = @"多选(匿名投票)";
+    }else{
+        headerModel.voteDescripetion = @"单选(匿名投票)";
+    }
+    
     _headerModel = headerModel;
     if ([self voteStatusIsDone:model.votestatus]) {
         headerModel.localStatus = VoteModelStatusVoted;
@@ -153,16 +155,45 @@ OLVoteDetailHeaderViewDelegate>
         OLVoteDetailModel *currentClickModel = self.dataArray[indexPath.row];
         _currentOption = currentClickModel;
         if (!_commited) {
-            for (OLVoteDetailModel *model in self.dataArray) {
-                if (model == currentClickModel) {
-                    model.localStatus = VoteModelStatusSelected;
-                    _selectedSomeItem = YES;
-                    [_optionIds addObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
+            
+            if (self.model.ismultiselect) {
+                /// 如果该选项已经被选中
+                if (currentClickModel.localStatus == VoteModelStatusSelected) {
+                    
+                    currentClickModel.localStatus = VoteModelStatusNormal;
+                    
+                }else if (currentClickModel.localStatus == VoteModelStatusNormal) {
+                    /// 如果该选项还未被选中
+                    currentClickModel.localStatus = VoteModelStatusSelected;
+                    
                 }else{
-                    model.localStatus = VoteModelStatusNormal;
-                    [_optionIds removeObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
+                    
+                }
+                
+                /// 循环所有选项模型，如果全部未选中，_selectedSomeItem 置为NO
+                [_optionIds removeAllObjects];
+                _selectedSomeItem = NO;
+                for (OLVoteDetailModel *model in self.dataArray) {
+                    if (model.localStatus == VoteModelStatusSelected) {
+                        _selectedSomeItem = YES;
+                        [_optionIds addObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
+                    }
+                }
+                
+            }else{
+                /// 单选
+                for (OLVoteDetailModel *model in self.dataArray) {
+                    if (model == currentClickModel) {
+                        model.localStatus = VoteModelStatusSelected;
+                        _selectedSomeItem = YES;
+                        [_optionIds addObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
+                    }else{
+                        model.localStatus = VoteModelStatusNormal;
+                        [_optionIds removeObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
+                    }
                 }
             }
+            
         }else{
             
         }
@@ -210,7 +241,7 @@ OLVoteDetailHeaderViewDelegate>
         
         
     }else{
-        NSLog(@"您未选中任何选项 -- ");
+        [self presentFailureTips:@"请至少选则一个选项"];
     }
 }
 

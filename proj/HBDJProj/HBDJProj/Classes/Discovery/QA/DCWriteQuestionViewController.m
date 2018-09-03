@@ -179,6 +179,11 @@ UICollectionViewDataSource>
         return;
     }
     
+    if (tag_ids.count == 0) {
+        [self presentFailureTips:@"请至少选择一个标签"];
+        return;
+    }
+    
     NSString *label = [tag_ids componentsJoinedByString:@","];
     [DJDiscoveryNetworkManager.sharedInstance frontQuestionanswer_addWithQuestion:_textView.text label:label success:^(id responseObj) {
         [self presentSuccessTips:uploadNeedsCheckString];
