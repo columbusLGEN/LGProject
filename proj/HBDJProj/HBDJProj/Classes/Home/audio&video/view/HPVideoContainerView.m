@@ -94,7 +94,22 @@ PLPlayerViewDelegate>
 //    [self setNeedsStatusBarAppearanceUpdate];
 }
 - (void)playerViewWillPlay:(PLPlayerView *)playerView;{
-//    NSLog(@"willplayyyyyyyyyyyyyyyy: ");
+//    可以执行一些播放前需要的操作
+    /// TODO: 非wifi播放提醒
+    
+    /// 通知代理,将playerview传给 控制器
+    
+    /// 在控制器的代理方法中,执行playerview的- (void)lg_play_before  和  - (void)lg_real_play;两个新方法
+    
+    [LGNoticer.new checkNetworkStatusWithBlock:^(BOOL notice) {
+        NSLog(@"noticenoticenotice: ");
+        if (notice) {
+            /// 提示用户当前为流量状态
+            
+        }else{
+            
+        }
+    }];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{

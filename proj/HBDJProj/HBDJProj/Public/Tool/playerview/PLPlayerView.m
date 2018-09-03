@@ -739,16 +739,35 @@ UIGestureRecognizerDelegate
 
 - (void)play {
     
-    /// TODO: 非wifi播放提醒
-    [LGNoticer.new checkNetworkStatusWithBlock:^(BOOL notice) {
-        if (notice) {
-            /// 提示用户当前为流量状态
-            
-        }else{
-            
-        }
-    }];
+//    if ([self.delegate respondsToSelector:@selector(lg_played)]) {
+//        [self.delegate lg_played];
+//    }
+//
+//    if (self.isNeedSetupPlayer) {
+//        [self setupPlayer];
+//        self.isNeedSetupPlayer = NO;
+//    }
+//    self.isStop = NO;
     
+    [self.delegate playerViewWillPlay:self];
+//    [self addFullStreenNotify];
+//    [self addTimer];
+//    [self resetButton:YES];
+//    
+//    if (!(PLPlayerStatusReady == self.player.status ||
+//        PLPlayerStatusOpen == self.player.status ||
+//        PLPlayerStatusCaching == self.player.status ||
+//        PLPlayerStatusPlaying == self.player.status ||
+//        PLPlayerStatusPreparing == self.player.status)
+//        ) {
+//        NSDate *date = [NSDate date];
+//        
+//        [self.player play];
+//        NSLog(@"play 耗时： %f s",[[NSDate date] timeIntervalSinceDate:date]);
+//    }
+}
+
+- (void)lg_play_before{
     if ([self.delegate respondsToSelector:@selector(lg_played)]) {
         [self.delegate lg_played];
     }
@@ -764,13 +783,16 @@ UIGestureRecognizerDelegate
     [self addTimer];
     [self resetButton:YES];
     
+}
+- (void)lg_real_play{
     if (!(PLPlayerStatusReady == self.player.status ||
-        PLPlayerStatusOpen == self.player.status ||
-        PLPlayerStatusCaching == self.player.status ||
-        PLPlayerStatusPlaying == self.player.status ||
-        PLPlayerStatusPreparing == self.player.status)
+          PLPlayerStatusOpen == self.player.status ||
+          PLPlayerStatusCaching == self.player.status ||
+          PLPlayerStatusPlaying == self.player.status ||
+          PLPlayerStatusPreparing == self.player.status)
         ) {
         NSDate *date = [NSDate date];
+        
         [self.player play];
         NSLog(@"play 耗时： %f s",[[NSDate date] timeIntervalSinceDate:date]);
     }

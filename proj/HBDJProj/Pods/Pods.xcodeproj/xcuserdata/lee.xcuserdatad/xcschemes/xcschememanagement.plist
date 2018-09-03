@@ -94,15 +94,20 @@
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
-		<key>XHNetworkCache.xcscheme</key>
+		<key>WMPlayer.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>18</integer>
 		</dict>
-		<key>YYText.xcscheme</key>
+		<key>XHNetworkCache.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>19</integer>
+		</dict>
+		<key>YYText.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
 		</dict>
 	</dict>
 </dict>

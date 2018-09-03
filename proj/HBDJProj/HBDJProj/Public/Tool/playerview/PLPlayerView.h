@@ -35,6 +35,10 @@
 
 - (void)resume;
 
+/// ---
+- (void)lg_play_before;
+- (void)lg_real_play;
+
 @end
 
 
