@@ -38,7 +38,6 @@
             make.left.equalTo(self.contentView.mas_left).offset(marginFifteen);
         }];
         self.seButon.selected = branchCollectModel.select;
-        self.seButon.selected = YES;
         [_contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.seButon.mas_right).offset(marginEight);
             make.top.equalTo(self.contentView.mas_top).offset(marginFifteen);

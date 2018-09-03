@@ -65,6 +65,12 @@
 - (void)checkNetworkStatusWithBlock:(void(^)(AFNetworkReachabilityStatus status))netsBlock{
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+        
+//        AFNetworkReachabilityStatusUnknown          = -1,/// 未识别的网络
+//        AFNetworkReachabilityStatusNotReachable     = 0,/// 不可达的网络，未连接
+//        AFNetworkReachabilityStatusReachableViaWWAN = 1,/// 2G，3G，4G
+//        AFNetworkReachabilityStatusReachableViaWiFi = 2,/// wifi
+        
         if (netsBlock) netsBlock(status);
     }];
     

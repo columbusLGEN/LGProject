@@ -25,7 +25,6 @@ static NSString * const threeImgCell = @"DCSubPartStateThreeImgCell";
 @interface DCSubPartStateBaseCell : DJUcMyCollectTableViewCell
 
 @property (strong,nonatomic) DCSubPartStateModel *model;
-
 @property (strong,nonatomic) DCSubPartStateModel *branchCollectModel;
 
 @property (weak,nonatomic) id<DCSubPartStateBaseCellDelegate> delegate;

@@ -101,18 +101,24 @@
     DCSubPartStateBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:[DCSubPartStateBaseCell cellReuseIdWithModel:branchCollectModel]];
     cell.delegate = self;
     cell.branchCollectModel = branchCollectModel;
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    /// 编辑状态 
+    if (self.lg_edit) {
+        /// 编辑状态
+        DCSubPartStateModel *model = self.dataArray[indexPath.row];
+        model.select = !model.select;
+    }else{
+        /// 普通状态
+        DCSubPartStateModel *model = self.dataArray[indexPath.row];
+        DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
+        dvc.model = model;
+        [self.navigationController pushViewController:dvc animated:YES];
+    }
     
-    /// 普通状态
-//    DCSubPartStateModel *model = self.dataArray[indexPath.row];
-//    DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
-//    dvc.model = model;
-//    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 - (void)branchLikeWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{

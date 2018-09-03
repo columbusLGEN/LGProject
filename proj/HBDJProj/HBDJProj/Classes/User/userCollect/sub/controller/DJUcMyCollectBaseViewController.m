@@ -17,12 +17,14 @@
 
 /// 继承自父类的方法
 - (void)startEdit{
+    self.lg_edit = YES;
     for (DJUcMyCollectModel *model in self.dataArray) {
         model.edit = YES;
     }
     [self.tableView reloadData];
 }
 - (void)endEdit{
+    self.lg_edit = NO;
     for (DJUcMyCollectModel *model in self.dataArray) {
         model.edit = NO;
     }

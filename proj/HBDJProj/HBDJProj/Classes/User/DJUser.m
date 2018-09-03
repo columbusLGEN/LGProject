@@ -105,6 +105,13 @@ static NSString *key_suffix = @"_dj";
     return _gender;
 }
 
+- (NSInteger)WIFI_playVideo_notice{
+    if (_WIFI_playVideo_notice == 0) {
+        _WIFI_playVideo_notice = 1;
+    }
+    return _WIFI_playVideo_notice;
+}
+
 + (instancetype)sharedInstance{
     static id instance;
     static dispatch_once_t once;

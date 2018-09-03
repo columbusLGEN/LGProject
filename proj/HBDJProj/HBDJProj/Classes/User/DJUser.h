@@ -96,4 +96,7 @@
 
 @property (strong,nonatomic) NSString *nationName;
 
+/** 非WIFI环境下播放视频提醒,如果用户没有设置,则提醒,0:用户未设置,1:提醒,2,不提醒 */
+@property (assign,nonatomic) NSInteger WIFI_playVideo_notice;
+
 @end

@@ -17,7 +17,8 @@ static NSString * const settingCell = @"UCSettingTableViewCell";
 static CGFloat cellHeight = 59;
 
 @interface UCSettingViewController ()<
-UITableViewDelegate>
+UITableViewDelegate,
+UCSettingTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak,nonatomic) UIButton *logOut;
 @property (strong,nonatomic) NSArray *array;
@@ -85,7 +86,7 @@ UITableViewDelegate>
     UCSettingModel *model = _array[indexPath.row];
     UCSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:settingCell forIndexPath:indexPath];
     cell.model = model;
-    
+    cell.delegate = self;
     return cell;
 }
 
@@ -103,12 +104,25 @@ UITableViewDelegate>
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }];
     }
-    if (model.contentType == 1) {/// 系统通知
-        UIAlertController *alertvc = [LGUserLimitsManager.new showSetPushNotificationAlertViewWithViewController:self];
-        [self presentViewController:alertvc animated:YES completion:nil];
-    }
+
     if ([model.itemName isEqualToString:@"修改密码"]) {
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"DJChangePwdViewController" animated:YES];
+    }
+}
+
+- (void)stCellClickSwitchWithModel:(UCSettingModel *)model sender:(UISwitch *)sender{
+    if (model.contentType == 1) {
+        if (model.subType == 0) {
+            /// 系统通知
+            UIAlertController *alertvc = [LGUserLimitsManager.new showSetPushNotificationAlertViewWithViewController:self cancelABlock:^(UIAlertAction * _Nonnull action) {
+                sender.on = !sender.on;
+            } doneBlock:nil];
+            [self presentViewController:alertvc animated:YES completion:nil];
+        }
+        if (model.subType == 1) {
+            /// 是否开启非wifi播放提醒
+            
+        }
     }
 }
 

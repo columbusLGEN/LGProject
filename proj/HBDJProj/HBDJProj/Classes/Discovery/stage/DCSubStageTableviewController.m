@@ -160,6 +160,8 @@ WMPlayerDelegate>
 /// MARK:播放视频
 - (void)pyqCellplayVideoWithModel:(DCSubStageModel *)model{
     
+    /// TODO: 非wifi播放提醒
+    
     WMPlayerModel *playerModel = [WMPlayerModel new];
 //    playerModel.title = model.title;
     playerModel.videoURL = [NSURL URLWithString:model.fileurl];

@@ -12,6 +12,8 @@
 #import "DJUcMyUploadPYQListController.h"
 #import "DJUcMyUploadMindReportListController.h"
 #import "DJUcMyUploadCheapSpeechListController.h"
+#import "UCUploadPyqViewController.h"
+#import "DJUploadMindReportController.h"
 
 @interface UCUploadHomePageViewController ()<
 UCUploadTransitionViewDelegate,
@@ -60,23 +62,34 @@ LGSegmentBottomViewDelegate
     utView = nil;
     switch (action) {
         case UploadTransitionActionMemeberStage:{
-            /// TODO:上传 党员舞台（朋友圈）
-            
+            UCUploadPyqViewController *upvc = UCUploadPyqViewController.new;
+            upvc.pushWay = LGBaseViewControllerPushWayModal;
+            LGBaseNavigationController *nav = [LGBaseNavigationController.alloc initWithRootViewController:upvc];
+            nav.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            [self presentViewController:nav animated:YES completion:nil];
 
         }
             break;
         case UploadTransitionActionMindReport:{
-            /// TODO:上 思想汇报
+            [self lg_presentUploadvcWithType:6];
             
         }
             break;
         case UploadTransitionActionSpeakCheap:{
-            /// TODO:上 述职述廉
+            [self lg_presentUploadvcWithType:7];
             
         }
             break;
         
     }
+}
+
+- (void)lg_presentUploadvcWithType:(NSInteger)listType{
+    DJUploadMindReportController *upvc = DJUploadMindReportController.new;
+    upvc.pushWay = LGBaseViewControllerPushWayModal;
+    upvc.listType = listType;
+    LGBaseNavigationController *nav = [LGBaseNavigationController.alloc initWithRootViewController:upvc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)setIsEditState:(BOOL)isEditState{

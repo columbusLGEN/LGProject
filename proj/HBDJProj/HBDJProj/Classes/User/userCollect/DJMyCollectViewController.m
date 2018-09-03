@@ -15,6 +15,7 @@
 #import "DJUcMyCollectPYQListController.h"
 
 @interface DJMyCollectViewController ()<LGSegmentBottomViewDelegate>
+@property (weak,nonatomic) UIButton *deButton;
 
 @end
 
@@ -26,6 +27,7 @@
     self.title = @"我的收藏";
     
     UIButton *deButton = UIButton.new;
+    _deButton = deButton;
     [deButton setImage:[UIImage imageNamed:@"home_icon_remove"] forState:UIControlStateNormal];
     [deButton setImage:[UIImage new] forState:UIControlStateSelected];
     [deButton setTitle:@"取消" forState:UIControlStateSelected];
@@ -39,16 +41,7 @@
 #pragma mark - LGSegmentBottomViewDelegate
 - (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
     /// TODO: 全选 删除操作 仅对当前所在列表生效
-    DJUcMyCollectLessonListController *mcllv = self.childViewControllers[0];
-    DJUcMyCollectNewsListController *mcnlvc = self.childViewControllers[1];
-    DJUcMyCollectQAListController *mcqalvc = self.childViewControllers[2];
-    DJUcMyCollectBranchListController *mcblvc = self.childViewControllers[3];
-    DJUcMyCollectPYQListController *mcpyqvc = self.childViewControllers[4];
-    [mcllv allSelect];
-    [mcnlvc allSelect];
-    [mcqalvc allSelect];
-    [mcblvc allSelect];
-    [mcpyqvc allSelect];
+    [self subvcPerformSelector:@selector(allSelect)];
 }
 - (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
     /// TODO: 删除
@@ -56,32 +49,39 @@
 }
 
 - (void)changeEditState:(UIButton *)sender{
-    /// TODO: 点击删除/取消
-    DJUcMyCollectLessonListController *mcllv = self.childViewControllers[0];
-    DJUcMyCollectNewsListController *mcnlvc = self.childViewControllers[1];
-    DJUcMyCollectQAListController *mcqalvc = self.childViewControllers[2];
-    DJUcMyCollectBranchListController *mcblvc = self.childViewControllers[3];
-    DJUcMyCollectPYQListController *mcpyqvc = self.childViewControllers[4];
+    
     sender.selected = !sender.isSelected;
     self.isEdit = sender.selected;
     if (sender.isSelected) {
-        [mcllv startEdit];
-        [mcnlvc startEdit];
-        [mcqalvc startEdit];
-        [mcblvc startEdit];
-        [mcpyqvc startEdit];
+        [self subvcPerformSelector:@selector(startEdit)];
     }else{
-        [mcllv endEdit];
-        [mcnlvc endEdit];
-        [mcqalvc endEdit];
-        [mcblvc endEdit];
-        [mcpyqvc endEdit];
+        [self subvcPerformSelector:@selector(endEdit)];
+    }
+}
+
+- (void)viewSwitched:(NSInteger)index{
+    if (self.isEdit) {
+        /// 结束编辑
+        self.isEdit = !self.isEdit;
+        _deButton.selected = NO;
+        [self subvcPerformSelector:@selector(endEdit)];
+    }
+}
+
+- (void)subvcPerformSelector:(SEL)action{
+    
+    /// 获取当前index
+    
+    /// 获取当前子控制器
+    
+    for (DJUcMyCollectBaseViewController *subvc in self.childViewControllers) {
+        [subvc performSelector:action];
     }
 }
 
 - (NSArray<NSDictionary *> *)segmentItems{
     return @[@{LGSegmentItemNameKey:@"微党课",
-               LGSegmentItemViewControllerClassKey:@"DJUcMyCollectLessonListController",/// HPSearchLessonController
+               LGSegmentItemViewControllerClassKey:@"DJUcMyCollectLessonListController",///
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
              @{LGSegmentItemNameKey:@"新闻",

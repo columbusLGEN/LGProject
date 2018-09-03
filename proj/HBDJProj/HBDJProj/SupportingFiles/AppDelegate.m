@@ -83,7 +83,7 @@
     isProduction = YES;
 #endif
     
-    NSLog(@"isProduction: %d",isProduction);
+//    NSLog(@"isProduction: %d",isProduction);
     
     [JPUSHService setupWithOption:launchOptions appKey:JPUSHAppKey
                           channel:@""

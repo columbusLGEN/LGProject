@@ -49,7 +49,7 @@
 
 }
 
-- (UIAlertController *)showSetPushNotificationAlertViewWithViewController:(UIViewController *)vc{
+- (UIAlertController *)showSetPushNotificationAlertViewWithViewController:(UIViewController *)vc cancelABlock:(LGShowAlertVcActionBlock)cancelBlock doneBlock:(LGShowAlertVcActionBlock)doneBlock {
     NSString *string;
     if (@available(iOS 10.0, *)) {
         string = @"App-Prefs:root=NOTIFICATIONS_ID";
@@ -57,7 +57,7 @@
         string = @"prefs:root=NOTIFICATIONS_ID";
     }
     NSURL *url = [NSURL URLWithString:string];
-    return [self requestUserToSystemSettinsWithTitle:@"推送权限" message:@"请进入系统【设置】>【通知】>【党员之家】中打开开关,开启系统推送通知" cancelText:@"取消" doneText:@"去设置" url:url vc:vc];
+    return [self requestUserToSystemSettinsWithTitle:@"推送权限" message:@"请进入系统【设置】>【通知】>【党员之家】中打开开关,开启系统推送通知" cancelText:@"取消" doneText:@"去设置" url:url vc:vc cancelABlock:cancelBlock doneBlock:doneBlock];
     
 }
 
@@ -82,11 +82,9 @@
     return alertVC;
 }
 
-- (UIAlertController *)requestUserToSystemSettinsWithTitle:(NSString *)title message:(NSString *)message cancelText:(NSString *)cancelText doneText:(NSString *)doneText url:(NSURL *)url vc:(UIViewController *)vc{
+- (UIAlertController *)requestUserToSystemSettinsWithTitle:(NSString *)title message:(NSString *)message cancelText:(NSString *)cancelText doneText:(NSString *)doneText url:(NSURL *)url vc:(UIViewController *)vc cancelABlock:(LGShowAlertVcActionBlock)cancelBlock doneBlock:(LGShowAlertVcActionBlock)doneBlock{
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelText style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelText style:UIAlertActionStyleCancel handler:cancelBlock];
     UIAlertAction *setAction = [UIAlertAction actionWithTitle:doneText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [vc.navigationController popViewControllerAnimated:NO];
         //跳入当前App设置界面

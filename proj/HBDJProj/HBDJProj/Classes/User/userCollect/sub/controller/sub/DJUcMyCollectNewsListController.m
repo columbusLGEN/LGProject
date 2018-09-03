@@ -115,12 +115,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    /// 编辑状态
-    DJUcMyCollectModel *model = self.dataArray[indexPath.row];
-    model.select = !model.select;
+    if (self.lg_edit) {
+        /// 编辑状态
+        DJUcMyCollectModel *model = self.dataArray[indexPath.row];
+        model.select = !model.select;
+    }else{
+        EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+        [self.transAssist skipWithType:2 model:model baseVc:self];
+    }
     
-//    EDJMicroBuildModel *model = self.dataArray[indexPath.row];
-//    [self.transAssist skipWithType:2 model:model baseVc:self];
     
 }
 

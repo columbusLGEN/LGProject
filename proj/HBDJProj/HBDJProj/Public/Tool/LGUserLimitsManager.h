@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef  void(^LGShowAlertVcActionBlock)(UIAlertAction * _Nonnull action);
+
 @interface LGUserLimitsManager : NSObject
 
 + (void)userUNAuthorizationWith:(void(^)(BOOL granted))userGrantedCallBack;
@@ -17,6 +19,6 @@
 /// MARK: 请求麦克风权限弹窗
 - (UIAlertController *)showSetMicroPhoneAlertView;
 /// MARK: 请求通知权限
-- (UIAlertController *)showSetPushNotificationAlertViewWithViewController:(UIViewController *)vc;
+- (UIAlertController *)showSetPushNotificationAlertViewWithViewController:(UIViewController *)vc cancelABlock:(LGShowAlertVcActionBlock)cancelBlock doneBlock:(LGShowAlertVcActionBlock)doneBlock;
 
 @end

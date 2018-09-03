@@ -29,7 +29,6 @@ PLPlayerViewDelegate>
     _model = model;
     /// 设置数据
     PLMediaInfo *media = [PLMediaInfo new];
-    /// TODO: 封面？ /// 视频连接？
     media.thumbURL = model.cover;
     media.videoURL = model.vedio;
     

@@ -10,6 +10,7 @@
 #import "DJUcMyCollectLessonCell.h"
 #import "DJUcMyCollectLessonModel.h"
 #import "DJUserNetworkManager.h"
+#import "DJMediaDetailTransAssist.h"
 
 @interface DJUcMyCollectLessonListController ()
 
@@ -92,9 +93,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    /// 编辑状态
-    DJUcMyCollectModel *model = self.dataArray[indexPath.row];
-    model.select = !model.select;
+    if (self.lg_edit) {
+        /// 编辑状态
+        DJUcMyCollectModel *model = self.dataArray[indexPath.row];
+        model.select = !model.select;
+    }else{
+        /// 普通状态
+        DJDataBaseModel *lesson = self.dataArray[indexPath.row];
+        [[DJMediaDetailTransAssist new] mediaDetailWithModel:lesson baseVc:self];
+    }
+    
 }
 
 

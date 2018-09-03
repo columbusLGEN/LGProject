@@ -47,6 +47,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWP-Pi-rTf">
                                                     <rect key="frame" x="311" y="44" width="51" height="31"/>
                                                     <color key="onTintColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="switchClick:" destination="ygf-IM-aNh" eventType="valueChanged" id="CL5-VZ-ure"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uN-yu-kLw">
                                                     <rect key="frame" x="318" y="49" width="42" height="21"/>
@@ -353,15 +356,15 @@
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="23" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLU-lM-xvu" customClass="LGCustomButton">
-                                                <rect key="frame" x="258" y="95.5" width="85" height="104.5"/>
+                                                <rect key="frame" x="257.5" y="95.5" width="85.5" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view tag="22" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-dr-Ppc" customClass="LGCustomButton">
-                                                <rect key="frame" x="171.5" y="95.5" width="86.5" height="104.5"/>
+                                                <rect key="frame" x="171" y="95.5" width="86.5" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="21" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-D0-N9G" customClass="LGCustomButton">
-                                                <rect key="frame" x="86" y="95.5" width="85.5" height="104.5"/>
+                                                <rect key="frame" x="86" y="95.5" width="85" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gud-sL-xcH">

@@ -23,6 +23,12 @@ static NSString * const keyPath_granted = @"granted";
 
 @implementation UCSettingTableViewCell
 
+- (IBAction)switchClick:(UISwitch *)sender {
+    if ([self.delegate respondsToSelector:@selector(stCellClickSwitchWithModel:sender:)]) {
+        [self.delegate stCellClickSwitchWithModel:self.model sender:sender];
+    }
+}
+
 - (void)setModel:(UCSettingModel *)model{
     _model = model;
     _itemName.text = model.itemName;
@@ -30,12 +36,17 @@ static NSString * const keyPath_granted = @"granted";
     if (model.contentType == 1) {
         _info.hidden = YES;
         _onOff.hidden = NO;
-        __weak typeof(self) weakSelf = self;
-        [LGUserLimitsManager userUNAuthorizationWith:^(BOOL granted) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                weakSelf.onOff.on = granted;
+        if (model.subType == 0) {
+            __weak typeof(self) weakSelf = self;
+            [LGUserLimitsManager userUNAuthorizationWith:^(BOOL granted) {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    weakSelf.onOff.on = granted;
+                }];
             }];
-        }];
+        }
+        if (model.subType == 1) {
+            _onOff.on = DJUser.sharedInstance.WIFI_playVideo_notice;
+        }
         
     }else if (model.contentType == 0){
         _onOff.hidden = YES;
@@ -54,7 +65,7 @@ static NSString * const keyPath_granted = @"granted";
 - (void)awakeFromNib {
     [super awakeFromNib];
     _onOff.onTintColor = [UIColor EDJMainColor];
-    _onOff.userInteractionEnabled = NO;
+//    _onOff.userInteractionEnabled = NO;
 }
 
 

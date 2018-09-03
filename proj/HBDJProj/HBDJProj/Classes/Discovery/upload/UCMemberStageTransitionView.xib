@@ -73,7 +73,7 @@
                 <constraint firstItem="RAC-Qg-uNZ" firstAttribute="leading" secondItem="CBy-VM-2Re" secondAttribute="leading" id="UMq-vT-j1v"/>
                 <constraint firstItem="RAC-Qg-uNZ" firstAttribute="trailing" secondItem="CBy-VM-2Re" secondAttribute="trailing" id="VU2-hm-qb1"/>
                 <constraint firstItem="GxA-vo-YCz" firstAttribute="leading" secondItem="CBy-VM-2Re" secondAttribute="leading" id="hzQ-8J-JaU"/>
-                <constraint firstItem="RAC-Qg-uNZ" firstAttribute="bottom" secondItem="CBy-VM-2Re" secondAttribute="bottom" id="nMT-lA-tDo"/>
+                <constraint firstAttribute="bottom" secondItem="RAC-Qg-uNZ" secondAttribute="bottom" id="t5B-FY-TiZ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="CBy-VM-2Re"/>
             <connections>

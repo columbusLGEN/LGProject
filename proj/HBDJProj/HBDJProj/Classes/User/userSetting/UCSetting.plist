@@ -9,6 +9,8 @@
 		<integer>1</integer>
 		<key>content</key>
 		<string></string>
+		<key>subType</key>
+		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>itemName</key>
@@ -22,9 +24,11 @@
 		<key>itemName</key>
 		<string>非WiFi网络播放提醒</string>
 		<key>contentType</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>content</key>
-		<string>提醒一次</string>
+		<string></string>
+		<key>subType</key>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>itemName</key>

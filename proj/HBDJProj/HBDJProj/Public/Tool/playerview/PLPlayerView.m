@@ -739,6 +739,16 @@ UIGestureRecognizerDelegate
 
 - (void)play {
     
+    /// TODO: 非wifi播放提醒
+    [LGNoticer.new checkNetworkStatusWithBlock:^(BOOL notice) {
+        if (notice) {
+            /// 提示用户当前为流量状态
+            
+        }else{
+            
+        }
+    }];
+    
     if ([self.delegate respondsToSelector:@selector(lg_played)]) {
         [self.delegate lg_played];
     }

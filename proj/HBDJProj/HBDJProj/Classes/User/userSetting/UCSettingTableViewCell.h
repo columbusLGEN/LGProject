@@ -9,7 +9,13 @@
 #import "LGBaseTableViewCell.h"
 @class UCSettingModel;
 
+@protocol UCSettingTableViewCellDelegate <NSObject>
+- (void)stCellClickSwitchWithModel:(UCSettingModel *)model sender:(UISwitch *)sender;
+
+@end
+
 @interface UCSettingTableViewCell : LGBaseTableViewCell
 @property (strong,nonatomic) UCSettingModel *model;
+@property (weak,nonatomic) id<UCSettingTableViewCellDelegate> delegate;
 
 @end

@@ -40,14 +40,21 @@
 #import "DJUser.h"
 #import "LGDevice.h"
 #import "LGLoadingAssit.h"
+#import "LGNoticer.h"
 
 #define iFlyAppid        @"5b0d04ef"
 #define DJUMAppKey       @"5b231ac1a40fa31e880000d9"
-#define DJWexinAppID     @"wxc21c2d288222bb77"
-#define DJWexinAppSecret @"2738996735c5e2645d3f56f5d4030f97"
-#define DJQQAppID        @"1106968098"
-/// QQ appId 的 16进制 0x41FAFE22
-#define DJQQAppKey       @"knMRvC2zPQqhJVLD"
+
+#define DJWexinAppID     @"wx2b25e486d7622bf9"
+#define DJWexinAppSecret @"9026cb882f7eb338a486f2f1bc3ae6f1"
+#define DJQQAppID        @"1107729777"
+#define DJQQAppKey       @"HgcqdztAKGyTiWW1"
+
+//#define DJWexinAppID     @"wxc21c2d288222bb77"/// retech
+//#define DJWexinAppSecret @"2738996735c5e2645d3f56f5d4030f97"/// retech
+//#define DJQQAppID        @"1106968098"/// retech
+//#define DJQQAppKey       @"knMRvC2zPQqhJVLD"/// retech
+
 //cace94b565ab427db78517fcdb21ff2c
 #define JPUSHAppKey @"ef68dc739077ccd5bb68451b"
 #define JPUSHSecret @"de652153017daa1aafb1747a"

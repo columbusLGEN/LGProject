@@ -34,8 +34,6 @@ UCMemberStageTransitionViewDelegate>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    self.view.backgroundColor = [UIColor clearColor];
 
     UCMemberStageTransitionView *tv = UCMemberStageTransitionView.memberStateTransitionView;
     tv.delegate = self;

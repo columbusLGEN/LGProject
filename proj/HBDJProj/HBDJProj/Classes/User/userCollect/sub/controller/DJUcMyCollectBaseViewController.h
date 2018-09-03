@@ -16,4 +16,7 @@
 - (void)endEdit;
 - (void)allSelect;
 
+/** 是否为编辑状态,YES:是. 编辑状态下， 用户可以选择删除  */
+@property (assign,nonatomic) BOOL lg_edit;
+
 @end

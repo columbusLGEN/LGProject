@@ -14,6 +14,7 @@ static NSString * const praiseid_keyPath = @"praiseid";
 static NSString * const collectionid_keyPath = @"collectionid";
 static NSString * const praisecount_keyPath = @"praisecount";
 static NSString * const collectioncount_keyPath = @"collectioncount";
+static NSString * const select_keyPath = @"select";
 
 @interface DCSubPartStateBaseCell ()<
 LGThreeRightButtonViewDelegate>
@@ -32,7 +33,12 @@ LGThreeRightButtonViewDelegate>
 - (void)setBranchCollectModel:(DCSubPartStateModel *)branchCollectModel{
     _branchCollectModel = branchCollectModel;
     [self displayDataWithModel:branchCollectModel];
-    
+    if (branchCollectModel.edit) {
+        self.boInterView.userInteractionEnabled = NO;
+    }else{
+        self.boInterView.userInteractionEnabled = YES;
+    }
+    [branchCollectModel addObserver:self forKeyPath:select_keyPath options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)displayDataWithModel:(DJUcMyCollectBranchModel *)branchModel{
@@ -67,6 +73,11 @@ LGThreeRightButtonViewDelegate>
             _boInterView.collectionCount = self.model.collectioncount;
         }
     }
+    if (object == self.branchCollectModel) {
+        if ([keyPath isEqualToString:select_keyPath]) {
+            self.seButon.selected = self.branchCollectModel.select;
+        }
+    }
 }
 
 - (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
@@ -85,7 +96,7 @@ LGThreeRightButtonViewDelegate>
 - (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 支部动态评论
     if ([self.delegate respondsToSelector:@selector(branchCommentWithModel:sender:)]) {
-        [self.delegate branchCommentWithModel:self.model sender:sender];
+        [self.delegate branchCommentWithModel:self.model?self.model:self.branchCollectModel sender:sender];
     }
 }
 
@@ -186,6 +197,7 @@ LGThreeRightButtonViewDelegate>
     [self.model removeObserver:self forKeyPath:collectionid_keyPath];
     [self.model removeObserver:self forKeyPath:praisecount_keyPath];
     [self.model removeObserver:self forKeyPath:collectioncount_keyPath];
+    [self.branchCollectModel removeObserver:self forKeyPath:select_keyPath];
 }
 
 @end

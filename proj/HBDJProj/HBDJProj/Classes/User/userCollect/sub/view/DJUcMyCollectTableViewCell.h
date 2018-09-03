@@ -9,7 +9,7 @@
 /// 我的收藏 基类cell
 
 #import "LGBaseTableViewCell.h"
-@class DJUcMyCollectModel;
+@class DJUcMyCollectModel,DCSubPartStateModel;
 
 @interface DJUcMyCollectTableViewCell : LGBaseTableViewCell
 /** 编辑状态下的选中按钮 */

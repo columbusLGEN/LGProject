@@ -446,6 +446,7 @@
 		88EA132F20AD5314007AB886 /* LGHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA132E20AD5314007AB886 /* LGHTMLParser.m */; };
 		88EA133220AD533D007AB886 /* detaiTtest.html in Resources */ = {isa = PBXBuildFile; fileRef = 88EA133120AD533C007AB886 /* detaiTtest.html */; };
 		88EA133C20AD5E31007AB886 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */; };
+		88EB405B213D36C900F12211 /* LGNoticer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB405A213D36C900F12211 /* LGNoticer.m */; };
 		88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF006209FE2CC0071A98A /* OLExamViewController.m */; };
 		88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */; };
 		88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF056209FED480071A98A /* OLExamSingleModel.m */; };
@@ -1296,6 +1297,8 @@
 		88EA133120AD533C007AB886 /* detaiTtest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = detaiTtest.html; sourceTree = "<group>"; };
 		88EA133A20AD5E31007AB886 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
 		88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
+		88EB4059213D36C900F12211 /* LGNoticer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoticer.h; sourceTree = "<group>"; };
+		88EB405A213D36C900F12211 /* LGNoticer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoticer.m; sourceTree = "<group>"; };
 		88ECF005209FE2CC0071A98A /* OLExamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewController.h; sourceTree = "<group>"; };
 		88ECF006209FE2CC0071A98A /* OLExamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewController.m; sourceTree = "<group>"; };
 		88ECF009209FE3340071A98A /* OLExamSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleViewController.h; sourceTree = "<group>"; };
@@ -1616,6 +1619,8 @@
 				888E3A6E211BF22900ED2DA3 /* LGFilePathManager.m */,
 				8833A18121311F6E001564E0 /* LGCacheClear.h */,
 				8833A18221311F6E001564E0 /* LGCacheClear.m */,
+				88EB4059213D36C900F12211 /* LGNoticer.h */,
+				88EB405A213D36C900F12211 /* LGNoticer.m */,
 				882AFCD4212FE04F00DB8005 /* 2mp3 */,
 				888223AD212BD7850094D3EF /* LGAudio */,
 				882B117A20D23D3300917374 /* playerview */,
@@ -4228,6 +4233,7 @@
 				88A955CA20F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m in Sources */,
 				889FCD1420B3B3850045746D /* LGBaseModel.m in Sources */,
 				88176FDA21097BBF004B8F2F /* DJOnlineSearchViewController.m in Sources */,
+				88EB405B213D36C900F12211 /* LGNoticer.m in Sources */,
 				88D13C5F2090585F00A32236 /* OLHomeCollectionCell.m in Sources */,
 				88D033812079EB5800665D2F /* EDJDiscoveryViewController.m in Sources */,
 				889E7DB72099685000BB9084 /* HPBookInfoModel.m in Sources */,

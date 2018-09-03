@@ -13,6 +13,7 @@
 #import "DCSubStageCommentsCell.h"
 #import "LGTriangleView.h"
 #import "DJUcMyCollectPYQModel.h"
+#import "DJBanIndicateView.h"
 
 static NSString * const praiseid_keyPath = @"praiseid";
 static NSString * const collectionid_keyPath = @"collectionid";
@@ -32,6 +33,7 @@ LGThreeRightButtonViewDelegate>
 @property (strong,nonatomic) NSArray *comments;
 
 @property (weak,nonatomic) LGTriangleView *triangle;
+@property (weak,nonatomic) DJBanIndicateView *banin;
 
 @end
 
@@ -78,6 +80,13 @@ LGThreeRightButtonViewDelegate>
             make.width.mas_equalTo(30);
             make.height.mas_equalTo(30);
         }];
+    }
+    
+    if (mc_pyq_model.auditstate == 0) {
+        /// 未通过
+        _banin.hidden = NO;
+    }else{
+        _banin.hidden = YES;
     }
 }
 
@@ -190,6 +199,11 @@ LGThreeRightButtonViewDelegate>
 
 - (void)configUI {
     
+    DJBanIndicateView *banin = DJBanIndicateView.new;
+    [self.contentView addSubview:banin];
+    _banin = banin;
+    banin.hidden = YES;
+    
     [self.contentView addSubview:self.icon];
     [self.contentView addSubview:self.nick];
     
@@ -221,6 +235,11 @@ LGThreeRightButtonViewDelegate>
     [self.contentView addSubview:self.boInterView];
     [self.contentView addSubview:self.time];
     [self.contentView addSubview:self.tbvForComments];
+    
+    [banin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.contentView);
+        make.bottom.equalTo(self.boInterView.mas_bottom);
+    }];
     
     [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.icon.mas_left);
