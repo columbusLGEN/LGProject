@@ -29,6 +29,14 @@
 - (void)setMc_pyq_model:(DJUcMyCollectPYQModel *)mc_pyq_model{
     [super setMc_pyq_model:mc_pyq_model];
     [self assiDataWithModel:mc_pyq_model];
+    
+    if (mc_pyq_model.edit) {
+        self.audioPlayerView.userInteractionEnabled = NO;
+        
+    }else{
+        self.audioPlayerView.userInteractionEnabled = YES;
+        
+    }
 }
 
 - (void)assiDataWithModel:(DCSubStageModel *)model{

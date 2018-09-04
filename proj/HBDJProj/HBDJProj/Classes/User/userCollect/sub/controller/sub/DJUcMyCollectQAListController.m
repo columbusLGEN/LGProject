@@ -101,6 +101,13 @@ UCQuestionTableViewCellDelegate>
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.lg_edit) {
+        UCQuestionModel *collectModel = self.dataArray[indexPath.row];
+        collectModel.select = !collectModel.select;
+    }
+}
+
 - (void)qaCellshowAllClickWith:(NSIndexPath *)indexPath{
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -127,10 +134,9 @@ UCQuestionTableViewCellDelegate>
 // 分享
 - (void)qaCellShareWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
     
-    /// TODO: 分享链接等内容
     NSDictionary *param = @{LGSocialShareParamKeyWebPageUrl:model.shareUrl?model.shareUrl:@"",
-                            LGSocialShareParamKeyTitle:model.title?model.title:@"",
-                            LGSocialShareParamKeyDesc:model.contentvalidity?model.contentvalidity:@"",
+                            LGSocialShareParamKeyTitle:model.question?model.question:@"",
+                            LGSocialShareParamKeyDesc:model.answer?model.answer:@"",
                             LGSocialShareParamKeyThumbUrl:model.thumbnail?model.thumbnail:@"",
                             LGSocialShareParamKeyVc:self};
     

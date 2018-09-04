@@ -8,12 +8,14 @@
 
 #import "LGBaseView.h"
 
+@class DJLevelHomeModel;
+
 @protocol EDJLeverInfoHeaderViewDelegate;
 
 @interface EDJLeverInfoHeaderView : LGBaseView
 + (instancetype)levelInfoHeader;
 @property (weak,nonatomic) id<EDJLeverInfoHeaderViewDelegate> delegate;
-@property (strong,nonatomic) NSObject *model;
+@property (strong,nonatomic) DJLevelHomeModel *model;
 
 @end
 

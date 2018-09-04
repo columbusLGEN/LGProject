@@ -41,6 +41,7 @@ static NSString * const cover_key = @"cover";
 static NSString * const mechanismid_key = @"mechanismid";
 static NSString * const userid_key = @"userid";
 static NSString * const ugctype_key = @"ugctype";
+static NSString * const select_key = @"select";
 
 #pragma mark - 在线页面相关常量、枚举等
 /** 在线首页 实例的 modeltype 与seqid对应 */

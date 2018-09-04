@@ -7,6 +7,7 @@
 //
 
 #import "EDJLeverInfoHeaderView.h"
+#import "DJLevelHomeModel.h"
 
 @interface EDJLeverInfoHeaderView ()
 @property (weak, nonatomic) IBOutlet UILabel *levelTitle;
@@ -26,12 +27,12 @@
 
 @implementation EDJLeverInfoHeaderView
 
-- (void)setModel:(NSObject *)model{
+- (void)setModel:(DJLevelHomeModel *)model{
     _model = model;
-    _levelTitle.text = @"先锋党员x级";
-    _levelNum.text = @"LV2";
-    _curScore.text = @"40";
-    _needScore.text = @"20";
+    _levelTitle.text = model.gradename;
+    _levelNum.text = [NSString stringWithFormat:@"LV%ld",model.grade];
+    _curScore.text = [NSString stringWithFormat:@"%ld积分",model.allintegral];
+    _needScore.text = [NSString stringWithFormat:@"%ld积分",model.leaveupneed];
 }
 
 - (IBAction)todayScore:(UIButton *)sender {

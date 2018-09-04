@@ -111,24 +111,48 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    /// TODO: 编辑状态
-    
-    /// TODO: 普通状态
     DJThoutghtRepotListModel *model = self.dataArray[indexPath.row];
-    DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
-    detailvc.model = model;
-    [self.navigationController pushViewController:detailvc animated:YES];
+    
+    if (self.lg_edit) {
+        ///  编辑状态
+        model.select = !model.select;
+    }else{
+        /// 普通状态
+        DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
+        detailvc.model = model;
+        [self.navigationController pushViewController:detailvc animated:YES];
+    }
+    
 }
 
 - (void)startEdit{
+    self.lg_edit = YES;
     [self changeModelEditSatateWith:YES];
 }
 - (void)endEdit{
+    self.lg_edit = NO;
     [self changeModelEditSatateWith:NO];
 }
 - (void)allSelect{
+    BOOL allAlreadySelect = YES;
+    for (DJThoutghtRepotListModel *model in self.dataArray) {
+        if (!model.select) {
+            allAlreadySelect = NO;
+            break;
+        }
+    }
     
+    BOOL select;
+    if (allAlreadySelect) {
+        select = NO;
+    }else{
+        select = YES;
+    }
+    
+    for (DJThoutghtRepotListModel *model in self.dataArray) {
+        model.select = select;
+    }
+    [self.tableView reloadData];
 }
 
 - (void)changeModelEditSatateWith:(BOOL)edit{

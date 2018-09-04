@@ -8,13 +8,13 @@
 
 #import "EDJTodayScoreViewController.h"
 #import "view/EDJTotayScoreTableViewCell.h"
-#import "model/EDJTotayScoreModel.h"
+#import "EDJLevelInfoModel.h"
 
 static NSString * const cellID = @"EDJTotayScoreTableViewCell";
 
 @interface EDJTodayScoreViewController ()<
 UITableViewDelegate>
-@property (strong,nonatomic) NSArray *array;
+
 @end
 
 @implementation EDJTodayScoreViewController
@@ -25,35 +25,22 @@ UITableViewDelegate>
     
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     
-    [DJUserNetworkManager.sharedInstance frontIntegralGrade_selectTaskSuccess:^(id responseObj) {
-        NSArray *array = responseObj;
-        if (!(array == nil || array.count == 0)) {
-            NSMutableArray *arrmu = NSMutableArray.new;
-            for (NSInteger i = 0; i < array.count; i++) {
-                EDJTotayScoreModel *model = [EDJTotayScoreModel mj_objectWithKeyValues:array[i]];
-                [arrmu addObject:model];
-            }
-            self.array = arrmu.copy;
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.tableView reloadData];
-            }];
-        }
-        
-    } failure:^(id failureObj) {
-        
-    }];
+}
+
+- (void)setDataArray:(NSArray *)dataArray{
+    [super setDataArray:dataArray];
+    [self.tableView reloadData];
 }
 
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _array.count;
+    return self.dataArray.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    EDJTotayScoreModel *model = _array[indexPath.row];
+    EDJLevelInfoModel *model = self.dataArray[indexPath.row];
     EDJTotayScoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     cell.model = model;
     return cell;
@@ -62,49 +49,5 @@ UITableViewDelegate>
     return 50;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -23,4 +23,10 @@
 /** 奖励上限 */
 @property (strong,nonatomic) NSString *total;
 
+/// 今日加分
+/** 今日完成此任务获取的积分 */
+@property (assign,nonatomic) NSInteger getintegral;
+/** 完成次数，分钟 */
+@property (assign,nonatomic) NSInteger completenum;
+
 @end

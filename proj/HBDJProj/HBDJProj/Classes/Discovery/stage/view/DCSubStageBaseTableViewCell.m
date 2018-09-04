@@ -51,6 +51,8 @@ LGThreeRightButtonViewDelegate>
 - (void)setMc_pyq_model:(DJUcMyCollectPYQModel *)mc_pyq_model{
     _mc_pyq_model = mc_pyq_model;
     
+    [mc_pyq_model addObserver:self forKeyPath:select_key options:NSKeyValueObservingOptionNew context:nil];
+    
     [self assiCommenDataWithModel:mc_pyq_model];
     
     if (mc_pyq_model.edit) {
@@ -70,6 +72,8 @@ LGThreeRightButtonViewDelegate>
             make.height.mas_equalTo(30);
         }];
         
+        self.boInterView.userInteractionEnabled = NO;
+        
     }else{
         [self.seButon removeFromSuperview];
         
@@ -80,12 +84,16 @@ LGThreeRightButtonViewDelegate>
             make.width.mas_equalTo(30);
             make.height.mas_equalTo(30);
         }];
+        
+        self.boInterView.userInteractionEnabled = YES;
     }
     
     if (mc_pyq_model.auditstate == 0) {
         /// 未通过
         _banin.hidden = NO;
+        [self.contentView bringSubviewToFront:_banin];
     }else{
+        
         _banin.hidden = YES;
     }
 }
@@ -168,6 +176,9 @@ LGThreeRightButtonViewDelegate>
         if ([keyPath isEqualToString:collectioncount_keyPath]) {
             _boInterView.collectionCount = self.model.collectioncount;
         }
+    }
+    if (object == self.mc_pyq_model && [keyPath isEqualToString:select_key]) {
+        self.seButon.selected = self.mc_pyq_model.select;
     }
 }
 
@@ -392,6 +403,7 @@ LGThreeRightButtonViewDelegate>
     [self.model removeObserver:self forKeyPath:collectionid_keyPath];
     [self.model removeObserver:self forKeyPath:praisecount_keyPath];
     [self.model removeObserver:self forKeyPath:collectioncount_keyPath];
+    [self.mc_pyq_model removeObserver:self forKeyPath:select_key];
 }
 
 @end

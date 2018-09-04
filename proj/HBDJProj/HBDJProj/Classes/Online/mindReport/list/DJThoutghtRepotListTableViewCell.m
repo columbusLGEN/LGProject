@@ -8,6 +8,7 @@
 
 #import "DJThoutghtRepotListTableViewCell.h"
 #import "DJThoutghtRepotListModel.h"
+#import "DJBanIndicateView.h"
 
 @interface DJThoutghtRepotListTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *author;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLeading;
+@property (weak,nonatomic) DJBanIndicateView *banin;
 
 @end
 
@@ -45,6 +47,21 @@
         self.titleLeading.constant = 15;
     }
     
+    if (ucmuModel.auditstate == 0) {
+        _banin.hidden = NO;
+        [self.contentView bringSubviewToFront:_banin];
+    }else{
+        _banin.hidden = YES;
+    }
+    
+    [ucmuModel addObserver:self forKeyPath:select_key options:NSKeyValueObservingOptionNew context:nil];
+    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:select_key] && object == self.ucmuModel) {
+        self.seButon.selected = self.ucmuModel.select;
+    }
 }
 
 - (void)assiDataWithModel:(DJThoutghtRepotListModel *)model{
@@ -56,6 +73,22 @@
     }
     _author.text = [@"上传者: " stringByAppendingString:model.uploader];
     [_image sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    DJBanIndicateView *banin = DJBanIndicateView.new;
+    [self.contentView addSubview:banin];
+    _banin = banin;
+    banin.hidden = YES;
+    
+    [banin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView);
+    }];
+}
+
+- (void)dealloc{
+    [self.ucmuModel removeObserver:self forKeyPath:select_key];
 }
 
 @end

@@ -45,6 +45,8 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 - (void)setCollectModel:(UCQuestionModel *)collectModel{
     [super setCollectModel:collectModel];
     
+    [collectModel addObserver:self forKeyPath:select_key options:NSKeyValueObservingOptionNew context:nil];
+    
     if (collectModel.edit) {
         /// 编辑状态
         [self.contentView addSubview:self.seButon];
@@ -56,12 +58,18 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
         self.seButon.selected = collectModel.select;
 
         _leadingNeedsChangeWhenEdit.constant = 38;
+        self.boInterView.userInteractionEnabled = NO;
+//        self.showAll.userInteractionEnabled = NO;
         
     }else{
         [self.seButon removeFromSuperview];
         
         /// 默认值
         _leadingNeedsChangeWhenEdit.constant = 18;
+        self.boInterView.userInteractionEnabled = YES;
+        
+//        self.showAll.userInteractionEnabled = YES;
+        
     }
     
     [self displayDataWithModel:collectModel];
@@ -124,10 +132,19 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
             _boInterView.collectionCount = self.model.collectioncount;
         }
     }
+    if (object == self.collectModel && [keyPath isEqualToString:select_key]) {
+        self.seButon.selected = self.collectModel.select;
+    }
 }
 
 - (IBAction)showAllClick:(UIButton *)sender {
-    self.model.showAll = !self.model.showAll;
+    if (self.model == nil) {
+        UCQuestionModel *qaCollectModel = self.collectModel;
+        qaCollectModel.showAll = !qaCollectModel.showAll;
+    }else{
+        
+        self.model.showAll = !self.model.showAll;
+    }
     if ([self.delegate respondsToSelector:@selector(qaCellshowAllClickWith:)]) {
         [self.delegate qaCellshowAllClickWith:self.indexPath];
     }
@@ -203,6 +220,7 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     [self.model removeObserver:self forKeyPath:collectionid_keyPath];
     [self.model removeObserver:self forKeyPath:praisecount_keyPath];
     [self.model removeObserver:self forKeyPath:collectioncount_keyPath];
+    [self.collectModel removeObserver:self forKeyPath:select_key];
 }
 
 @end

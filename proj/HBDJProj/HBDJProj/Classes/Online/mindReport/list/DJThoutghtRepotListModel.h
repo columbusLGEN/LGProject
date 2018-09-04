@@ -18,4 +18,7 @@
 /** 选中状态 */
 @property (assign,nonatomic) BOOL select;
 
+/** 0: 未通过 1: 通过 */
+@property (assign,nonatomic) NSInteger auditstate;
+
 @end

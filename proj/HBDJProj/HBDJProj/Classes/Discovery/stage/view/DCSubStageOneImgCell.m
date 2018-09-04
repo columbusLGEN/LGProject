@@ -36,6 +36,14 @@
 - (void)setMc_pyq_model:(DJUcMyCollectPYQModel *)mc_pyq_model{
     [super setMc_pyq_model:mc_pyq_model];
     [self assiDataWithModel:mc_pyq_model];
+    
+    if (mc_pyq_model.edit) {
+        self.aImage.userInteractionEnabled = NO;
+        self.play.userInteractionEnabled = NO;
+    }else{
+        self.aImage.userInteractionEnabled = YES;
+        self.play.userInteractionEnabled = YES;
+    }
 }
 
 - (void)assiDataWithModel:(DCSubStageModel *)model{
@@ -81,6 +89,13 @@
     if (self.model.filetype == 1) {
         if ([self.delegate respondsToSelector:@selector(pyqCellOneImageClick:model:imageView:)]) {
             [self.delegate pyqCellOneImageClick:self model:self.model imageView:_aImage];
+        }
+    }
+    if (self.model == nil) {
+        if (self.mc_pyq_model.filetype == 1) {
+            if ([self.delegate respondsToSelector:@selector(pyqCellOneImageClick:model:imageView:)]) {
+                [self.delegate pyqCellOneImageClick:self model:self.mc_pyq_model imageView:_aImage];
+            }
         }
     }
 }

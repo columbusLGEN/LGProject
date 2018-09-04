@@ -7,8 +7,8 @@
 //
 
 #import "LGBaseTableViewCell.h"
-@class EDJTotayScoreModel;
+@class EDJLevelInfoModel;
 @interface EDJTotayScoreTableViewCell : LGBaseTableViewCell
-@property (strong,nonatomic) EDJTotayScoreModel *model;
+@property (strong,nonatomic) EDJLevelInfoModel *model;
 
 @end

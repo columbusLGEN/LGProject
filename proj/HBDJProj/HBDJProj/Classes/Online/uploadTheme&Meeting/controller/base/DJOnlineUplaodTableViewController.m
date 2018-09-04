@@ -179,9 +179,11 @@ DJInputContentViewControllerDelegate>
     } uploadProgress:^(NSProgress *uploadProgress) {
         NSLog(@"上传封面: %f",
               (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-    } success:^(NSString *imgUrl_sub) {
+    } success:^(id dict) {
+//        NSLog(@"上传封面回调: %@",dict);
+        NSString *path = dict[path_key];
         /// 设置表单数据
-        [self setCoverFormDataWithUrl:imgUrl_sub];
+        [self setCoverFormDataWithUrl:path];
     } failure:^(id uploadFailure) {
         
     }];

@@ -16,7 +16,7 @@ static NSString * const cellID = @"EDJLevelInsTableViewCell";
 @interface EDJLevelInsTableViewController ()<
 UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSArray *array;
+
 
 @end
 
@@ -26,40 +26,18 @@ UITableViewDelegate>
     [super viewDidLoad];
     self.title = @"等级介绍";
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
-//    self.array = [EDJLevelInsModel loadLocalPlistWithPlistName:@"EDJLevelIns"];
-    
-//    [self.tableView reloadData];
-    
-    [DJUserNetworkManager.sharedInstance frontIntegralGrade_selectSuccess:^(id responseObj) {
-        
-        NSArray *array = responseObj;
-        if (array == nil || array.count == 0) {
-            
-        }else{
-            NSMutableArray *arrmu = NSMutableArray.new;
-            for (NSInteger i = 0; i < array.count; i++) {
-                EDJLevelInsModel *model = [EDJLevelInsModel mj_objectWithKeyValues:array[i]];
-                [arrmu addObject:model];
-            }
-            self.array = arrmu.copy;
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.tableView reloadData];
-            }];
-        }
-        
-    } failure:^(id failureObj) {
-        
-    }];
+
 }
 
-
+- (void)setArray:(NSArray *)array{
+    _array = array;
+    [self.tableView reloadData];
+}
 
 #pragma mark - Table view data source
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _array.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EDJLevelInsModel *model = _array[indexPath.row];

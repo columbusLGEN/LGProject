@@ -154,7 +154,6 @@
 		88435E84208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435E83208DBD3300188CE9 /* EDJLevelInsTableViewCell.xib */; };
 		88435E88208DBDE400188CE9 /* EDJLevelInsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E87208DBDE400188CE9 /* EDJLevelInsModel.m */; };
 		88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88435E89208DBF8100188CE9 /* EDJLevelIns.plist */; };
-		88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E8C208DC21700188CE9 /* EDJTotayScoreModel.m */; };
 		88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E8F208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m */; };
 		88435E92208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88435E91208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib */; };
 		88435EA4208EFB0800188CE9 /* DJDataBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435EA3208EFB0800188CE9 /* DJDataBaseModel.m */; };
@@ -449,6 +448,7 @@
 		88EB405B213D36C900F12211 /* LGNoticer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB405A213D36C900F12211 /* LGNoticer.m */; };
 		88EB405E213E1EB300F12211 /* UIAlertController+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB405D213E1EB300F12211 /* UIAlertController+LGExtension.m */; };
 		88EB4061213E35F100F12211 /* LGWMPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB4060213E35F100F12211 /* LGWMPlayerManager.m */; };
+		88EB4065213E810C00F12211 /* DJLevelHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB4064213E810C00F12211 /* DJLevelHomeModel.m */; };
 		88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF006209FE2CC0071A98A /* OLExamViewController.m */; };
 		88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */; };
 		88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF056209FED480071A98A /* OLExamSingleModel.m */; };
@@ -801,8 +801,6 @@
 		88435E86208DBDE400188CE9 /* EDJLevelInsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJLevelInsModel.h; sourceTree = "<group>"; };
 		88435E87208DBDE400188CE9 /* EDJLevelInsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJLevelInsModel.m; sourceTree = "<group>"; };
 		88435E89208DBF8100188CE9 /* EDJLevelIns.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EDJLevelIns.plist; sourceTree = "<group>"; };
-		88435E8B208DC21700188CE9 /* EDJTotayScoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJTotayScoreModel.h; sourceTree = "<group>"; };
-		88435E8C208DC21700188CE9 /* EDJTotayScoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJTotayScoreModel.m; sourceTree = "<group>"; };
 		88435E8E208DC27E00188CE9 /* EDJTotayScoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDJTotayScoreTableViewCell.h; sourceTree = "<group>"; };
 		88435E8F208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDJTotayScoreTableViewCell.m; sourceTree = "<group>"; };
 		88435E91208DC28900188CE9 /* EDJTotayScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EDJTotayScoreTableViewCell.xib; sourceTree = "<group>"; };
@@ -1305,6 +1303,8 @@
 		88EB405D213E1EB300F12211 /* UIAlertController+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+LGExtension.m"; sourceTree = "<group>"; };
 		88EB405F213E35F100F12211 /* LGWMPlayerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGWMPlayerManager.h; sourceTree = "<group>"; };
 		88EB4060213E35F100F12211 /* LGWMPlayerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGWMPlayerManager.m; sourceTree = "<group>"; };
+		88EB4063213E810C00F12211 /* DJLevelHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJLevelHomeModel.h; sourceTree = "<group>"; };
+		88EB4064213E810C00F12211 /* DJLevelHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJLevelHomeModel.m; sourceTree = "<group>"; };
 		88ECF005209FE2CC0071A98A /* OLExamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewController.h; sourceTree = "<group>"; };
 		88ECF006209FE2CC0071A98A /* OLExamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewController.m; sourceTree = "<group>"; };
 		88ECF009209FE3340071A98A /* OLExamSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleViewController.h; sourceTree = "<group>"; };
@@ -2389,8 +2389,7 @@
 				884312A62086ED1200321F84 /* EDJLevelInfoFlowLayout.h */,
 				884312A72086ED1200321F84 /* EDJLevelInfoFlowLayout.m */,
 				88435E7A208DB43800188CE9 /* LevelBonusRules.plist */,
-				888BD1A5213A94DC005417A4 /* EDJLevelInfoModel.h */,
-				888BD1A6213A94DC005417A4 /* EDJLevelInfoModel.m */,
+				88EB4062213E80E200F12211 /* model */,
 				88435E7E208DBC9500188CE9 /* view */,
 			);
 			path = main;
@@ -2425,8 +2424,6 @@
 			children = (
 				88435E86208DBDE400188CE9 /* EDJLevelInsModel.h */,
 				88435E87208DBDE400188CE9 /* EDJLevelInsModel.m */,
-				88435E8B208DC21700188CE9 /* EDJTotayScoreModel.h */,
-				88435E8C208DC21700188CE9 /* EDJTotayScoreModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3547,6 +3544,17 @@
 			path = test;
 			sourceTree = "<group>";
 		};
+		88EB4062213E80E200F12211 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				88EB4063213E810C00F12211 /* DJLevelHomeModel.h */,
+				88EB4064213E810C00F12211 /* DJLevelHomeModel.m */,
+				888BD1A5213A94DC005417A4 /* EDJLevelInfoModel.h */,
+				888BD1A6213A94DC005417A4 /* EDJLevelInfoModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		88ECF004209FE2670071A98A /* exam */ = {
 			isa = PBXGroup;
 			children = (
@@ -4187,12 +4195,12 @@
 				88435E90208DC27E00188CE9 /* EDJTotayScoreTableViewCell.m in Sources */,
 				88C5F16720B7FF670075D5F2 /* HPAudioPlayerView.m in Sources */,
 				882FC0272134FC48005F7187 /* LGSegmentScrollView.m in Sources */,
-				88435E8D208DC21700188CE9 /* EDJTotayScoreModel.m in Sources */,
 				88A955C720F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m in Sources */,
 				889FCD4220B400B60045746D /* HPAudioVideoModel.m in Sources */,
 				886FFDCD212E44BE000E1890 /* DJDsSearchTagView.m in Sources */,
 				88ECF07C20A03FE00071A98A /* OLExamCollectionViewCell.m in Sources */,
 				882FC04721367C33005F7187 /* DJUcMyCollectLessonCell.m in Sources */,
+				88EB4065213E810C00F12211 /* DJLevelHomeModel.m in Sources */,
 				8806C82E210EFD4F00685DEF /* DJLessonDetailViewController.m in Sources */,
 				888223B4212BD7860094D3EF /* PLAudioPath.m in Sources */,
 				884312AE2086F2EC00321F84 /* EDJLeverInfoHeaderView.m in Sources */,

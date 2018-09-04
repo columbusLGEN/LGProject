@@ -162,8 +162,6 @@ WMPlayerDelegate>
 /// MARK:播放视频
 - (void)pyqCellplayVideoWithModel:(DCSubStageModel *)model{
     
-    /// TODO: 非wifi播放提醒
-    
    _wmPlayer = [self.wmp_mgr WMPlayerWithUrl:model.fileurl aImgType:model.aImgType delegate:self];
     
 }

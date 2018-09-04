@@ -21,6 +21,7 @@ LGSegmentBottomViewDelegate
 >
 /** 是否是编辑状态，默认为no */
 @property (assign,nonatomic) BOOL isEditState;
+@property (weak,nonatomic) UIButton *deButton;
 
 @end
 
@@ -40,6 +41,7 @@ LGSegmentBottomViewDelegate
     /// nav item
 
     UIButton *deButton = UIButton.new;
+    _deButton = deButton;
     [deButton setImage:[UIImage imageNamed:@"home_icon_remove"] forState:UIControlStateNormal];
     [deButton setImage:[UIImage new] forState:UIControlStateSelected];
     [deButton setTitle:@"取消" forState:UIControlStateSelected];
@@ -95,6 +97,7 @@ LGSegmentBottomViewDelegate
 - (void)setIsEditState:(BOOL)isEditState{
     _isEditState = isEditState;
     self.isEdit = isEditState;/// 父类属性
+    _deButton.selected = isEditState;
     
     DJUcMyUploadPYQListController *mupyqvc = self.childViewControllers[0];
     DJUcMyUploadMindReportListController *mumrvc = self.childViewControllers[1];
@@ -116,7 +119,7 @@ LGSegmentBottomViewDelegate
 /// MARK: 进入编辑状态
 - (void)navDeleteClick:(UIButton *)sender{
     sender.selected = !sender.selected;
-    /// TODO: 判断当前位置，党员舞台，思想汇报，述廉报告 分别处理
+    
     if (!self.isEditState) {
         self.isEditState = YES;
         
@@ -128,8 +131,13 @@ LGSegmentBottomViewDelegate
 
 #pragma mark - LGSegmentBottomViewDelegate
 - (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
-    /// TODO: 全选
+    DJUcMyUploadPYQListController *mupyqvc = self.childViewControllers[0];
+    DJUcMyUploadMindReportListController *mumrvc = self.childViewControllers[1];
+    DJUcMyUploadCheapSpeechListController *mucsvc = self.childViewControllers[2];
     
+    [mupyqvc allSelect];
+    [mumrvc allSelect];
+    [mucsvc allSelect];
     
 }
 - (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
@@ -144,7 +152,6 @@ LGSegmentBottomViewDelegate
 }
 
 - (void)viewSwitched:(NSInteger)index{
-    NSLog(@"index -- %ld",index);
     /// TODO: 切换分页，或者刷新的时候 恢复默认状态
     if (self.isEditState) {
         self.isEditState = NO;

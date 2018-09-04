@@ -9,6 +9,9 @@
 #import "EDJLevelInfoViewController.h"
 #import "EDJLeverInfoHeaderView.h"
 #import "EDJLevelInfoModel.h"
+#import "DJLevelHomeModel.h"
+#import "EDJTodayScoreViewController.h"
+#import "EDJLevelInsTableViewController.h"
 
 static CGFloat headerHeight = 345;
 
@@ -19,10 +22,13 @@ EDJLeverInfoHeaderViewDelegate
 >
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong,nonatomic) NSArray *array;
+@property (weak,nonatomic) EDJLeverInfoHeaderView *header;
 
 @end
 
-@implementation EDJLevelInfoViewController
+@implementation EDJLevelInfoViewController{
+    DJLevelHomeModel *model;
+}
 
 static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
 
@@ -64,6 +70,7 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
     header.frame = CGRectMake(0, 0, kScreenWidth - 20, headerHeight);
     header.delegate = self;
     [self.collectionView addSubview:header];
+    _header = header;
     
     [self.view bringSubviewToFront:self.collectionView];
     
@@ -73,20 +80,14 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
 //    [self.collectionView reloadData];
     
     [DJUserNetworkManager.sharedInstance frontIntegralGrade_selectIntegralSuccess:^(id responseObj) {
-        NSArray *array = responseObj;
-        if (array == nil || array.count == 0) {
-            
-        }else{
-            NSMutableArray *arrmu = NSMutableArray.new;
-            for (NSInteger i = 0; i < array.count; i++) {
-                EDJLevelInfoModel *model = [EDJLevelInfoModel mj_objectWithKeyValues:array[i]];
-                [arrmu addObject:model];
-            }
-            self.array = arrmu.copy;
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.collectionView reloadData];
-            }];
-        }
+        
+        DJLevelHomeModel *lhModel = [DJLevelHomeModel mj_objectWithKeyValues:responseObj];
+        model = lhModel;
+        header.model = lhModel;
+        self.array = lhModel.frontIntegral;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.collectionView reloadData];
+        }];
         
     } failure:^(id failureObj) {
         
@@ -113,16 +114,20 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
 - (void)levelInfoHeaderCLick:(EDJLeverInfoHeaderView *)header itemTag:(NSInteger)tag{
     
     if (tag == 0) {
-        /// 今日加分 EDJTodayScoreViewController
-        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
-                                        controllerId:@"EDJTodayScoreViewController"
-                                            animated:YES];
+        /// 今日加分
+        EDJTodayScoreViewController *todayvc = (EDJTodayScoreViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"EDJTodayScoreViewController"];
+        
+        todayvc.dataArray = model.frontIntegral;
+        [self.navigationController pushViewController:todayvc animated:YES];
         
     }else if (tag == 1){
         /// 等级介绍
-        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName
-                                        controllerId:@"EDJLevelInsTableViewController"
-                                            animated:YES]; 
+        
+        EDJLevelInsTableViewController *levelInfo = (EDJLevelInsTableViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"EDJLevelInsTableViewController"];
+        
+        levelInfo.array = model.frontIntegralGrade;
+        [self.navigationController pushViewController:levelInfo animated:YES];
+        
     }
 }
 

@@ -109,19 +109,23 @@ WMPlayerDelegate>
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    /// 编辑状态
-    
-    /// 普通状态
     DCSubStageModel *model = self.dataArray[indexPath.row];
-    if (model.filetype == 3) {
-        DJPyqAudioPlayViewController *audioPlayVc = DJPyqAudioPlayViewController.new;
-        audioPlayVc.model = model;
-        audioPlayVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        audioPlayVc.pushWay = LGBaseViewControllerPushWayModal;
-        audioPlayVc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-        [self presentViewController:audioPlayVc animated:YES completion:nil];
+    
+    if (self.lg_edit) {
+        /// 编辑状态
+        model.select = !model.select;
+    }else{
+        /// 普通状态
+        if (model.filetype == 3) {
+            DJPyqAudioPlayViewController *audioPlayVc = DJPyqAudioPlayViewController.new;
+            audioPlayVc.model = model;
+            audioPlayVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            audioPlayVc.pushWay = LGBaseViewControllerPushWayModal;
+            audioPlayVc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            [self presentViewController:audioPlayVc animated:YES completion:nil];
+        }
     }
+    
 }
 
 - (void)pyqLikeWithModel:(DCSubStageModel *)model sender:(UIButton *)sender{

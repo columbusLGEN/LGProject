@@ -7,7 +7,7 @@
 //
 
 #import "EDJTotayScoreTableViewCell.h"
-#import "EDJTotayScoreModel.h"
+#import "EDJLevelInfoModel.h"
 
 @interface EDJTotayScoreTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *item;
@@ -17,10 +17,10 @@
 
 @implementation EDJTotayScoreTableViewCell
 
-- (void)setModel:(EDJTotayScoreModel *)model{
+- (void)setModel:(EDJLevelInfoModel *)model{
     _model = model;
-    _item.text = [NSString stringWithFormat:@"%@(%@%@)",model.item,model.integraldimension,model.unit];
-    _score.text = [NSString stringWithFormat:@"+%@分",model.singleintegral];
+    _item.text = [NSString stringWithFormat:@"%@(%ld%@)",model.item,model.completenum,model.unit];
+    _score.text = [NSString stringWithFormat:@"+%ld分",model.getintegral];
 }
 
 - (void)awakeFromNib {

@@ -9,8 +9,6 @@
 #import "DJUcMyCollectTableViewCell.h"
 #import "DJUcMyCollectModel.h"
 
-static NSString * keyPath_select = @"select";
-
 @implementation DJUcMyCollectTableViewCell
 
 //- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -21,11 +19,11 @@ static NSString * keyPath_select = @"select";
 //}
 - (void)setCollectModel:(DJUcMyCollectModel *)collectModel{
     _collectModel = collectModel;
-    [collectModel addObserver:self forKeyPath:keyPath_select options:NSKeyValueObservingOptionNew context:nil];
+    [collectModel addObserver:self forKeyPath:select_key options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:keyPath_select] && object == self.collectModel) {
+    if ([keyPath isEqualToString:select_key] && object == self.collectModel) {
         self.seButon.selected = self.collectModel.select;
     }
 }
@@ -40,7 +38,7 @@ static NSString * keyPath_select = @"select";
 }
 
 - (void)dealloc{
-    [self.collectModel removeObserver:self forKeyPath:keyPath_select];
+    [self.collectModel removeObserver:self forKeyPath:select_key];
 }
 
 @end

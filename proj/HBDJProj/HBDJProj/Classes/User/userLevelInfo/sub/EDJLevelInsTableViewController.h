@@ -9,5 +9,6 @@
 #import "LGBaseViewController.h"
 
 @interface EDJLevelInsTableViewController : LGBaseViewController
+@property (strong,nonatomic) NSArray *array;
 
 @end

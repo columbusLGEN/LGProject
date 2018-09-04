@@ -128,8 +128,10 @@ DJUploadMindReportCoverCellDelegate>
     } uploadProgress:^(NSProgress *uploadProgress) {
         NSLog(@"思想汇报&述职述廉_上传封面: %f",
               (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-    } success:^(NSString *imgUrl_sub) {
-        [_uploadDataManager setUploadValue:imgUrl_sub key:cell.model.uploadJsonKey];
+    } success:^(id dict) {
+        NSString *path = dict[path_key];
+        /// 设置表单数据
+        [_uploadDataManager setUploadValue:path key:cell.model.uploadJsonKey];
     } failure:^(id uploadFailure) {
         NSLog(@"思想汇报&述职述廉_上传封面失败: %@",uploadFailure);
     }];

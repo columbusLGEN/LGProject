@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -24,7 +24,10 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImD-6Y-IDz">
-                    <rect key="frame" x="20" y="100" width="52" height="22"/>
+                    <rect key="frame" x="20" y="89" width="52" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="gb6-N0-rVA"/>
+                    </constraints>
                     <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="全选" image="uc_icon_upload_edit_normal">
                         <color key="titleColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,6 +72,6 @@
     </objects>
     <resources>
         <image name="uc_icon_upload_edit_normal" width="15" height="15"/>
-        <image name="uc_icon_upload_edit_selected" width="15" height="15"/>
+        <image name="uc_icon_upload_edit_selected" width="16" height="16"/>
     </resources>
 </document>
