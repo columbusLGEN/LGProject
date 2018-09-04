@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, DJUpdateUserInfoKey) {
+    DJUpdateUserInfoKeyPhone,
+    DJUpdateUserInfoKeyName,
+    DJUpdateUserInfoKeyImage,
+    DJUpdateUserInfoKeyPassword
+};
+
 typedef NS_ENUM(NSUInteger, DJMCType) {
     /** 所有 */
     DJMCTypeAll,
@@ -25,6 +32,8 @@ typedef NS_ENUM(NSUInteger, DJMCType) {
 
 @interface DJUserNetworkManager : NSObject
 
+/** 修改个人信息 */
+- (void)frontUserinfo_updateWithInfoDict:(NSDictionary *)infoDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 查看今日获取积分 */
 - (void)frontIntegralGrade_selectTaskSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 查看积分获取规则 */
@@ -107,6 +116,8 @@ typedef NS_ENUM(NSUInteger, DJMCType) {
  @param failure 请求失败回调
  */
 - (void)userActivationWithTel:(NSString *)tel oldPwd:(NSString *)oldPwd pwd:(NSString *)pwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+NSString *dj_updateUserInfoKey(DJUpdateUserInfoKey infoKey);
 
 CM_SINGLETON_INTERFACE
 @end

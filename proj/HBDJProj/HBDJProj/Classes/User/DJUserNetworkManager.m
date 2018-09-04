@@ -24,6 +24,10 @@ static NSString * const password_key = @"password";
 //
 //}
 
+- (void)frontUserinfo_updateWithInfoDict:(NSDictionary *)infoDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"/frontUserinfo/update" param:infoDict success:success failure:failure];
+}
+
 - (void)frontIntegralGrade_selectTaskSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [self sendPOSTRequestWithiName:@"frontIntegralGrade/selectTask" param:@{} success:success failure:failure];
 }
@@ -141,6 +145,23 @@ static NSString * const password_key = @"password";
     argu[mechanismid_key] = [DJUser sharedInstance].mechanismid;
     argu[userid_key] = [DJUser sharedInstance].userid;
     return argu;
+}
+
+NSString *dj_updateUserInfoKey(DJUpdateUserInfoKey infoKey){
+    switch (infoKey) {
+        case DJUpdateUserInfoKeyName:
+            return @"name";
+            break;
+        case DJUpdateUserInfoKeyImage:
+            return @"image";
+            break;
+        case DJUpdateUserInfoKeyPhone:
+            return @"phone";
+            break;
+        case DJUpdateUserInfoKeyPassword:
+            return @"password";
+            break;
+    }
 }
 
 CM_SINGLETON_IMPLEMENTION

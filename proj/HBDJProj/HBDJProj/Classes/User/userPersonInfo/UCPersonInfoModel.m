@@ -23,6 +23,23 @@
     NSArray *modelArray = [self userInfoArrayFotItemTitle];
     
     for (int i = 0; i < 15; i++) {
+        /**
+         0: image -- 头像链接
+         1: name
+         2: phone
+         3: gender
+         4: hometown
+         5: nation
+         6: birthda
+         7: degree
+         8: jiontime
+         9: formaltime
+         10: post
+         11: partyproperty
+         12: developparty
+         13: crowdtype
+         14: workunit
+         */
         UCPersonInfoModel *model = modelArray[i];
         model.content = [user valueForKey:propertyNameArray[i]];
         
