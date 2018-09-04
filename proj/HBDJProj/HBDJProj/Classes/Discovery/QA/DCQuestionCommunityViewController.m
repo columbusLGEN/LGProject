@@ -138,8 +138,8 @@ UCQuestionTableViewCellDelegate>
     
     /// TODO: 分享链接等内容
     NSDictionary *param = @{LGSocialShareParamKeyWebPageUrl:model.shareUrl?model.shareUrl:@"",
-                            LGSocialShareParamKeyTitle:model.title?model.title:@"",
-                            LGSocialShareParamKeyDesc:model.contentvalidity?model.contentvalidity:@"",
+                            LGSocialShareParamKeyTitle:model.question?model.question:@"",
+                            LGSocialShareParamKeyDesc:model.answer?model.answer:@"",
                             LGSocialShareParamKeyThumbUrl:model.thumbnail?model.thumbnail:@"",
                             LGSocialShareParamKeyVc:self};
     

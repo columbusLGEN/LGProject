@@ -17,11 +17,13 @@
 #import "DJSendCommentsViewController.h"
 #import "DCSubStageAudioCell.h"
 #import "DJPyqAudioPlayViewController.h"
+#import "LGWMPlayerManager.h"
 
 @interface DCSubStageTableviewController ()<
 DCSubStageBaseTableViewCellDelegate,
 WMPlayerDelegate>
 @property (weak,nonatomic) WMPlayer * wmPlayer;
+@property (strong,nonatomic) LGWMPlayerManager *wmp_mgr;
 
 @end
 
@@ -162,25 +164,7 @@ WMPlayerDelegate>
     
     /// TODO: 非wifi播放提醒
     
-    WMPlayerModel *playerModel = [WMPlayerModel new];
-//    playerModel.title = model.title;
-    playerModel.videoURL = [NSURL URLWithString:model.fileurl];
-    playerModel.verticalVideo = (model.aImgType == StageModelTypeAImgTypeVer);
-    WMPlayer * wmPlayer = [[WMPlayer alloc]initPlayerModel:playerModel];
-    _wmPlayer = wmPlayer;
-    _wmPlayer.backBtnStyle = BackBtnStylePop;
-    _wmPlayer.delegate = self;
-    _wmPlayer.tintColor = UIColor.EDJMainColor;
-    _wmPlayer.loopPlay = NO;
-    _wmPlayer.playerLayerGravity = WMPlayerLayerGravityResizeAspect;
-    [UIApplication.sharedApplication.keyWindow addSubview:_wmPlayer];
-    
-    [_wmPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.leading.trailing.top.equalTo(UIApplication.sharedApplication.keyWindow);
-//        make.height.mas_equalTo(wmPlayer.mas_width).multipliedBy(9.0/16);
-        make.edges.equalTo(UIApplication.sharedApplication.keyWindow);
-    }];
-    [_wmPlayer play];
+   _wmPlayer = [self.wmp_mgr WMPlayerWithUrl:model.fileurl aImgType:model.aImgType delegate:self];
     
 }
 /// MARK: 关闭视频
@@ -188,6 +172,13 @@ WMPlayerDelegate>
     [wmplayer pause];
     [wmplayer removeFromSuperview];
     _wmPlayer = nil;
+}
+
+- (LGWMPlayerManager *)wmp_mgr{
+    if (!_wmp_mgr) {
+        _wmp_mgr = LGWMPlayerManager.new;
+    }
+    return _wmp_mgr;
 }
 
 @end

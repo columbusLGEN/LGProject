@@ -7,12 +7,20 @@
 //
 
 #import "LGBaseView.h"
-@class DJDataBaseModel,HPAudioVideoViewController,DJLessonDetailViewController;
+@class DJDataBaseModel,
+DJLessonDetailViewController,
+PLPlayerView;
+
+@protocol HPVideoContainerViewDelegate <NSObject>
+- (void)videoConViewPlayCheckWithPlayerView:(PLPlayerView *)playeView;
+
+@end
 
 @interface HPVideoContainerView : LGBaseView
-@property (weak,nonatomic) HPAudioVideoViewController *vc;
+
 @property (weak,nonatomic) DJLessonDetailViewController *lessonDetailVc;
 @property (strong,nonatomic) DJDataBaseModel *model;
+@property (weak,nonatomic) id<HPVideoContainerViewDelegate> delegate;
 - (void)stop;
 
 @end

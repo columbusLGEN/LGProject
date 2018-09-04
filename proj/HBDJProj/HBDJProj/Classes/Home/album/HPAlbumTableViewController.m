@@ -14,7 +14,6 @@
 #import "HPAlbumHeaderCell.h"
 #import "EDJMicroPartyLessonSubCell.h"
 
-#import "HPAudioVideoViewController.h"
 #import "DJMediaDetailTransAssist.h"
 
 @interface HPAlbumTableViewController ()<

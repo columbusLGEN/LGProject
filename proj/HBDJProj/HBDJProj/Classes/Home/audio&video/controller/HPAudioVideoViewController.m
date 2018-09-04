@@ -29,6 +29,7 @@
 #import "LGPlayer.h"
 #import "DJUserInteractionMgr.h"
 #import "HPAddBroseCountMgr.h"
+#import "PLPlayerView.h"
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -38,7 +39,8 @@ UITableViewDelegate,
 UITableViewDataSource,
 HPAudioVideoInfoCellDelegate,
 LGVideoInterfaceViewDelegate,
-LGThreeRightButtonViewDelegate>
+LGThreeRightButtonViewDelegate,
+HPVideoContainerViewDelegate>
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray *array;
 
@@ -155,7 +157,8 @@ LGThreeRightButtonViewDelegate>
     if (self.contentType == ModelMediaTypeVideo) {
         /// MARK: 视频播放器
         HPVideoContainerView *vpv = [[HPVideoContainerView alloc] init];
-        vpv.vc = self;
+        vpv.delegate = self;
+//        vpv.vc = self;
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
         [self.view addSubview:vpv];
         vpv.model = self.model;
@@ -163,7 +166,7 @@ LGThreeRightButtonViewDelegate>
     }else if (self.contentType == ModelMediaTypeAudio){
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
-        apv.vc = self;
+//        apv.vc = self;
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
         apv.model = self.model;
@@ -176,6 +179,24 @@ LGThreeRightButtonViewDelegate>
         [self.tableView reloadData];
     }];
     
+}
+
+- (void)videoConViewPlayCheckWithPlayerView:(PLPlayerView *)playeView{
+    /// 在控制器的代理方法中,执行playerview的- (void)lg_play_before  和  - (void)lg_real_play;两个新方法
+    
+//    [playeView lg_play_before];
+//    [LGNoticer.new checkNetworkStatusWithBlock:^(BOOL notice) {
+//        NSLog(@"noticenoticenotice: ");
+//        if (notice) {
+//            /// 提示用户当前为流量状态
+//            NSLog(@"弹出提示框: ");
+//
+//        }else{
+//            /// 继续播放
+//            NSLog(@"继续播放: ");
+//            [playeView lg_real_play];
+//        }
+//    }];
 }
 
 #pragma mark - LGThreeRightButtonViewDelegate

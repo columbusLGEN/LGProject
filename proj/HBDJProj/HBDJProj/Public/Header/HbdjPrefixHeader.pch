@@ -47,8 +47,8 @@
 
 #define DJWexinAppID     @"wx2b25e486d7622bf9"
 #define DJWexinAppSecret @"9026cb882f7eb338a486f2f1bc3ae6f1"
-#define DJQQAppID        @"1107729777"
-#define DJQQAppKey       @"HgcqdztAKGyTiWW1"
+#define DJQQAppID        @"1107729299"
+#define DJQQAppKey       @"3Yj6u7zH6TSuqHw4"
 
 //#define DJWexinAppID     @"wxc21c2d288222bb77"/// retech
 //#define DJWexinAppSecret @"2738996735c5e2645d3f56f5d4030f97"/// retech

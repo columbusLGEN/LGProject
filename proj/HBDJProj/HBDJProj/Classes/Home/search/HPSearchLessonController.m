@@ -10,7 +10,6 @@
 #import "EDJMicroPartyLessonSubCell.h"
 #import "DJDataBaseModel.h"
 
-#import "HPAudioVideoViewController.h"
 #import "DJMediaDetailTransAssist.h"
 
 @interface HPSearchLessonController ()

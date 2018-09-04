@@ -6,7 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-/// 音视频 详情控制器
+/// 该类目前暂无实际用途
+/// 音视频 详情控制器 （内容为纯文本）
 
 #import "LGBaseViewController.h"
 #import "DJDataBaseModel.h"

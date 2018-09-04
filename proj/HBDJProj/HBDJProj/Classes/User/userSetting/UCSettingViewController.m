@@ -121,7 +121,16 @@ UCSettingTableViewCellDelegate>
         }
         if (model.subType == 1) {
             /// 是否开启非wifi播放提醒
+            sender.on = !sender.isOn;
             
+            NSInteger notice = 0;
+            if (sender.isOn) {
+                notice = 1;
+            }else{
+                notice = 2;
+            }
+            DJUser.sharedInstance.WIFI_playVideo_notice = notice;
+            [[NSUserDefaults standardUserDefaults] setObject:@(notice) forKey:NWiFi_notice_key];
         }
     }
 }

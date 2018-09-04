@@ -10,7 +10,7 @@
 
 @implementation LGNoticer
 
-- (void)checkNetworkStatusWithBlock:(void(^)(BOOL notice))noticeBlock {
+- (void)noticeNetworkStatusWithBlock:(void(^)(BOOL notice))noticeBlock {
     
     [LGNetworkManager.sharedInstance checkNetworkStatusWithBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
@@ -27,6 +27,7 @@
                     /// 提醒
                     noticeBlock(YES);
                 }else{
+                    /// 不提醒
                     noticeBlock(NO);
                 }
                 break;

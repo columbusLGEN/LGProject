@@ -18,7 +18,6 @@
 #import "HPAlbumTableViewController.h"
 #import "HPBookInfoViewController.h"
 
-//#import "HPAudioVideoViewController.h"
 #import "DJLessonDetailViewController.h"
 
 #import "LGDidSelectedNotification.h"
@@ -30,7 +29,6 @@
     switch (model.modaltype) {
         case ModelMediaTypeAudio:
         case ModelMediaTypeVideo:{
-//            [HPAudioVideoViewController avcPushWithLesson:model baseVc:baseVc];
             
             [DJLessonDetailViewController lessonvcPushWithLesson:model baseVc:baseVc];
             

@@ -45,7 +45,7 @@ static NSString * const keyPath_granted = @"granted";
             }];
         }
         if (model.subType == 1) {
-            _onOff.on = DJUser.sharedInstance.WIFI_playVideo_notice;
+            _onOff.on = (DJUser.sharedInstance.WIFI_playVideo_notice == 1);
         }
         
     }else if (model.contentType == 0){

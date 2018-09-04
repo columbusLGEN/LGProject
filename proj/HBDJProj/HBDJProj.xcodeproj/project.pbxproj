@@ -447,6 +447,8 @@
 		88EA133220AD533D007AB886 /* detaiTtest.html in Resources */ = {isa = PBXBuildFile; fileRef = 88EA133120AD533C007AB886 /* detaiTtest.html */; };
 		88EA133C20AD5E31007AB886 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */; };
 		88EB405B213D36C900F12211 /* LGNoticer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB405A213D36C900F12211 /* LGNoticer.m */; };
+		88EB405E213E1EB300F12211 /* UIAlertController+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB405D213E1EB300F12211 /* UIAlertController+LGExtension.m */; };
+		88EB4061213E35F100F12211 /* LGWMPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB4060213E35F100F12211 /* LGWMPlayerManager.m */; };
 		88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF006209FE2CC0071A98A /* OLExamViewController.m */; };
 		88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */; };
 		88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF056209FED480071A98A /* OLExamSingleModel.m */; };
@@ -1299,6 +1301,10 @@
 		88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
 		88EB4059213D36C900F12211 /* LGNoticer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoticer.h; sourceTree = "<group>"; };
 		88EB405A213D36C900F12211 /* LGNoticer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGNoticer.m; sourceTree = "<group>"; };
+		88EB405C213E1EB300F12211 /* UIAlertController+LGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+LGExtension.h"; sourceTree = "<group>"; };
+		88EB405D213E1EB300F12211 /* UIAlertController+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+LGExtension.m"; sourceTree = "<group>"; };
+		88EB405F213E35F100F12211 /* LGWMPlayerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGWMPlayerManager.h; sourceTree = "<group>"; };
+		88EB4060213E35F100F12211 /* LGWMPlayerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGWMPlayerManager.m; sourceTree = "<group>"; };
 		88ECF005209FE2CC0071A98A /* OLExamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewController.h; sourceTree = "<group>"; };
 		88ECF006209FE2CC0071A98A /* OLExamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewController.m; sourceTree = "<group>"; };
 		88ECF009209FE3340071A98A /* OLExamSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleViewController.h; sourceTree = "<group>"; };
@@ -1621,6 +1627,8 @@
 				8833A18221311F6E001564E0 /* LGCacheClear.m */,
 				88EB4059213D36C900F12211 /* LGNoticer.h */,
 				88EB405A213D36C900F12211 /* LGNoticer.m */,
+				88EB405F213E35F100F12211 /* LGWMPlayerManager.h */,
+				88EB4060213E35F100F12211 /* LGWMPlayerManager.m */,
 				882AFCD4212FE04F00DB8005 /* 2mp3 */,
 				888223AD212BD7850094D3EF /* LGAudio */,
 				882B117A20D23D3300917374 /* playerview */,
@@ -1692,6 +1700,8 @@
 				8831E195209450B7001D038E /* UITextView+Extension.m */,
 				880363B620E7255E00E97FA3 /* UIButton+LGExtension.h */,
 				880363B720E7255E00E97FA3 /* UIButton+LGExtension.m */,
+				88EB405C213E1EB300F12211 /* UIAlertController+LGExtension.h */,
+				88EB405D213E1EB300F12211 /* UIAlertController+LGExtension.m */,
 			);
 			path = UICatagory;
 			sourceTree = "<group>";
@@ -4139,6 +4149,7 @@
 				882FC05421379201005F7187 /* DJUcMyCollectQAListController.m in Sources */,
 				8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */,
 				888E3A6C211BDDD800ED2DA3 /* LGCountTimeLabel.m in Sources */,
+				88EB4061213E35F100F12211 /* LGWMPlayerManager.m in Sources */,
 				88ECF0C920A19E6A0071A98A /* DCSubPartStateDetailViewController.m in Sources */,
 				882FC03321367931005F7187 /* DJUcMyCollectModel.m in Sources */,
 				881C949B2068EA5A009D6A52 /* main.m in Sources */,
@@ -4281,6 +4292,7 @@
 				8876E3D220EB685D001C6A1A /* DJOnlineUploadAddImgCell.m in Sources */,
 				883D475C20DB69E700FD9971 /* DJUser.m in Sources */,
 				8835B305207213B000722010 /* EDJMicroPSCellFooter.m in Sources */,
+				88EB405E213E1EB300F12211 /* UIAlertController+LGExtension.m in Sources */,
 				880B74E1211832AD008C7500 /* HZPhotoBrowser.m in Sources */,
 				88A4712D207EEB91002F93E0 /* UIViewController+Extension.m in Sources */,
 				882FC05D2137EE7D005F7187 /* DJBanIndicateView.m in Sources */,

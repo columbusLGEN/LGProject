@@ -768,23 +768,24 @@ UIGestureRecognizerDelegate
 }
 
 - (void)lg_play_before{
-    if ([self.delegate respondsToSelector:@selector(lg_played)]) {
-        [self.delegate lg_played];
-    }
     
     if (self.isNeedSetupPlayer) {
         [self setupPlayer];
         self.isNeedSetupPlayer = NO;
     }
+    
+}
+- (void)lg_real_play{
+    
+    if ([self.delegate respondsToSelector:@selector(lg_played)]) {
+        [self.delegate lg_played];
+    }
     self.isStop = NO;
     
-    [self.delegate playerViewWillPlay:self];
     [self addFullStreenNotify];
     [self addTimer];
     [self resetButton:YES];
     
-}
-- (void)lg_real_play{
     if (!(PLPlayerStatusReady == self.player.status ||
           PLPlayerStatusOpen == self.player.status ||
           PLPlayerStatusCaching == self.player.status ||

@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * const NWiFi_notice_key = @"NWiFi_notice_key";
+
 @interface DJUser : NSObject
 
 /** 将实例的属性值保存到本地偏好中 */

@@ -107,7 +107,11 @@ static NSString *key_suffix = @"_dj";
 
 - (NSInteger)WIFI_playVideo_notice{
     if (_WIFI_playVideo_notice == 0) {
-        _WIFI_playVideo_notice = 1;
+        NSNumber *notice = [[NSUserDefaults standardUserDefaults] objectForKey:NWiFi_notice_key];
+        if (notice.integerValue == 0) {
+            notice = @(1);
+        }
+        _WIFI_playVideo_notice = notice.integerValue;
     }
     return _WIFI_playVideo_notice;
 }

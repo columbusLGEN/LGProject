@@ -10,6 +10,6 @@
 
 @interface HPAddBroseCountMgr : NSObject
 
-- (void)addBroseCountWithId:(NSInteger)seqid success:(void(^)())success;
+- (void)addBroseCountWithId:(NSInteger)seqid success:(void(^)(void))success;
 
 @end

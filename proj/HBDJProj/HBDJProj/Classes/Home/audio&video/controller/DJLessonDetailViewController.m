@@ -24,6 +24,8 @@
 #import "DJUserInteractionMgr.h"
 #import "HPAddBroseCountMgr.h"
 #import <DTCoreText/DTCoreText.h>
+#import "PLPlayerView.h"
+#import "UIAlertController+LGExtension.h"
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -35,7 +37,8 @@ HPAudioVideoInfoCellDelegate,
 LGVideoInterfaceViewDelegate,
 LGThreeRightButtonViewDelegate,
 DTAttributedTextContentViewDelegate,
-DTLazyImageViewDelegate>
+DTLazyImageViewDelegate,
+HPVideoContainerViewDelegate>
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray *array;
 
@@ -157,6 +160,7 @@ DTLazyImageViewDelegate>
         /// MARK: 视频播放器
         HPVideoContainerView *vpv = [[HPVideoContainerView alloc] init];
         vpv.lessonDetailVc = self;
+        vpv.delegate = self;
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
         [self.view addSubview:vpv];
         vpv.model = self.model;
@@ -177,6 +181,27 @@ DTLazyImageViewDelegate>
         [self.tableView reloadData];
     }];
     
+}
+
+- (void)videoConViewPlayCheckWithPlayerView:(PLPlayerView *)playeView{
+    /// 在控制器的代理方法中,执行playerview的- (void)lg_play_before  和  - (void)lg_real_play;两个新方法
+    
+    [playeView lg_play_before];
+    [LGNoticer.new noticeNetworkStatusWithBlock:^(BOOL notice) {
+        if (notice) {
+            /// 提示用户当前为流量状态
+            UIAlertController *alertvc = [UIAlertController lg_popUpWindowWithTitle:@"提示" message:@"当前播放会消耗流量" preferredStyle:UIAlertControllerStyleAlert cancelTitle:@"取消" doneTitle:@"继续播放" cancelBlock:^(UIAlertAction * _Nonnull action) {
+            } doneBlock:^(UIAlertAction * _Nonnull action) {
+                [playeView lg_real_play];
+                
+            }];
+            [self presentViewController:alertvc animated:YES completion:nil];
+            
+        }else{
+            /// 继续播放
+            [playeView lg_real_play];
+        }
+    }];
 }
 
 #pragma mark - LGThreeRightButtonViewDelegate

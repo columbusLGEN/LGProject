@@ -10,6 +10,6 @@
 
 @interface LGNoticer : NSObject
 
-- (void)checkNetworkStatusWithBlock:(void(^)(BOOL notice))noticeBlock;
+- (void)noticeNetworkStatusWithBlock:(void(^)(BOOL notice))noticeBlock;
 
 @end
