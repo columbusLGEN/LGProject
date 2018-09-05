@@ -8,6 +8,12 @@
 
 #import "LGBaseTableViewController.h"
 
+@protocol UCPersonInfoViewControllerDelegate <NSObject>
+- (void)pivcUpdateAvadater:(NSURL *)iconUrl;
+
+@end
+
 @interface UCPersonInfoViewController : LGBaseTableViewController
+@property (weak,nonatomic) id<UCPersonInfoViewControllerDelegate> delegate;
 
 @end

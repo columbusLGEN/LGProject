@@ -22,7 +22,6 @@
 // 如果需要使用idfa功能所需要引入的头文件（可选）
 //#import <AdSupport/AdSupport.h>
 
-
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 
 
@@ -32,6 +31,7 @@
 
 #pragma mark - UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     [self baseConfigWithApplication:application launchOptions:launchOptions];
     return YES;
 }

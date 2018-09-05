@@ -449,6 +449,7 @@
 		88EB405E213E1EB300F12211 /* UIAlertController+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB405D213E1EB300F12211 /* UIAlertController+LGExtension.m */; };
 		88EB4061213E35F100F12211 /* LGWMPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB4060213E35F100F12211 /* LGWMPlayerManager.m */; };
 		88EB4065213E810C00F12211 /* DJLevelHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB4064213E810C00F12211 /* DJLevelHomeModel.m */; };
+		88EB4068213F69DF00F12211 /* LGSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB4067213F69DF00F12211 /* LGSystem.m */; };
 		88ECF007209FE2CC0071A98A /* OLExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF006209FE2CC0071A98A /* OLExamViewController.m */; };
 		88ECF00B209FE3340071A98A /* OLExamSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF00A209FE3340071A98A /* OLExamSingleViewController.m */; };
 		88ECF057209FED480071A98A /* OLExamSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ECF056209FED480071A98A /* OLExamSingleModel.m */; };
@@ -1305,6 +1306,8 @@
 		88EB4060213E35F100F12211 /* LGWMPlayerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGWMPlayerManager.m; sourceTree = "<group>"; };
 		88EB4063213E810C00F12211 /* DJLevelHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJLevelHomeModel.h; sourceTree = "<group>"; };
 		88EB4064213E810C00F12211 /* DJLevelHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJLevelHomeModel.m; sourceTree = "<group>"; };
+		88EB4066213F69DF00F12211 /* LGSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSystem.h; sourceTree = "<group>"; };
+		88EB4067213F69DF00F12211 /* LGSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSystem.m; sourceTree = "<group>"; };
 		88ECF005209FE2CC0071A98A /* OLExamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamViewController.h; sourceTree = "<group>"; };
 		88ECF006209FE2CC0071A98A /* OLExamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLExamViewController.m; sourceTree = "<group>"; };
 		88ECF009209FE3340071A98A /* OLExamSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLExamSingleViewController.h; sourceTree = "<group>"; };
@@ -1629,6 +1632,8 @@
 				88EB405A213D36C900F12211 /* LGNoticer.m */,
 				88EB405F213E35F100F12211 /* LGWMPlayerManager.h */,
 				88EB4060213E35F100F12211 /* LGWMPlayerManager.m */,
+				88EB4066213F69DF00F12211 /* LGSystem.h */,
+				88EB4067213F69DF00F12211 /* LGSystem.m */,
 				882AFCD4212FE04F00DB8005 /* 2mp3 */,
 				888223AD212BD7850094D3EF /* LGAudio */,
 				882B117A20D23D3300917374 /* playerview */,
@@ -4166,6 +4171,7 @@
 				884EB43021073DF2005D5CA9 /* DJThoughtReportDetailNineImageCell.m in Sources */,
 				8851C64020F5EBBC00C91575 /* DJThoutghtRepotListTableViewCell.m in Sources */,
 				88176FDD210EAA15004B8F2F /* DJHomeSearchViewController.m in Sources */,
+				88EB4068213F69DF00F12211 /* LGSystem.m in Sources */,
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
 				880363A920E4A31A00E97FA3 /* LGUserLimitsManager.m in Sources */,

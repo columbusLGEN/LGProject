@@ -19,6 +19,11 @@
 
 @implementation LGWKWebViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (instancetype)initWithUrl:(NSURL *)URL{
     self.URL = URL;
     return [self init];
@@ -30,6 +35,7 @@
     
 }
 - (void)configUI{
+    self.title = @"党员统计报表";
     NSURLRequest *request = [NSURLRequest requestWithURL:self.URL];
     [self.wkView loadRequest:request];
 }

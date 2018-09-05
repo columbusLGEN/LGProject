@@ -67,6 +67,10 @@ DJUploadMindReportCoverCellDelegate>
     _uploadDataManager = DJUploadDataManager.new;
     
     _coverManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhoto];
+    _coverManager.configuration.singleSelected = YES;
+    _coverManager.configuration.movableCropBox = YES;
+    _coverManager.configuration.movableCropBoxEditSize = YES;
+    _coverManager.configuration.movableCropBoxCustomRatio = CGPointMake(16, 9);
     _nineImageManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhoto];
     _cellSelectedImageView = [HXPhotoView.alloc initWithManager:_nineImageManager];
     _cellSelectedImageView.delegate = _uploadDataManager;

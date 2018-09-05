@@ -55,5 +55,12 @@ typedef void(^DJNetworkFailure)(id failureObj);
 /// MARK: 发送请求数据的统一方法
 - (void)sendPOSTRequestWithiName:(NSString *)iName param:(id)param success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
+
+/** 党员统计报表 URLComponents */
+@property (strong,nonatomic) NSURLComponents *tableURLComponents;
+@property (strong,nonatomic) NSString *host;
+@property (strong,nonatomic) NSNumber *port;
+/** 党员统计报表path */
+@property (strong,nonatomic) NSString *tableURLPath;
 + (instancetype)sharedInstance;
 @end

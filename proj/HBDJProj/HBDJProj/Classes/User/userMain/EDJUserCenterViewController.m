@@ -11,6 +11,8 @@
 #import "EDJUserCenterHomePageCell.h"
 #import "LGCustomButton.h"
 #import "UCLoginViewController.h"
+#import "LGWKWebViewController.h"
+#import "UCPersonInfoViewController.h"
 
 #import "DJNotOpenViewController.h"
 
@@ -18,7 +20,8 @@ static NSString * const uchpCellReuseId = @"EDJUserCenterHomePageCell";
 
 @interface EDJUserCenterViewController ()<
 UITableViewDelegate,
-UITableViewDataSource>
+UITableViewDataSource,
+UCPersonInfoViewControllerDelegate>
 @property (strong,nonatomic) NSArray<EDJUserCenterHomePageModel *> *array;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerBgImageView;
@@ -94,10 +97,10 @@ UITableViewDataSource>
 }
 
 #pragma mark - 跳转
-/// MARK: 点击头像
-- (IBAction)headerIconClick:(id)sender {
-    [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
-}
+/// MARK: 点击头像 -- 也跳转到我的等级
+//- (IBAction)headerIconClick:(id)sender {
+//
+//}
 /// MARK: 跳转到我的等级
 //- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
 //    return NO;/// 返回no 为禁止 segue跳转
@@ -111,7 +114,9 @@ UITableViewDataSource>
     /// MARK: 我的信息、党员统计信息、帮助与反馈、设置
     if (indexPath.row == 0) {
         /// 第一行为 我的信息
-        [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController" animated:YES];
+        UCPersonInfoViewController *pivc = (UCPersonInfoViewController *)[self lgInstantiateViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"UCPersonInfoViewController"];
+        pivc.delegate = self;
+        [self.navigationController pushViewController:pivc animated:YES];
     }
     if (indexPath.row == _array.count - 1) {
         /// 设置
@@ -119,12 +124,12 @@ UITableViewDataSource>
     }
     
     
-//    if (indexPath.row == 1 || indexPath.row == 2) {
-//        [self showNotOpenvc];
-//    }
     if (indexPath.row == 1) {
-        /// 党员统计信息
-        NSLog(@"党员统计报表: ");
+        
+        NSURLComponents *URLComponents = DJNetworkManager.sharedInstance.tableURLComponents;
+        LGWKWebViewController *webvc = [LGWKWebViewController.alloc initWithUrl:URLComponents.URL];
+        [self.navigationController pushViewController:webvc animated:YES];
+        
     }
     if (indexPath.row == 2) {
         /// 第三行 帮助与反馈
@@ -158,6 +163,11 @@ UITableViewDataSource>
             break;
     }
 
+}
+
+#pragma mark - UCPersonInfoViewControllerDelegate
+- (void)pivcUpdateAvadater:(NSURL *)iconUrl{
+    [_headIcon sd_setImageWithURL:iconUrl];
 }
 
 /// MARK: 展示暂未开放控制器

@@ -18,7 +18,10 @@
 
 @end
 
-@implementation UCPersonInfoViewController
+@implementation UCPersonInfoViewController{
+    MBProgressHUD *uploadTipView;
+    BOOL avadaterUpdated;/// 是否更新了头像
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -38,8 +41,17 @@
     
     _uploadDataManager = DJUploadDataManager.new;
     _coverManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
+    _coverManager.configuration.singleSelected = YES;
+    _coverManager.configuration.singleJumpEdit = YES;
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getUserinfo)];
+    
+    uploadTipView = [MBProgressHUD.alloc initWithView:self.view];
+    uploadTipView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+    uploadTipView.mode = MBProgressHUDModeIndeterminate;
+    uploadTipView.label.text = @"上传中...";
+    
+    [uploadTipView hideAnimated:NO];
 }
 
 - (void)getUserinfo{
@@ -89,37 +101,94 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        NSLog(@"更换头像: ");
-        [_uploadDataManager presentAlbunListViewControllerWithViewController:self manager:_coverManager selectSuccess:^(NSURL *coverFileUrl) {
-            
-        } uploadProgress:^(NSProgress *uploadProgress) {
-            NSLog(@"上传封面: %f",
-                  (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-        } success:^(id dict) {
-            //        NSLog(@"上传封面回调: %@",dict);
-            NSString *path = dict[path_key];
-            
-            /// 上传数据
-            NSDictionary *param = @{dj_updateUserInfoKey(DJUpdateUserInfoKeyImage):path};
-            [DJUserNetworkManager.sharedInstance frontUserinfo_updateWithInfoDict:param success:^(id responseObj) {
-                /// 更新cell上的头像
-                NSString *iconUrl;
-//                iconUrl = responseObj[@"iconUrl"];
-                /// TODO: 头像链接赋值
-                DJUser.sharedInstance.image = iconUrl;
-                [self updateInfoWithUser:DJUser.sharedInstance];
-                
-                
-            } failure:^(id failureObj) {
-                
-            }];
-
-        } failure:^(id uploadFailure) {
-            
+        
+        UIAlertController *alertvc = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *camera = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self presentCameraViewController];
         }];
+        UIAlertAction *photo = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self presentAlbunListViewController];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+        }];
+        
+        [camera setValue:UIColor.EDJGrayscale_11 forKey:@"titleTextColor"];
+        [photo setValue:UIColor.EDJGrayscale_11 forKey:@"titleTextColor"];
+        [cancel setValue:UIColor.EDJMainColor forKey:@"titleTextColor"];
+        
+        [alertvc addAction:camera];
+        [alertvc addAction:photo];
+        [alertvc addAction:cancel];
+        [self presentViewController:alertvc animated:YES completion:nil];
+        
     }
     
 }
 
+- (void)presentAlbunListViewController{
+    
+    [UIApplication.sharedApplication.keyWindow addSubview:uploadTipView];
+    
+    [_uploadDataManager lg_presentAlbunListViewControllerWithViewController:self noticeView:uploadTipView manager:_coverManager selectSuccess:^(NSURL *coverFileUrl) {
+        
+    } uploadProgress:^(NSProgress *uploadProgress) {
+        NSLog(@"上传头像_相册选择: %f",
+              (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(id dict) {
+        
+        [self sendUpdateRequestWithDict:dict];
+    } failure:^(id uploadFailure) {
+        [self hideAndRemoveTipView];
+    }];
+    
+
+}
+- (void)presentCameraViewController{
+    
+    [UIApplication.sharedApplication.keyWindow addSubview:uploadTipView];
+    
+    [_uploadDataManager lg_presentCustomCameraViewControllerWithViewController:self noticeView:uploadTipView manager:_coverManager selectSuccess:^(NSURL *coverFileUrl) {
+        
+    } uploadProgress:^(NSProgress *uploadProgress) {
+        NSLog(@"上传头像_相机选择: %f",
+              (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(id dict) {
+        [self sendUpdateRequestWithDict:dict];
+        
+    } failure:^(id uploadFailure) {
+        [self hideAndRemoveTipView];
+    }];
+}
+
+- (void)sendUpdateRequestWithDict:(id)dict{
+    NSString *path = dict[path_key];
+    
+    /// 上传数据
+    NSDictionary *param = @{dj_updateUserInfoKey(DJUpdateUserInfoKeyImage):path};
+    [DJUserNetworkManager.sharedInstance frontUserinfo_updateWithInfoDict:param success:^(id responseObj) {
+        /// 更新cell上的头像
+        NSString *iconUrl = responseObj[@"path"];
+        DJUser.sharedInstance.image = iconUrl;
+        [self updateInfoWithUser:DJUser.sharedInstance];
+        [self hideAndRemoveTipView];
+        avadaterUpdated = YES;
+        
+    } failure:^(id failureObj) {
+        [self hideAndRemoveTipView];
+    }];
+}
+- (void)hideAndRemoveTipView{
+    [uploadTipView hideAnimated:YES];
+    [uploadTipView removeFromSuperview];
+}
+
+- (void)dealloc{
+    if (avadaterUpdated) {
+        if ([self.delegate respondsToSelector:@selector(pivcUpdateAvadater:)]) {
+            [self.delegate pivcUpdateAvadater:[NSURL URLWithString:DJUser.sharedInstance.image]];
+        }
+    }
+}
 
 @end

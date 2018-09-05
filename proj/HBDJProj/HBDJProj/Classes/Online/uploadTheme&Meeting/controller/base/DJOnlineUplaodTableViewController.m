@@ -81,7 +81,10 @@ DJInputContentViewControllerDelegate>
     _uploadDataManager = DJUploadDataManager.new;
     
     _coverManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
-    //    _coverSelectMgr.configuration.singleSelected = YES;
+    _coverManager.configuration.singleSelected = YES;
+    _coverManager.configuration.movableCropBox = YES;
+    _coverManager.configuration.movableCropBoxEditSize = YES;
+    _coverManager.configuration.movableCropBoxCustomRatio = CGPointMake(16, 9);
     //    _coverSelectMgr.configuration.albumListTableView = ^(UITableView *tableView) {
     //    };
     //    _coverSelectMgr.configuration.singleJumpEdit = YES;

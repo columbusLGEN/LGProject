@@ -11,9 +11,17 @@
 #import "DJOnlineNetorkManager.h"
 #import "DJOnlineUploadTableModel.h"
 
-@interface DJUploadDataManager ()
+@interface DJUploadDataManager ()<HXDatePhotoEditViewControllerDelegate>
 /** 要上传的表单数据 */
 @property (strong,nonatomic) NSMutableDictionary *formData;
+
+@property (copy,nonatomic) DJSelectCoverSuccess cameravcSelectSuccessBlock;
+@property (copy,nonatomic) LGUploadImageProgressBlock cameravcProgressBlock;
+@property (copy,nonatomic) LGUploadImageSuccess cameravcImageSuccessBlock;
+@property (copy,nonatomic) LGUploadImageFailure cameravcImageFailureBlock;
+@property (strong,nonatomic) UIViewController *camera_vc;
+@property (strong,nonatomic) MBProgressHUD *camera_noticeView;
+
 
 @end
 
@@ -173,7 +181,73 @@
     }
 }
 
-- (void)presentAlbunListViewControllerWithViewController:(UIViewController *)vc manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure {
+/// 修改头像 打开相机
+- (void)lg_presentCustomCameraViewControllerWithViewController:(UIViewController *)vc noticeView:(MBProgressHUD *)noticeView manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
+    
+    _camera_vc = vc;
+    _camera_noticeView = noticeView;
+    _cameravcSelectSuccessBlock = selectSuccess;
+    _cameravcProgressBlock = progress;
+    _cameravcImageSuccessBlock = success;
+    _cameravcImageFailureBlock = failure;
+    
+    [vc hx_presentCustomCameraViewControllerWithManager:manager done:^(HXPhotoModel *model, HXCustomCameraViewController *viewController) {
+            if (model.type == HXPhotoModelMediaTypeCameraPhoto) {
+                HXDatePhotoEditViewController *editvc = [[HXDatePhotoEditViewController alloc] init];
+                editvc.delegate = self;
+                editvc.manager = manager;
+                editvc.model = model;
+                [vc.navigationController pushViewController:editvc animated:NO];
+            }
+    } cancel:^(HXCustomCameraViewController *viewController) {
+        
+    }];
+    
+}
+
+#pragma mark - HXDatePhotoEditViewControllerDelegate
+- (void)datePhotoEditViewControllerDidClipClick:(HXDatePhotoEditViewController *)datePhotoEditViewController beforeModel:(HXPhotoModel *)beforeModel afterModel:(HXPhotoModel *)afterModel{
+    [self lg_slwTotemPath:@[afterModel] vc:_camera_vc noticeView:_camera_noticeView selectSuccess:_cameravcSelectSuccessBlock progress:_cameravcProgressBlock success:_cameravcImageSuccessBlock failure:_cameravcImageFailureBlock];
+}
+
+/// 修改头像打开相册列表
+- (void)lg_presentAlbunListViewControllerWithViewController:(UIViewController *)vc noticeView:(MBProgressHUD *)noticeView manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure {
+    
+    [vc hx_presentAlbumListViewControllerWithManager:manager done:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
+        
+        [self lg_slwTotemPath:photoList vc:vc noticeView:noticeView selectSuccess:selectSuccess progress:progress success:success failure:failure];
+        
+    } cancel:^(HXAlbumListViewController *viewController) {
+        
+    }];
+}
+
+/// 上传头像单独的方法
+- (void)lg_slwTotemPath:(NSArray *)array vc:(UIViewController *)vc noticeView:(MBProgressHUD *)noticeView selectSuccess:(DJSelectCoverSuccess)selectSuccess progress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure {
+    
+    [HXPhotoTools selectListWriteToTempPath:array requestList:^(NSArray *imageRequestIds, NSArray *videoSessions) {
+    } completion:^(NSArray<NSURL *> *allUrl, NSArray<NSURL *> *imageUrls, NSArray<NSURL *> *videoUrls) {
+        /// 选择完成之后需要做  件事
+        /// 1.更新UI
+        /// 2.保存封面图片的本地临时路径
+        if (imageUrls.count) {
+            NSURL *coverLocalUrl = imageUrls[0];
+            /// MARK: 上传封面
+            [noticeView showAnimated:YES];
+            
+            [self uploadImageWithLocalFileUrl:coverLocalUrl uploadProgress:progress success:success failure:failure];
+            
+            /// MARK: 将成功/失败的状态和数据 回调给控制器
+            if (selectSuccess) selectSuccess(coverLocalUrl);
+        }
+    } error:^{
+        NSLog(@"selectPhotoError");
+    }];
+}
+/// ----------------
+
+/// 原上传封面的方法不动
+- (void)presentAlbunListViewControllerWithViewController:(UIViewController *)vc manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
     
     [vc hx_presentAlbumListViewControllerWithManager:manager done:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL original, HXAlbumListViewController *viewController) {
         
@@ -198,6 +272,7 @@
         
     }];
 }
+
 
 - (void)uploadImageWithLocalFileUrl:(NSURL *)localFileUrl uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure{
     [[DJOnlineNetorkManager sharedInstance] uploadImageWithLocalFileUrl:localFileUrl uploadProgress:progress success:success failure:failure];

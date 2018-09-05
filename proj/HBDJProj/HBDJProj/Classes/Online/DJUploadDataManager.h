@@ -65,6 +65,11 @@ typedef void (^DJUploadFileComplete)(id dict);
  */
 - (void)presentAlbunListViewControllerWithViewController:(UIViewController *)vc manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure;
 
+/** 修改头像，进入相册 */
+- (void)lg_presentAlbunListViewControllerWithViewController:(UIViewController *)vc noticeView:(MBProgressHUD *)noticeView manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure;
+/** 修改头像，进入相机 */
+- (void)lg_presentCustomCameraViewControllerWithViewController:(UIViewController *)vc noticeView:(MBProgressHUD *)noticeView manager:(HXPhotoManager *)manager selectSuccess:(DJSelectCoverSuccess)selectSuccess uploadProgress:(LGUploadImageProgressBlock)progress success:(LGUploadImageSuccess)success failure:(LGUploadImageFailure)failure;
+
 /** 上传内容图片,本地图片源: tempImageUrls */
 - (void)uploadContentImageWithSuccess:(DJUploadImageComplete)completeBlock;
 

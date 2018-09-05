@@ -38,6 +38,10 @@ UCSettingTableViewCellDelegate>
     [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 200, 0)];
     self.array = [UCSettingModel loadLocalPlist];
     
+    /// 给 检查版本行模型 content 赋值 /// 取倒数第二项
+    UCSettingModel *checkVersionModel = self.array[self.array.count - 2];
+    checkVersionModel.content;
+    
     CGFloat buttonHeight = 40;
     CGFloat buttonWidth = 313;
     UIButton *logOut = [[UIButton alloc] initWithFrame:

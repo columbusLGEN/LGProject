@@ -13,10 +13,9 @@
 @property (copy,nonatomic) NSString *itemName;
 /** 1: 右侧展示按钮 ; 0: 右侧展示文字 */
 @property (assign,nonatomic) NSInteger contentType;
-/** 0: 系统推送 1: 非WIFI网络提醒 */
+/** 0: 系统推送 1: 非WIFI网络提醒 2:检查版本 */
 @property (assign,nonatomic) NSInteger subType;
 @property (copy,nonatomic) NSString *content;
-
 /** 用户是否开启了通知权限 */
 @property (assign,nonatomic) BOOL granted;
 

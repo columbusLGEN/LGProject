@@ -420,7 +420,7 @@
                                             <constraint firstAttribute="height" constant="60" id="QCU-Zp-eFh"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="headerIconClick:" destination="kIj-yd-Ei3" eventType="touchUpInside" id="noD-Om-VzI"/>
+                                            <segue destination="WdZ-nI-Rhn" kind="push" id="Rqe-Pa-m9A"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1366,4 +1366,7 @@
         <image name="uc_icon_my_feedback" width="20" height="20"/>
         <image name="uc_icon_write_feedback" width="20" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Rqe-Pa-m9A"/>
+    </inferredMetricsTieBreakers>
 </document>

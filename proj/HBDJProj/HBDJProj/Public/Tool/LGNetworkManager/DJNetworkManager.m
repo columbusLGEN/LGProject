@@ -235,6 +235,47 @@
     }
     return _pakageName;
 }
+- (NSString *)host{
+    if (!_host) {
+        _host = @"123.59.199.170";
+        //        _host = @"47.96.165.218";
+    }
+    return _host;
+}
+- (NSNumber *)port{
+    if (!_port) {
+        _port = @(8081);
+//        _port = @(8080);
+//        _port = @(8480);
+    }
+    return _port;
+}
+- (NSString *)tableURLPath{
+    if (!_tableURLPath) {
+        _tableURLPath = @"/APMKAFService/report/report.html";
+    }
+    return _tableURLPath;
+}
+- (NSURLComponents *)tableURLComponents{
+    if (!_tableURLComponents) {
+        //        NSURL *testUrl = [NSURL URLWithString:@"http://123.59.199.170:8081/APMKAFService/report/report.html?mechanismid=180725062231004"];
+        //    host: 123.59.199.170
+        //    port: 8081
+        //    path: /APMKAFService/report/report.html
+        //    query: mechanismid=180725062231004
+        //    relativePath: /APMKAFService/report/
+        
+        _tableURLComponents = NSURLComponents.new;
+        _tableURLComponents.scheme = @"http";
+        _tableURLComponents.host = DJNetworkManager.sharedInstance.host;
+        _tableURLComponents.port = DJNetworkManager.sharedInstance.port;
+        _tableURLComponents.path = DJNetworkManager.sharedInstance.tableURLPath;
+        NSURLQueryItem *queryItem0 = [NSURLQueryItem queryItemWithName:mechanismid_key value:DJUser.sharedInstance.mechanismid];
+        _tableURLComponents.queryItems = @[queryItem0];
+    }
+    return _tableURLComponents;
+}
+
 + (instancetype)sharedInstance{
     static id instance;
     static dispatch_once_t once;
