@@ -27,7 +27,7 @@
     _model = model;
     _itemIconCell.text = model.itemName;
     _item.text = [NSString stringWithFormat:@"%@:",model.itemName];
-    NSLog(@"model.content: %@",model.content);
+    NSLog(@"itemName: %@",model.itemName);
     if ([model.itemName isEqualToString:@"头像"]) {
         [_icon sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:DJHeadIconPImage];
     }else{

@@ -39,6 +39,7 @@
     _array = [UCPersonInfoModel userInfoArray];
     [self.tableView reloadData];
     
+    self.tableView.estimatedRowHeight = 1.0f;
     _uploadDataManager = DJUploadDataManager.new;
     _coverManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
     _coverManager.configuration.singleSelected = YES;
@@ -95,9 +96,9 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 46;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 46;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {

@@ -38,6 +38,9 @@
     self.title = @"党员统计报表";
     NSURLRequest *request = [NSURLRequest requestWithURL:self.URL];
     [self.wkView loadRequest:request];
+    [_wkView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (void)setWkTitle:(NSString *)wkTitle{
@@ -53,7 +56,7 @@
 - (WKWebView *)wkView{
     if (_wkView == nil) {
 //        _wkView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:nil];
-        _wkView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+        _wkView = [[WKWebView alloc] initWithFrame:CGRectZero];
         _wkView.UIDelegate = self;
         _wkView.navigationDelegate = self;
         [self.view addSubview:_wkView];
