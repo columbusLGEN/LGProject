@@ -31,6 +31,14 @@
 - (void)setUcmuModel:(DJThoutghtRepotListModel *)ucmuModel{
     _ucmuModel = ucmuModel;
     [self assiDataWithModel:ucmuModel];
+    
+    if (ucmuModel.auditstate == 0) {
+        _banin.hidden = NO;
+        [self.contentView bringSubviewToFront:_banin];
+    }else{
+        _banin.hidden = YES;
+    }
+    
     if (ucmuModel.edit) {
         /// 编辑状态
         [self.contentView addSubview:self.seButon];
@@ -42,16 +50,11 @@
         self.seButon.selected = ucmuModel.select;
         self.titleLeading.constant = 38;
         
+        [self.contentView bringSubviewToFront:self.seButon];
+        
     }else{
         [self.seButon removeFromSuperview];
         self.titleLeading.constant = 15;
-    }
-    
-    if (ucmuModel.auditstate == 0) {
-        _banin.hidden = NO;
-        [self.contentView bringSubviewToFront:_banin];
-    }else{
-        _banin.hidden = YES;
     }
     
     [ucmuModel addObserver:self forKeyPath:select_key options:NSKeyValueObservingOptionNew context:nil];

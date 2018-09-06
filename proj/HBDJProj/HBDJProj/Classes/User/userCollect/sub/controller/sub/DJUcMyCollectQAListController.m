@@ -28,6 +28,12 @@ UCQuestionTableViewCellDelegate>
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     self.tableView.estimatedRowHeight = 1.0;
     
+    [self headerFooterSet];
+    
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)headerFooterSet{
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.offset = 0;
         [self.tableView.mj_footer resetNoMoreData];
@@ -36,7 +42,6 @@ UCQuestionTableViewCellDelegate>
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self getData];
     }];
-    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)setDataArray:(NSArray *)dataArray{
@@ -105,6 +110,10 @@ UCQuestionTableViewCellDelegate>
     if (self.lg_edit) {
         UCQuestionModel *collectModel = self.dataArray[indexPath.row];
         collectModel.select = !collectModel.select;
+        
+        if ([self.delegate respondsToSelector:@selector(ucmcCellClickWhenEdit:modelArrayCount:)]) {
+            [self.delegate ucmcCellClickWhenEdit:collectModel modelArrayCount:self.dataArray.count];
+        }
     }
 }
 
@@ -141,6 +150,29 @@ UCQuestionTableViewCellDelegate>
                             LGSocialShareParamKeyVc:self};
     
     [[LGSocialShareManager new] showShareMenuWithParam:param];
+}
+
+- (void)startEdit{
+    [super startEdit];
+    
+    self.tableView.mj_header = nil;
+    self.tableView.mj_footer = nil;
+}
+
+- (void)endEdit{
+    [super endEdit];
+    [self headerFooterSet];
+}
+
+- (void)allSelect{
+    [super allSelect];
+    if ([self.delegate respondsToSelector:@selector(ucmcAllSelectClickWhenEdit:)]) {
+        if (self.isAllSelect) {
+            [self.delegate ucmcAllSelectClickWhenEdit:self.dataArray];
+        }else{
+            [self.delegate ucmcAllSelectClickWhenEdit:nil];
+        }
+    }
 }
 
 @end

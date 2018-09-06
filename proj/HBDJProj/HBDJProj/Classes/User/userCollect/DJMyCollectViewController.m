@@ -13,18 +13,26 @@
 #import "DJUcMyCollectQAListController.h"
 #import "DJUcMyCollectBranchListController.h"
 #import "DJUcMyCollectPYQListController.h"
+#import "DJUcMyCollectModel.h"
 
-@interface DJMyCollectViewController ()<LGSegmentBottomViewDelegate>
+@interface DJMyCollectViewController ()<
+LGSegmentBottomViewDelegate,
+DJUCSubListDelegate>
 @property (weak,nonatomic) UIButton *deButton;
 
 @end
 
-@implementation DJMyCollectViewController
+@implementation DJMyCollectViewController{
+    NSMutableArray *selectDeleteModelArray;
+    NSInteger currentvcIndex;
+}
 
 - (void)configUI{
     [super configUI];
     
     self.title = @"我的收藏";
+    
+    currentvcIndex = 0;
     
     UIButton *deButton = UIButton.new;
     _deButton = deButton;
@@ -36,47 +44,102 @@
     
     UIBarButtonItem *right = [UIBarButtonItem.alloc initWithCustomView:deButton];
     self.navigationItem.rightBarButtonItem = right;
+    
+    for (DJUcMyCollectBaseViewController *subvc in self.childViewControllers) {
+        subvc.delegate = self;
+    }
 }
 
 #pragma mark - LGSegmentBottomViewDelegate
 - (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
-    /// TODO: 全选 删除操作 仅对当前所在列表生效
+    /// 全选 删除操作 仅对当前所在列表生效
     [self subvcPerformSelector:@selector(allSelect)];
 }
 - (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
-    /// TODO: 删除
+    NSMutableArray *arrmu = NSMutableArray.new;
+    for (NSInteger i = 0; i < selectDeleteModelArray.count; i++) {
+        DJUcMyCollectModel *model = selectDeleteModelArray[i];
+        NSString *coidStr = [NSString stringWithFormat:@"%ld",model.collectionid];
+        [arrmu addObject:coidStr];
+    }
+    NSString *coid_s = [arrmu componentsJoinedByString:@","];
+    /// TODO: 如果需要在删除前 让用户确认，再次添加 alert
+    
+    if (coid_s == nil || [coid_s isEqualToString:@""]) {
+        return;
+    }
+    
+    /// MARK: 发送批量删除收藏请求
+    [DJUserNetworkManager.sharedInstance frontUserCollections_deleteBatchWithCoids:coid_s success:^(id responseObj) {
+       /// 当前控制器刷新数据
+        [self exitEditState];
+        [self.currentSubvc subvcReloadData];
+    } failure:^(id failureObj) {
+        [self presentFailureTips:op_failure_notice];
+    }];
+}
+
+#pragma mark - DJUCSubListDelegate
+- (void)ucmcCellClickWhenEdit:(DJUcMyCollectModel *)model modelArrayCount:(NSInteger)count{
+    if (model.select) {
+        /// 添加
+        [selectDeleteModelArray addObject:model];
+    }else{
+        /// 删除
+        [selectDeleteModelArray removeObject:model];
+    }
+    if (selectDeleteModelArray.count == count) {
+        self.allSelecteView.asbState = YES;
+    }else{
+        self.allSelecteView.asbState = NO;
+    }
+}
+- (void)ucmcAllSelectClickWhenEdit:(NSArray<DJUcMyCollectModel *> *)array{
+    if (array) {
+        selectDeleteModelArray = [NSMutableArray arrayWithArray:array];
+    }else{
+        [selectDeleteModelArray removeAllObjects];
+    }
     
 }
 
 - (void)changeEditState:(UIButton *)sender{
-    
-    sender.selected = !sender.isSelected;
-    self.isEdit = sender.selected;
+    if (!selectDeleteModelArray) {
+        selectDeleteModelArray = NSMutableArray.new;
+    }
+    self.isEdit = !self.isEdit;
+    sender.selected = self.isEdit;
     if (sender.isSelected) {
         [self subvcPerformSelector:@selector(startEdit)];
     }else{
-        [self subvcPerformSelector:@selector(endEdit)];
+        [self exitEditState];
     }
 }
 
 - (void)viewSwitched:(NSInteger)index{
     if (self.isEdit) {
         /// 结束编辑
-        self.isEdit = !self.isEdit;
-        _deButton.selected = NO;
-        [self subvcPerformSelector:@selector(endEdit)];
+        [self exitEditState];
     }
+    currentvcIndex = index;
+    
+}
+/// MARK: 退出编辑状态
+- (void)exitEditState{
+    self.isEdit = NO;
+    _deButton.selected = NO;
+    self.allSelecteView.asbState = NO;
+    [self subvcPerformSelector:@selector(endEdit)];
 }
 
 - (void)subvcPerformSelector:(SEL)action{
-    
-    /// 获取当前index
-    
     /// 获取当前子控制器
-    
-    for (DJUcMyCollectBaseViewController *subvc in self.childViewControllers) {
-        [subvc performSelector:action];
-    }
+    [self.currentSubvc performSelector:action];
+
+}
+
+- (DJUcMyCollectBaseViewController *)currentSubvc{
+    return self.childViewControllers[currentvcIndex];
 }
 
 - (NSArray<NSDictionary *> *)segmentItems{

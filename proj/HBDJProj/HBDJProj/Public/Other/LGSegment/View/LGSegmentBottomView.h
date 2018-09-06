@@ -14,6 +14,8 @@
 
 @interface LGSegmentBottomView : LGBaseView
 
+/** 全选按钮状态 */
+@property (assign,nonatomic) BOOL asbState;
 @property (weak,nonatomic) id<LGSegmentBottomViewDelegate> delegate;
 + (CGFloat)bottomHeight;
 + (instancetype)segmentBottom;

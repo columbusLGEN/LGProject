@@ -32,6 +32,12 @@
     UIBarButtonItem *create = [UIBarButtonItem.alloc initWithTitle:@"创建" style:UIBarButtonItemStyleDone target:self action:@selector(create)];
     self.navigationItem.rightBarButtonItem = create;
     
+    [self headerFooterSet];
+    
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)headerFooterSet{
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.offset = 0;
         [self.tableView.mj_footer resetNoMoreData];
@@ -40,8 +46,6 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self getData];
     }];
-    
-    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)getData{
@@ -116,6 +120,9 @@
     if (self.lg_edit) {
         ///  编辑状态
         model.select = !model.select;
+        if ([self.delegate respondsToSelector:@selector(ucmp_mindCellClickWhenEdit:modelArrayCount:)]) {
+            [self.delegate ucmp_mindCellClickWhenEdit:model modelArrayCount:self.dataArray.count];
+        }
     }else{
         /// 普通状态
         DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
@@ -127,11 +134,23 @@
 
 - (void)startEdit{
     self.lg_edit = YES;
-    [self changeModelEditSatateWith:YES];
+
+    for (DJThoutghtRepotListModel *model in self.dataArray) {
+        model.edit = YES;
+    }
+    [self.tableView reloadData];
+    
+    self.tableView.mj_header = nil;
+    self.tableView.mj_footer = nil;
 }
 - (void)endEdit{
     self.lg_edit = NO;
-    [self changeModelEditSatateWith:NO];
+    for (DJThoutghtRepotListModel *model in self.dataArray) {
+        model.edit = NO;
+        model.select = NO;
+    }
+    [self.tableView reloadData];
+    [self headerFooterSet];
 }
 - (void)allSelect{
     BOOL allAlreadySelect = YES;
@@ -145,21 +164,24 @@
     BOOL select;
     if (allAlreadySelect) {
         select = NO;
+        self.isAllSelect = NO;
     }else{
         select = YES;
+        self.isAllSelect = YES;
     }
     
     for (DJThoutghtRepotListModel *model in self.dataArray) {
         model.select = select;
     }
     [self.tableView reloadData];
-}
-
-- (void)changeModelEditSatateWith:(BOOL)edit{
-    for (DJThoutghtRepotListModel *model in self.dataArray) {
-        model.edit = edit;
+    
+    if ([self.delegate respondsToSelector:@selector(ucmp_mindAllSelectClickWhenEdit:)]) {
+        if (self.isAllSelect) {
+            [self.delegate ucmp_mindAllSelectClickWhenEdit:self.dataArray];
+        }else{
+            [self.delegate ucmp_mindAllSelectClickWhenEdit:nil];
+        }
     }
-    [self.tableView reloadData];
 }
 
 @end

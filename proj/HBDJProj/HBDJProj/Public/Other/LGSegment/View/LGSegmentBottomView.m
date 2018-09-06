@@ -17,6 +17,10 @@
 
 @implementation LGSegmentBottomView
 
+- (void)setAsbState:(BOOL)asbState{
+    _asbState = asbState;
+    self.allSelect.selected = asbState;
+}
 - (IBAction)allSelect:(UIButton *)sender {
     if (sender.isSelected) {
         sender.selected = NO;

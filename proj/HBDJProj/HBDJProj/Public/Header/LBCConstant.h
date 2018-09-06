@@ -42,6 +42,9 @@ static NSString * const mechanismid_key = @"mechanismid";
 static NSString * const userid_key = @"userid";
 static NSString * const ugctype_key = @"ugctype";
 static NSString * const select_key = @"select";
+static NSString * const seqid_key = @"seqid";
+
+static NSString * const op_failure_notice = @"操作失败，请检查网络后重试";
 
 #pragma mark - 在线页面相关常量、枚举等
 /** 在线首页 实例的 modeltype 与seqid对应 */

@@ -29,6 +29,12 @@ WMPlayerDelegate>
 
 @implementation DJUcMyUploadPYQListController
 
+- (void)setDataArray:(NSArray *)dataArray{
+    [super setDataArray:dataArray];
+    self.offset = dataArray.count;
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -37,6 +43,13 @@ WMPlayerDelegate>
     [self.tableView registerClass:[NSClassFromString(oneImgCell) class] forCellReuseIdentifier:oneImgCell];
     [self.tableView registerClass:[NSClassFromString(audioCell) class] forCellReuseIdentifier:audioCell];
     
+    [self headerFooterSet];
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+}
+
+- (void)headerFooterSet{
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.offset = 0;
         [self.tableView.mj_footer resetNoMoreData];
@@ -46,14 +59,6 @@ WMPlayerDelegate>
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self getData];
     }];
-    
-    [self.tableView.mj_header beginRefreshing];
-    
-}
-- (void)setDataArray:(NSArray *)dataArray{
-    [super setDataArray:dataArray];
-    self.offset = dataArray.count;
-    [self.tableView reloadData];
 }
 
 - (void)getData{
@@ -115,6 +120,9 @@ WMPlayerDelegate>
     /// 编辑状态
     if (self.lg_edit) {
         model.select = !model.select;
+        if ([self.delegate respondsToSelector:@selector(ucmcCellClickWhenEdit:modelArrayCount:)]) {
+            [self.delegate ucmcCellClickWhenEdit:model modelArrayCount:self.dataArray.count];
+        }
     }else{
         /// 普通状态
         if (model.filetype == 3) {
@@ -188,6 +196,29 @@ WMPlayerDelegate>
         _wmp_mgr = LGWMPlayerManager.new;
     }
     return _wmp_mgr;
+}
+
+- (void)startEdit{
+    [super startEdit];
+    
+    self.tableView.mj_header = nil;
+    self.tableView.mj_footer = nil;
+}
+
+- (void)endEdit{
+    [super endEdit];
+    [self headerFooterSet];
+}
+
+- (void)allSelect{
+    [super allSelect];
+    if ([self.delegate respondsToSelector:@selector(ucmcAllSelectClickWhenEdit:)]) {
+        if (self.isAllSelect) {
+            [self.delegate ucmcAllSelectClickWhenEdit:self.dataArray];
+        }else{
+            [self.delegate ucmcAllSelectClickWhenEdit:nil];
+        }
+    }
 }
 
 @end

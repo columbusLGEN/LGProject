@@ -5,7 +5,8 @@
 //  Created by Peanut Lee on 2018/7/11.
 //  Copyright © 2018年 Lee. All rights reserved.
 //
-/// 备注：此类不能继承basemodel，也不能改变分割线上面属性的顺序
+
+/// 备注!!：此类不能继承basemodel，也不能改变分割线上面属性的顺序
 #import <Foundation/Foundation.h>
 
 @class DJOnlineUploadTableModel;
@@ -46,6 +47,7 @@
  */
 @property (assign,nonatomic) NSInteger searchtype;
 @property (strong,nonatomic) NSString *content;
+@property (assign,nonatomic) NSInteger seqid;
 
 /**
  将服务器返回的单个数据转换成表单

@@ -7,7 +7,7 @@
 //
 
 #import "LGBaseViewController.h"
-@class LGSegmentView;
+@class LGSegmentView,LGSegmentBottomView;
 
 static NSString *LGSegmentItemNameKey = @"itemNameKey";
 static NSString *LGSegmentItemViewControllerClassKey = @"itemViewControllerClassKey";
@@ -20,6 +20,7 @@ static NSString *LGSegmentVcInitTypeCode = @"LGSegmentVcInitTypeCode";
 
 @property (weak,nonatomic) LGSegmentView *segment;
 @property (weak,nonatomic) UIScrollView *scrollView;
+@property (weak,nonatomic) LGSegmentBottomView *bottom;
 @property (strong,nonatomic) NSArray<NSDictionary *> *segmentItems;
 @property (assign,nonatomic) CGFloat segmentHeight;
 - (void)configUI;

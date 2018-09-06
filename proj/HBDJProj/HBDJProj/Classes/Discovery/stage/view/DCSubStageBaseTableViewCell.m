@@ -55,6 +55,14 @@ LGThreeRightButtonViewDelegate>
     
     [self assiCommenDataWithModel:mc_pyq_model];
     
+    if (mc_pyq_model.auditstate == 0) {
+        /// 未通过
+        _banin.hidden = NO;
+        [self.contentView bringSubviewToFront:_banin];
+    }else{
+        _banin.hidden = YES;
+    }
+    
     if (mc_pyq_model.edit) {
         /// 编辑状态
         [self.contentView addSubview:self.seButon];
@@ -73,6 +81,7 @@ LGThreeRightButtonViewDelegate>
         }];
         
         self.boInterView.userInteractionEnabled = NO;
+        [self.contentView bringSubviewToFront:self.seButon];
         
     }else{
         [self.seButon removeFromSuperview];
@@ -88,14 +97,6 @@ LGThreeRightButtonViewDelegate>
         self.boInterView.userInteractionEnabled = YES;
     }
     
-    if (mc_pyq_model.auditstate == 0) {
-        /// 未通过
-        _banin.hidden = NO;
-        [self.contentView bringSubviewToFront:_banin];
-    }else{
-        
-        _banin.hidden = YES;
-    }
 }
 
 - (void)assiCommenDataWithModel:(DCSubStageModel *)model{

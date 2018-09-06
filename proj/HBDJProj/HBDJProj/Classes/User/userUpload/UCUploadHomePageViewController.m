@@ -14,10 +14,13 @@
 #import "DJUcMyUploadCheapSpeechListController.h"
 #import "UCUploadPyqViewController.h"
 #import "DJUploadMindReportController.h"
+#import "DJUcMyCollectModel.h"
+#import "DJThoutghtRepotListModel.h"
 
 @interface UCUploadHomePageViewController ()<
 UCUploadTransitionViewDelegate,
-LGSegmentBottomViewDelegate
+LGSegmentBottomViewDelegate,
+DJUCSubListDelegate
 >
 /** 是否是编辑状态，默认为no */
 @property (assign,nonatomic) BOOL isEditState;
@@ -25,18 +28,22 @@ LGSegmentBottomViewDelegate
 
 @end
 
-@implementation UCUploadHomePageViewController
+@implementation UCUploadHomePageViewController{
+    NSMutableArray *selectDeleteModelArray;
+    NSInteger currentvcIndex;
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     
 }
 - (void)configUI{
     [super configUI];
     self.title = @"我的上传";
     
-    self.isEditState = NO;
+    _isEditState = NO;
 
     /// nav item
 
@@ -52,7 +59,58 @@ LGSegmentBottomViewDelegate
     
     UIBarButtonItem *upload = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"uc_icon_nav_item_upload"] style:UIBarButtonItemStyleDone target:self action:@selector(navUploadClick)];
     self.navigationItem.rightBarButtonItems = @[upload,right];
+    
+    for (DJUcMyCollectBaseViewController *subvc in self.childViewControllers) {
+        subvc.delegate = self;
+    }
 }
+
+#pragma mark - DJUCSubListDelegate
+- (void)ucmcCellClickWhenEdit:(DJUcMyCollectModel *)model modelArrayCount:(NSInteger)count{
+    if (model.select) {
+        /// 添加
+        [selectDeleteModelArray addObject:model];
+    }else{
+        /// 删除
+        [selectDeleteModelArray removeObject:model];
+    }
+    if (selectDeleteModelArray.count == count) {
+        self.bottom.asbState = YES;
+    }else{
+        self.bottom.asbState = NO;
+    }
+}
+- (void)ucmcAllSelectClickWhenEdit:(NSArray<DJUcMyCollectModel *> *)array{
+    [self allSelectCommenHandle:array];
+}
+
+/// 我的上传 -- 思想汇报 和 述职述廉 单独处理
+- (void)ucmp_mindCellClickWhenEdit:(DJThoutghtRepotListModel *)model modelArrayCount:(NSInteger)count{
+    if (model.select) {
+        /// 添加
+        [selectDeleteModelArray addObject:model];
+    }else{
+        /// 删除
+        [selectDeleteModelArray removeObject:model];
+    }
+    if (selectDeleteModelArray.count == count) {
+        self.bottom.asbState = YES;
+    }else{
+        self.bottom.asbState = NO;
+    }
+}
+- (void)ucmp_mindAllSelectClickWhenEdit:(NSArray<DJThoutghtRepotListModel *> *)array{
+    [self allSelectCommenHandle:array];
+}
+
+- (void)allSelectCommenHandle:(NSArray *)array{
+    if (array) {
+        selectDeleteModelArray = [NSMutableArray arrayWithArray:array];
+    }else{
+        [selectDeleteModelArray removeAllObjects];
+    }
+}
+
 
 #pragma mark - UCUploadTransitionViewDelegate
 - (void)utViewClose:(UCUploadTransitionView *)utView{
@@ -94,69 +152,92 @@ LGSegmentBottomViewDelegate
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)setIsEditState:(BOOL)isEditState{
-    _isEditState = isEditState;
-    self.isEdit = isEditState;/// 父类属性
-    _deButton.selected = isEditState;
+#pragma mark - target
+/// MARK: 导航栏删除按钮点击事件
+- (void)navDeleteClick:(UIButton *)sender{
     
-    DJUcMyUploadPYQListController *mupyqvc = self.childViewControllers[0];
-    DJUcMyUploadMindReportListController *mumrvc = self.childViewControllers[1];
-    DJUcMyUploadCheapSpeechListController *mucsvc = self.childViewControllers[2];
-    if (isEditState) {
-        [mupyqvc startEdit];
-        [mumrvc startEdit];
-        [mucsvc startEdit];
-        
-    }else{
-        [mupyqvc endEdit];
-        [mumrvc endEdit];
-        [mucsvc endEdit];
+    if (!selectDeleteModelArray) {
+        selectDeleteModelArray = NSMutableArray.new;
     }
+    sender.selected = !sender.selected;
+    
+    /// 改变编辑状态
+    self.isEditState = !_isEditState;
     
 }
 
-#pragma mark - target
-/// MARK: 进入编辑状态
-- (void)navDeleteClick:(UIButton *)sender{
-    sender.selected = !sender.selected;
+- (void)setIsEditState:(BOOL)isEditState{
+    _isEditState = isEditState;
     
-    if (!self.isEditState) {
-        self.isEditState = YES;
-        
+    /// 赋值父类的编辑属性
+    self.isEdit = isEditState;
+    _deButton.selected = isEditState;
+    
+    if (isEditState) {
+        /// 当前子控制器 进入编辑状态
+        [self subvcPerformSelector:@selector(startEdit)];
     }else{
-        self.isEditState = NO;
-        
+        /// 当前子控制器 退出编辑状态
+        [self exitEditState];
     }
+    
 }
 
 #pragma mark - LGSegmentBottomViewDelegate
+/// MARK: 编辑状态下，点击全选
 - (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
-    DJUcMyUploadPYQListController *mupyqvc = self.childViewControllers[0];
-    DJUcMyUploadMindReportListController *mumrvc = self.childViewControllers[1];
-    DJUcMyUploadCheapSpeechListController *mucsvc = self.childViewControllers[2];
-    
-    [mupyqvc allSelect];
-    [mumrvc allSelect];
-    [mucsvc allSelect];
-    
-}
-- (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
-    NSLog(@"子类删除 -- ");
+    [self subvcPerformSelector:@selector(allSelect)];
 }
 
-- (void)navUploadClick{
-    UCUploadTransitionView *utv = [UCUploadTransitionView uploadTransitionView];
-    utv.delegate = self;
-    utv.frame = self.view.bounds;
-    [self.view addSubview:utv];
+/// MARK: 编辑状态下 点击删除
+- (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
+    /// 确认删除
+    NSMutableArray *arrmu = NSMutableArray.new;
+    for (NSInteger i = 0; i < selectDeleteModelArray.count; i++) {
+        id model = selectDeleteModelArray[i];
+        if ([model isKindOfClass:[DJUcMyCollectModel class]]) {
+            DJUcMyCollectModel *collectModel = model;
+            [arrmu addObject:@(collectModel.seqid)];
+        }
+        if ([model isKindOfClass:[DJThoutghtRepotListModel class]]) {
+            DJThoutghtRepotListModel *trModel = model;
+            [arrmu addObject:@(trModel.seqid)];
+        }
+        
+    }
+    
+    NSString *seqid_s = [arrmu componentsJoinedByString:@","];
+    
+    /// TODO: 如果需要在删除前 让用户确认，再次添加 alert
+    
+    if (seqid_s == nil || [seqid_s isEqualToString:@""]) {
+        return;
+    }
+    
+    /// MARK: 发送删除我的上传 请求
+    [DJUserNetworkManager.sharedInstance frontUgc_deleteWithSeqids:seqid_s success:^(id responseObj) {
+        [self exitEditState];
+        [self.currentSubvc subvcReloadData];
+    } failure:^(id failureObj) {
+        [self presentFailureTips:op_failure_notice];
+    }];
+    
+}
+
+/// MARK: 退出编辑状态
+- (void)exitEditState{
+    _isEditState = NO;
+    self.isEdit = NO;
+    _deButton.selected = NO;
+    self.bottom.asbState = NO;
+    [self subvcPerformSelector:@selector(endEdit)];
 }
 
 - (void)viewSwitched:(NSInteger)index{
-    /// TODO: 切换分页，或者刷新的时候 恢复默认状态
     if (self.isEditState) {
         self.isEditState = NO;
-        
     }
+    currentvcIndex = index;
 }
 
 #pragma mark - getter
@@ -173,6 +254,23 @@ LGSegmentBottomViewDelegate
                LGSegmentItemViewControllerClassKey:@"DJUcMyUploadCheapSpeechListController",
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                }];
+}
+
+- (void)subvcPerformSelector:(SEL)action{
+    /// 获取当前子控制器
+    [self.currentSubvc performSelector:action];
+}
+
+- (DJUcMyCollectBaseViewController *)currentSubvc{
+    return self.childViewControllers[currentvcIndex];
+}
+
+/// MARK: 点击导航栏 上传按钮
+- (void)navUploadClick{
+    UCUploadTransitionView *utv = [UCUploadTransitionView uploadTransitionView];
+    utv.delegate = self;
+    utv.frame = self.view.bounds;
+    [self.view addSubview:utv];
 }
 
 @end

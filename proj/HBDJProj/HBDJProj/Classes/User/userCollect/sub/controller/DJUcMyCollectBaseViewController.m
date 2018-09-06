@@ -27,6 +27,7 @@
     self.lg_edit = NO;
     for (DJUcMyCollectModel *model in self.dataArray) {
         model.edit = NO;
+        model.select = NO;
     }
     [self.tableView reloadData];
 }
@@ -46,8 +47,10 @@
     BOOL select;
     if (allAlreadySelect) {
         select = NO;
+        _isAllSelect = NO;
     }else{
         select = YES;
+        _isAllSelect = YES;
     }
     
     for (DJUcMyCollectModel *model in self.dataArray) {
@@ -56,5 +59,9 @@
     [self.tableView reloadData];
 }
 
+- (void)subvcReloadData{
+    
+    [self.tableView.mj_header beginRefreshing];
+}
 
 @end

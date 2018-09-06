@@ -20,9 +20,14 @@ static NSString * const password_key = @"password";
 
 @implementation DJUserNetworkManager
 
-//- (void)frontIntegralGrade_add{
-//
-//}
+- (void)frontUgc_deleteWithSeqids:(NSString *)seqids success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontUgc/delete" param:@{seqid_key:seqids} success:success failure:failure];
+}
+
+- (void)frontUserCollections_deleteBatchWithCoids:(NSString *)coids success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    
+    [self sendPOSTRequestWithiName:@"frontUserCollections/deleteBatch" param:@{seqid_key:coids} success:success failure:failure];
+}
 
 - (void)frontUserinfo_updateWithInfoDict:(NSDictionary *)infoDict success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [self sendPOSTRequestWithiName:@"/frontUserinfo/update" param:infoDict success:success failure:failure];

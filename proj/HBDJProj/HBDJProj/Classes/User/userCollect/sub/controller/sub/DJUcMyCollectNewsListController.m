@@ -50,6 +50,18 @@
     [self.tableView.mj_header beginRefreshing];
 }
 
+- (void)headerFooterSet{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
+        [self getData];
+    }];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+}
+
 - (void)getData{
     [DJUserNetworkManager.sharedInstance frontUserCollections_selectWithType:2 offset:self.offset success:^(id responseObj) {
         
@@ -119,12 +131,38 @@
         /// 编辑状态
         DJUcMyCollectModel *model = self.dataArray[indexPath.row];
         model.select = !model.select;
+        
+        if ([self.delegate respondsToSelector:@selector(ucmcCellClickWhenEdit:modelArrayCount:)]) {
+            [self.delegate ucmcCellClickWhenEdit:model modelArrayCount:self.dataArray.count];
+        }
     }else{
         EDJMicroBuildModel *model = self.dataArray[indexPath.row];
         [self.transAssist skipWithType:2 model:model baseVc:self];
     }
     
+}
+
+- (void)startEdit{
+    [super startEdit];
     
+    self.tableView.mj_header = nil;
+    self.tableView.mj_footer = nil;
+}
+
+- (void)endEdit{
+    [super endEdit];
+    [self headerFooterSet];
+}
+
+- (void)allSelect{
+    [super allSelect];
+    if ([self.delegate respondsToSelector:@selector(ucmcAllSelectClickWhenEdit:)]) {
+        if (self.isAllSelect) {
+            [self.delegate ucmcAllSelectClickWhenEdit:self.dataArray];
+        }else{
+            [self.delegate ucmcAllSelectClickWhenEdit:nil];
+        }
+    }
 }
 
 - (DJMediaDetailTransAssist *)transAssist{

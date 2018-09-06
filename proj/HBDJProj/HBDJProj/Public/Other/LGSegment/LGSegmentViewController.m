@@ -15,7 +15,6 @@ UIScrollViewDelegate,
 LGSegmentViewDelegate,
 LGSegmentBottomViewDelegate
 >
-@property (weak,nonatomic) LGSegmentBottomView *bottom;
 
 @end
 

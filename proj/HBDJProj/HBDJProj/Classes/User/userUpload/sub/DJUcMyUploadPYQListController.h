@@ -6,8 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-#import "DJUcMyCollectPYQListController.h"
+#import "DJUcMyCollectBaseViewController.h"
 
-@interface DJUcMyUploadPYQListController : DJUcMyCollectPYQListController
+@interface DJUcMyUploadPYQListController : DJUcMyCollectBaseViewController
 
 @end

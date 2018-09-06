@@ -15,7 +15,7 @@ static NSString *key_suffix = @"_dj";
 
 - (NSString *)userid{
     if (!_userid) {
-        _userid =  [[NSUserDefaults standardUserDefaults] objectForKey:[@"seqid" stringByAppendingString:key_suffix]];
+        _userid =  [[NSUserDefaults standardUserDefaults] objectForKey:[seqid_key stringByAppendingString:key_suffix]];
     }
     return _userid;
 }

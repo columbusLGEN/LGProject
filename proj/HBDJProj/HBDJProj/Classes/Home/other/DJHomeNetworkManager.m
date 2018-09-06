@@ -42,7 +42,7 @@
 /// MARK: -----分割线-----
 - (void)homeAddcountWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
 //
-    NSDictionary *param = @{@"seqid":id};
+    NSDictionary *param = @{seqid_key:id};
     [self sendPOSTRequestWithiName:@"/frontNews/addcount" param:param success:success failure:failure];
 }
 - (void)homeReadPorgressBookid:(NSString *)bookid progress:(CGFloat)progress success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
@@ -60,11 +60,11 @@
     [self commenPOSTWithOffset:offset length:length sort:sort iName:@"/frontEbook/selectList" param:param success:success failure:failure];
 }
 - (void)homeDigitalDetailWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"seqid":id};
+    NSDictionary *param = @{seqid_key:id};
     [self sendPOSTRequestWithiName:@"/frontEbook/select" param:param success:success failure:failure];
 }
 - (void)homePointNewsDetailWithId:(NSInteger)id type:(DJDataPraisetype)type success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
-    NSDictionary *param = @{@"seqid":[NSString stringWithFormat:@"%ld",id],
+    NSDictionary *param = @{seqid_key:[NSString stringWithFormat:@"%ld",id],
                             @"type":[NSString stringWithFormat:@"%ld",type]
                             };
     [self sendPOSTRequestWithiName:@"/frontNews/selectDetail" param:param success:success failure:failure];
@@ -81,7 +81,7 @@
         type = @"praisetype";
     }
     NSDictionary *dict = @{@"addordel":[NSString stringWithFormat:@"%d",add],
-                           @"seqid":seqid,
+                           seqid_key:seqid,
                            type:[NSString stringWithFormat:@"%lu",(unsigned long)praisetype]};
     return [self taskForPOSTRequestWithiName:iName param:dict needUserid:YES success:success failure:failure];
 }
