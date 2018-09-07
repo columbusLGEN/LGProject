@@ -10,23 +10,23 @@
 
 typedef NS_ENUM(NSUInteger, UCMsgModelResourceType) {
     /** 自定义消息 */
-    UCMsgModelResourceTypeCustom,
+    UCMsgModelResourceTypeCustom = 0,
     /** 党建要闻 */
-    UCMsgModelResourceTypeNews,
+    UCMsgModelResourceTypeNews = 1,
     /** 学习问答 */
-    UCMsgModelResourceTypeQA,
+    UCMsgModelResourceTypeQA = 2,
     /** 支部动态 */
-    UCMsgModelResourceTypeBranch,
+    UCMsgModelResourceTypeBranch = 3,
     /** 党员舞台 */
-    UCMsgModelResourceTypePYQ,
+    UCMsgModelResourceTypePYQ = 4,
     /** 述职报告 */
-    UCMsgModelResourceTypeSpeech,
+    UCMsgModelResourceTypeSpeech = 5,
     /** 在线头像 */
-    UCMsgModelResourceTypeVote,
+    UCMsgModelResourceTypeVote = 6,
     /** 知识测试 */
-    UCMsgModelResourceTypeTest,
+    UCMsgModelResourceTypeTest = 7,
     /** 个人积分 */
-    UCMsgModelResourceTypeScore
+    UCMsgModelResourceTypeScore = 8
     
 };
 

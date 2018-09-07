@@ -8,7 +8,7 @@
 
 #import "LGBaseModel.h"
 
-@class OLExamSingleModel;
+@class OLExamSingleModel,UCMsgModel;
 
 typedef NS_ENUM(NSUInteger, OLTkcsModelState) {
     /** 进行中 */
@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, OLTkcsModelState) {
 @property (strong,nonatomic) NSString *statusDesc;
 /** 状态描述显示颜色 */
 @property (strong,nonatomic) UIColor *statusDescColor;
-@property (strong,nonatomic) NSString *createdtime;
+//@property (strong,nonatomic) NSString *createdtime;
 @property (strong,nonatomic) NSString *mechanismid;
 
 /** 0:题库 1:测试 */
@@ -76,5 +76,6 @@ typedef NS_ENUM(NSUInteger, OLTkcsModelState) {
 
 @property (strong,nonatomic) NSString *separator;
 
+@property (strong,nonatomic) UCMsgModel *msgModel;
 
 @end

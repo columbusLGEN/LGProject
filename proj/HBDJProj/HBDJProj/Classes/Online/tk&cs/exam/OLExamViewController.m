@@ -16,6 +16,7 @@
 #import "DJOnlineNetorkManager.h"
 #import "LGCountTimeLabel.h"
 #import "LGFilePathManager.h"
+#import "UCMsgModel.h"
 
 static CGFloat bottomBarHeight = 60;
 static NSString * const cellID = @"OLExamCollectionViewCell";
@@ -46,7 +47,10 @@ OLExamViewBottomBarDelegate
 
 @end
 
-@implementation OLExamViewController
+@implementation OLExamViewController{
+    /// 交卷之后，赋值为 YES，依次保证不再创建本地记录文件
+    BOOL removeLocalRecord;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -63,33 +67,38 @@ OLExamViewBottomBarDelegate
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     if (_tkcsType == OLTkcsTypecs) {
-        
-        /// 获取用户已经做了的题，所选的选项
-        NSMutableArray *arrmu = NSMutableArray.new;
-        for (NSInteger i = 0; i < self.dataArray.count; i++) {
-            OLExamSingleModel *singleModel = self.dataArray[i];
-            if (singleModel.userRecord) {
-                [arrmu addObject:singleModel.userRecord];
+        if (!removeLocalRecord) {
+            /// 获取用户已经做了的题，所选的选项
+            NSMutableArray *arrmu = NSMutableArray.new;
+            for (NSInteger i = 0; i < self.dataArray.count; i++) {
+                OLExamSingleModel *singleModel = self.dataArray[i];
+                if (singleModel.userRecord) {
+                    [arrmu addObject:singleModel.userRecord];
+                }
             }
+            NSArray *array = arrmu.copy;
+            
+            /// 用户退出测试页面，记录用户耗时 & 用户答题index
+            NSDictionary *dict = @{timeused_key:@(_ctlabel.sec),
+                                   index_key:@(self.willIndex),
+                                   userSelectOptions_key:array
+                                   };
+            
+            //        _localRecord[userSelectOptions_key] = array;
+            
+            NSString *fileName = [self testRecordFileName];
+            
+            BOOL write = [dict writeToFile:fileName atomically:YES];
+            NSLog(@"write_to_local: %d",write);
         }
-        NSArray *array = arrmu.copy;
-        
-        /// 用户退出测试页面，记录用户耗时 & 用户答题index
-        NSDictionary *dict = @{timeused_key:@(_ctlabel.sec),
-                               index_key:@(self.willIndex),
-                               userSelectOptions_key:array
-                               };
-        
-        NSString *fileName = [self testRecordFileName];
-        
-        BOOL write = [dict writeToFile:fileName atomically:YES];
-        NSLog(@"写入: %d",write);
         
     }
     
 }
 
 - (void)configUI{
+    
+    removeLocalRecord = NO;
     
     [self.view addSubview:self.collectionView];
     
@@ -109,7 +118,7 @@ OLExamViewBottomBarDelegate
             UIBarButtonItem *rightItem = [UIBarButtonItem.alloc initWithCustomView:timeused];
             self.navigationItem.rightBarButtonItem = rightItem;
         }else{
-            /// 答题转台下，计时
+            /// 答题状态下，计时
             LGCountTimeLabel *ctlabel = [LGCountTimeLabel.alloc initWithFrame:CGRectMake(0, 0, 75, 20) sec:sec];
             UIBarButtonItem *rightItem = [UIBarButtonItem.alloc initWithCustomView:ctlabel];
             _ctlabel = ctlabel;
@@ -162,7 +171,7 @@ OLExamViewBottomBarDelegate
     }else{
         /// 普通测试
         /// 请求试卷
-        [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTitleDetailWithPortName:_portName titleid:_model.seqid offset:0 success:^(id responseObj) {
+        [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTitleDetailWithPortName:_portName titleid:self.model.seqid offset:0 success:^(id responseObj) {
             [self dataTranWith:responseObj];
             
         } failure:^(id failureObj) {
@@ -187,8 +196,10 @@ OLExamViewBottomBarDelegate
         
         NSMutableArray *arrMu = [NSMutableArray new];
         for (NSInteger i = 0; i < array.count; i++) {
+            /// 一道题
             OLExamSingleModel *singleModel = [OLExamSingleModel mj_objectWithKeyValues:array[i]];
 
+            /// 给单道题 赋值试卷模型
             singleModel.testPaper = self.model;
             /// 添加题干前的数字序号
             singleModel.subject = [[NSString stringWithFormat:@"%ld.",i + 1] stringByAppendingString:singleModel.subject];
@@ -208,16 +219,26 @@ OLExamViewBottomBarDelegate
         // 处理本地用户选中记录
         if (userAlreadySelect) {/// 如果本地有用户选中的记录
             for (NSDictionary *dict in userAlreadySelect) {
-                NSNumber *optionSeqid = dict[@"id"];// 获取本地选中的题目id
-                NSString *selectOptionSeqids = dict[@"options"];// 获取本地记录的选项id
+                
+                // 获取本地选中的题目id
+                NSNumber *optionSeqid = dict[@"id"];
+                // 获取本地记录的选项id
+                NSString *selectOptionSeqids = dict[options_key];
+                
                 for (OLExamSingleModel *singleModel in arrMu) {
-                    if (singleModel.seqid == optionSeqid.integerValue) {// 如果数组中的题目id与本地记录的题目id相同，表示这道题用户之前已经选了某个答案
+                    
+                    if (singleModel.seqid == optionSeqid.integerValue) {
+                        // 如果数组中的题目id与本地记录的题目id相同，表示这道题用户之前已经选了某个答案
                         NSArray *selectIds = [selectOptionSeqids componentsSeparatedByString:@","];
+                        singleModel.userRecord[options_key] = selectOptionSeqids;
+                        singleModel.answer = selectOptionSeqids;
+                        NSLog(@"本地记录的答案: %@",singleModel.answer);
                         /// 将用户选中的选项id字符串转为数组
                         for (NSString *optionId in selectIds) {
                             for (OLExamSingleLineModel *sinleLineModel in singleModel.frontSubjectsDetail) {
+                                
+                                /// 如果本地记录的选项id 和 选项模型的id相同，表示用户之前选中了该选项
                                 if ([optionId isEqualToString:[NSString stringWithFormat:@"%ld",sinleLineModel.seqid]]) {
-                                    /// 如果本地记录的选项id 和 选项模型的id相同，表示用户之前选中了该选项
                                     sinleLineModel.selected = YES;
                                     if (singleModel.subjecttype == 2) {
                                         /// 如果是多选，还需要将 选项加入到题目模型的 selectOptions 中
@@ -236,6 +257,10 @@ OLExamViewBottomBarDelegate
         
         self.dataArray = arrMu.copy;
         _bottomBar.totalCount = arrMu.count;
+        
+        if (self.model.subcount == 0) {
+            self.model.subcount = self.dataArray.count;
+        }
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.collectionView reloadData];
@@ -329,11 +354,16 @@ OLExamViewBottomBarDelegate
                 /// 提交试卷
                 [DJOnlineNetorkManager.sharedInstance frontSubjects_addTestWithPJSONDict:dict success:^(id responseObj) {
                     self.model.teststatus = 1;
-                    
+                    if (self.model.msgModel) {
+                        self.model.msgModel.votestestsstatus = UCMsgVoteTestStatusDone;
+                    }
                     /// 退出到试题列表控制器 & 展示用户答题正确率页面
                     /**
                      将用户的答题数，正确率等信息，记录在 OLTkcsModel 模型中
                      */
+                    
+                    /// 删除本地记录的该题的答案
+                    removeLocalRecord = [[NSFileManager defaultManager] removeItemAtPath:[self testRecordFileName] error:nil];
                     
                     OLTestResultViewController *trvc = (OLTestResultViewController *)[self lgInstantiateViewControllerWithStoryboardName:OnlineStoryboardName controllerId:@"OLTestResultViewController"];
                     trvc.pushWay = LGBaseViewControllerPushWayModal;
@@ -365,6 +395,7 @@ OLExamViewBottomBarDelegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     OLExamSingleModel *model = self.dataArray[indexPath.row];
     OLExamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    NSLog(@"model.answerxxxx: %@",model.answer);
     cell.backLook = _backLook;
     cell.model = model;
     return cell;
@@ -434,6 +465,7 @@ OLExamViewBottomBarDelegate
     self.model.timeused_timeInterval = sec_record.integerValue;
 }
 
+/** 记录用户答题记录的文件名 */
 - (NSString *)testRecordFileName{
     return [LGFilePathManager.sharedInstance dj_testFileNamePathWithTestid:self.model.testid];
 }

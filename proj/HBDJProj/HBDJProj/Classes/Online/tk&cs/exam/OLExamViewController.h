@@ -15,7 +15,6 @@
 @interface OLExamViewController : LGBaseViewController
 @property (strong,nonatomic) NSString *portName;
 @property (strong,nonatomic) OLTkcsModel *model;
-
 @property (assign,nonatomic) OLTkcsType tkcsType;
 
 /** 是否是回看状态 */

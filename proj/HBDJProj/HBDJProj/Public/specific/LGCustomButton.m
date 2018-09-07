@@ -75,8 +75,8 @@
 - (UIImageView *)img{
     if (_img == nil) {
         _img = [UIImageView new];
-        _img.contentMode = UIViewContentModeScaleAspectFit;
-        _img.clipsToBounds = YES;
+        _img.contentMode = UIViewContentModeScaleAspectFill;
+//        _img.clipsToBounds = YES;
     }
     return _img;
 }

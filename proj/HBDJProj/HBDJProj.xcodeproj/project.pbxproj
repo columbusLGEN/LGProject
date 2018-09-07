@@ -415,6 +415,9 @@
 		88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */; };
 		88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */; };
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
+		88D4C0B62142281600CADB42 /* UIImageView+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0B52142281600CADB42 /* UIImageView+LGExtension.m */; };
+		88D4C0BA2142414D00CADB42 /* DJMsgCenterTranser.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0B92142414D00CADB42 /* DJMsgCenterTranser.m */; };
+		88D4C0BD2142449900CADB42 /* DJResourceTypeNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0BC2142449900CADB42 /* DJResourceTypeNewsViewController.m */; };
 		88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61A20BE768500E353DB /* libxml2.2.tbd */; };
 		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
 		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
@@ -1247,6 +1250,12 @@
 		88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolHeader.m; sourceTree = "<group>"; };
 		88D13C7420907A3700A32236 /* OLAddMoreToolFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreToolFooter.h; sourceTree = "<group>"; };
 		88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolFooter.m; sourceTree = "<group>"; };
+		88D4C0B42142281600CADB42 /* UIImageView+LGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LGExtension.h"; sourceTree = "<group>"; };
+		88D4C0B52142281600CADB42 /* UIImageView+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LGExtension.m"; sourceTree = "<group>"; };
+		88D4C0B82142414D00CADB42 /* DJMsgCenterTranser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJMsgCenterTranser.h; sourceTree = "<group>"; };
+		88D4C0B92142414D00CADB42 /* DJMsgCenterTranser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJMsgCenterTranser.m; sourceTree = "<group>"; };
+		88D4C0BB2142449900CADB42 /* DJResourceTypeNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJResourceTypeNewsViewController.h; sourceTree = "<group>"; };
+		88D4C0BC2142449900CADB42 /* DJResourceTypeNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJResourceTypeNewsViewController.m; sourceTree = "<group>"; };
 		88D5C61A20BE768500E353DB /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		88D5C61F20BE781C00E353DB /* huamulan.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = huamulan.epub; sourceTree = "<group>"; };
 		88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewController.h; sourceTree = "<group>"; };
@@ -1707,6 +1716,8 @@
 				880363B720E7255E00E97FA3 /* UIButton+LGExtension.m */,
 				88EB405C213E1EB300F12211 /* UIAlertController+LGExtension.h */,
 				88EB405D213E1EB300F12211 /* UIAlertController+LGExtension.m */,
+				88D4C0B42142281600CADB42 /* UIImageView+LGExtension.h */,
+				88D4C0B52142281600CADB42 /* UIImageView+LGExtension.m */,
 			);
 			path = UICatagory;
 			sourceTree = "<group>";
@@ -2288,6 +2299,7 @@
 		884312C22087379100321F84 /* userMsgCenter */ = {
 			isa = PBXGroup;
 			children = (
+				88D4C0B7214240FD00CADB42 /* other */,
 				884312C3208737BF00321F84 /* UCMsgTableViewController.h */,
 				884312C4208737BF00321F84 /* UCMsgTableViewController.m */,
 				884312C6208737EF00321F84 /* UCMsgModel.h */,
@@ -3434,6 +3446,17 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		88D4C0B7214240FD00CADB42 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				88D4C0B82142414D00CADB42 /* DJMsgCenterTranser.h */,
+				88D4C0B92142414D00CADB42 /* DJMsgCenterTranser.m */,
+				88D4C0BB2142449900CADB42 /* DJResourceTypeNewsViewController.h */,
+				88D4C0BC2142449900CADB42 /* DJResourceTypeNewsViewController.m */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
 		88DD8114209BFF3800F297D6 /* tk&cs */ = {
 			isa = PBXGroup;
 			children = (
@@ -4102,6 +4125,7 @@
 				88EA131E20AD2096007AB886 /* UCAccountHitSuccessView.m in Sources */,
 				8831E17620941674001D038E /* DCSubStageBaseTableViewCell.m in Sources */,
 				8877742720C0F7390011DFF3 /* LGLocalFileManager.m in Sources */,
+				88D4C0BD2142449900CADB42 /* DJResourceTypeNewsViewController.m in Sources */,
 				88C5F13E20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.m in Sources */,
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				88DD8142209C246B00F297D6 /* OLVoteDetailHeaderView.m in Sources */,
@@ -4382,6 +4406,7 @@
 				88BCEDDD20C665ED00B5C1DB /* HPAlbumTableViewController.m in Sources */,
 				88A47100207DA161002F93E0 /* EDJMicroBuildModel.m in Sources */,
 				888223C3212BD8D90094D3EF /* VoiceConverter.mm in Sources */,
+				88D4C0B62142281600CADB42 /* UIImageView+LGExtension.m in Sources */,
 				88DD8147209C296A00F297D6 /* OLVoteDetailFooterView.m in Sources */,
 				88949C2A211ECFBB00B80AEE /* DJSearchResultTestListController.m in Sources */,
 				88BCEDA720C2A0CA00B5C1DB /* IATConfig.m in Sources */,
@@ -4395,6 +4420,7 @@
 				889C6ABF21229FF9002404C5 /* UCUploadPyqViewController.m in Sources */,
 				882FC04421367B59005F7187 /* DJUcMyCollectTableViewCell.m in Sources */,
 				888BD1A42138DC66005417A4 /* DJUcMyUploadCheapSpeechListController.m in Sources */,
+				88D4C0BA2142414D00CADB42 /* DJMsgCenterTranser.m in Sources */,
 				884EB41521030328005D5CA9 /* DJUploadMindReportCoverCell.m in Sources */,
 				889FCD1920B3E6050045746D /* DCRichTextBottomInfoView.m in Sources */,
 				88BA90C220F4510B007DD4B4 /* DJInputContentViewController.m in Sources */,

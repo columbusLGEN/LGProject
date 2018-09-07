@@ -20,6 +20,12 @@ static NSString * const password_key = @"password";
 
 @implementation DJUserNetworkManager
 
+- (void)frontUserNotice_updateWithId:(NSInteger)seqid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure {
+//    @"isread":@(YES) 接口多余参数,不传
+    NSDictionary *param = @{seqid_key:@(seqid)};
+    [self sendPOSTRequestWithiName:@"frontUserNotice/update" param:param success:success failure:failure];
+}
+
 - (void)frontUserNotice_deleteWithSeqids:(NSString *)seqids success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [self sendPOSTRequestWithiName:@"frontUserNotice/delete" param:@{seqid_key:seqids} success:success failure:failure];
 }

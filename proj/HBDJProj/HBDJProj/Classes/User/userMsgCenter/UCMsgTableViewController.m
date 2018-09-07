@@ -11,6 +11,7 @@
 #import "UCMsgEditTableViewCell.h"
 #import "UCMsgModel.h"
 #import "LGSegmentBottomView.h"
+#import "DJMsgCenterTranser.h"
 
 @interface UCMsgTableViewController ()<
 LGSegmentBottomViewDelegate,
@@ -29,6 +30,7 @@ UCMsgTableViewCellDelegate>
     NSInteger offset;
     NSMutableArray *selectArray;
     UIButton *_dbtn;
+    DJMsgCenterTranser *transer;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -74,6 +76,8 @@ UCMsgTableViewCellDelegate>
     [self headerFooterSet];
     
     [self.msgListView.mj_header beginRefreshing];
+    
+    transer = DJMsgCenterTranser.new;
 }
 
 - (void)headerFooterSet{
@@ -237,8 +241,8 @@ UCMsgTableViewCellDelegate>
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UCMsgModel *model = _array[indexPath.row];
     if (self.edit) {
-        UCMsgModel *model = _array[indexPath.row];
         model.select = !model.select;
         if (model.select) {
             [selectArray addObject:model];
@@ -254,6 +258,23 @@ UCMsgTableViewCellDelegate>
         }
         
         [self.msgListView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }else{
+        
+        if (!model.isread) {
+            /// 发起修改用户 已读未读状态 请求
+            [DJUserNetworkManager.sharedInstance frontUserNotice_updateWithId:model.seqid success:^(id responseObj) {
+                model.isread = YES;
+            } failure:^(id failureObj) {
+                
+            }];            
+        }
+        
+        /// TODO: 消息跳转测试
+//        model.noticetype = 7;// 跳转测试
+//        model.noticetype = 
+        
+        /// MARK: 跳转详情
+        [transer msgShowDetailVcWithModel:model nav:self.navigationController];
     }
 }
 

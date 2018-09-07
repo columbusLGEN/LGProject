@@ -13,6 +13,7 @@
 #import "UCLoginViewController.h"
 #import "LGWKWebViewController.h"
 #import "UCPersonInfoViewController.h"
+#import "UIImageView+LGExtension.h"
 
 #import "DJNotOpenViewController.h"
 
@@ -81,6 +82,15 @@ UCPersonInfoViewControllerDelegate>
     if (user.gradename == nil || [user.gradename isEqualToString:@""]) {
         _level.text = @"先锋党员";
     }
+    
+    /// TODO: 如果有新消息，显示小红点
+//    [_headerMsg.img addLittleRedDot];
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        /// TODO: 如果用户没有新消息，删除小红点
+//        [_headerMsg.img removeLittleRedDot];
+//    });
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

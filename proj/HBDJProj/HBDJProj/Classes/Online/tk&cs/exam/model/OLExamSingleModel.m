@@ -181,4 +181,11 @@
     return _selectOptions;
 }
 
+- (NSMutableDictionary *)userRecord{
+    if (!_userRecord) {
+        _userRecord = NSMutableDictionary.new;
+    }
+    return _userRecord;
+}
+
 @end

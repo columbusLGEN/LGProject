@@ -12,7 +12,9 @@
 #import "OLExamSingleModel.h"
 #import "OLTkcsModel.h"
 
-static NSString * const options_key = @"options";
+/** 用户所选 选项id 的key */
+//static NSString * const options_key = @"options";
+/** 题目的 主键id 的key */
 static NSString * const id_key = @"id";
 
 @interface OLExamSingleViewController ()
@@ -24,7 +26,7 @@ static NSString * const id_key = @"id";
 
 - (void)setModel:(OLExamSingleModel *)model{
     _model = model;
-    model.userRecord = NSMutableDictionary.new;
+//    model.userRecord = NSMutableDictionary.new;
     
     model.answer_display;/// 必须调用
     /// 回看
@@ -75,6 +77,7 @@ static NSString * const id_key = @"id";
     OLExamSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[OLExamSingleTableViewCell cellReuseIdWithModel:model] forIndexPath:indexPath];
     cell.backLook = _backLook;
     cell.model = model;
+    
     if (model.selected) {
         _footer.selectSomeOption = YES;
     }
@@ -110,8 +113,7 @@ static NSString * const id_key = @"id";
         }
         
         _model.userRecord[options_key] = _model.answer;
-//        NSLog(@"_model.userRecord[options_key]: %@",_model.userRecord[options_key]);
-//        NSLog(@"_model.answer;: %@",_model.answer);
+
     }else{
         /// MARK: 单选
         [self.dataArray enumerateObjectsUsingBlock:^(OLExamSingleLineModel   * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
