@@ -27,6 +27,8 @@ UCMsgTableViewCellDelegate>
 
 @implementation UCMsgTableViewController{
     NSInteger offset;
+    NSMutableArray *selectArray;
+    UIButton *_dbtn;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -58,12 +60,23 @@ UCMsgTableViewCellDelegate>
     // 添加删除按钮
     UIButton *dbtn = UIButton.new;
     [dbtn setImage:[UIImage imageNamed:@"home_icon_remove"] forState:UIControlStateNormal];
+    _dbtn = dbtn;
+    [dbtn setTitle:@"取消" forState:UIControlStateSelected];
+    [dbtn setImage:UIImage.new forState:UIControlStateSelected];
+    [dbtn setTitleColor:UIColor.EDJGrayscale_11 forState:UIControlStateSelected];
+    
     [dbtn addTarget:self action:@selector(removeMsg:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButton = [UIBarButtonItem.alloc initWithCustomView:dbtn];
     self.navigationItem.rightBarButtonItem = rightButton;
 
     _array = @[];
     
+    [self headerFooterSet];
+    
+    [self.msgListView.mj_header beginRefreshing];
+}
+
+- (void)headerFooterSet{
     self.msgListView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         offset = 0;
         [self.msgListView.mj_footer resetNoMoreData];
@@ -73,8 +86,6 @@ UCMsgTableViewCellDelegate>
     self.msgListView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self getData];
     }];
-    
-    [self.msgListView.mj_header beginRefreshing];
 }
 
 - (void)getData{
@@ -121,35 +132,94 @@ UCMsgTableViewCellDelegate>
 - (void)setEdit:(BOOL)edit{
     _edit = edit;
     if (edit) {
+        /// 编辑状态
         [self.msgListView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.view.mas_bottom).offset(-[LGSegmentBottomView bottomHeight]);
         }];
         _allSelectView.hidden = NO;
+        self.msgListView.mj_header = nil;
+        self.msgListView.mj_footer = nil;
+        for (UCMsgModel *model in self.array) {
+            model.isEdit = _edit;
+        }
+        
     }else{
+        /// 普通状态
         [self.msgListView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.view.mas_bottom);
         }];
+        for (UCMsgModel *model in self.array) {
+            model.select = NO;
+            model.isEdit = _edit;
+        }
         _allSelectView.hidden = YES;
+        [self headerFooterSet];
     }
 }
 
-#pragma mark - target
+/// MARK: 删除按钮点击事件
 - (void)removeMsg:(UIButton *)sender{
-    self.edit = !_edit;
-    for (UCMsgModel *model in self.array) {
-        model.isEdit = self.edit;
+    if (!selectArray) {
+        selectArray = NSMutableArray.new;
     }
+    self.edit = !_edit;
+    sender.selected = _edit;
     [self.msgListView reloadData];
 }
 
 #pragma mark - LGSegmentBottomViewDelegate
+/// MARK: 全选按钮点击事件
 - (void)segmentBottomAll:(LGSegmentBottomView *)bottom{
-    NSLog(@"全选: ");
+    
+    BOOL allAlreadySelect = YES;
+    for (UCMsgModel *model in self.array) {
+        if (!model.select) {
+            allAlreadySelect = NO;
+            break;
+        }
+    }
+    
+    BOOL select;
+    if (allAlreadySelect) {
+        select = NO;
+    }else{
+        select = YES;
+    }
+    
+    for (UCMsgModel *model in self.array) {
+        model.select = select;
+    }
+    [self.msgListView reloadData];
+    
+    if (select) {
+        selectArray = [NSMutableArray arrayWithArray:self.array];
+    }else{
+        [selectArray removeAllObjects];
+    }
     
 }
 - (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
-    NSLog(@"全选删除: ");
+
+    NSMutableArray *arrmu = NSMutableArray.new;
+    for (NSInteger i = 0; i < selectArray.count; i++) {
+        UCMsgModel *model = selectArray[i];
+        [arrmu addObject:@(model.seqid)];
+    }
+    NSString *seqid_s = [arrmu componentsJoinedByString:@","];
     
+    /// 发送删除消息请求
+    NSLog(@"seqid_s: %@",seqid_s);
+
+    [DJUserNetworkManager.sharedInstance frontUserNotice_deleteWithSeqids:seqid_s success:^(id responseObj) {
+        /// 结束编辑，刷新视图
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.edit = NO;
+            _dbtn.selected = NO;
+            [self.msgListView.mj_header beginRefreshing];
+        }];
+    } failure:^(id failureObj) {
+        [self presentFailureTips:op_failure_notice];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -169,11 +239,20 @@ UCMsgTableViewCellDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.edit) {
         UCMsgModel *model = _array[indexPath.row];
+        model.select = !model.select;
         if (model.select) {
-            model.select = NO;
+            [selectArray addObject:model];
         }else{
-            model.select = YES;
+            [selectArray removeObject:model];
         }
+        
+        /// 判定并修改 allSelectView的全选按钮的 选中状态
+        if (selectArray.count == self.array.count) {
+            self.allSelectView.asbState = YES;
+        }else{
+            self.allSelectView.asbState = NO;
+        }
+        
         [self.msgListView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
 }

@@ -20,6 +20,10 @@ static NSString * const password_key = @"password";
 
 @implementation DJUserNetworkManager
 
+- (void)frontUserNotice_deleteWithSeqids:(NSString *)seqids success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontUserNotice/delete" param:@{seqid_key:seqids} success:success failure:failure];
+}
+
 - (void)frontUgc_deleteWithSeqids:(NSString *)seqids success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [self sendPOSTRequestWithiName:@"frontUgc/delete" param:@{seqid_key:seqids} success:success failure:failure];
 }

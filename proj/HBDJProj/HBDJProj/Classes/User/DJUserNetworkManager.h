@@ -32,6 +32,8 @@ typedef NS_ENUM(NSUInteger, DJMCType) {
 
 @interface DJUserNetworkManager : NSObject
 
+/** 批量删除我的消息 */
+- (void)frontUserNotice_deleteWithSeqids:(NSString *)seqids success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 批量删除我的上传 */
 - (void)frontUgc_deleteWithSeqids:(NSString *)seqids success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
