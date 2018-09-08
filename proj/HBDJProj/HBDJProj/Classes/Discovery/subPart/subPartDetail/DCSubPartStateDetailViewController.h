@@ -15,4 +15,7 @@
 @property (strong,nonatomic) DCSubPartStateModel *model;
 @property (assign,nonatomic) BOOL showCommentView;
 
+/// 给子类继承
+- (void)dataSettings;
+
 @end

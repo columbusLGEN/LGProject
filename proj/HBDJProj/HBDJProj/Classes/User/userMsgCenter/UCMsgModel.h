@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, UCMsgModelResourceType) {
     UCMsgModelResourceTypePYQ = 4,
     /** 述职报告 */
     UCMsgModelResourceTypeSpeech = 5,
-    /** 在线头像 */
+    /** 在线投票 */
     UCMsgModelResourceTypeVote = 6,
     /** 知识测试 */
     UCMsgModelResourceTypeTest = 7,
@@ -55,6 +55,12 @@ typedef NS_ENUM(NSUInteger, UCMsgVoteTestStatus) {
 @property (assign,nonatomic) UCMsgVoteTestStatus votestestsstatus;
 /** 测试/投票 截止时间 */
 @property (strong,nonatomic) NSString *endtime;
+/** 投票需要用的 starttime */
+@property (strong,nonatomic) NSString *starttime;
+/** 投票需要用的 title */
+@property (strong,nonatomic) NSString *title;
+/** 投票的单选多选 */
+@property (assign,nonatomic) BOOL ismultiselect;
 /** 源id */
 @property (assign,nonatomic) NSInteger resourceid;
 

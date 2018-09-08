@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DJResourceTypeQACell" rowHeight="201" id="Kfs-nb-ydj" customClass="DJResourceTypeQACell">
+            <rect key="frame" x="0.0" y="0.0" width="515" height="201"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kfs-nb-ydj" id="9mi-ie-aFN">
+                <rect key="frame" x="0.0" y="0.0" width="515" height="200.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="波罗的海" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbC-tv-Z77">
+                        <rect key="frame" x="15" y="10" width="485" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="29" id="T7e-Rp-eYq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="党风廉政" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHe-hk-IEo">
+                        <rect key="frame" x="32" y="49" width="468" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ENo-yZ-bi2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="uc_icon_question_bq" translatesAutoresizingMaskIntoConstraints="NO" id="yue-cq-75s">
+                        <rect key="frame" x="15" y="53" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="7sP-66-jOV"/>
+                            <constraint firstAttribute="width" constant="12" id="wVp-3P-nBE"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9月3日，国家主席习近平同志会见非洲各国首脑，亲切问候非洲同志" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kp3-F0-TXy">
+                        <rect key="frame" x="15" y="80" width="485" height="110.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hbC-tv-Z77" firstAttribute="top" secondItem="9mi-ie-aFN" secondAttribute="top" constant="10" id="2OG-YD-J0V"/>
+                    <constraint firstItem="kp3-F0-TXy" firstAttribute="leading" secondItem="yue-cq-75s" secondAttribute="leading" id="2bf-kh-Ub7"/>
+                    <constraint firstItem="kp3-F0-TXy" firstAttribute="trailing" secondItem="MHe-hk-IEo" secondAttribute="trailing" id="B20-Fp-yfV"/>
+                    <constraint firstItem="yue-cq-75s" firstAttribute="top" secondItem="MHe-hk-IEo" secondAttribute="top" constant="4" id="LQh-v9-FFS"/>
+                    <constraint firstItem="MHe-hk-IEo" firstAttribute="top" secondItem="hbC-tv-Z77" secondAttribute="bottom" constant="10" id="YWb-FP-G5m"/>
+                    <constraint firstItem="yue-cq-75s" firstAttribute="leading" secondItem="hbC-tv-Z77" secondAttribute="leading" id="bk1-6u-cAj"/>
+                    <constraint firstItem="MHe-hk-IEo" firstAttribute="leading" secondItem="yue-cq-75s" secondAttribute="trailing" constant="5" id="fhM-MX-fyy"/>
+                    <constraint firstAttribute="bottom" secondItem="kp3-F0-TXy" secondAttribute="bottom" constant="10" id="gWM-Ju-dFs"/>
+                    <constraint firstItem="MHe-hk-IEo" firstAttribute="trailing" secondItem="hbC-tv-Z77" secondAttribute="trailing" id="h1I-7h-znl"/>
+                    <constraint firstItem="hbC-tv-Z77" firstAttribute="leading" secondItem="9mi-ie-aFN" secondAttribute="leading" constant="15" id="h2K-d5-Zto"/>
+                    <constraint firstAttribute="trailing" secondItem="hbC-tv-Z77" secondAttribute="trailing" constant="15" id="lVl-d6-bEq"/>
+                    <constraint firstItem="kp3-F0-TXy" firstAttribute="top" secondItem="MHe-hk-IEo" secondAttribute="bottom" constant="10" id="rOM-wd-let"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="answerLabel" destination="kp3-F0-TXy" id="Evv-Hn-tra"/>
+                <outlet property="tagLabel" destination="MHe-hk-IEo" id="LuZ-pb-axV"/>
+                <outlet property="titleHeightCons" destination="T7e-Rp-eYq" id="HYC-OX-GlJ"/>
+                <outlet property="titleLabel" destination="hbC-tv-Z77" id="1UT-Vb-hig"/>
+            </connections>
+            <point key="canvasLocation" x="3.5" y="92.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="uc_icon_question_bq" width="15" height="15"/>
+    </resources>
+</document>

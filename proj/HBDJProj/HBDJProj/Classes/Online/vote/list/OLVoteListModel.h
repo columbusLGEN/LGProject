@@ -8,6 +8,8 @@
 
 #import "LGBaseModel.h"
 
+@class UCMsgModel;
+
 @interface OLVoteListModel : LGBaseModel
 
 @property (strong,nonatomic) NSString *title;
@@ -24,5 +26,7 @@
 @property (assign,nonatomic) NSInteger votestatus;
 /** 活动是否结束 */
 @property (assign,nonatomic) BOOL isEnd;
+
+@property (strong,nonatomic) UCMsgModel *msgModel;
 
 @end

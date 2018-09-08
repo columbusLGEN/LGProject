@@ -36,11 +36,17 @@
         /// 讲习
 //        _time.text = model.createdDate;
         _time.text = [model.createdtime timestampToMin];
+        
         _source.hidden = NO;
         _source.text = [NSString stringWithFormat:@"来源: %@",model.source];
     }else{
         /// 发现
         _time.text = [model.timestamp timestampToMin];/// 支部动态
+    }
+    
+    if (_isMsgTrans) {
+        _source.hidden = YES;
+        _counts.hidden = YES;
     }
     
 //    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",model.playcount];

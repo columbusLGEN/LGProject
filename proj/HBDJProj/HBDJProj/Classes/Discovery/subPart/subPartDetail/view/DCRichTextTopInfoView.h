@@ -19,4 +19,7 @@
 @property (assign,nonatomic) BOOL displayCounts;
 - (void)reloadPlayCount:(NSInteger)count;
 
+/** 从消息列表跳转来的，== YES */
+@property (assign,nonatomic) BOOL isMsgTrans;
+
 @end

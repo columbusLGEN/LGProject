@@ -29,6 +29,8 @@ static NSString * const collectionid_keyPath = @"collectionid";
 static NSString * const praisecount_keyPath = @"praisecount";
 static NSString * const collectioncount_keyPath = @"collectioncount";
 
+static NSString * const topinfoview_key = @"topinfoview_key";
+
 @interface DCSubPartStateDetailViewController ()<
 UITableViewDelegate,
 UITableViewDataSource,
@@ -45,6 +47,7 @@ LGThreeRightButtonViewDelegate>
 @property (strong,nonatomic) NSCache *cellCache;
 /** 图片尺寸缓存 */
 @property (nonatomic, strong) NSCache *imageSizeCache;
+@property (strong,nonatomic) NSCache *topInfoViewCache;
 
 @end
 
@@ -89,6 +92,19 @@ LGThreeRightButtonViewDelegate>
         make.bottom.equalTo(self.view.mas_bottom);
     }];
     
+    [self dataSettings];
+    
+    _imageSizeCache = [[NSCache alloc] init];
+    _cellCache = [[NSCache alloc] init];
+    _topInfoViewCache = [NSCache.alloc init];
+    _cellCache.totalCostLimit = 10;
+    _cellCache.countLimit = 10;
+    
+    
+}
+
+- (void)dataSettings{
+    
     NSInteger praiseid = 0;
     NSInteger collectionid = 0;
     
@@ -115,18 +131,10 @@ LGThreeRightButtonViewDelegate>
     [self.model addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
     [self.model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
     
-    
     /// 注册键盘相关通知
     
     self.array = self.model.frontComments;
     [self.tableView reloadData];
-    
-    _imageSizeCache = [[NSCache alloc] init];
-    _cellCache = [[NSCache alloc] init];
-    _cellCache.totalCostLimit = 10;
-    _cellCache.countLimit = 10;
-    
-    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
@@ -162,7 +170,7 @@ LGThreeRightButtonViewDelegate>
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         DCStateContentsCell *cell = [self tableView:tableView prepareCellForIndexPath:indexPath];
-        /// TODO: 富文本的高度 + 品论(x) 的高度
+        /// TODO: 富文本的高度 + 评论(x) 的高度
         return [cell requiredRowHeightInTableView:tableView] + richTextBottomInfoViewHeight;
     }
     DCStateCommentsModel *model = _array[indexPath.row - 1];
@@ -172,6 +180,7 @@ LGThreeRightButtonViewDelegate>
 - (DCStateContentsCell *)tableView:(UITableView *)tableView prepareCellForIndexPath:(NSIndexPath *)indexPath{
     NSString *key = [NSString stringWithFormat:@"dcSubPartyCoreTextCell_%ld_%ld",indexPath.section,indexPath.row];
     DCStateContentsCell *cell = [_cellCache objectForKey:key];
+    DCRichTextTopInfoView *topInfoView = [_topInfoViewCache objectForKey:topinfoview_key];
     
     if (!cell) {
         
@@ -186,17 +195,21 @@ LGThreeRightButtonViewDelegate>
         
         [_cellCache setObject:cell forKey:key];
         
-        /// MARK: 富文本cell顶部信息view
-        DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
-        topInfoView.tabIndex = 1;
-        [cell.contentView addSubview:topInfoView];
-        topInfoView.model = self.model;
-        [topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(cell.mas_top);
-            make.left.equalTo(cell.mas_left);
-            make.right.equalTo(cell.mas_right);
-            make.height.mas_equalTo(topInfoViewHeight);
-        }];
+        if (!topInfoView) {
+            /// MARK: 富文本cell顶部信息view
+            topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
+            topInfoView.tabIndex = 1;
+            [cell.contentView addSubview:topInfoView];
+//            topInfoView.model = self.model;
+            [topInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(cell.mas_top);
+                make.left.equalTo(cell.mas_left);
+                make.right.equalTo(cell.mas_right);
+                make.height.mas_equalTo(topInfoViewHeight);
+            }];
+            
+            [_topInfoViewCache setObject:topInfoView forKey:topinfoview_key];
+        }
         
         /// MARK: 富文本cell底部信息view
         DCRichTextBottomInfoView *infoView = [DCRichTextBottomInfoView richTextBottomInfo];
@@ -211,6 +224,8 @@ LGThreeRightButtonViewDelegate>
         
         [cell.contentView bringSubviewToFront:infoView];
     }
+    
+    topInfoView.model = self.model;
     
     /// MARK: 设置富文本数据
     [cell setHTMLString:self.model.content];

@@ -19,10 +19,6 @@
 
 @property (strong,nonatomic) NSArray *tags;
 @property (strong,nonatomic) NSString *tagString;
-
-//"sort":0,
-//"userid":"4", -- > 貌似这里
-//"status":1
 @property (assign,nonatomic) BOOL showAll;
 
 @end

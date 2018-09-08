@@ -418,6 +418,9 @@
 		88D4C0B62142281600CADB42 /* UIImageView+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0B52142281600CADB42 /* UIImageView+LGExtension.m */; };
 		88D4C0BA2142414D00CADB42 /* DJMsgCenterTranser.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0B92142414D00CADB42 /* DJMsgCenterTranser.m */; };
 		88D4C0BD2142449900CADB42 /* DJResourceTypeNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0BC2142449900CADB42 /* DJResourceTypeNewsViewController.m */; };
+		88D4C0C02143799D00CADB42 /* DJResourceTypeQAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0BF2143799D00CADB42 /* DJResourceTypeQAViewController.m */; };
+		88D4C0C321437B5500CADB42 /* DJResourceTypeQACell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D4C0C221437B5500CADB42 /* DJResourceTypeQACell.xib */; };
+		88D4C0C62143A40D00CADB42 /* DJResourceTypeBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0C52143A40D00CADB42 /* DJResourceTypeBranchViewController.m */; };
 		88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61A20BE768500E353DB /* libxml2.2.tbd */; };
 		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
 		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
@@ -1256,6 +1259,11 @@
 		88D4C0B92142414D00CADB42 /* DJMsgCenterTranser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJMsgCenterTranser.m; sourceTree = "<group>"; };
 		88D4C0BB2142449900CADB42 /* DJResourceTypeNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJResourceTypeNewsViewController.h; sourceTree = "<group>"; };
 		88D4C0BC2142449900CADB42 /* DJResourceTypeNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJResourceTypeNewsViewController.m; sourceTree = "<group>"; };
+		88D4C0BE2143799D00CADB42 /* DJResourceTypeQAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJResourceTypeQAViewController.h; sourceTree = "<group>"; };
+		88D4C0BF2143799D00CADB42 /* DJResourceTypeQAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJResourceTypeQAViewController.m; sourceTree = "<group>"; };
+		88D4C0C221437B5500CADB42 /* DJResourceTypeQACell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJResourceTypeQACell.xib; sourceTree = "<group>"; };
+		88D4C0C42143A40D00CADB42 /* DJResourceTypeBranchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJResourceTypeBranchViewController.h; sourceTree = "<group>"; };
+		88D4C0C52143A40D00CADB42 /* DJResourceTypeBranchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJResourceTypeBranchViewController.m; sourceTree = "<group>"; };
 		88D5C61A20BE768500E353DB /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		88D5C61F20BE781C00E353DB /* huamulan.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = huamulan.epub; sourceTree = "<group>"; };
 		88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewController.h; sourceTree = "<group>"; };
@@ -3453,8 +3461,21 @@
 				88D4C0B92142414D00CADB42 /* DJMsgCenterTranser.m */,
 				88D4C0BB2142449900CADB42 /* DJResourceTypeNewsViewController.h */,
 				88D4C0BC2142449900CADB42 /* DJResourceTypeNewsViewController.m */,
+				88D4C0C42143A40D00CADB42 /* DJResourceTypeBranchViewController.h */,
+				88D4C0C52143A40D00CADB42 /* DJResourceTypeBranchViewController.m */,
+				88D4C0C121437B4800CADB42 /* QA */,
 			);
 			path = other;
+			sourceTree = "<group>";
+		};
+		88D4C0C121437B4800CADB42 /* QA */ = {
+			isa = PBXGroup;
+			children = (
+				88D4C0BE2143799D00CADB42 /* DJResourceTypeQAViewController.h */,
+				88D4C0BF2143799D00CADB42 /* DJResourceTypeQAViewController.m */,
+				88D4C0C221437B5500CADB42 /* DJResourceTypeQACell.xib */,
+			);
+			path = QA;
 			sourceTree = "<group>";
 		};
 		88DD8114209BFF3800F297D6 /* tk&cs */ = {
@@ -3845,6 +3866,7 @@
 				8885D24020A2EC8500DC06A1 /* LGSegmentBottomView.xib in Resources */,
 				886A1BEB20D0CB330007AD63 /* qx.bundle in Resources */,
 				886A1BF420D0CB330007AD63 /* STKAITI.TTF in Resources */,
+				88D4C0C321437B5500CADB42 /* DJResourceTypeQACell.xib in Resources */,
 				88D13C3E209022F900A32236 /* EDJSearchTagHeader.xib in Resources */,
 				88DD812F209C0D6100F297D6 /* OLVoteDetailNormalTableViewCell.xib in Resources */,
 				886A1BF920D101A00007AD63 /* HPNetworkFailureView.xib in Resources */,
@@ -4302,6 +4324,7 @@
 				882FBFBA2134DF73005F7187 /* LGSwitchViewController.m in Sources */,
 				88BCEDC520C63EBF00B5C1DB /* LGBaseCollectionView.m in Sources */,
 				88EA130920ABC6E2007AB886 /* RegisterBottomInfoView.m in Sources */,
+				88D4C0C62143A40D00CADB42 /* DJResourceTypeBranchViewController.m in Sources */,
 				88A470EE207B0CF2002F93E0 /* UIColor+EDJColor.m in Sources */,
 				889FCCC420B2A86B0045746D /* LGAudioPlayerView.m in Sources */,
 				8831E15420931090001D038E /* DCSubPartStateBaseCell.m in Sources */,
@@ -4356,6 +4379,7 @@
 				8876E3C320EA0DBE001C6A1A /* DJOnlineHomeModel.m in Sources */,
 				88D13C332090144A00A32236 /* EDJSearchTagCollectionViewCell.m in Sources */,
 				884312E92089990C00321F84 /* UCWriteFeedbackViewController.m in Sources */,
+				88D4C0C02143799D00CADB42 /* DJResourceTypeQAViewController.m in Sources */,
 				88949C22211ECCC400B80AEE /* DJSearchWorkPlantformCell.m in Sources */,
 				8835B3172072189D00722010 /* LGBaseButton.m in Sources */,
 				8851C63D20F5EB8800C91575 /* DJThoutghtRepotListModel.m in Sources */,

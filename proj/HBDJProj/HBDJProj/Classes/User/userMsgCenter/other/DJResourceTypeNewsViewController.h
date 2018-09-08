@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// 消息页面的 新闻详情控制器
+
 #import "HPPartyBuildDetailViewController.h"
 @class UCMsgModel;
 

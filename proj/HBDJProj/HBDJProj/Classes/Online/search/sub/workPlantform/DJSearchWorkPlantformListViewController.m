@@ -102,7 +102,7 @@
     DJThemeMeetingsModel *model = self.dataArray[indexPath.row];
 //    model.searchtype;
     
-    if (model.searchtype == 2) {
+    if (model.searchtype == 2 || model.searchtype == 4) {
         /// 进入思想汇报 或者 述职述廉 详情
         DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
         detailvc.model = model;

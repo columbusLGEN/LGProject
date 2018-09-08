@@ -35,4 +35,7 @@ typedef NS_ENUM(NSUInteger, DJPointNewsSource) {
 /** 跳转来源,微党课或者党建要闻 */
 @property (assign,nonatomic) DJPointNewsSource dj_jumpSource;
 
+/** 从消息列表跳转来的，== YES */
+@property (assign,nonatomic) BOOL isMsgTrans;
+
 @end

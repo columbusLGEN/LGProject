@@ -108,6 +108,9 @@ WKNavigationDelegate>
         /// 计算表态高度
         CGFloat titleHeight = [contentModel.title sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:25]].height;
         CGFloat topInfoViewHeight = titleHeight + 81;
+        if (_isMsgTrans) {
+            topInfoViewHeight -= 30;
+        }
 
         /// 目标frame: 可以显示 string 的大小 --> 只需知道 string 的最大高度即可
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -128,10 +131,11 @@ WKNavigationDelegate>
             /// MARK: 顶部信息view （标题，时间，来源等）
             DCRichTextTopInfoView *topInfoView = [DCRichTextTopInfoView richTextTopInfoView];
             topInfoView.tabIndex = 0;
+            topInfoView.displayCounts = self.displayCounts;
+            topInfoView.isMsgTrans = _isMsgTrans;
             topInfoView.frame = CGRectMake(0, 0, kScreenWidth, topInfoViewHeight);
             topInfoView.model = contentModel;
 
-            topInfoView.displayCounts = self.displayCounts;
             [textView addSubview:topInfoView];
             _topInfoView = topInfoView;
 

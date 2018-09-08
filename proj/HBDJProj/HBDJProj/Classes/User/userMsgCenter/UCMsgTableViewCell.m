@@ -42,6 +42,10 @@ static NSString * const isread_key = @"isread";
 - (void)setModel:(UCMsgModel *)model{
     _model = model;
     _content.text = model.content;
+    if (model.noticetype == UCMsgModelResourceTypeCustom) {
+        _content.text = model.title;
+    }
+    
     _showAllButton.selected = model.showAll;
     if (model.createdtime.length > length_timeString_1) {
         _time.text = [model.createdtime substringToIndex:length_timeString_1];

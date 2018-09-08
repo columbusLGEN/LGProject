@@ -32,6 +32,10 @@ typedef NS_ENUM(NSUInteger, DJMCType) {
 
 @interface DJUserNetworkManager : NSObject
 
+/** 获取支部动态详情 */
+- (void)frontBranch_selectDetailWithSeqid:(NSInteger)seqid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+/** 获取提问详情接口(消息中心查看消息详情) */
+- (void)frontQuestionanswer_selectDetailWithSeqid:(NSInteger)seqid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 标记我的消息已读 */
 - (void)frontUserNotice_updateWithId:(NSInteger)seqid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 批量删除我的消息 */

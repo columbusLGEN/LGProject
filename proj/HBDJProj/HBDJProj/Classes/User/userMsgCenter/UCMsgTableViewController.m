@@ -270,8 +270,11 @@ UCMsgTableViewCellDelegate>
         }
         
         /// TODO: 消息跳转测试
-//        model.noticetype = 7;// 跳转测试
-//        model.noticetype = 
+//        model.noticetype = 7;// 在线测试
+//        model.noticetype = 2;// 学习问答
+//        model.noticetype = 3;// 支部动态
+//        model.noticetype = 6;// 在线投票
+//        model.noticetype = 0;// 自定义消息
         
         /// MARK: 跳转详情
         [transer msgShowDetailVcWithModel:model nav:self.navigationController];

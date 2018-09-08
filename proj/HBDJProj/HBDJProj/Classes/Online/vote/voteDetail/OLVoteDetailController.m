@@ -16,6 +16,7 @@
 #import "OLVoteListModel.h"
 #import "DJOnlineNetorkManager.h"
 #import "OLVoteDetailBottomTimeCell.h"
+#import "UCMsgModel.h"
 
 static NSString * const normalCellID = @"OLVoteDetailNormalTableViewCell";
 static NSString * const votedCellID = @"OLVoteDetailVotedTableViewCell";
@@ -222,6 +223,9 @@ OLVoteDetailHeaderViewDelegate>
             
             /// 修改数据
             _model.votestatus = 1;
+            if (self.model.msgModel) {
+                self.model.msgModel.votestestsstatus = 1;
+            }
             
             _currentOption.votecount += 1;
             for (OLVoteDetailModel *detailModel in self.dataArray) {
@@ -231,6 +235,8 @@ OLVoteDetailHeaderViewDelegate>
             _header.model.totalVotesCount += 1;
             
             self.tableView.tableFooterView = nil;
+            
+            
             
             [self.tableView reloadData];
             _selectedSomeItem = NO;

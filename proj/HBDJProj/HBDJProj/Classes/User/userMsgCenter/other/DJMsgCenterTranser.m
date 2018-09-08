@@ -15,13 +15,31 @@
 #import "DJTestScoreListTableViewController.h"
 #import "OLTestResultViewController.h"
 
+#import "DJResourceTypeQAViewController.h"
+#import "DJResourceTypeBranchViewController.h"
+#import "OLVoteDetailController.h"
+#import "OLVoteListModel.h"
+#import "HPPartyBuildDetailViewController.h"
+#import "DJDataBaseModel.h"
+
 @implementation DJMsgCenterTranser
 
 - (void)msgShowDetailVcWithModel:(UCMsgModel *)model nav:(UINavigationController *)nav{
     
     switch (model.noticetype) {
-        case UCMsgModelResourceTypeCustom:
+        case UCMsgModelResourceTypeCustom:{
             
+            DJDataBaseModel *contentModel = DJDataBaseModel.new;
+            contentModel.content = model.content;
+            contentModel.title = model.title;
+            contentModel.createdtime = model.timestamp;
+            
+            HPPartyBuildDetailViewController *richvc = HPPartyBuildDetailViewController.new;
+            richvc.isMsgTrans = YES;
+            richvc.contentModel = contentModel;
+            
+            [nav pushViewController:richvc animated:YES];
+        }
             break;
         case UCMsgModelResourceTypeNews:{
             DJResourceTypeNewsViewController *newsvc = DJResourceTypeNewsViewController.new;
@@ -29,11 +47,21 @@
             [nav pushViewController:newsvc animated:YES];
         }
             break;
-        case UCMsgModelResourceTypeQA:
-            
+        case UCMsgModelResourceTypeQA:{
+            //            model.resourceid = 8;
+            DJResourceTypeQAViewController *qavc = DJResourceTypeQAViewController.new;
+            qavc.msgModel = model;
+            [nav pushViewController:qavc animated:YES];
+        }
             break;
-        case UCMsgModelResourceTypeBranch:
+        case UCMsgModelResourceTypeBranch:{
+//            model.resourceid = 26;
             
+            DJResourceTypeBranchViewController *branchvc = DJResourceTypeBranchViewController.new;
+            branchvc.msgModel = model;
+            [nav pushViewController:branchvc animated:YES];
+            
+        }
             break;
         case UCMsgModelResourceTypePYQ:
             
@@ -41,8 +69,30 @@
         case UCMsgModelResourceTypeSpeech:
             
             break;
-        case UCMsgModelResourceTypeVote:
+        case UCMsgModelResourceTypeVote:{
+//            model.resourceid = 31;
             
+            OLVoteListModel *voteModel = OLVoteListModel.new;
+            voteModel.msgModel = model;
+            voteModel.seqid = model.resourceid;
+            
+//            voteModel.votestatus = 0;// model.votestestsstatus;
+//            voteModel.starttime = @"2018-09-01";//model.starttime;
+//            voteModel.title = @"8月14投票01";//model.title;
+//            voteModel.endtime = @"2018-09-01";//model.endtime;
+            
+            voteModel.votestatus = model.votestestsstatus;
+            voteModel.starttime = model.starttime;
+            voteModel.title = model.title;
+            voteModel.endtime = model.endtime;
+            
+            voteModel.ismultiselect = model.ismultiselect;
+            
+            OLVoteDetailController *votevc = OLVoteDetailController.new;
+            votevc.model = voteModel;
+            [nav pushViewController:votevc animated:YES];
+            
+        }
             break;
         case UCMsgModelResourceTypeTest:{
             
