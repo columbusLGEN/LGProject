@@ -44,6 +44,7 @@ static NSString * const ugctype_key = @"ugctype";
 static NSString * const select_key = @"select";
 static NSString * const seqid_key = @"seqid";
 static NSString * const options_key = @"options";
+static NSString * const isLogin_key = @"isLogin";
 
 static NSString * const op_failure_notice = @"操作失败，请检查网络后重试";
 

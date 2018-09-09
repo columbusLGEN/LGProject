@@ -13,5 +13,6 @@
 
 @interface HPAlbumTableViewController : LGBaseTableViewController
 @property (strong,nonatomic) EDJMicroLessionAlbumModel *albumModel;
+@property (assign,nonatomic) NSInteger push_seqid;
 
 @end

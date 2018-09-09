@@ -13,5 +13,6 @@
 
 @interface DJResourceTypeNewsViewController : HPPartyBuildDetailViewController
 @property (strong,nonatomic) UCMsgModel *msgModel;
+@property (assign,nonatomic) NSInteger resourceid;
 
 @end

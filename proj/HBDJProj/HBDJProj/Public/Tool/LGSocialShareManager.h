@@ -14,6 +14,15 @@ extern NSString * const LGSocialShareParamKeyDesc;
 extern NSString * const LGSocialShareParamKeyThumbUrl;
 extern NSString * const LGSocialShareParamKeyVc;
 
+typedef NS_ENUM(NSUInteger, DJShareType) {
+    /** 微党课 */
+    DJShareTypeLesson,
+    /** 学习问答 */
+    DJShareTypeQA,
+    /** 要闻 */
+    DJShareTypeNews
+};
+
 @interface LGSocialShareManager : NSObject
 
 
@@ -29,6 +38,6 @@ extern NSString * const LGSocialShareParamKeyVc;
  LGSocialShareParamKeyVc
  
  */
-- (void)showShareMenuWithParam:(NSDictionary *)param;
+- (void)showShareMenuWithParam:(NSDictionary *)param shareType:(DJShareType)shareType;
 
 @end

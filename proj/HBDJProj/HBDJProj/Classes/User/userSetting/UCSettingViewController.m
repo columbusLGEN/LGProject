@@ -70,6 +70,7 @@ UCSettingTableViewCellDelegate>
        NSLog(@"userlogout_res: %@",responseObj);
         [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
         [[DJUser sharedInstance] removeLocalUserInfo];
+        [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:isLogin_key];
         /// 退出登录，重置页面
         [UIApplication sharedApplication].keyWindow.rootViewController = [UCLoginViewController navWithLoginvc];
         

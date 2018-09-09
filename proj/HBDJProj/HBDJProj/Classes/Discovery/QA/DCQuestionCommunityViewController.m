@@ -136,14 +136,13 @@ UCQuestionTableViewCellDelegate>
 // 分享
 - (void)qaCellShareWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
     
-    /// TODO: 分享链接等内容
     NSDictionary *param = @{LGSocialShareParamKeyWebPageUrl:model.shareUrl?model.shareUrl:@"",
                             LGSocialShareParamKeyTitle:model.question?model.question:@"",
                             LGSocialShareParamKeyDesc:model.answer?model.answer:@"",
                             LGSocialShareParamKeyThumbUrl:model.thumbnail?model.thumbnail:@"",
                             LGSocialShareParamKeyVc:self};
     
-    [[LGSocialShareManager new] showShareMenuWithParam:param];
+    [[LGSocialShareManager new] showShareMenuWithParam:param shareType:DJShareTypeQA];
 }
 
 @end

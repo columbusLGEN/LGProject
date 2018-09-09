@@ -20,6 +20,12 @@ static NSString * const password_key = @"password";
 
 @implementation DJUserNetworkManager
 
+- (void)frontIntegralGrade_addWithIntegralid:(DJUserAddScoreType)integralid completenum:(double)completenum success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"integralid":@(integralid).stringValue,
+                            @"completenum":[NSString stringWithFormat:@"%.1f",completenum]};
+    [self sendPOSTRequestWithiName:@"frontIntegralGrade/add" param:param success:success failure:failure];
+}
+
 - (void)frontBranch_selectDetailWithSeqid:(NSInteger)seqid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{seqid_key:@(seqid).stringValue};
     [self sendPOSTRequestWithiName:@"frontBranch/selectDetail" param:param success:success failure:failure];

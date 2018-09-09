@@ -94,4 +94,13 @@ UITableViewDataSource>
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)dealloc{
+    if (_trOrSp == 2) {
+        [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadMindReport];
+    }
+    if (_trOrSp == 4) {
+        [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadSpeech];
+    }
+}
+
 @end

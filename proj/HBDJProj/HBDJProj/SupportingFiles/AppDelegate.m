@@ -21,6 +21,7 @@
 #endif
 // 如果需要使用idfa功能所需要引入的头文件（可选）
 //#import <AdSupport/AdSupport.h>
+#import "DJUserInteractionMgr.h"
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 
@@ -90,7 +91,8 @@
                  apsForProduction:isProduction
             advertisingIdentifier:nil];
     
-    
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
     
@@ -175,27 +177,28 @@
 }
 
 // iOS 10 Support
+/// MARK: 当用户点击了推送消息时
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
     // Required
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        
+        [DJUserInteractionMgr.sharedInstance dj_handlePushMsgClickWithUserInfo:userInfo];
+        
         [JPUSHService handleRemoteNotification:userInfo];
+        
     }
     completionHandler();  // 系统要求执行这个方法
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
-    // Required, iOS 7 Support
-    [JPUSHService handleRemoteNotification:userInfo];
-    completionHandler(UIBackgroundFetchResultNewData);
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-    // Required,For systems with less than or equal to iOS6
-    [JPUSHService handleRemoteNotification:userInfo];
-}
+//- (void)networkDidReceiveMessage:(NSNotification *)notification {
+//    NSDictionary * userInfo = [notification userInfo];
+//    NSString *content = [userInfo valueForKey:@"content"];
+//    NSString *messageID = [userInfo valueForKey:@"_j_msgid"];
+//    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+//    NSLog(@"messageID: %@,content: %@,extras: %@",messageID,content,extras);
+//
+//}
 
 /**
  * 功能：禁止横屏

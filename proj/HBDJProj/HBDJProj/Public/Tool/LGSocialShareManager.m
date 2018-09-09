@@ -18,7 +18,7 @@ NSString * const LGSocialShareParamKeyVc = @"LGSocialShareParamKeyVc";
 
 @implementation LGSocialShareManager
 
-- (void)showShareMenuWithParam:(NSDictionary *)param{
+- (void)showShareMenuWithParam:(NSDictionary *)param shareType:(DJShareType)shareType{
     /// MARK: 配置UI面板选项
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),
                                                @(UMSocialPlatformType_QQ),
@@ -28,11 +28,11 @@ NSString * const LGSocialShareParamKeyVc = @"LGSocialShareParamKeyVc";
     
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         
-        [self shareWebPageToPlatformType:platformType param:param];
+        [self shareWebPageToPlatformType:platformType param:param shareType:shareType];
     }];
 }
 
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType param:(NSDictionary *)param{
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType param:(NSDictionary *)param shareType:(DJShareType)shareType{
     
     NSString *webPageUrl = param[LGSocialShareParamKeyWebPageUrl];
     NSString *thumbUrl = param[LGSocialShareParamKeyThumbUrl];
@@ -54,6 +54,26 @@ NSString * const LGSocialShareParamKeyVc = @"LGSocialShareParamKeyVc";
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
     
+    /// 分享成功，根据 sharetype 增加用户积分
+    DJUserAddScoreType type = DJUserAddScoreTypeQAShare;
+    switch (shareType) {
+        case DJShareTypeLesson:
+            break;
+        case DJShareTypeQA:
+            type = DJUserAddScoreTypeQAShare;
+            break;
+        case DJShareTypeNews:
+            /// TODO: 接口没有 要闻分享？？ 同时，实际需求中并没有 微党课分享
+            //                    type = DJUserAddScoreTypeLessonShare;
+            break;
+            
+    }
+    [DJUserNetworkManager.sharedInstance frontIntegralGrade_addWithIntegralid:type completenum:1 success:^(id responseObj) {
+        
+    } failure:^(id failureObj) {
+        
+    }];
+    
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:vc completion:^(id data, NSError *error) {
         if (error) {
@@ -69,6 +89,7 @@ NSString * const LGSocialShareParamKeyVc = @"LGSocialShareParamKeyVc";
             }else{
                 UMSocialLogInfo(@"response data is %@",data);
             }
+            
         }
     }];
     

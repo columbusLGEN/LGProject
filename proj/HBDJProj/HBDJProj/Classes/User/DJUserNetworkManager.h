@@ -30,8 +30,42 @@ typedef NS_ENUM(NSUInteger, DJMCType) {
     DJMCTypePYQ
 };
 
+typedef NS_ENUM(NSUInteger, DJUserAddScoreType) {
+    /** 分享微党课 */
+    DJUserAddScoreTypeLessonShare = 3,
+    /** 分享学习问答 */
+    DJUserAddScoreTypeQAShare = 10,
+    /** 查看、收听 微党课内容 */
+    DJUserAddScoreTypeReadLesson = 2,
+    /** 查看要闻 */
+    DJUserAddScoreTypeReadNews = 6,
+    /** 阅读图书 */
+    DJUserAddScoreTypeReadBook = 7,
+    /** 查看学习问答 */
+    DJUserAddScoreTypeReadQA = 9,
+    /** 查看支部动态 */
+    DJUserAddScoreTypeReadBranch = 13,
+    /** 查看党员舞台 */
+    DJUserAddScoreTypeReadPYQ = 17,
+    /** 查看三会一课 */
+    DJUserAddScoreTypeReadThreeMeeting = 22,
+    /** 查看主题党日 */
+    DJUserAddScoreTypeReadThemeDay = 23,
+    /** 查看思想汇报 */
+    DJUserAddScoreTypeReadMindReport = 24,
+    /** 查看述职述廉 */
+    DJUserAddScoreTypeReadSpeech = 25,
+};
+
 @interface DJUserNetworkManager : NSObject
 
+
+/**
+ 用户获取积分并提升等级接口
+ @param integralid 积分类型id
+ @param completenum 次数/分钟
+ */
+- (void)frontIntegralGrade_addWithIntegralid:(DJUserAddScoreType)integralid completenum:(double)completenum success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 获取支部动态详情 */
 - (void)frontBranch_selectDetailWithSeqid:(NSInteger)seqid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 获取提问详情接口(消息中心查看消息详情) */

@@ -16,18 +16,21 @@
 
 @implementation DJResourceTypeNewsViewController
 
-- (void)setMsgModel:(UCMsgModel *)msgModel{
-    _msgModel = msgModel;
+- (void)setResourceid:(NSInteger)resourceid{
+    _resourceid = resourceid;
     
     /// 请求要闻数据
-    
-    [DJHomeNetworkManager homePointNewsDetailWithId:msgModel.resourceid type:DJDataPraisetypeNews success:^(id responseObj) {
+    [DJHomeNetworkManager homePointNewsDetailWithId:resourceid type:DJDataPraisetypeNews success:^(id responseObj) {
         self.contentModel = [DJDataBaseModel mj_objectWithKeyValues:responseObj];
         
     } failure:^(id failureObj) {
         
     }];
-    
+}
+
+- (void)setMsgModel:(UCMsgModel *)msgModel{
+    _msgModel = msgModel;
+    self.resourceid = msgModel.resourceid;
     
 }
 

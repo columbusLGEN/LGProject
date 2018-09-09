@@ -33,7 +33,7 @@
     _title.text = model.title;
     
     if (_tabIndex == 0) {
-        /// 讲习
+        /// 讲习 & 消息详情
 //        _time.text = model.createdDate;
         _time.text = [model.createdtime timestampToMin];
         
@@ -44,12 +44,12 @@
         _time.text = [model.timestamp timestampToMin];/// 支部动态
     }
     
-    if (_isMsgTrans) {
-        _source.hidden = YES;
-        _counts.hidden = YES;
+    if (_isMsgTrans) {/// 自定义消息详情
+        [_source removeFromSuperview];
+        [_counts removeFromSuperview];
     }
     
-//    _counts.text = [NSString stringWithFormat:@"查看次数: %ld",model.playcount];
+
 }
 
 - (void)setDisplayCounts:(BOOL)displayCounts{

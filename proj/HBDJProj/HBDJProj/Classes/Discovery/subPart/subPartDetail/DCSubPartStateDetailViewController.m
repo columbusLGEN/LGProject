@@ -371,6 +371,8 @@ LGThreeRightButtonViewDelegate>
     [self.model removeObserver:self forKeyPath:collectionid_keyPath];
     [self.model removeObserver:self forKeyPath:praisecount_keyPath];
     [self.model removeObserver:self forKeyPath:collectioncount_keyPath];
+    
+    [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadBranch];
 }
 
 @end

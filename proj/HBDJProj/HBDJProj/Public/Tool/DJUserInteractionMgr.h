@@ -18,7 +18,7 @@ typedef void(^UserLikeCollectSuccess)(NSInteger cbkid,NSInteger cbkCount);
 
 @interface DJUserInteractionMgr : NSObject
 
-
+- (void)dj_handlePushMsgClickWithUserInfo:(NSDictionary *)userinfo;
 
 /**
  点赞(取消)/收藏(取消)

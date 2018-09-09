@@ -22,6 +22,8 @@
 
 - (void)otherConfig{
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.startReadDate = [NSDate date];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,6 +55,20 @@
     }
 }
 
+
+/// 部分需要调用用户增加积分接口的方法
+- (void)IntegralGrade_addWithIntegralid:(DJUserAddScoreType)integralid{
+    NSDate *currentDate = [NSDate date];
+    NSTimeInterval readSeconds = [currentDate timeIntervalSinceDate:self.startReadDate];
+    NSTimeInterval readMins = readSeconds / 60;
+    NSLog(@"查看时间——分钟: %f",readMins);
+    
+    [DJUserNetworkManager.sharedInstance frontIntegralGrade_addWithIntegralid:integralid completenum:readMins success:^(id responseObj) {
+        
+    } failure:^(id failureObj) {
+        
+    }];
+}
 
 
 @end

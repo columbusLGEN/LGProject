@@ -59,7 +59,13 @@ DJDsSearchChildVcDelegate>
 
 @end
 
-@implementation HPSearchViewController
+@implementation HPSearchViewController{
+    NSDate *QA_startDate;
+    NSDate *PYQ_startDate;
+    NSTimeInterval QA_seconds;
+    NSTimeInterval PYQ_seconds;
+    NSInteger _currentChannel;/// 当前索引
+}
 
 #pragma mark - 视图生命周期
 - (void)viewDidLoad {
@@ -74,6 +80,8 @@ DJDsSearchChildVcDelegate>
 
 - (void)configUI_sub{
     _speaking = NO;
+    
+    _currentChannel = 0;
     
     LGNavigationSearchBar *fakeNavgationBar = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
     fakeNavgationBar.leftImgName = @"icon_arrow_left_black";
@@ -396,6 +404,15 @@ DJDsSearchChildVcDelegate>
         
         if (ugc.count || questionanswer.count || branch.count) {
             self.searchHistory.hidden = YES;
+            
+            /// 如果返回了搜索结果，默认显示提问
+            if (QA_startDate == nil) {
+                /// 只有在第一次返回搜索结果时，才初始化一下变量
+                /// 这样能够保证 用户 搜索多次时，时间计算正确
+                QA_startDate = [NSDate date];
+                QA_seconds = 0;
+                PYQ_seconds = 0;
+            }
         }
         if (ugc.count == 0 && questionanswer.count == 0 && branch.count == 0) {
             self.searchHistory.hidden = NO;
@@ -478,8 +495,35 @@ DJDsSearchChildVcDelegate>
     }
 }
 
+/// MARK: 切换视图
 - (void)viewSwitched:(NSInteger)index{
     [self.view endEditing:YES];
+    
+    /// 上一个页面的索引
+    NSInteger lastIndex = _currentChannel;
+    if ((lastIndex == 1 || lastIndex == 2) && index == 0) {
+        //        NSLog(@"开始查看学习问答: ");
+        QA_startDate = [NSDate date];
+    }
+    
+    if (lastIndex == 0 && index != 0) {
+        /// 结束学习问答查看
+        [self calculateQASecond];
+        
+    }
+    
+    if ((lastIndex == 1 || lastIndex == 0) && index == 2) {
+        //        NSLog(@"开始查看党员舞台: ");
+        PYQ_startDate = [NSDate date];
+        
+    }
+    
+    if (lastIndex == 2 && index != 2) {
+        /// 结束党员舞台查看
+        [self calculatePYQSecond];
+    }
+    
+    _currentChannel = index;
 }
 
 #pragma mark - system method
@@ -495,6 +539,53 @@ DJDsSearchChildVcDelegate>
         [_searchHistory.removeHis addTarget:self action:@selector(deleteSearchRecord:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchHistory;
+}
+
+/// 计时相关方法
+- (void)calculateQASecond{
+    NSTimeInterval qaseconds = [self secondSinceNowWithDate:QA_startDate];
+    QA_seconds += qaseconds;
+}
+- (void)calculatePYQSecond{
+    NSTimeInterval pyqseconds = [self secondSinceNowWithDate:PYQ_startDate];
+    PYQ_seconds += pyqseconds;
+}
+/// MARK: date 距离现在的时间差
+- (NSTimeInterval)secondSinceNowWithDate:(NSDate *)date{
+    NSDate *currentDate = [NSDate date];
+    return [currentDate timeIntervalSinceDate:date];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    if (_currentChannel == 0) {
+        /// 该页面销毁时，用户停留在 学习问答视图
+        [self calculateQASecond];
+    }
+    
+    if (_currentChannel == 2) {
+        /// 该页面销毁时，用户停留在 党员舞台视图
+        [self calculatePYQSecond];
+    }
+    
+    /// 增加积分
+    if (QA_seconds != 0) {
+        NSTimeInterval QA_mins = QA_seconds / 60;
+        [DJUserNetworkManager.sharedInstance frontIntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadQA completenum:QA_mins success:^(id responseObj) {
+            
+        } failure:^(id failureObj) {
+            
+        }];
+    }
+    if (PYQ_seconds != 0) {
+        NSTimeInterval PYQ_mins = PYQ_seconds / 60;
+        [DJUserNetworkManager.sharedInstance frontIntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadPYQ completenum:PYQ_mins success:^(id responseObj) {
+            
+        } failure:^(id failureObj) {
+            
+        }];
+    }
 }
 
 @end

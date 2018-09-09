@@ -91,6 +91,10 @@ WKNavigationDelegate>
         _contentModel.playcount += 1;
         [_topInfoView reloadPlayCount:_contentModel.playcount];
     }];
+    
+    if (_isMsgTrans) {
+        [_pbdBottom removeFromSuperview];
+    }
 
     
 }
@@ -212,7 +216,7 @@ WKNavigationDelegate>
                             LGSocialShareParamKeyVc:self
                             };
     
-    [[LGSocialShareManager new] showShareMenuWithParam:param];
+    [[LGSocialShareManager new] showShareMenuWithParam:param shareType:DJShareTypeNews];
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate
@@ -379,6 +383,12 @@ WKNavigationDelegate>
 
 - (void)dealloc{
     [_task cancel];
+    
+    if (_dj_jumpSource == DJPointNewsSourceMicroLesson) {
+        [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadLesson];
+    }else{
+        [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadNews];
+    }
 }
 
 @end

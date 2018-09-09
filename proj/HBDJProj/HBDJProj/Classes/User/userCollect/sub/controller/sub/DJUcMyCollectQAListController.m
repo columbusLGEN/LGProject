@@ -149,7 +149,7 @@ UCQuestionTableViewCellDelegate>
                             LGSocialShareParamKeyThumbUrl:model.thumbnail?model.thumbnail:@"",
                             LGSocialShareParamKeyVc:self};
     
-    [[LGSocialShareManager new] showShareMenuWithParam:param];
+    [[LGSocialShareManager new] showShareMenuWithParam:param shareType:DJShareTypeQA];
 }
 
 - (void)startEdit{

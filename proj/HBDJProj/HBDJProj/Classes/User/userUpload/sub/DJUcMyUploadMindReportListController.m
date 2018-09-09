@@ -126,6 +126,7 @@
     }else{
         /// 普通状态
         DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
+        detailvc.trOrSp = 2;
         detailvc.model = model;
         [self.navigationController pushViewController:detailvc animated:YES];
     }

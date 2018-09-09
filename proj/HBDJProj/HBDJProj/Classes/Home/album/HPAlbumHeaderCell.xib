@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="592" height="400.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="eXZ-cr-e7d">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dj_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="eXZ-cr-e7d">
                         <rect key="frame" x="0.0" y="0.0" width="592" height="233"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="233" id="sNk-6l-vcI"/>
@@ -102,8 +102,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="dj_placeholder" width="183" height="103"/>
         <image name="home_album_list_time_sort" width="17" height="12"/>
         <image name="home_digital_book_info_arrow_down" width="10" height="5"/>
-        <image name="party_history" width="283" height="194"/>
     </resources>
 </document>

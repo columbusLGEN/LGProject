@@ -9,6 +9,7 @@
 #import "DJUcMyUploadCheapSpeechListController.h"
 #import "DJUserNetworkManager.h"
 #import "DJThoutghtRepotListModel.h"
+#import "DJThoughtReportDetailViewController.h"
 
 @interface DJUcMyUploadCheapSpeechListController ()
 
@@ -59,6 +60,25 @@
             
         }
     }];
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DJThoutghtRepotListModel *model = self.dataArray[indexPath.row];
+    
+    if (self.lg_edit) {
+        ///  编辑状态
+        model.select = !model.select;
+        if ([self.delegate respondsToSelector:@selector(ucmp_mindCellClickWhenEdit:modelArrayCount:)]) {
+            [self.delegate ucmp_mindCellClickWhenEdit:model modelArrayCount:self.dataArray.count];
+        }
+    }else{
+        /// 普通状态
+        DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
+        detailvc.trOrSp = 4;
+        detailvc.model = model;
+        [self.navigationController pushViewController:detailvc animated:YES];
+    }
     
 }
 

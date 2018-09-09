@@ -24,6 +24,9 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
 
 @interface DJHomeNetworkManager : NSObject
 
+/** 请求专辑的封面和简介 -- 用作推送消息的跳转 */
+- (void)carouselfigure_selectCurriculumDetailWithClassid:(NSInteger)classid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
 /// MARK: 添加播放次数
 - (void)homeAddcountWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 

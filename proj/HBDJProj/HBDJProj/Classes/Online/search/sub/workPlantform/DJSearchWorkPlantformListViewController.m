@@ -105,19 +105,26 @@
     if (model.searchtype == 2 || model.searchtype == 4) {
         /// 进入思想汇报 或者 述职述廉 详情
         DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
+        detailvc.trOrSp = model.searchtype;
         detailvc.model = model;
         [self.navigationController pushViewController:detailvc animated:YES];
         
     }else{
         NSArray *dataArray;
+        NSInteger tmOrTd = 1;
         if (model.searchtype == 1) {
-             dataArray = [model tableModelsWithType:1];
+            /// 三会一课
+            dataArray = [model tableModelsWithType:1];
+            tmOrTd = 1;
         }else{
+            /// 主题党日
             dataArray = [model tableModelsWithType:0];
+            tmOrTd = 3;
         }
         
         /// 进入三会一课或者主题党日 详情页面
         DJShowThemeAndMeetingTableViewController *vc = DJShowThemeAndMeetingTableViewController.new;
+        vc.tmOrTd = tmOrTd;
         vc.dataArray = dataArray;
         vc.title = model.title;
         [self.navigationController pushViewController:vc animated:YES];

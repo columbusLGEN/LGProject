@@ -107,6 +107,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DJThoutghtRepotListModel *model = self.dataArray[indexPath.row];
     DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
+    if (self.listType == 6) {
+        detailvc.trOrSp = 2;
+    }
+    if (self.listType == 7) {
+        detailvc.trOrSp = 4;
+    }
     detailvc.model = model;
     [self.navigationController pushViewController:detailvc animated:YES];
 }

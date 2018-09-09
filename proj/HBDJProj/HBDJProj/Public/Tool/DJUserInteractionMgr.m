@@ -8,8 +8,46 @@
 
 #import "DJUserInteractionMgr.h"
 #import "DJDataBaseModel.h"
+#import "LIGMainTabBarController.h"
+#import "DJResourceTypeNewsViewController.h"
+#import "HPAlbumTableViewController.h"
 
 @implementation DJUserInteractionMgr
+
+- (void)dj_handlePushMsgClickWithUserInfo:(NSDictionary *)userinfo{
+    NSNumber *isLogin = [[NSUserDefaults standardUserDefaults] objectForKey:isLogin_key];
+//    NSLog(@"推送处理userinfo: %@",userinfo);
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    if (isLogin.boolValue){
+        /// 如果用户登录了
+        
+        
+        LIGMainTabBarController *tabvc = (LIGMainTabBarController *)UIApplication.sharedApplication.keyWindow.rootViewController;
+        UIViewController *vc;
+        
+        NSNumber *type = userinfo[@"type"];// 1微党课专辑，2习近平要闻
+        NSNumber *seqid = userinfo[@"seqid"];
+        
+        if (type.integerValue == 1) {
+            /// 进入专辑列表
+            HPAlbumTableViewController *atv = (HPAlbumTableViewController *)vc;
+            atv = HPAlbumTableViewController.new;
+            atv.push_seqid = seqid.integerValue;
+            vc = atv;
+        }
+        if (type.integerValue == 2) {
+            /// 进入要闻详情
+            DJResourceTypeNewsViewController *newsvc = (DJResourceTypeNewsViewController *)vc;
+            newsvc = DJResourceTypeNewsViewController.new;
+            newsvc.resourceid = seqid.integerValue;
+            vc = newsvc;
+        }
+        [tabvc.selectedViewController pushViewController:vc animated:YES];
+    }
+    
+}
 
 - (NSURLSessionTask *)likeCollectWithModel:(DJDataBaseModel *)model collect:(BOOL)collect type:(DJDataPraisetype)type success:(UserLikeCollectSuccess)success failure:(UserInteractionFailure)failure{
     

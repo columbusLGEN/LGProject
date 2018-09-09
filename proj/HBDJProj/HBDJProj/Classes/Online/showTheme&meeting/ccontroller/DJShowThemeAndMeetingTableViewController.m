@@ -76,4 +76,13 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)dealloc{
+    if (_tmOrTd == 1) {
+        [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadThreeMeeting];
+    }
+    if (_tmOrTd == 3) {
+        [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadThemeDay];
+    }
+}
+
 @end

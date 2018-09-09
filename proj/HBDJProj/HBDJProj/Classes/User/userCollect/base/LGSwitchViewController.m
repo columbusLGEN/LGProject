@@ -53,6 +53,8 @@ LGSegmentScrollViewDelegate
     UIScrollView *scrollView = [UIScrollView new];
     scrollView.delegate = self;
     scrollView.pagingEnabled = YES;
+    scrollView.bounces = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);

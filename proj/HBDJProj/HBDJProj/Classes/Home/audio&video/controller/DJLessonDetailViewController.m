@@ -412,6 +412,8 @@ HPVideoContainerViewDelegate>
         [_vpv stop];
         [_apv audioStop];
     }
+    
+    [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadLesson];
 }
 
 @end

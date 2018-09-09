@@ -174,6 +174,8 @@ HPBookInfoBriefCellDelegate>
 
 - (void)dealloc{
     [LGLocalFileProducer cancelDownloadAll];
+    
+    [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadBook];
 }
 
 @end

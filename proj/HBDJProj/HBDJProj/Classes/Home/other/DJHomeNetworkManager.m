@@ -40,6 +40,12 @@
 }
 
 /// MARK: -----分割线-----
+
+- (void)carouselfigure_selectCurriculumDetailWithClassid:(NSInteger)classid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"classid":@(classid).stringValue};
+    [self sendPOSTRequestWithiName:@"carouselfigure/selectCurriculumDetail" param:param success:success failure:failure];
+}
+
 - (void)homeAddcountWithId:(NSString *)id success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
 //
     NSDictionary *param = @{seqid_key:id};

@@ -17,9 +17,6 @@
 		880363B220E5FA3600E97FA3 /* LGVoiceRecoAssist.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363B120E5FA3600E97FA3 /* LGVoiceRecoAssist.m */; };
 		880363B520E629FF00E97FA3 /* DJChangePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363B420E629FF00E97FA3 /* DJChangePwdViewController.m */; };
 		880363B820E7255E00E97FA3 /* UIButton+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 880363B720E7255E00E97FA3 /* UIButton+LGExtension.m */; };
-		8805127320D381E10027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
-		8805127420D3826D0027B3B1 /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; };
-		8805127520D3826D0027B3B1 /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8806C82B210EEFB600685DEF /* DJCoreTextViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806C82A210EEFB600685DEF /* DJCoreTextViewManager.m */; };
 		8806C82E210EFD4F00685DEF /* DJLessonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806C82D210EFD4F00685DEF /* DJLessonDetailViewController.m */; };
 		8806C831210F0A5700685DEF /* DJLessonAVTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806C830210F0A5700685DEF /* DJLessonAVTextTableViewCell.m */; };
@@ -181,6 +178,9 @@
 		884EB43A2109685D005D5CA9 /* DJUnitSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB4392109685D005D5CA9 /* DJUnitSearchViewController.m */; };
 		884EB43D21096BB1005D5CA9 /* DJUnitSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB43C21096BB1005D5CA9 /* DJUnitSegmentViewController.m */; };
 		884EB44121097116005D5CA9 /* DJSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 884EB44021097116005D5CA9 /* DJSegmentView.m */; };
+		88506A2B2143FE8D00F7D29F /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88506A2A2143FE8D00F7D29F /* YMEpubReaderKit.framework */; };
+		88506A2C2143FEBC00F7D29F /* YMEpubReaderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88506A2A2143FE8D00F7D29F /* YMEpubReaderKit.framework */; };
+		88506A2D2143FEBC00F7D29F /* YMEpubReaderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88506A2A2143FE8D00F7D29F /* YMEpubReaderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8851C63520F5E47A00C91575 /* OLMindReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C63020F5E47900C91575 /* OLMindReportTableViewCell.m */; };
 		8851C63620F5E47A00C91575 /* OLMindReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8851C63120F5E47900C91575 /* OLMindReportTableViewCell.xib */; };
 		8851C63720F5E47A00C91575 /* OLMindReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C63320F5E47900C91575 /* OLMindReportViewController.m */; };
@@ -509,7 +509,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8805127520D3826D0027B3B1 /* YMEpubReaderKit.framework in Embed Frameworks */,
+				88506A2D2143FEBC00F7D29F /* YMEpubReaderKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,7 +540,6 @@
 		880363B420E629FF00E97FA3 /* DJChangePwdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJChangePwdViewController.m; sourceTree = "<group>"; };
 		880363B620E7255E00E97FA3 /* UIButton+LGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LGExtension.h"; sourceTree = "<group>"; };
 		880363B720E7255E00E97FA3 /* UIButton+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LGExtension.m"; sourceTree = "<group>"; };
-		8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		8806C829210EEFB600685DEF /* DJCoreTextViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJCoreTextViewManager.h; sourceTree = "<group>"; };
 		8806C82A210EEFB600685DEF /* DJCoreTextViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJCoreTextViewManager.m; sourceTree = "<group>"; };
 		8806C82C210EFD4F00685DEF /* DJLessonDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJLessonDetailViewController.h; sourceTree = "<group>"; };
@@ -857,6 +856,7 @@
 		884EB43C21096BB1005D5CA9 /* DJUnitSegmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJUnitSegmentViewController.m; sourceTree = "<group>"; };
 		884EB43F21097116005D5CA9 /* DJSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSegmentView.h; sourceTree = "<group>"; };
 		884EB44021097116005D5CA9 /* DJSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSegmentView.m; sourceTree = "<group>"; };
+		88506A2A2143FE8D00F7D29F /* YMEpubReaderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YMEpubReaderKit.framework; sourceTree = "<group>"; };
 		8851C62F20F5E47900C91575 /* OLMindReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLMindReportTableViewCell.h; sourceTree = "<group>"; };
 		8851C63020F5E47900C91575 /* OLMindReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLMindReportTableViewCell.m; sourceTree = "<group>"; };
 		8851C63120F5E47900C91575 /* OLMindReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OLMindReportTableViewCell.xib; sourceTree = "<group>"; };
@@ -1383,11 +1383,9 @@
 				888223C2212BD8D90094D3EF /* libopencore-amrwb.a in Frameworks */,
 				88C5F14920B7F1900075D5F2 /* QuartzCore.framework in Frameworks */,
 				88BCED5F20C289DC00B5C1DB /* SystemConfiguration.framework in Frameworks */,
-				8805127420D3826D0027B3B1 /* YMEpubReaderKit.framework in Frameworks */,
 				882AFCDF212FE05000DB8005 /* libmp3lame.a in Frameworks */,
 				88BCED5D20C289CE00B5C1DB /* Contacts.framework in Frameworks */,
 				88BCED5B20C289C100B5C1DB /* AddressBook.framework in Frameworks */,
-				8805127320D381E10027B3B1 /* YMEpubReaderKit.framework in Frameworks */,
 				88BCED5920C289B400B5C1DB /* CoreTelephony.framework in Frameworks */,
 				88BCED5720C289AA00B5C1DB /* CoreLocation.framework in Frameworks */,
 				88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */,
@@ -1397,6 +1395,8 @@
 				88BCED5520C2898D00B5C1DB /* iflyMSC.framework in Frameworks */,
 				88C5F15920B7F1E70075D5F2 /* AVFoundation.framework in Frameworks */,
 				88C5F15720B7F1DC0075D5F2 /* CoreVideo.framework in Frameworks */,
+				88506A2C2143FEBC00F7D29F /* YMEpubReaderKit.framework in Frameworks */,
+				88506A2B2143FE8D00F7D29F /* YMEpubReaderKit.framework in Frameworks */,
 				88C5F15520B7F1D20075D5F2 /* CoreGraphics.framework in Frameworks */,
 				88C5F15320B7F1CA0075D5F2 /* CoreMedia.framework in Frameworks */,
 				88C5F15120B7F1C00075D5F2 /* MediaPlayer.framework in Frameworks */,
@@ -1530,8 +1530,8 @@
 			isa = PBXGroup;
 			children = (
 				889C6ABB212283C7002404C5 /* HBDJProj.entitlements */,
+				88506A2A2143FE8D00F7D29F /* YMEpubReaderKit.framework */,
 				88BCED5420C2898C00B5C1DB /* iflyMSC.framework */,
-				8805127220D381E10027B3B1 /* YMEpubReaderKit.framework */,
 				886A1BCA20D0CB320007AD63 /* EpubResource */,
 				881C94BD2068EA6E009D6A52 /* SupportingFiles */,
 				881C94BE2068EC61009D6A52 /* Public */,

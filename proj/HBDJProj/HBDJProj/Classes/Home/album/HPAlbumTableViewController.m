@@ -32,6 +32,31 @@ HPAlbumHeaderCellDelegate>
 
 @implementation HPAlbumTableViewController
 
+- (void)setPush_seqid:(NSInteger)push_seqid{
+    _push_seqid = push_seqid;
+    
+    EDJMicroLessionAlbumModel *albModel = EDJMicroLessionAlbumModel.new;
+    albModel.classid = push_seqid;
+    self.albumModel = albModel;
+    
+    /// MARK: 请求 封面 & 简介
+    [DJHomeNetworkManager.sharedInstance carouselfigure_selectCurriculumDetailWithClassid:push_seqid success:^(id responseObj) {
+        
+        self.albumModel = [EDJMicroLessionAlbumModel mj_objectWithKeyValues:responseObj];
+        self.albumModel.classid = push_seqid;
+        
+        [self headerSetWithAlbumModel:self.albumModel];
+        
+    } failure:^(id failureObj) {
+        
+    }];
+    
+    _offset = 0;
+    /// 请求列表
+    [self requestNetDataWithOffset:_offset];
+    
+}
+
 - (void)requestNetDataWithOffset:(NSInteger)offset{
     __weak typeof(self) weakSelf = self;
     
@@ -60,6 +85,8 @@ HPAlbumHeaderCellDelegate>
                 }else{
                     [self.tableView.mj_footer endRefreshing];
                 }
+            }else{
+                [self.tableView.mj_header endRefreshing];
             }
             
             for (int i = 0; i < array.count; i++) {
@@ -68,11 +95,7 @@ HPAlbumHeaderCellDelegate>
             }
             
             /// 配置header模型
-            DJDataBaseModel *headerModel = [DJDataBaseModel new];
-            headerModel.cover = strongSelf.albumModel.classimg;
-            headerModel.classdescription = strongSelf.albumModel.classdescription;
-            _header.model = headerModel;
-            _header.frame = CGRectMake(0, 0, kScreenWidth, [_header headerHeight]);
+            [self headerSetWithAlbumModel:strongSelf.albumModel];
             
             _offset = arrm.count;
             strongSelf.dataArray = arrm.copy;
@@ -84,12 +107,22 @@ HPAlbumHeaderCellDelegate>
         } failure:^(id failureObj) {
             [normalHUD hideAnimated:YES];
             [self.tableView.mj_footer endRefreshing];
+            [self.tableView.mj_header endRefreshing];
             
             if ([failureObj isKindOfClass:[NSString class]]) {
                 [strongSelf.view presentFailureTips:failureObj];
             }
         }];
     }];
+}
+
+/// MARK: 配置 header
+- (void)headerSetWithAlbumModel:(EDJMicroLessionAlbumModel *)albumModel{
+    DJDataBaseModel *headerModel = [DJDataBaseModel new];
+    headerModel.cover = albumModel.classimg;
+    headerModel.classdescription = albumModel.classdescription;
+    _header.model = headerModel;
+    _header.frame = CGRectMake(0, 0, kScreenWidth, [_header headerHeight]);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -111,11 +144,15 @@ HPAlbumHeaderCellDelegate>
     
     self.timeSort = YES;
     
-    _offset = 0;
-    
-    [self requestNetDataWithOffset:_offset];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _offset = 0;
+        [self.tableView.mj_footer resetNoMoreData];
+        [self requestNetDataWithOffset:_offset];
+    }];
 
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerLoad)];
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)footerLoad{
@@ -145,7 +182,7 @@ HPAlbumHeaderCellDelegate>
         self.timeSort = YES;
     }
     /// 重置数据
-    [self requestNetDataWithOffset:0];
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)albumListHeaderReCalHeight{
     _header.frame = CGRectMake(0, 0, kScreenWidth, [_header headerHeight]);

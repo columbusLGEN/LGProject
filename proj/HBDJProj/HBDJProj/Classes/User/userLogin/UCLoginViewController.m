@@ -114,6 +114,8 @@ UCAccountHitViewControllerDelegate>
         /// 将本地用户信息赋值给单利对象,保证每次用户重新登录之后，都会重新赋值
         [[DJUser sharedInstance] getLocalUserInfo];
         
+        [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:isLogin_key];
+        
         if (!_canBack) {
             [UIApplication sharedApplication].keyWindow.rootViewController = [LIGMainTabBarController new];
         }
