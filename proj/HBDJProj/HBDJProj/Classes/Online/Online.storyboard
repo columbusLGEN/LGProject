@@ -142,14 +142,14 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ol_tr_white_cycle" translatesAutoresizingMaskIntoConstraints="NO" id="wim-St-F9r">
                                         <rect key="frame" x="0.0" y="0.0" width="215" height="215"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="77" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPh-3e-GoU">
-                                        <rect key="frame" x="63.666666666666664" y="60.000000000000007" width="87.666666666666686" height="95.666666666666686"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPh-3e-GoU">
+                                        <rect key="frame" x="83.333333333333329" y="60.000000000000007" width="48.666666666666671" height="95.666666666666686"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                         <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqW-Ka-VYu">
-                                        <rect key="frame" x="156.33333333333331" y="124.66666666666666" width="14" height="21"/>
+                                        <rect key="frame" x="137" y="124.66666666666666" width="14" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -315,6 +315,9 @@
                     <connections>
                         <outlet property="backLook" destination="Shj-x7-qkd" id="GIc-nK-2WQ"/>
                         <outlet property="rate" destination="bPh-3e-GoU" id="8uu-Dk-5ud"/>
+                        <outlet property="rateContainerViewHeightCons" destination="O4f-Ok-T3l" id="HVb-Qs-9Hg"/>
+                        <outlet property="rateContainerViewTopMarginCons" destination="PDw-fp-QZc" id="9ev-0E-JQq"/>
+                        <outlet property="rateContainerViewWidthCons" destination="u0n-qd-L9W" id="X2a-oo-HKk"/>
                         <outlet property="rightCount" destination="BJX-Wf-tie" id="o6p-S4-s7C"/>
                         <outlet property="timeConsume" destination="ax7-oz-wnP" id="Whg-5a-Bll"/>
                         <outlet property="totalCount" destination="wEB-bH-GN9" id="ZJf-Dl-LxW"/>

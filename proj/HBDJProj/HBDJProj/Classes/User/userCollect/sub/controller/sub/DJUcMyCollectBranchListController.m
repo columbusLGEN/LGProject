@@ -21,7 +21,9 @@
 
 @end
 
-@implementation DJUcMyCollectBranchListController
+@implementation DJUcMyCollectBranchListController{
+    DCSubPartStateModel *currentClickModel;
+}
 
 - (void)setDataArray:(NSArray *)dataArray{
     [super setDataArray:dataArray];
@@ -125,12 +127,43 @@
     }else{
         /// 普通状态
         DCSubPartStateModel *model = self.dataArray[indexPath.row];
-        DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
-        dvc.model = model;
-        [self.navigationController pushViewController:dvc animated:YES];
+        [self navPushBranchDetailvcWithModel:model showCommentView:NO];
     }
     
 }
+
+/// 跳转到详情页面，并弹出评论
+- (void)branchCommentWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{
+    [self navPushBranchDetailvcWithModel:model showCommentView:YES];
+}
+
+- (void)navPushBranchDetailvcWithModel:(DCSubPartStateModel *)model showCommentView:(BOOL)showCommentView{
+    DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
+    dvc.model = model;
+    dvc.showCommentView = showCommentView;
+    currentClickModel = model;
+    [model addObserver:self forKeyPath:collectionidKey options:NSKeyValueObservingOptionNew context:nil];
+    [self.navigationController pushViewController:dvc animated:YES];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:collectionidKey] && object == currentClickModel) {
+        if (currentClickModel.collectionid == 0) {
+            NSMutableArray *arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            [arrmu removeObject:currentClickModel];
+            self.dataArray = arrmu.copy;
+            [self.tableView reloadData];
+
+        }
+    }
+}
+
+- (void)dealloc{
+    if (currentClickModel) {
+        [currentClickModel removeObserver:self forKeyPath:collectionidKey];
+    }
+}
+
 
 - (void)branchLikeWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{
     sender.userInteractionEnabled = NO;
@@ -171,13 +204,6 @@
     }
     
     
-}
-- (void)branchCommentWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{
-    /// 跳转到详情页面，并弹出评论
-    DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
-    dvc.model = model;
-    dvc.showCommentView = YES;
-    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 - (void)startEdit{

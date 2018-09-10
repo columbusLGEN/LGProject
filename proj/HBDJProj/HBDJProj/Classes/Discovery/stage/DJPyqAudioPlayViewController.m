@@ -94,7 +94,7 @@
     self.audioPlayerView.currentTime.text = currentString;
     
     if (!totalTimeSet) {
-//        self.audioPlayerView.totalTime.text = totalString;
+//        self.audioPlayerView.tTime = totalTime;
         totalTimeSet = YES;
     }
     

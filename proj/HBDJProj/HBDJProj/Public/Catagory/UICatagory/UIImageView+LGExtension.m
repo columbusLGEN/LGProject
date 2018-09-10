@@ -20,14 +20,12 @@
         make.right.equalTo(self.mas_right).offset(2);
         make.top.equalTo(self.mas_top).offset(-2);
     }];
-    NSLog(@"self.subviews: %@",self.subviews);
 }
 
 - (void)removeLittleRedDot{
     [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
-    NSLog(@"self.subviews: %@",self.subviews);
 }
 
 @end

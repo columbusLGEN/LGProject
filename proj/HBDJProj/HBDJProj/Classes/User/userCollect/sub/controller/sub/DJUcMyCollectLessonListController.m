@@ -16,7 +16,9 @@
 
 @end
 
-@implementation DJUcMyCollectLessonListController
+@implementation DJUcMyCollectLessonListController{
+    DJDataBaseModel *currentClickModel;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -108,9 +110,29 @@
     }else{
         /// 普通状态
         DJDataBaseModel *lesson = self.dataArray[indexPath.row];
+        currentClickModel = lesson;
+        [lesson addObserver:self forKeyPath:collectionidKey options:NSKeyValueObservingOptionNew context:nil];
         [[DJMediaDetailTransAssist new] mediaDetailWithModel:lesson baseVc:self];
     }
     
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:collectionidKey] && object == currentClickModel) {
+        if (currentClickModel.collectionid == 0) {
+            NSMutableArray *arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            [arrmu removeObject:currentClickModel];
+            self.dataArray = arrmu.copy;
+            [self.tableView reloadData];
+            
+        }
+    }
+}
+
+- (void)dealloc{
+    if (currentClickModel) {
+        [currentClickModel removeObserver:self forKeyPath:collectionidKey];
+    }
 }
 
 - (void)startEdit{

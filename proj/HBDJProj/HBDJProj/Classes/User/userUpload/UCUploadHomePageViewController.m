@@ -16,6 +16,7 @@
 #import "DJUploadMindReportController.h"
 #import "DJUcMyCollectModel.h"
 #import "DJThoutghtRepotListModel.h"
+#import "LGAlertControllerManager.h"
 
 @interface UCUploadHomePageViewController ()<
 UCUploadTransitionViewDelegate,
@@ -208,19 +209,25 @@ DJUCSubListDelegate
     
     NSString *seqid_s = [arrmu componentsJoinedByString:@","];
     
-    /// TODO: 如果需要在删除前 让用户确认，再次添加 alert
-    
     if (seqid_s == nil || [seqid_s isEqualToString:@""]) {
         return;
     }
     
-    /// MARK: 发送删除我的上传 请求
-    [DJUserNetworkManager.sharedInstance frontUgc_deleteWithSeqids:seqid_s success:^(id responseObj) {
-        [self exitEditState];
-        [self.currentSubvc subvcReloadData];
-    } failure:^(id failureObj) {
-        [self presentFailureTips:op_failure_notice];
+    UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"您确定要删除这些内容吗" cancelText:@"取消" doneText:@"确定" cancelABlock:^(UIAlertAction * _Nonnull action) {
+        
+    } doneBlock:^(UIAlertAction * _Nonnull action) {
+        /// MARK: 发送删除我的上传 请求
+        [DJUserNetworkManager.sharedInstance frontUgc_deleteWithSeqids:seqid_s success:^(id responseObj) {
+            [self exitEditState];
+            [self.currentSubvc subvcReloadData];
+        } failure:^(id failureObj) {
+            [self presentFailureTips:op_failure_notice];
+        }];
+        
     }];
+    
+    [self presentViewController:alertvc animated:YES completion:nil];
+    
     
 }
 

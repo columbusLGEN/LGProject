@@ -18,6 +18,7 @@
 
 @implementation DJUcMyCollectNewsListController{
     NSInteger offset;
+    EDJMicroBuildModel *currentClickModel;
 }
 
 - (void)setDataArray:(NSArray *)dataArray{
@@ -136,10 +137,31 @@
             [self.delegate ucmcCellClickWhenEdit:model modelArrayCount:self.dataArray.count];
         }
     }else{
+        /// 普通状态
         EDJMicroBuildModel *model = self.dataArray[indexPath.row];
+        currentClickModel = model;
+        [model addObserver:self forKeyPath:collectionidKey options:NSKeyValueObservingOptionNew context:nil];
         [self.transAssist skipWithType:2 model:model baseVc:self];
     }
     
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:collectionidKey] && object == currentClickModel) {
+        if (currentClickModel.collectionid == 0) {
+            NSMutableArray *arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+            [arrmu removeObject:currentClickModel];
+            self.dataArray = arrmu.copy;
+            [self.tableView reloadData];
+            
+        }
+    }
+}
+
+- (void)dealloc{
+    if (currentClickModel) {
+        [currentClickModel removeObserver:self forKeyPath:collectionidKey];
+    }
 }
 
 - (void)startEdit{

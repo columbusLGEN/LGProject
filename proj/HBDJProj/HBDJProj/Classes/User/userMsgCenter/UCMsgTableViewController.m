@@ -12,6 +12,7 @@
 #import "UCMsgModel.h"
 #import "LGSegmentBottomView.h"
 #import "DJMsgCenterTranser.h"
+#import "LGAlertControllerManager.h"
 
 @interface UCMsgTableViewController ()<
 LGSegmentBottomViewDelegate,
@@ -215,18 +216,30 @@ UCMsgTableViewCellDelegate>
     NSString *seqid_s = [arrmu componentsJoinedByString:@","];
     
     /// 发送删除消息请求
-    NSLog(@"seqid_s: %@",seqid_s);
-
-    [DJUserNetworkManager.sharedInstance frontUserNotice_deleteWithSeqids:seqid_s success:^(id responseObj) {
-        /// 结束编辑，刷新视图
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            self.edit = NO;
-            _dbtn.selected = NO;
-            [self.msgListView.mj_header beginRefreshing];
+//    NSLog(@"seqid_s: %@",seqid_s);
+    
+    if (seqid_s == nil || [seqid_s isEqualToString:@""]) {
+        return;
+    }
+    
+    UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"您确定要删除这些内容吗" cancelText:@"取消" doneText:@"确定" cancelABlock:^(UIAlertAction * _Nonnull action) {
+        
+    } doneBlock:^(UIAlertAction * _Nonnull action) {
+        [DJUserNetworkManager.sharedInstance frontUserNotice_deleteWithSeqids:seqid_s success:^(id responseObj) {
+            /// 结束编辑，刷新视图
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                self.edit = NO;
+                _dbtn.selected = NO;
+                [self.msgListView.mj_header beginRefreshing];
+            }];
+        } failure:^(id failureObj) {
+            [self presentFailureTips:op_failure_notice];
         }];
-    } failure:^(id failureObj) {
-        [self presentFailureTips:op_failure_notice];
     }];
+    
+    [self presentViewController:alertvc animated:YES completion:nil];
+
+    
 }
 
 #pragma mark - Table view data source
