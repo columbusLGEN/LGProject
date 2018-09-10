@@ -12,6 +12,7 @@
 #import "UCQuestionModel.h"
 #import "DJUserInteractionMgr.h"
 #import "LGSocialShareManager.h"
+#import "LGAlertControllerManager.h"
 
 static NSString * const cellID = @"UCQuestionTableViewCell";
 
@@ -133,12 +134,37 @@ UCQuestionTableViewCellDelegate>
 // 收藏
 - (void)qaCellCollectWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
     sender.userInteractionEnabled = NO;
-    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
-        sender.userInteractionEnabled = YES;
-    } failure:^(id failureObj) {
-        sender.userInteractionEnabled = YES;
-        [self presentFailureTips:@"收藏失败，请稍后重试"];
-    }];
+    
+    if (model.collectionid != 0) {
+         /// 走入该分支，表明用户要删除此条收藏
+        
+        UIAlertController *alervc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"确定要删除此条收藏吗?" cancelText:@"取消" doneText:@"确定" cancelABlock:^(UIAlertAction * _Nonnull action) {
+            sender.userInteractionEnabled = YES;
+        } doneBlock:^(UIAlertAction * _Nonnull action) {
+            
+            [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
+                
+                sender.userInteractionEnabled = YES;
+                NSInteger modelIndex = [self.dataArray indexOfObject:model];
+                NSMutableArray *arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+                [arrmu removeObject:model];
+                self.dataArray = arrmu.copy;
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:modelIndex inSection:0];
+                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                }];
+                
+            } failure:^(id failureObj) {
+                sender.userInteractionEnabled = YES;
+                [self presentFailureTips:@"收藏失败，请稍后重试"];
+            }];
+        }];
+        
+        [self presentViewController:alervc animated:YES completion:nil];
+    }
+    
+    
 }
 // 分享
 - (void)qaCellShareWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{

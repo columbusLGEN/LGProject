@@ -11,6 +11,7 @@
 #import "OLTkcsModel.h"
 #import "DJOnlineNetorkManager.h"
 #import "OLTestBackLookModel.h"
+#import "OLTestBackLookDetailModel.h"
 
 @interface OLTestResultViewController ()
 /** 正确率 */
@@ -51,17 +52,37 @@
 
 - (void)configUI{
     [_totalCount setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.3]];
-    _rate.text = [NSString stringWithFormat:@"%ld",self.model.rightRate];
-    [_totalCount setTitle:[NSString stringWithFormat:@"总题数: %ld",self.model.subcount] forState:UIControlStateNormal];
-    [_rightCount setTitle:[NSString stringWithFormat:@"正确: %ld",self.model.rightCount] forState:UIControlStateNormal];
-    [_wrongCount setTitle:[NSString stringWithFormat:@"错误: %ld",self.model.wrongCount] forState:UIControlStateNormal];
-    [_timeConsume setTitle:[NSString stringWithFormat:@"用时: %@",self.model.timeused_string] forState:UIControlStateNormal];
+    
+//    _rate.text = [NSString stringWithFormat:@"%ld",self.model.rightRate];
+//    
+//    [_totalCount setTitle:[NSString stringWithFormat:@"总题数: %ld",self.model.subcount] forState:UIControlStateNormal];
+//    [_rightCount setTitle:[NSString stringWithFormat:@"正确: %ld",self.model.rightCount] forState:UIControlStateNormal];
+//    [_wrongCount setTitle:[NSString stringWithFormat:@"错误: %ld",self.model.wrongCount] forState:UIControlStateNormal];
+//    [_timeConsume setTitle:[NSString stringWithFormat:@"用时: %@",self.model.timeused_string] forState:UIControlStateNormal];
 }
 
 - (void)getNetData{
     [DJOnlineNetorkManager.sharedInstance frontSubjects_selectTestsPlayBackWithTestid:_model.seqid success:^(id responseObj) {
         OLTestBackLookModel *model = [OLTestBackLookModel mj_objectWithKeyValues:responseObj];
+        model.detail.subCount = model.subjects.count;
         _backLookModel = model;
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            if (self.model == nil) {
+                self.model = OLTkcsModel.new;
+            }
+            self.model.subcount = model.subjects.count;
+            self.model.rightCount = model.detail.isrightnum;
+            self.model.timeused_timeInterval = model.detail.timeused;
+            
+            _rate.text = [NSString stringWithFormat:@"%ld",self.model.rightRate];
+            [_totalCount setTitle:[NSString stringWithFormat:@"总题数: %ld",self.model.subcount] forState:UIControlStateNormal];
+            [_rightCount setTitle:[NSString stringWithFormat:@"正确: %ld",self.model.rightCount] forState:UIControlStateNormal];
+            [_wrongCount setTitle:[NSString stringWithFormat:@"错误: %ld",self.model.wrongCount] forState:UIControlStateNormal];
+            [_timeConsume setTitle:[NSString stringWithFormat:@"用时: %@",self.model.timeused_string] forState:UIControlStateNormal];
+        }];
+        
     } failure:^(id failureObj) {
         
     }];

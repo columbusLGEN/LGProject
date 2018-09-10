@@ -82,21 +82,19 @@
 
 #pragma mark - LGPlayerDelegate
 - (void)playProgress:(LGPlayer *)player progress:(float)progress currentTime:(float)currentTime totalTime:(float)totalTime{
-    //    NSLog(@"%s",__func__);
-    //    if (currentTime < 0) {
-    //        currentTime = 0;
-    //    }
     
     self.audioPlayerView.progressValue = progress;
-//    [UIView animateWithDuration:1.0 animations:^{
-//    }];
     
-    self.audioPlayerView.cTime = currentTime;
-    //    NSLog(@"给 model.cTime 赋值: %f",currentTime);
-    /// 总时间，只设置一次
-    //    NSLog(@"%@-总时间: %f",self.content,totalTime);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"mm:ss"];
+    NSString *currentString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:currentTime]];
+    
+//    NSString *totalString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:totalTime]];
+    
+    self.audioPlayerView.currentTime.text = currentString;
+    
     if (!totalTimeSet) {
-//        self.audioPlayerView.tTime = totalTime;
+//        self.audioPlayerView.totalTime.text = totalString;
         totalTimeSet = YES;
     }
     

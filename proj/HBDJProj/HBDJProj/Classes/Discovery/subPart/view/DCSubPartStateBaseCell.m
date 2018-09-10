@@ -26,7 +26,10 @@ LGThreeRightButtonViewDelegate>
     _model = model;
     
     [self displayDataWithModel:model];
-    
+    [model addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)setBranchCollectModel:(DCSubPartStateModel *)branchCollectModel{
@@ -38,6 +41,11 @@ LGThreeRightButtonViewDelegate>
         self.boInterView.userInteractionEnabled = YES;
     }
     [branchCollectModel addObserver:self forKeyPath:select_key options:NSKeyValueObservingOptionNew context:nil];
+    [branchCollectModel addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [branchCollectModel addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [branchCollectModel addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [branchCollectModel addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    
 }
 
 - (void)displayDataWithModel:(DJUcMyCollectBranchModel *)branchModel{
@@ -51,10 +59,6 @@ LGThreeRightButtonViewDelegate>
     _boInterView.collectionCount = branchModel.collectioncount;
     _boInterView.commentCount = branchModel.frontComments.count;
     
-    [branchModel addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [branchModel addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [branchModel addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [branchModel addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
@@ -76,26 +80,50 @@ LGThreeRightButtonViewDelegate>
         if ([keyPath isEqualToString:select_key]) {
             self.seButon.selected = self.branchCollectModel.select;
         }
+        if ([keyPath isEqualToString:praiseid_keyPath]) {
+            _boInterView.leftIsSelected = !(self.branchCollectModel.praiseid <= 0);
+        }
+        if ([keyPath isEqualToString:collectionid_keyPath]) {
+            _boInterView.middleIsSelected = !(self.branchCollectModel.collectionid <= 0);
+        }
+        if ([keyPath isEqualToString:praisecount_keyPath]) {
+            _boInterView.likeCount = self.branchCollectModel.praisecount;
+        }
+        if ([keyPath isEqualToString:collectioncount_keyPath]) {
+            _boInterView.collectionCount = self.branchCollectModel.collectioncount;
+        }
     }
 }
 
 - (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    /// TODO: liketodo
     /// 支部动态点赞
     if ([self.delegate respondsToSelector:@selector(branchLikeWithModel:sender:)]) {
-        [self.delegate branchLikeWithModel:self.model sender:sender];
+        if (self.model) {
+            [self.delegate branchLikeWithModel:self.model sender:sender];
+        }else{
+            [self.delegate branchLikeWithModel:self.branchCollectModel sender:sender];
+        }
     }
 }
 - (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 支部动态收藏
     if ([self.delegate respondsToSelector:@selector(branchCollectWithModel:sender:)]) {
-        [self.delegate branchCollectWithModel:self.model sender:sender];
+        if (self.model) {
+            [self.delegate branchCollectWithModel:self.model sender:sender];
+        }else{
+            [self.delegate branchCollectWithModel:self.branchCollectModel sender:sender];
+        }
     }
 }
 - (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 支部动态评论
     if ([self.delegate respondsToSelector:@selector(branchCommentWithModel:sender:)]) {
-        [self.delegate branchCommentWithModel:self.model?self.model:self.branchCollectModel sender:sender];
+        if (self.model) {
+            [self.delegate branchCommentWithModel:self.model  sender:sender];
+        }else{
+            [self.delegate branchCommentWithModel:self.branchCollectModel sender:sender];
+        }
+        
     }
 }
 
@@ -196,7 +224,12 @@ LGThreeRightButtonViewDelegate>
     [self.model removeObserver:self forKeyPath:collectionid_keyPath];
     [self.model removeObserver:self forKeyPath:praisecount_keyPath];
     [self.model removeObserver:self forKeyPath:collectioncount_keyPath];
+    
     [self.branchCollectModel removeObserver:self forKeyPath:select_key];
+    [self.branchCollectModel removeObserver:self forKeyPath:praiseid_keyPath];
+    [self.branchCollectModel removeObserver:self forKeyPath:collectionid_keyPath];
+    [self.branchCollectModel removeObserver:self forKeyPath:praisecount_keyPath];
+    [self.branchCollectModel removeObserver:self forKeyPath:collectioncount_keyPath];
 }
 
 @end

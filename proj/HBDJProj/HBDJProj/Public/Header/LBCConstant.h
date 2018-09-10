@@ -48,6 +48,8 @@ static NSString * const isLogin_key = @"isLogin";
 
 static NSString * const op_failure_notice = @"操作失败，请检查网络后重试";
 
+typedef  void(^LGShowAlertVcActionBlock)(UIAlertAction * _Nonnull action);
+
 #pragma mark - 在线页面相关常量、枚举等
 /** 在线首页 实例的 modeltype 与seqid对应 */
 typedef NS_ENUM(NSUInteger, OnlineModelType) {

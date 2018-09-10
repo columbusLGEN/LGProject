@@ -30,6 +30,7 @@ static NSString * const praisecount_keyPath = @"praisecount";
 static NSString * const collectioncount_keyPath = @"collectioncount";
 
 static NSString * const topinfoview_key = @"topinfoview_key";
+static NSString * const bottominfoview_key = @"bottominfoview_key";
 
 @interface DCSubPartStateDetailViewController ()<
 UITableViewDelegate,
@@ -48,6 +49,7 @@ LGThreeRightButtonViewDelegate>
 /** 图片尺寸缓存 */
 @property (nonatomic, strong) NSCache *imageSizeCache;
 @property (strong,nonatomic) NSCache *topInfoViewCache;
+@property (strong,nonatomic) NSCache *bottomInfoViewCache;
 
 @end
 
@@ -97,6 +99,7 @@ LGThreeRightButtonViewDelegate>
     _imageSizeCache = [[NSCache alloc] init];
     _cellCache = [[NSCache alloc] init];
     _topInfoViewCache = [NSCache.alloc init];
+    _bottomInfoViewCache = [NSCache.alloc init];
     _cellCache.totalCostLimit = 10;
     _cellCache.countLimit = 10;
     
@@ -181,6 +184,7 @@ LGThreeRightButtonViewDelegate>
     NSString *key = [NSString stringWithFormat:@"dcSubPartyCoreTextCell_%ld_%ld",indexPath.section,indexPath.row];
     DCStateContentsCell *cell = [_cellCache objectForKey:key];
     DCRichTextTopInfoView *topInfoView = [_topInfoViewCache objectForKey:topinfoview_key];
+    DCRichTextBottomInfoView *bottomInfoView = [_bottomInfoViewCache objectForKey:bottominfoview_key];
     
     if (!cell) {
         
@@ -212,20 +216,26 @@ LGThreeRightButtonViewDelegate>
         }
         
         /// MARK: 富文本cell底部信息view
-        DCRichTextBottomInfoView *infoView = [DCRichTextBottomInfoView richTextBottomInfo];
-        infoView.model = self.model;
-        [cell.contentView addSubview:infoView];
-        [infoView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cell.mas_left);
-            make.right.equalTo(cell.mas_right);
-            make.bottom.equalTo(cell.mas_bottom).offset(-marginEight);
-            make.height.mas_equalTo(richTextBottomInfoViewHeight);
-        }];
+        if (!bottomInfoView) {
+            bottomInfoView = [DCRichTextBottomInfoView richTextBottomInfo];
+            
+            [cell.contentView addSubview:bottomInfoView];
+            [bottomInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(cell.mas_left);
+                make.right.equalTo(cell.mas_right);
+                make.bottom.equalTo(cell.mas_bottom).offset(-marginEight);
+                make.height.mas_equalTo(richTextBottomInfoViewHeight);
+            }];
+            
+            [_bottomInfoViewCache setObject:bottomInfoView forKey:bottominfoview_key];
+            
+            [cell.contentView bringSubviewToFront:bottomInfoView];
+        }
         
-        [cell.contentView bringSubviewToFront:infoView];
     }
     
     topInfoView.model = self.model;
+    bottomInfoView.model = self.model;
     
     /// MARK: 设置富文本数据
     [cell setHTMLString:self.model.content];

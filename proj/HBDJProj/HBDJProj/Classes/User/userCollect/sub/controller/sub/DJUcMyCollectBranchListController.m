@@ -15,6 +15,7 @@
 #import "DCSubPartStateOneImgCell.h"
 #import "DCSubPartStateThreeImgCell.h"
 #import "DJUserInteractionMgr.h"
+#import "LGAlertControllerManager.h"
 
 @interface DJUcMyCollectBranchListController ()<DCSubPartStateBaseCellDelegate>
 
@@ -142,12 +143,34 @@
 }
 - (void)branchCollectWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{
     sender.userInteractionEnabled = NO;
-    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
-        sender.userInteractionEnabled = YES;
-    } failure:^(id failureObj) {
-        sender.userInteractionEnabled = YES;
-        [self presentFailureTips:@"收藏失败，请稍后重试"];
-    }];
+    
+    if (model.collectionid != 0) {
+        UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"您确定要删除此条收藏吗?" cancelText:@"取消" doneText:@"确定" cancelABlock:^(UIAlertAction * _Nonnull action) {
+            sender.userInteractionEnabled = YES;
+        } doneBlock:^(UIAlertAction * _Nonnull action) {
+            [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
+                sender.userInteractionEnabled = YES;
+                
+                NSInteger modelIndex = [self.dataArray indexOfObject:model];
+                NSMutableArray *arrmu = [NSMutableArray arrayWithArray:self.dataArray];
+                [arrmu removeObject:model];
+                self.dataArray = arrmu.copy;
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:modelIndex inSection:0];
+                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                }];
+                
+            } failure:^(id failureObj) {
+                sender.userInteractionEnabled = YES;
+                [self presentFailureTips:@"收藏失败，请稍后重试"];
+            }];
+        }];
+        
+        [self presentViewController:alertvc animated:YES completion:nil];
+    }
+    
+    
 }
 - (void)branchCommentWithModel:(DCSubPartStateModel *)model sender:(UIButton *)sender{
     /// 跳转到详情页面，并弹出评论

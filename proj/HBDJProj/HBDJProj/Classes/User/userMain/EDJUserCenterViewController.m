@@ -56,6 +56,21 @@ UCPersonInfoViewControllerDelegate>
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    /// 查看未读消息数量
+    [DJUserNetworkManager.sharedInstance frontUserNotice_selectUnReadNumSuccess:^(id responseObj) {
+        NSDictionary *dict = responseObj;
+        NSNumber *num = dict[@"num"];
+        if (num.intValue == 0) {
+            [_headerMsg.img removeLittleRedDot];
+        }else{
+            [_headerMsg.img addLittleRedDot];
+        }
+        
+    } failure:^(id failureObj) {
+        
+    }];
+    
 }
 
 - (void)viewDidLoad{
@@ -82,14 +97,6 @@ UCPersonInfoViewControllerDelegate>
     if (user.gradename == nil || [user.gradename isEqualToString:@""]) {
         _level.text = @"先锋党员";
     }
-    
-    /// TODO: 如果有新消息，显示小红点
-//    [_headerMsg.img addLittleRedDot];
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        /// TODO: 如果用户没有新消息，删除小红点
-//        [_headerMsg.img removeLittleRedDot];
-//    });
     
 }
 

@@ -122,7 +122,7 @@
     DJShowThemeAndMeetingTableViewController *vc = DJShowThemeAndMeetingTableViewController.new;
     vc.tmOrTd = 3;
     vc.dataArray = dataArray;
-    vc.title = model.title;
+//    vc.title = model.title;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

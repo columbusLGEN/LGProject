@@ -83,7 +83,7 @@ HPVideoContainerViewDelegate>
 - (void)configUI{
     
     NSError *error = nil;
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+    
     
     _imageSizeCache = [[NSCache alloc] init];
     _cellCache = [[NSCache alloc] init];
@@ -165,6 +165,9 @@ HPVideoContainerViewDelegate>
         [self.view addSubview:vpv];
         vpv.model = self.model;
         _vpv = vpv;
+        
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
+        
     }else if (self.lessonMediaType == ModelMediaTypeAudio){
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
@@ -173,6 +176,9 @@ HPVideoContainerViewDelegate>
         [self.view addSubview:apv];
         apv.model = self.model;
         _apv = apv;
+        
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+        
     }else{
         /// 其他
     }
@@ -405,7 +411,25 @@ HPVideoContainerViewDelegate>
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (self.lessonMediaType == ModelMediaTypeVideo){
+        [self endPlay];
+    }
+}
+
 - (void)dealloc{
+    [self endPlay];
+}
+
+- (void)lg_dismissViewController{
+    
+    [self endPlay];
+    
+    [super lg_dismissViewController];
+}
+
+- (void)endPlay{
     [_task cancel];
     
     if (_opreated) {
@@ -415,5 +439,6 @@ HPVideoContainerViewDelegate>
     
     [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadLesson];
 }
+
 
 @end

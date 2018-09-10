@@ -62,7 +62,7 @@ PLPlayerDelegate>
     float progress;
     if (totalTime == 0) {
         progress = 0;
-        NSLog(@"LGPlayer获取时间异常");
+//        NSLog(@"LGPlayer获取时间异常");
     }else{
         progress = currentTime / totalTime;
     }
@@ -116,7 +116,6 @@ PLPlayerDelegate>
 }
 
 - (void)dealloc{
-    NSLog(@"销毁音频播放器: ");
     [self removeTimer];
 }
 

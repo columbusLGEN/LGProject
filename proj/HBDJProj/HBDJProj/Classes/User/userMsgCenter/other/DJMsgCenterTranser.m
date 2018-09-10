@@ -42,6 +42,8 @@
         }
             break;
         case UCMsgModelResourceTypeNews:{
+//            model.resourceid = 263;
+            /// 要闻
             DJResourceTypeNewsViewController *newsvc = DJResourceTypeNewsViewController.new;
             newsvc.msgModel = model;
             [nav pushViewController:newsvc animated:YES];
@@ -55,6 +57,7 @@
         }
             break;
         case UCMsgModelResourceTypeBranch:{
+            /// 支部动态
 //            model.resourceid = 26;
             
             DJResourceTypeBranchViewController *branchvc = DJResourceTypeBranchViewController.new;

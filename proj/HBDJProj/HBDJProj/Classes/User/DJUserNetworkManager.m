@@ -20,6 +20,11 @@ static NSString * const password_key = @"password";
 
 @implementation DJUserNetworkManager
 
+- (void)frontUserNotice_selectUnReadNumSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontUserNotice/selectUnReadNum" param:@{} success:success failure:failure];
+    
+}
+
 - (void)frontIntegralGrade_addWithIntegralid:(DJUserAddScoreType)integralid completenum:(double)completenum success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"integralid":@(integralid).stringValue,
                             @"completenum":[NSString stringWithFormat:@"%.1f",completenum]};

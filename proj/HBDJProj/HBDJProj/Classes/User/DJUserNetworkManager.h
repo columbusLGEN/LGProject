@@ -59,6 +59,8 @@ typedef NS_ENUM(NSUInteger, DJUserAddScoreType) {
 
 @interface DJUserNetworkManager : NSObject
 
+/** 查看未读消息数量 */
+- (void)frontUserNotice_selectUnReadNumSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /**
  用户获取积分并提升等级接口

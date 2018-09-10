@@ -35,7 +35,6 @@ WKNavigationDelegate>
 @property (strong,nonatomic) LGAttributedTextView *coreTextView;
 /** 图片尺寸缓存 */
 @property (nonatomic,strong) NSCache *imageSizeCache;
-@property (strong,nonatomic) LGThreeRightButtonView *pbdBottom;
 
 @property (strong,nonatomic) NSURLSessionTask *task;
 

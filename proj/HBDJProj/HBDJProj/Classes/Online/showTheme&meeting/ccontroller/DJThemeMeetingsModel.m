@@ -26,6 +26,13 @@
 //    return _createdtime;
 //}
 
+- (NSString *)absentusers{
+    if (!_absentusers || [_absentusers isEqualToString:@""]) {
+        _absentusers = @"无";
+    }
+    return _absentusers;
+}
+
 - (NSArray<DJOnlineUploadTableModel *> *)tableModelsWithType:(NSInteger)type{
     /// 获取自身属性列表
     NSMutableArray *pArray = [self propertyArray];
@@ -53,7 +60,7 @@
     /// 如果是三会一课模型，添加 会议标签
     for (int i = 0; i < arrayMutable.count; i++) {
         DJOnlineUploadTableModel *model = arrayMutable[i];
-
+        
         if (i > pArray.count - 1){
             break;
         }
@@ -68,7 +75,7 @@
             value = timeString;
         }
         model.content = value;
-
+        
     }
     return arrayMutable.copy;
 }

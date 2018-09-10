@@ -34,7 +34,11 @@ OLVoteDetailHeaderViewDelegate>
 
 @property (strong,nonatomic) NSMutableArray *optionIds;
 
+/** 单选下 当前用户选择的选项 */
 @property (strong,nonatomic) OLVoteDetailModel *currentOption;
+
+/** 多选下 用户选择的选项 */
+@property (strong,nonatomic) NSArray *userSelectOptions;
 
 @end
 
@@ -154,10 +158,11 @@ OLVoteDetailHeaderViewDelegate>
         
     }else{
         OLVoteDetailModel *currentClickModel = self.dataArray[indexPath.row];
-        _currentOption = currentClickModel;
         if (!_commited) {
             
             if (self.model.ismultiselect) {
+                /// 多选分支
+                _currentOption = nil;
                 /// 如果该选项已经被选中
                 if (currentClickModel.localStatus == VoteModelStatusSelected) {
                     
@@ -173,16 +178,23 @@ OLVoteDetailHeaderViewDelegate>
                 
                 /// 循环所有选项模型，如果全部未选中，_selectedSomeItem 置为NO
                 [_optionIds removeAllObjects];
+                _userSelectOptions = nil;
                 _selectedSomeItem = NO;
+                NSMutableArray *arrmu_selectOptions = NSMutableArray.new;
+                
                 for (OLVoteDetailModel *model in self.dataArray) {
                     if (model.localStatus == VoteModelStatusSelected) {
                         _selectedSomeItem = YES;
                         [_optionIds addObject:[NSString stringWithFormat:@"%ld",(long)model.seqid]];
+                        [arrmu_selectOptions addObject:model];
                     }
                 }
+                _userSelectOptions = arrmu_selectOptions.copy;
                 
             }else{
-                /// 单选
+                /// 单选分支
+                _currentOption = currentClickModel;
+                _userSelectOptions = nil;
                 for (OLVoteDetailModel *model in self.dataArray) {
                     if (model == currentClickModel) {
                         model.localStatus = VoteModelStatusSelected;
@@ -220,27 +232,44 @@ OLVoteDetailHeaderViewDelegate>
         _header.model = _headerModel;
         
         [DJOnlineNetorkManager.sharedInstance frontVotes_addWithVoteid:_model.seqid votedetailid:_optionIds.copy success:^(id responseObj) {
-            
+        
             /// 修改数据
             _model.votestatus = 1;
             if (self.model.msgModel) {
                 self.model.msgModel.votestestsstatus = 1;
             }
             
-            _currentOption.votecount += 1;
+            if (self.model.ismultiselect) {
+                /// 多选
+                /// 选项的投票数 +1 （多选）
+                for (OLVoteDetailModel *detailModel in self.userSelectOptions) {
+                    detailModel.votecount += 1;
+                }
+                
+                if (_userSelectOptions.count != 0) {
+                    _header.model.totalVotesCount += _userSelectOptions.count;
+                }
+                
+            }else{
+                /// 单选
+                /// 选项的投票数 +1
+                _currentOption.votecount += 1;
+                
+                _header.model.totalVotesCount += 1;
+                
+            }
+
+            /// 修改所有选项的状态
             for (OLVoteDetailModel *detailModel in self.dataArray) {
                 detailModel.totalVotesCount += 1;
                 detailModel.localStatus = VoteModelStatusVoted;
             }
-            _header.model.totalVotesCount += 1;
             
             self.tableView.tableFooterView = nil;
-            
-            
-            
+
             [self.tableView reloadData];
             _selectedSomeItem = NO;
-            
+
         } failure:^(id failureObj) {
             [self presentFailureTips:@"网络异常，请稍后重试"];
         }];

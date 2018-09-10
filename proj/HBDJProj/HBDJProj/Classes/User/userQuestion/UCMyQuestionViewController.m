@@ -10,12 +10,16 @@
 #import "UCQuestionModel.h"
 #import "UCQuestionTableViewCell.h"
 #import "DJUserNetworkManager.h"
+#import "LGSocialShareManager.h"
+#import "LGAlertControllerManager.h"
+#import "DJUserInteractionMgr.h"
 
 static NSString * const cellID = @"UCQuestionTableViewCell";
 
 @interface UCMyQuestionViewController ()<
 UITableViewDelegate,
-UITableViewDataSource>
+UITableViewDataSource,
+UCQuestionTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSArray *array;
 @end
@@ -39,6 +43,7 @@ UITableViewDataSource>
     
     self.title = @"我的提问";
     
+    _tableView.estimatedRowHeight = 1.0f;
     [_tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -104,11 +109,51 @@ UITableViewDataSource>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UCQuestionModel *model = _array[indexPath.row];
     UCQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.indexPath = indexPath;
+    cell.delegate = self;
     cell.collectModel = model;
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 187;
+
+#pragma mark - UCQuestionTableViewCellDelegate
+- (void)qaCellshowAllClickWith:(NSIndexPath *)indexPath{
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+// 点赞
+- (void)qaCellLikeWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
+    sender.userInteractionEnabled = NO;
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
+        sender.userInteractionEnabled = YES;
+    } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
+        [self presentFailureTips:@"点赞失败，请稍后重试"];
+    }];
+}
+// 收藏
+- (void)qaCellCollectWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
+    sender.userInteractionEnabled = NO;
+    
+    [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
+        
+        sender.userInteractionEnabled = YES;
+        
+    } failure:^(id failureObj) {
+        sender.userInteractionEnabled = YES;
+        [self presentFailureTips:@"收藏失败，请稍后重试"];
+    }];
+    
+}
+// 分享
+- (void)qaCellShareWithModel:(UCQuestionModel *)model sender:(UIButton *)sender{
+    
+    NSDictionary *param = @{LGSocialShareParamKeyWebPageUrl:model.shareUrl?model.shareUrl:@"",
+                            LGSocialShareParamKeyTitle:model.question?model.question:@"",
+                            LGSocialShareParamKeyDesc:model.answer?model.answer:@"",
+                            LGSocialShareParamKeyThumbUrl:model.thumbnail?model.thumbnail:@"",
+                            LGSocialShareParamKeyVc:self};
+    
+    [[LGSocialShareManager new] showShareMenuWithParam:param shareType:DJShareTypeQA];
 }
 
 @end

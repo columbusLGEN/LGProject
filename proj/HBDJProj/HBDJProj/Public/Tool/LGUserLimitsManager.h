@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef  void(^LGShowAlertVcActionBlock)(UIAlertAction * _Nonnull action);
-
 @interface LGUserLimitsManager : NSObject
 
 + (void)userUNAuthorizationWith:(void(^)(BOOL granted))userGrantedCallBack;

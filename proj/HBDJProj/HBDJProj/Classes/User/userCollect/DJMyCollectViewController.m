@@ -14,6 +14,7 @@
 #import "DJUcMyCollectBranchListController.h"
 #import "DJUcMyCollectPYQListController.h"
 #import "DJUcMyCollectModel.h"
+#import "LGAlertControllerManager.h"
 
 @interface DJMyCollectViewController ()<
 LGSegmentBottomViewDelegate,
@@ -65,6 +66,7 @@ DJUCSubListDelegate>
     /// 全选 删除操作 仅对当前所在列表生效
     [self subvcPerformSelector:@selector(allSelect)];
 }
+/// MARK: 删除按钮点击事件
 - (void)segmentBottomDelete:(LGSegmentBottomView *)bottom{
     NSMutableArray *arrmu = NSMutableArray.new;
     for (NSInteger i = 0; i < selectDeleteModelArray.count; i++) {
@@ -73,20 +75,27 @@ DJUCSubListDelegate>
         [arrmu addObject:coidStr];
     }
     NSString *coid_s = [arrmu componentsJoinedByString:@","];
-    /// TODO: 如果需要在删除前 让用户确认，再次添加 alert
+    
     
     if (coid_s == nil || [coid_s isEqualToString:@""]) {
         return;
     }
     
-    /// MARK: 发送批量删除收藏请求
-    [DJUserNetworkManager.sharedInstance frontUserCollections_deleteBatchWithCoids:coid_s success:^(id responseObj) {
-       /// 当前控制器刷新数据
-        [self exitEditState];
-        [self.currentSubvc subvcReloadData];
-    } failure:^(id failureObj) {
-        [self presentFailureTips:op_failure_notice];
+    UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"您确定要删除这些内容吗" cancelText:@"取消" doneText:@"确定" cancelABlock:^(UIAlertAction * _Nonnull action) {
+        
+    } doneBlock:^(UIAlertAction * _Nonnull action) {
+        /// MARK: 发送批量删除收藏请求
+        [DJUserNetworkManager.sharedInstance frontUserCollections_deleteBatchWithCoids:coid_s success:^(id responseObj) {
+            /// 当前控制器刷新数据
+            [self exitEditState];
+            [self.currentSubvc subvcReloadData];
+        } failure:^(id failureObj) {
+            [self presentFailureTips:op_failure_notice];
+        }];
     }];
+    
+    [self presentViewController:alertvc animated:YES completion:nil];
+    
 }
 
 #pragma mark - DJUCSubListDelegate

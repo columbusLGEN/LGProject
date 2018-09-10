@@ -118,7 +118,7 @@ LGThreeRightButtonViewDelegate>
             NSString *needCalHeightString = [commentModel.username stringByAppendingFormat:@":%@",commentModel.comment];
             CGFloat singleCommentTextHeight = [needCalHeightString sizeOfTextWithMaxSize:CGSizeMake(tbvWidth, MAXFLOAT) font:[UIFont systemFontOfSize:14]].height;
             commentTextTotalHeight += singleCommentTextHeight;
-            NSLog(@"%@ :height %f,tbvWidth: %f",needCalHeightString,singleCommentTextHeight,tbvWidth);
+//            NSLog(@"%@ :height %f,tbvWidth: %f",needCalHeightString,singleCommentTextHeight,tbvWidth);
         }
         
         [self.boInterView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -128,7 +128,7 @@ LGThreeRightButtonViewDelegate>
             make.height.mas_equalTo(45);
         }];
         
-        NSLog(@"%@ 评论视图高度: %f",model.content,commentTextTotalHeight);
+//        NSLog(@"%@ 评论视图高度: %f",model.content,commentTextTotalHeight);
         [self.tbvForComments mas_updateConstraints:^(MASConstraintMaker *make) {
             /// 10 * _comments.count 为每个cell 上下间距各 5
             make.height.mas_equalTo(commentTextTotalHeight + (10 * _comments.count));
@@ -184,22 +184,21 @@ LGThreeRightButtonViewDelegate>
 }
 
 - (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    /// TODO: liketodo
     /// 党员舞台点赞
     if ([self.delegate respondsToSelector:@selector(pyqLikeWithModel:sender:)]) {
-        [self.delegate pyqLikeWithModel:self.model sender:sender];
+        [self.delegate pyqLikeWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
     }
 }
 - (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 党员舞台收藏
     if ([self.delegate respondsToSelector:@selector(pyqCollectWithModel:sender:)]) {
-        [self.delegate pyqCollectWithModel:self.model sender:sender];
+        [self.delegate pyqCollectWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
     }
 }
 - (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 党员舞台评论
     if ([self.delegate respondsToSelector:@selector(pyqCommentWithModel:sender:)]) {
-        [self.delegate pyqCommentWithModel:self.model sender:sender];
+        [self.delegate pyqCommentWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
     }
 }
 

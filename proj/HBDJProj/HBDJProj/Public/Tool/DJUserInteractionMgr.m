@@ -14,6 +14,7 @@
 
 @implementation DJUserInteractionMgr
 
+/// MARK: 点击推送消息
 - (void)dj_handlePushMsgClickWithUserInfo:(NSDictionary *)userinfo{
     NSNumber *isLogin = [[NSUserDefaults standardUserDefaults] objectForKey:isLogin_key];
 //    NSLog(@"推送处理userinfo: %@",userinfo);
@@ -41,8 +42,10 @@
             /// 进入要闻详情
             DJResourceTypeNewsViewController *newsvc = (DJResourceTypeNewsViewController *)vc;
             newsvc = DJResourceTypeNewsViewController.new;
+            newsvc.dj_jumpSource = DJPointNewsSourcePartyBuild;
             newsvc.resourceid = seqid.integerValue;
             vc = newsvc;
+            
         }
         [tabvc.selectedViewController pushViewController:vc animated:YES];
     }

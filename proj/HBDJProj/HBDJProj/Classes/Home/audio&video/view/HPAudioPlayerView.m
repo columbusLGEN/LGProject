@@ -15,8 +15,6 @@
 
 #import "DJLessonDetailViewController.h"
 
-static NSString * const testAudio = @"http://123.59.197.176/group1/M00/00/0F/CgoKBFsXSx2ARepGAHi9Md52w6k161.mp3";
-
 @interface HPAudioPlayerView ()<
 LGPlayerDelegate>
 

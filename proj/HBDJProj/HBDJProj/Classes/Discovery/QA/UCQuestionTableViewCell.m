@@ -40,12 +40,20 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     
     [self displayDataWithModel:model];
     
+    [model addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)setCollectModel:(UCQuestionModel *)collectModel{
     [super setCollectModel:collectModel];
     
     [collectModel addObserver:self forKeyPath:select_key options:NSKeyValueObservingOptionNew context:nil];
+    [collectModel addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [collectModel addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [collectModel addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
+    [collectModel addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
     
     if (collectModel.edit) {
         /// 编辑状态
@@ -103,11 +111,6 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     _boInterView.likeCount = qaModel.praisecount;
     _boInterView.collectionCount = qaModel.collectioncount;
     
-    [qaModel addObserver:self forKeyPath:praiseid_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [qaModel addObserver:self forKeyPath:collectionid_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [qaModel addObserver:self forKeyPath:praisecount_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    [qaModel addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
-    
     if (qaModel.auditstate == 0) {
         /// 不通过
         _banin.hidden = NO;
@@ -135,6 +138,20 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     if (object == self.collectModel && [keyPath isEqualToString:select_key]) {
         self.seButon.selected = self.collectModel.select;
     }
+    if (object == self.collectModel) {
+        if ([keyPath isEqualToString:praiseid_keyPath]) {
+            _boInterView.leftIsSelected = !(self.collectModel.praiseid <= 0);
+        }
+        if ([keyPath isEqualToString:collectionid_keyPath]) {
+            _boInterView.middleIsSelected = !(self.collectModel.collectionid <= 0);
+        }
+        if ([keyPath isEqualToString:praisecount_keyPath]) {
+            _boInterView.likeCount = self.collectModel.praisecount;
+        }
+        if ([keyPath isEqualToString:collectioncount_keyPath]) {
+            _boInterView.collectionCount = self.collectModel.collectioncount;
+        }
+    }
 }
 
 - (IBAction)showAllClick:(UIButton *)sender {
@@ -160,19 +177,31 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     /// TODO: liketodo
     /// 提问感谢（点赞）
     if ([self.delegate respondsToSelector:@selector(qaCellLikeWithModel:sender:)]) {
-        [self.delegate qaCellLikeWithModel:self.model sender:sender];
+        if (self.model) {
+            [self.delegate qaCellLikeWithModel:self.model sender:sender];
+        }else{
+            [self.delegate qaCellLikeWithModel:self.collectModel sender:sender];
+        }
     }
 }
 - (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 提问收藏
     if ([self.delegate respondsToSelector:@selector(qaCellCollectWithModel:sender:)]) {
-        [self.delegate qaCellCollectWithModel:self.model sender:sender];
+        if (self.model) {
+            [self.delegate qaCellCollectWithModel:self.model sender:sender];
+        }else{
+            [self.delegate qaCellCollectWithModel:self.collectModel sender:sender];
+        }
     }
 }
 - (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     /// 提问分享
     if ([self.delegate respondsToSelector:@selector(qaCellShareWithModel:sender:)]) {
-        [self.delegate qaCellShareWithModel:self.model sender:sender];
+        if (self.model) {
+            [self.delegate qaCellShareWithModel:self.model sender:sender];
+        }else{
+            [self.delegate qaCellShareWithModel:self.collectModel sender:sender];
+        }
     }
 }
 
@@ -220,7 +249,12 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     [self.model removeObserver:self forKeyPath:collectionid_keyPath];
     [self.model removeObserver:self forKeyPath:praisecount_keyPath];
     [self.model removeObserver:self forKeyPath:collectioncount_keyPath];
+    
     [self.collectModel removeObserver:self forKeyPath:select_key];
+    [self.collectModel removeObserver:self forKeyPath:praiseid_keyPath];
+    [self.collectModel removeObserver:self forKeyPath:collectionid_keyPath];
+    [self.collectModel removeObserver:self forKeyPath:praisecount_keyPath];
+    [self.collectModel removeObserver:self forKeyPath:collectioncount_keyPath];
 }
 
 @end

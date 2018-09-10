@@ -422,6 +422,8 @@
 		88D4C0C321437B5500CADB42 /* DJResourceTypeQACell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D4C0C221437B5500CADB42 /* DJResourceTypeQACell.xib */; };
 		88D4C0C62143A40D00CADB42 /* DJResourceTypeBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0C52143A40D00CADB42 /* DJResourceTypeBranchViewController.m */; };
 		88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61A20BE768500E353DB /* libxml2.2.tbd */; };
+		88D6E2AB2146071800A67F1E /* OLTestBackLookDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E2AA2146071800A67F1E /* OLTestBackLookDetailModel.m */; };
+		88D6E2AE21461C6500A67F1E /* LGAlertControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E2AD21461C6500A67F1E /* LGAlertControllerManager.m */; };
 		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
 		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
 		88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD811C209BFFB800F297D6 /* OLTkcsTableViewCell.m */; };
@@ -1266,6 +1268,10 @@
 		88D4C0C52143A40D00CADB42 /* DJResourceTypeBranchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJResourceTypeBranchViewController.m; sourceTree = "<group>"; };
 		88D5C61A20BE768500E353DB /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		88D5C61F20BE781C00E353DB /* huamulan.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = huamulan.epub; sourceTree = "<group>"; };
+		88D6E2A92146071800A67F1E /* OLTestBackLookDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTestBackLookDetailModel.h; sourceTree = "<group>"; };
+		88D6E2AA2146071800A67F1E /* OLTestBackLookDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestBackLookDetailModel.m; sourceTree = "<group>"; };
+		88D6E2AC21461C6500A67F1E /* LGAlertControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGAlertControllerManager.h; sourceTree = "<group>"; };
+		88D6E2AD21461C6500A67F1E /* LGAlertControllerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGAlertControllerManager.m; sourceTree = "<group>"; };
 		88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewController.h; sourceTree = "<group>"; };
 		88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTkcsTableViewController.m; sourceTree = "<group>"; };
 		88DD8118209BFF7B00F297D6 /* OLTkcsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsModel.h; sourceTree = "<group>"; };
@@ -1651,6 +1657,8 @@
 				88EB4060213E35F100F12211 /* LGWMPlayerManager.m */,
 				88EB4066213F69DF00F12211 /* LGSystem.h */,
 				88EB4067213F69DF00F12211 /* LGSystem.m */,
+				88D6E2AC21461C6500A67F1E /* LGAlertControllerManager.h */,
+				88D6E2AD21461C6500A67F1E /* LGAlertControllerManager.m */,
 				882AFCD4212FE04F00DB8005 /* 2mp3 */,
 				888223AD212BD7850094D3EF /* LGAudio */,
 				882B117A20D23D3300917374 /* playerview */,
@@ -3547,6 +3555,8 @@
 				88DD814C209C3C3E00F297D6 /* OLTestResultViewController.m */,
 				888E3A70211D2B0000ED2DA3 /* OLTestBackLookModel.h */,
 				888E3A71211D2B0000ED2DA3 /* OLTestBackLookModel.m */,
+				88D6E2A92146071800A67F1E /* OLTestBackLookDetailModel.h */,
+				88D6E2AA2146071800A67F1E /* OLTestBackLookDetailModel.m */,
 			);
 			path = testResult;
 			sourceTree = "<group>";
@@ -4289,6 +4299,7 @@
 				882FC05121369AE7005F7187 /* DJUcMyCollectNewsListController.m in Sources */,
 				880363AC20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m in Sources */,
 				8831E17120941590001D038E /* DCSubStageTableviewController.m in Sources */,
+				88D6E2AE21461C6500A67F1E /* LGAlertControllerManager.m in Sources */,
 				884EB41B210567A4005D5CA9 /* DJUploadDataManager.m in Sources */,
 				88DD813A209C0DA300F297D6 /* OLVoteDetailTableViewCell.m in Sources */,
 				882FBFBD2134DF89005F7187 /* DJMyCollectViewController.m in Sources */,
@@ -4448,6 +4459,7 @@
 				884EB41521030328005D5CA9 /* DJUploadMindReportCoverCell.m in Sources */,
 				889FCD1920B3E6050045746D /* DCRichTextBottomInfoView.m in Sources */,
 				88BA90C220F4510B007DD4B4 /* DJInputContentViewController.m in Sources */,
+				88D6E2AB2146071800A67F1E /* OLTestBackLookDetailModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

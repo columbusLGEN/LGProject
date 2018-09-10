@@ -58,7 +58,14 @@
             [[UIApplication sharedApplication].keyWindow addSubview:sv];
         }];
     } failure:^(id failureObj) {
-        [self presentFailureTips:@"修改失败,请稍后重试"];
+        NSString *msgKey = @"msg";
+        NSDictionary *dict = failureObj;
+        if ([dict objectForKey:msgKey]) {
+            [self presentFailureTips:dict[msgKey]];
+        }else{
+            [self presentFailureTips:@"修改失败,请稍后重试"];
+        }
+        
     }];
     
 }
