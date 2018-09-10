@@ -62,7 +62,10 @@ LGThreeRightButtonViewDelegate>
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (_showCommentView) {
+        
         [self rightClick:nil sender:nil success:nil failure:nil];
+        
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(self.array.count - 1) inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
     }
 }
 - (void)viewDidLoad {

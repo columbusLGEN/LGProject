@@ -57,14 +57,13 @@ static NSString * const playcount_key = @"playcount";
     [_img sd_setImageWithURL:collectModel.coverUrl placeholderImage:DJPlaceholderImage];
     
     
-    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:playcount_key] && object == self.collectModel) {
-//        DJUcMyCollectLessonModel *collectModel = (DJUcMyCollectLessonModel *)self.collectModel;
         _peopleCount.text = [NSString stringWithFormat:@"%ld",self.collectModel.playcount];
     }
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
