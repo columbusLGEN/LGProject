@@ -21,7 +21,7 @@ pod 'MMMaterialDesignSpinner'#playerView 需要用到
 pod 'LTScrollView', '~> 0.1.6'#首页用
 pod 'WMPlayer'
 pod 'JPush'
-
+pod 'FMDB'
 
 # UM基础sdk
 pod 'UMCCommon'

@@ -424,6 +424,7 @@
 		88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C61A20BE768500E353DB /* libxml2.2.tbd */; };
 		88D6E2AB2146071800A67F1E /* OLTestBackLookDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E2AA2146071800A67F1E /* OLTestBackLookDetailModel.m */; };
 		88D6E2AE21461C6500A67F1E /* LGAlertControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E2AD21461C6500A67F1E /* LGAlertControllerManager.m */; };
+		88D6E34321479B3400A67F1E /* LGFMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E34121479B3400A67F1E /* LGFMDBManager.m */; };
 		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
 		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
 		88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD811C209BFFB800F297D6 /* OLTkcsTableViewCell.m */; };
@@ -1272,6 +1273,8 @@
 		88D6E2AA2146071800A67F1E /* OLTestBackLookDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestBackLookDetailModel.m; sourceTree = "<group>"; };
 		88D6E2AC21461C6500A67F1E /* LGAlertControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGAlertControllerManager.h; sourceTree = "<group>"; };
 		88D6E2AD21461C6500A67F1E /* LGAlertControllerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGAlertControllerManager.m; sourceTree = "<group>"; };
+		88D6E34121479B3400A67F1E /* LGFMDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMDBManager.m; sourceTree = "<group>"; };
+		88D6E34221479B3400A67F1E /* LGFMDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMDBManager.h; sourceTree = "<group>"; };
 		88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewController.h; sourceTree = "<group>"; };
 		88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTkcsTableViewController.m; sourceTree = "<group>"; };
 		88DD8118209BFF7B00F297D6 /* OLTkcsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsModel.h; sourceTree = "<group>"; };
@@ -1659,6 +1662,8 @@
 				88EB4067213F69DF00F12211 /* LGSystem.m */,
 				88D6E2AC21461C6500A67F1E /* LGAlertControllerManager.h */,
 				88D6E2AD21461C6500A67F1E /* LGAlertControllerManager.m */,
+				88D6E34221479B3400A67F1E /* LGFMDBManager.h */,
+				88D6E34121479B3400A67F1E /* LGFMDBManager.m */,
 				882AFCD4212FE04F00DB8005 /* 2mp3 */,
 				888223AD212BD7850094D3EF /* LGAudio */,
 				882B117A20D23D3300917374 /* playerview */,
@@ -3983,6 +3988,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework",
 				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/HXWeiboPhotoPicker/HXWeiboPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/LTScrollView/LTScrollView.framework",
@@ -4003,6 +4009,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCoreText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HXWeiboPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTScrollView.framework",
@@ -4358,6 +4365,7 @@
 				88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */,
 				884312B2208721F400321F84 /* LGBaseTableViewController.m in Sources */,
 				884312B52087222600321F84 /* EDJLevelInsTableViewController.m in Sources */,
+				88D6E34321479B3400A67F1E /* LGFMDBManager.m in Sources */,
 				88435E73208D68D700188CE9 /* UCQuestionModel.m in Sources */,
 				888223C0212BD8D90094D3EF /* amrFileCodec.mm in Sources */,
 				8835B2A62071FBFB00722010 /* LGBaseNavigationController.m in Sources */,

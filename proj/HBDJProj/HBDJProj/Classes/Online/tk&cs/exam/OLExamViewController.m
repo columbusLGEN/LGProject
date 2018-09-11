@@ -232,7 +232,7 @@ OLExamViewBottomBarDelegate
                         NSArray *selectIds = [selectOptionSeqids componentsSeparatedByString:@","];
                         singleModel.userRecord[options_key] = selectOptionSeqids;
                         singleModel.answer = selectOptionSeqids;
-                        NSLog(@"本地记录的答案: %@",singleModel.answer);
+//                        NSLog(@"本地记录的答案: %@",singleModel.answer);
                         /// 将用户选中的选项id字符串转为数组
                         for (NSString *optionId in selectIds) {
                             for (OLExamSingleLineModel *sinleLineModel in singleModel.frontSubjectsDetail) {
@@ -395,7 +395,7 @@ OLExamViewBottomBarDelegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     OLExamSingleModel *model = self.dataArray[indexPath.row];
     OLExamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    NSLog(@"model.answerxxxx: %@",model.answer);
+//    NSLog(@"model.answerxxxx: %@",model.answer);
     cell.backLook = _backLook;
     cell.model = model;
     return cell;

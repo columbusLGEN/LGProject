@@ -57,6 +57,7 @@
             microvc.dataArray = microModels.copy;
         }
         
+        /// 党建要闻
         HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
         if (news == nil || news.count == 0) {
             partyvc.dataArray = nil;

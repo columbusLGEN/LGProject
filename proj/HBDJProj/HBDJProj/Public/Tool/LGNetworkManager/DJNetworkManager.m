@@ -50,10 +50,10 @@
     NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
     
     NSLog(@"arguments -- %@",argum);
-    NSLog(@"requesturl: %@",url);
+//    NSLog(@"requesturl: %@",url);
     
     return [[LGNetworkManager sharedInstance] taskForPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
-        NSLog(@"POST_task_res_obj: %@",responseObject);
+//        NSLog(@"POST_task_res_obj: %@",responseObject);
         /// 如果请求失败，执行失败回调
         if (error) {
             if (failure) failure(error);
@@ -128,10 +128,10 @@
     NSMutableDictionary *argum = [self terParamWithUnitParam:paramMutable.copy];
 
     NSLog(@"%@: arguments -- %@",iName,argum);
-    NSLog(@"%@: requesturl: %@",iName,url);
+//    NSLog(@"%@: requesturl: %@",iName,url);
     
     [[LGNetworkManager sharedInstance] sendPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) { 
-        NSLog(@"%@_responseObject: %@",iName,responseObject);
+//        NSLog(@"%@_responseObject: %@",iName,responseObject);
         
         if (error) {
             NSLog(@"error: %@",error);
@@ -149,7 +149,7 @@
             }else{
                 NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
                 id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                NSLog(@"jsonstring -- %@",jsonString);
+//                NSLog(@"jsonstring -- %@",jsonString);
                 
                 /// MARK: 写入缓存数据
                 [LGNetworkCache lg_save_asyncJsonToCacheFile:[self returnJsonHandle:returnJson] URLString:iName params:argum];
@@ -225,7 +225,6 @@
 //        _baseUrl = @"http://123.59.197.176:8480/";
         _baseUrl = @"http://123.59.199.170:8081/";
 //        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
-
     }
     return _baseUrl;
 }

@@ -53,7 +53,9 @@ LGThreeRightButtonViewDelegate>
 
 @end
 
-@implementation DCSubPartStateDetailViewController
+@implementation DCSubPartStateDetailViewController{
+    CGFloat coreTextHeight;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -65,9 +67,24 @@ LGThreeRightButtonViewDelegate>
         
         [self rightClick:nil sender:nil success:nil failure:nil];
         
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(self.array.count - 1) inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        /// 滚动到评论 单元格
+        NSInteger scrollToRow = self.array.count;
+        if (self.array.count >  5) {
+            scrollToRow = 5;
+        }
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:scrollToRow inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        
     }
+    
+//    NSLog(@"self.tableView.contentSize : %@",NSStringFromCGSize(self.tableView.contentSize));
+//    NSLog(@"coreTextHeight: %f",coreTextHeight);
+//    [self.tableView setContentOffset:CGPointMake(0, coreTextHeight - kNavHeight - 40) animated:YES];
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSLog(@"setContentOffset: %@",NSStringFromCGPoint(scrollView.contentOffset));
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
@@ -75,6 +92,8 @@ LGThreeRightButtonViewDelegate>
 }
 
 - (void)configUI{
+    
+    coreTextHeight = 0;
   
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomUserInterView];
@@ -177,7 +196,10 @@ LGThreeRightButtonViewDelegate>
     if (indexPath.row == 0) {
         DCStateContentsCell *cell = [self tableView:tableView prepareCellForIndexPath:indexPath];
         /// TODO: 富文本的高度 + 评论(x) 的高度
-        return [cell requiredRowHeightInTableView:tableView] + richTextBottomInfoViewHeight;
+//        return [cell requiredRowHeightInTableView:tableView] + richTextBottomInfoViewHeight;
+        CGFloat cellHeight = [cell requiredRowHeightInTableView:tableView];
+        coreTextHeight = cellHeight;
+        return cellHeight;
     }
     DCStateCommentsModel *model = _array[indexPath.row - 1];
     return [model cellHeight];

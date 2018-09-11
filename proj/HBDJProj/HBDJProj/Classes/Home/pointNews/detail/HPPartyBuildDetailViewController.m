@@ -198,11 +198,13 @@ WKNavigationDelegate>
 - (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect sender:(UIButton *)sender{
     sender.userInteractionEnabled = NO;
     _task = [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:self.contentModel collect:collect type:DJDataPraisetypeNews success:^(NSInteger cbkid, NSInteger cbkCount) {
+        
         sender.userInteractionEnabled = YES;
         if (clickSuccess) clickSuccess(cbkid,cbkCount);
+        
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
-        NSLog(@"党建要闻点赞收藏失败: ");
+        
     }];
 }
 
