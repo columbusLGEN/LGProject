@@ -65,7 +65,10 @@ NSString *controllerClassWithModelType(OnlineModelType modelType){
             return @"OLVoteListController";
         }
             break;
-
+            case OnlineModelTypeSpeakCheapXG:
+            return @"DJNotOpenViewController";
+            break;
+        
     }
 }
 @end

@@ -46,6 +46,9 @@ static NSString * const seqid_key = @"seqid";
 static NSString * const options_key = @"options";
 static NSString * const isLogin_key = @"isLogin";
 static NSString * const collectionidKey = @"collectionid";
+static NSString * const loginnumKey = @"loginnum";
+/** 本地偏好中存储客服电话的key */
+static NSString * const dj_service_numberKey = @"dj_service_number";
 
 static NSString * const op_failure_notice = @"操作失败，请检查网络后重试";
 
@@ -60,7 +63,8 @@ typedef NS_ENUM(NSUInteger, OnlineModelType) {
     OnlineModelTypeThreeMeetings,
     OnlineModelTypeThemePartyDay,
     OnlineModelTypeMindReport,
-    OnlineModelTypeSpeakCheap
+    OnlineModelTypeSpeakCheap,
+    OnlineModelTypeSpeakCheapXG/// 孝感党建
 };
 
 typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {

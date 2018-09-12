@@ -14,6 +14,42 @@
 #import "OLAddMoreToolFooter.h"
 #import "OLSkipObject.h"
 
+@interface OLNoMoreToolsView : UIView
+@end
+
+@implementation OLNoMoreToolsView
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        UIColor *txtColor = UIColor.EDJGrayscale_11;
+        UIFont *txtFont = [UIFont systemFontOfSize:15];
+        UILabel *label0 = UILabel.new;
+        UILabel *label1 = UILabel.new;
+        label0.text = @"暂无更多工具 , 如需更多定制化党务工具";
+        NSString *phoneNumber = [NSUserDefaults.standardUserDefaults objectForKey:dj_service_numberKey];
+        label1.text = phoneNumber;
+        label0.textColor = txtColor;
+        label1.textColor = txtColor;
+        label0.font = txtFont;
+        label1.font = txtFont;
+        label0.textAlignment = NSTextAlignmentCenter;
+        label1.textAlignment = NSTextAlignmentCenter;
+        
+        [self addSubview:label0];
+        [self addSubview:label1];
+        
+        [label0 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.centerY.equalTo(self).offset(-35);
+        }];
+        [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.top.equalTo(label0.mas_bottom).offset(marginTen);
+        }];
+    }
+    return self;
+}
+@end
+
 static NSString * const onlinCell = @"OLHomeCollectionCell";
 static NSString * const headerReuseID = @"OLAddMoreToolHeader";
 static NSString * const footerReuseID = @"OLAddMoreToolFooter";
@@ -30,7 +66,7 @@ UICollectionViewDelegateFlowLayout>
 @property (strong,nonatomic) UICollectionView *collectionView;
 @property (strong,nonatomic) OLAddMoreFlowLayout *flowLayout;
 @property (strong,nonatomic) OLAddMoreToolFooter *fakeFooter;
-
+@property (strong,nonatomic) OLNoMoreToolsView *noMoreToolsView;
 
 @end
 
@@ -48,6 +84,8 @@ UICollectionViewDelegateFlowLayout>
         make.bottom.equalTo(self.midView.mas_top);
     }];
     
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -58,7 +96,21 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)setArray:(NSArray *)array{
     _array = array;
-    [self.collectionView reloadData];
+//    array = nil;
+    if (array.count == 0 || array == nil) {
+        [self.view addSubview:self.noMoreToolsView];
+        [self.noMoreToolsView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.midView.mas_bottom);
+            make.left.equalTo(self.view.mas_left);
+            make.right.equalTo(self.view.mas_right);
+            make.height.mas_equalTo(kScreenHeight / 2 + midHeight - kTabBarHeight - footerHeight);
+            make.bottom.equalTo(self.view.mas_bottom);
+        }];
+        [self.collectionView removeFromSuperview];
+        [self.fakeFooter removeFromSuperview];
+    }else{
+        [self.collectionView reloadData];
+    }
     
 }
 
@@ -188,6 +240,14 @@ UICollectionViewDelegateFlowLayout>
         _fakeFooter.backgroundColor = [UIColor whiteColor];
     }
     return _fakeFooter;
+}
+
+- (OLNoMoreToolsView *)noMoreToolsView{
+    if (!_noMoreToolsView) {
+        _noMoreToolsView = OLNoMoreToolsView.new;
+        _noMoreToolsView.backgroundColor = UIColor.whiteColor;
+    }
+    return _noMoreToolsView;
 }
 
 @end

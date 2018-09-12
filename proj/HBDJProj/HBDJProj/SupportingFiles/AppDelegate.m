@@ -96,6 +96,19 @@
     
     self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
     
+//    027-87679599
+//    [NSUserDefaults.standardUserDefaults removeObjectForKey:dj_service_numberKey];
+    /// 先放一个默认电话，防止显示异常
+    [NSUserDefaults.standardUserDefaults setObject:@"027-87679599" forKey:dj_service_numberKey];
+    /// 请求客服电话
+    [DJHomeNetworkManager.sharedInstance requestForServiceNumberSuccess:^(id responseObj) {
+        NSString *loginnum = responseObj[loginnumKey];
+        [NSUserDefaults.standardUserDefaults setObject:loginnum forKey:dj_service_numberKey];
+        
+    } failure:^(id failureObj) {
+        
+    }];
+    
     if (![DJUser sharedInstance].userid) {
         /// 表明用户还未登录，进入登录控制器
         self.window.rootViewController = [UCLoginViewController navWithLoginvc];
@@ -121,6 +134,7 @@
     
     /// 确定当前设备
     [[LGDevice sharedInstance] lg_currentDeviceType];
+    
 }
 
 - (void)configUSharePlatforms{

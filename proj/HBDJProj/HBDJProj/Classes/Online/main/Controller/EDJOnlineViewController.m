@@ -20,6 +20,7 @@
 #import "OLSkipObject.h"
 #import "DJOnlineNetorkManager.h"
 #import "DJOnlineSearchViewController.h"
+#import "LGWKWebViewController.h"
 
 static CGFloat headLineHeight = 233;
 
@@ -75,8 +76,8 @@ HPNetworkFailureViewDelegate>
         self.model = [DJOnlineHomeModel mj_objectWithKeyValues:responseObj];
         self.onlineController.onlineModels = self.model.activation;
         
-        /// TODO: online 首页顶部图片，暂时用本地 
-//        [self.headLine sd_setImageWithURL:[NSURL URLWithString:self.model.headlineImg] placeholderImage:DJImgloopPImage];
+        /// 在线顶部 图片
+        [self.headLine sd_setImageWithURL:[NSURL URLWithString:self.model.headlineImg] placeholderImage:DJImgloopPImage];
         
     } failure:^(id failureObj) {
         [self.onlineController.collectionView.mj_header endRefreshing];
@@ -100,8 +101,17 @@ HPNetworkFailureViewDelegate>
         }
         
     }else{
-        /// 其余跳转
-        [self.navigationController pushViewController:[OLSkipObject viewControllerWithOLHomeModelType:model] animated:YES];
+        if (model.modelType == OnlineModelTypeSpeakCheapXG) {
+            /// 孝感党建
+            LGWKWebViewController *webvc = [LGWKWebViewController.alloc initWithUrl:[NSURL URLWithString:model.xiaoganurl]];
+            webvc.title = @"孝感党建";
+            [self.navigationController pushViewController:webvc animated:YES];
+        }else{
+            /// 其余跳转
+            [self.navigationController pushViewController:[OLSkipObject viewControllerWithOLHomeModelType:model] animated:YES];
+        }
+        
+        
     }
 }
 /// MARK: LGNavigationSearchBarDelelgate

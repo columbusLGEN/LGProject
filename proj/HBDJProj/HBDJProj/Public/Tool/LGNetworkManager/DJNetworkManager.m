@@ -149,7 +149,7 @@
             }else{
                 NSData *data = [responseObject[@"returnJson"] dataUsingEncoding:NSUTF8StringEncoding];
                 id returnJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//                NSLog(@"jsonstring -- %@",jsonString);
+                NSLog(@"jsonstring -- %@",jsonString);
                 
                 /// MARK: 写入缓存数据
                 [LGNetworkCache lg_save_asyncJsonToCacheFile:[self returnJsonHandle:returnJson] URLString:iName params:argum];

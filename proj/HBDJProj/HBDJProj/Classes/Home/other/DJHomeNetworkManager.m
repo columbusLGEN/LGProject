@@ -41,6 +41,12 @@
 
 /// MARK: -----分割线-----
 
+/// MARK: 请求电话号码
+- (void)requestForServiceNumberSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    [self sendPOSTRequestWithiName:@"frontIndex/selectDefaultNum" param:@{} success:success failure:failure];
+
+}
+
 - (void)carouselfigure_selectCurriculumDetailWithClassid:(NSInteger)classid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"classid":@(classid).stringValue};
     [self sendPOSTRequestWithiName:@"carouselfigure/selectCurriculumDetail" param:param success:success failure:failure];

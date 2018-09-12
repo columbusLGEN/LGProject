@@ -43,7 +43,8 @@
     [muStr1 setAttributes:attrDict1 range:NSMakeRange([str1 rangeOfString:blackStr].location, [str1 rangeOfString:blackStr].length)];
     
     NSString *content0 = @"本软件需用户所在单位党组织统一开通后方可通过使用";
-    NSString *content1 = @"027-87868622";
+    NSString *localServiceNumber = [NSUserDefaults.standardUserDefaults objectForKey:dj_service_numberKey];
+    NSString *content1 = localServiceNumber;
     
     UILabel *tbts = [UILabel new];
     tbts.textColor = [UIColor EDJMainColor];

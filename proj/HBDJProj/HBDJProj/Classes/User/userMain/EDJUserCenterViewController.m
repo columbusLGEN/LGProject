@@ -145,6 +145,7 @@ UCPersonInfoViewControllerDelegate>
         
         NSURLComponents *URLComponents = DJNetworkManager.sharedInstance.tableURLComponents;
         LGWKWebViewController *webvc = [LGWKWebViewController.alloc initWithUrl:URLComponents.URL];
+        webvc.title = @"党员统计报表";
         [self.navigationController pushViewController:webvc animated:YES];
         
     }

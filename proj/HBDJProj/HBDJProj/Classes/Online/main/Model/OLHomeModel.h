@@ -25,6 +25,8 @@ typedef NS_ENUM(NSUInteger, ControllerInitType) {
 @property (assign,nonatomic) BOOL isDefault;
 @property (strong,nonatomic) NSString *toolname;
 @property (strong,nonatomic) NSString *iconUrl;
+/** 孝感党建 加载链接 */
+@property (strong,nonatomic) NSString *xiaoganurl;
 
 /// 本地图标name
 @property (strong,nonatomic) NSString *locaImage;
