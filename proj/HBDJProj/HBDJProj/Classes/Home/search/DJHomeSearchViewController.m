@@ -43,6 +43,7 @@
         NSArray *news = responseObj[@"news"];
         
         HPSearchLessonController *microvc = self.childViewControllers[0];
+        microvc.dataSyncer = self.dataSyncer;
         if (classes == nil || classes.count == 0) {
             microvc.dataArray = nil;
         }else{
@@ -59,6 +60,7 @@
         
         /// 党建要闻
         HPSearchBuildPoineNewsController *partyvc = self.childViewControllers[1];
+        partyvc.dataSyncer = self.dataSyncer;
         if (news == nil || news.count == 0) {
             partyvc.dataArray = nil;
         }else{

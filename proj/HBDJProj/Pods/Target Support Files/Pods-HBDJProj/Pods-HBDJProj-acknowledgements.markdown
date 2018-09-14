@@ -350,6 +350,11 @@ THE SOFTWARE.
 
 
 
+## UMCAnalytics
+
+Copyright 2011 - 2018 umeng.com. All rights reserved.
+
+
 ## UMCCommon
 
 Copyright 2011 - 2018 umeng.com. All rights reserved.

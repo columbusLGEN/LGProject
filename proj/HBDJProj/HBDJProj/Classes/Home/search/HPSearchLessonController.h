@@ -8,8 +8,9 @@
 /// 搜索结果列表党课分表控制器
 
 #import "LGBaseTableViewController.h"
-
+@class DJDataSyncer;
 @interface HPSearchLessonController : LGBaseTableViewController
 @property (strong,nonatomic) NSString *searchContent;
+@property (strong,nonatomic) DJDataSyncer *dataSyncer;
 
 @end

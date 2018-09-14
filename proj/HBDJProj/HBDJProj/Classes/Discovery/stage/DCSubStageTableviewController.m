@@ -18,6 +18,7 @@
 #import "DCSubStageAudioCell.h"
 #import "DJPyqAudioPlayViewController.h"
 #import "LGWMPlayerManager.h"
+#import "DJDataSyncer.h"
 
 @interface DCSubStageTableviewController ()<
 DCSubStageBaseTableViewCellDelegate,
@@ -75,7 +76,6 @@ WMPlayerDelegate>
                 arrmu = NSMutableArray.new;
             }else{
                 arrmu = [NSMutableArray arrayWithArray:self.dataArray];
-                
             }
             
             for (NSInteger i = 0; i < array.count; i++) {
@@ -84,6 +84,8 @@ WMPlayerDelegate>
             }
             self.dataArray = arrmu.copy;
             _offset = self.dataArray.count;
+            self.dataSyncer.dicovery_PYQ = self.dataArray;
+            
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.tableView reloadData];
             }];
@@ -122,6 +124,17 @@ WMPlayerDelegate>
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeStage success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (_isSearchSubvc) {
+            for (DCSubStageModel *modelSearch in self.dataSyncer.dicovery_PYQ) {
+                if (modelSearch.seqid == model.seqid) {
+                    modelSearch.praiseid = model.praiseid;
+                    modelSearch.praisecount = model.praisecount;
+                    NSLog(@"党员舞台点赞同步: %@",model.title);
+                }
+            }
+        }
+        
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
@@ -131,6 +144,17 @@ WMPlayerDelegate>
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeStage success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (_isSearchSubvc) {
+            for (DCSubStageModel *modelSearch in self.dataSyncer.dicovery_PYQ) {
+                if (modelSearch.seqid == model.seqid) {
+                    modelSearch.collectionid = model.collectionid;
+                    modelSearch.collectioncount = model.collectioncount;
+//                    NSLog(@"党员舞台收藏同步: %@",model.title);
+                }
+            }
+        }
+        
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"收藏失败，请稍后重试"];

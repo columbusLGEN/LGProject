@@ -12,4 +12,6 @@
 
 + (UIAlertController *)alertvcWithTitle:(NSString *)title message:(NSString *)message cancelText:(NSString *)cancelText doneText:(NSString *)doneText cancelABlock:(LGShowAlertVcActionBlock)cancelBlock doneBlock:(LGShowAlertVcActionBlock)doneBlock;
 
++ (UIAlertController *)alertvcWithTitle:(NSString *)title message:(NSString *)message doneText:(NSString *)doneText doneBlock:(LGShowAlertVcActionBlock)doneBlock;
+
 @end

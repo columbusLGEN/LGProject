@@ -20,7 +20,8 @@
 #import "OLSkipObject.h"
 #import "DJOnlineNetorkManager.h"
 #import "DJOnlineSearchViewController.h"
-#import "LGWKWebViewController.h"
+#import "DJXGDJWebViewController.h"
+#import "LGAlertControllerManager.h"
 
 static CGFloat headLineHeight = 233;
 
@@ -101,15 +102,33 @@ HPNetworkFailureViewDelegate>
         }
         
     }else{
-        if (model.modelType == OnlineModelTypeSpeakCheapXG) {
-            /// 孝感党建
-            LGWKWebViewController *webvc = [LGWKWebViewController.alloc initWithUrl:[NSURL URLWithString:model.xiaoganurl]];
-            webvc.title = @"孝感党建";
-            [self.navigationController pushViewController:webvc animated:YES];
+        
+        NSString *currentTimestamp = [NSString getCurrentTimestamp];
+//        NSLog(@"currentTimestamp: %@",currentTimestamp);
+//        NSLog(@"currentTimestamp.floatValue: %f",currentTimestamp.floatValue);
+//        NSLog(@"model.toolendtime: %@",model.toolendtime);
+        
+        if ((model.toolendtime.floatValue < currentTimestamp.floatValue) && !model.isDefault) {
+            /// 工具已经过期
+            NSString *number = [NSUserDefaults.standardUserDefaults objectForKey:dj_service_numberKey];
+            NSString *msg = [NSString stringWithFormat:@"该工具有效期已结束，如需继续使用请联系%@",number];
+            UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:msg doneText:@"确定" doneBlock:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [self presentViewController:alertvc animated:YES completion:nil];
         }else{
-            /// 其余跳转
-            [self.navigationController pushViewController:[OLSkipObject viewControllerWithOLHomeModelType:model] animated:YES];
+            if (model.modelType == OnlineModelTypeSpeakCheapXG) {
+                /// 孝感党建
+                //            LGWKWebViewController *webvc = [LGWKWebViewController.alloc initWithUrl:[NSURL URLWithString:model.xiaoganurl]];
+                DJXGDJWebViewController *webvc = [DJXGDJWebViewController.alloc initWithUrl:[NSURL URLWithString:model.xiaoganurl]];
+                webvc.title = @"孝感党建";
+                [self.navigationController pushViewController:webvc animated:YES];
+            }else{
+                /// 其余跳转
+                [self.navigationController pushViewController:[OLSkipObject viewControllerWithOLHomeModelType:model] animated:YES];
+            }
         }
+        
         
         
     }

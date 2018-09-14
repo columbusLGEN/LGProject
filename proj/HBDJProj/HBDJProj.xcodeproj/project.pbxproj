@@ -384,6 +384,7 @@
 		88C5F15F20B7F2050075D5F2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C5F15E20B7F2050075D5F2 /* libz.tbd */; };
 		88C5F16720B7FF670075D5F2 /* HPAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C5F16620B7FF670075D5F2 /* HPAudioPlayerView.m */; };
 		88C5F16920B7FF6D0075D5F2 /* HPAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C5F16820B7FF6D0075D5F2 /* HPAudioPlayerView.xib */; };
+		88CC10CF214B426E006627F9 /* DJXGDJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CC10CE214B426E006627F9 /* DJXGDJWebViewController.m */; };
 		88CD73972099592A00E80058 /* HPBookInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD73962099592A00E80058 /* HPBookInfoViewController.m */; };
 		88CD739A209959FD00E80058 /* HPBookInfoBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD7399209959FD00E80058 /* HPBookInfoBaseCell.m */; };
 		88CD739D20995A1400E80058 /* HPBookInfoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD739C20995A1400E80058 /* HPBookInfoHeaderCell.m */; };
@@ -425,6 +426,7 @@
 		88D6E2AB2146071800A67F1E /* OLTestBackLookDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E2AA2146071800A67F1E /* OLTestBackLookDetailModel.m */; };
 		88D6E2AE21461C6500A67F1E /* LGAlertControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E2AD21461C6500A67F1E /* LGAlertControllerManager.m */; };
 		88D6E34321479B3400A67F1E /* LGFMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E34121479B3400A67F1E /* LGFMDBManager.m */; };
+		88D6E3462149FE2200A67F1E /* DJDataSyncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6E3452149FE2200A67F1E /* DJDataSyncer.m */; };
 		88DD8117209BFF6B00F297D6 /* OLTkcsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */; };
 		88DD811A209BFF7B00F297D6 /* OLTkcsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD8119209BFF7B00F297D6 /* OLTkcsModel.m */; };
 		88DD811D209BFFB800F297D6 /* OLTkcsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DD811C209BFFB800F297D6 /* OLTkcsTableViewCell.m */; };
@@ -1202,6 +1204,8 @@
 		88C5F16520B7FF670075D5F2 /* HPAudioPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAudioPlayerView.h; sourceTree = "<group>"; };
 		88C5F16620B7FF670075D5F2 /* HPAudioPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAudioPlayerView.m; sourceTree = "<group>"; };
 		88C5F16820B7FF6D0075D5F2 /* HPAudioPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPAudioPlayerView.xib; sourceTree = "<group>"; };
+		88CC10CD214B426E006627F9 /* DJXGDJWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJXGDJWebViewController.h; sourceTree = "<group>"; };
+		88CC10CE214B426E006627F9 /* DJXGDJWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJXGDJWebViewController.m; sourceTree = "<group>"; };
 		88CD73952099592A00E80058 /* HPBookInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPBookInfoViewController.h; sourceTree = "<group>"; };
 		88CD73962099592A00E80058 /* HPBookInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPBookInfoViewController.m; sourceTree = "<group>"; };
 		88CD7398209959FD00E80058 /* HPBookInfoBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPBookInfoBaseCell.h; sourceTree = "<group>"; };
@@ -1275,6 +1279,8 @@
 		88D6E2AD21461C6500A67F1E /* LGAlertControllerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGAlertControllerManager.m; sourceTree = "<group>"; };
 		88D6E34121479B3400A67F1E /* LGFMDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGFMDBManager.m; sourceTree = "<group>"; };
 		88D6E34221479B3400A67F1E /* LGFMDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGFMDBManager.h; sourceTree = "<group>"; };
+		88D6E3442149FE2200A67F1E /* DJDataSyncer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDataSyncer.h; sourceTree = "<group>"; };
+		88D6E3452149FE2200A67F1E /* DJDataSyncer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDataSyncer.m; sourceTree = "<group>"; };
 		88DD8115209BFF6B00F297D6 /* OLTkcsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsTableViewController.h; sourceTree = "<group>"; };
 		88DD8116209BFF6B00F297D6 /* OLTkcsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTkcsTableViewController.m; sourceTree = "<group>"; };
 		88DD8118209BFF7B00F297D6 /* OLTkcsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTkcsModel.h; sourceTree = "<group>"; };
@@ -1470,6 +1476,8 @@
 			children = (
 				883D476120DCDFC400FD9971 /* DJHomeNetworkManager.h */,
 				883D476220DCDFC400FD9971 /* DJHomeNetworkManager.m */,
+				88D6E3442149FE2200A67F1E /* DJDataSyncer.h */,
+				88D6E3452149FE2200A67F1E /* DJDataSyncer.m */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -1812,6 +1820,8 @@
 				880363AB20E4BBDC00E97FA3 /* DJOnlineNetorkManager.m */,
 				884EB419210567A4005D5CA9 /* DJUploadDataManager.h */,
 				884EB41A210567A4005D5CA9 /* DJUploadDataManager.m */,
+				88CC10CD214B426E006627F9 /* DJXGDJWebViewController.h */,
+				88CC10CE214B426E006627F9 /* DJXGDJWebViewController.m */,
 				88D13C642090634C00A32236 /* main */,
 				88176FD72109761E004B8F2F /* search */,
 				8851C62C20F5E47900C91575 /* themeParty&threeMeetingList */,
@@ -3811,7 +3821,7 @@
 		881C94802068EA5A009D6A52 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = EDJ;
+				CLASSPREFIX = DJ;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Lee;
 				TargetAttributes = {
@@ -4148,6 +4158,7 @@
 				8885D23520A2BC1C00DC06A1 /* HPPartyBuildDetailViewController.m in Sources */,
 				88397814207F56D700F3D131 /* UCPersonInfoModel.m in Sources */,
 				888F7D68212AAF09002B43CF /* DJRecordVoiceViewController.m in Sources */,
+				88D6E3462149FE2200A67F1E /* DJDataSyncer.m in Sources */,
 				880363A320E323BB00E97FA3 /* DJMediaDetailTransAssist.m in Sources */,
 				8831E18120941797001D038E /* DCSubStageOneImgCell.m in Sources */,
 				88A80BE920D9E46000AB274B /* HPChairmanSpeechViewController.m in Sources */,
@@ -4222,6 +4233,7 @@
 				884312D420873B2800321F84 /* UCSettingViewController.m in Sources */,
 				88ECF07220A01F290071A98A /* OLExamSingleFooterView.m in Sources */,
 				8831E18720941985001D038E /* DCSubStageThreeImgCell.m in Sources */,
+				88CC10CF214B426E006627F9 /* DJXGDJWebViewController.m in Sources */,
 				882FC05421379201005F7187 /* DJUcMyCollectQAListController.m in Sources */,
 				8835B30E2072143300722010 /* EDJMicroPartyLessonCell.m in Sources */,
 				888E3A6C211BDDD800ED2DA3 /* LGCountTimeLabel.m in Sources */,

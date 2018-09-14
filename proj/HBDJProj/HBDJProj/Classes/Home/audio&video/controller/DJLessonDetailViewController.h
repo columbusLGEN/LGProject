@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, DJLessonMediaType) {
     DJLessonMediaTypeVideo
 };
 
-@class DJDataBaseModel;
+@class DJDataBaseModel,DJDataSyncer;
 
 @interface DJLessonDetailViewController : LGBaseViewController
 
@@ -27,6 +27,8 @@ typedef NS_ENUM(NSUInteger, DJLessonMediaType) {
 /** 是否已经播放过,默认为NO */
 @property (assign,nonatomic) BOOL opreated;
 
-+ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc;
++ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer;
+
+@property (strong,nonatomic) DJDataSyncer *dataSyncer;
 
 @end

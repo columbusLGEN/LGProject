@@ -107,7 +107,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     EDJMicroBuildModel *model = self.dataArray[indexPath.row];
-    [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:self];
+    [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:self dataSyncer:nil];
 }
 
 

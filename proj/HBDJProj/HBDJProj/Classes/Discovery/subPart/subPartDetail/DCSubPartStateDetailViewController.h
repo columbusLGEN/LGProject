@@ -9,12 +9,14 @@
 /// 支部动态详情页面
 
 #import "LGBaseViewController.h"
-@class DCSubPartStateModel;
+@class DCSubPartStateModel,DJDataSyncer;
 
 @interface DCSubPartStateDetailViewController : LGBaseViewController
 @property (strong,nonatomic) DCSubPartStateModel *model;
 @property (assign,nonatomic) BOOL showCommentView;
-
+@property (strong,nonatomic) DJDataSyncer *dataSyncer;
+/** 是否是 搜索的自控制器 */
+@property (assign,nonatomic) BOOL isSearchSubvc;
 /// 给子类继承
 - (void)dataSettings;
 

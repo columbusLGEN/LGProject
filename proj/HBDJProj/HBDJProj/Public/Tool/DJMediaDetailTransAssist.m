@@ -25,17 +25,17 @@
 @implementation DJMediaDetailTransAssist
 
 /// MARK: 进入图文 或者 音视频 详情
-- (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc{
+- (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
     switch (model.modaltype) {
         case ModelMediaTypeAudio:
         case ModelMediaTypeVideo:{
             
-            [DJLessonDetailViewController lessonvcPushWithLesson:model baseVc:baseVc];
+            [DJLessonDetailViewController lessonvcPushWithLesson:model baseVc:baseVc dataSyncer:dataSyncer];
             
         }
             break;
         case ModelMediaTypeRichText:{
-            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc];
+            [HPPartyBuildDetailViewController buildVcPushWith:model baseVc:baseVc dataSyncer:dataSyncer];
             
         }
             break;
@@ -58,7 +58,7 @@
         case 1:
         case 2:
             /// MARK: 进入 党建要闻 或者 微党课详情
-            [self mediaDetailWithModel:(DJDataBaseModel *)model baseVc:baseVc];
+            [self mediaDetailWithModel:(DJDataBaseModel *)model baseVc:baseVc dataSyncer:nil];
             break;
     }
 }
@@ -67,16 +67,16 @@
 - (void)homeListClick:(NSDictionary *)userInfo baseVc:(UIViewController *)baseVc{
     id model = userInfo[LGDidSelectedModelKey];
     NSInteger skipType = [userInfo[LGDidSelectedSkipTypeKey] integerValue];
-    [self skipWithType:skipType model:model baseVc:baseVc];
+    [self skipWithType:skipType model:model baseVc:baseVc dataSyncer:nil];
 }
 
-- (void)skipWithType:(NSInteger)skipType model:(id)model baseVc:(UIViewController *)baseVc{
+- (void)skipWithType:(NSInteger)skipType model:(id)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
     switch (skipType) {
         case LGDidSelectedSkipTypeMicrolessonSingle:{
             DJDataBaseModel *lesson = (DJDataBaseModel *)model;
             
             /// MARK: 进入微党课详情页面
-            [self mediaDetailWithModel:lesson baseVc:baseVc];
+            [self mediaDetailWithModel:lesson baseVc:baseVc dataSyncer:nil];
         }
             break;
         case LGDidSelectedSkipTypeMicrolessonAlbum:{
@@ -93,7 +93,7 @@
         case LGDidSelectedSkipTypeBuildNews:{
             /// MARK: 进入党建要闻详情
             EDJMicroBuildModel *contentModel = (EDJMicroBuildModel *)model;
-            [self mediaDetailWithModel:contentModel baseVc:baseVc];
+            [self mediaDetailWithModel:contentModel baseVc:baseVc dataSyncer:dataSyncer];
         }
             break;
         case LGDidSelectedSkipTypeDigitalBook:{

@@ -27,11 +27,14 @@
     _model = model;
     _itemIconCell.text = model.itemName;
     _item.text = [NSString stringWithFormat:@"%@:",model.itemName];
-    NSLog(@"itemName: %@",model.itemName);
+//    NSLog(@"itemName: %@ --%@--",model.itemName,model.content);
     if ([model.itemName isEqualToString:@"头像"]) {
         [_icon sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:DJHeadIconPImage];
     }else{
-        _content.text = model.content;
+        if ([model.content isEqualToString:@""]) {
+            model.content = @" ";
+        }
+        _content.text = model.content?model.content:@" ";
     }
     if (model.canChangePwd) {
         /// 安全显示密码

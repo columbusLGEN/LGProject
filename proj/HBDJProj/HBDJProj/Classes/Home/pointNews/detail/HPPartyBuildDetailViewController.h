@@ -9,7 +9,7 @@
 /// 焦点图，要闻列表 的详情控制器
 
 #import "LGBaseViewController.h"
-@class EDJHomeImageLoopModel,DJDataBaseModel,LGThreeRightButtonView;
+@class EDJHomeImageLoopModel,DJDataBaseModel,LGThreeRightButtonView,DJDataSyncer;
 
 //typedef NS_ENUM(NSUInteger, LGCoreTextViewType) {
 //    LGCoreTextViewTypeDefault,
@@ -32,12 +32,14 @@ typedef NS_ENUM(NSUInteger, DJPointNewsSource) {
 @property (strong,nonatomic) EDJHomeImageLoopModel *imageLoopModel;
 @property (strong,nonatomic) DJDataBaseModel *contentModel;
 
-+ (void)buildVcPushWith:(id)model baseVc:(UIViewController *)baseVc;
++ (void)buildVcPushWith:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer;
 
 /** 跳转来源,微党课或者党建要闻 */
 @property (assign,nonatomic) DJPointNewsSource dj_jumpSource;
 
 /** 从消息列表跳转来的，== YES */
 @property (assign,nonatomic) BOOL isMsgTrans;
+
+@property (strong,nonatomic) DJDataSyncer *dataSyncer;
 
 @end

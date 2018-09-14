@@ -26,6 +26,7 @@
 #import <DTCoreText/DTCoreText.h>
 #import "PLPlayerView.h"
 #import "UIAlertController+LGExtension.h"
+#import "DJDataSyncer.h"
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -58,13 +59,14 @@ HPVideoContainerViewDelegate>
 @implementation DJLessonDetailViewController
 
 /// MARK: 进入微党课详情页面
-+ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc{
++ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
     /// 在经过 DJMediaDetailTransAssist 实例分发数据之后，这里只有 音视频模板类型的数据,if条件可以省略
     if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
         [baseVc presentFailureTips:@"数据异常"];
     }else{
         /// 如果跳转来自 图片轮播器，那么 需要 EDJHomeImageLoopModel 的frontnews
         DJLessonDetailViewController *avc = [self new];
+        avc.dataSyncer = dataSyncer;
         if ([lesson isMemberOfClass:[EDJHomeImageLoopModel class]]) {
             EDJHomeImageLoopModel *imgLoopModel = (EDJHomeImageLoopModel *)lesson;
             avc.model = imgLoopModel.frontNews;
@@ -83,7 +85,6 @@ HPVideoContainerViewDelegate>
 - (void)configUI{
     
     NSError *error = nil;
-    
     
     _imageSizeCache = [[NSCache alloc] init];
     _cellCache = [[NSCache alloc] init];
@@ -232,6 +233,25 @@ HPVideoContainerViewDelegate>
     
     _task = [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:model collect:collect type:DJDataPraisetypeMicrolesson success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (collect) {
+            /// 收藏
+            for (DJDataBaseModel *lesson in self.dataSyncer.home_lessons) {
+                if (lesson.seqid == model.seqid) {
+                    lesson.collectionid = model.collectionid;
+                    lesson.collectioncount = model.collectioncount;
+                }
+            }
+        }else{
+            /// 点赞
+            for (DJDataBaseModel *lesson in self.dataSyncer.home_lessons) {
+                if (lesson.seqid == model.seqid) {
+                    lesson.praiseid = model.praiseid;
+                    lesson.praisecount = model.praisecount;
+                }
+            }
+        }
+        
         if (clickSuccess) clickSuccess(cbkid,cbkCount);
         
     } failure:^(id failureObj) {

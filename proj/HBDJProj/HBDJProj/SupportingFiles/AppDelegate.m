@@ -13,6 +13,7 @@
 #import <iflyMSC/iflyMSC.h>
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
+
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
 // iOS10注册APNs所需头文件
@@ -131,6 +132,9 @@
     /// 配置友盟分享
 //    [self confitUShareSettings];
     [self configUSharePlatforms];
+
+    /// 打开友盟 错误日志收集
+    
     
     /// 确定当前设备
     [[LGDevice sharedInstance] lg_currentDeviceType];

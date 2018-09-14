@@ -21,6 +21,7 @@
 
 #import <WebKit/WebKit.h>
 #import "LGAttributedTextView.h"
+#import "DJDataSyncer.h"
 
 @interface HPPartyBuildDetailViewController ()<
 DTAttributedTextContentViewDelegate,
@@ -45,8 +46,9 @@ WKNavigationDelegate>
 
 @implementation HPPartyBuildDetailViewController
 
-+ (void)buildVcPushWith:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc;{
++ (void)buildVcPushWith:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
     HPPartyBuildDetailViewController *dvc = [self new];
+    dvc.dataSyncer = dataSyncer;
     dvc.djDataType = DJDataPraisetypeNews;
     if (model.classid == 1 || model.classid == 2) {
         /// 要闻
@@ -198,6 +200,36 @@ WKNavigationDelegate>
 - (void)likeCollectWithClickSuccess:(ClickRequestSuccess)clickSuccess collect:(BOOL)collect sender:(UIButton *)sender{
     sender.userInteractionEnabled = NO;
     _task = [[DJUserInteractionMgr sharedInstance] likeCollectWithModel:self.contentModel collect:collect type:DJDataPraisetypeNews success:^(NSInteger cbkid, NSInteger cbkCount) {
+        
+        if (collect) {
+            /// 收藏
+            for (DJDataBaseModel *news in self.dataSyncer.home_news) {
+                if (news.seqid == self.contentModel.seqid) {
+                    news.collectionid = self.contentModel.collectionid;
+                    news.collectioncount = self.contentModel.collectioncount;
+                }
+            }
+            for (DJDataBaseModel *news in self.dataSyncer.home_lessons) {
+                if (news.seqid == self.contentModel.seqid) {
+                    news.collectionid = self.contentModel.collectionid;
+                    news.collectioncount = self.contentModel.collectioncount;
+                }
+            }
+        }else{
+            /// 点赞
+            for (DJDataBaseModel *news in self.dataSyncer.home_news) {
+                if (news.seqid == self.contentModel.seqid) {
+                    news.praiseid = self.contentModel.praiseid;
+                    news.praisecount = self.contentModel.praisecount;
+                }
+            }
+            for (DJDataBaseModel *news in self.dataSyncer.home_lessons) {
+                if (news.seqid == self.contentModel.seqid) {
+                    news.praiseid = self.contentModel.praiseid;
+                    news.praisecount = self.contentModel.praisecount;
+                }
+            }
+        }
         
         sender.userInteractionEnabled = YES;
         if (clickSuccess) clickSuccess(cbkid,cbkCount);

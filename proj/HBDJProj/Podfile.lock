@@ -54,6 +54,8 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
+  - UMCAnalytics (5.5.1):
+    - UMCCommon
   - UMCCommon (1.5.2)
   - UMCShare/Core (6.9.4):
     - UMCCommon
@@ -102,6 +104,7 @@ DEPENDENCIES:
   - PLPlayerKit
   - SDCycleScrollView
   - SDWebImage (~> 4.0)
+  - UMCAnalytics
   - UMCCommon
   - UMCShare/Social/QQ
   - UMCShare/Social/Sina
@@ -130,6 +133,7 @@ SPEC REPOS:
     - PLPlayerKit
     - SDCycleScrollView
     - SDWebImage
+    - UMCAnalytics
     - UMCCommon
     - UMCShare
     - WMPlayer
@@ -154,12 +158,13 @@ SPEC CHECKSUMS:
   PLPlayerKit: 8089fa9ae8e2169cd5b3f1deb60041c676dc55e5
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  UMCAnalytics: 0aff87e39008e2a650e5917430db0da2de2f8495
   UMCCommon: 4392868ac47ff1b101663106bb114ba616fabbad
   UMCShare: aa233aecad67979930fe43f3a2f676023b669439
   WMPlayer: a914f80ed5dca7cd9e3a94ec07a2b02eec8c15c0
   XHNetworkCache: 6050436268cb44be215ff5cbbe17b87901de649c
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: bc5c6d95f44f6b618bd89f3581db7d43aafaa0d7
+PODFILE CHECKSUM: 80d6fe5de654518159e002cd367ad3804566b076
 
 COCOAPODS: 1.5.2

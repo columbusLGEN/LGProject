@@ -6,6 +6,15 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
+/// MARK: 打印
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
+
 /// MARK:屏幕宽度
 #define kScreenWidth ([UIScreen mainScreen].bounds.size.width)
 /// MARK:屏幕高度

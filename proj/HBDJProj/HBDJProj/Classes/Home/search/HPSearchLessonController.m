@@ -73,7 +73,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DJDataBaseModel *lesson = self.dataArray[indexPath.row];
-    [self.transAssist mediaDetailWithModel:lesson baseVc:self];
+    [self.transAssist mediaDetailWithModel:lesson baseVc:self dataSyncer:self.dataSyncer];
 }
 
 - (DJMediaDetailTransAssist *)transAssist{

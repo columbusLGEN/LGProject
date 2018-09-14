@@ -99,7 +99,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     EDJMicroBuildModel *model = self.dataArray[indexPath.row];
-    [self.transAssist skipWithType:2 model:model baseVc:self];
+    [self.transAssist skipWithType:2 model:model baseVc:self dataSyncer:self.dataSyncer];
     
 }
 

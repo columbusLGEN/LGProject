@@ -112,7 +112,7 @@
         DJDataBaseModel *lesson = self.dataArray[indexPath.row];
         currentClickModel = lesson;
         [lesson addObserver:self forKeyPath:collectionidKey options:NSKeyValueObservingOptionNew context:nil];
-        [[DJMediaDetailTransAssist new] mediaDetailWithModel:lesson baseVc:self];
+        [[DJMediaDetailTransAssist new] mediaDetailWithModel:lesson baseVc:self dataSyncer:nil];
     }
     
 }

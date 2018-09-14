@@ -19,6 +19,7 @@
 #import "DCSubStageTableviewController.h"
 #import "DCSubStageModel.h"
 #import "HPSearchViewController.h"
+#import "DJDataSyncer.h"
 
 typedef NS_ENUM(NSUInteger, DiscoveryChannel) {
     DiscoveryChannelQuestionCommunity,
@@ -39,6 +40,7 @@ LGNavigationSearchBarDelelgate>
     NSDate *PYQ_startDate;
     NSTimeInterval QA_seconds;
     NSTimeInterval PYQ_seconds;
+    DJDataSyncer *dataSyncer;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -66,16 +68,16 @@ LGNavigationSearchBarDelelgate>
 - (void)configUI{
     [super configUI];
     
+    dataSyncer = DJDataSyncer.new;
+    
     _currentChannel = 0;
     
     LGNavigationSearchBar *fakeNavgationBar = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, navHeight())];
-//    fakeNavgationBar.isShowRightBtn = YES;
-//    fakeNavgationBar.rightButtonTitle = @"提问";
+    _fakeNavgationBar = fakeNavgationBar;
     [self viewSwitched:0];
     
     fakeNavgationBar.delegate = self;
     [self.view addSubview:fakeNavgationBar];
-    _fakeNavgationBar = fakeNavgationBar;
     
     [self getData];
     
@@ -98,6 +100,8 @@ LGNavigationSearchBarDelelgate>
             [arrmu_qa addObject:model];
         }
         qavc.dataArray = arrmu_qa.copy;
+        dataSyncer.dicovery_QA = qavc.dataArray;
+        qavc.dataSyncer = dataSyncer;
         
         /// 支部动态
         DCSubPartStateTableViewController *branchvc = self.childViewControllers[1];
@@ -107,6 +111,8 @@ LGNavigationSearchBarDelelgate>
             [arrmu_br addObject:model];
         }
         branchvc.dataArray = arrmu_br.copy;
+        dataSyncer.dicovery_branch = branchvc.dataArray;
+        branchvc.dataSyncer = dataSyncer;
         
         /// 党员舞台
         DCSubStageTableviewController *pyqvc = self.childViewControllers[2];
@@ -116,6 +122,8 @@ LGNavigationSearchBarDelelgate>
             [arrmu_pyq addObject:model];
         }
         pyqvc.dataArray = arrmu_pyq.copy;
+        dataSyncer.dicovery_PYQ = pyqvc.dataArray;
+        pyqvc.dataSyncer = dataSyncer;
         
     } failure:^(id failureObj) {
         [self presentFailureTips:@"网络异常"];
@@ -148,11 +156,13 @@ LGNavigationSearchBarDelelgate>
 }
 - (void)navSearchClick:(LGNavigationSearchBar *)navigationSearchBar{
     HPSearchViewController *svc = HPSearchViewController.new;
+    svc.dataSyncer = dataSyncer;
     [self.navigationController pushViewController:svc animated:YES];
 }
 - (void)voiceButtonClick:(LGNavigationSearchBar *)navigationSearchBar{
     HPSearchViewController *svc = HPSearchViewController.new;
     svc.voice = YES;
+    svc.dataSyncer = dataSyncer;
     [self.navigationController pushViewController:svc animated:YES];
 }
 

@@ -24,12 +24,16 @@
     
     CGFloat nineImageViewHeight = niImgWidth;
     
+    if ([model.fileurl isEqualToString:@""] || model.fileurl == nil) {
+        return;
+    }
+    
     NSArray *dataSource = [model.fileurl componentsSeparatedByString:@","];
     
     self.groupView.urlArray = dataSource;
     
     if (dataSource.count < 4) {
-    }else if (dataSource.count < 7){
+    }else if (dataSource.count < 7){ 
         nineImageViewHeight += (niImgWidth + niMargin);
     }else{
         nineImageViewHeight += (niImgWidth + niMargin) * 2;

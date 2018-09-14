@@ -268,11 +268,11 @@
         <scene sceneID="Cxr-Rf-5m7">
             <objects>
                 <viewController storyboardIdentifier="EDJUserCenterViewController" id="kIj-yd-Ei3" customClass="EDJUserCenterViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0u1-SV-hEg">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0u1-SV-hEg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VF4-hW-kRH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF4-hW-kRH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_home_top_bg" translatesAutoresizingMaskIntoConstraints="NO" id="RV2-sA-ipO">
@@ -356,15 +356,15 @@
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="23" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLU-lM-xvu" customClass="LGCustomButton">
-                                                <rect key="frame" x="258" y="95.5" width="85" height="104.5"/>
+                                                <rect key="frame" x="257.5" y="95.5" width="85.5" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view tag="22" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-dr-Ppc" customClass="LGCustomButton">
-                                                <rect key="frame" x="171.5" y="95.5" width="86.5" height="104.5"/>
+                                                <rect key="frame" x="171" y="95.5" width="86.5" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="21" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-D0-N9G" customClass="LGCustomButton">
-                                                <rect key="frame" x="86" y="95.5" width="85.5" height="104.5"/>
+                                                <rect key="frame" x="86" y="95.5" width="85" height="104.5"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gud-sL-xcH">
@@ -444,11 +444,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VF4-hW-kRH" firstAttribute="leading" secondItem="0u1-SV-hEg" secondAttribute="leading" id="fKb-s8-MKK"/>
+                            <constraint firstItem="VF4-hW-kRH" firstAttribute="top" secondItem="0u1-SV-hEg" secondAttribute="top" id="hsF-fb-jqL"/>
                             <constraint firstAttribute="trailing" secondItem="VF4-hW-kRH" secondAttribute="trailing" id="kgM-Ft-el9"/>
-                            <constraint firstItem="VF4-hW-kRH" firstAttribute="top" secondItem="0u1-SV-hEg" secondAttribute="topMargin" constant="-20" id="veb-3C-u5R"/>
                             <constraint firstAttribute="bottomMargin" secondItem="VF4-hW-kRH" secondAttribute="bottom" id="zOY-zY-HNJ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="wXA-4z-jHg"/>
                     </view>
                     <navigationItem key="navigationItem" id="Gi4-JC-C4t"/>
                     <connections>
@@ -463,6 +462,7 @@
                         <outlet property="level" destination="XSQ-Cs-pWl" id="05t-oo-xBJ"/>
                         <outlet property="separatLine" destination="gp2-Jq-AYX" id="TfB-hT-MXL"/>
                         <outlet property="tableView" destination="Bp3-D1-Nnd" id="G80-K1-kwz"/>
+                        <outlet property="topConstraint" destination="hsF-fb-jqL" id="HI4-kG-bA0"/>
                         <outlet property="userNick" destination="EpU-Gt-X8q" id="wQA-mW-5Hc"/>
                     </connections>
                 </viewController>

@@ -12,6 +12,7 @@
 #import "UCQuestionModel.h"
 #import "DJUserInteractionMgr.h"
 #import "LGSocialShareManager.h"
+#import "DJDataSyncer.h"
 
 static NSString * const cellID = @"UCQuestionTableViewCell";
 
@@ -84,6 +85,7 @@ UCQuestionTableViewCellDelegate>
             }
             self.dataArray = arrmu.copy;
             _offset = self.dataArray.count;
+            self.dataSyncer.dicovery_QA = self.dataArray;
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.tableView reloadData];
@@ -118,6 +120,17 @@ UCQuestionTableViewCellDelegate>
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (_isSearchSubvc) {
+            for (UCQuestionModel *question in self.dataSyncer.dicovery_QA) {
+                if (question.seqid == model.seqid) {
+                    question.praiseid = model.praiseid;
+                    question.praisecount = model.praisecount;
+                    NSLog(@"点赞同步: %@",model.question);
+                }
+            }
+        }
+        
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
@@ -128,6 +141,17 @@ UCQuestionTableViewCellDelegate>
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeQA success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (_isSearchSubvc) {
+            for (UCQuestionModel *question in self.dataSyncer.dicovery_QA) {
+                if (question.seqid == model.seqid) {
+                    question.collectionid = model.collectionid;
+                    question.collectioncount = model.collectioncount;
+                    NSLog(@"收藏同步: %@",model.question);
+                }
+            }
+        }
+        
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"收藏失败，请稍后重试"];

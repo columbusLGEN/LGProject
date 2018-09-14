@@ -33,6 +33,8 @@
 #import "LTScrollView-Swift.h"
 #import "DJMediaDetailTransAssist.h"
 #import "LGDidSelectedNotification.h"
+#import "DJDataSyncer.h"
+#import "EDJMicroLessionAlbumModel.h"
 
 static NSInteger requestLength = 10;
 
@@ -76,7 +78,9 @@ static NSInteger requestLength = 10;
 
 @end
 
-@implementation HPChairmanSpeechViewController
+@implementation HPChairmanSpeechViewController{
+    DJDataSyncer *dataSyncer;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -89,6 +93,7 @@ static NSInteger requestLength = 10;
 }
 
 - (void)configUI{
+    
     /// 添加自定义导航栏
     LGNavigationSearchBar *fakeNav = [[LGNavigationSearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kNavHeight)];
     fakeNav.delegate = self;
@@ -114,6 +119,8 @@ static NSInteger requestLength = 10;
     }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectedModel:) name:LGDidSelectedNotification object:nil];
+    
+    dataSyncer = DJDataSyncer.new;
 }
 // 获取数据
 - (void)homeReloadDataWithScrollView:(UIScrollView *)scrollView{
@@ -136,6 +143,18 @@ static NSInteger requestLength = 10;
         self.microModels = homeModel.microLessons;
         self.buildModels = homeModel.pointNews;
         self.digitalModels = homeModel.digitals;
+        
+        NSMutableArray *arrmu = NSMutableArray.new;
+        for (NSInteger i = 0; i < homeModel.microLessons.count; i++) {
+            EDJMicroLessionAlbumModel *album = homeModel.microLessons[i];
+            for (NSInteger j = 0; j < album.classlist.count; j++) {
+                DJDataBaseModel *lesson = album.classlist[j];
+
+                [arrmu addObject:lesson];
+            }
+        }
+        dataSyncer.home_lessons = arrmu.copy;
+        dataSyncer.home_news = self.buildModels;
         
         _buildOffset = self.buildModels.count;
         _digitalOffset = self.digitalModels.count;
@@ -193,6 +212,7 @@ static NSInteger requestLength = 10;
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [_btvc.tableView.mj_footer endRefreshing];
                 _btvc.dataArray = buildArray;
+                dataSyncer.home_news = buildArray.copy;
             }];
         }
         
@@ -355,6 +375,7 @@ static NSInteger requestLength = 10;
 - (void)beginSearchWithVoice:(BOOL)voice{
     DJHomeSearchViewController *searchVc = [DJHomeSearchViewController new];
     searchVc.voice = voice;
+    searchVc.dataSyncer = dataSyncer;
     [self.navigationController pushViewController:searchVc animated:YES];
 }
 

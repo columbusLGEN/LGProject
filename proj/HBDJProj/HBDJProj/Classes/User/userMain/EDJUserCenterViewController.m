@@ -37,6 +37,7 @@ UCPersonInfoViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet LGCustomButton *headerCollect;
 @property (weak, nonatomic) IBOutlet LGCustomButton *headerUpload;
 @property (weak, nonatomic) IBOutlet LGCustomButton *headerMsg;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
 
 
 @end
@@ -81,6 +82,8 @@ UCPersonInfoViewControllerDelegate>
 - (void)uiConfig{
     self.view.backgroundColor = [UIColor EDJGrayscale_F3];
     _separatLine.backgroundColor = [UIColor EDJGrayscale_F4];
+    
+    _topConstraint.constant = -kStatusBarHeight;
 
     [self setHeaderButtons];
     
@@ -142,8 +145,10 @@ UCPersonInfoViewControllerDelegate>
     
     
     if (indexPath.row == 1) {
-        
+        /// 党员统计报表
         NSURLComponents *URLComponents = DJNetworkManager.sharedInstance.tableURLComponents;
+        NSLog(@"URLComponents: %@",URLComponents);
+        NSLog(@"URLComponents.URL: %@",URLComponents.URL);
         LGWKWebViewController *webvc = [LGWKWebViewController.alloc initWithUrl:URLComponents.URL];
         webvc.title = @"党员统计报表";
         [self.navigationController pushViewController:webvc animated:YES];
@@ -176,6 +181,8 @@ UCPersonInfoViewControllerDelegate>
         }
             break;
         case 3:{
+            /// 消息中心
+            [UIApplication.sharedApplication setApplicationIconBadgeNumber:0];
             [self lgPushViewControllerWithClassName:@"UCMsgTableViewController"];
         }
             break;

@@ -20,6 +20,7 @@
 #import "DJSendCommentsViewController.h"
 #import "DCSubPartStateModel.h"
 #import "DJUserInteractionMgr.h"
+#import "DJDataSyncer.h"
 
 //static const CGFloat richTextBottomInfoViewHeight = 77;
 static const CGFloat richTextBottomInfoViewHeight = 40;
@@ -336,6 +337,17 @@ LGThreeRightButtonViewDelegate>
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:self.model collect:NO type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (_isSearchSubvc) {
+            for (DCSubPartStateModel *modelSearch in self.dataSyncer.dicovery_branch) {
+                if (modelSearch.seqid == self.model.seqid) {
+                    modelSearch.praiseid = self.model.praiseid;
+                    modelSearch.praisecount = self.model.praisecount;
+                    NSLog(@"支部动态详情点赞同步: %@",self.model.title);
+                }
+            }
+        }
+        
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
@@ -346,6 +358,17 @@ LGThreeRightButtonViewDelegate>
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:self.model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (_isSearchSubvc) {
+            for (DCSubPartStateModel *modelSearch in self.dataSyncer.dicovery_branch) {
+                if (modelSearch.seqid == self.model.seqid) {
+                    modelSearch.collectionid = self.model.collectionid;
+                    modelSearch.collectioncount = self.model.collectioncount;
+                    NSLog(@"支部动态详情收藏同步: %@",self.model.title);
+                }
+            }
+        }
+        
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];

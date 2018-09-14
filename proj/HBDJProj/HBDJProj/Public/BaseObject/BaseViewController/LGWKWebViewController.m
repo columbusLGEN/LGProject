@@ -13,7 +13,6 @@
 
 @interface LGWKWebViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property (strong,nonatomic) NSURL *URL;
-@property (strong,nonatomic) WKWebView *wkView;
 @property (strong,nonatomic) UIProgressView *progressView;
 
 @end
@@ -54,27 +53,6 @@
     
 }
 
-//页面加载完成之后调用
-
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    
-    [webView evaluateJavaScript:@"document.body.offsetHeight;" completionHandler:^(id _Nullable any, NSError * _Nullable error) {
-        
-        NSString *heightStr = [NSString stringWithFormat:@"%@",any];
-        
-//        //下面的wkWeb已经可以完美展示了，不过我的界面是自定义的
-//
-//        wk_web.frame = CGRectMake(0, _headerImage.frame.origin.y + ScreenW, ScreenW, heightStr.floatValue);
-//
-//        //所以，我的界面最底部是scrollView，其中包含：其他的视图 + wk_web，注意：100 + ScreenW 就是其他的视图，举个简单的例子而已。
-//
-//        _mScroll_ViewHHH.constant = 100 + ScreenW + heightStr.floatValue;
-        
-        
-    }];
-    
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if ([keyPath isEqual:@"estimatedProgress"] && object == self.wkView) {
         [self.progressView setAlpha:1.0f];
@@ -98,6 +76,25 @@
 
 
 #pragma mark - WKUIDelegate
+//页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    
+    [webView evaluateJavaScript:@"document.body.offsetHeight;" completionHandler:^(id _Nullable any, NSError * _Nullable error) {
+        
+        NSString *heightStr = [NSString stringWithFormat:@"%@",any];
+        
+        //        //下面的wkWeb已经可以完美展示了，不过我的界面是自定义的
+        //
+        //        wk_web.frame = CGRectMake(0, _headerImage.frame.origin.y + ScreenW, ScreenW, heightStr.floatValue);
+        //
+        //        //所以，我的界面最底部是scrollView，其中包含：其他的视图 + wk_web，注意：100 + ScreenW 就是其他的视图，举个简单的例子而已。
+        //
+        //        _mScroll_ViewHHH.constant = 100 + ScreenW + heightStr.floatValue;
+        
+        
+    }];
+    
+}
 
 #pragma mark - WKNavigationDelegate
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
@@ -123,9 +120,19 @@
     [self.wkView setUIDelegate:nil];
 }
 
+//- (WKWebView *)wkView{
+//    if (_wkView == nil) {
+//        _wkView = [[WKWebView alloc] initWithFrame:CGRectZero];
+//        _wkView.UIDelegate = self;
+//        _wkView.navigationDelegate = self;
+//        [self.view addSubview:_wkView];
+//    }
+//    return _wkView;
+//}
+
 - (WKWebView *)wkView{
     if (_wkView == nil) {
-        
+
         /// 添加要注入的 js 代码 (本段代码保证图片适应手机屏幕显示)
         NSString *jScript = @"\
         var meta = document.createElement('meta'); \
@@ -144,15 +151,12 @@
         wkWebConfig.userContentController = wkUController;
 
         _wkView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:wkWebConfig];
-        
-//        _wkView = [[WKWebView alloc] initWithFrame:CGRectZero];
-        
+
         _wkView.UIDelegate = self;
         _wkView.navigationDelegate = self;
         [self.view addSubview:_wkView];
     }
     return _wkView;
 }
-
 
 @end

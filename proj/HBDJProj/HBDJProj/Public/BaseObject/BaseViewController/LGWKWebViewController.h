@@ -8,11 +8,15 @@
 
 #import "LGBaseViewController.h"
 
+@class WKWebView;
+
 @interface LGWKWebViewController : LGBaseViewController
 
 - (instancetype)initWithUrl:(NSURL *)URL;
 
 /** 标题 */
 @property (copy,nonatomic) NSString *wkTitle;
+
+@property (strong,nonatomic) WKWebView *wkView;
 
 @end

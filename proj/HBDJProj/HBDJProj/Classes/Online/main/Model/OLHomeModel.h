@@ -18,10 +18,7 @@ typedef NS_ENUM(NSUInteger, ControllerInitType) {
 /** 获取 “更多” 项 */
 + (instancetype)loadItemOfMore;
 
-/** 1: 默认激活
-    0:
-    该字段用于后台判断，客户端不处理
- */
+/** 是否为默认工具,如果是默认工具，则跳转时不需要判断 过期时间 */
 @property (assign,nonatomic) BOOL isDefault;
 @property (strong,nonatomic) NSString *toolname;
 @property (strong,nonatomic) NSString *iconUrl;
@@ -32,5 +29,7 @@ typedef NS_ENUM(NSUInteger, ControllerInitType) {
 @property (strong,nonatomic) NSString *locaImage;
 
 @property (assign,nonatomic) OnlineModelType modelType;
+/** 工具过期时间 */
+@property (strong,nonatomic) NSString *toolendtime;
 
 @end

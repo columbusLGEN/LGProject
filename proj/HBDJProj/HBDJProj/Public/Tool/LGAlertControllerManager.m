@@ -23,4 +23,14 @@
     return alertVC;
 }
 
++ (UIAlertController *)alertvcWithTitle:(NSString *)title message:(NSString *)message doneText:(NSString *)doneText doneBlock:(LGShowAlertVcActionBlock)doneBlock{
+    
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *doneAction = [UIAlertAction actionWithTitle:doneText style:UIAlertActionStyleDefault handler:doneBlock];
+    [alertVC addAction:doneAction];
+    
+    return alertVC;
+}
+
 @end

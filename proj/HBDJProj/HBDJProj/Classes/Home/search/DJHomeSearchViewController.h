@@ -7,7 +7,9 @@
 //
 
 #import "DJUnitSearchViewController.h"
+@class DJDataSyncer;
 
 @interface DJHomeSearchViewController : DJUnitSearchViewController
+@property (strong,nonatomic) DJDataSyncer *dataSyncer;
 
 @end

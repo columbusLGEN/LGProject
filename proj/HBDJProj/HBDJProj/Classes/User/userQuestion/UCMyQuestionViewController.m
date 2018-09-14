@@ -13,6 +13,7 @@
 #import "LGSocialShareManager.h"
 #import "LGAlertControllerManager.h"
 #import "DJUserInteractionMgr.h"
+#import "DCWriteQuestionViewController.h"
 
 static NSString * const cellID = @"UCQuestionTableViewCell";
 
@@ -41,6 +42,9 @@ UCQuestionTableViewCellDelegate>
 
 - (void)configUI{
     
+    UIBarButtonItem *questionItem = [UIBarButtonItem.alloc initWithTitle:@"提问" style:UIBarButtonItemStyleDone target:self action:@selector(questionClick)];
+    self.navigationItem.rightBarButtonItem = questionItem;
+    
     self.title = @"我的提问";
     
     _tableView.estimatedRowHeight = 1.0f;
@@ -58,6 +62,13 @@ UCQuestionTableViewCellDelegate>
     
     [self.tableView.mj_header beginRefreshing];
     
+}
+
+- (void)questionClick{
+    DCWriteQuestionViewController *question = [DCWriteQuestionViewController new];
+    question.pushWay = LGBaseViewControllerPushWayModal;
+    LGBaseNavigationController *nav = [[LGBaseNavigationController alloc] initWithRootViewController:question];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)getData{

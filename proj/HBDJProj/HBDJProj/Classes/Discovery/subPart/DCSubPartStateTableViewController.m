@@ -15,6 +15,7 @@
 #import "DCSubPartStateOneImgCell.h"
 #import "DCSubPartStateThreeImgCell.h"
 #import "DJUserInteractionMgr.h"
+#import "DJDataSyncer.h"
 
 @interface DCSubPartStateTableViewController ()<DCSubPartStateBaseCellDelegate>
 
@@ -79,6 +80,7 @@
             }
             self.dataArray = arrmu.copy;
             _offset = self.dataArray.count;
+            self.dataSyncer.dicovery_branch = self.dataArray;
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.tableView reloadData];
@@ -107,6 +109,8 @@
     DCSubPartStateModel *model = self.dataArray[indexPath.row];
     DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
     dvc.model = model;
+    dvc.isSearchSubvc = self.isSearchSubvc;
+    dvc.dataSyncer = self.dataSyncer;
     [self.navigationController pushViewController:dvc animated:YES];
 }
 
@@ -114,6 +118,17 @@
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:NO type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (_isSearchSubvc) {
+            for (DCSubPartStateModel *modelSearch in self.dataSyncer.dicovery_branch) {
+                if (modelSearch.seqid == model.seqid) {
+                    modelSearch.praiseid = model.praiseid;
+                    modelSearch.praisecount = model.praisecount;
+                    NSLog(@"支部动态点赞同步: %@",model.title);
+                }
+            }
+        }
+        
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"点赞失败，请稍后重试"];
@@ -123,6 +138,16 @@
     sender.userInteractionEnabled = NO;
     [DJUserInteractionMgr.sharedInstance likeCollectWithModel:model collect:YES type:DJDataPraisetypeState success:^(NSInteger cbkid, NSInteger cbkCount) {
         sender.userInteractionEnabled = YES;
+        
+        if (_isSearchSubvc) {
+            for (DCSubPartStateModel *modelSearch in self.dataSyncer.dicovery_branch) {
+                if (modelSearch.seqid == model.seqid) {
+                    modelSearch.collectionid = model.collectionid;
+                    modelSearch.collectioncount = model.collectioncount;
+                    NSLog(@"支部动态收藏同步: %@",model.title);
+                }
+            }
+        }
     } failure:^(id failureObj) {
         sender.userInteractionEnabled = YES;
         [self presentFailureTips:@"收藏失败，请稍后重试"];
@@ -133,6 +158,8 @@
     DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
     dvc.model = model;
     dvc.showCommentView = YES;
+    dvc.isSearchSubvc = self.isSearchSubvc;
+    dvc.dataSyncer = self.dataSyncer;
     [self.navigationController pushViewController:dvc animated:YES];
 }
 

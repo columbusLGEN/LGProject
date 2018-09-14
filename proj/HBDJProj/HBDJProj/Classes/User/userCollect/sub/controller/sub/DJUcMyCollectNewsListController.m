@@ -141,7 +141,7 @@
         EDJMicroBuildModel *model = self.dataArray[indexPath.row];
         currentClickModel = model;
         [model addObserver:self forKeyPath:collectionidKey options:NSKeyValueObservingOptionNew context:nil];
-        [self.transAssist skipWithType:2 model:model baseVc:self];
+        [self.transAssist skipWithType:2 model:model baseVc:self dataSyncer:nil];
     }
     
 }

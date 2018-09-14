@@ -376,6 +376,7 @@ DJDsSearchChildVcDelegate>
         
         /// 学习问答
         DCQuestionCommunityViewController *qavc = self.childViewControllers[0];
+        qavc.isSearchSubvc = YES;
         NSMutableArray *arrmu_qa = NSMutableArray.new;
         for (NSInteger i = 0; i < questionanswer.count; i++) {
             /// 字典转模型
@@ -383,24 +384,29 @@ DJDsSearchChildVcDelegate>
             [arrmu_qa addObject:model];
         }
         qavc.dataArray = arrmu_qa.copy;
+        qavc.dataSyncer = self.dataSyncer;
         
         /// 支部动态
         DCSubPartStateTableViewController *branchvc = self.childViewControllers[1];
+        branchvc.isSearchSubvc = YES;
         NSMutableArray *arrmu_br = NSMutableArray.new;
         for (NSInteger i = 0; i < branch.count; i++) {
             DCSubPartStateModel *model = [DCSubPartStateModel mj_objectWithKeyValues:branch[i]];
             [arrmu_br addObject:model];
         }
         branchvc.dataArray = arrmu_br.copy;
+        branchvc.dataSyncer = self.dataSyncer;
         
         /// 党员舞台
         DCSubStageTableviewController *pyqvc = self.childViewControllers[2];
+        pyqvc.isSearchSubvc = YES;
         NSMutableArray *arrmu_pyq = NSMutableArray.new;
         for (NSInteger i = 0; i < ugc.count; i++) {
             DCSubStageModel *model = [DCSubStageModel mj_objectWithKeyValues:ugc[i]];
             [arrmu_pyq addObject:model];
         }
         pyqvc.dataArray = arrmu_pyq.copy;
+        pyqvc.dataSyncer = self.dataSyncer;
         
         if (ugc.count || questionanswer.count || branch.count) {
             self.searchHistory.hidden = YES;

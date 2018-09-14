@@ -7,9 +7,12 @@
 //
 
 #import "LGBaseTableViewController.h"
-
+@class  DJDataSyncer;
 @interface DCQuestionCommunityViewController : LGBaseTableViewController
 @property (assign,nonatomic) NSInteger offset;
+@property (strong,nonatomic) DJDataSyncer *dataSyncer;
 - (void)getData;
+/** 是否是 搜索的自控制器 */
+@property (assign,nonatomic) BOOL isSearchSubvc;
 
 @end

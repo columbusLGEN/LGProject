@@ -8,8 +8,10 @@
 /// 搜索结果列表，要闻分表控制器
 
 #import "LGBaseTableViewController.h"
+@class DJDataSyncer;
 
 @interface HPSearchBuildPoineNewsController : LGBaseTableViewController
 @property (strong,nonatomic) NSString *searchContent;
+@property (strong,nonatomic) DJDataSyncer *dataSyncer;
 
 @end

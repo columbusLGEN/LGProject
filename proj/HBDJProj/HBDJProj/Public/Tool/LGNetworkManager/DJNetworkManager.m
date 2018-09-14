@@ -223,10 +223,24 @@
     if (!_baseUrl) {
 //        _baseUrl = @"http://192.168.12.42:8080/";
 //        _baseUrl = @"http://123.59.197.176:8480/";
-        _baseUrl = @"http://123.59.199.170:8081/";
-//        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
+//        _baseUrl = @"http://123.59.199.170:8081/";
+        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
     }
     return _baseUrl;
+}
+- (NSString *)host{
+    if (!_host) {
+        NSURL *url = [NSURL URLWithString:self.baseUrl];
+        _host = url.host;
+    }
+    return _host;
+}
+- (NSNumber *)port{
+    if (!_port) {
+        NSURL *url = [NSURL URLWithString:self.baseUrl];
+        _port = url.port;
+    }
+    return _port;
 }
 - (NSString *)pakageName{
     if (!_pakageName) {
@@ -234,21 +248,7 @@
     }
     return _pakageName;
 }
-- (NSString *)host{
-    if (!_host) {
-        _host = @"123.59.199.170";
-        //        _host = @"47.96.165.218";
-    }
-    return _host;
-}
-- (NSNumber *)port{
-    if (!_port) {
-        _port = @(8081);
-//        _port = @(8080);
-//        _port = @(8480);
-    }
-    return _port;
-}
+
 - (NSString *)tableURLPath{
     if (!_tableURLPath) {
         _tableURLPath = @"/APMKAFService/report/report.html";
@@ -257,13 +257,6 @@
 }
 - (NSURLComponents *)tableURLComponents{
     if (!_tableURLComponents) {
-        //        NSURL *testUrl = [NSURL URLWithString:@"http://123.59.199.170:8081/APMKAFService/report/report.html?mechanismid=180725062231004"];
-        //    host: 123.59.199.170
-        //    port: 8081
-        //    path: /APMKAFService/report/report.html
-        //    query: mechanismid=180725062231004
-        //    relativePath: /APMKAFService/report/
-        
         _tableURLComponents = NSURLComponents.new;
         _tableURLComponents.scheme = @"http";
         _tableURLComponents.host = DJNetworkManager.sharedInstance.host;
