@@ -17,7 +17,7 @@ PLPlayerView;
 @end
 
 @interface HPVideoContainerView : LGBaseView
-
+@property (weak,nonatomic) PLPlayerView *playerView;
 @property (weak,nonatomic) DJLessonDetailViewController *lessonDetailVc;
 @property (strong,nonatomic) DJDataBaseModel *model;
 @property (weak,nonatomic) id<HPVideoContainerViewDelegate> delegate;

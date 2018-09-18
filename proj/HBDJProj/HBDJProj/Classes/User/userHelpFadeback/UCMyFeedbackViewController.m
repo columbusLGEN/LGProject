@@ -27,6 +27,7 @@ static NSString * const cellID = @"UCHelpFadebackTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"我的反馈";
     _tableView.estimatedRowHeight = 1.0f;
     [_tableView registerClass:[UCHelpFadebackTableViewCell class] forCellReuseIdentifier:cellID];
   

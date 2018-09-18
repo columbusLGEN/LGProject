@@ -12,6 +12,10 @@
 @property (strong,nonatomic) UIButton *play;
 @property (strong,nonatomic) UILabel *currentTime;
 @property (strong,nonatomic) UILabel *totalTime;
+/** 连续播放按钮 */
+@property (strong,nonatomic) UIButton *conPlay;
+/** 展示连续播放按钮,在该项目中，朋友圈不展示连续播放按钮 */
+@property (assign,nonatomic) BOOL showCPB;
 
 @property (assign,nonatomic) CGFloat progressValue;
 

@@ -15,6 +15,8 @@
 #import "DJUcMyCollectPYQModel.h"
 #import "DJBanIndicateView.h"
 
+#define tbvWidth (kScreenWidth - 45)
+
 static NSString * const praiseid_keyPath = @"praiseid";
 static NSString * const collectionid_keyPath = @"collectionid";
 static NSString * const praisecount_keyPath = @"praisecount";
@@ -39,7 +41,7 @@ LGThreeRightButtonViewDelegate>
 
 @implementation DCSubStageBaseTableViewCell{
     
-    CGFloat tbvWidth;
+//    CGFloat tbvWidth;
 }
 
 - (void)setModel:(DCSubStageModel *)model{
@@ -115,8 +117,8 @@ LGThreeRightButtonViewDelegate>
         
         CGFloat commentTextTotalHeight = 0;
         for (DCSubStageCommentsModel *commentModel in model.frontComments) {
-            NSString *needCalHeightString = [commentModel.username stringByAppendingFormat:@":%@",commentModel.comment];
-            CGFloat singleCommentTextHeight = [needCalHeightString sizeOfTextWithMaxSize:CGSizeMake(tbvWidth, MAXFLOAT) font:[UIFont systemFontOfSize:14]].height;
+            NSString *needCalHeightString = commentModel.fullCommentString.string;
+            CGFloat singleCommentTextHeight = [needCalHeightString sizeOfTextWithMaxSize:CGSizeMake(tbvWidth - 10, MAXFLOAT) font:[UIFont systemFontOfSize:14]].height;
             commentTextTotalHeight += singleCommentTextHeight;
 //            NSLog(@"%@ :height %f,tbvWidth: %f",needCalHeightString,singleCommentTextHeight,tbvWidth);
         }
@@ -124,11 +126,10 @@ LGThreeRightButtonViewDelegate>
         [self.boInterView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.tbvForComments.mas_top);
             make.left.equalTo(self.time.mas_right).offset(-marginTen);
-            make.right.equalTo(self.mas_right);
+            make.right.equalTo(self.contentView.mas_right);
             make.height.mas_equalTo(45);
         }];
         
-//        NSLog(@"%@ 评论视图高度: %f",model.content,commentTextTotalHeight);
         [self.tbvForComments mas_updateConstraints:^(MASConstraintMaker *make) {
             /// 10 * _comments.count 为每个cell 上下间距各 5
             make.height.mas_equalTo(commentTextTotalHeight + (10 * _comments.count));
@@ -144,7 +145,7 @@ LGThreeRightButtonViewDelegate>
         [self.boInterView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.bottomRect.mas_top);
             make.left.equalTo(self.time.mas_right).offset(-marginTen);
-            make.right.equalTo(self.mas_right);
+            make.right.equalTo(self.contentView.mas_right);
             make.height.mas_equalTo(45);
         }];
     }
@@ -163,49 +164,11 @@ LGThreeRightButtonViewDelegate>
     [model addObserver:self forKeyPath:collectioncount_keyPath options:NSKeyValueObservingOptionNew context:nil];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if (object == self.model) {
-        if ([keyPath isEqualToString:praiseid_keyPath]) {
-            _boInterView.leftIsSelected = !(self.model.praiseid <= 0);
-        }
-        if ([keyPath isEqualToString:collectionid_keyPath]) {
-            _boInterView.middleIsSelected = !(self.model.collectionid <= 0);
-        }
-        if ([keyPath isEqualToString:praisecount_keyPath]) {
-            _boInterView.likeCount = self.model.praisecount;
-        }
-        if ([keyPath isEqualToString:collectioncount_keyPath]) {
-            _boInterView.collectionCount = self.model.collectioncount;
-        }
-    }
-    if (object == self.mc_pyq_model && [keyPath isEqualToString:select_key]) {
-        self.seButon.selected = self.mc_pyq_model.select;
-    }
-}
-
-- (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    /// 党员舞台点赞
-    if ([self.delegate respondsToSelector:@selector(pyqLikeWithModel:sender:)]) {
-        [self.delegate pyqLikeWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
-    }
-}
-- (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    /// 党员舞台收藏
-    if ([self.delegate respondsToSelector:@selector(pyqCollectWithModel:sender:)]) {
-        [self.delegate pyqCollectWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
-    }
-}
-- (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
-    /// 党员舞台评论
-    if ([self.delegate respondsToSelector:@selector(pyqCommentWithModel:sender:)]) {
-        [self.delegate pyqCommentWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
-    }
-}
-
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
     [self.icon cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:self.icon.height * 0.5];
-    tbvWidth = _tbvForComments.width;
+
 }
 
 - (void)configUI {
@@ -272,8 +235,11 @@ LGThreeRightButtonViewDelegate>
     
     [self.tbvForComments mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.icon.mas_left);
-        make.right.equalTo(self.contentView.mas_right).offset(-30);
+//        make.right.equalTo(self.contentView.mas_right).offset(-20);
+        make.width.mas_equalTo(tbvWidth);
+        
         make.bottom.equalTo(self.contentView.mas_bottom);
+//        make.height.mas_equalTo(25);
     }];
     
     LGTriangleView *triangle = [LGTriangleView new];
@@ -286,6 +252,46 @@ LGThreeRightButtonViewDelegate>
     }];
     _triangle = triangle;
     
+    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if (object == self.model) {
+        if ([keyPath isEqualToString:praiseid_keyPath]) {
+            _boInterView.leftIsSelected = !(self.model.praiseid <= 0);
+        }
+        if ([keyPath isEqualToString:collectionid_keyPath]) {
+            _boInterView.middleIsSelected = !(self.model.collectionid <= 0);
+        }
+        if ([keyPath isEqualToString:praisecount_keyPath]) {
+            _boInterView.likeCount = self.model.praisecount;
+        }
+        if ([keyPath isEqualToString:collectioncount_keyPath]) {
+            _boInterView.collectionCount = self.model.collectioncount;
+        }
+    }
+    if (object == self.mc_pyq_model && [keyPath isEqualToString:select_key]) {
+        self.seButon.selected = self.mc_pyq_model.select;
+    }
+}
+
+- (void)leftClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 党员舞台点赞
+    if ([self.delegate respondsToSelector:@selector(pyqLikeWithModel:sender:)]) {
+        [self.delegate pyqLikeWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
+    }
+}
+- (void)middleClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 党员舞台收藏
+    if ([self.delegate respondsToSelector:@selector(pyqCollectWithModel:sender:)]) {
+        [self.delegate pyqCollectWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
+    }
+}
+- (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
+    /// 党员舞台评论
+    if ([self.delegate respondsToSelector:@selector(pyqCommentWithModel:sender:)]) {
+        [self.delegate pyqCommentWithModel:self.model?self.model:self.mc_pyq_model sender:sender];
+    }
 }
 
 - (UIImageView *)icon{

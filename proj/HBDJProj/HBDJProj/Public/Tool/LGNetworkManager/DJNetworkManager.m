@@ -212,9 +212,10 @@
 /** 返回最终的请求参数 */
 - (NSMutableDictionary *)terParamWithUnitParam:(NSDictionary *)unitParam{
     NSMutableDictionary *argum = [NSMutableDictionary dictionaryWithCapacity:10];
-    /// TODO: 计算param 的 MD5
     argum[@"params"] = unitParam;
-    argum[@"md5"] = @"md5";
+    
+    /// 计算param 的 MD5
+    argum[@"md5"] = [[unitParam dictToString] md5String];
     return argum;
 }
 
@@ -223,8 +224,8 @@
     if (!_baseUrl) {
 //        _baseUrl = @"http://192.168.12.42:8080/";
 //        _baseUrl = @"http://123.59.197.176:8480/";
-//        _baseUrl = @"http://123.59.199.170:8081/";
-        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
+        _baseUrl = @"http://123.59.199.170:8081/";
+//        _baseUrl = @"http://dy.cjszyun.cn/";// @"http://47.96.165.218:8081/";// 长江传媒
     }
     return _baseUrl;
 }

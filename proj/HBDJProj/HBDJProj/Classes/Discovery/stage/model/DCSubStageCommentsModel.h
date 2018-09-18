@@ -25,5 +25,6 @@
 @property (strong,nonatomic) NSString *username;
 @property (strong,nonatomic) NSString *userid;
 
+@property (strong,nonatomic) NSMutableAttributedString *fullCommentString;
 
 @end

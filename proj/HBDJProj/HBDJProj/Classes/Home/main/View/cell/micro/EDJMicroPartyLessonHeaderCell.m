@@ -28,8 +28,8 @@
     _titleLeft.text = model.headerModel1.classname;
     _titleRight.text = model.headerModel2.classname;
     
-    [_imgLeft sd_setImageWithURL:model.headerModel1.imgUrl placeholderImage:DJPlaceholderImage];
-    [_imgRight sd_setImageWithURL:model.headerModel2.imgUrl placeholderImage:DJPlaceholderImage];
+    [_imgLeft sd_setImageWithURL:[NSURL URLWithString:model.headerModel1.imgUrl] placeholderImage:DJPlaceholderImage];
+    [_imgRight sd_setImageWithURL:[NSURL URLWithString:model.headerModel2.imgUrl] placeholderImage:DJPlaceholderImage];
     
 }
 

@@ -29,7 +29,7 @@
 #import "LGPlayer.h"
 #import "DJUserInteractionMgr.h"
 #import "HPAddBroseCountMgr.h"
-#import "PLPlayerView.h"
+
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -158,7 +158,8 @@ HPVideoContainerViewDelegate>
         /// MARK: 视频播放器
         HPVideoContainerView *vpv = [[HPVideoContainerView alloc] init];
         vpv.delegate = self;
-//        vpv.vc = self;
+
+        
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
         [self.view addSubview:vpv];
         vpv.model = self.model;
@@ -166,7 +167,7 @@ HPVideoContainerViewDelegate>
     }else if (self.contentType == ModelMediaTypeAudio){
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
-//        apv.vc = self;
+
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
         apv.model = self.model;

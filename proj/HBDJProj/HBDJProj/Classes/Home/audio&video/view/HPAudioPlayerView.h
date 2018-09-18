@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class DJDataBaseModel,DJLessonDetailViewController;
+#import "DJMediaPlayDelegate.h"
+@class DJDataBaseModel,DJLessonDetailViewController,LGAudioPlayerView;
 
 @interface HPAudioPlayerView : UIView
 @property (strong,nonatomic) DJDataBaseModel *model;
 @property (weak,nonatomic) DJLessonDetailViewController *lessonDetailVc;
+@property (weak, nonatomic) IBOutlet LGAudioPlayerView *audioPlayer;
+@property (weak,nonatomic) id<DJMediaPlayDelegate> delegate;
 
 - (void)audioStop;
 + (instancetype)audioPlayerView;

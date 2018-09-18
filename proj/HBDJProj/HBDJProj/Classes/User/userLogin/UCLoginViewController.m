@@ -14,7 +14,8 @@
 static NSString * const dj_username_local = @"dj_username";
 
 @interface UCLoginViewController ()<
-UCAccountHitViewControllerDelegate>
+UCAccountHitViewControllerDelegate,
+UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *pwd;
 @property (weak, nonatomic) IBOutlet UIButton *login;
@@ -47,6 +48,8 @@ UCAccountHitViewControllerDelegate>
     _eye.selected = _pwdIsSecureEntry;
     
     _username.text = [[NSUserDefaults standardUserDefaults] objectForKey:dj_username_local];
+    
+    
 }
 
 - (IBAction)displayPwd:(UIButton *)sender {
@@ -137,6 +140,19 @@ UCAccountHitViewControllerDelegate>
 - (void)ucanLoginWithTel:(NSString *)tel pwd:(NSString *)pwd{
     _username.text = tel;
     _pwd.text = pwd;
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if ([textField isEqual:_username]) {
+        [_pwd becomeFirstResponder];
+    }
+    
+    if ([textField isEqual:_pwd]) {
+        [self userLoginWithTel:_username.text pwd:_pwd.text];
+    }
+    
+    return YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{

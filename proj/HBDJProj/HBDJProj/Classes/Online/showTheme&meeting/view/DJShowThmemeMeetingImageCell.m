@@ -33,18 +33,37 @@
         nineImageViewHeight += (niImgWidth + niMargin) * 2;
     }
     
-    [_groupView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(marginTen);
-        make.left.equalTo(self.item.mas_right).offset(marginEight);
-        make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginTen);
-        make.height.mas_equalTo(nineImageViewHeight);
-    }];
+    if (kScreenWidth < 375) {
+        [_groupView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.item.mas_bottom).offset(marginFive);
+            make.left.equalTo(self.contentView.mas_left).offset(marginTen);
+            make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginTen);
+            make.height.mas_equalTo(nineImageViewHeight);
+        }];
+        
+        [self.item mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(marginTen);
+            make.top.equalTo(self.contentView.mas_top).offset(marginEight);
+        }];
+        
+    }else{
+        [_groupView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView.mas_top).offset(marginTen);
+            make.left.equalTo(self.item.mas_right).offset(marginEight);
+            make.right.equalTo(self.contentView.mas_right).offset(-marginFifteen);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginTen);
+            make.height.mas_equalTo(nineImageViewHeight);
+        }];
+        [self.item mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(marginTen);
+            make.top.equalTo(_groupView.mas_top);
+        }];
+    }
     
-    [self.item mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(marginTen);
-        make.top.equalTo(_groupView.mas_top);
-    }];
+    
+    
+    
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{

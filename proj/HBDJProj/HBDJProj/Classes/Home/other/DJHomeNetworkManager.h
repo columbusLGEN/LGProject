@@ -24,6 +24,8 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
 
 @interface DJHomeNetworkManager : NSObject
 
+/** 请求专辑的所有课程id */
+- (void)frontNews_selectClassIdWithClassid:(NSInteger)classid sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 请求客服电话 */
 - (void)requestForServiceNumberSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 请求专辑的封面和简介 -- 用作推送消息的跳转 */

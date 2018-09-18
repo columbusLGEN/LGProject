@@ -16,7 +16,6 @@
 @interface HPVideoContainerView ()<
 PLPlayerViewDelegate>
 
-@property (weak,nonatomic) PLPlayerView *playerView;
 @property (nonatomic, assign) BOOL isFullScreen;
 @property (assign,nonatomic) CGRect originFrame;
 
@@ -111,6 +110,8 @@ PLPlayerViewDelegate>
         }];
         
         playerView.delegate = self;
+        
+        playerView.showCPB = YES;
         
         _playerView = playerView;
     }

@@ -140,6 +140,9 @@
 		884312F02089C25600321F84 /* LGSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312EF2089C25600321F84 /* LGSegmentViewController.m */; };
 		884312F62089C58000321F84 /* LGSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312F52089C58000321F84 /* LGSegmentView.m */; };
 		884312F92089C82800321F84 /* UCUploadHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884312F82089C82800321F84 /* UCUploadHomePageViewController.m */; };
+		8843492C2150ABCE00A3CD69 /* NSDictionary+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843492B2150ABCE00A3CD69 /* NSDictionary+LGExtension.m */; };
+		8843492F2150D0B100A3CD69 /* DJHomeSearchAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843492E2150D0B100A3CD69 /* DJHomeSearchAlbumCell.m */; };
+		884349312150D0B900A3CD69 /* DJHomeSearchAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884349302150D0B900A3CD69 /* DJHomeSearchAlbumCell.xib */; };
 		88435E6D208D65C600188CE9 /* UCMyQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E6C208D65C600188CE9 /* UCMyQuestionViewController.m */; };
 		88435E70208D68A400188CE9 /* UCQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E6F208D68A400188CE9 /* UCQuestionTableViewCell.m */; };
 		88435E73208D68D700188CE9 /* UCQuestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88435E72208D68D700188CE9 /* UCQuestionModel.m */; };
@@ -620,6 +623,7 @@
 		882B118C20D24A2700917374 /* HPVideoContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPVideoContainerView.m; sourceTree = "<group>"; };
 		882C61D72117F5A200C0D887 /* OLVoteDetailBottomTimeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailBottomTimeCell.h; sourceTree = "<group>"; };
 		882C61D82117F5A200C0D887 /* OLVoteDetailBottomTimeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailBottomTimeCell.m; sourceTree = "<group>"; };
+		882CAC502150F2B0009A449E /* DJMediaPlayDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJMediaPlayDelegate.h; sourceTree = "<group>"; };
 		882FBFB82134DF73005F7187 /* LGSwitchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSwitchViewController.h; sourceTree = "<group>"; };
 		882FBFB92134DF73005F7187 /* LGSwitchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSwitchViewController.m; sourceTree = "<group>"; };
 		882FBFBB2134DF89005F7187 /* DJMyCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJMyCollectViewController.h; sourceTree = "<group>"; };
@@ -796,6 +800,11 @@
 		884312F52089C58000321F84 /* LGSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSegmentView.m; sourceTree = "<group>"; };
 		884312F72089C82800321F84 /* UCUploadHomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCUploadHomePageViewController.h; sourceTree = "<group>"; };
 		884312F82089C82800321F84 /* UCUploadHomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCUploadHomePageViewController.m; sourceTree = "<group>"; };
+		8843492A2150ABCE00A3CD69 /* NSDictionary+LGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LGExtension.h"; sourceTree = "<group>"; };
+		8843492B2150ABCE00A3CD69 /* NSDictionary+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LGExtension.m"; sourceTree = "<group>"; };
+		8843492D2150D0B100A3CD69 /* DJHomeSearchAlbumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJHomeSearchAlbumCell.h; sourceTree = "<group>"; };
+		8843492E2150D0B100A3CD69 /* DJHomeSearchAlbumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJHomeSearchAlbumCell.m; sourceTree = "<group>"; };
+		884349302150D0B900A3CD69 /* DJHomeSearchAlbumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJHomeSearchAlbumCell.xib; sourceTree = "<group>"; };
 		88435E6B208D65C600188CE9 /* UCMyQuestionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCMyQuestionViewController.h; sourceTree = "<group>"; };
 		88435E6C208D65C600188CE9 /* UCMyQuestionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCMyQuestionViewController.m; sourceTree = "<group>"; };
 		88435E6E208D68A400188CE9 /* UCQuestionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UCQuestionTableViewCell.h; sourceTree = "<group>"; };
@@ -1722,6 +1731,8 @@
 				88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */,
 				88D13C4420902BF000A32236 /* NSObject+Extension.h */,
 				88D13C4520902BF000A32236 /* NSObject+Extension.m */,
+				8843492A2150ABCE00A3CD69 /* NSDictionary+LGExtension.h */,
+				8843492B2150ABCE00A3CD69 /* NSDictionary+LGExtension.m */,
 			);
 			path = NSCatagory;
 			sourceTree = "<group>";
@@ -3026,6 +3037,7 @@
 		889FCD2120B3FA430045746D /* audio&video */ = {
 			isa = PBXGroup;
 			children = (
+				882CAC502150F2B0009A449E /* DJMediaPlayDelegate.h */,
 				889FCD2220B3FA4C0045746D /* controller */,
 				889FCD2720B3FA940045746D /* model */,
 				889FCD2620B3FA8F0045746D /* view */,
@@ -3411,6 +3423,9 @@
 				88435EA5208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.h */,
 				88435EA6208EFC1100188CE9 /* EDJMicroPartyLessonSubCell.m */,
 				88435EA8208EFC1800188CE9 /* EDJMicroPartyLessonSubCell.xib */,
+				8843492D2150D0B100A3CD69 /* DJHomeSearchAlbumCell.h */,
+				8843492E2150D0B100A3CD69 /* DJHomeSearchAlbumCell.m */,
+				884349302150D0B900A3CD69 /* DJHomeSearchAlbumCell.xib */,
 				8835B303207213B000722010 /* EDJMicroPSCellFooter.h */,
 				8835B304207213B000722010 /* EDJMicroPSCellFooter.m */,
 			);
@@ -3929,6 +3944,7 @@
 				88435E7B208DB43800188CE9 /* LevelBonusRules.plist in Resources */,
 				88D13C562090443500A32236 /* EDJDigitalCell.xib in Resources */,
 				88D13C612090586900A32236 /* OLHomeCollectionCell.xib in Resources */,
+				884349312150D0B900A3CD69 /* DJHomeSearchAlbumCell.xib in Resources */,
 				88D13C352090145100A32236 /* EDJSearchTagHistoryCell.xib in Resources */,
 				88EA133220AD533D007AB886 /* detaiTtest.html in Resources */,
 				88ECF065209FF7D00071A98A /* OLExamSingleStemCell.xib in Resources */,
@@ -4177,6 +4193,7 @@
 				8877742720C0F7390011DFF3 /* LGLocalFileManager.m in Sources */,
 				88D4C0BD2142449900CADB42 /* DJResourceTypeNewsViewController.m in Sources */,
 				88C5F13E20B7DCDF0075D5F2 /* EDJHomeImageLoopModel.m in Sources */,
+				8843492F2150D0B100A3CD69 /* DJHomeSearchAlbumCell.m in Sources */,
 				884312F62089C58000321F84 /* LGSegmentView.m in Sources */,
 				88DD8142209C246B00F297D6 /* OLVoteDetailHeaderView.m in Sources */,
 				8885D23E20A2EC7600DC06A1 /* LGSegmentBottomView.m in Sources */,
@@ -4248,6 +4265,7 @@
 				88176FDD210EAA15004B8F2F /* DJHomeSearchViewController.m in Sources */,
 				88EB4068213F69DF00F12211 /* LGSystem.m in Sources */,
 				881C948D2068EA5A009D6A52 /* AppDelegate.m in Sources */,
+				8843492C2150ABCE00A3CD69 /* NSDictionary+LGExtension.m in Sources */,
 				88CD73A220995A5200E80058 /* HPBookInfoBriefCell.m in Sources */,
 				880363A920E4A31A00E97FA3 /* LGUserLimitsManager.m in Sources */,
 				8876E3DD20EB6E9A001C6A1A /* DJOnlineUploadTableModel.m in Sources */,
@@ -4720,7 +4738,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -4822,7 +4840,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

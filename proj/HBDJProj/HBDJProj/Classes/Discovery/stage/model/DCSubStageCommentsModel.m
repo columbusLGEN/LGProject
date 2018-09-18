@@ -10,4 +10,21 @@
 
 @implementation DCSubStageCommentsModel
 
+- (NSMutableAttributedString *)fullCommentString{
+    if (!_fullCommentString) {
+        NSString *blueString = [self.username stringByAppendingString:@": "];
+        
+        NSString *desContent = [blueString stringByAppendingString:self.comment];
+        
+        NSDictionary *attrDict = @{NSForegroundColorAttributeName:[UIColor EDJColor_6CBEFC]};
+        
+        NSMutableAttributedString *desAttContent = [[NSMutableAttributedString alloc] initWithString:desContent];
+        
+        [desAttContent setAttributes:attrDict range:NSMakeRange([desContent rangeOfString:blueString].location, [desContent rangeOfString:blueString].length)];
+        
+        _fullCommentString = desAttContent;
+    }
+    return _fullCommentString;
+}
+
 @end

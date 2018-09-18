@@ -9,8 +9,9 @@
 #import "HPSearchLessonController.h"
 #import "EDJMicroPartyLessonSubCell.h"
 #import "DJDataBaseModel.h"
-
+#import "EDJMicroLessionAlbumModel.h"
 #import "DJMediaDetailTransAssist.h"
+#import "DJHomeSearchAlbumCell.h"
 
 @interface HPSearchLessonController ()
 @property (strong,nonatomic) DJMediaDetailTransAssist *transAssist;
@@ -25,7 +26,7 @@
 
 - (void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
-    offset = dataArray.count;
+    offset = dataArray.count - self.albumCount;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];
@@ -37,12 +38,13 @@
     offset = 0;
     self.tableView.rowHeight = homeMicroLessonSubCellBaseHeight * rateForMicroLessonCellHeight();
     [self.tableView registerNib:[UINib nibWithNibName:microPartyLessonSubCell bundle:nil] forCellReuseIdentifier:microPartyLessonSubCell];
+    [self.tableView registerNib:[UINib nibWithNibName:homeSearchAlbumCell bundle:nil] forCellReuseIdentifier:homeSearchAlbumCell];
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreLesson)];
 }
 - (void)getMoreLesson{
-    [DJHomeNetworkManager homeSearchWithString:_searchContent type:1 offset:offset length:1 sort:0 success:^(id responseObj) {
-        NSLog(@"homesearch_loadmore_lesson: %@",responseObj);
+    [DJHomeNetworkManager homeSearchWithString:_searchContent type:1 offset:offset length:10 sort:0 success:^(id responseObj) {
+        
         NSArray *array = (NSArray *)responseObj;
         NSMutableArray *arrayMutable = [NSMutableArray arrayWithArray:self.dataArray];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -66,6 +68,10 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DJDataBaseModel *model = self.dataArray[indexPath.row];
+    if ([model isMemberOfClass:[EDJMicroLessionAlbumModel class]]) {
+        DJHomeSearchAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:homeSearchAlbumCell forIndexPath:indexPath];
+        return cell;
+    }
     EDJMicroPartyLessonSubCell *cell = [tableView dequeueReusableCellWithIdentifier:microPartyLessonSubCell forIndexPath:indexPath];
     cell.model = model;
     return cell;

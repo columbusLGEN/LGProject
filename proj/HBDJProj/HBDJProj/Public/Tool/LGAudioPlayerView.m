@@ -19,6 +19,31 @@ static CGFloat progressRectWidth = 3;
 
 @implementation LGAudioPlayerView
 
+- (void)setShowCPB:(BOOL)showCPB{
+    _showCPB = showCPB;
+    
+    if (showCPB) {
+        [self addSubview:self.conPlay];
+        [self.conPlay mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.mas_right).offset(-marginTen);
+            make.centerY.equalTo(self.play.mas_centerY);
+            
+        }];
+        [self.progress mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.play.mas_centerY);
+            make.left.equalTo(self.play.mas_right).offset(marginTen);
+            make.right.equalTo(self.conPlay.mas_left).offset(-marginEight);
+            make.height.mas_equalTo(progressHeight);
+        }];
+        [self.totalTime mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.conPlay.mas_right);
+            make.centerY.equalTo(self.currentTime.mas_centerY);
+        }];
+    }else{
+        
+    }
+}
+
 - (NSDateFormatter *)formatter{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"mm:ss"];
@@ -81,7 +106,7 @@ static CGFloat progressRectWidth = 3;
         make.height.mas_equalTo(progressHeight);
     }];
     [self.currentTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.progress.mas_left);
+        make.left.equalTo(self.play.mas_left).offset(marginFive);
         make.top.equalTo(self.progress.mas_bottom).offset(marginTen);
     }];
     [self.totalTime mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,6 +178,14 @@ static CGFloat progressRectWidth = 3;
         [self addSubview:_rect];
     }
     return _rect;
+}
+- (UIButton *)conPlay{
+    if (!_conPlay) {
+        _conPlay = UIButton.new;
+        [_conPlay setImage:[UIImage imageNamed:@"con_play_audio"] forState:UIControlStateNormal];
+        [_conPlay setImage:[UIImage imageNamed:@"con_play_highlighted"] forState:UIControlStateSelected];
+    }
+    return _conPlay;
 }
 
 @end

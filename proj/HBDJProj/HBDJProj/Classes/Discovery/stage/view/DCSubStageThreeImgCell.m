@@ -14,8 +14,6 @@
 #import "DJUcMyCollectPYQModel.h"
 
 @interface DCSubStageThreeImgCell ()
-@property (strong,nonatomic) DCSubStageModel *subModel;
-//@property (weak,nonatomic) LGNineImgView *nineImg;
 @property (nonatomic,strong) HZPhotoGroup *groupView;
 
 @end
@@ -24,7 +22,6 @@
 
 - (void)setModel:(DCSubStageModel *)model{
     [super setModel:model];
-    _subModel = model;
     [self assiDataWithModel:model];
 }
 

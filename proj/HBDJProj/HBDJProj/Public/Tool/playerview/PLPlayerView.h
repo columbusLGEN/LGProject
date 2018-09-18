@@ -38,6 +38,10 @@
 /// ---
 - (void)lg_play_before;
 - (void)lg_real_play;
+/** 列表播放 按钮 */
+@property (nonatomic, strong) UIButton *conPlay;
+/** 展示连续播放按钮,在该项目中，朋友圈不展示连续播放按钮 */
+@property (assign,nonatomic) BOOL showCPB;
 
 @end
 

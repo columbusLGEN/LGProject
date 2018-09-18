@@ -19,15 +19,7 @@
 - (void)setModel:(DCSubStageCommentsModel *)model{
     _model = model;
     
-    NSString *desContent = [model.username stringByAppendingString:[NSString stringWithFormat:@": %@",model.comment]];
-    NSDictionary *attrDict = @{NSForegroundColorAttributeName:[UIColor EDJColor_6CBEFC]};
-    
-    NSMutableAttributedString *desAttContent = [[NSMutableAttributedString alloc] initWithString:desContent];
-    
-    NSString *blueString = [model.username stringByAppendingString:@":"];
-    [desAttContent setAttributes:attrDict range:NSMakeRange([desContent rangeOfString:blueString].location, [desContent rangeOfString:blueString].length)];
-    
-    _content.attributedText = desAttContent;
+    _content.attributedText = model.fullCommentString;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -48,6 +40,7 @@
     if (!_content){
         _content = [UILabel new];
         _content.font = [UIFont systemFontOfSize:14];
+//        _content.preferredMaxLayoutWidth = kScreenWidth - 45;
         _content.numberOfLines = 0;
     }
     return _content;

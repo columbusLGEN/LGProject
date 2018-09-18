@@ -28,6 +28,9 @@
 #import "UIAlertController+LGExtension.h"
 #import "DJDataSyncer.h"
 
+#import "PLPlayerView.h"
+#import "LGAudioPlayerView.h"
+
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
 
@@ -39,7 +42,8 @@ LGVideoInterfaceViewDelegate,
 LGThreeRightButtonViewDelegate,
 DTAttributedTextContentViewDelegate,
 DTLazyImageViewDelegate,
-HPVideoContainerViewDelegate>
+HPVideoContainerViewDelegate,
+DJMediaPlayDelegate>
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) NSArray *array;
 
@@ -56,7 +60,11 @@ HPVideoContainerViewDelegate>
 
 @end
 
-@implementation DJLessonDetailViewController
+@implementation DJLessonDetailViewController{
+    NSArray *allLessonIds;
+    /** 当前播放课程索引 */
+    NSInteger currentPlayIndex;
+}
 
 /// MARK: 进入微党课详情页面
 + (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
@@ -128,23 +136,8 @@ HPVideoContainerViewDelegate>
     //      TRConfigTitleColorNormalKey:[UIColor EDJGrayscale_C6],
     //      TRConfigTitleColorSelectedKey:[UIColor EDJColor_8BCA32]
     //      }
-    NSInteger praiseid = 0;
-    NSInteger collectionid = 0;
     
-    NSInteger likeCount = 0;
-    NSInteger collectionCount = 0;
-
-    if (self.model) {
-        praiseid = self.model.praiseid;
-        collectionid = self.model.collectionid;
-        likeCount = self.model.praisecount;
-        collectionCount = self.model.collectioncount;
-    }
-    
-    pbdBottom.leftIsSelected = !(praiseid <= 0);
-    pbdBottom.middleIsSelected = !(collectionid <= 0);
-    pbdBottom.likeCount = likeCount;
-    pbdBottom.collectionCount = collectionCount;
+    [self setBottomBarData];
     
     [self.view addSubview:pbdBottom];
     
@@ -157,9 +150,16 @@ HPVideoContainerViewDelegate>
     self.array = arr.copy;
     [self.tableView reloadData];
     
+    /// 当前用户 是否连续播放微党课
+    __block NSNumber *loopPlay = [NSUserDefaults.standardUserDefaults objectForKey:self.userLoopPlayKey];
+    
     if (self.lessonMediaType == ModelMediaTypeVideo) {
         /// MARK: 视频播放器
         HPVideoContainerView *vpv = [[HPVideoContainerView alloc] init];
+        
+        [vpv.playerView.conPlay addTarget:self action:@selector(audioLoopPlay:) forControlEvents:UIControlEventTouchUpInside];
+        vpv.playerView.conPlay.selected = loopPlay.boolValue;
+        
         vpv.lessonDetailVc = self;
         vpv.delegate = self;
         vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
@@ -172,6 +172,11 @@ HPVideoContainerViewDelegate>
     }else if (self.lessonMediaType == ModelMediaTypeAudio){
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
+        apv.delegate = self;
+        
+        [apv.audioPlayer.conPlay addTarget:self action:@selector(audioLoopPlay:) forControlEvents:UIControlEventTouchUpInside];
+        apv.audioPlayer.conPlay.selected = loopPlay.boolValue;
+        
         apv.lessonDetailVc = self;
         apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
         [self.view addSubview:apv];
@@ -188,6 +193,119 @@ HPVideoContainerViewDelegate>
         [self.tableView reloadData];
     }];
     
+    if (loopPlay.boolValue) {
+
+        [DJHomeNetworkManager.sharedInstance frontNews_selectClassIdWithClassid:self.model.classid sort:0 success:^(id responseObj) {
+            
+        } failure:^(id failureObj) {
+            loopPlay = @(NO);
+            _apv.audioPlayer.conPlay.selected = NO;
+            _vpv.playerView.conPlay.selected = NO;
+            [NSUserDefaults.standardUserDefaults setObject:loopPlay forKey:self.userLoopPlayKey];
+            [self presentFailureTips:@"获取列表失败，请稍后重试"];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            }];
+        }];
+    }
+}
+
+- (void)setBottomBarData{
+    /// 设置数据
+    NSInteger praiseid = 0;
+    NSInteger collectionid = 0;
+    
+    NSInteger likeCount = 0;
+    NSInteger collectionCount = 0;
+    
+    if (self.model) {
+        praiseid = self.model.praiseid;
+        collectionid = self.model.collectionid;
+        likeCount = self.model.praisecount;
+        collectionCount = self.model.collectioncount;
+    }
+    
+    _pbdBottom.leftIsSelected = !(praiseid <= 0);
+    _pbdBottom.middleIsSelected = !(collectionid <= 0);
+    _pbdBottom.likeCount = likeCount;
+    _pbdBottom.collectionCount = collectionCount;
+}
+
+/// MARK: 音频循环 播放
+- (void)audioLoopPlay:(UIButton *)sender{
+    __block NSNumber *loopPlay = [NSUserDefaults.standardUserDefaults objectForKey:self.userLoopPlayKey];
+    loopPlay = @(!loopPlay.boolValue);
+    sender.selected = loopPlay.boolValue;
+    [NSUserDefaults.standardUserDefaults setObject:loopPlay forKey:self.userLoopPlayKey];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    
+    if (sender.isSelected) {
+        if (!allLessonIds) {
+            [DJHomeNetworkManager.sharedInstance frontNews_selectClassIdWithClassid:self.model.classid sort:0 success:^(id responseObj) {
+                [self handleAllLessonIdWith:responseObj];
+            } failure:^(id failureObj) {
+                loopPlay = @(NO);
+                sender.selected = NO;
+                [NSUserDefaults.standardUserDefaults setObject:loopPlay forKey:self.userLoopPlayKey];
+                [self presentFailureTips:@"获取列表失败，请稍后重试"];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                }];
+            }];
+        }
+    }else{
+        if (allLessonIds) {
+            allLessonIds = nil;
+        }
+    }
+}
+#pragma mark - DJMediaPlayDelegate
+- (void)currentMediaPlayCompleteWithCurrentModel:(DJDataBaseModel *)currentModel{
+    if (allLessonIds.count) {
+        for (NSInteger i = 0; i < allLessonIds.count; i++) {
+            LGBaseModel *model = allLessonIds[i];
+            if (currentModel.seqid == model.seqid) {
+                currentPlayIndex = i;
+            }
+        }
+        if (currentPlayIndex == (allLessonIds.count - 1)) {
+            [self presentSuccessTips:@"该专辑已全部播放完毕"];
+        }else{
+            NSInteger nextIndex = currentPlayIndex + 1;
+            LGBaseModel *nextModel = allLessonIds[nextIndex];
+            
+            /// MARK: 自动播放，请求详情接口
+            [DJHomeNetworkManager homePointNewsDetailWithId:nextModel.seqid type:DJDataPraisetypeMicrolesson success:^(id responseObj) {
+                
+                self.model = [DJDataBaseModel mj_objectWithKeyValues:responseObj];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self setBottomBarData];
+                    if (self.lessonMediaType == ModelMediaTypeVideo) {
+                        _vpv.model = self.model;
+                    }else{
+                        _apv.model = self.model;
+                    }
+                    [self.tableView reloadData];
+                }];
+                
+            } failure:^(id failureObj) {
+                
+            }];
+        }
+    }
+}
+
+- (void)handleAllLessonIdWith:(id)responseObj{
+    NSArray *arr = responseObj;
+    if (arr == nil || arr.count == 0) {
+        NSMutableArray *arrmu = NSMutableArray.new;
+        for (NSInteger i = 0; i < arr.count; i++) {
+            LGBaseModel *model = [LGBaseModel mj_objectWithKeyValues:arr[i]];
+            [arrmu addObject:model];
+        }
+        allLessonIds = arrmu.copy;
+    }
 }
 
 - (void)videoConViewPlayCheckWithPlayerView:(PLPlayerView *)playeView{
@@ -460,5 +578,8 @@ HPVideoContainerViewDelegate>
     [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadLesson];
 }
 
+- (NSString *)userLoopPlayKey{
+    return [NSString stringWithFormat:@"%@_loopPlay",DJUser.sharedInstance.userid];
+}
 
 @end

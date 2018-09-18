@@ -20,7 +20,6 @@ LGPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UIView *iconBg;
-@property (weak, nonatomic) IBOutlet LGAudioPlayerView *audioPlayer;
 @property (strong,nonatomic) LGPlayer *audio;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImg;
 
@@ -65,6 +64,12 @@ LGPlayerDelegate>
         self.audioPlayer.progressValue = 1;
         _played = NO;
         _audioPlayer.play.selected = NO;
+        
+    }
+    if (state == LGPlayerStateCompleted) {
+        if ([self.delegate respondsToSelector:@selector(currentMediaPlayCompleteWithCurrentModel:)]) {
+            [self.delegate currentMediaPlayCompleteWithCurrentModel:self.model];
+        }
     }
 }
 
@@ -115,6 +120,8 @@ LGPlayerDelegate>
     _audio = [LGPlayer new];
     _audio.delegate = self;
     _played = NO;
+    
+    self.audioPlayer.showCPB = YES;
     
     _audioPlayer.progressValue = 0;
     [_audioPlayer.play addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];

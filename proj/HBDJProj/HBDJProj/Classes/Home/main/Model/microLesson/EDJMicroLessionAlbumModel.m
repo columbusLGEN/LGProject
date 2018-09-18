@@ -10,9 +10,12 @@
 
 @implementation EDJMicroLessionAlbumModel
 
-- (NSURL *)imgUrl{
+@synthesize imgUrl = _imgUrl;
+
+- (NSString *)imgUrl{
     if (!_imgUrl) {
-        _imgUrl = [NSURL URLWithString:_classimg];
+//        _imgUrl = [NSURL URLWithString:self.classimg];
+        _imgUrl = self.classimg;
     }
     return _imgUrl;
 }

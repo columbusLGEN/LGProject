@@ -634,6 +634,10 @@ UIGestureRecognizerDelegate
                 make.width.equalTo(0);
             }];
             
+//            [self.conPlay mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                
+//            }];
+            
             [self.centerPlayButton mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(self);
                 make.size.equalTo(CGSizeMake(0, 0));
@@ -1092,6 +1096,35 @@ UIGestureRecognizerDelegate
     CGFloat totalDuration = CMTimeGetSeconds(self.player.totalDuration);
     self.bufferingView.progress = (durationSeconds - startSeconds) / totalDuration;
     self.bottomBufferingProgressView.progress = self.bufferingView.progress;
+}
+
+- (void)setShowCPB:(BOOL)showCPB{
+    _showCPB = showCPB;
+    
+    if (showCPB) {
+        [self addSubview:self.conPlay];
+        [self.conPlay mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.bottomBarView);
+            make.centerY.equalTo(self.enterFullScreenButton.mas_centerY);
+        }];
+        [self.enterFullScreenButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(self.bottomBarView);
+            make.width.equalTo(self.enterFullScreenButton.mas_height);
+            make.right.equalTo(self.conPlay.mas_left).offset(-2);
+        }];
+        
+    }else{
+        
+    }
+}
+
+- (UIButton *)conPlay{
+    if (!_conPlay) {
+        _conPlay = UIButton.new;
+        [_conPlay setImage:[UIImage imageNamed:@"con_play_audio"] forState:UIControlStateNormal];
+        [_conPlay setImage:[UIImage imageNamed:@"con_play_highlighted"] forState:UIControlStateSelected];
+    }
+    return _conPlay;
 }
 
 @end

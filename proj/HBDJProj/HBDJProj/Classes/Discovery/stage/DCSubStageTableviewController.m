@@ -48,11 +48,15 @@ WMPlayerDelegate>
         [self getData];
     }];
     
+//    [self.tableView.mj_header beginRefreshing];
 }
 - (void)setDataArray:(NSArray *)dataArray{
     [super setDataArray:dataArray];
     _offset = dataArray.count;
-    [self.tableView reloadData];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)getData{
@@ -86,9 +90,9 @@ WMPlayerDelegate>
             _offset = self.dataArray.count;
             self.dataSyncer.dicovery_PYQ = self.dataArray;
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.tableView reloadData];
-            }];
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                [self.tableView reloadData];
+//            }];
         }
         
     } failure:^(id failureObj) {
@@ -102,8 +106,11 @@ WMPlayerDelegate>
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DCSubStageModel *model = self.dataArray[indexPath.row];
+    
     DCSubStageBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[DCSubStageBaseTableViewCell cellReuseIdWithModel:model]];
+    
     cell.delegate = self;
+    
     cell.model = model;
     
     return cell;

@@ -41,10 +41,17 @@
 
 /// MARK: -----分割线-----
 
+- (void)frontNews_selectClassIdWithClassid:(NSInteger)classid sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"classid":[NSString stringWithFormat:@"%ld",classid],
+                            @"sort":[NSString stringWithFormat:@"%ld",sort]
+                            };
+    
+    [self sendPOSTRequestWithiName:@"frontNews/selectClassId" param:param success:success failure:failure];
+}
+
 /// MARK: 请求电话号码
 - (void)requestForServiceNumberSuccess:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     [self sendPOSTRequestWithiName:@"frontIndex/selectDefaultNum" param:@{} success:success failure:failure];
-
 }
 
 - (void)carouselfigure_selectCurriculumDetailWithClassid:(NSInteger)classid success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{

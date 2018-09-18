@@ -29,14 +29,6 @@ UCQuestionTableViewCellDelegate>
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     self.tableView.estimatedRowHeight = 1.0;
     
-//    NSMutableArray *arr = [NSMutableArray new];
-//    for (int i = 0; i < 5; i++) {
-//        UCQuestionModel *model = [UCQuestionModel new];
-//        [arr addObject:model];
-//    }
-//    _array = arr.copy;
-//    [self.tableView reloadData];
-    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _offset = 0;
         [self.tableView.mj_footer resetNoMoreData];
