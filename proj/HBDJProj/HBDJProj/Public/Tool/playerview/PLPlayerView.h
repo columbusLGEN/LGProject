@@ -16,6 +16,8 @@
 - (void)playerViewExitFullScreen:(PLPlayerView *)playerView;
 
 - (void)playerViewWillPlay:(PLPlayerView *)playerView;
+/** 播放视频完成 */
+- (void)playerViewCompleted:(PLPlayerView *)playerView;
 
 - (void)lg_played;
 

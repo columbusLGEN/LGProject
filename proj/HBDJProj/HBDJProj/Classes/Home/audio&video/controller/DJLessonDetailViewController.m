@@ -92,6 +92,9 @@ DJMediaPlayDelegate>
 }
 - (void)configUI{
     
+    /// TODO: 测试 sort
+    _sort = 1;
+    
     NSError *error = nil;
     
     _imageSizeCache = [[NSCache alloc] init];
@@ -195,7 +198,8 @@ DJMediaPlayDelegate>
     
     if (loopPlay.boolValue) {
 
-        [DJHomeNetworkManager.sharedInstance frontNews_selectClassIdWithClassid:self.model.classid sort:0 success:^(id responseObj) {
+        [DJHomeNetworkManager.sharedInstance frontNews_selectClassIdWithClassid:self.model.classid sort:_sort success:^(id responseObj) {
+            [self handleAllLessonIdWith:responseObj];
             
         } failure:^(id failureObj) {
             loopPlay = @(NO);
@@ -242,7 +246,7 @@ DJMediaPlayDelegate>
     
     if (sender.isSelected) {
         if (!allLessonIds) {
-            [DJHomeNetworkManager.sharedInstance frontNews_selectClassIdWithClassid:self.model.classid sort:0 success:^(id responseObj) {
+            [DJHomeNetworkManager.sharedInstance frontNews_selectClassIdWithClassid:self.model.classid sort:_sort success:^(id responseObj) {
                 [self handleAllLessonIdWith:responseObj];
             } failure:^(id failureObj) {
                 loopPlay = @(NO);
@@ -260,6 +264,11 @@ DJMediaPlayDelegate>
         }
     }
 }
+
+- (void)videoContainerCompletedWithModel:(DJDataBaseModel *)model{
+    [self currentMediaPlayCompleteWithCurrentModel:model];
+}
+
 #pragma mark - DJMediaPlayDelegate
 - (void)currentMediaPlayCompleteWithCurrentModel:(DJDataBaseModel *)currentModel{
     if (allLessonIds.count) {
@@ -269,13 +278,14 @@ DJMediaPlayDelegate>
                 currentPlayIndex = i;
             }
         }
+        
         if (currentPlayIndex == (allLessonIds.count - 1)) {
             [self presentSuccessTips:@"该专辑已全部播放完毕"];
         }else{
             NSInteger nextIndex = currentPlayIndex + 1;
             LGBaseModel *nextModel = allLessonIds[nextIndex];
             
-            /// MARK: 自动播放，请求详情接口
+            /// MARK: 请求下一条数据，自动播放
             [DJHomeNetworkManager homePointNewsDetailWithId:nextModel.seqid type:DJDataPraisetypeMicrolesson success:^(id responseObj) {
                 
                 self.model = [DJDataBaseModel mj_objectWithKeyValues:responseObj];
@@ -285,6 +295,7 @@ DJMediaPlayDelegate>
                         _vpv.model = self.model;
                     }else{
                         _apv.model = self.model;
+                        
                     }
                     [self.tableView reloadData];
                 }];
@@ -298,7 +309,7 @@ DJMediaPlayDelegate>
 
 - (void)handleAllLessonIdWith:(id)responseObj{
     NSArray *arr = responseObj;
-    if (arr == nil || arr.count == 0) {
+    if (!(arr == nil || arr.count == 0)) {
         NSMutableArray *arrmu = NSMutableArray.new;
         for (NSInteger i = 0; i < arr.count; i++) {
             LGBaseModel *model = [LGBaseModel mj_objectWithKeyValues:arr[i]];

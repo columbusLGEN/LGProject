@@ -12,7 +12,9 @@ DJLessonDetailViewController,
 PLPlayerView;
 
 @protocol HPVideoContainerViewDelegate <NSObject>
+/** 流量播放检查 */
 - (void)videoConViewPlayCheckWithPlayerView:(PLPlayerView *)playeView;
+- (void)videoContainerCompletedWithModel:(DJDataBaseModel *)model;
 
 @end
 

@@ -31,4 +31,7 @@ typedef NS_ENUM(NSUInteger, DJLessonMediaType) {
 
 @property (strong,nonatomic) DJDataSyncer *dataSyncer;
 
+/** 专辑列表的顺序 0时间正序 1时间倒叙 */
+@property (assign,nonatomic) NSInteger sort;
+
 @end

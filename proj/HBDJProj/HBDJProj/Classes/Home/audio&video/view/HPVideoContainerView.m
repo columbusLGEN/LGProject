@@ -99,6 +99,12 @@ PLPlayerViewDelegate>
     
 }
 
+- (void)playerViewCompleted:(PLPlayerView *)playerView{
+    if ([self.delegate respondsToSelector:@selector(videoContainerCompletedWithModel:)]) {
+        [self.delegate videoContainerCompletedWithModel:self.model];
+    }
+}
+
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         

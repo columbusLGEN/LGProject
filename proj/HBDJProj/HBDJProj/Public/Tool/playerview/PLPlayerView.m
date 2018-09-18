@@ -989,6 +989,9 @@ UIGestureRecognizerDelegate
 - (void)player:(PLPlayer *)player statusDidChange:(PLPlayerStatus)state{
     
     if (state == PLPlayerStatusCompleted) {
+        if ([self.delegate respondsToSelector:@selector(playerViewCompleted:)]) {
+            [self.delegate playerViewCompleted:self];
+        }
         [self stop];
         return;
     }
