@@ -121,7 +121,7 @@ LGPlayerDelegate>
     _audio.delegate = self;
     _played = NO;
     
-//    self.audioPlayer.showCPB = YES;
+    self.audioPlayer.showCPB = YES;
     
     _audioPlayer.progressValue = 0;
     [_audioPlayer.play addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];

@@ -117,7 +117,7 @@ PLPlayerViewDelegate>
         
         playerView.delegate = self;
         
-//        playerView.showCPB = YES;
+        playerView.showCPB = YES;
         
         _playerView = playerView;
     }
