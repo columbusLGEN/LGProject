@@ -14,17 +14,16 @@
 #import "HPAlbumHeaderCell.h"
 #import "EDJMicroPartyLessonSubCell.h"
 
-#import "DJMediaDetailTransAssist.h"
+#import "DJLessonDetailViewController.h"
 
 @interface HPAlbumTableViewController ()<
 HPAlbumHeaderCellDelegate>
 
 @property (strong,nonatomic) HPAlbumHeaderCell *header;
-/// 切换数据排序方式
+/// 切换数据排序方式,0时间正序，1时间倒序
 @property (assign,nonatomic) BOOL timeSort;
 
 @property (strong,nonatomic) LGLoadingAssit *loadAssit;
-@property (strong,nonatomic) DJMediaDetailTransAssist *transAssist;
 
 @property (assign,nonatomic) NSInteger offset;
 
@@ -170,8 +169,9 @@ HPAlbumHeaderCellDelegate>
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    /// 进入课程详情页面
     DJDataBaseModel *lesson = self.dataArray[indexPath.row];
-    [self.transAssist mediaDetailWithModel:lesson baseVc:self dataSyncer:nil];
+    [DJLessonDetailViewController lessonvcPushWithLesson:lesson baseVc:self dataSyncer:nil sort:self.timeSort];
 }
 
 #pragma mark - HPAlbumHeaderCellDelegate
@@ -194,12 +194,6 @@ HPAlbumHeaderCellDelegate>
         _loadAssit = [LGLoadingAssit new];
     }
     return _loadAssit;
-}
-- (DJMediaDetailTransAssist *)transAssist{
-    if (!_transAssist) {
-        _transAssist = [DJMediaDetailTransAssist new];
-    }
-    return _transAssist;
 }
 
 @end

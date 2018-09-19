@@ -65,12 +65,11 @@ LGPlayerDelegate>
         _played = NO;
         _audioPlayer.play.selected = NO;
         
-    }
-    if (state == LGPlayerStateCompleted) {
         if ([self.delegate respondsToSelector:@selector(currentMediaPlayCompleteWithCurrentModel:)]) {
             [self.delegate currentMediaPlayCompleteWithCurrentModel:self.model];
         }
     }
+    
 }
 
 - (void)setModel:(DJDataBaseModel *)model{
@@ -79,20 +78,21 @@ LGPlayerDelegate>
     [_icon sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     [_bgImg sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:DJPlaceholderImage];
     [_audio initPlayerWithUrl:model.audio];
-//    NSString *testurl = @"http://123.59.199.170/group1/M00/00/27/CgoKC1t9A4qALi1bAAAfJtq-uug935.wav";
-//    NSString *testurl = @"http://123.59.199.170/group1/M00/00/27/CgoKC1t9DA-ASxaHAAC6pNRE3ok860.mp3";
-//    [_audio initPlayerWithUrl:testurl];
     
 }
 
+- (void)manualPlay{
+    [self play:self.audioPlayer.play];
+}
+
 - (void)play:(UIButton *)sender{
+    
     _lessonDetailVc.opreated = YES;
     if (sender.isSelected) {
-        sender.selected = NO;
         /// 暂停
         [_audio lg_pause];
     }else{
-        sender.selected = YES;
+        
         if (!_played) {
             /// 首次播放
             [_audio lg_play];
@@ -101,6 +101,7 @@ LGPlayerDelegate>
             [_audio lg_resume];
         }
     }
+    sender.selected = !sender.isSelected;
     _played = YES;
 }
 

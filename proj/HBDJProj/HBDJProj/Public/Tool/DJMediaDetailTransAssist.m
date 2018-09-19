@@ -30,7 +30,7 @@
         case ModelMediaTypeAudio:
         case ModelMediaTypeVideo:{
             
-            [DJLessonDetailViewController lessonvcPushWithLesson:model baseVc:baseVc dataSyncer:dataSyncer];
+            [DJLessonDetailViewController lessonvcPushWithLesson:model baseVc:baseVc dataSyncer:dataSyncer sort:1];
             
         }
             break;

@@ -19,4 +19,6 @@
 - (void)audioStop;
 + (instancetype)audioPlayerView;
 
+- (void)manualPlay;
+
 @end

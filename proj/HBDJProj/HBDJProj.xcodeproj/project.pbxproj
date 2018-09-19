@@ -52,6 +52,7 @@
 		882B118A20D23D3400917374 /* UIView+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B118520D23D3300917374 /* UIView+Alert.m */; };
 		882B118D20D24A2700917374 /* HPVideoContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B118C20D24A2700917374 /* HPVideoContainerView.m */; };
 		882C61D92117F5A200C0D887 /* OLVoteDetailBottomTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 882C61D82117F5A200C0D887 /* OLVoteDetailBottomTimeCell.m */; };
+		882CAC5321524728009A449E /* DJListPlayNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882CAC5221524728009A449E /* DJListPlayNoticeView.m */; };
 		882FBFBA2134DF73005F7187 /* LGSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FBFB92134DF73005F7187 /* LGSwitchViewController.m */; };
 		882FBFBD2134DF89005F7187 /* DJMyCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FBFBC2134DF89005F7187 /* DJMyCollectViewController.m */; };
 		882FC0272134FC48005F7187 /* LGSegmentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 882FC0262134FC48005F7187 /* LGSegmentScrollView.m */; };
@@ -624,6 +625,8 @@
 		882C61D72117F5A200C0D887 /* OLVoteDetailBottomTimeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteDetailBottomTimeCell.h; sourceTree = "<group>"; };
 		882C61D82117F5A200C0D887 /* OLVoteDetailBottomTimeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteDetailBottomTimeCell.m; sourceTree = "<group>"; };
 		882CAC502150F2B0009A449E /* DJMediaPlayDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJMediaPlayDelegate.h; sourceTree = "<group>"; };
+		882CAC5121524728009A449E /* DJListPlayNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJListPlayNoticeView.h; sourceTree = "<group>"; };
+		882CAC5221524728009A449E /* DJListPlayNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJListPlayNoticeView.m; sourceTree = "<group>"; };
 		882FBFB82134DF73005F7187 /* LGSwitchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGSwitchViewController.h; sourceTree = "<group>"; };
 		882FBFB92134DF73005F7187 /* LGSwitchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGSwitchViewController.m; sourceTree = "<group>"; };
 		882FBFBB2134DF89005F7187 /* DJMyCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJMyCollectViewController.h; sourceTree = "<group>"; };
@@ -3076,6 +3079,8 @@
 				889FCD3C20B3FE4E0045746D /* HPAudioVideoContentCell.xib */,
 				8806C82F210F0A5700685DEF /* DJLessonAVTextTableViewCell.h */,
 				8806C830210F0A5700685DEF /* DJLessonAVTextTableViewCell.m */,
+				882CAC5121524728009A449E /* DJListPlayNoticeView.h */,
+				882CAC5221524728009A449E /* DJListPlayNoticeView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -4307,6 +4312,7 @@
 				886FFE0F212ED6D5000E1890 /* DCQuestionSearchResultVc.m in Sources */,
 				88ECF05A209FF5050071A98A /* OLExamSingleLineModel.m in Sources */,
 				888223C6212BECB00094D3EF /* LGAudioPlayerManager.m in Sources */,
+				882CAC5321524728009A449E /* DJListPlayNoticeView.m in Sources */,
 				884EB44121097116005D5CA9 /* DJSegmentView.m in Sources */,
 				880B74E2211832AD008C7500 /* HZPhotoBrowserView.m in Sources */,
 				88D13C4D209030DF00A32236 /* EDJSearchTagHotCell.m in Sources */,

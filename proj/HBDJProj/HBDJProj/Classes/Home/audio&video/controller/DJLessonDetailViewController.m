@@ -30,6 +30,7 @@
 
 #import "PLPlayerView.h"
 #import "LGAudioPlayerView.h"
+#import "DJListPlayNoticeView.h"
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -64,16 +65,22 @@ DJMediaPlayDelegate>
     NSArray *allLessonIds;
     /** 当前播放课程索引 */
     NSInteger currentPlayIndex;
+    /** 列表播放 提示 */
+    DJListPlayNoticeView *notice;
 }
 
 /// MARK: 进入微党课详情页面
-+ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
++ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer sort:(NSInteger)sort{
     /// 在经过 DJMediaDetailTransAssist 实例分发数据之后，这里只有 音视频模板类型的数据,if条件可以省略
     if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
         [baseVc presentFailureTips:@"数据异常"];
     }else{
+        
+//        NSLog(@"basevcclass: %@",[baseVc class]);
+        
         /// 如果跳转来自 图片轮播器，那么 需要 EDJHomeImageLoopModel 的frontnews
         DJLessonDetailViewController *avc = [self new];
+        avc.sort = sort;
         avc.dataSyncer = dataSyncer;
         if ([lesson isMemberOfClass:[EDJHomeImageLoopModel class]]) {
             EDJHomeImageLoopModel *imgLoopModel = (EDJHomeImageLoopModel *)lesson;
@@ -92,8 +99,7 @@ DJMediaPlayDelegate>
 }
 - (void)configUI{
     
-    /// TODO: 测试 sort
-    _sort = 1;
+    NSLog(@"时间排序: %ld",_sort);
     
     NSError *error = nil;
     
@@ -246,6 +252,19 @@ DJMediaPlayDelegate>
     
     if (sender.isSelected) {
         if (!allLessonIds) {
+            
+            /// 添加 “列表播放” 提示
+            CGFloat nw = 100;
+            CGFloat nx = (kScreenWidth - nw) * 0.5;
+            CGFloat nh = 40;
+            CGFloat ny = kScreenHeight - kTabBarHeight - marginTwenty - nh;
+            if (!notice) {
+                notice = [DJListPlayNoticeView.alloc initWithFrame:CGRectMake(nx, ny, nw, nh)];
+                [notice showNoticeWithView:self.view complete:^{
+                    notice = nil;
+                }];
+            }
+            
             [DJHomeNetworkManager.sharedInstance frontNews_selectClassIdWithClassid:self.model.classid sort:_sort success:^(id responseObj) {
                 [self handleAllLessonIdWith:responseObj];
             } failure:^(id failureObj) {
@@ -293,9 +312,10 @@ DJMediaPlayDelegate>
                     [self setBottomBarData];
                     if (self.lessonMediaType == ModelMediaTypeVideo) {
                         _vpv.model = self.model;
+                        [_vpv.playerView play];
                     }else{
                         _apv.model = self.model;
-                        
+                        [_apv manualPlay];
                     }
                     [self.tableView reloadData];
                 }];

@@ -27,11 +27,11 @@ typedef NS_ENUM(NSUInteger, DJLessonMediaType) {
 /** 是否已经播放过,默认为NO */
 @property (assign,nonatomic) BOOL opreated;
 
-+ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer;
++ (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer sort:(NSInteger)sort;
 
 @property (strong,nonatomic) DJDataSyncer *dataSyncer;
 
-/** 专辑列表的顺序 0时间正序 1时间倒叙 */
+/** 专辑列表的顺序 0时间正序 1时间倒叙，默认 时间倒序 */
 @property (assign,nonatomic) NSInteger sort;
 
 @end
