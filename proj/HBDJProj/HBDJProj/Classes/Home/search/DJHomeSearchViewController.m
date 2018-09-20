@@ -42,16 +42,16 @@
         
         NSArray *classes = responseObj[@"classes"];/// 微党课
         NSArray *news = responseObj[@"news"];/// 要闻
-        NSArray *microLessons = responseObj[@"microLessons"];/// 微党课专辑
+//        NSArray *microLessons = responseObj[@"microLessons"];/// 微党课专辑
         
-        NSMutableArray *albums = nil;
-        if (microLessons.count != 0) {
-            albums = NSMutableArray.new;
-            for (NSInteger i = 0; i < microLessons.count; i++) {
-                EDJMicroLessionAlbumModel *albumModel = [EDJMicroLessionAlbumModel mj_objectWithKeyValues:microLessons[i]];
-                [albums addObject:albumModel];
-            }
-        }
+//        NSMutableArray *albums = nil;
+//        if (microLessons.count != 0) {
+//            albums = NSMutableArray.new;
+//            for (NSInteger i = 0; i < microLessons.count; i++) {
+//                EDJMicroLessionAlbumModel *albumModel = [EDJMicroLessionAlbumModel mj_objectWithKeyValues:microLessons[i]];
+//                [albums addObject:albumModel];
+//            }
+//        }
         
         HPSearchLessonController *microvc = self.childViewControllers[0];
         microvc.dataSyncer = self.dataSyncer;
@@ -66,12 +66,12 @@
                 [microModels addObject:model];
             }
             
-            if (albums) {
-                microvc.albumCount = albums.count;
-                microvc.dataArray = [albums arrayByAddingObjectsFromArray:microModels.copy];
-            }else{
-                microvc.dataArray = microModels.copy;
-            }
+//            if (albums) {
+//                microvc.albumCount = albums.count;
+//                microvc.dataArray = [albums arrayByAddingObjectsFromArray:microModels.copy];
+//            }else{
+//            }
+            microvc.dataArray = microModels.copy;
 //            NSLog(@"microvc.dataArray: %@",microvc.dataArray);
             
         }

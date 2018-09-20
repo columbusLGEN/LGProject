@@ -26,7 +26,8 @@
 
 - (void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
-    offset = dataArray.count - self.albumCount;
+//    offset = dataArray.count - self.albumCount;
+    offset = dataArray.count;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];
