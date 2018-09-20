@@ -10,6 +10,7 @@
 #import "EDJMicroLessionAlbumModel.h"
 
 @interface DJHomeSearchAlbumCell ()
+@property (weak, nonatomic) IBOutlet UILabel *title;
 
 
 @end
@@ -18,7 +19,7 @@
 
 - (void)setModel:(EDJMicroLessionAlbumModel *)model{
     _model = model;
-    
+    _title.text = model.classname;
 }
 
 - (void)awakeFromNib {

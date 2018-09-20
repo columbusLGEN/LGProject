@@ -16,4 +16,7 @@
 /** 搜索的结果中，专辑类型数据的个数 */
 @property (assign,nonatomic) NSInteger albumCount;
 
+/** 专辑数据 数组 */
+@property (strong,nonatomic) NSArray *albumModels;
+
 @end

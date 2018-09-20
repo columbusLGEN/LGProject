@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,9 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="485" height="218.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专辑数据已经接入，等待UI 出图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DW-RQ-GFx">
-                        <rect key="frame" x="119.5" y="99" width="246" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专辑数据已经接入，等待UI 出图" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DW-RQ-GFx">
+                        <rect key="frame" x="43" y="10" width="432" height="197.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -31,16 +32,42 @@
                             <constraint firstAttribute="height" constant="1" id="fgs-YJ-ICX"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRX-u7-ey0">
+                        <rect key="frame" x="30" y="101.5" width="3" height="15"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="3" id="C2C-Hk-I3e"/>
+                            <constraint firstAttribute="height" constant="15" id="HH7-qM-6hS"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIx-kG-0x4">
+                        <rect key="frame" x="10" y="216.5" width="465" height="1"/>
+                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="dPv-pO-kBN"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="0DW-RQ-GFx" firstAttribute="centerY" secondItem="bUV-qt-KbA" secondAttribute="centerY" id="8aG-bt-XCz"/>
+                    <constraint firstItem="XRX-u7-ey0" firstAttribute="leading" secondItem="bUV-qt-KbA" secondAttribute="leadingMargin" constant="10" id="3h5-M6-3in"/>
+                    <constraint firstItem="0DW-RQ-GFx" firstAttribute="leading" secondItem="XRX-u7-ey0" secondAttribute="trailing" constant="10" id="LTT-Ku-RMp"/>
+                    <constraint firstItem="yIx-kG-0x4" firstAttribute="leading" secondItem="bUV-qt-KbA" secondAttribute="leading" constant="10" id="TOy-hU-5z4"/>
                     <constraint firstAttribute="bottom" secondItem="7bx-k0-w99" secondAttribute="bottom" id="Tpm-7o-5Ky"/>
+                    <constraint firstItem="7bx-k0-w99" firstAttribute="top" secondItem="yIx-kG-0x4" secondAttribute="bottom" id="VWW-xu-rgz"/>
+                    <constraint firstItem="7bx-k0-w99" firstAttribute="top" secondItem="0DW-RQ-GFx" secondAttribute="bottom" constant="10" id="dy6-o3-0np"/>
+                    <constraint firstItem="0DW-RQ-GFx" firstAttribute="top" secondItem="bUV-qt-KbA" secondAttribute="top" constant="10" id="ekK-N8-KKB"/>
+                    <constraint firstItem="XRX-u7-ey0" firstAttribute="centerY" secondItem="bUV-qt-KbA" secondAttribute="centerY" id="h1c-M8-Unf"/>
+                    <constraint firstAttribute="trailing" secondItem="0DW-RQ-GFx" secondAttribute="trailing" constant="10" id="h5a-ST-1qD"/>
                     <constraint firstAttribute="trailing" secondItem="7bx-k0-w99" secondAttribute="trailing" constant="10" id="iJR-FD-wUt"/>
+                    <constraint firstItem="0DW-RQ-GFx" firstAttribute="centerY" secondItem="XRX-u7-ey0" secondAttribute="centerY" id="jVt-r0-61D"/>
+                    <constraint firstAttribute="trailing" secondItem="yIx-kG-0x4" secondAttribute="trailing" constant="10" id="jwJ-At-AoB"/>
                     <constraint firstItem="7bx-k0-w99" firstAttribute="leading" secondItem="bUV-qt-KbA" secondAttribute="leading" constant="10" id="qUT-VX-GIs"/>
-                    <constraint firstItem="0DW-RQ-GFx" firstAttribute="centerX" secondItem="bUV-qt-KbA" secondAttribute="centerX" id="tda-TO-wAy"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-394.39999999999998" y="-33.733133433283363"/>
+            <connections>
+                <outlet property="title" destination="0DW-RQ-GFx" id="mZZ-TT-9nc"/>
+            </connections>
+            <point key="canvasLocation" x="-394.5" y="-34.5"/>
         </tableViewCell>
     </objects>
 </document>

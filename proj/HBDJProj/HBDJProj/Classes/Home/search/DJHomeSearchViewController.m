@@ -66,12 +66,14 @@
                 [microModels addObject:model];
             }
             
-            if (albums) {
-                microvc.albumCount = albums.count;
-                microvc.dataArray = [albums arrayByAddingObjectsFromArray:microModels.copy];
-            }else{
-                microvc.dataArray = microModels.copy;
-            }
+//            if (albums) {
+//                microvc.albumCount = albums.count;
+//                microvc.dataArray = [albums arrayByAddingObjectsFromArray:microModels.copy];
+//            }else{
+//            }
+            
+            microvc.albumModels = albums.copy;
+            microvc.dataArray = microModels.copy;
 //            NSLog(@"microvc.dataArray: %@",microvc.dataArray);
             
         }
