@@ -31,6 +31,7 @@
 #import "PLPlayerView.h"
 #import "LGAudioPlayerView.h"
 #import "DJListPlayNoticeView.h"
+#import "LGAlertControllerManager.h"
 
 static CGFloat videoInsets = 233;
 static CGFloat audioInsets = 296;
@@ -299,7 +300,11 @@ DJMediaPlayDelegate>
         }
         
         if (currentPlayIndex == (allLessonIds.count - 1)) {
-            [self presentSuccessTips:@"该专辑已全部播放完毕"];
+            
+            UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"该专辑已全部播放完毕" doneText:@"确定" doneBlock:^(UIAlertAction * _Nonnull action) {
+            }];
+            [self presentViewController:alertvc animated:YES completion:nil];
+            
         }else{
             NSInteger nextIndex = currentPlayIndex + 1;
             LGBaseModel *nextModel = allLessonIds[nextIndex];
