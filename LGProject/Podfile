@@ -3,10 +3,10 @@
 
 target 'LGProject' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-   pod 'AFNetworking', '~> 3.0'
-   pod 'SDWebImage', '~> 4.0'
+   pod 'AFNetworking'
+   pod 'SDWebImage'
    pod 'Masonry'
-   pod 'MBProgressHUD', '~> 1.1.0'
+   pod 'MBProgressHUD'
    pod 'MJRefresh'
    pod 'MJExtension'
 

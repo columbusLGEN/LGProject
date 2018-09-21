@@ -18,13 +18,6 @@
 		88703CED2016CBE300BE41A7 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE52016CBE200BE41A7 /* unzip.c */; };
 		88703CEE2016CBE300BE41A7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 88703CE72016CBE200BE41A7 /* zip.c */; };
 		88703CEF2016CBE300BE41A7 /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 88703CEA2016CBE200BE41A7 /* ZipArchive.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		88B485AB205F9D360051C79E /* LIGNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B485AA205F9D360051C79E /* LIGNetworkConfig.m */; };
-		88B48645206103B50051C79E /* LIGNetworkAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B48644206103B50051C79E /* LIGNetworkAgent.m */; };
-		88B48648206103D30051C79E /* LIGBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B48647206103D30051C79E /* LIGBaseRequest.m */; };
-		88D622441FFF578E00894D96 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6223C1FFF578E00894D96 /* NSString+Extension.m */; };
-		88D622451FFF578E00894D96 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D6223F1FFF578E00894D96 /* UIColor+Extension.m */; };
-		88D622461FFF578E00894D96 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D622411FFF578E00894D96 /* UIImage+Extension.m */; };
-		88D622471FFF578E00894D96 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D622431FFF578E00894D96 /* UIView+Extension.m */; };
 		CB8809842048B5E7EEC7C082 /* libPods-LGProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DEB16003DDBFF8A31A4555 /* libPods-LGProjectTests.a */; };
 		F15BEF2A9E696736455E529F /* libPods-LGProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E2C7097F894CEBBACCC3D4 /* libPods-LGProject.a */; };
 /* End PBXBuildFile section */
@@ -75,20 +68,6 @@
 		88703CE82016CBE200BE41A7 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		88703CE92016CBE200BE41A7 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		88703CEA2016CBE200BE41A7 /* ZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchive.m; sourceTree = "<group>"; };
-		88B485A9205F9D360051C79E /* LIGNetworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGNetworkConfig.h; sourceTree = "<group>"; };
-		88B485AA205F9D360051C79E /* LIGNetworkConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGNetworkConfig.m; sourceTree = "<group>"; };
-		88B48643206103B50051C79E /* LIGNetworkAgent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGNetworkAgent.h; sourceTree = "<group>"; };
-		88B48644206103B50051C79E /* LIGNetworkAgent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGNetworkAgent.m; sourceTree = "<group>"; };
-		88B48646206103D30051C79E /* LIGBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIGBaseRequest.h; sourceTree = "<group>"; };
-		88B48647206103D30051C79E /* LIGBaseRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIGBaseRequest.m; sourceTree = "<group>"; };
-		88D6223B1FFF578E00894D96 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
-		88D6223C1FFF578E00894D96 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
-		88D6223E1FFF578E00894D96 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
-		88D6223F1FFF578E00894D96 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
-		88D622401FFF578E00894D96 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
-		88D622411FFF578E00894D96 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
-		88D622421FFF578E00894D96 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		88D622431FFF578E00894D96 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		93E2C8A11B721ED31689A4F9 /* Pods-LGProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGProject/Pods-LGProject.release.xcconfig"; sourceTree = "<group>"; };
 		C6E2C7097F894CEBBACCC3D4 /* libPods-LGProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D9F575125C47ACAA1633EA /* Pods-LGProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGProjectUITests/Pods-LGProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,16 +138,15 @@
 		8819A8BF205259FB0061D30B /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				8819A8C420525A910061D30B /* Manager */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
 		};
-		8819A8C020525A5A0061D30B /* Header */ = {
+		8819A8C020525A5A0061D30B /* Header&Protocol */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Header;
+			path = "Header&Protocol";
 			sourceTree = "<group>";
 		};
 		8819A8C120525A670061D30B /* BaseViewController */ = {
@@ -192,24 +170,11 @@
 			path = BaseModel;
 			sourceTree = "<group>";
 		};
-		8819A8C420525A910061D30B /* Manager */ = {
+		8819A8C520525AC20061D30B /* supportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				88B485A8205F636C0051C79E /* LIGNetwork */,
 			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		8819A8C520525AC20061D30B /* Ohter */ = {
-			isa = PBXGroup;
-			children = (
-				88256F791FF4C23A0073477D /* AppDelegate.h */,
-				88256F7A1FF4C23A0073477D /* AppDelegate.m */,
-				88256F821FF4C23A0073477D /* Assets.xcassets */,
-				88256F871FF4C23A0073477D /* Info.plist */,
-				88256F881FF4C23A0073477D /* main.m */,
-			);
-			path = Ohter;
+			path = supportingFiles;
 			sourceTree = "<group>";
 		};
 		88256F6D1FF4C23A0073477D = {
@@ -237,7 +202,16 @@
 		88256F781FF4C23A0073477D /* LGProject */ = {
 			isa = PBXGroup;
 			children = (
-				88256FAB1FF4C25F0073477D /* Public */,
+				88256F821FF4C23A0073477D /* Assets.xcassets */,
+				88256F871FF4C23A0073477D /* Info.plist */,
+				88256F881FF4C23A0073477D /* main.m */,
+				882CAC9121538940009A449E /* AppDelegate */,
+				8819A8C020525A5A0061D30B /* Header&Protocol */,
+				8819A8C520525AC20061D30B /* supportingFiles */,
+				882CAC9221538B3D009A449E /* AppCustoms */,
+				882CAC8E21538902009A449E /* UtilKits */,
+				8819A8BF205259FB0061D30B /* Tool */,
+				8819A8BE205259F00061D30B /* BaseObject */,
 			);
 			path = LGProject;
 			sourceTree = "<group>";
@@ -260,25 +234,44 @@
 			path = LGProjectUITests;
 			sourceTree = "<group>";
 		};
-		88256FAB1FF4C25F0073477D /* Public */ = {
+		882CAC8E21538902009A449E /* UtilKits */ = {
 			isa = PBXGroup;
 			children = (
-				8819A8C520525AC20061D30B /* Ohter */,
-				8819A8C020525A5A0061D30B /* Header */,
-				8819A8BF205259FB0061D30B /* Tool */,
-				8819A8BE205259F00061D30B /* BaseObject */,
-				88703CDE2016CBC900BE41A7 /* 第三方 */,
-				88D622391FFF578E00894D96 /* Catagory */,
+				882CAC9021538926009A449E /* ThirdParty */,
+				882CAC8F2153891D009A449E /* Catagory */,
 			);
-			path = Public;
+			path = UtilKits;
 			sourceTree = "<group>";
 		};
-		88703CDE2016CBC900BE41A7 /* 第三方 */ = {
+		882CAC8F2153891D009A449E /* Catagory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Catagory;
+			sourceTree = "<group>";
+		};
+		882CAC9021538926009A449E /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
 				88703CDF2016CBE200BE41A7 /* zip */,
 			);
-			path = "第三方";
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		882CAC9121538940009A449E /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				88256F791FF4C23A0073477D /* AppDelegate.h */,
+				88256F7A1FF4C23A0073477D /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		882CAC9221538B3D009A449E /* AppCustoms */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppCustoms;
 			sourceTree = "<group>";
 		};
 		88703CDF2016CBE200BE41A7 /* zip */ = {
@@ -297,50 +290,6 @@
 				88703CEA2016CBE200BE41A7 /* ZipArchive.m */,
 			);
 			path = zip;
-			sourceTree = "<group>";
-		};
-		88B485A8205F636C0051C79E /* LIGNetwork */ = {
-			isa = PBXGroup;
-			children = (
-				88B485A9205F9D360051C79E /* LIGNetworkConfig.h */,
-				88B485AA205F9D360051C79E /* LIGNetworkConfig.m */,
-				88B48643206103B50051C79E /* LIGNetworkAgent.h */,
-				88B48644206103B50051C79E /* LIGNetworkAgent.m */,
-				88B48646206103D30051C79E /* LIGBaseRequest.h */,
-				88B48647206103D30051C79E /* LIGBaseRequest.m */,
-			);
-			path = LIGNetwork;
-			sourceTree = "<group>";
-		};
-		88D622391FFF578E00894D96 /* Catagory */ = {
-			isa = PBXGroup;
-			children = (
-				88D6223A1FFF578E00894D96 /* NSCatagory */,
-				88D6223D1FFF578E00894D96 /* UICatagory */,
-			);
-			path = Catagory;
-			sourceTree = "<group>";
-		};
-		88D6223A1FFF578E00894D96 /* NSCatagory */ = {
-			isa = PBXGroup;
-			children = (
-				88D6223B1FFF578E00894D96 /* NSString+Extension.h */,
-				88D6223C1FFF578E00894D96 /* NSString+Extension.m */,
-			);
-			path = NSCatagory;
-			sourceTree = "<group>";
-		};
-		88D6223D1FFF578E00894D96 /* UICatagory */ = {
-			isa = PBXGroup;
-			children = (
-				88D6223E1FFF578E00894D96 /* UIColor+Extension.h */,
-				88D6223F1FFF578E00894D96 /* UIColor+Extension.m */,
-				88D622401FFF578E00894D96 /* UIImage+Extension.h */,
-				88D622411FFF578E00894D96 /* UIImage+Extension.m */,
-				88D622421FFF578E00894D96 /* UIView+Extension.h */,
-				88D622431FFF578E00894D96 /* UIView+Extension.m */,
-			);
-			path = UICatagory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -634,19 +583,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				88703CEE2016CBE300BE41A7 /* zip.c in Sources */,
-				88B485AB205F9D360051C79E /* LIGNetworkConfig.m in Sources */,
 				88256F891FF4C23A0073477D /* main.m in Sources */,
 				88703CEC2016CBE300BE41A7 /* mztools.c in Sources */,
 				88703CEF2016CBE300BE41A7 /* ZipArchive.m in Sources */,
 				88703CEB2016CBE300BE41A7 /* ioapi.c in Sources */,
-				88D622451FFF578E00894D96 /* UIColor+Extension.m in Sources */,
-				88D622471FFF578E00894D96 /* UIView+Extension.m in Sources */,
 				88703CED2016CBE300BE41A7 /* unzip.c in Sources */,
-				88B48645206103B50051C79E /* LIGNetworkAgent.m in Sources */,
-				88D622461FFF578E00894D96 /* UIImage+Extension.m in Sources */,
 				88256F7B1FF4C23A0073477D /* AppDelegate.m in Sources */,
-				88D622441FFF578E00894D96 /* NSString+Extension.m in Sources */,
-				88B48648206103D30051C79E /* LIGBaseRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
