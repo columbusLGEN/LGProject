@@ -44,16 +44,22 @@ WKNavigationDelegate>
 
 @end
 
-@implementation HPPartyBuildDetailViewController
+@implementation HPPartyBuildDetailViewController{
+    NSDate *viewDidloadDate;
+}
 
 + (void)buildVcPushWith:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
     HPPartyBuildDetailViewController *dvc = [self new];
     dvc.dataSyncer = dataSyncer;
     dvc.djDataType = DJDataPraisetypeNews;
-    if (model.classid == 1 || model.classid == 2) {
-        /// 要闻
+    if (model.classid == 2) {
+        /// 党建要闻
         dvc.dj_jumpSource = DJPointNewsSourcePartyBuild;
-    }else{/// 党课
+    }else if (model.classid == 1){
+        /// 主席要闻
+        dvc.dj_jumpSource = DJPointNewsSourceZhuxiNews;
+    }else{
+        /// 党课
         dvc.dj_jumpSource = DJPointNewsSourceMicroLesson;
     }
     if ([model isMemberOfClass:[NSClassFromString(@"EDJHomeImageLoopModel") class]]) {
@@ -97,6 +103,7 @@ WKNavigationDelegate>
         [_pbdBottom removeFromSuperview];
     }
 
+    [self addReportInformation];
     
 }
 
@@ -158,28 +165,9 @@ WKNavigationDelegate>
 - (void)linkPushed:(DTLinkButton *)button {
     NSURL *URL = button.URL;
     
-    NSLog(@"linkPushedurl: %@",URL);
     LGWKWebViewController *webVc = [LGWKWebViewController.alloc initWithUrl:URL];
     [self.navigationController pushViewController:webVc animated:YES];
 }
-///// MARK: 长按超链接响应事件
-//- (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture {
-//    if (gesture.state == UIGestureRecognizerStateBegan)
-//    {
-//        DTLinkButton *button = (id)[gesture view];
-//        button.highlighted = NO;
-//        NSLog(@"linkLongPressedurl: %@",button.URL);
-//
-//    }
-//}
-
-//- (void)lg_dismissViewController{
-//    if ([self.webView canGoBack]) {
-//        [self.webView goBack];
-//    }else{
-//        [super lg_dismissViewController];
-//    }
-//}
 
 -(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
     if (!navigationAction.targetFrame.isMainFrame) {
@@ -421,33 +409,48 @@ WKNavigationDelegate>
         [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadLesson];
     }else{
         [self IntegralGrade_addWithIntegralid:DJUserAddScoreTypeReadNews];
+        if (_dj_jumpSource == DJPointNewsSourceZhuxiNews) {
+            /// 上传查看 主席要闻时长
+            NSTimeInterval readZxNewsTime = [[NSDate date] timeIntervalSinceDate:viewDidloadDate];
+            NSString *timeString = [NSString stringWithFormat:@"%f",readZxNewsTime];
+//            NSLog(@"查看主席要闻时长: %@",timeString);
+            [self frontIntegralGrade_addReportInformationWithTaskid:31 completenum:timeString];
+        }
+    }
+}
+
+- (void)frontIntegralGrade_addReportInformationWithTaskid:(NSInteger)taskid completenum:(NSString *)completenum{
+    [DJHomeNetworkManager.sharedInstance frontIntegralGrade_addReportInformationWithTaskid:taskid completenum:completenum success:^(id responseObj) {
+        
+    } failure:^(id failureObj) {
+        
+    }];
+}
+
+/// MARK: 后台任务记录接口
+- (void)addReportInformation{
+    NSInteger ariTaskid = 29;
+    BOOL ariSend = YES;
+    if (self.dj_jumpSource == 0) {
+        /// 党课不调用 frontIntegralGrade_addReportInformationWithTaskid 接口
+        ariSend = NO;
+    }
+    
+    if (self.dj_jumpSource == 1) {
+        /// 普通要闻
+    }
+    if (self.dj_jumpSource == 2) {
+        /// 主席要闻
+        ariTaskid = 30;
+        
+        /// 记录阅读时间
+        viewDidloadDate = [NSDate date];
+    }
+    if (ariSend) {
+        [self frontIntegralGrade_addReportInformationWithTaskid:ariTaskid completenum:@"1"];
     }
 }
 
 @end
 
 
-
-//- (void)longPress:(UILongPressGestureRecognizer *)gesture {
-//    if (gesture.state == UIGestureRecognizerStateRecognized) {
-//        CGPoint location = [gesture locationInView:_coreTextView];
-//        NSUInteger tappedIndex = [_coreTextView closestCursorIndexToPoint:location];
-//
-//        NSString *plainText = [_coreTextView.attributedString string];
-//        NSString *tappedChar = [plainText substringWithRange:NSMakeRange(tappedIndex, 1)];
-//
-//        __block NSRange wordRange = NSMakeRange(0, 0);
-//
-//        [plainText enumerateSubstringsInRange:NSMakeRange(0, [plainText length]) options:NSStringEnumerationByWords usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
-//            if (NSLocationInRange(tappedIndex, enclosingRange)) {
-//                *stop = YES;
-//                wordRange = substringRange;
-//            }
-//        }];
-//
-////        NSString *word = [plainText substringWithRange:wordRange];
-////        NSLog(@"%lu: '%@' word: '%@'", (unsigned long)tappedIndex, tappedChar, word);
-////        UIPasteboard *pasteboard;
-////        UITextView *t;
-//    }
-//}

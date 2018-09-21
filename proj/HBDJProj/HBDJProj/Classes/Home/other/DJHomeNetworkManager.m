@@ -41,6 +41,13 @@
 
 /// MARK: -----分割线-----
 
+/// 后台任务记录
+- (void)frontIntegralGrade_addReportInformationWithTaskid:(NSInteger)taskid completenum:(NSString *)completenum success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"taskid":[NSString stringWithFormat:@"%ld",taskid],
+                            @"completenum":completenum};
+    [self sendPOSTRequestWithiName:@"frontIntegralGrade/addReportInformation" param:param success:success failure:failure];
+}
+
 - (void)frontNews_selectClassIdWithClassid:(NSInteger)classid sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{@"classid":[NSString stringWithFormat:@"%ld",classid],
                             @"sort":[NSString stringWithFormat:@"%ld",sort]

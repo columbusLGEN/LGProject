@@ -20,6 +20,7 @@
 typedef NS_ENUM(NSUInteger, DJPointNewsSource) {
     DJPointNewsSourceMicroLesson,
     DJPointNewsSourcePartyBuild,
+    DJPointNewsSourceZhuxiNews
 };
 
 @interface HPPartyBuildDetailViewController : LGBaseViewController
@@ -34,7 +35,7 @@ typedef NS_ENUM(NSUInteger, DJPointNewsSource) {
 
 + (void)buildVcPushWith:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer;
 
-/** 跳转来源,微党课或者党建要闻 */
+/** 跳转来源,微党课或者党建要闻,0党课，1要闻，2主席要闻 */
 @property (assign,nonatomic) DJPointNewsSource dj_jumpSource;
 
 /** 从消息列表跳转来的，== YES */

@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (strong,nonatomic) NSNumber *time;
 @property (copy,nonatomic) NSString *imgUrl;
 
-/** 1，2是要闻，其余是党课 */
+/** 1: 习主席要闻 2：党建要闻要闻  其余是党课 */
 @property (assign,nonatomic) NSInteger classid;
 /** audio */
 @property (strong,nonatomic) NSString *audio;

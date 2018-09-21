@@ -43,7 +43,7 @@ HPBookInfoBriefCellDelegate>
     for (NSInteger i = 0; i < 3; i++) {
         HPBookInfoModel *lineModel = [HPBookInfoModel new];
         lineModel.isHeader = !i;
-        NSLog(@"isheader: %d",lineModel.isHeader);
+//        NSLog(@"isheader: %d",lineModel.isHeader);
         if (i == 0) {
             lineModel.coverUrl = model.cover;
             lineModel.bookName = model.ebookname;
@@ -90,6 +90,11 @@ HPBookInfoBriefCellDelegate>
 
 - (void)readBook{
     [LGLocalFileProducer openBookWithModel:self.model vc:self];
+    [DJHomeNetworkManager.sharedInstance frontIntegralGrade_addReportInformationWithTaskid:32 completenum:@"1" success:^(id responseObj) {
+        
+    } failure:^(id failureObj) {
+        
+    }];
 }
 
 #pragma mark - HPBookInfoBriefCellDelegate

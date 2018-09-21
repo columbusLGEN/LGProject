@@ -126,7 +126,11 @@ LGThreeRightButtonViewDelegate>
     _cellCache.totalCostLimit = 10;
     _cellCache.countLimit = 10;
     
-    
+    [DJHomeNetworkManager.sharedInstance frontIntegralGrade_addReportInformationWithTaskid:33 completenum:@"1" success:^(id responseObj) {
+        
+    } failure:^(id failureObj) {
+        
+    }];
 }
 
 - (void)dataSettings{

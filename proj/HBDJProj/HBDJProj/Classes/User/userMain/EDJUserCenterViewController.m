@@ -97,6 +97,7 @@ UCPersonInfoViewControllerDelegate>
     [_headIcon sd_setImageWithURL:[NSURL URLWithString:user.image] placeholderImage:DJHeadIconPImage];
     _userNick.text = user.name;
     _level.text = user.gradename;
+    _level.textColor = UIColor.EDJMainColor;
     if (user.gradename == nil || [user.gradename isEqualToString:@""]) {
         _level.text = @"先锋党员";
     }

@@ -24,6 +24,14 @@ typedef NS_ENUM(NSUInteger, DJDataPraisetype) {
 
 @interface DJHomeNetworkManager : NSObject
 
+
+/**
+ 后台任务记录
+ @param taskid 29: 查看党建要闻次数,30: 查看习主席新闻次数,31: 查看习主席新闻时间,32: 数字阅读查看次数,33: 支部动态查看次数
+ @param completenum 次数/时间
+ 
+ */
+- (void)frontIntegralGrade_addReportInformationWithTaskid:(NSInteger)taskid completenum:(NSString *)completenum success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 请求专辑的所有课程id */
 - (void)frontNews_selectClassIdWithClassid:(NSInteger)classid sort:(NSInteger)sort success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /** 请求客服电话 */
