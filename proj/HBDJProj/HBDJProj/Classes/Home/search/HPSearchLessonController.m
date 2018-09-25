@@ -108,6 +108,9 @@
     if (section == 0) {
         return 0;
     }else{
+        if (self.albumModels.count == 0) {
+            return 0;
+        }
         return 8;
     }
 }

@@ -12,6 +12,7 @@
 #import "OLHomeCollectionCell.h"
 
 static NSString * const onlinCell = @"OLHomeCollectionCell";
+static CGFloat headLineHeight = 233;
 
 @interface EDJOnlineController ()<
 UICollectionViewDataSource>
@@ -74,7 +75,12 @@ UICollectionViewDataSource>
 }
 
 + (CGFloat)headerHeight{
-    /// TODO: 高度屏幕适配
-    return 242;
+    CGFloat hlHeight = headLineHeight;
+    if (kScreenHeight > plusScreenHeight) {
+        hlHeight = headLineHeight * kScreenHeight / plusScreenHeight;
+    }
+    return hlHeight;
 }
+
+
 @end

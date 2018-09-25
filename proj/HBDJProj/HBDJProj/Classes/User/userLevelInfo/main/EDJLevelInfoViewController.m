@@ -62,8 +62,9 @@ static NSString * const reuseIdentifier = @"EDJLevelInfoCollectionViewCell";
     [self.navigationController.navigationBar setShadowImage:UIImage.new];
     
     /// 设置背景图片
-    UIView *bg = [[UIView alloc] initWithFrame:self.view.bounds];
-    bg.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"uc_icon_level_info_bg"]];
+    UIImageView *bg = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    bg.contentMode = UIViewContentModeScaleAspectFill;
+    bg.image = [UIImage imageNamed:@"uc_icon_level_info_bg"];
     [self.view addSubview:bg];
     
     EDJLeverInfoHeaderView *header = [EDJLeverInfoHeaderView levelInfoHeader];

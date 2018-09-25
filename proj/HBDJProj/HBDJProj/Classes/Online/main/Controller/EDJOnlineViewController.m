@@ -23,8 +23,6 @@
 #import "DJXGDJWebViewController.h"
 #import "LGAlertControllerManager.h"
 
-static CGFloat headLineHeight = 233;
-
 @interface EDJOnlineViewController ()<
 UICollectionViewDelegate
 ,LGNavigationSearchBarDelelgate,
@@ -174,7 +172,7 @@ HPNetworkFailureViewDelegate>
 }
 - (UIImageView *)headLine{
     if (_headLine == nil) {
-        _headLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, - [EDJOnlineController headerHeight], kScreenWidth, headLineHeight)];
+        _headLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, - [EDJOnlineController headerHeight], kScreenWidth, [EDJOnlineController headerHeight])];
         _headLine.clipsToBounds = YES;
         _headLine.contentMode = UIViewContentModeScaleAspectFill;
         _headLine.image = [UIImage imageNamed:@"online_top_icon"];
