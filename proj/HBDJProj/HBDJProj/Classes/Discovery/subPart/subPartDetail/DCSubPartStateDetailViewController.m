@@ -219,10 +219,12 @@ LGThreeRightButtonViewDelegate>
     if (!cell) {
         
         CGFloat titleHeight = [self.model.title sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:25]].height;
-        CGFloat topInfoViewHeight = titleHeight + 81;
+        CGFloat topInfoViewHeight = titleHeight + 60;
         
         cell = [[DCStateContentsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:richContentCell];
-        cell.attributedTextContextView.edgeInsets = UIEdgeInsetsMake(topInfoViewHeight, marginFifteen, richTextBottomInfoViewHeight, marginFifteen);
+        
+        cell.attributedTextContextView.edgeInsets = UIEdgeInsetsMake(topInfoViewHeight, marginFifteen, richTextBottomInfoViewHeight + 10, marginFifteen);
+        
         cell.hasFixedRowHeight = NO;
         cell.textDelegate = self;
         cell.attributedTextContextView.shouldDrawImages = YES;

@@ -13,7 +13,9 @@ static CGFloat progressRectWidth = 3;
 
 @interface LGAudioPlayerView ()
 @property (strong,nonatomic) UIProgressView *progress;
-@property (strong,nonatomic) UIView *rect;
+//@property (strong,nonatomic) UIView *rect;
+
+@property (strong,nonatomic) UISlider *slider;
 
 @end
 
@@ -67,23 +69,24 @@ static CGFloat progressRectWidth = 3;
 //    _progress.progress = progressValue;
 
 //    [UIView animateWithDuration:1.0 animations:^{
-        CGRect frame = _rect.frame;
+//        CGRect frame = _rect.frame;
         if (_progress.progress == 1) {
-            frame.origin.x = roundf(progressValue * _progress.width + _progress.x - progressRectWidth);
+//            frame.origin.x = roundf(progressValue * _progress.width + _progress.x - progressRectWidth);
             self.play.selected = NO;
         }else{
-            frame.origin.x = roundf(progressValue * _progress.width + _progress.x);
+//            frame.origin.x = roundf(progressValue * _progress.width + _progress.x);
         }
-        _rect.frame = frame;
+//        _rect.frame = frame;
 //    }];
     
+    [self.slider setValue:_progressValue animated:NO];
     [_progress setProgress:progressValue animated:NO];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    self.rect.backgroundColor = UIColor.EDJMainColor;
+//    self.rect.backgroundColor = UIColor.EDJMainColor;
     [_progress cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:_progress.height * 0.5];
 }
 
@@ -92,6 +95,7 @@ static CGFloat progressRectWidth = 3;
     [self addSubview:self.progress];
     [self addSubview:self.currentTime];
     [self addSubview:self.totalTime];
+    [self addSubview:self.slider];
     
     [self.play mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(9);
@@ -113,6 +117,10 @@ static CGFloat progressRectWidth = 3;
         make.right.equalTo(self.progress.mas_right);
         make.centerY.equalTo(self.currentTime.mas_centerY);
     }];
+    
+    [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.progress);
+    }];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
@@ -126,6 +134,14 @@ static CGFloat progressRectWidth = 3;
         [self configUI];
     }
     return self;
+}
+
+/// MARK: 拖动进度条
+- (void)cliderValueChanged:(UISlider *)sender{
+    [_progress setProgress:sender.value animated:NO];
+    if ([self.delegate respondsToSelector:@selector(avSliderValueChanged:slider:)]) {
+        [self.delegate avSliderValueChanged:self slider:sender];
+    }
 }
 
 - (UIButton *)play{
@@ -149,6 +165,17 @@ static CGFloat progressRectWidth = 3;
     }
     return _progress;
 }
+- (UISlider *)slider{
+    if (!_slider) {
+        _slider = UISlider.new;
+        [_slider addTarget:self action:@selector(cliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+        _slider.tintColor = UIColor.clearColor;
+        _slider.backgroundColor = UIColor.clearColor;
+        _slider.maximumTrackTintColor = UIColor.clearColor;
+        
+    }
+    return _slider;
+}
 - (UILabel *)currentTime{
     if (!_currentTime) {
         UILabel *label = [UILabel new];
@@ -171,14 +198,14 @@ static CGFloat progressRectWidth = 3;
     }
     return _totalTime;
 }
-- (UIView *)rect{
-    if (!_rect) {
-        _rect = [UIView.alloc initWithFrame:CGRectMake(_progress.x, _progress.y - 5, progressRectWidth, 15)];
-        [_rect cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:1.5];
-        [self addSubview:_rect];
-    }
-    return _rect;
-}
+//- (UIView *)rect{
+//    if (!_rect) {
+//        _rect = [UIView.alloc initWithFrame:CGRectMake(_progress.x, _progress.y - 5, progressRectWidth, 15)];
+//        [_rect cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:1.5];
+////        [self addSubview:_rect];
+//    }
+//    return _rect;
+//}
 - (UIButton *)conPlay{
     if (!_conPlay) {
         _conPlay = UIButton.new;

@@ -16,7 +16,8 @@
 #import "DJLessonDetailViewController.h"
 
 @interface HPAudioPlayerView ()<
-LGPlayerDelegate>
+LGPlayerDelegate,
+LGAudioPlayerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UIView *iconBg;
@@ -34,6 +35,12 @@ LGPlayerDelegate>
 
 - (void)audioStop{
     [_audio lg_stop_play];
+    
+}
+
+#pragma mark - LGAudioPlayerViewDelegate
+- (void)avSliderValueChanged:(LGAudioPlayerView *)view slider:(UISlider *)slider{
+    [self.audio seekToProgress:slider.value];
 }
 
 #pragma mark - LGPlayerDelegate
@@ -126,6 +133,7 @@ LGPlayerDelegate>
     
     _audioPlayer.progressValue = 0;
     [_audioPlayer.play addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
+    _audioPlayer.delegate = self;
     
     [_icon cutBorderWithBorderWidth:0.5 borderColor:[UIColor whiteColor] cornerRadius:0];
     [_icon setShadowWithShadowColor:[UIColor blackColor] shadowOffset:CGSizeZero shadowOpacity:0.8 shadowRadius:15];

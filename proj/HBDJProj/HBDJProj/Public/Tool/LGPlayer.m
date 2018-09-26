@@ -20,6 +20,10 @@ PLPlayerDelegate>
 
 @implementation LGPlayer
 
+- (void)seekToWithProgress:(CGFloat)progress{
+    [self.audioPlayer seekTo:CMTimeMake(progress * 1000, 1000)];
+}
+
 - (BOOL)isPlaying{
     return self.audioPlayer.isPlaying;
 }
@@ -90,6 +94,7 @@ PLPlayerDelegate>
     
 }
 - (void)lg_play{
+    
     
     if (!_playTimer) {
         [self addTimer];

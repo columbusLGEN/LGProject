@@ -44,7 +44,8 @@
 #import "LGNoticer.h"
 
 #define iFlyAppid        @"5b0d04ef"
-#define DJUMAppKey       @"5b231ac1a40fa31e880000d9"
+/// 5b231ac1a40fa31e880000d9 --> 公司账号的appkey
+#define DJUMAppKey       @"5bab1d3fb465f576a90002d1"
 
 #define DJWexinAppID     @"wx2b25e486d7622bf9"
 #define DJWexinAppSecret @"9026cb882f7eb338a486f2f1bc3ae6f1"

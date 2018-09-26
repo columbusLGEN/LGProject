@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class LGAudioPlayerView;
+
+@protocol LGAudioPlayerViewDelegate <NSObject>
+- (void)avSliderValueChanged:(LGAudioPlayerView *)view slider:(UISlider *)slider;
+
+@end
+
 @interface LGAudioPlayerView : UIView
+@property (weak,nonatomic) id<LGAudioPlayerViewDelegate> delegate;
 @property (strong,nonatomic) UIButton *play;
 @property (strong,nonatomic) UILabel *currentTime;
 @property (strong,nonatomic) UILabel *totalTime;
