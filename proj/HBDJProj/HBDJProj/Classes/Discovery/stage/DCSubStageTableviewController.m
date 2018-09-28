@@ -33,7 +33,7 @@ WMPlayerDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 1.0;
+    self.tableView.estimatedRowHeight = 200.0;
     [self.tableView registerClass:[NSClassFromString(threeImgCell) class] forCellReuseIdentifier:threeImgCell];
     [self.tableView registerClass:[NSClassFromString(oneImgCell) class] forCellReuseIdentifier:oneImgCell];
     [self.tableView registerClass:[NSClassFromString(audioCell) class] forCellReuseIdentifier:audioCell];
@@ -48,7 +48,6 @@ WMPlayerDelegate>
         [self getData];
     }];
     
-//    [self.tableView.mj_header beginRefreshing];
 }
 - (void)setDataArray:(NSArray *)dataArray{
     [super setDataArray:dataArray];
@@ -90,9 +89,6 @@ WMPlayerDelegate>
             _offset = self.dataArray.count;
             self.dataSyncer.dicovery_PYQ = self.dataArray;
             
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                [self.tableView reloadData];
-//            }];
         }
         
     } failure:^(id failureObj) {

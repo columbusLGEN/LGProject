@@ -54,7 +54,7 @@ static NSString * const id_key = @"id";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 50.0f;
+    self.tableView.estimatedRowHeight = 100.0f;
     [self.tableView registerNib:[UINib nibWithNibName:examSingleOptionCell bundle:nil] forCellReuseIdentifier:examSingleOptionCell];
     [self.tableView registerNib:[UINib nibWithNibName:examSingleStemCell bundle:nil] forCellReuseIdentifier:examSingleStemCell];
     

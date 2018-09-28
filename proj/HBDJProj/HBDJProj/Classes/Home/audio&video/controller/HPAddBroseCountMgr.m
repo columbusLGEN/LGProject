@@ -10,7 +10,7 @@
 
 @implementation HPAddBroseCountMgr
 
-- (void)addBroseCountWithId:(NSInteger)seqid success:(void(^)())success{
+- (void)addBroseCountWithId:(NSInteger)seqid success:(void(^)(void))success{
     [[DJHomeNetworkManager sharedInstance] homeAddcountWithId:[NSString stringWithFormat:@"%ld",seqid] success:^(id responseObj) {
         NSLog(@"homeAddcountWithId_responseobject: %@",responseObj);
         if (success) success();

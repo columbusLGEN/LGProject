@@ -312,7 +312,7 @@ UCMsgTableViewCellDelegate>
         
         [_msgListView registerNib:[UINib nibWithNibName:msgCell bundle:nil] forCellReuseIdentifier:msgCell];
         [_msgListView registerNib:[UINib nibWithNibName:msgEditCell bundle:nil] forCellReuseIdentifier:msgEditCell];
-        _msgListView.estimatedRowHeight = 1.0;
+        _msgListView.estimatedRowHeight = 100.0;
         
         _msgListView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

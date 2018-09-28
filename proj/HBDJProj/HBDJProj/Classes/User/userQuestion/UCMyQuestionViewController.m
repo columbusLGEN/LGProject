@@ -47,7 +47,7 @@ UCQuestionTableViewCellDelegate>
     
     self.title = @"我的提问";
     
-    _tableView.estimatedRowHeight = 1.0f;
+    _tableView.estimatedRowHeight = 100.0f;
     [_tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

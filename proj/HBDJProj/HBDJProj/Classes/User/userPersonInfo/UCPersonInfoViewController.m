@@ -39,7 +39,7 @@
     _array = [UCPersonInfoModel userInfoArray];
     [self.tableView reloadData];
     
-    self.tableView.estimatedRowHeight = 1.0f;
+    self.tableView.estimatedRowHeight = 100.0f;
     _uploadDataManager = DJUploadDataManager.new;
     _coverManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
     _coverManager.configuration.singleSelected = YES;

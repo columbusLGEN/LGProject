@@ -55,7 +55,7 @@ OLVoteDetailHeaderViewDelegate>
     [self.tableView registerNib:[UINib nibWithNibName:normalCellID bundle:nil] forCellReuseIdentifier:normalCellID];
     [self.tableView registerNib:[UINib nibWithNibName:votedCellID bundle:nil] forCellReuseIdentifier:votedCellID];
     [self.tableView registerClass:[OLVoteDetailBottomTimeCell class] forCellReuseIdentifier:bottomTimeCell];
-    self.tableView.estimatedRowHeight = 1.0;
+    self.tableView.estimatedRowHeight = 100.0;
     
     OLVoteDetailHeaderView *header = [OLVoteDetailHeaderView headerForVoteDetail];
     _header = header;

@@ -90,7 +90,7 @@ static NSString * const rtqaCell = @"DJResourceTypeQACell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 1.0f;
+    self.tableView.estimatedRowHeight = 100.0f;
     [self.tableView registerNib:[UINib nibWithNibName:rtqaCell bundle:nil] forCellReuseIdentifier:rtqaCell];
 
 }

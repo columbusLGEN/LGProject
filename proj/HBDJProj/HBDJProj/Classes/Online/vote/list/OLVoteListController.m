@@ -27,20 +27,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    [self getNetDataWithOffset:0];
+
 }
 
 - (void)configUI{
     
-    self.tableView.rowHeight = 79;
+//    self.tableView.rowHeight = 79;
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _offset = 0;
-        [self getNetDataWithOffset:_offset];
-    }];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(tbHeaderRefresh)];
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        _offset = 0;
+//        [self getNetDataWithOffset:_offset];
+//    }];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self getNetDataWithOffset:_offset];
     }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)tbHeaderRefresh{
+    _offset = 0;
+    [self getNetDataWithOffset:_offset];
 }
 
 - (void)getNetDataWithOffset:(NSInteger)offset{
@@ -49,6 +56,7 @@
         BOOL arrayIsNull = (array == nil || array.count == 0);
         if (offset == 0) {
             [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer resetNoMoreData];
         }else{
             if (arrayIsNull) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -74,6 +82,7 @@
             
             self.dataArray = arrMu.copy;
             _offset = self.dataArray.count;
+            
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.tableView reloadData];
             }];
@@ -106,5 +115,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 79;
+}
 
 @end

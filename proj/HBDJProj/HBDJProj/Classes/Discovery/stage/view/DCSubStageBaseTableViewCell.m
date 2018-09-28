@@ -360,7 +360,7 @@ LGThreeRightButtonViewDelegate>
         _tbvForComments = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tbvForComments.dataSource = self;
         _tbvForComments.delegate = self;
-        _tbvForComments.estimatedRowHeight = 1.0f;
+        _tbvForComments.estimatedRowHeight = 100.0f;
         _tbvForComments.scrollEnabled = NO;
         _tbvForComments.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tbvForComments registerClass:[DCSubStageCommentsCell class] forCellReuseIdentifier:stageCommentsCell];

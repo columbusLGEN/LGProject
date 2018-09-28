@@ -57,7 +57,7 @@ DJUploadMindReportCoverCellDelegate>
     [self.tableView registerClass:[DJUploadMindReportTextCell class] forCellReuseIdentifier:uploadMRTextCell];
     [self.tableView registerClass:[DJUploadMindReportCoverCell class] forCellReuseIdentifier:uploadMRAddCoverCell];
     [self.tableView registerClass:[DJUploadMindReportImageCell class] forCellReuseIdentifier:uploadMRAddImageCell];
-    self.tableView.estimatedRowHeight = 1.0;
+    self.tableView.estimatedRowHeight = 100.0;
     
     self.dataArray = [DJUploadMindReportLineModel loadLocalPlistWithPlistName:@"DJOnlineUploadConfig"];
     [self.tableView reloadData];

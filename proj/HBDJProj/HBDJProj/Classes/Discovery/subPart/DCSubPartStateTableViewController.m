@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 1.0;
+    self.tableView.estimatedRowHeight = 100.0;
     [self.tableView registerClass:[DCSubPartStateWithoutImgCell class] forCellReuseIdentifier:withoutImgCell];
     [self.tableView registerClass:[DCSubPartStateOneImgCell class] forCellReuseIdentifier:oneImgCell];
     [self.tableView registerClass:[DCSubPartStateThreeImgCell class]

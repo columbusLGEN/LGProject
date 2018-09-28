@@ -20,15 +20,15 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 
 @interface UCQuestionTableViewCell ()<LGThreeRightButtonViewDelegate>
 
-@property (weak,nonatomic) DJBanIndicateView *banin;
+@property (weak, nonatomic) DJBanIndicateView *banin;
 @property (weak, nonatomic) IBOutlet UILabel *question;
 @property (weak, nonatomic) IBOutlet UILabel *content;
 @property (weak, nonatomic) IBOutlet UILabel *tagLabel0;
-@property (strong, nonatomic) IBOutlet LGThreeRightButtonView *boInterView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *arrow;
 @property (weak, nonatomic) IBOutlet UIButton *showAll;
+@property (strong, nonatomic) IBOutlet LGThreeRightButtonView *boInterView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingNeedsChangeWhenEdit;
 
 @end

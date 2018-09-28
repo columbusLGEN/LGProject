@@ -27,7 +27,7 @@ UCQuestionTableViewCellDelegate>
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
-    self.tableView.estimatedRowHeight = 1.0;
+    self.tableView.estimatedRowHeight = 100.0;
     
     [self headerFooterSet];
     

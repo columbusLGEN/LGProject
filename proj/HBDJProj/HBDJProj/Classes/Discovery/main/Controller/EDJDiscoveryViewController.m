@@ -127,7 +127,6 @@ LGNavigationSearchBarDelelgate>
         
     } failure:^(id failureObj) {
         [self presentFailureTips:@"网络异常"];
-
     }];
     
 }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^wav2mp3Success)();
+typedef void(^wav2mp3Success)(void);
 
 @interface LGAudioWav2Mp3Mgr : NSObject
 

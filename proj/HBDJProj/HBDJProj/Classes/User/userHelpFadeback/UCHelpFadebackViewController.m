@@ -74,7 +74,7 @@ UITableViewDataSource
     [_writeFadeback setImageEdgeInsets:btnImgInsets];
     [_myFadeback setImageEdgeInsets:btnImgInsets];
     
-    _tableView.estimatedRowHeight = 1.0f;
+    _tableView.estimatedRowHeight = 100.0f;
     [_tableView registerClass:[UCHelpFadebackTableViewCell class] forCellReuseIdentifier:cellID];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
