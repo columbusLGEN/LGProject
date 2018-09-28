@@ -31,7 +31,11 @@ LGAudioPlayerViewDelegate>
 
 @end
 
-@implementation HPAudioPlayerView
+@implementation HPAudioPlayerView{
+    /** 暂停状态 */
+    BOOL pause;
+    float tTime;
+}
 
 - (void)audioStop{
     [_audio lg_stop_play];
@@ -39,26 +43,29 @@ LGAudioPlayerViewDelegate>
 }
 
 #pragma mark - LGAudioPlayerViewDelegate
+/// MARK: 用户主动拖动进度条,修改进度条UI
 - (void)avSliderValueChanged:(LGAudioPlayerView *)view slider:(UISlider *)slider{
     [self.audio seekToProgress:slider.value];
+    float cTime = slider.value * tTime;
+    NSString *currentString = [self.minSecFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:cTime]];
+    self.audioPlayer.currentTime.text = currentString;
+
 }
 
 #pragma mark - LGPlayerDelegate
 - (void)playProgress:(LGPlayer *)player progress:(float)progress currentTime:(float)currentTime totalTime:(float)totalTime{
+    tTime = totalTime;
     
-//    if (currentTime < 0) {
-//        currentTime = 0;
-//    }
-    self.audioPlayer.progressValue = progress;
+    NSString *currentString = [self.minSecFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:currentTime]];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"mm:ss"];
-    NSString *currentString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:currentTime]];
+    NSString *totalString = [self.minSecFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:totalTime]];
     
-    NSString *totalString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:totalTime]];
-    
-    
-    self.audioPlayer.currentTime.text = currentString;
+    /// pause 变量的作用：
+    /// 该方法每秒回调一次，然而在暂停时我们希望进度条停在用户拖动的位置，而不是被刷新
+    if (!pause) {
+        self.audioPlayer.progressValue = progress;
+        self.audioPlayer.currentTime.text = currentString;
+    }
     /// 总时间，只设置一次
     if (!_totalTimeSet) {
         self.audioPlayer.totalTime.text = totalString;
@@ -98,8 +105,9 @@ LGAudioPlayerViewDelegate>
     if (sender.isSelected) {
         /// 暂停
         [_audio lg_pause];
+        pause = YES;
     }else{
-        
+        pause = NO;
         if (!_played) {
             /// 首次播放
             [_audio lg_play];
@@ -129,6 +137,8 @@ LGAudioPlayerViewDelegate>
     _audio.delegate = self;
     _played = NO;
     
+    pause = YES;
+    
     self.audioPlayer.showCPB = YES;
     
     _audioPlayer.progressValue = 0;
@@ -146,6 +156,12 @@ LGAudioPlayerViewDelegate>
 - (void)dealloc{
     [_audio lg_stop_play];
 
+}
+
+- (NSDateFormatter *)minSecFormatter{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"mm:ss"];
+    return formatter;
 }
 
 @end

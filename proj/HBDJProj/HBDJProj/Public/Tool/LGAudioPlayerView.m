@@ -9,7 +9,7 @@
 #import "LGAudioPlayerView.h"
 
 static CGFloat progressHeight = 5;
-static CGFloat progressRectWidth = 3;
+//static CGFloat progressRectWidth = 3;
 
 @interface LGAudioPlayerView ()
 @property (strong,nonatomic) UIProgressView *progress;
