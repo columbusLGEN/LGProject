@@ -71,7 +71,7 @@ DJOnlineUplaodTableViewControllerDelegate>
         CGFloat x;
         if (idx > 0) {
             lastLabel = _channelLabelArray[idx - 1];
-            x = marginTen + CGRectGetMaxX(lastLabel.frame);
+            x = marginTwenty + CGRectGetMaxX(lastLabel.frame);
         }else{
             x = marginTen;
         }

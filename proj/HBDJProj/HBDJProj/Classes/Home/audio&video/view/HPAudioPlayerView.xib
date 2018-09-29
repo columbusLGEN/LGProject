@@ -75,6 +75,8 @@
                 <outlet property="bgImg" destination="ail-UE-cp8" id="jJ3-65-WaS"/>
                 <outlet property="icon" destination="cLv-Zu-ZhZ" id="jAf-z2-eym"/>
                 <outlet property="iconBg" destination="9BM-Tk-gDK" id="yHp-k7-0NB"/>
+                <outlet property="imgH" destination="z9a-si-8Ci" id="ged-4b-Ovx"/>
+                <outlet property="imgW" destination="rA1-pg-7iu" id="TtM-2T-VQr"/>
             </connections>
             <point key="canvasLocation" x="486" y="-734"/>
         </view>

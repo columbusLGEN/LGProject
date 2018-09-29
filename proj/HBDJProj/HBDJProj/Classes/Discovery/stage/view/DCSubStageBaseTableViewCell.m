@@ -217,7 +217,7 @@ LGThreeRightButtonViewDelegate>
     
     [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.icon.mas_left);
-        make.centerY.equalTo(self.boInterView.mas_centerY);
+        make.centerY.equalTo(self.boInterView.mas_centerY).offset(3);
         make.width.mas_equalTo(120);
     }];
     [self.boInterView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -315,7 +315,7 @@ LGThreeRightButtonViewDelegate>
     if (!_time) {
         _time = [UILabel new];
         _time.textColor = [UIColor EDJGrayscale_66];
-        _time.font = [UIFont systemFontOfSize:15];
+        _time.font = [UIFont systemFontOfSize:13];
     }
     return _time;
 }

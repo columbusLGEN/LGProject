@@ -56,10 +56,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [_iconBg cutToCycle];
     [_icon cutToCycle];
     CGFloat shadowOffset = 2;
-    [_iconBg setShadowWithShadowColor:[UIColor EDJGrayscale_F4] shadowOffset:CGSizeMake(shadowOffset, shadowOffset) shadowOpacity:1 shadowRadius:shadowOffset];
+    
+//    [_iconBg cutToCycle];
+//    [_iconBg setShadowWithShadowColor:[UIColor EDJGrayscale_F4] shadowOffset:CGSizeMake(shadowOffset, shadowOffset) shadowOpacity:1 shadowRadius:shadowOffset];
 }
 
 @end

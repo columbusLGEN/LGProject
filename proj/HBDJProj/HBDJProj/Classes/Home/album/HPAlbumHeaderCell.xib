@@ -38,11 +38,11 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rE9-KL-YZR">
-                        <rect key="frame" x="15" y="370.5" width="70" height="20"/>
+                        <rect key="frame" x="15" y="370.5" width="75" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="a9f-yC-CkS"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="时间排序      ">
                             <color key="titleColor" red="0.98823529409999999" green="0.34509803919999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -51,7 +51,7 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_album_list_time_sort" translatesAutoresizingMaskIntoConstraints="NO" id="tKc-CQ-ULS">
-                        <rect key="frame" x="70" y="374.5" width="17" height="12"/>
+                        <rect key="frame" x="75" y="374.5" width="17" height="12"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-6h-jUo">
                         <rect key="frame" x="533" y="326" width="44" height="15"/>
@@ -59,9 +59,10 @@
                             <constraint firstAttribute="height" constant="15" id="U4F-my-L0w"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="更多    ">
+                        <state key="normal" title="展开    ">
                             <color key="titleColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <state key="selected" title="收起    "/>
                         <connections>
                             <action selector="moreClick:" destination="EiQ-4f-gB9" eventType="touchUpInside" id="Mt4-Zp-4A4"/>
                         </connections>

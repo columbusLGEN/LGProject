@@ -50,7 +50,7 @@ static NSString * const olupTimeKeyPath = @"content";
         _content = lbl;
         _content.numberOfLines = 0;
         _content.text = @"请点击进行选择";
-        _content.textColor = [UIColor EDJGrayscale_F3];
+        _content.textColor = [UIColor EDJColor_c2c0c0];
         _content.font = [UIFont systemFontOfSize:14];
         [_content mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.item.mas_top);

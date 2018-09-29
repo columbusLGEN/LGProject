@@ -16,7 +16,7 @@
     }
     if (_showAll) {
         CGSize size = [self.content sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 36, MAXFLOAT) font:[UIFont systemFontOfSize:15]];
-        return 100 + size.height + 8;
+        return 75 + size.height + 8;
     }else{
         return 140;
     }

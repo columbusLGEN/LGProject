@@ -154,7 +154,17 @@ UICollectionViewDataSource>
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(kScreenWidth, 40);
+    
+    if (section == 0) {
+        if (_selectTags.count == 0) {
+            return CGSizeZero;
+        }else{
+            return CGSizeMake(kScreenWidth, 40);
+        }
+    }else{
+        return CGSizeMake(kScreenWidth, 40);
+    }
+    
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];

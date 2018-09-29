@@ -24,7 +24,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="65" id="deT-G0-GzT"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -92,10 +92,11 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-gq-QE4">
-                        <rect key="frame" x="530" y="236.5" width="47" height="22"/>
+                        <rect key="frame" x="538" y="236.5" width="39" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Knf-hZ-099"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <inset key="titleEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <inset key="imageEdgeInsets" minX="55" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="展开" image="home_digital_book_info_arrow_down">

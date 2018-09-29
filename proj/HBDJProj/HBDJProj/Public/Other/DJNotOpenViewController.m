@@ -45,9 +45,9 @@
 }
 
 - (void)setNavLeftBackItem{
-    if (_showBackItem) {
-        [super setNavLeftBackItem];
-    }
+    [super setNavLeftBackItem];
+//    if (_showBackItem) {
+//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{

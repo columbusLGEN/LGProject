@@ -33,9 +33,6 @@
 #import "DJListPlayNoticeView.h"
 #import "LGAlertControllerManager.h"
 
-static CGFloat videoInsets = 233;
-static CGFloat audioInsets = 296;
-
 @interface DJLessonDetailViewController ()<
 UITableViewDelegate,
 UITableViewDataSource,
@@ -172,7 +169,7 @@ DJMediaPlayDelegate>
         
         vpv.lessonDetailVc = self;
         vpv.delegate = self;
-        vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
+        vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, self.videoInsets);
         [self.view addSubview:vpv];
         vpv.model = self.model;
         _vpv = vpv;
@@ -188,7 +185,7 @@ DJMediaPlayDelegate>
         apv.audioPlayer.conPlay.selected = loopPlay.boolValue;
         
         apv.lessonDetailVc = self;
-        apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
+        apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, self.audioInsets);
         [self.view addSubview:apv];
         apv.model = self.model;
         _apv = apv;
@@ -570,10 +567,10 @@ DJMediaPlayDelegate>
         
         if (self.lessonMediaType == DJLessonMediaTypeVideo) {
             /// 视频
-            _tableView.contentInset = UIEdgeInsetsMake(videoInsets, 0, 0, 0);
+            _tableView.contentInset = UIEdgeInsetsMake(self.videoInsets, 0, 0, 0);
         }else if (self.lessonMediaType == DJLessonMediaTypeAudio) {
             /// 音频
-            _tableView.contentInset = UIEdgeInsetsMake(audioInsets, 0, 0, 0);
+            _tableView.contentInset = UIEdgeInsetsMake(self.audioInsets, 0, 0, 0);
         }
         
     }
@@ -616,6 +613,21 @@ DJMediaPlayDelegate>
 
 - (NSString *)userLoopPlayKey{
     return [NSString stringWithFormat:@"%@_loopPlay",DJUser.sharedInstance.userid];
+}
+
+- (CGFloat)audioInsets{
+    /// 加括号只是为了表示 乘除关系 不加也可以正确计算期望值
+    if ([LGDevice isiPad]) {
+        return (296 * kScreenHeight) / plusScreenHeight;
+    }
+    return 296;
+}
+
+- (CGFloat)videoInsets{
+    if ([LGDevice isiPad]) {
+        return (233 * kScreenHeight) / plusScreenHeight;
+    }
+    return 233;
 }
 
 @end

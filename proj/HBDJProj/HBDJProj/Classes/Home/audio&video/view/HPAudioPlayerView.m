@@ -29,6 +29,10 @@ LGAudioPlayerViewDelegate>
 /** YES: 总时间已经设置过 */
 @property (assign,nonatomic) BOOL totalTimeSet;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgH;
+
+
 @end
 
 @implementation HPAudioPlayerView{
@@ -136,6 +140,12 @@ LGAudioPlayerViewDelegate>
     _audio = [LGPlayer new];
     _audio.delegate = self;
     _played = NO;
+    
+    if ([LGDevice isiPad]) {
+        _imgW.constant = 261 * kScreenWidth / plusScreenWidth;
+        _imgH.constant = 147 * kScreenHeight / plusScreenHeight;
+    }
+    
     
     pause = YES;
     

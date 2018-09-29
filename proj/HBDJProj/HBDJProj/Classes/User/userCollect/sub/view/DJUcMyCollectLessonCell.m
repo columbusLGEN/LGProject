@@ -78,6 +78,7 @@ static NSString * const playcount_key = @"playcount";
         
         UILabel *peopleCount = UILabel.new;
         _peopleCount = peopleCount;
+        _peopleCount.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:_peopleCount];
         
         UIImageView *tiIcon = UIImageView.new;
@@ -86,6 +87,7 @@ static NSString * const playcount_key = @"playcount";
         
         UILabel *time = UILabel.new;
         _time = time;
+        _time.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:time];
         
         UIImageView *img = UIImageView.new;

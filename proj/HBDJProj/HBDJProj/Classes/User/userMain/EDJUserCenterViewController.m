@@ -46,12 +46,14 @@ UCPersonInfoViewControllerDelegate>
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    [_containerHeadIcon cutToCycle];
     [_headIcon cutToCycle];
-    CGFloat shadowOffset = 2;
-    [_containerHeadIcon setShadowWithShadowColor:[UIColor EDJGrayscale_F4]
-                                    shadowOffset:CGSizeMake(shadowOffset, shadowOffset)
-                                   shadowOpacity:1 shadowRadius:shadowOffset];
+
+    /// 最新版本中 头像白边 已经隐藏
+//    CGFloat shadowOffset = 2;
+//    [_containerHeadIcon cutToCycle];
+//    [_containerHeadIcon setShadowWithShadowColor:[UIColor EDJGrayscale_F4]
+//                                    shadowOffset:CGSizeMake(shadowOffset, shadowOffset)
+//                                   shadowOpacity:1 shadowRadius:shadowOffset];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -114,7 +116,7 @@ UCPersonInfoViewControllerDelegate>
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
+    return 55;
 }
 
 #pragma mark - 跳转

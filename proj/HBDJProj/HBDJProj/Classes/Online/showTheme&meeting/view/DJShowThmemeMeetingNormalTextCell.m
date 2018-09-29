@@ -28,7 +28,6 @@
         UILabel *label = UILabel.new;
         _contentLabel = label;
         [self.contentView addSubview:_contentLabel];
-        /// 默认显示 灰色字体，提示用户
         _contentLabel.numberOfLines = 0;
         _contentLabel.userInteractionEnabled = YES;
         _contentLabel.textColor = UIColor.EDJGrayscale_11;

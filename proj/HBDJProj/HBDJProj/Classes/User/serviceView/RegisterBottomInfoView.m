@@ -22,7 +22,7 @@
 
 - (void)setupUI{
     
-    CGFloat textFont = 17;
+    CGFloat textFont = 15;
     
     NSString *str0 = @"特别提示:";
     NSString *blackStr = @":";
@@ -33,7 +33,7 @@
     _tbts.attributedText = muStr0;
     
     /// 原始字符串
-    NSString *str1 = @"开通咨询电话:";
+    NSString *str1 = @"咨询电话:";
     /// 需要改变颜色的字符串 @":"
     /// 属性字典，包含了需要的颜色
     NSDictionary *attrDict1 = @{NSForegroundColorAttributeName:[UIColor blackColor]};

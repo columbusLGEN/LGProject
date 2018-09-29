@@ -59,7 +59,7 @@ UITextViewDelegate>
         _contentLabel.numberOfLines = 0;
         _contentLabel.userInteractionEnabled = YES;
         _contentLabel.text = @"请点击以输入内容";
-        _contentLabel.textColor = UIColor.EDJGrayscale_EC;
+        _contentLabel.textColor = UIColor.EDJColor_c2c0c0;
         _contentLabel.font = [UIFont systemFontOfSize:14];
         [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.item.mas_right).offset(marginEight);

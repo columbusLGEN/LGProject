@@ -19,7 +19,7 @@
         make.height.mas_equalTo(91);
     }];
     self.img.contentMode = UIViewContentModeScaleAspectFit;
-    [self.label setFont:[UIFont systemFontOfSize:19]];
+    [self.label setFont:[UIFont systemFontOfSize:17]];
 }
 
 @end

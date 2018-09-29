@@ -214,14 +214,14 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJX-Wf-tie">
-                                        <rect key="frame" x="5" y="19.666666666666686" width="108" height="23"/>
+                                        <rect key="frame" x="-4" y="19.666666666666686" width="108" height="23"/>
                                         <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="正确：180" image="ol_tr_kscj_right">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTA-j6-T4k">
-                                        <rect key="frame" x="150" y="20.666666666666686" width="100" height="22"/>
+                                        <rect key="frame" x="160" y="20.666666666666686" width="100" height="22"/>
                                         <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="错误：20" image="ol_tr_kscj_wrong">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -239,7 +239,7 @@
                                 <constraints>
                                     <constraint firstItem="tMn-tp-qYe" firstAttribute="leading" secondItem="IW7-2m-jKY" secondAttribute="leading" id="1ok-Wd-xbe"/>
                                     <constraint firstAttribute="bottom" secondItem="vRf-QH-Rl8" secondAttribute="bottom" id="3UN-14-knw"/>
-                                    <constraint firstItem="DTA-j6-T4k" firstAttribute="leading" secondItem="op5-Bs-2Bl" secondAttribute="trailing" constant="20" id="78A-6z-3Sf"/>
+                                    <constraint firstItem="DTA-j6-T4k" firstAttribute="leading" secondItem="op5-Bs-2Bl" secondAttribute="trailing" constant="30" id="78A-6z-3Sf"/>
                                     <constraint firstItem="tMn-tp-qYe" firstAttribute="top" secondItem="IW7-2m-jKY" secondAttribute="top" id="Emd-wQ-Nb1"/>
                                     <constraint firstAttribute="height" constant="63" id="HYW-Ss-MBn"/>
                                     <constraint firstItem="BJX-Wf-tie" firstAttribute="centerY" secondItem="IW7-2m-jKY" secondAttribute="centerY" id="JH3-2E-Qhi"/>
@@ -248,7 +248,7 @@
                                     <constraint firstItem="vRf-QH-Rl8" firstAttribute="leading" secondItem="IW7-2m-jKY" secondAttribute="leading" id="TjJ-7j-9a1"/>
                                     <constraint firstItem="op5-Bs-2Bl" firstAttribute="centerY" secondItem="IW7-2m-jKY" secondAttribute="centerY" id="WGt-BX-448"/>
                                     <constraint firstItem="DTA-j6-T4k" firstAttribute="centerY" secondItem="BJX-Wf-tie" secondAttribute="centerY" id="dnq-gf-zyy"/>
-                                    <constraint firstItem="op5-Bs-2Bl" firstAttribute="leading" secondItem="BJX-Wf-tie" secondAttribute="trailing" constant="16" id="uPO-19-a2B"/>
+                                    <constraint firstItem="op5-Bs-2Bl" firstAttribute="leading" secondItem="BJX-Wf-tie" secondAttribute="trailing" constant="25" id="uPO-19-a2B"/>
                                     <constraint firstAttribute="trailing" secondItem="tMn-tp-qYe" secondAttribute="trailing" id="wWl-0W-XdW"/>
                                     <constraint firstAttribute="width" constant="260" id="yhl-Bt-bNx"/>
                                 </constraints>

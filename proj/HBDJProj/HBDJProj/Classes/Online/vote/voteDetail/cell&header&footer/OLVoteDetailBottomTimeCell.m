@@ -36,6 +36,7 @@
         
         UILabel *lbl = UILabel.new;
         _endTimeLabel = lbl;
+        _endTimeLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:_endTimeLabel];
         [_endTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(line.mas_bottom).offset(marginEight);

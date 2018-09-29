@@ -74,7 +74,7 @@ DJInputContentViewControllerDelegate>
     [self.tableView registerClass:[DJOnlineUploadSelectMeetingTag class] forCellReuseIdentifier:selectMeetingTagCell];
     self.tableView.estimatedRowHeight = 100.0;
     
-    UIBarButtonItem *send = [[UIBarButtonItem alloc] initWithTitle:@"上传" style:UIBarButtonItemStyleDone target:self action:@selector(uploadData)];
+    UIBarButtonItem *send = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStyleDone target:self action:@selector(uploadData)];
     self.navigationItem.rightBarButtonItem = send;
     
     /// 选择/上传 图片管理者封装

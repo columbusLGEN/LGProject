@@ -30,10 +30,6 @@
 #import "DJUserInteractionMgr.h"
 #import "HPAddBroseCountMgr.h"
 
-
-static CGFloat videoInsets = 233;
-static CGFloat audioInsets = 296;
-
 @interface HPAudioVideoViewController ()<
 UITableViewDelegate,
 UITableViewDataSource,
@@ -159,8 +155,7 @@ HPVideoContainerViewDelegate>
         HPVideoContainerView *vpv = [[HPVideoContainerView alloc] init];
         vpv.delegate = self;
 
-        
-        vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, videoInsets);
+        vpv.frame = CGRectMake(0, kNavHeight, kScreenWidth, self.videoInsets);
         [self.view addSubview:vpv];
         vpv.model = self.model;
         _vpv = vpv;
@@ -168,7 +163,7 @@ HPVideoContainerViewDelegate>
         /// MARK: 音频播放器
         HPAudioPlayerView *apv = [HPAudioPlayerView audioPlayerView];
 
-        apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, audioInsets);
+        apv.frame = CGRectMake(0, kNavHeight, kScreenWidth, self.audioInsets);
         [self.view addSubview:apv];
         apv.model = self.model;
         _apv = apv;
@@ -272,10 +267,10 @@ HPVideoContainerViewDelegate>
         [_tableView registerNib:[UINib nibWithNibName:avInfoCell bundle:nil] forCellReuseIdentifier:avInfoCell];
         if (self.contentType == ModelMediaTypeVideo) {
             /// 视频
-            _tableView.contentInset = UIEdgeInsetsMake(videoInsets, 0, 0, 0);
+            _tableView.contentInset = UIEdgeInsetsMake(self.videoInsets, 0, 0, 0);
         }else if (self.contentType == ModelMediaTypeAudio) {
             /// 音频
-            _tableView.contentInset = UIEdgeInsetsMake(audioInsets, 0, 0, 0);
+            _tableView.contentInset = UIEdgeInsetsMake(self.audioInsets, 0, 0, 0);
         }
         
     }
@@ -294,6 +289,15 @@ HPVideoContainerViewDelegate>
         [_vpv stop];
         [_apv audioStop];
     }
+}
+
+- (CGFloat)audioInsets{
+    /// 加括号只是为了表示 乘除关系 不加也可以正确计算期望值
+    return (296 * kScreenHeight) / plusScreenHeight;
+}
+
+- (CGFloat)videoInsets{
+    return (233 * kScreenHeight) / plusScreenHeight;
 }
 
 @end

@@ -35,7 +35,7 @@
 }
 
 - (void)configUI{
-    self.title = @"个人信息";
+    self.title = @"我的信息";
     _array = [UCPersonInfoModel userInfoArray];
     [self.tableView reloadData];
     

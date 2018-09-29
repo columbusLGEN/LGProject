@@ -45,7 +45,7 @@
 
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     _model = model;
-    _item.text = [model.itemName stringByAppendingString:@":"];
+    _item.text = [model.itemName stringByAppendingString:@": "];
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{

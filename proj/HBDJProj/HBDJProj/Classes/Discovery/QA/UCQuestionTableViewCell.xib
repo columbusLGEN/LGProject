@@ -116,6 +116,7 @@
                 <outlet property="arrow" destination="OCL-ek-Tts" id="bCE-NB-wIR"/>
                 <outlet property="boInterView" destination="PPu-QH-YVg" id="l4B-yJ-zDy"/>
                 <outlet property="content" destination="TrZ-7w-uN0" id="LUk-ll-60C"/>
+                <outlet property="contentBottomCons" destination="EWt-BO-yMr" id="dQG-0M-nFP"/>
                 <outlet property="leadingNeedsChangeWhenEdit" destination="byy-e6-yBr" id="eta-VV-vcp"/>
                 <outlet property="question" destination="zh3-EA-bdp" id="uTj-uK-Ump"/>
                 <outlet property="questionTextHeight" destination="2eD-IR-ZjY" id="mLb-sz-i4W"/>

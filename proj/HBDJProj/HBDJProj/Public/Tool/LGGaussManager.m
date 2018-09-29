@@ -18,6 +18,7 @@
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:style];
     /// new高斯view
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+//    effectView.alpha = 0.95;
     effectView.frame = frame;
     return effectView;
 }

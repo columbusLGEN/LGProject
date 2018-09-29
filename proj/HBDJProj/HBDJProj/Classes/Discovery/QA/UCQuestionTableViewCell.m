@@ -31,6 +31,9 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionTextHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingNeedsChangeWhenEdit;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentBottomCons;
+
+
 @end
 
 @implementation UCQuestionTableViewCell
@@ -103,6 +106,20 @@ static NSString * const collectioncount_keyPath = @"collectioncount";
     }else{
         _content.numberOfLines = 3;
         _arrow.transform = CGAffineTransformIdentity;
+    }
+    
+    CGFloat answerHeight = [qaModel.answer sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 57, MAXFLOAT) font:[UIFont systemFontOfSize:14]].height;
+    NSLog(@"answerHeight: %f",answerHeight);
+    NSInteger answerLines = answerHeight / 16.7;
+    
+    if (answerLines <= 3) {
+        _showAll.hidden = YES;
+        _arrow.hidden = YES;
+        _contentBottomCons.constant = -15;
+    }else{
+        _showAll.hidden = NO;
+        _arrow.hidden = NO;
+        _contentBottomCons.constant = 8;
     }
     
     _boInterView.leftIsSelected = !(qaModel.praiseid <= 0);

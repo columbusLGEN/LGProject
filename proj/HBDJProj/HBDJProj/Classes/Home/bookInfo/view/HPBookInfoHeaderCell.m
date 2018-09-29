@@ -60,8 +60,9 @@
     [self.contentView sendSubviewToBack:effectView];
     [self.contentView sendSubviewToBack:_fuzzyBg];
 
-    _coverWidth.constant = (120 * kScreenWidth) / plusScreenWidth;
-//    _coverHeight.constant = (160 * kScreenHeight) / plusScreenHeight;
+    _coverWidth.constant = (125 * kScreenWidth) / plusScreenWidth;
+//    _coverHeight.constant = (222 * kScreenHeight) / plusScreenHeight;
+    _coverHeight.constant = 125 * 1.4;
     
 }
 

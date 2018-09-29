@@ -262,6 +262,7 @@ static NSInteger requestLength = 10;
 - (UIView *)header{
     if (!_header) {
         _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.imgLoopHeight_forAnyScreen + homeSegmentHeight + 10)];
+        _header.backgroundColor = UIColor.EDJGrayscale_F3;
         [_header addSubview:self.imgLoop];
         [_header addSubview:self.segment];
     }

@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgLeft;
 @property (weak, nonatomic) IBOutlet UIImageView *imgRight;
+@property (weak, nonatomic) IBOutlet UIView *line;
 
 @end
 
@@ -55,6 +56,8 @@
     
     _titleBgLeft.hidden = YES;
     _titleBgRight.hidden = YES;
+    
+    _line.backgroundColor = UIColor.EDJGrayscale_F3;
     
 }
 

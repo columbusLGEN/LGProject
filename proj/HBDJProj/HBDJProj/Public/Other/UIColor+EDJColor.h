@@ -29,6 +29,8 @@
 + (UIColor *)EDJGrayscale_FA;
 + (UIColor *)EDJGrayscale_11;
 + (UIColor *)EDJGrayscale_AD;
+/** 占位文字颜色 */
++ (UIColor *)EDJColor_c2c0c0;
 /** 略深的灰色 */
 + (UIColor *)EDJGrayscale_A4;
 

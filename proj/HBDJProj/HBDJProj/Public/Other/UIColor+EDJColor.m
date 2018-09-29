@@ -64,6 +64,9 @@
 + (UIColor *)EDJGrayscale_A4{/// 164
     return [self colorWithHexString:@"A4A4A4"];
 }
++ (UIColor *)EDJColor_c2c0c0{
+    return [self colorWithHexString:@"c2c0c0"];
+}
 
 + (UIColor *)EDJColor_FFF5F5{
     return [self colorWithHexString:@"FFF5F5"];
