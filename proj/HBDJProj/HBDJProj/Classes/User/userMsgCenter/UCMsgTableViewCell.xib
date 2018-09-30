@@ -33,7 +33,7 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您所在的党支部发起了一条请点击查看" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2f-0M-kuK">
                         <rect key="frame" x="57" y="39" width="515" height="55.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0039215686274509803" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -97,6 +97,7 @@
             <connections>
                 <outlet property="alreadyReadIcon" destination="w98-ZD-WdL" id="NSn-Tn-E7c"/>
                 <outlet property="content" destination="L2f-0M-kuK" id="yIA-du-mtD"/>
+                <outlet property="sabTopCons" destination="Jak-qc-09D" id="939-rI-fT8"/>
                 <outlet property="showAllButton" destination="umJ-Sc-n0k" id="4nT-AQ-4Q8"/>
                 <outlet property="time" destination="AXQ-Ng-hlp" id="hGK-06-Oxf"/>
                 <outlet property="title" destination="ujp-lN-TLo" id="9V2-U5-F5p"/>

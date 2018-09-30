@@ -18,6 +18,7 @@ static NSString * const isread_key = @"isread";
 @property (weak, nonatomic) IBOutlet UILabel *content;
 @property (weak, nonatomic) IBOutlet UIImageView *alreadyReadIcon;
 @property (weak, nonatomic) IBOutlet UIButton *showAllButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sabTopCons;
 
 
 @end
@@ -41,11 +42,12 @@ static NSString * const isread_key = @"isread";
 
 - (void)setModel:(UCMsgModel *)model{
     _model = model;
-    _content.text = model.content;
-    if (model.noticetype == UCMsgModelResourceTypeCustom) {
-        _content.text = model.title;
-    }
     
+    NSString *contentText = model.content;
+    if (model.noticetype == UCMsgModelResourceTypeCustom) {
+        contentText = model.title;
+    }
+
     _showAllButton.selected = model.showAll;
     if (model.createdtime.length > length_timeString_1) {
         _time.text = [model.createdtime substringToIndex:length_timeString_1];
@@ -60,6 +62,19 @@ static NSString * const isread_key = @"isread";
     _alreadyReadIcon.hidden = model.isread;
     
     [model addObserver:self forKeyPath:isread_key options:NSKeyValueObservingOptionNew context:nil];
+    
+    /// 计算文本高度
+    CGFloat textHeight = [contentText sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 77, MAXFLOAT) font:[UIFont systemFontOfSize:16]].height;
+    
+    NSInteger lines = textHeight / 19;
+    /// 如果行数小于等于2 则 不显示更多按钮
+    if (lines <= 2) {
+        _showAllButton.hidden = YES;
+        _sabTopCons.constant = -20;
+    }else{
+        _showAllButton.hidden = NO;
+        _sabTopCons.constant = 10;
+    }
     
 }
 

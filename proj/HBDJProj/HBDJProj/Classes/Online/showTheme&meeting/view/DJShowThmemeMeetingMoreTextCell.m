@@ -9,6 +9,8 @@
 #import "DJShowThmemeMeetingMoreTextCell.h"
 #import "DJOnlineUploadTableModel.h"
 
+static CGFloat contentFont = 15;
+
 @interface DJShowThmemeMeetingMoreTextCell ()
 @property (weak,nonatomic) UILabel *contentLabel;
 @property (weak,nonatomic) UIButton *moreButton;
@@ -22,16 +24,43 @@
     [super setModel:model];
     self.contentLabel.text = model.content;
     
-    /// 计算文本高度，如果小于等于3行： 1.隐藏更多按钮 2.调整约束
+    /// TODO: 计算文本高度，如果小于等于3行： 1.隐藏更多按钮 2.调整约束
+//    NSLog(@"self.item.width: %f",self.item.width);
+    CGFloat textHeight = [model.content sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 26 - self.item.width, MAXFLOAT) font:[UIFont systemFontOfSize:contentFont]].height;
     
-    _moreButton.selected = model.contentShowAll;
-    if (model.contentShowAll) {
-        _contentLabel.numberOfLines = 0;
-        _arrow.transform = CGAffineTransformMakeRotation(-M_PI);
-    }else{
+    NSInteger lines = textHeight / 17.9;
+    if (lines <= 3) {
+        /// 如果不大于 3行，则不显示更多按钮
         _contentLabel.numberOfLines = 3;
-        _arrow.transform = CGAffineTransformIdentity;
+        _moreButton.hidden = YES;
+        _arrow.hidden = YES;
+        
+        [_moreButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_contentLabel.mas_top).offset(marginTen);
+            make.right.equalTo(_arrow.mas_left).offset(-marginFive);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginEight);
+            make.height.mas_equalTo(17);
+        }];
+        
+    }else{
+        [_moreButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_contentLabel.mas_bottom).offset(marginEight);
+            make.right.equalTo(_arrow.mas_left).offset(-marginFive);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-marginEight);
+            make.height.mas_equalTo(17);
+        }];
+        _moreButton.selected = model.contentShowAll;
+        if (model.contentShowAll) {
+            _contentLabel.numberOfLines = 0;
+            _arrow.transform = CGAffineTransformMakeRotation(-M_PI);
+        }else{
+            _contentLabel.numberOfLines = 3;
+            _arrow.transform = CGAffineTransformIdentity;
+        }
     }
+    
+    
+    
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -57,7 +86,7 @@
         _contentLabel.numberOfLines = 3;
         _contentLabel.userInteractionEnabled = YES;
         _contentLabel.textColor = UIColor.EDJGrayscale_11;
-        _contentLabel.font = [UIFont systemFontOfSize:15];
+        _contentLabel.font = [UIFont systemFontOfSize:contentFont];
         [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.item.mas_right).offset(marginEight);
             make.right.equalTo(self.contentView.mas_right).offset(-marginEight);
