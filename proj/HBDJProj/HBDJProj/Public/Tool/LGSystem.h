@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface LGSystem : NSObject
-/** 获取 商店中应用版本 */
+
+/** 对比版本号 */
+- (void)bundleAppVersionCompareAppStoreVersionResult:(void(^)(NSInteger result))compareResult;
+/** 获取应用商店中版本号 */
 - (void)getAppStoreVersion;
-/** 前往商店下载 */
+/** 前往商店下载页面 */
 - (void)openAppStorePage;
 
 @end

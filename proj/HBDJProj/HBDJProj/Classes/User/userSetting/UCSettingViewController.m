@@ -12,6 +12,8 @@
 #import "UCLoginViewController.h"
 #import "LGCacheClear.h"
 #import "LGUserLimitsManager.h"
+#import "LGSystem.h"
+#import "LGAlertControllerManager.h"
 
 static NSString * const settingCell = @"UCSettingTableViewCell";
 static CGFloat cellHeight = 59;
@@ -112,6 +114,29 @@ UCSettingTableViewCellDelegate>
 
     if ([model.itemName isEqualToString:@"修改密码"]) {
         [self lgPushViewControllerWithStoryboardName:UserCenterStoryboardName controllerId:@"DJChangePwdViewController" animated:YES];
+    }
+    
+    if (model.subType == 2) {
+        LGSystem *avChecker = LGSystem.new;
+        [avChecker bundleAppVersionCompareAppStoreVersionResult:^(NSInteger result) {
+            if (result == 0) {
+                /// 当前版本与appstore 一致
+                UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"您的app已经是最新版本" doneText:@"确定" doneBlock:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                
+                [self presentViewController:alertvc animated:YES completion:nil];
+                
+            }else{
+                /// 提示用户去商店下载最新版本
+                UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"请前往AppStore下载最新版本" cancelText:@"取消" doneText:@"确定" cancelABlock:^(UIAlertAction * _Nonnull action) {
+                } doneBlock:^(UIAlertAction * _Nonnull action) {
+                    [avChecker openAppStorePage];
+                }];
+                
+                [self presentViewController:alertvc animated:YES completion:nil];
+            }
+        }];
     }
 }
 

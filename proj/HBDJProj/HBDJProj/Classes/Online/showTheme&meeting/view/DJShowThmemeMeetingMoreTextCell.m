@@ -21,6 +21,9 @@
 - (void)setModel:(DJOnlineUploadTableModel *)model{
     [super setModel:model];
     self.contentLabel.text = model.content;
+    
+    /// 计算文本高度，如果小于等于3行： 1.隐藏更多按钮 2.调整约束
+    
     _moreButton.selected = model.contentShowAll;
     if (model.contentShowAll) {
         _contentLabel.numberOfLines = 0;

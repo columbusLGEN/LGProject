@@ -23,6 +23,7 @@
 // 如果需要使用idfa功能所需要引入的头文件（可选）
 //#import <AdSupport/AdSupport.h>
 #import "DJUserInteractionMgr.h"
+#import "LGSystem.h"
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 
@@ -109,6 +110,9 @@
     } failure:^(id failureObj) {
         
     }];
+    
+    /// 获取商定中应用信息
+    [LGSystem.new getAppStoreVersion];
     
     if (![DJUser sharedInstance].userid) {
         /// 表明用户还未登录，进入登录控制器
