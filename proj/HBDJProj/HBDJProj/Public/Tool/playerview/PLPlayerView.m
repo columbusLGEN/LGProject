@@ -136,6 +136,7 @@ UIGestureRecognizerDelegate
 //    [self.topBarView addSubview:self.moreButton];
     
     [self addSubview:self.topBarView];
+    [self addSubview:self.conPlay];
 }
 
 - (void)initBottomBar {
@@ -573,12 +574,14 @@ UIGestureRecognizerDelegate
 
 - (void)transformWithOrientation:(UIDeviceOrientation)or {
     
+    NSLog(@"UIDeviceOrientationPortrait: %ld",or);
+    
     if (or == self.deviceOrientation) return;
     if (!(UIDeviceOrientationPortrait == or || UIDeviceOrientationLandscapeLeft == or || UIDeviceOrientationLandscapeRight == or)) return;
     
     BOOL isFirst = UIDeviceOrientationUnknown == self.deviceOrientation;
     
-    if (or == UIDeviceOrientationPortrait) {
+    if (or == UIDeviceOrientationPortrait) {/// 默认状态
         
         [self removeGestureRecognizer:self.panGesture];
 //        self.snapshotButton.hidden = YES;
@@ -593,6 +596,20 @@ UIGestureRecognizerDelegate
             make.right.top.bottom.equalTo(self.bottomBarView);
             make.width.equalTo(self.enterFullScreenButton.mas_height);
         }];
+        
+        /// ----循环播放按钮
+        if (self.showCPB) {
+            self.conPlay.hidden = NO;
+            [self.conPlay mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.bottomBarView);
+                make.centerY.equalTo(self.enterFullScreenButton.mas_centerY);
+            }];
+            [self.enterFullScreenButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.bottom.equalTo(self.bottomBarView);
+                make.width.equalTo(self.enterFullScreenButton.mas_height);
+                make.right.equalTo(self.conPlay.mas_left).offset(-2);
+            }];
+        }
         
         [self.centerPlayButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
@@ -635,8 +652,9 @@ UIGestureRecognizerDelegate
             }];
             
 //            [self.conPlay mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                
+//                make.height.width.mas_equalTo(0);
 //            }];
+            self.conPlay.hidden = YES;
             
             [self.centerPlayButton mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(self);
@@ -1104,12 +1122,14 @@ UIGestureRecognizerDelegate
 - (void)setShowCPB:(BOOL)showCPB{
     _showCPB = showCPB;
     
+    /// ----循环播放按钮
     if (showCPB) {
-        [self addSubview:self.conPlay];
+        
         [self.conPlay mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.bottomBarView);
             make.centerY.equalTo(self.enterFullScreenButton.mas_centerY);
         }];
+
         [self.enterFullScreenButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self.bottomBarView);
             make.width.equalTo(self.enterFullScreenButton.mas_height);
@@ -1118,6 +1138,12 @@ UIGestureRecognizerDelegate
         
     }else{
         
+        [self.conPlay removeFromSuperview];
+        [self.enterFullScreenButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(self.bottomBarView);
+            make.right.equalTo(self.bottomBarView).offset(-self.edgeSpace);
+            make.width.equalTo(0);
+        }];
     }
 }
 

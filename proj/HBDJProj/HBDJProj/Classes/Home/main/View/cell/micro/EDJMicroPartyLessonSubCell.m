@@ -38,7 +38,7 @@ static NSString *playcount_key_path = @"playcount";
     
     if ([keyPath isEqualToString:playcount_key_path] && object == _model){
         _peopleCount.text = [NSString stringWithFormat:@"%ld",_model.playcount];
-        NSLog(@"_model.playcount: %ld",_model.playcount);
+//        NSLog(@"_model.playcount: %ld",_model.playcount);
     }
 }
 
