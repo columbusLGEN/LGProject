@@ -40,7 +40,6 @@ UCMemberStageTransitionViewDelegate>
     self.view = tv;
     _tv = tv;
     
-    
 }
 
 - (void)mstViewClose:(UCMemberStageTransitionView *)mstView{
@@ -68,8 +67,5 @@ UCMemberStageTransitionViewDelegate>
     }
     
 }
-
-
-
 
 @end

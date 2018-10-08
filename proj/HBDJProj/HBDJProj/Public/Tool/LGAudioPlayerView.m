@@ -173,6 +173,8 @@ static CGFloat progressHeight = 5;
         _slider.backgroundColor = UIColor.clearColor;
         _slider.maximumTrackTintColor = UIColor.clearColor;
         
+        [_slider setThumbImage:[UIImage imageNamed:@"home_player_drag_rect"] forState:UIControlStateNormal];
+        
     }
     return _slider;
 }

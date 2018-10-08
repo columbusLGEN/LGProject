@@ -31,12 +31,10 @@
 - (void)dealloc{
     [_timer invalidate];
     _timer = nil;
-    NSLog(@"LGCountTimeLabel dealloc: ");
 }
 
 - (void)setSec:(NSInteger)sec{
     _sec = sec;
-    
     self.text = timeStrWithSec_param(sec);
 }
 

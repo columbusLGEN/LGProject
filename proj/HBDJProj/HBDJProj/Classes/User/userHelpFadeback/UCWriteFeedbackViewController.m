@@ -10,11 +10,14 @@
 #import <objc/runtime.h>
 #import "UITextView+Extension.h"
 #import "DJUserNetworkManager.h"
+#import "UITextView+Extension.h"
 
-@interface UCWriteFeedbackViewController ()
+@interface UCWriteFeedbackViewController ()<
+UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *commit;
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
+@property (strong,nonatomic) UILabel *wordLimitLable;
 
 @end
 
@@ -52,7 +55,20 @@
     
 }
 - (IBAction)cancel:(id)sender {
-    
+    [self.view endEditing:YES];
+    [self lg_dismissViewController];
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView {
+    if ([textView.text length] > limitTextLength.integerValue) {
+        textView.text = [textView.text substringWithRange:NSMakeRange(0, limitTextLength.integerValue)];
+        [textView.undoManager removeAllActions];
+        [textView becomeFirstResponder];
+        self.wordLimitLable.text = [NSString stringWithFormat:@"%lu/%@", (unsigned long)textView.text.length, limitTextLength];
+        return;
+    }
+    self.wordLimitLable.text = [NSString stringWithFormat:@"%lu/%@", (unsigned long)textView.text.length, limitTextLength];
 }
 
 - (void)uiConfig{
@@ -68,10 +84,12 @@
     [_cancel cutBorderWithBorderWidth:1 borderColor:[UIColor EDJMainColor] cornerRadius:cornerRadius];
     
     _textView.text = nil;
+    _textView.delegate = self;
     
     [_textView cutBorderWithBorderWidth:0.5 borderColor:[UIColor EDJColor_E0B5B1] cornerRadius:0];
     [_textView lg_setplaceHolderTextWithText:self.textViewPlaceHolder textColor:[UIColor EDJColor_E0B5B1] font:15];
-    NSLog(@"textview -- %@",_textView);
+    
+    [_textView lg_setLimitTextLabelWithLength:limitTextLength superView:self.view label:self.wordLimitLable];
 }
 
 - (NSString *)textViewPlaceHolder{
@@ -79,6 +97,13 @@
         _textViewPlaceHolder = @"请写下您的意见或建议";
     }
     return _textViewPlaceHolder;
+}
+
+- (UILabel *)wordLimitLable{
+    if (!_wordLimitLable) {
+        _wordLimitLable = UILabel.new;
+    }
+    return _wordLimitLable;
 }
 
 /*

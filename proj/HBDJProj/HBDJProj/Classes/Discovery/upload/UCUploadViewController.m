@@ -117,6 +117,7 @@ static NSString * const fileurl_key = @"fileurl";
     }
     if (_uploadAction == DJUPloadPyqActionVideo) {
         _nineImageManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypeVideo];
+        
     }
     if (_uploadAction == DJUPloadPyqActionImg || _uploadAction == DJUPloadPyqActionVideo) {
         HXPhotoView *siv = [HXPhotoView.alloc initWithManager:_nineImageManager];

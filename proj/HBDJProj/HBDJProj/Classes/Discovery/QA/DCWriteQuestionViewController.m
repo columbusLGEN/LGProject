@@ -16,10 +16,12 @@
 #import "EDJSearchTagHeader.h"
 #import "EDJSearchTagHeaderModel.h"
 #import "DJDiscoveryNetworkManager.h"
+#import "UITextView+Extension.h"
 
 @interface DCWriteQuestionViewController ()<
 UICollectionViewDelegate,
-UICollectionViewDataSource>
+UICollectionViewDataSource,
+UITextViewDelegate>
 @property (weak,nonatomic) UITextView *textView;
 //@property (weak,nonatomic) UIButton *commit;
 //@property (weak,nonatomic) UIButton *cancel;
@@ -29,6 +31,7 @@ UICollectionViewDataSource>
 @property (strong,nonatomic) NSMutableArray *selectTags;
 @property (strong,nonatomic) NSMutableArray *netTags;
 //@property (strong,nonatomic) NSArray *AllTags;
+@property (strong,nonatomic) UILabel *wordLimitLable;
 
 @end
 
@@ -207,15 +210,31 @@ UICollectionViewDataSource>
     
 }
 
+#pragma mark - UITextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView {
+    if ([textView.text length] > limitTextLength.integerValue) {
+        textView.text = [textView.text substringWithRange:NSMakeRange(0, limitTextLength.integerValue)];
+        [textView.undoManager removeAllActions];
+        [textView becomeFirstResponder];
+        self.wordLimitLable.text = [NSString stringWithFormat:@"%lu/%@", (unsigned long)textView.text.length, limitTextLength];
+        return;
+    }
+    self.wordLimitLable.text = [NSString stringWithFormat:@"%lu/%@", (unsigned long)textView.text.length, limitTextLength];
+}
+
+
 - (void)configUI{
     self.title = @"提问";
     
     UITextView *textView = [UITextView new];
+    textView.delegate = self;
     
     //    UIButton *commit = [UIButton new];
     //    UIButton *cancel = [UIButton new];
     
     [self.view addSubview:textView];
+    
+    [textView lg_setLimitTextLabelWithLength:limitTextLength superView:self.view label:self.wordLimitLable];
     
     //    [self.view addSubview:commit];
     //    [self.view addSubview:cancel];
@@ -285,6 +304,11 @@ UICollectionViewDataSource>
     self.navigationItem.rightBarButtonItem = right;
 }
 
+- (void)lg_dismissViewController{
+    [self.view endEditing:YES];
+    [super lg_dismissViewController];
+}
+
 - (UICollectionView *)collectionView{
     if (_collectionView == nil) {
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) collectionViewLayout:self.flowLayout];
@@ -310,6 +334,12 @@ UICollectionViewDataSource>
     return _flowLayout;
 }
 
+- (UILabel *)wordLimitLable{
+    if (!_wordLimitLable) {
+        _wordLimitLable = UILabel.new;
+    }
+    return _wordLimitLable;
+}
 
 
 @end

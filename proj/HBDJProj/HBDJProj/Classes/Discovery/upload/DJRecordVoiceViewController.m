@@ -24,6 +24,9 @@
 @implementation DJRecordVoiceViewController{
     PLAudioRecorder *audioRecorder;
     MBProgressHUD *uploadTipView;
+    
+    NSTimer *tenTiming;
+    NSInteger ten_max;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -31,10 +34,18 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [tenTiming invalidate];
+    tenTiming = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"上传音频";
+    
+    ten_max = 0;
     
     UIButton *done = UIButton.new;
     [done setTitle:@"完成" forState:UIControlStateNormal];
@@ -97,11 +108,23 @@
     
 }
 
+- (void)timeCount{
+    ten_max++;
+    NSLog(@"ten_max: %ld",ten_max);
+    if (ten_max == 10) {
+        [self recordDone:nil];
+    }
+}
+
 - (void)startRecord{
 
     NSString *oriPath = [PLAudioPath recordPathOrigin];
     
     NSString *mp3Path = [PLAudioPath mp3Path];
+    
+    /// 开始十秒计时
+    tenTiming = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeCount) userInfo:nil repeats:YES];
+    [tenTiming fire];
     
     [audioRecorder startRecordWithFilePath:oriPath
                               updateMeters:^(float meters){
@@ -122,9 +145,19 @@
 
 - (void)pauseRecord{
     [audioRecorder pause];
+    /// 暂停十秒计时
+    [tenTiming setFireDate:[NSDate distantFuture]];
 }
 - (void)resumeRecord{
     [audioRecorder resume];
+    /// 恢复十秒计时
+    [tenTiming setFireDate:[NSDate date]];
+}
+- (void)stopRecord{
+    [_time stop];
+    [audioRecorder stopRecord];
+    /// 停止十秒计时
+    [tenTiming invalidate];
 }
 /// MARK: 点击完成
 - (void)recordDone:(UIButton *)button{
@@ -132,8 +165,7 @@
         [self presentFailureTips:@"请先录音"];
         return;
     }
-    [_time stop];
-    [audioRecorder stopRecord];
+    [self stopRecord];
     /// 添加提示 “资源文件处理中”
     uploadTipView = [MBProgressHUD wb_showActivityMessage:@"正在保存录音，请稍候..." toView:self.view];
 }
@@ -215,5 +247,7 @@
     
     
 }
+
+
 
 @end

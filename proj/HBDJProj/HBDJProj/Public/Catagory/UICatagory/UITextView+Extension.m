@@ -20,4 +20,16 @@
     [self setValue:placeHolder forKey:@"_placeholderLabel"];
 }
 
+- (void)lg_setLimitTextLabelWithLength:(NSString *)lengthText superView:(UIView *)superView label:(UILabel *)label{
+    label.text = [@"0/" stringByAppendingString:lengthText];
+    label.textColor = UIColor.EDJColor_c2c0c0;
+    label.font = [UIFont systemFontOfSize:12];
+    
+    [superView addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right).offset(-marginFive);
+        make.bottom.equalTo(self.mas_bottom).offset(-marginFive);
+    }];
+}
+
 @end

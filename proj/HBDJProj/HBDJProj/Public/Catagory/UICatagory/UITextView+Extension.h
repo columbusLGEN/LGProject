@@ -13,4 +13,7 @@
 /** UITextView 添加占位文字 */
 - (void)lg_setplaceHolderTextWithText:(NSString *)text textColor:(UIColor *)color font:(NSInteger)font;
 
+/** 添加 “字数限制” 标签 */
+- (void)lg_setLimitTextLabelWithLength:(NSString *)lengthText superView:(UIView *)superView label:(UILabel *)label;
+
 @end

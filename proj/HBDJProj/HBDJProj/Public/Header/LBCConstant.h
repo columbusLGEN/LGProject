@@ -47,6 +47,8 @@ static NSString * const options_key = @"options";
 static NSString * const isLogin_key = @"isLogin";
 static NSString * const collectionidKey = @"collectionid";
 static NSString * const loginnumKey = @"loginnum";
+
+static NSString *limitTextLength = @"100";
 /** 本地偏好中存储客服电话的key */
 static NSString * const dj_service_numberKey = @"dj_service_number";
 
