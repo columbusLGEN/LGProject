@@ -110,7 +110,7 @@
 
 - (void)timeCount{
     ten_max++;
-    NSLog(@"ten_max: %ld",ten_max);
+//    NSLog(@"ten_max: %ld",ten_max);
     if (ten_max == 10) {
         [self recordDone:nil];
     }

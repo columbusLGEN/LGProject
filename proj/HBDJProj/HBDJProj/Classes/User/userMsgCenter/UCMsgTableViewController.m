@@ -95,14 +95,7 @@ UCMsgTableViewCellDelegate>
 
 - (void)getData{
     [DJUserNetworkManager.sharedInstance frontUserNotice_selectWithOffset:offset success:^(id responseObj) {
-       
-        if (offset == 0) {
-            [self.msgListView.mj_header endRefreshing];
-        }else{
-            [self.msgListView.mj_footer endRefreshing];
-        }
-        
-        
+    
         NSArray *keyvalueArray = responseObj;
         if (keyvalueArray == nil || keyvalueArray.count == 0) {
             [self.msgListView.mj_footer endRefreshingWithNoMoreData];
@@ -122,9 +115,14 @@ UCMsgTableViewCellDelegate>
             }
             
             self.array = arrmu.copy;
-            offset = self.array.count;
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.msgListView reloadData];
+                if (offset == 0) {
+                    [self.msgListView.mj_header endRefreshing];
+                }else{
+                    [self.msgListView.mj_footer endRefreshing];
+                }
+                offset = self.array.count;
             }];
         }
         

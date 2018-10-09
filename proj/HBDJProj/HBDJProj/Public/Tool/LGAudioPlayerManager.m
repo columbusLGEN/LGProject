@@ -38,14 +38,17 @@
                             success:^{
                                 // 停止UI的播放
                                 //
-                                NSLog(@"播放成功");
-
-
+                                NSLog(@"结束播放");
+                                audioPlayerView.play.selected = NO;
+                                played = NO;
 
                             } failed:^(NSError *error) {
                                 // 停止UI的播放
-
-
+                                NSLog(@"结束播放 failed");
+                                audioPlayerView.play.selected = NO;
+                                audioPlayerView.progressValue = 0;
+                                played = NO;
+                                
                             } ];
 
 }
@@ -54,16 +57,27 @@
     [audioPlayer stopPlay];
 }
 
+- (void)timerLoop{
+    curTime += 1;
+    progress = (CGFloat) curTime / self.audioTotalTime;
+    if (curTime == self.audioTotalTime) {
+        progress = 1;
+        [timer invalidate];
+        timer = nil;
+        played = NO;
+    }
+    audioPlayerView.progressValue = progress;
+    audioPlayerView.cTime = curTime;
+}
+
 /// 开始播放
 - (void)audioPlayerViewPlay:(UIButton *)sender{
     if (sender.isSelected) {
-        sender.selected = NO;
         /// 暂停
         /// 暂停计时
         [timer setFireDate:[NSDate distantFuture]];
         [audioPlayer pause];
     }else{
-        sender.selected = YES;
         if (!played) {
             /// 首次播放
             /// 开始计时
@@ -72,27 +86,9 @@
             curTime = 0;
             audioPlayerView.progressValue = 0;
             
-//            audioPlayerView.totalTime
-            if (@available(iOS 10.0, *)) {
-                __weak typeof(self) weakSelf = self;
-                timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
-                    curTime += 1;
-                    progress = (CGFloat) curTime / strongSelf.audioTotalTime;
-                    if (curTime == strongSelf.audioTotalTime) {
-                        progress = 1;
-                        [timer invalidate];
-                        timer = nil;
-                        played = NO;
-                    }
-                    audioPlayerView.progressValue = progress;
-                    audioPlayerView.cTime = curTime;
-                    
-                }];
-                [timer fire];
-            } else {
-                // Fallback on earlier versions
-            }
+            timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerLoop) userInfo:nil repeats:YES];
+            [timer fire];
+            
         }else{
             /// 继续
             /// 继续计时
@@ -100,20 +96,21 @@
             [audioPlayer resume];
         }
     }
+    sender.selected = !sender.isSelected;
     played = YES;
 }
 
-- (void)a{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"mm:ss"];
-    NSString *currentString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:curTime]];
-    
-    NSString *totalString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:_audioTotalTime]];
-    
-    audioPlayerView.totalTime.text = totalString;
-    audioPlayerView.currentTime.text = currentString;
-    
-}
+//- (void)a{
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"mm:ss"];
+//    NSString *currentString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:curTime]];
+//
+//    NSString *totalString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:_audioTotalTime]];
+//
+//    audioPlayerView.totalTime.text = totalString;
+//    audioPlayerView.currentTime.text = currentString;
+//
+//}
 
 /// 返回 playerview的方法
 - (LGAudioPlayerView *)audioPlayerView{
