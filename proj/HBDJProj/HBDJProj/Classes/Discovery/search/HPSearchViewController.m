@@ -44,6 +44,7 @@ DJDsSearchChildVcDelegate>
 @property (strong,nonatomic) EDJSearchTagModel *searchTagModel;
 
 @property (strong,nonatomic) NSMutableString *voiceString;
+/** 搜索历史界面 */
 @property (strong,nonatomic) DJDsSearchTagView *searchHistory;
 
 /** 本地搜索记录数组 */
@@ -467,7 +468,9 @@ DJDsSearchChildVcDelegate>
                     button.tag = idx;
                     [buttonArray1 addObject:button];
                 }];
-                [self.rbLoader addButtonToContainerView:self.searchHistory.conHot viewController:self array:buttonArray1 action:@selector(hotTagClick:)];
+                [self.rbLoader addButtonToContainerView:self.searchHistory.conHot viewController:self array:buttonArray1 action:@selector(hotTagClick:) heightBlock:^(CGFloat height) {
+                    
+                }];
                 
             }];
         }
@@ -482,7 +485,9 @@ DJDsSearchChildVcDelegate>
         UIButton *button = [self.rbLoader buttonWithText:obj frame:CGRectZero];
         [buttonArray2 addObject:button];
     }];
-    [self.rbLoader addButtonToContainerView:self.searchHistory.hisConView viewController:self array:buttonArray2 action:@selector(recordClick:)];
+    [self.rbLoader addButtonToContainerView:self.searchHistory.hisConView viewController:self array:buttonArray2 action:@selector(recordClick:) heightBlock:^(CGFloat height) {
+        
+    }];
     
 
 }

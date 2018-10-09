@@ -10,10 +10,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^containerViewHeightBlock)(CGFloat height);
+
 @interface LGRecordButtonLoader : NSObject
 
-
-- (void)addButtonToContainerView:(UIView *)container viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action;
+- (void)addButtonToContainerView:(UIView *)container viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action heightBlock:(containerViewHeightBlock)heightBlock;
 
 /**
  将array中的按钮添加到界面上
@@ -33,13 +34,14 @@
 //- (void)addANewButtonWithTitle:(NSString *)title;
 
 /**
- 根据用户输入的内容生成按钮
+ 生成红色边框 白色背景按钮
 
  @param text 内容
  @param frame CGRectZero
  @return UIButton
  */
 - (UIButton *)buttonWithText:(NSString *)text frame:(CGRect)frame;
+/** 红色背景按钮 */
 - (UIButton *)hotButtonWithText:(NSString *)text frame:(CGRect)frame;
 
 @end

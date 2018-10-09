@@ -18,36 +18,31 @@
 #import "DJDiscoveryNetworkManager.h"
 #import "UITextView+Extension.h"
 
+#import "DJDsSearchTagView.h"
+#import "LGRecordButtonLoader.h"
+
 @interface DCWriteQuestionViewController ()<
-UICollectionViewDelegate,
-UICollectionViewDataSource,
 UITextViewDelegate>
 @property (weak,nonatomic) UITextView *textView;
-//@property (weak,nonatomic) UIButton *commit;
-//@property (weak,nonatomic) UIButton *cancel;
-@property (strong,nonatomic) UICollectionView *collectionView;
-@property (strong,nonatomic) EDJSearchTagCollectionViewFlowLayout *flowLayout;
 @property (strong,nonatomic) NSArray *headerModels;
 @property (strong,nonatomic) NSMutableArray *selectTags;
 @property (strong,nonatomic) NSMutableArray *netTags;
 //@property (strong,nonatomic) NSArray *AllTags;
 @property (strong,nonatomic) UILabel *wordLimitLable;
 
+@property (strong,nonatomic) DJDsSearchTagView *labelView;
+@property (strong,nonatomic) LGRecordButtonLoader *rbLoader;
+
 @end
 
-@implementation DCWriteQuestionViewController
+@implementation DCWriteQuestionViewController{
+    CGFloat selectHeight;
+    CGFloat allHeight;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    
-//    [_commit cutBorderWithBorderWidth:0 borderColor:nil cornerRadius:_commit.height / 2];
-//    [_cancel cutBorderWithBorderWidth:1 borderColor:[UIColor EDJColor_E0B5B1] cornerRadius:_cancel.height / 2];
-    
 }
 
 - (void)viewDidLoad {
@@ -69,9 +64,10 @@ UITextViewDelegate>
                 [arrmu addObject:model];
             }
             _netTags = arrmu;
-//            _AllTags = arrmu.copy;
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.collectionView reloadData];
+                /// 全部标签
+                [self setupAllLabelButton];
+                [self.labelView hideSelectLabelViewWithAllHeight:allHeight];
             }];
         }
         
@@ -80,43 +76,78 @@ UITextViewDelegate>
     }];
 }
 
-#pragma mark - data source & delegate
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return _headerModels.count;
+- (void)allLabelClick:(UIButton *)button{
+    [self.view endEditing:YES];
+    NSInteger index = button.tag;
+    EDJSearchTagModel *allModel = _netTags[index];
+    
+    if (_selectTags.count >= 3) {
+        [self presentFailureTips:@"最多添加三个"];
+        return;
+    }
+    [_selectTags addObject:allModel];
+    [_netTags removeObject:allModel];
+    
+    [self setupAllLabelButton];/// 需要先执行
+    [self setupSelectLabelButton];
+    
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (section == 0) {
-        return _selectTags.count;
+- (void)selectLabelClick:(UIButton *)button{
+    [self.view endEditing:YES];
+    NSInteger index = button.tag;
+    EDJSearchTagModel *alreadySelectModel = _selectTags[index];
+    
+    [_selectTags removeObject:alreadySelectModel];
+    [_netTags addObject:alreadySelectModel];
+    
+    /// 根据oriIndex 重新排序，保证标签回到原来的位置
+    for (NSInteger i = 0; i < _netTags.count; i++) {
+        for (NSInteger j = 0; j < _netTags.count - 1 - i; j++) {
+            EDJSearchTagModel *tag_j = _netTags[j];
+            EDJSearchTagModel *tag_j_next = _netTags[j+1];
+            if (tag_j.oriIndex > tag_j_next.oriIndex) {
+                [_netTags exchangeObjectAtIndex:j withObjectAtIndex:j+1];
+            }
+        }
     }
-    if (section == 1) {
-        return _netTags.count;
-    }
-    return 0;
+    
+    [self setupAllLabelButton];
+    [self setupSelectLabelButton];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    EDJSearchTagModel *model;
-    if (indexPath.section == 0) {
-        model = _selectTags[indexPath.item];
-    }
-    if (indexPath.section == 1) {
-        model = _netTags[indexPath.item];
-    }
-    EDJSearchTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[EDJSearchTagCollectionViewCell cellIdWithIndexPath:indexPath] forIndexPath:indexPath];
-    cell.model = model;
-    return cell;
+/** 设置全部标签 */
+- (void)setupAllLabelButton{
+    NSMutableArray *buttonArray1 = [NSMutableArray array];
+    [_netTags enumerateObjectsUsingBlock:^(EDJSearchTagModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *button = [self.rbLoader buttonWithText:obj.name frame:CGRectZero];
+        button.tag = idx;
+        [buttonArray1 addObject:button];
+    }];
+    [self.rbLoader addButtonToContainerView:self.labelView.hisConView viewController:self array:buttonArray1 action:@selector(allLabelClick:) heightBlock:^(CGFloat height) {
+        allHeight = height;
+    }];
 }
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    EDJSearchTagHeaderModel *headerModel = _headerModels[indexPath.section];
-    EDJSearchTagHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:reuseHeaderID forIndexPath:indexPath];
+/** 设置已添加标签 */
+- (void)setupSelectLabelButton{
     
-    UITapGestureRecognizer *tap = [UITapGestureRecognizer.alloc initWithTarget:self action:@selector(tapHeader:)];
-    header.userInteractionEnabled = YES;
-    [header addGestureRecognizer:tap];
+    NSMutableArray *buttonArray1 = [NSMutableArray array];
+    [self.selectTags enumerateObjectsUsingBlock:^(EDJSearchTagModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *button = [self.rbLoader hotButtonWithText:obj.name frame:CGRectZero];
+        button.tag = idx;
+        [buttonArray1 addObject:button];
+    }];
+    [self.rbLoader addButtonToContainerView:self.labelView.conHot viewController:self array:buttonArray1 action:@selector(selectLabelClick:) heightBlock:^(CGFloat height) {
+        selectHeight = height;
+    }];
     
-    header.model = headerModel;
-    return header;
+    if (self.selectTags.count == 0) {
+        /// 不展示 已添加的标签 这一项
+        [self.labelView showFirstItemWith:NO selectHeight:selectHeight allHeight:allHeight];
+    }else{
+        /// 显示 它
+        [self.labelView showFirstItemWith:YES selectHeight:selectHeight allHeight:allHeight];
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -149,31 +180,7 @@ UITextViewDelegate>
         [_netTags removeObject:model];
         
     }
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.collectionView reloadData];
-    }];
     
-}
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    
-    if (section == 0) {
-        if (_selectTags.count == 0) {
-            return CGSizeZero;
-        }else{
-            return CGSizeMake(kScreenWidth, 40);
-        }
-    }else{
-        return CGSizeMake(kScreenWidth, 40);
-    }
-    
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.view endEditing:YES];
-}
-- (void)tapHeader:(UITapGestureRecognizer *)tap{
-    [self.view endEditing:YES];
 }
 
 #pragma mark - target
@@ -209,6 +216,7 @@ UITextViewDelegate>
     }];
     
 }
+
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
@@ -283,8 +291,8 @@ UITextViewDelegate>
     //    _commit = commit;
     //    _cancel = cancel;
     
-    [self.view addSubview:self.collectionView];
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.labelView];
+    [self.labelView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(textView.mas_bottom).offset(marginTwenty);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
@@ -292,7 +300,8 @@ UITextViewDelegate>
     }];
     
     _headerModels = [EDJSearchTagHeaderModel loadLocalPlistWithPlistName:@"DCWriteQuestionTagHead"];
-    [self.collectionView reloadData];
+//    [self.collectionView reloadData];
+    
     
 }
 
@@ -309,31 +318,6 @@ UITextViewDelegate>
     [super lg_dismissViewController];
 }
 
-- (UICollectionView *)collectionView{
-    if (_collectionView == nil) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) collectionViewLayout:self.flowLayout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        [_collectionView registerNib:[UINib nibWithNibName:reuseHeaderID bundle:nil]
-          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                 withReuseIdentifier:reuseHeaderID];
-        
-        //        [_collectionView registerNib:[UINib nibWithNibName:reuseID bundle:nil] forCellWithReuseIdentifier:reuseID];
-        [_collectionView registerNib:[UINib nibWithNibName:hotCell bundle:nil] forCellWithReuseIdentifier:hotCell];
-        [_collectionView registerNib:[UINib nibWithNibName:historyCell bundle:nil]
-          forCellWithReuseIdentifier:historyCell];
-        
-    }
-    return _collectionView;
-}
-- (EDJSearchTagCollectionViewFlowLayout *)flowLayout{
-    if (_flowLayout == nil) {
-        _flowLayout = [EDJSearchTagCollectionViewFlowLayout new];
-    }
-    return _flowLayout;
-}
-
 - (UILabel *)wordLimitLable{
     if (!_wordLimitLable) {
         _wordLimitLable = UILabel.new;
@@ -341,5 +325,35 @@ UITextViewDelegate>
     return _wordLimitLable;
 }
 
+- (DJDsSearchTagView *)labelView{
+    if (!_labelView) {
+        _labelView = DJDsSearchTagView.new;
+        _labelView.removeHis.hidden = YES;
+        _labelView.firstTitle = @"已添加的标签";
+        _labelView.secondTitle = @"全部标签";
+        NSInteger font = 17;
+        _labelView.fontOfFirstTitle = font;
+        _labelView.fontOfSecondTitle = font;
+        UIColor *textColor = UIColor.EDJGrayscale_33;
+        _labelView.textColorFirstTitle = textColor;
+        _labelView.textColorSecondTitle = textColor;
+        
+        UILabel *subTitle = UILabel.new;
+        subTitle.tag = -1;/// 防止更新标签是被删掉
+        subTitle.text = @"最多添加3个";
+        subTitle.textColor = UIColor.EDJColor_c2c0c0;
+        subTitle.font = [UIFont systemFontOfSize:13];
+        _labelView.subTitleOfFirstItem = subTitle;
+        
+    }
+    return _labelView;
+}
+
+- (LGRecordButtonLoader *)rbLoader{
+    if (!_rbLoader) {
+        _rbLoader = [[LGRecordButtonLoader alloc] init];
+    }
+    return _rbLoader;
+}
 
 @end

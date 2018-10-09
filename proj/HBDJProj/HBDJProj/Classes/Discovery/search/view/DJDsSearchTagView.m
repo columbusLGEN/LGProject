@@ -15,8 +15,9 @@
 
 @end
 
-@implementation DJDsSearchTagView
-
+@implementation DJDsSearchTagView{
+    CGFloat oriConHeight;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -34,7 +35,7 @@
         [_scrollView addSubview:self.conHot];
         [_scrollView addSubview:self.hisConView];
         
-        CGFloat oriConHeight = 50;
+        oriConHeight = 50;
         
         /// 热门标签容器视图
         [_conHot mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,17 +95,77 @@
     return self;
 }
 
+- (void)hideSelectLabelViewWithAllHeight:(CGFloat)allHeight{
+    self.conHot.hidden = YES;
+    [self.hisConView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.equalTo(_scrollView);
+        make.width.mas_equalTo(kScreenWidth);
+        make.height.mas_equalTo(allHeight);
+    }];
+}
+- (void)showFirstItemWith:(BOOL)show selectHeight:(CGFloat)selectHeight allHeight:(CGFloat)allHeight{
+    self.conHot.hidden = !show;
+    
+    if (show) {
+        /// 显示上容器视图
+        [self.conHot mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(_scrollView);
+            make.bottom.equalTo(_hisConView.mas_top);
+            make.width.mas_equalTo(kScreenWidth);
+            make.height.mas_equalTo(selectHeight);
+        }];
+        [self.hisConView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(_scrollView);
+            make.width.mas_equalTo(kScreenWidth);
+            make.height.mas_equalTo(allHeight);
+        }];
+        
+    }else{
+        /// 不显示 上容器视图
+        [self.hisConView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.bottom.equalTo(_scrollView);
+            make.width.mas_equalTo(kScreenWidth);
+            make.height.mas_equalTo(allHeight);
+        }];
+    }
+}
+
+- (void)setFirstTitle:(NSString *)firstTitle{
+    _tagHot.text = firstTitle;
+}
+- (void)setSecondTitle:(NSString *)secondTitle{
+    _tagHis.text = secondTitle;
+}
+- (void)setFontOfFirstTitle:(NSInteger)fontOfFirstTitle{
+    _tagHot.font = [UIFont systemFontOfSize:fontOfFirstTitle];
+}
+- (void)setFontOfSecondTitle:(NSInteger)fontOfSecondTitle{
+    _tagHis.font = [UIFont systemFontOfSize:fontOfSecondTitle];
+}
+- (void)setTextColorFirstTitle:(UIColor *)textColorFirstTitle{
+    _tagHot.textColor = textColorFirstTitle;
+}
+- (void)setTextColorSecondTitle:(UIColor *)textColorSecondTitle{
+    _tagHis.textColor = textColorSecondTitle;
+}
+- (void)setSubTitleOfFirstItem:(UILabel *)subTitleOfFirstItem{
+    _subTitleOfFirstItem = subTitleOfFirstItem;
+    [_conHot addSubview:subTitleOfFirstItem];
+    [subTitleOfFirstItem mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_tagHot.mas_centerY);
+        make.left.equalTo(_tagHot.mas_right).offset(marginFifteen);
+    }];
+}
+
 - (UIView *)conHot{
     if (!_conHot) {
         _conHot = UIView.new;
-//        _conHot.backgroundColor = UIColor.grayColor;
     }
     return _conHot;
 }
 - (UIView *)hisConView{
     if (!_hisConView) {
         _hisConView = UIView.new;
-//        _hisConView.backgroundColor = UIColor.cyanColor;
     }
     return _hisConView;
 }

@@ -62,9 +62,9 @@ static NSString * const isread_key = @"isread";
     _alreadyReadIcon.hidden = model.isread;
     
     [model addObserver:self forKeyPath:isread_key options:NSKeyValueObservingOptionNew context:nil];
-    
+     
     /// 计算文本高度
-    CGFloat textHeight = [contentText sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 77, MAXFLOAT) font:[UIFont systemFontOfSize:16]].height;
+    CGFloat textHeight = [contentText sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 81, MAXFLOAT) font:[UIFont systemFontOfSize:16]].height;
     
     NSInteger lines = textHeight / 19;
     /// 如果行数小于等于2 则 不显示更多按钮

@@ -25,13 +25,9 @@ static CGFloat oriHeight1 = 40;
 
 @end
 
-@implementation LGRecordButtonLoader{
-    
-    
-    
-}
+@implementation LGRecordButtonLoader
 
-- (void)addButtonToContainerView:(UIView *)container viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action{
+- (void)addButtonToContainerView:(UIView *)container viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action heightBlock:(containerViewHeightBlock)heightBlock{
     _bW_con = 0;
     _bH_con = 0;
     if (container.subviews.count) {
@@ -63,9 +59,13 @@ static CGFloat oriHeight1 = 40;
 
     }
     
+    CGFloat cvHeight = _bH_con + oriHeight1 + 10;
+    
     [container mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(_bH_con + oriHeight1 + 10);
+        make.height.mas_equalTo(cvHeight);
     }];
+    
+    if (heightBlock) heightBlock(cvHeight);
 }
 
 - (void)addButtonToScrollView:(UIScrollView *)scrollView viewController:(UIViewController *)vc array:(NSArray<UIButton *> *)array action:(SEL)action {
