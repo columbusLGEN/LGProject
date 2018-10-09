@@ -15,6 +15,7 @@
 #import "LGAudioPlayerManager.h"
 
 static NSString * const fileurl_key = @"fileurl";
+static NSInteger maxVideoTime = 10;
 
 @interface UCUploadViewController ()<UIScrollViewDelegate>
 @property (strong,nonatomic) NSArray *array;
@@ -116,8 +117,11 @@ static NSString * const fileurl_key = @"fileurl";
         _nineImageManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhoto];
     }
     if (_uploadAction == DJUPloadPyqActionVideo) {
+        HXPhotoConfiguration *photoManagerConfig = HXPhotoConfiguration.new;
+        photoManagerConfig.videoMaxDuration = maxVideoTime;
+        photoManagerConfig.videoMaximumDuration = maxVideoTime;
         _nineImageManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypeVideo];
-        
+        _nineImageManager.configuration = photoManagerConfig;
     }
     if (_uploadAction == DJUPloadPyqActionImg || _uploadAction == DJUPloadPyqActionVideo) {
         HXPhotoView *siv = [HXPhotoView.alloc initWithManager:_nineImageManager];
