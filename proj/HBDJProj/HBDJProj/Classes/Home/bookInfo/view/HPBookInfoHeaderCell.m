@@ -62,8 +62,11 @@
 
     _coverWidth.constant = (125 * kScreenWidth) / plusScreenWidth;
 //    _coverHeight.constant = (222 * kScreenHeight) / plusScreenHeight;
-    _coverHeight.constant = 125 * 1.4;
+    _coverHeight.constant = _coverWidth.constant * 1.4;
     
+    if ([LGDevice isiPad]) {
+//        _coverHeight.constant = 125 * 1.4;
+    }
 }
 
 @end

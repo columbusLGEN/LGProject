@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -313,13 +311,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="先锋党员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSQ-Cs-pWl">
-                                                <rect key="frame" x="141" y="69" width="61.5" height="18"/>
+                                                <rect key="frame" x="141" y="68.5" width="61.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uc_icon_diamond_small" translatesAutoresizingMaskIntoConstraints="NO" id="ogN-Bn-zTK">
-                                                <rect key="frame" x="117" y="70" width="16" height="16"/>
+                                                <rect key="frame" x="117" y="69.5" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="FlN-7x-YYJ"/>
                                                     <constraint firstAttribute="width" constant="16" id="Nxr-cb-0ER"/>
@@ -345,30 +343,30 @@
                                                 </constraints>
                                             </view>
                                             <view tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0E-tl-4ez" customClass="LGCustomButton">
-                                                <rect key="frame" x="0.0" y="95.5" width="86" height="104.5"/>
+                                                <rect key="frame" x="0.0" y="95" width="86" height="105"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="23" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLU-lM-xvu" customClass="LGCustomButton">
-                                                <rect key="frame" x="257.5" y="95.5" width="85.5" height="104.5"/>
+                                                <rect key="frame" x="257.5" y="95" width="85.5" height="105"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view tag="22" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-dr-Ppc" customClass="LGCustomButton">
-                                                <rect key="frame" x="171.5" y="95.5" width="86" height="104.5"/>
+                                                <rect key="frame" x="171.5" y="95" width="86" height="105"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view tag="21" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-D0-N9G" customClass="LGCustomButton">
-                                                <rect key="frame" x="86" y="95.5" width="85.5" height="104.5"/>
+                                                <rect key="frame" x="86" y="95" width="85.5" height="105"/>
                                                 <color key="backgroundColor" red="1" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gp2-Jq-AYX">
-                                                <rect key="frame" x="16" y="105" width="311" height="1"/>
+                                                <rect key="frame" x="16" y="104.5" width="311" height="1"/>
                                                 <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="dCg-Zp-yUA"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gud-sL-xcH">
-                                                <rect key="frame" x="117" y="58" width="86" height="40"/>
+                                                <rect key="frame" x="117" y="57.5" width="85.5" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="4AB-CW-vqr"/>
                                                 </constraints>
@@ -659,6 +657,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="1Tt-eV-f1E"/>
                                                     <constraint firstAttribute="width" constant="100" id="bFC-aK-Q3V"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="点击获取">
                                                     <color key="titleColor" red="0.94509803920000002" green="0.35686274509999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -969,7 +968,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hc-61-YFq">
-                                <rect key="frame" x="91.5" y="389" width="17.5" height="21"/>
+                                <rect key="frame" x="91.5" y="388.5" width="17.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1367,16 +1366,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_applePay" width="36" height="36"/>
-        <image name="uc_find_pwd" width="23" height="23"/>
-        <image name="uc_icon_diamond_small" width="19" height="19"/>
+        <image name="icon_applePay" width="36.5" height="36.5"/>
+        <image name="uc_find_pwd" width="23.5" height="23.5"/>
+        <image name="uc_icon_diamond_small" width="19.5" height="19.5"/>
         <image name="uc_icon_home_top_bg" width="414" height="190"/>
-        <image name="uc_icon_login_display_pwd" width="25" height="17"/>
-        <image name="uc_icon_login_hide_pwd" width="16" height="7"/>
-        <image name="uc_icon_login_pwd_prefix" width="23" height="23"/>
-        <image name="uc_icon_login_username_prefix" width="23" height="23"/>
-        <image name="uc_icon_my_feedback" width="20" height="20"/>
-        <image name="uc_icon_write_feedback" width="20" height="20"/>
+        <image name="uc_icon_login_display_pwd" width="25" height="17.5"/>
+        <image name="uc_icon_login_hide_pwd" width="16" height="7.6666665077209473"/>
+        <image name="uc_icon_login_pwd_prefix" width="23.5" height="23.5"/>
+        <image name="uc_icon_login_username_prefix" width="23.5" height="23.5"/>
+        <image name="uc_icon_my_feedback" width="20.5" height="20.5"/>
+        <image name="uc_icon_write_feedback" width="20.5" height="20.5"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Rqe-Pa-m9A"/>

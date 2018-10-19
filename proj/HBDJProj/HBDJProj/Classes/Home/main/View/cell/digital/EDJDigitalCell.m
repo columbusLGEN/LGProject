@@ -25,7 +25,7 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
-
+    [_cover cutBorderWithBorderWidth:0.5 borderColor:UIColor.blackColor cornerRadius:0];
 }
 
 @end

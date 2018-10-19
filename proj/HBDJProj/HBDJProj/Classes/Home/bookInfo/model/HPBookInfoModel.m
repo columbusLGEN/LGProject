@@ -12,7 +12,11 @@
 
 - (CGFloat)cellHeight{
     if (_isHeader) {
-        return (233 * kScreenHeight) / plusScreenHeight;
+        if ([LGDevice isiPad]) {
+            return (244 * kScreenHeight) / plusScreenHeight;
+        }else{
+            return 244;
+        }
     }
     if (_showAll) {
         CGSize size = [self.content sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 36, MAXFLOAT) font:[UIFont systemFontOfSize:15]];

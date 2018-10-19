@@ -88,7 +88,7 @@ DJOnlineUplaodTableViewControllerDelegate>
         [channelLabel addGestureRecognizer:tap];
         
         [_channelLabelArray addObject:channelLabel];
-        totalWidth += (channelLabel.width + marginTen);
+        totalWidth += (channelLabel.width + marginTwenty);
         [_channelScrollView addSubview:channelLabel];
     }];
     [_channelScrollView setContentSize:CGSizeMake(totalWidth, 0)];

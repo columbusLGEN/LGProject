@@ -47,6 +47,8 @@ static NSString * const isread_key = @"isread";
     if (model.noticetype == UCMsgModelResourceTypeCustom) {
         contentText = model.title;
     }
+    
+    NSLog(@"type_%ld: %@",model.noticetype,model.title);
 
     _showAllButton.selected = model.showAll;
     if (model.createdtime.length > length_timeString_1) {
@@ -57,6 +59,8 @@ static NSString * const isread_key = @"isread";
     }else{
         _content.numberOfLines = 2;
     }
+    
+    _content.text = contentText;
     /// 已读，不显示小红点
     /// 未读，显示小红点
     _alreadyReadIcon.hidden = model.isread;

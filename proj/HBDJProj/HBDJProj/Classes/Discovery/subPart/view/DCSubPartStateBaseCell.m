@@ -189,6 +189,7 @@ LGThreeRightButtonViewDelegate>
     if (!_timeLabel) {
         _timeLabel = UILabel.new;
         _timeLabel.textColor = UIColor.EDJGrayscale_A4;
+        _timeLabel.font = [UIFont systemFontOfSize:14];
     }
     return _timeLabel;
 }
