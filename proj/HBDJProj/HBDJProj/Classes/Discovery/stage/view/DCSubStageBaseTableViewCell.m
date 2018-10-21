@@ -29,7 +29,7 @@ LGThreeRightButtonViewDelegate>
 @property (strong, nonatomic) UILabel *nick;/// 昵称
 @property (strong,nonatomic) UILabel *time;/// 时间
 
-@property (weak,nonatomic) UIView *bottomRect;/// 如果有评论，则隐藏 bottomRect
+@property (weak,nonatomic) UIView *bottomRect;
 
 @property (strong,nonatomic) UITableView *tbvForComments;
 @property (strong,nonatomic) NSArray *comments;
@@ -112,7 +112,7 @@ LGThreeRightButtonViewDelegate>
     [_tbvForComments reloadData];
     
     if (_comments.count) {
-        _bottomRect.hidden = YES;
+//        _bottomRect.hidden = YES;
         _triangle.hidden = NO;
         
         CGFloat commentTextTotalHeight = 0;
@@ -136,7 +136,7 @@ LGThreeRightButtonViewDelegate>
         }];
         
     }else{
-        _bottomRect.hidden = NO;
+        //        _bottomRect.hidden = NO;
         _triangle.hidden = YES;
         
         [self.tbvForComments mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -238,7 +238,8 @@ LGThreeRightButtonViewDelegate>
 //        make.right.equalTo(self.contentView.mas_right).offset(-20);
         make.width.mas_equalTo(tbvWidth);
         
-        make.bottom.equalTo(self.contentView.mas_bottom);
+//        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.bottom.equalTo(self.bottomRect.mas_top).offset(-marginFive);
 //        make.height.mas_equalTo(25);
     }];
     
