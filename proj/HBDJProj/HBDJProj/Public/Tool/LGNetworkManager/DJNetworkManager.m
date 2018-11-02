@@ -222,8 +222,8 @@
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-//        _baseUrl = @"http://123.59.199.170:8081/";
-        _baseUrl = @"http://dy.cjszyun.cn/";// @"http://47.96.165.218:8081/";// 长江传媒
+        _baseUrl = @"http://123.59.199.170:8081/";
+//        _baseUrl = @"http://dy.cjszyun.cn/";// @"http://47.96.165.218:8081/";// 长江传媒
     }
     return _baseUrl;
 }
