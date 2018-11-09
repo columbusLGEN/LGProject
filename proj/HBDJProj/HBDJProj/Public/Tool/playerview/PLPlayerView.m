@@ -137,6 +137,7 @@ UIGestureRecognizerDelegate
     
     [self addSubview:self.topBarView];
     [self addSubview:self.conPlay];
+    
 }
 
 - (void)initBottomBar {
