@@ -114,6 +114,8 @@ WKNavigationDelegate>
     
 //    NSLog(@"[contentModel.content class]: %@",[contentModel.content class]);
     
+    _contentModel.content = [_contentModel.content stringByReplacingOccurrencesOfString:@"crossorigin=\"anonymous\" " withString:@""];
+    
     [LGHTMLParser HTMLSaxWithHTMLString:contentModel.content success:^(NSAttributedString *attrString) {
         NSAttributedString *string = attrString;
         
@@ -232,7 +234,7 @@ WKNavigationDelegate>
 - (void)rightClick:(LGThreeRightButtonView *)rbview sender:(UIButton *)sender success:(ClickRequestSuccess)success failure:(ClickRequestFailure)failure{
     NSDictionary *param = @{LGSocialShareParamKeyWebPageUrl:_contentModel.shareUrl,
                             LGSocialShareParamKeyTitle:_contentModel.title,
-                            LGSocialShareParamKeyDesc:_contentModel.contentvalidity,
+                            LGSocialShareParamKeyDesc:_contentModel.sharecontent,
                             LGSocialShareParamKeyThumbUrl:_contentModel.thumbnail,
                             LGSocialShareParamKeyVc:self
                             };

@@ -70,9 +70,12 @@ DJMediaPlayDelegate>
 /// MARK: 进入微党课详情页面
 + (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer sort:(NSInteger)sort{
     /// 在经过 DJMediaDetailTransAssist 实例分发数据之后，这里只有 音视频模板类型的数据,if条件可以省略
+    // TODO: Zup_没有要求按照类型区分，暂时注释
+    /*
     if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
         [baseVc presentFailureTips:@"数据异常"];
     }else{
+     */
         
 //        NSLog(@"basevcclass: %@",[baseVc class]);
         
@@ -88,7 +91,9 @@ DJMediaPlayDelegate>
         }
         avc.lessonMediaType = lesson.modaltype;
         [baseVc.navigationController pushViewController:avc animated:YES];
+    /*
     }
+     */
 }
 
 - (void)viewDidLoad {
@@ -296,14 +301,15 @@ DJMediaPlayDelegate>
             }
         }
         
-        if (currentPlayIndex == (allLessonIds.count - 1)) {
+        // TODO: Zup_顺序播放变成逆序播放
+        if (currentPlayIndex == 0) { // currentPlayIndex == (allLessonIds.count - 1)
             
             UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"该专辑已全部播放完毕" doneText:@"确定" doneBlock:^(UIAlertAction * _Nonnull action) {
             }];
             [self presentViewController:alertvc animated:YES completion:nil];
             
         }else{
-            NSInteger nextIndex = currentPlayIndex + 1;
+            NSInteger nextIndex = currentPlayIndex - 1; //  currentPlayIndex + 1
             LGBaseModel *nextModel = allLessonIds[nextIndex];
             
             /// MARK: 请求下一条数据，自动播放

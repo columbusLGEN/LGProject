@@ -394,7 +394,7 @@ DJInputContentViewControllerDelegate>
 }
 
 #pragma mark - lazy load & getter
-- (NSMutableArray *)peoplePresent{
+- (NSMutableArray *)peoplePresent{ 
     if (!_peoplePresent) {
         _peoplePresent = NSMutableArray.new;
     }

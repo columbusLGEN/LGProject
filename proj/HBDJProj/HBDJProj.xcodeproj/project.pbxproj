@@ -4656,7 +4656,7 @@
 				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2DANKBZTCS;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4739,12 +4739,12 @@
 					"-framework",
 					"\"YYText\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0712;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0721;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -4758,7 +4758,7 @@
 				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2DANKBZTCS;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4841,12 +4841,12 @@
 					"-framework",
 					"\"YYText\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0712;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0721;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

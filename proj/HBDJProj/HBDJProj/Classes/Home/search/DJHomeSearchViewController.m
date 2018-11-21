@@ -40,9 +40,10 @@
         self.vsView = nil;
         [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
         
-        NSArray *classes = responseObj[@"classes"];/// 微党课
-        NSArray *news = responseObj[@"news"];/// 要闻
-        NSArray *microLessons = responseObj[@"microLessons"];/// 微党课专辑
+        // TODO: Zup_发生网络返回 responseObj 的数据类型为空数组, 但是 result 返回0的情况，至此崩溃，添加判断类型及字段是否存在，防崩溃
+        NSArray *classes = [responseObj isKindOfClass:[NSDictionary class]] && responseObj[@"classes"] ? responseObj[@"classes"] : @[];/// 微党课
+        NSArray *news = [responseObj isKindOfClass:[NSDictionary class]] && responseObj[@"news"] ? responseObj[@"news"] : @[];/// 要闻
+        NSArray *microLessons = [responseObj isKindOfClass:[NSDictionary class]] && responseObj[@"microLessons"] ? responseObj[@"microLessons"] : @[];/// 微党课专辑
         
         NSMutableArray *albums = nil;
         if (microLessons.count != 0) {

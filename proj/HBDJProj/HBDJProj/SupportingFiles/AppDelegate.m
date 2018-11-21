@@ -166,7 +166,7 @@
                                      redirectURL:@""];
     
 //    /* 设置新浪的appKey和appSecret */
-//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3315220764"  appSecret:@"652c4ec4aa22f90c2cbb579a258be2f3" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
 
 }
 

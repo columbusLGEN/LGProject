@@ -75,10 +75,14 @@ UICollectionViewDataSource>
 }
 
 + (CGFloat)headerHeight{
+    // TODO: Zup_图片的宽高比为 16：9
+    CGFloat hlHeight = kScreenWidth * 9 / 16.f;
+    /*ß
     CGFloat hlHeight = headLineHeight;
     if (kScreenHeight > plusScreenHeight) {
         hlHeight = headLineHeight * kScreenHeight / plusScreenHeight;
     }
+     */
     return hlHeight;
 }
 

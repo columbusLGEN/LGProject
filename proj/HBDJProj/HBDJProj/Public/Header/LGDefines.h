@@ -15,6 +15,9 @@
 #define debugMethod()
 #endif
 
+// TODO: Zup_添加 kHeigh_ScreedWidth9_16
+/// MARK:屏幕宽度的16分之9，常用图片比例的高度
+#define kHeigh_ScreedWidth9_16 ([UIScreen mainScreen].bounds.size.width)*9/16.f
 /// MARK:屏幕宽度
 #define kScreenWidth ([UIScreen mainScreen].bounds.size.width)
 /// MARK:屏幕高度

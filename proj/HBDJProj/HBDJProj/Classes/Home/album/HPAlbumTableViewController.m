@@ -16,6 +16,8 @@
 
 #import "DJLessonDetailViewController.h"
 
+#import "HPPartyBuildDetailViewController.h"
+
 @interface HPAlbumTableViewController ()<
 HPAlbumHeaderCellDelegate>
 
@@ -171,7 +173,14 @@ HPAlbumHeaderCellDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 进入课程详情页面
     DJDataBaseModel *lesson = self.dataArray[indexPath.row];
-    [DJLessonDetailViewController lessonvcPushWithLesson:lesson baseVc:self dataSyncer:nil sort:self.timeSort];
+    // TODO: Zup_根据不同类型的数据跳转不同的界面
+    if (lesson.modaltype == ModelMediaTypeRichText || lesson.modaltype == ModelMediaTypeCustom) {
+        [HPPartyBuildDetailViewController buildVcPushWith:lesson baseVc:self dataSyncer:nil];
+        //    [[DJMediaDetailTransAssist new] mediaDetailWithModel:lesson baseVc:self dataSyncer:nil];
+    } else {
+        [DJLessonDetailViewController lessonvcPushWithLesson:lesson baseVc:self dataSyncer:nil sort:self.timeSort];
+        
+    }
 }
 
 #pragma mark - HPAlbumHeaderCellDelegate

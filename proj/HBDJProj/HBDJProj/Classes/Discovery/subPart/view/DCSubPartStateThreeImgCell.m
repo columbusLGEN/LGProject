@@ -123,7 +123,10 @@
             make.left.equalTo(self.contentView.mas_left).offset(marginTwelve);
             make.right.equalTo(_midImg.mas_left).offset(-marginFifteen);
             make.top.equalTo(self.timeLabel.mas_bottom).offset(marginTen);
-            make.height.mas_equalTo((133 * kScreenHeight) / 1024);
+            // TODO: Zup_ 图片比例16：9，设置宽度，根据宽度定高度
+//            make.height.mas_equalTo((133 * kScreenHeight) / 1024);
+            CGFloat height = (kScreenWidth - (marginTwelve + marginFifteen)*2)/3*9/16.f; // 图片宽度*9/16
+            make.height.equalTo(@(height));
             make.bottom.equalTo(self.boInterView.mas_top).offset(-marginTen);
         }];
         

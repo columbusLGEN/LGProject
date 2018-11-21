@@ -23,14 +23,25 @@
 @implementation HPAudioVideoInfoCell
 
 - (CGFloat)cellHeight{
-    if (!(_model.lessonInfoCellShowAll)) {
-        
-        return 240;
-    }else{
-        CGFloat textHeight = [self.model.contentvalidity sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:15]].height;
-        
-        return textHeight + 144 + 50;
+    // TODO: Zup_项目经理要求文本高度不超过三行时不要固定高度
+    CGFloat textHeight = [self.model.contentvalidity sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:15]].height;
+    CGFloat defaultHeight = 5 + 65 + 15 + 15 + 22 + 50 + 10 + 5;
+    if (textHeight < 55) {
+        return defaultHeight + textHeight;
+    } else {
+        if (_model.lessonInfoCellShowAll) {
+            return defaultHeight + textHeight;
+        } else {
+            return defaultHeight + 23 * 3;
+        }
     }
+//    if (!(_model.lessonInfoCellShowAll)) {
+//
+//        return 240;
+//    }else{
+//        CGFloat textHeight = [self.model.contentvalidity sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:15]].height;
+//        return textHeight + 144 + 50;
+//    }
 }
 
 - (void)setModel:(DJDataBaseModel *)model{
@@ -41,6 +52,11 @@
     [_time setText:[model.createdDate stringByAppendingString:@" 更新"]];
     [_source setText:[NSString stringWithFormat:@"来源: %@",model.source]];
     
+     // TODO: Zup_文本少于三行时，不显示更多
+     CGFloat contentHeight = [_content.text sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 20, MAXFLOAT) font:[UIFont systemFontOfSize:15]].height;
+     if (contentHeight < 55) { // 三行文本高度 53.7
+         _open.hidden = YES;
+     }
 }
 
 - (IBAction)open:(UIButton *)sender {
