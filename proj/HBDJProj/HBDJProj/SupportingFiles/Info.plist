@@ -61,6 +61,12 @@
 			</array>
 		</dict>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MicrosoftYaHei.ttf</string>
+		<string>SimHei.ttf</string>
+		<string>SimSun.ttf</string>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>

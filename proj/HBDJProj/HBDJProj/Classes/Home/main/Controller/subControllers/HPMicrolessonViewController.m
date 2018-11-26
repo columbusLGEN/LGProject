@@ -87,8 +87,16 @@ EDJMicroPartyLessonHeaderCellDelegate>
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat height = [EDJMicroPartyLessonCell cellHeightWithIndexPath:indexPath];
-    return height;
+    //TODO: Zup_tableview的高度动态调整
+//    CGFloat height = [EDJMicroPartyLessonCell cellHeightWithIndexPath:indexPath];
+//    return height;
+
+    EDJMicroLessionAlbumModel *model = self.dataArray[indexPath.row];
+    if (indexPath.row == 0) {
+        return homeMicroLessonHeaderHeight * kScreenWidth / plusScreenWidth;
+    }else{
+        return homeMicroLessonSubCellBaseHeight * rateForMicroLessonCellHeight() * model.classlist.count + homeMicroLessonHeaderFooterHeight * 2;
+    }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     EDJMicroLessionAlbumModel *model = nil;

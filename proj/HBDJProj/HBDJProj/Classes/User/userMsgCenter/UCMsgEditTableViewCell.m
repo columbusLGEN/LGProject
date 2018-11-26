@@ -23,7 +23,14 @@
 
 - (void)setModel:(UCMsgModel *)model{
     [super setModel:model];
-    _comtent.text = model.content;
+    
+    // TODO: Zup_消息标题只显示标题
+    NSString *contentText = model.content;
+    if (model.noticetype == UCMsgModelResourceTypeCustom) {
+        contentText = model.title;
+    }
+    
+    _comtent.text = contentText; //model.title;
     _seBtn.selected = model.select;
 }
 

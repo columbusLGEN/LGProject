@@ -114,9 +114,13 @@ WKNavigationDelegate>
     
 //    NSLog(@"[contentModel.content class]: %@",[contentModel.content class]);
     
-    _contentModel.content = [_contentModel.content stringByReplacingOccurrencesOfString:@"crossorigin=\"anonymous\" " withString:@""];
-    
-    [LGHTMLParser HTMLSaxWithHTMLString:contentModel.content success:^(NSAttributedString *attrString) {
+    _contentModel.content = [_contentModel.content stringByReplacingOccurrencesOfString:@" width=\"100%\"" withString:@" "];
+//    if (![_contentModel.content containsString:@"align"]) {
+//        _contentModel.content = [_contentModel.content stringByReplacingOccurrencesOfString:@"\" />" withString:@" align=\"center\" />"];
+//    }
+
+//    NSString *content = [NSString stringWithFormat:@"<!DOCTYPE html><html><head lang=\"en\"><meta charset=\"UTF-8\"><title></title><style>img{width:100%%;}</style></head><body style=\"text-indent:2em\"><div id='foo'>%@</div></body></html>", _contentModel.content];
+    [LGHTMLParser HTMLSaxWithHTMLString:_contentModel.content success:^(NSAttributedString *attrString) {
         NSAttributedString *string = attrString;
         
         /// 计算表态高度
