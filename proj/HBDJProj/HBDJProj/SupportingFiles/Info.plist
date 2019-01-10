@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.0.5</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -61,14 +61,8 @@
 			</array>
 		</dict>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>MicrosoftYaHei.ttf</string>
-		<string>SimHei.ttf</string>
-		<string>SimSun.ttf</string>
-	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>wechat</string>
@@ -137,6 +131,12 @@
 	<string>是否允许访问您的麦克风，进行语音搜索</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许访问您的相册</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MicrosoftYaHei.ttf</string>
+		<string>SimHei.ttf</string>
+		<string>SimSun.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
@@ -152,8 +152,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

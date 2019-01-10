@@ -220,8 +220,6 @@
 		886A1BF420D0CB330007AD63 /* STKAITI.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BE120D0CB320007AD63 /* STKAITI.TTF */; };
 		886A1BF720D101700007AD63 /* HPNetworkFailureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1BF620D101700007AD63 /* HPNetworkFailureView.m */; };
 		886A1BF920D101A00007AD63 /* HPNetworkFailureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BF820D101A00007AD63 /* HPNetworkFailureView.xib */; };
-		886D162C21ABD00B00649C28 /* SimHei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 886D162921ABD00A00649C28 /* SimHei.ttf */; };
-		886D162D21ABD00B00649C28 /* SimSun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 886D162A21ABD00A00649C28 /* SimSun.ttf */; };
 		886D162E21ABD00B00649C28 /* MicrosoftYaHei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 886D162B21ABD00B00649C28 /* MicrosoftYaHei.ttf */; };
 		886FFDCD212E44BE000E1890 /* DJDsSearchTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFDCC212E44BE000E1890 /* DJDsSearchTagView.m */; };
 		886FFE0F212ED6D5000E1890 /* DCQuestionSearchResultVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFE0E212ED6D5000E1890 /* DCQuestionSearchResultVc.m */; };
@@ -423,6 +421,7 @@
 		88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */; };
 		88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */; };
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
+		88D2926521C0D0420051237D /* DJWebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D2926421C0D0420051237D /* DJWebDetailViewController.m */; };
 		88D4C0B62142281600CADB42 /* UIImageView+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0B52142281600CADB42 /* UIImageView+LGExtension.m */; };
 		88D4C0BA2142414D00CADB42 /* DJMsgCenterTranser.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0B92142414D00CADB42 /* DJMsgCenterTranser.m */; };
 		88D4C0BD2142449900CADB42 /* DJResourceTypeNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0BC2142449900CADB42 /* DJResourceTypeNewsViewController.m */; };
@@ -924,8 +923,6 @@
 		886A1BF520D101700007AD63 /* HPNetworkFailureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPNetworkFailureView.h; sourceTree = "<group>"; };
 		886A1BF620D101700007AD63 /* HPNetworkFailureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPNetworkFailureView.m; sourceTree = "<group>"; };
 		886A1BF820D101A00007AD63 /* HPNetworkFailureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPNetworkFailureView.xib; sourceTree = "<group>"; };
-		886D162921ABD00A00649C28 /* SimHei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimHei.ttf; sourceTree = "<group>"; };
-		886D162A21ABD00A00649C28 /* SimSun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimSun.ttf; sourceTree = "<group>"; };
 		886D162B21ABD00B00649C28 /* MicrosoftYaHei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MicrosoftYaHei.ttf; sourceTree = "<group>"; };
 		886FFDCB212E44BE000E1890 /* DJDsSearchTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDsSearchTagView.h; sourceTree = "<group>"; };
 		886FFDCC212E44BE000E1890 /* DJDsSearchTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDsSearchTagView.m; sourceTree = "<group>"; };
@@ -1278,6 +1275,8 @@
 		88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolHeader.m; sourceTree = "<group>"; };
 		88D13C7420907A3700A32236 /* OLAddMoreToolFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreToolFooter.h; sourceTree = "<group>"; };
 		88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolFooter.m; sourceTree = "<group>"; };
+		88D2926321C0D0420051237D /* DJWebDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJWebDetailViewController.h; sourceTree = "<group>"; };
+		88D2926421C0D0420051237D /* DJWebDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJWebDetailViewController.m; sourceTree = "<group>"; };
 		88D4C0B42142281600CADB42 /* UIImageView+LGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LGExtension.h"; sourceTree = "<group>"; };
 		88D4C0B52142281600CADB42 /* UIImageView+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LGExtension.m"; sourceTree = "<group>"; };
 		88D4C0B82142414D00CADB42 /* DJMsgCenterTranser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJMsgCenterTranser.h; sourceTree = "<group>"; };
@@ -1602,8 +1601,6 @@
 				881C94942068EA5A009D6A52 /* Assets.xcassets */,
 				881C94992068EA5A009D6A52 /* Info.plist */,
 				886D162B21ABD00B00649C28 /* MicrosoftYaHei.ttf */,
-				886D162921ABD00A00649C28 /* SimHei.ttf */,
-				886D162A21ABD00A00649C28 /* SimSun.ttf */,
 				881C949A2068EA5A009D6A52 /* main.m */,
 			);
 			path = SupportingFiles;
@@ -3062,6 +3059,8 @@
 			children = (
 				8806C82C210EFD4F00685DEF /* DJLessonDetailViewController.h */,
 				8806C82D210EFD4F00685DEF /* DJLessonDetailViewController.m */,
+				88D2926321C0D0420051237D /* DJWebDetailViewController.h */,
+				88D2926421C0D0420051237D /* DJWebDetailViewController.m */,
 				889FCD2320B3FA8A0045746D /* HPAudioVideoViewController.h */,
 				889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */,
 				880363A420E363FB00E97FA3 /* HPAddBroseCountMgr.h */,
@@ -3856,7 +3855,7 @@
 				TargetAttributes = {
 					881C94872068EA5A009D6A52 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3913,7 +3912,6 @@
 				88435E8A208DBF8100188CE9 /* EDJLevelIns.plist in Resources */,
 				886A1BE420D0CB330007AD63 /* hj.bundle in Resources */,
 				8885D23B20A2BCB800DC06A1 /* PBDBottomView.xib in Resources */,
-				886D162D21ABD00B00649C28 /* SimSun.ttf in Resources */,
 				88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */,
 				886A1BE720D0CB330007AD63 /* IAPProducts.plist in Resources */,
 				881C94952068EA5A009D6A52 /* Assets.xcassets in Resources */,
@@ -3966,7 +3964,6 @@
 				88EA131B20AD18F1007AB886 /* UCAccountHit.plist in Resources */,
 				886A1BEC20D0CB330007AD63 /* ReaderPlatformConfig.plist in Resources */,
 				88949C24211ECCDA00B80AEE /* DJSearchWorkPlantformCell.xib in Resources */,
-				886D162C21ABD00B00649C28 /* SimHei.ttf in Resources */,
 				889FCD3920B3FDC00045746D /* HPAudioVideoInfoCell.xib in Resources */,
 				889E7DC2209996A100BB9084 /* UCMemberStageTransitionView.xib in Resources */,
 				88ECF07420A020560071A98A /* OLExamSingleFooterView.xib in Resources */,
@@ -4166,6 +4163,7 @@
 				8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */,
 				8835B2C120720A1800722010 /* LGBaseView.m in Sources */,
 				88DD8123209C0A4900F297D6 /* OLVoteDetailController.m in Sources */,
+				88D2926521C0D0420051237D /* DJWebDetailViewController.m in Sources */,
 				88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */,
 				88BCEDF720C8FC0E00B5C1DB /* HPSearchHistoryView.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,
@@ -4666,9 +4664,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hubei Changjiang Media Digital Publishing Co.,Ltd.‍ (2DANKBZTCS)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2DANKBZTCS;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4751,10 +4749,10 @@
 					"-framework",
 					"\"YYText\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0721;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0712;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = CJDangyuanzhijia0712Profile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4768,9 +4766,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hubei Changjiang Media Digital Publishing Co.,Ltd.‍ (2DANKBZTCS)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2DANKBZTCS;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4853,10 +4851,10 @@
 					"-framework",
 					"\"YYText\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0721;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0712;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = CJDangyuanzhijia0712Profile;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

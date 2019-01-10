@@ -131,7 +131,7 @@
 //    NSLog(@"%@: requesturl: %@",iName,url);
     
     [[LGNetworkManager sharedInstance] sendPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) { 
-//        NSLog(@"%@_responseObject: %@",iName,responseObject);
+        NSLog(@"%@_responseObject: %@",iName,responseObject);
         
         if (error) {
             NSLog(@"error: %@",error);
@@ -222,8 +222,8 @@
 /// MARK: URL
 - (NSString *)baseUrl{
     if (!_baseUrl) {
-        _baseUrl = @"http://123.59.199.170:8081/";
-//        _baseUrl = @"http://dy.cjszyun.cn/";
+//        _baseUrl = @"http://123.59.199.170:8081/";
+        _baseUrl = @"http://dy.cjszyun.cn/";
 //        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
     }
     return _baseUrl;

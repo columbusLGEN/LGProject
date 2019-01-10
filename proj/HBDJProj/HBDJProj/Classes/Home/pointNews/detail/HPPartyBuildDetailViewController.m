@@ -49,6 +49,7 @@ WKNavigationDelegate>
 }
 
 + (void)buildVcPushWith:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
+    
     HPPartyBuildDetailViewController *dvc = [self new];
     dvc.dataSyncer = dataSyncer;
     dvc.djDataType = DJDataPraisetypeNews;
@@ -65,7 +66,9 @@ WKNavigationDelegate>
     if ([model isMemberOfClass:[NSClassFromString(@"EDJHomeImageLoopModel") class]]) {
         dvc.imageLoopModel = (EDJHomeImageLoopModel *)model;
     }else{
-        dvc.contentModel = model;
+        // TODO: Zup_传入id，在详情界面获取详情内容
+        dvc.seqid = model.seqid;
+//        dvc.contentModel = model;
     }
     [baseVc.navigationController pushViewController:dvc animated:YES];
 }
@@ -93,18 +96,28 @@ WKNavigationDelegate>
     _pbdBottom.likeCount = likeCount;
     _pbdBottom.collectionCount = collectionCount;
     
-    /// 添加播放次数
-    [[HPAddBroseCountMgr new] addBroseCountWithId:self.contentModel.seqid success:^{
-        _contentModel.playcount += 1;
-        [_topInfoView reloadPlayCount:_contentModel.playcount];
-    }];
-    
     if (_isMsgTrans) {
         [_pbdBottom removeFromSuperview];
     }
 
     [self addReportInformation];
     
+}
+// TODO: Zup_添加获取详情接口
+- (void)setSeqid:(NSInteger)seqid
+{
+    _seqid = seqid;
+    [DJHomeNetworkManager homePointNewsDetailWithId:_seqid type:DJDataPraisetypeMicrolesson success:^(id responseObj) {
+        self.contentModel = [DJDataBaseModel mj_objectWithKeyValues:responseObj];
+        // TODO: Zup_将更新次数移动到这里
+        /// 添加播放次数
+        [[HPAddBroseCountMgr new] addBroseCountWithId:self.seqid success:^{
+            _contentModel.playcount += 1;
+            [_topInfoView reloadPlayCount:_contentModel.playcount];
+        }];
+    } failure:^(id failureObj) {
+        
+    }];
 }
 
 - (void)setContentModel:(DJDataBaseModel *)contentModel{
@@ -115,11 +128,6 @@ WKNavigationDelegate>
 //    NSLog(@"[contentModel.content class]: %@",[contentModel.content class]);
     
     _contentModel.content = [_contentModel.content stringByReplacingOccurrencesOfString:@" width=\"100%\"" withString:@" "];
-//    if (![_contentModel.content containsString:@"align"]) {
-//        _contentModel.content = [_contentModel.content stringByReplacingOccurrencesOfString:@"\" />" withString:@" align=\"center\" />"];
-//    }
-
-//    NSString *content = [NSString stringWithFormat:@"<!DOCTYPE html><html><head lang=\"en\"><meta charset=\"UTF-8\"><title></title><style>img{width:100%%;}</style></head><body style=\"text-indent:2em\"><div id='foo'>%@</div></body></html>", _contentModel.content];
     [LGHTMLParser HTMLSaxWithHTMLString:_contentModel.content success:^(NSAttributedString *attrString) {
         NSAttributedString *string = attrString;
         
@@ -163,7 +171,19 @@ WKNavigationDelegate>
 
 - (void)setImageLoopModel:(EDJHomeImageLoopModel *)imageLoopModel{
     _imageLoopModel = imageLoopModel;
-    self.contentModel = imageLoopModel.frontNews;
+//    self.contentModel = imageLoopModel.frontNews;
+    // TODO: Zup_通过id获取详情
+    self.seqid = _imageLoopModel.frontNews.seqid;
+    if (_imageLoopModel.frontNews.classid == 2) {
+        /// 党建要闻
+        self.dj_jumpSource = DJPointNewsSourcePartyBuild;
+    }else if (_imageLoopModel.frontNews.classid == 1){
+        /// 主席要闻
+        self.dj_jumpSource = DJPointNewsSourceZhuxiNews;
+    }else{
+        /// 党课
+        self.dj_jumpSource = DJPointNewsSourceMicroLesson;
+    }
 }
 
 #pragma mark Actions

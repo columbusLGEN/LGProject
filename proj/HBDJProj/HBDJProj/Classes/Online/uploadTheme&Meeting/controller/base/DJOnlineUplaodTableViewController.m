@@ -108,9 +108,14 @@ DJInputContentViewControllerDelegate>
             for (NSInteger i = 0; i < array.count; i++) {
                 DJSelectPeopleModel *model = [DJSelectPeopleModel mj_objectWithKeyValues:array[i]];
                 
-                /// 默认全员出席
-                model.attend = DJMemeberAttendTypePresent;
-                model.select_present = YES;
+//                /// 默认全员出席
+//                model.attend = DJMemeberAttendTypePresent;
+//                model.select_present = YES;
+                
+                // TODO: Zup_默认全不选
+                model.attend = DJMemeberAttendTypeDefault;
+//                model.select_absent = YES;
+
                 
                 [arrMutable addObject:model];
             }
@@ -299,16 +304,40 @@ DJInputContentViewControllerDelegate>
     
     for (int i = 0; i < self.allPeople.count; i++) {
         DJSelectPeopleModel *peolple_model = self.allPeople[i];
-        if (peolple_model.select_present) {
-            /// 出席人员
-            [self.peoplePresent addObject:@(peolple_model.seqid)];
-            [self.peoplePresentNames addObject:peolple_model.name];
-        }   
-        if (peolple_model.select_absent) {
-            /// 缺席人员
-            [self.peopleAbsent addObject:@(peolple_model.seqid)];
-            [self.peopleAbsentNames addObject:peolple_model.name];
+        
+        // TODO: Zup_可以全不选择，直接全员归属为另一部分
+//        if (peolple_model.select_present) {
+//            /// 出席人员
+//            [self.peoplePresent addObject:@(peolple_model.seqid)];
+//            [self.peoplePresentNames addObject:peolple_model.name];
+//        }
+//        if (peolple_model.select_absent) {
+//            /// 缺席人员
+//            [self.peopleAbsent addObject:@(peolple_model.seqid)];
+//            [self.peopleAbsentNames addObject:peolple_model.name];
+//        }
+        if (spType == DJSelectPeopleTypePresent) { // 选择的是出席
+            if (peolple_model.select_present) {
+                /// 出席人员
+                [self.peoplePresent addObject:@(peolple_model.seqid)];
+                [self.peoplePresentNames addObject:peolple_model.name];
+            } else {
+                /// 缺席人员
+                [self.peopleAbsent addObject:@(peolple_model.seqid)];
+                [self.peopleAbsentNames addObject:peolple_model.name];
+            }
+        } else if (spType == DJSelectPeopleTypeAbsent) { // 选择的是缺席
+            if (peolple_model.select_absent) {
+                /// 缺席人员
+                [self.peopleAbsent addObject:@(peolple_model.seqid)];
+                [self.peopleAbsentNames addObject:peolple_model.name];
+            } else {
+                /// 出席人员
+                [self.peoplePresent addObject:@(peolple_model.seqid)];
+                [self.peoplePresentNames addObject:peolple_model.name];
+            }
         }
+        
         if (peolple_model.select_host) {
             [host addObject:@(peolple_model.seqid)];
         }
@@ -358,8 +387,9 @@ DJInputContentViewControllerDelegate>
     }
     
     [_uploadDataManager setUploadValue:peoples key:model.uploadJsonKey];/// 提交给后台的数据 人的id
-    model.content = peopleNames;/// 显示在页面上的数据 name
-    
+    // TODO: Zup_如果没有选中的人员，显示无
+    model.content = peopleNames.length > 0 ? peopleNames : @"无";/// 显示在页面上的数据 name
+    NSLog(@"peoplename %@", peopleNames);
     [self.tableView reloadData];
 }
 

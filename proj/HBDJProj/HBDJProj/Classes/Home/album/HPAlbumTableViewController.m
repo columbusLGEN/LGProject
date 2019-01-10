@@ -173,6 +173,7 @@ HPAlbumHeaderCellDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 进入课程详情页面
     DJDataBaseModel *lesson = self.dataArray[indexPath.row];
+    lesson.playcount += 1;
     // TODO: Zup_根据不同类型的数据跳转不同的界面
     if (lesson.modaltype == ModelMediaTypeRichText || lesson.modaltype == ModelMediaTypeCustom) {
         [HPPartyBuildDetailViewController buildVcPushWith:lesson baseVc:self dataSyncer:nil];

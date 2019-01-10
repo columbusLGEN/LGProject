@@ -156,6 +156,16 @@ typedef NS_ENUM(NSUInteger, DJUserAddScoreType) {
  @param failure 失败
  */
 - (void)userLoginWithTel:(NSString *)tel pwd_md5:(NSString *)pwd_md5 success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/**
+ token登陆
+
+ @param token token
+ @param userId userid
+ @param success 请求成功回调
+ @param failure 请求失败回调
+ */
+- (void)userLoginWithToken:(NSString *)token userId:(NSString *)userId success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**
  激活账号
  

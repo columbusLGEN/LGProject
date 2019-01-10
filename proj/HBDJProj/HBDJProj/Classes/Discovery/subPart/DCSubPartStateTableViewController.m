@@ -108,6 +108,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DCSubPartStateModel *model = self.dataArray[indexPath.row];
     DCSubPartStateDetailViewController *dvc = [DCSubPartStateDetailViewController new];
+    model.content = [model.content stringByReplacingOccurrencesOfString:@" width=\"100%\"" withString:@" "];
     dvc.model = model;
     dvc.isSearchSubvc = self.isSearchSubvc;
     dvc.dataSyncer = self.dataSyncer;

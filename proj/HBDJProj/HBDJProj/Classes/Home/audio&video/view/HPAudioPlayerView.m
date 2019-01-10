@@ -33,7 +33,8 @@ LGAudioPlayerViewDelegate>
 /** 总时间 */
 @property (strong,nonatomic) NSString *totalTime;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgW;
+// TODO: Zup_比例 16:9
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgW;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgH;
 
 
@@ -151,7 +152,7 @@ LGAudioPlayerViewDelegate>
     _played = NO;
     
     if ([LGDevice isiPad]) {
-        _imgW.constant = 261 * kScreenWidth / plusScreenWidth;
+//        _imgW.constant = 261 * kScreenWidth / plusScreenWidth;
         _imgH.constant = 147 * kScreenHeight / plusScreenHeight;
     }
     
