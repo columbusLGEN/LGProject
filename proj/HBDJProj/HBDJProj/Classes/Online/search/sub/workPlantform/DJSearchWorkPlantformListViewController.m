@@ -103,7 +103,7 @@
 //    model.searchtype;
     
     if (model.searchtype == 2 || model.searchtype == 4) {
-        /// 进入思想汇报 或者 述职述廉 详情
+        /// 进入思想汇报 或者党建述职 详情
         DJThoughtReportDetailViewController *detailvc = DJThoughtReportDetailViewController.new;
         detailvc.trOrSp = model.searchtype;
         detailvc.model = model;

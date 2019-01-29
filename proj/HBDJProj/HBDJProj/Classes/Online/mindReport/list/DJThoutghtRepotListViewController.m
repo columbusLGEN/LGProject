@@ -28,17 +28,17 @@
 - (void)getNetDataWithOffset:(NSInteger)offset{
     /// request data
 //    NSLog(@"self.listtype: %lu",(unsigned long)self.listType);
-    NSLog(@"述职述廉思想汇报offset: %ld",offset);
+    NSLog(@"党建述职思想汇报offset: %ld",offset);
     
     /**
      listType
         思想汇报 -- 6
-        述职述廉 -- 7
+        党建述职 -- 7
      */
     /**
      DJOnlineUGCType
         思想汇报 -- 2
-        述职述廉 -- 3
+        党建述职 -- 3
      */
     [DJOnlineNetorkManager.sharedInstance frontUgcWithType:(self.listType - 4) offset:offset length:10 success:^(id responseObj) {
         NSArray *array = responseObj;

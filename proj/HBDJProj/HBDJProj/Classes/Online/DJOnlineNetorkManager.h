@@ -13,7 +13,7 @@
 /**
  在线模块搜索接口
  type:
- 1 搜索三会一课主题当日述职述廉思想汇报 (党建工作台账)
+ 1 搜索三会一课主题当日党建述职思想汇报 (党建工作台账)
  2 在线投票
  3 在现测试 */
 - (void)frontIndex_onlineSearchWithContent:(NSString *)content type:(NSInteger)type offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
@@ -61,9 +61,9 @@
 /** 在线投票列表 */
 - (void)frontVotes_selectWithOffset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**
- 获取党员舞台、思想汇报、述职述廉 列表数据
+ 获取党员舞台、思想汇报、党建述职 列表数据
 
- @param ugcType 类型：1党员舞台 2思想汇报 3述职述廉
+ @param ugcType 类型：1党员舞台 2思想汇报 3党建述职
  */
 - (void)frontUgcWithType:(DJOnlineUGCType)ugcType offset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
@@ -73,10 +73,10 @@
 - (void)frontThemesWithOffset:(NSInteger)offset length:(NSInteger)length success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /**
- 上传思想汇报，述职述廉，党员舞台
+ 上传思想汇报，党建述职，党员舞台
 
  @param formDict json字典
- @param ugctype 1党员舞台; 2思想汇报; 3述职述廉
+ @param ugctype 1党员舞台; 2思想汇报; 3党建述职
  @param filetype 1图片; 2视频; 3音频; 4文本
  @param success 成功回调
  @param failure 失败回调

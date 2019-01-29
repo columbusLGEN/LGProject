@@ -248,6 +248,7 @@ DJInputContentViewControllerDelegate>
         case OLUploadTableModelClassSelectTime:{
             DJSelectDateViewController *selectTime = DJSelectDateViewController.new;
             selectTime.delegate = self;
+            selectTime.lastMonth = YES;
             selectTime.cellIndex = indexPath;
             selectTime.modalPresentationStyle = UIModalPresentationOverFullScreen;
             [self presentViewController:selectTime animated:YES completion:nil];

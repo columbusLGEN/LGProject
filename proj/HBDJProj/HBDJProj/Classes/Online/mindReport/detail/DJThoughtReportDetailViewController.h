@@ -12,7 +12,7 @@
 
 @interface DJThoughtReportDetailViewController : LGBaseViewController
 @property (strong,nonatomic) DJThoutghtRepotListModel *model;
-/** 2:思想汇报 4:述职述廉 */
+/** 2:思想汇报 4:党建述职 */
 @property (assign,nonatomic) NSInteger trOrSp;
 
 @end

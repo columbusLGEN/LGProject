@@ -130,14 +130,14 @@ DJUploadMindReportCoverCellDelegate>
         cell.model.coverBackUrl = coverFileUrl;
         [self.tableView reloadData];
     } uploadProgress:^(NSProgress *uploadProgress) {
-        NSLog(@"思想汇报&述职述廉_上传封面: %f",
+        NSLog(@"思想汇报&党建述职_上传封面: %f",
               (CGFloat)uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
     } success:^(id dict) {
         NSString *path = dict[path_key];
         /// 设置表单数据
         [_uploadDataManager setUploadValue:path key:cell.model.uploadJsonKey];
     } failure:^(id uploadFailure) {
-        NSLog(@"思想汇报&述职述廉_上传封面失败: %@",uploadFailure);
+        NSLog(@"思想汇报&党建述职_上传封面失败: %@",uploadFailure);
     }];
     
 }

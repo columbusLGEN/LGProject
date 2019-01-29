@@ -49,7 +49,7 @@
  //ugctype:
  //    1党员舞台
  //    2思想汇报
- //    3述职述廉
+ //    3党建述职
  */
     [self commenPOSTWithOffset:offset length:10 sort:0 iName:@"frontUgc/selectmechanism" param:@{ugctype_key:@"1"} success:success failure:failure];
 }

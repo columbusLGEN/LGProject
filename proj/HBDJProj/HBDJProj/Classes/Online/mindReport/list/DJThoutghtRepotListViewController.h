@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-/// 思想汇报，述职述廉列表
+/// 思想汇报，党建述职列表
 
 #import "LGBaseTableViewController.h"
 
@@ -15,7 +15,7 @@
 /**
  listType
  思想汇报 -- 6
- 述职述廉 -- 7
+党建述职 -- 7
  */
 @property (assign,nonatomic) OnlineModelType listType;
 

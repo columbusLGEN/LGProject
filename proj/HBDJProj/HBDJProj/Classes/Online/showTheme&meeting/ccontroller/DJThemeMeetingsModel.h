@@ -44,7 +44,7 @@
  1: 党支部委员会，支部党员大会，党小组会， 党课
  2: 思想汇报
  3: 主题党日
- 4: 述职述廉
+ 4:党建述职
  */
 @property (assign,nonatomic) NSInteger searchtype;
 @property (strong,nonatomic) NSString *content;

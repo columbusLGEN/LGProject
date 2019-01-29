@@ -65,7 +65,7 @@ static const CGFloat commentsCellHeight = 25;
 /** 评论模型数组 */
 @property (strong,nonatomic) NSArray<DCSubStageCommentsModel *> *frontComments;
 
-/** 1党员舞台 2思想汇报 3述职述廉 */
+/** 1党员舞台 2思想汇报 3党建述职 */
 @property (assign,nonatomic) NSInteger ugctype;
 
 /** 上传用户 */

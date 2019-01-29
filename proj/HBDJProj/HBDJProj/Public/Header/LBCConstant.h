@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
     DJOnlineUGCTypeStage = 1,
     /** 思想汇报 */
     DJOnlineUGCTypeMindReport,
-    /** 述职述廉 */
+    /**党建述职 */
     DJOnlineUGCTypeComponce,
 };
 
