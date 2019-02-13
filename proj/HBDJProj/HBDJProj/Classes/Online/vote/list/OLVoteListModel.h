@@ -21,6 +21,8 @@
 
 /** 1多选 0单选 */
 @property (assign,nonatomic) BOOL ismultiselect;
+/** 多选上限 */
+@property (assign,nonatomic) NSInteger maxnum;
 
 /** 0 未投票 1 投票完成 2 未开始 3 已经结束 */
 @property (assign,nonatomic) NSInteger votestatus;

@@ -85,7 +85,7 @@ DJUCSubListDelegate
     [self allSelectCommenHandle:array];
 }
 
-/// 我的上传 -- 思想汇报 和 述职述廉 单独处理
+/// 我的上传 -- 思想汇报 和党建述职 单独处理
 - (void)ucmp_mindCellClickWhenEdit:(DJThoutghtRepotListModel *)model modelArrayCount:(NSInteger)count{
     if (model.select) {
         /// 添加
@@ -257,7 +257,7 @@ DJUCSubListDelegate
                LGSegmentItemViewControllerClassKey:@"DJUcMyUploadMindReportListController",
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                },
-             @{LGSegmentItemNameKey:@"述廉报告",
+             @{LGSegmentItemNameKey:@"党建述职",
                LGSegmentItemViewControllerClassKey:@"DJUcMyUploadCheapSpeechListController",
                LGSegmentItemViewControllerInitTypeKey:LGSegmentVcInitTypeCode
                }];

@@ -134,6 +134,8 @@ UCMsgTableViewCellDelegate>
 
 - (void)setEdit:(BOOL)edit{
     _edit = edit;
+    // TODO: Zup_添加全选状态修改，不论做什么操作，全选都要取消掉
+    _allSelectView.asbState = NO;
     if (edit) {
         /// 编辑状态
         [self.msgListView mas_updateConstraints:^(MASConstraintMaker *make) {

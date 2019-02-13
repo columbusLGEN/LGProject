@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LIGMainTabBarController.h"
 #import "UCLoginViewController.h"
+#import "DJUserNetworkManager.h"
 
 #import <iflyMSC/iflyMSC.h>
 #import <UMShare/UMShare.h>
@@ -34,8 +35,10 @@
 
 #pragma mark - UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    // TODO: Zup_添加token登录
+    [self loginWithToken];
     [self baseConfigWithApplication:application launchOptions:launchOptions];
+    
     return YES;
 }
 
@@ -142,7 +145,41 @@
     
     /// 确定当前设备
     [[LGDevice sharedInstance] lg_currentDeviceType];
+}
+// TODO: Zup_添加token登录
+- (void)loginWithToken
+{
+    [[DJUser sharedInstance] getLocalUserInfo];
+    if (![DJUser sharedInstance].userid || [DJUser sharedInstance].token.length == 0) {
+        return;
+    }
     
+    [[DJUserNetworkManager sharedInstance] userLoginWithToken:[DJUser sharedInstance].token
+                                                       userId:[DJUser sharedInstance].userid
+                                                      success:^(id responseObj) {
+                                                          DJUser *user = [DJUser mj_objectWithKeyValues:responseObj];
+                                                          /// 用户信息本地化
+                                                          [user keepUserInfo];
+                                                          /// 将本地用户信息赋值给单利对象,保证每次用户重新登录之后，都会重新赋值
+                                                          [[DJUser sharedInstance] getLocalUserInfo];
+                                                      } failure:^(id failureObj) {
+                                                          [[LGLoadingAssit sharedInstance] homeRemoveLoadingView];
+                                                          if ([failureObj isKindOfClass:[NSError class]]) {
+                                                              NSLog(@"failure_error: %@",failureObj);
+                                                          }
+                                                          if ([failureObj isKindOfClass:[NSDictionary class]]) {
+                                                              if ([failureObj[@"result"] integerValue] == 6) {
+                                                                  [[DJUser sharedInstance] removeLocalUserInfo];
+                                                                  [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:isLogin_key];
+                                                                  self.window.rootViewController = [UCLoginViewController navWithLoginvc];
+                                                                 [self.window presentFailureTips:@"你的账号已经在其他机器登录，请重新登录"];
+                                                              } else {
+                                                                  NSLog(@"failure_dict: %@",failureObj);
+                                                                  NSString *msg = failureObj[@"msg"];
+                                                                  [self.window presentFailureTips:msg];
+                                                              }
+                                                          }
+                                                      }];
 }
 
 - (void)configUSharePlatforms{
@@ -166,7 +203,7 @@
                                      redirectURL:@""];
     
 //    /* 设置新浪的appKey和appSecret */
-//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3315220764"  appSecret:@"652c4ec4aa22f90c2cbb579a258be2f3" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
 
 }
 

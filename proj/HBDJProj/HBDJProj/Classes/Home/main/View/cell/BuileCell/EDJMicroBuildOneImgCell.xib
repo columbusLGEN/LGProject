@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EDJMicroBuildOneImgCell" rowHeight="162" id="sft-H9-fIT" customClass="EDJMicroBuildOneImgCell">
-            <rect key="frame" x="0.0" y="0.0" width="453" height="162"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EDJMicroBuildOneImgCell" rowHeight="97" id="sft-H9-fIT" customClass="EDJMicroBuildOneImgCell">
+            <rect key="frame" x="0.0" y="0.0" width="605" height="97"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sft-H9-fIT" id="LSj-ou-9cL">
-                <rect key="frame" x="0.0" y="0.0" width="453" height="161.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="605" height="96.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="Rjk-Q4-FLd">
-                        <rect key="frame" x="253" y="12" width="180" height="139.5"/>
+                        <rect key="frame" x="456" y="12" width="129" height="72.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="180" id="T3A-rM-NjN"/>
+                            <constraint firstAttribute="width" secondItem="Rjk-Q4-FLd" secondAttribute="height" multiplier="16:9" id="158-aP-v4T"/>
                             <constraint firstAttribute="width" constant="119" id="WuR-kx-q1T"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="T3A-rM-NjN"/>
                                 <exclude reference="WuR-kx-q1T"/>
                             </mask>
                         </variation>
@@ -35,20 +34,15 @@
                                 <include reference="WuR-kx-q1T"/>
                             </mask>
                         </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="constraints">
-                                <include reference="T3A-rM-NjN"/>
-                            </mask>
-                        </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李克强: 创新造福人名也是全体人民共同事业创新造福人名也是全体人民共同事业" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcr-sc-3TA">
-                        <rect key="frame" x="52" y="12" width="181" height="41"/>
+                        <rect key="frame" x="52" y="12" width="384" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmc-jt-CLp">
-                        <rect key="frame" x="12" y="138.5" width="231" height="18"/>
+                        <rect key="frame" x="12" y="71.5" width="434" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -73,7 +67,7 @@
                     <constraint firstItem="Gcr-sc-3TA" firstAttribute="top" secondItem="Rjk-Q4-FLd" secondAttribute="top" id="KFG-DH-PGk"/>
                     <constraint firstItem="6ZY-1M-JQ7" firstAttribute="leading" secondItem="Lmc-jt-CLp" secondAttribute="leading" constant="-5" id="NjM-v2-v4B"/>
                     <constraint firstItem="Rjk-Q4-FLd" firstAttribute="leading" secondItem="Gcr-sc-3TA" secondAttribute="trailing" constant="20" id="O2D-Zn-toR"/>
-                    <constraint firstAttribute="bottom" secondItem="Rjk-Q4-FLd" secondAttribute="bottom" constant="10" id="T8h-KJ-dqE"/>
+                    <constraint firstAttribute="bottom" secondItem="Rjk-Q4-FLd" secondAttribute="bottom" constant="12" id="T8h-KJ-dqE"/>
                     <constraint firstItem="Rjk-Q4-FLd" firstAttribute="top" secondItem="LSj-ou-9cL" secondAttribute="top" constant="12" id="c9S-D0-bfE"/>
                     <constraint firstItem="6ZY-1M-JQ7" firstAttribute="top" secondItem="Gcr-sc-3TA" secondAttribute="top" id="xte-ld-16a"/>
                     <constraint firstItem="Lmc-jt-CLp" firstAttribute="bottom" secondItem="Rjk-Q4-FLd" secondAttribute="bottom" constant="5" id="yqQ-5m-mpD"/>
@@ -88,10 +82,10 @@
                 <outlet property="toTop" destination="6ZY-1M-JQ7" id="BIa-lx-LzH"/>
                 <outlet property="toTopWidth" destination="vqQ-aF-0mf" id="nag-IL-5D9"/>
             </connections>
-            <point key="canvasLocation" x="56.5" y="18"/>
+            <point key="canvasLocation" x="115.234375" y="-1.46484375"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="party_history" width="283" height="194"/>
+        <image name="party_history" width="283.5" height="194.5"/>
     </resources>
 </document>

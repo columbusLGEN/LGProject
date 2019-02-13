@@ -220,6 +220,7 @@
 		886A1BF420D0CB330007AD63 /* STKAITI.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BE120D0CB320007AD63 /* STKAITI.TTF */; };
 		886A1BF720D101700007AD63 /* HPNetworkFailureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 886A1BF620D101700007AD63 /* HPNetworkFailureView.m */; };
 		886A1BF920D101A00007AD63 /* HPNetworkFailureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886A1BF820D101A00007AD63 /* HPNetworkFailureView.xib */; };
+		886D162E21ABD00B00649C28 /* MicrosoftYaHei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 886D162B21ABD00B00649C28 /* MicrosoftYaHei.ttf */; };
 		886FFDCD212E44BE000E1890 /* DJDsSearchTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFDCC212E44BE000E1890 /* DJDsSearchTagView.m */; };
 		886FFE0F212ED6D5000E1890 /* DCQuestionSearchResultVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFE0E212ED6D5000E1890 /* DCQuestionSearchResultVc.m */; };
 		886FFE12212ED708000E1890 /* DCBranchSearchResultVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 886FFE11212ED708000E1890 /* DCBranchSearchResultVc.m */; };
@@ -340,6 +341,12 @@
 		88A955C720F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C620F5A4A0009AB70F /* DJShowThmemeMeetingNormalTextCell.m */; };
 		88A955CA20F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955C920F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m */; };
 		88A955CD20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A955CC20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m */; };
+		88B929AF2200536500E0E8BA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B929AE2200536500E0E8BA /* CFNetwork.framework */; };
+		88B929B12200537800E0E8BA /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B929B02200537800E0E8BA /* CoreFoundation.framework */; };
+		88B929B3220053A000E0E8BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B929B2220053A000E0E8BA /* Foundation.framework */; };
+		88B929B5220053B200E0E8BA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B929B4220053B200E0E8BA /* Security.framework */; };
+		88B929B7220053CF00E0E8BA /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B929B6220053CF00E0E8BA /* UserNotifications.framework */; };
+		88B929B9220053E900E0E8BA /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B929B8220053E900E0E8BA /* libresolv.tbd */; };
 		88BA906720F33E5D007DD4B4 /* DJTestScoreListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */; };
 		88BA906A20F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA906920F33EB3007DD4B4 /* DJTestScoreListTableViewCell.m */; };
 		88BA906C20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA906B20F33EBC007DD4B4 /* DJTestScoreListTableViewCell.xib */; };
@@ -420,6 +427,7 @@
 		88D13C6F20906EF300A32236 /* OLAddMoreFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C6E20906EF300A32236 /* OLAddMoreFlowLayout.m */; };
 		88D13C7320907A1700A32236 /* OLAddMoreToolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */; };
 		88D13C7620907A3700A32236 /* OLAddMoreToolFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */; };
+		88D2926521C0D0420051237D /* DJWebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D2926421C0D0420051237D /* DJWebDetailViewController.m */; };
 		88D4C0B62142281600CADB42 /* UIImageView+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0B52142281600CADB42 /* UIImageView+LGExtension.m */; };
 		88D4C0BA2142414D00CADB42 /* DJMsgCenterTranser.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0B92142414D00CADB42 /* DJMsgCenterTranser.m */; };
 		88D4C0BD2142449900CADB42 /* DJResourceTypeNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D4C0BC2142449900CADB42 /* DJResourceTypeNewsViewController.m */; };
@@ -923,6 +931,7 @@
 		886A1BF520D101700007AD63 /* HPNetworkFailureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPNetworkFailureView.h; sourceTree = "<group>"; };
 		886A1BF620D101700007AD63 /* HPNetworkFailureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPNetworkFailureView.m; sourceTree = "<group>"; };
 		886A1BF820D101A00007AD63 /* HPNetworkFailureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HPNetworkFailureView.xib; sourceTree = "<group>"; };
+		886D162B21ABD00B00649C28 /* MicrosoftYaHei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MicrosoftYaHei.ttf; sourceTree = "<group>"; };
 		886FFDCB212E44BE000E1890 /* DJDsSearchTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDsSearchTagView.h; sourceTree = "<group>"; };
 		886FFDCC212E44BE000E1890 /* DJDsSearchTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDsSearchTagView.m; sourceTree = "<group>"; };
 		886FFE0D212ED6D5000E1890 /* DCQuestionSearchResultVc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCQuestionSearchResultVc.h; sourceTree = "<group>"; };
@@ -1146,6 +1155,12 @@
 		88A955C920F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJShowThmemeMeetingMoreTextCell.m; sourceTree = "<group>"; };
 		88A955CB20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJShowThmemeMeetingImageCell.h; sourceTree = "<group>"; };
 		88A955CC20F5A50A009AB70F /* DJShowThmemeMeetingImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJShowThmemeMeetingImageCell.m; sourceTree = "<group>"; };
+		88B929AE2200536500E0E8BA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		88B929B02200537800E0E8BA /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		88B929B2220053A000E0E8BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		88B929B4220053B200E0E8BA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		88B929B6220053CF00E0E8BA /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		88B929B8220053E900E0E8BA /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		88BA906520F33E5D007DD4B4 /* DJTestScoreListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListModel.h; sourceTree = "<group>"; };
 		88BA906620F33E5D007DD4B4 /* DJTestScoreListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTestScoreListModel.m; sourceTree = "<group>"; };
 		88BA906820F33EB3007DD4B4 /* DJTestScoreListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTestScoreListTableViewCell.h; sourceTree = "<group>"; };
@@ -1274,6 +1289,8 @@
 		88D13C7220907A1700A32236 /* OLAddMoreToolHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolHeader.m; sourceTree = "<group>"; };
 		88D13C7420907A3700A32236 /* OLAddMoreToolFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLAddMoreToolFooter.h; sourceTree = "<group>"; };
 		88D13C7520907A3700A32236 /* OLAddMoreToolFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLAddMoreToolFooter.m; sourceTree = "<group>"; };
+		88D2926321C0D0420051237D /* DJWebDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJWebDetailViewController.h; sourceTree = "<group>"; };
+		88D2926421C0D0420051237D /* DJWebDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJWebDetailViewController.m; sourceTree = "<group>"; };
 		88D4C0B42142281600CADB42 /* UIImageView+LGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LGExtension.h"; sourceTree = "<group>"; };
 		88D4C0B52142281600CADB42 /* UIImageView+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LGExtension.m"; sourceTree = "<group>"; };
 		88D4C0B82142414D00CADB42 /* DJMsgCenterTranser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJMsgCenterTranser.h; sourceTree = "<group>"; };
@@ -1411,15 +1428,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				9B76181321A50008006C4446 /* LTScrollView.framework in Frameworks */,
+=======
+				88B929B9220053E900E0E8BA /* libresolv.tbd in Frameworks */,
+				88B929B7220053CF00E0E8BA /* UserNotifications.framework in Frameworks */,
+				88B929B5220053B200E0E8BA /* Security.framework in Frameworks */,
+				88B929B3220053A000E0E8BA /* Foundation.framework in Frameworks */,
+				88BCED5F20C289DC00B5C1DB /* SystemConfiguration.framework in Frameworks */,
+				88BCED5920C289B400B5C1DB /* CoreTelephony.framework in Frameworks */,
+				88B929B12200537800E0E8BA /* CoreFoundation.framework in Frameworks */,
+				88B929AF2200536500E0E8BA /* CFNetwork.framework in Frameworks */,
+>>>>>>> e3793c4a313e8823fbd505d98cc7c411a1a1f882
 				888223C1212BD8D90094D3EF /* libopencore-amrnb.a in Frameworks */,
 				888223C2212BD8D90094D3EF /* libopencore-amrwb.a in Frameworks */,
 				88C5F14920B7F1900075D5F2 /* QuartzCore.framework in Frameworks */,
-				88BCED5F20C289DC00B5C1DB /* SystemConfiguration.framework in Frameworks */,
 				882AFCDF212FE05000DB8005 /* libmp3lame.a in Frameworks */,
 				88BCED5D20C289CE00B5C1DB /* Contacts.framework in Frameworks */,
 				88BCED5B20C289C100B5C1DB /* AddressBook.framework in Frameworks */,
-				88BCED5920C289B400B5C1DB /* CoreTelephony.framework in Frameworks */,
 				88BCED5720C289AA00B5C1DB /* CoreLocation.framework in Frameworks */,
 				88D5C61B20BE768500E353DB /* libxml2.2.tbd in Frameworks */,
 				88C5F15F20B7F2050075D5F2 /* libz.tbd in Frameworks */,
@@ -1463,7 +1489,16 @@
 		43C6D71BB68173153DFCB4B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				9B76181221A50008006C4446 /* LTScrollView.framework */,
+=======
+				88B929B8220053E900E0E8BA /* libresolv.tbd */,
+				88B929B6220053CF00E0E8BA /* UserNotifications.framework */,
+				88B929B4220053B200E0E8BA /* Security.framework */,
+				88B929B2220053A000E0E8BA /* Foundation.framework */,
+				88B929B02200537800E0E8BA /* CoreFoundation.framework */,
+				88B929AE2200536500E0E8BA /* CFNetwork.framework */,
+>>>>>>> e3793c4a313e8823fbd505d98cc7c411a1a1f882
 				88BCED5E20C289DC00B5C1DB /* SystemConfiguration.framework */,
 				88BCED5C20C289CE00B5C1DB /* Contacts.framework */,
 				88BCED5A20C289C100B5C1DB /* AddressBook.framework */,
@@ -1602,6 +1637,7 @@
 				881C948C2068EA5A009D6A52 /* AppDelegate.m */,
 				881C94942068EA5A009D6A52 /* Assets.xcassets */,
 				881C94992068EA5A009D6A52 /* Info.plist */,
+				886D162B21ABD00B00649C28 /* MicrosoftYaHei.ttf */,
 				881C949A2068EA5A009D6A52 /* main.m */,
 			);
 			path = SupportingFiles;
@@ -3061,6 +3097,8 @@
 			children = (
 				8806C82C210EFD4F00685DEF /* DJLessonDetailViewController.h */,
 				8806C82D210EFD4F00685DEF /* DJLessonDetailViewController.m */,
+				88D2926321C0D0420051237D /* DJWebDetailViewController.h */,
+				88D2926421C0D0420051237D /* DJWebDetailViewController.m */,
 				889FCD2320B3FA8A0045746D /* HPAudioVideoViewController.h */,
 				889FCD2420B3FA8A0045746D /* HPAudioVideoViewController.m */,
 				880363A420E363FB00E97FA3 /* HPAddBroseCountMgr.h */,
@@ -3981,6 +4019,7 @@
 				88BB64D9209BEC4F00FE6103 /* Online.storyboard in Resources */,
 				8831E1B12094708A001D038E /* HPPointNewsHeader.xib in Resources */,
 				884EB43221073E26005D5CA9 /* DJThoughtReportDetailHeaderCell.xib in Resources */,
+				886D162E21ABD00B00649C28 /* MicrosoftYaHei.ttf in Resources */,
 				889FCC6B20B255080045746D /* DCStateCommentsTableViewCell.xib in Resources */,
 				88435E77208D84E000188CE9 /* userInfoConfig.plist in Resources */,
 				889E7DBD20998DD200BB9084 /* UCUploadTransitionView.xib in Resources */,
@@ -4171,6 +4210,7 @@
 				8835B2A32071FBE000722010 /* LGBaseViewController.m in Sources */,
 				8835B2C120720A1800722010 /* LGBaseView.m in Sources */,
 				88DD8123209C0A4900F297D6 /* OLVoteDetailController.m in Sources */,
+				88D2926521C0D0420051237D /* DJWebDetailViewController.m in Sources */,
 				88A4713D207F320F002F93E0 /* LGCustomButton.m in Sources */,
 				88BCEDF720C8FC0E00B5C1DB /* HPSearchHistoryView.m in Sources */,
 				88A47128207DF94C002F93E0 /* EDJOnlineFlowLayout.m in Sources */,

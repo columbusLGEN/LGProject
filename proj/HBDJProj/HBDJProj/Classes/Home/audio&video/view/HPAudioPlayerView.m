@@ -29,7 +29,12 @@ LGAudioPlayerViewDelegate>
 /** YES: 总时间已经设置过 */
 @property (assign,nonatomic) BOOL totalTimeSet;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgW;
+// TODO: Zup_添加播放总时间
+/** 总时间 */
+@property (strong,nonatomic) NSString *totalTime;
+
+// TODO: Zup_比例 16:9
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgW;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgH;
 
 
@@ -70,11 +75,16 @@ LGAudioPlayerViewDelegate>
         self.audioPlayer.progressValue = progress;
         self.audioPlayer.currentTime.text = currentString;
     }
-    /// 总时间，只设置一次
-    if (!_totalTimeSet) {
+    // TODO: Zup_通过总时间对比替换是否设置过总时间，解决更换视频时，总时间未更新bug
+    if (![_totalTime isEqualToString:totalString]) {
         self.audioPlayer.totalTime.text = totalString;
-        _totalTimeSet = YES;
+        _totalTime = totalString;
     }
+//    /// 总时间，只设置一次
+//    if (!_totalTimeSet) {
+//        self.audioPlayer.totalTime.text = totalString;
+//        _totalTimeSet = YES;
+//    }
 //    NSLog(@"cutime: %f totaltime: %f",currentTime,totalTime);
 }
 - (void)playerStateChanged:(LGPlayer *)player state:(LGPlayerState)state{
@@ -142,7 +152,7 @@ LGAudioPlayerViewDelegate>
     _played = NO;
     
     if ([LGDevice isiPad]) {
-        _imgW.constant = 261 * kScreenWidth / plusScreenWidth;
+//        _imgW.constant = 261 * kScreenWidth / plusScreenWidth;
         _imgH.constant = 147 * kScreenHeight / plusScreenHeight;
     }
     

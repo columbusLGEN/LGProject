@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Lee. All rights reserved.
 //
 
-/// 思想汇报 & 述职述廉 列表模型
+/// 思想汇报 &党建述职 列表模型
 
 //#import "LGBaseModel.h"
 #import "DJThemeMeetingsModel.h"

@@ -40,4 +40,23 @@
     return _createdDate;
 }
 
+- (NSString *)debugDescription {
+    if ([self isKindOfClass:[NSArray class]] || [self isKindOfClass:[NSDictionary class]] || [self isKindOfClass:[NSNumber class]] || [self isKindOfClass:[NSString class]]) {
+        return self.debugDescription;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    uint count;
+    objc_property_t *properites = class_copyPropertyList([self class], &count);
+    for (int i = 0; i < count; i ++) {
+        objc_property_t property = properites[i];
+        NSString *name = @(property_getName(property));
+        id value = [self valueForKey:name] ?: @"nil";
+        [dic setValue:value forKey:name];
+    }
+    free(properites);
+    return [NSString stringWithFormat:@"%@(%p): %@", [self class], self, dic];
+    
+}
+
 @end

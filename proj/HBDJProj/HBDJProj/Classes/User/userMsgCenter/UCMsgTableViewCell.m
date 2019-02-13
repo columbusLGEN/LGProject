@@ -48,7 +48,7 @@ static NSString * const isread_key = @"isread";
         contentText = model.title;
     }
     
-    NSLog(@"type_%ld: %@",model.noticetype,model.title);
+    NSLog(@"type_%ld\ntitle: %@\ncontent:%@",model.noticetype,model.title,model.content);
 
     _showAllButton.selected = model.showAll;
     if (model.createdtime.length > length_timeString_1) {

@@ -26,6 +26,9 @@
 
 /// MARK: 进入图文 或者 音视频 详情
 - (void)mediaDetailWithModel:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer{
+    
+    model.playcount += 1;
+    
     switch (model.modaltype) {
         case ModelMediaTypeAudio:
         case ModelMediaTypeVideo:{

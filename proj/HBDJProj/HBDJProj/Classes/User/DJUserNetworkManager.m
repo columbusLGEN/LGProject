@@ -151,11 +151,21 @@ static NSString * const password_key = @"password";
      token登录应该去掉，因为token是登陆成功服务器返回的，所以，这里的接口设计是错误的
      */
     
-    NSDictionary *param = @{phone_key:tel
-                            ,password_key:pwd_md5
+    NSDictionary *param = @{phone_key:tel,
+                            password_key:pwd_md5,
+                            @"type":@"1" // TODO: Zup_添加类型，1 密码登陆
                             };
     [self sendTableWithiName:@"/frontUserinfo/login" param:param needUserid:NO success:success failure:failure];
 }
+
+- (void)userLoginWithToken:(NSString *)token userId:(NSString *)userId success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
+    NSDictionary *param = @{@"userid":userId,
+                            @"token":token,
+                            @"type":@"0" // TODO: Zup_添加类型，0 token登录
+                            };
+    [self sendTableWithiName:@"/frontUserinfo/login" param:param needUserid:YES success:success failure:failure];
+}
+
 - (void)userActivationWithTel:(NSString *)tel oldPwd:(NSString *)oldPwd pwd:(NSString *)pwd success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure{
     NSDictionary *param = @{phone_key:tel,
                             @"oldpassword":oldPwd,

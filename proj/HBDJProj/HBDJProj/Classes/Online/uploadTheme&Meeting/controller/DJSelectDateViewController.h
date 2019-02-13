@@ -16,6 +16,8 @@
 @end
 
 @interface DJSelectDateViewController : LGBaseViewController
+// TODO:Zup_添加时间限定
+@property (assign,nonatomic) BOOL lastMonth;// 只能选择上一个月
 @property (strong,nonatomic) NSIndexPath *cellIndex;
 @property (weak,nonatomic) id<DJSelectDateViewControllerDelegate> delegate;
 

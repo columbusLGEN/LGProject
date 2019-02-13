@@ -127,16 +127,17 @@ UITableViewDataSource>
             allAbsent = NO;
         }
     }
-    if (allAbsent) {
-        [self presentFailureTips:@"禁止全员缺席"];
-        /// TODO: 改为系统弹窗
-        return;
-    }else{
+    // TODO: Zup_取消禁止全员缺席
+//    if (allAbsent) {
+//        [self presentFailureTips:@"禁止全员缺席"];
+//        /// TODO: 改为系统弹窗
+//        return;
+//    }else{
         if ([self.delegate respondsToSelector:@selector(selectPeopleDone:model:spType:)]) {
             [self.delegate selectPeopleDone:self model:self.model spType:_spType];
         }
         [super lg_dismissViewController];
-    }
+//    }
     
 }
 

@@ -73,7 +73,7 @@ NSString * const LGSocialShareParamKeyVc = @"LGSocialShareParamKeyVc";
     } failure:^(id failureObj) {
         
     }];
-    
+    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:vc completion:^(id data, NSError *error) {
         if (error) {

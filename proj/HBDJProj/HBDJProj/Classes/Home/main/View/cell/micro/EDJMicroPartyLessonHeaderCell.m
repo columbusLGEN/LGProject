@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *titleBgRight;
 @property (weak, nonatomic) IBOutlet UILabel *titleRight;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imgLeft;
+@property (weak, nonatomic) IBOutlet UIImageView *imgLeft; // TODO: Zup_添加了比例约束16：9，删除掉底部约束
 @property (weak, nonatomic) IBOutlet UIImageView *imgRight;
 @property (weak, nonatomic) IBOutlet UIView *line;
 

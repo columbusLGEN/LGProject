@@ -84,9 +84,10 @@
 //            make.bottom.equalTo(self.timeLabel.mas_top).offset(-marginTen);
         }];
         
-        CGFloat imgH = 133 * kScreenHeight / 1024;
-        CGFloat imgW = imgH * 1.77;
-        
+        // TODO: Zup_长宽比16：9; 133 --> 90
+        CGFloat imgH = 90 * kScreenHeight / 1024.f;
+        CGFloat imgW = imgH * 16 / 9.f;
+    
         [_img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(imgW);
             make.height.mas_equalTo(imgH);
@@ -94,9 +95,6 @@
             make.top.equalTo(self.contentView.mas_top).offset(marginTen);
             make.bottom.equalTo(self.timeLabel.mas_bottom);
         }];
-        
-        
-        
     }
     return self;
 }

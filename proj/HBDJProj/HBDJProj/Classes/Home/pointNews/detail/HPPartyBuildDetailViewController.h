@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, DJPointNewsSource) {
 @property (assign,nonatomic) DJDataPraisetype djDataType;
 @property (strong,nonatomic) EDJHomeImageLoopModel *imageLoopModel;
 @property (strong,nonatomic) DJDataBaseModel *contentModel;
+@property (assign,nonatomic) NSInteger seqid;
 
 + (void)buildVcPushWith:(DJDataBaseModel *)model baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer;
 

@@ -173,10 +173,22 @@
     if (!_datePicker) {
         _datePicker = UIDatePicker.new;
         _datePicker.datePickerMode = UIDatePickerModeDate;
-//        _datePicker.minimumDate = [NSDate date];
+        
+        // TODO:Zup_添加时间限定
+        if (_lastMonth) { // 是否需要限定最小值
+            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+            NSDate *currentDate = [NSDate date]; // 当前时间
+            NSDateComponents *comps = [[NSDateComponents alloc] init];
+            [comps setMonth:-1]; // 一个月前
+            NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+            _datePicker.minimumDate = minDate;
+            _datePicker.maximumDate = currentDate;
+        }
         [_datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _datePicker;
 }
+
+
 
 @end

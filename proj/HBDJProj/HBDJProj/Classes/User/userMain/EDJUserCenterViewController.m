@@ -60,6 +60,14 @@ UCPersonInfoViewControllerDelegate>
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    // TODO: Zup_添加获取用户信息接口，当用户积分增加并且升级时，可以实时变更用户积分等级
+    [DJUserNetworkManager.sharedInstance frontUserinfo_selectSuccess:^(id responseObj) {
+        DJUser *user = [DJUser mj_objectWithKeyValues:responseObj];
+        [self updateInfoWithUser:user];
+    } failure:^(id failureObj) {
+        [self.tableView.mj_header endRefreshing];
+    }];
+
     /// 查看未读消息数量
     [DJUserNetworkManager.sharedInstance frontUserNotice_selectUnReadNumSuccess:^(id responseObj) {
         NSDictionary *dict = responseObj;
@@ -103,7 +111,18 @@ UCPersonInfoViewControllerDelegate>
     if (user.gradename == nil || [user.gradename isEqualToString:@""]) {
         _level.text = @"先锋党员";
     }
+}
+// TODO: Zup_添加获取用户信息接口，当用户积分增加并且升级时，可以实时变更用户积分等级
+- (void)updateInfoWithUser:(DJUser *)user{
+    /// 用户信息本地化
+    [user keepUserInfo];
     
+    /// 将本地用户信息赋值给单利对象,保证每次用户重新登录之后，都会重新赋值
+    [[DJUser sharedInstance] getLocalUserInfo];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self uiConfig];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

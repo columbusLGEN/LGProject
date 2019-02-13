@@ -80,7 +80,8 @@
     
     HPPointNewsHeader *header = [HPPointNewsHeader pointNewsHeader];
     self.tableView.tableHeaderView = header;
-    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 233);
+    // TODO: Zup_ 233 --> kHeigh_ScreedWidth9_16
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, kHeigh_ScreedWidth9_16);
     
     [self.tableView registerNib:[UINib nibWithNibName:buildCellNoImg bundle:nil] forCellReuseIdentifier:buildCellNoImg];
     [self.tableView registerNib:[UINib nibWithNibName:buildCellOneImg bundle:nil] forCellReuseIdentifier:buildCellOneImg];

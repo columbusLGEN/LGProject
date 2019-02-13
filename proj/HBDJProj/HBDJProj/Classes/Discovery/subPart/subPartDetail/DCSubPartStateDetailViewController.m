@@ -22,6 +22,8 @@
 #import "DJUserInteractionMgr.h"
 #import "DJDataSyncer.h"
 
+#import "DJWebDetailViewController.h"
+
 //static const CGFloat richTextBottomInfoViewHeight = 77;
 static const CGFloat richTextBottomInfoViewHeight = 40;
 
@@ -303,6 +305,26 @@ LGThreeRightButtonViewDelegate>
         return imageView;
     }
     return nil;
+}
+
+// TODO: Zup_添加超链接跳转
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForLink:(NSURL *)url identifier:(NSString *)identifier frame:(CGRect)frame
+{
+    NSLog(@"\n==============\nurl:%@\nidentify:%@\nframe:%@\n---------------", url, identifier, NSStringFromCGRect(frame));
+    DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:frame];
+    button.URL = url;
+    button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
+    button.GUID = identifier;
+    
+    [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
+- (void)linkPushed:(DTLinkButton *)button
+{
+    DJWebDetailViewController *webDetail = [[DJWebDetailViewController alloc] init];
+    webDetail.url = button.URL;
+    [self.navigationController pushViewController:webDetail animated:YES];
 }
 
 #pragma mark - DTLazyImageViewDelegate

@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="ysc-T1-h9N">
-                        <rect key="frame" x="155.5" y="0.0" width="96" height="204"/>
+                        <rect key="frame" x="132" y="0.0" width="143" height="204"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="96" id="zli-Cq-3Dz"/>
+                            <constraint firstAttribute="width" secondItem="ysc-T1-h9N" secondAttribute="height" multiplier="7:10" id="Q4n-eA-7Ee"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="红色的起点红色的起点" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72b-TA-eHU">
-                        <rect key="frame" x="155.5" y="212" width="96" height="36"/>
+                        <rect key="frame" x="132" y="212" width="143" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

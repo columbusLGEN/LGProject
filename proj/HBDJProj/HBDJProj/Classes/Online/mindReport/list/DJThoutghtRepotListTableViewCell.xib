@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017思想汇报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5d-v9-q7y">
-                        <rect key="frame" x="15" y="41.5" width="341" height="21"/>
+                        <rect key="frame" x="15" y="15" width="247.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5z-1g-2UW">
-                        <rect key="frame" x="15" y="92.5" width="85" height="16"/>
+                        <rect key="frame" x="15" y="118.5" width="85" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="85" id="ZXE-7p-E3l"/>
                         </constraints>
@@ -34,10 +34,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="naj-fB-pf3">
-                        <rect key="frame" x="366" y="41.5" width="119" height="67"/>
+                        <rect key="frame" x="272.5" y="15" width="212.5" height="119.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="67" id="atR-GK-i3F"/>
-                            <constraint firstAttribute="width" constant="119" id="wMR-Ej-8rK"/>
+                            <constraint firstAttribute="width" secondItem="naj-fB-pf3" secondAttribute="height" multiplier="16:9" id="1xg-s4-d9k"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sG-Cg-GPu">
@@ -48,7 +47,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作者：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eai-wY-Ocp">
-                        <rect key="frame" x="120" y="92" width="236" height="16"/>
+                        <rect key="frame" x="120" y="118.5" width="142.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -57,6 +56,7 @@
                 <constraints>
                     <constraint firstItem="6sG-Cg-GPu" firstAttribute="leading" secondItem="N5d-v9-q7y" secondAttribute="leading" id="1OF-JA-yBc"/>
                     <constraint firstItem="N5d-v9-q7y" firstAttribute="top" secondItem="naj-fB-pf3" secondAttribute="top" id="1oB-bY-JnO"/>
+                    <constraint firstItem="naj-fB-pf3" firstAttribute="top" secondItem="ZBn-xx-Bk8" secondAttribute="top" constant="15" id="59k-qB-6oh"/>
                     <constraint firstItem="naj-fB-pf3" firstAttribute="leading" secondItem="N5d-v9-q7y" secondAttribute="trailing" constant="10" id="80g-K6-55b"/>
                     <constraint firstItem="Eai-wY-Ocp" firstAttribute="leading" secondItem="Q5z-1g-2UW" secondAttribute="trailing" constant="20" id="8hp-40-GHF"/>
                     <constraint firstAttribute="trailing" secondItem="naj-fB-pf3" secondAttribute="trailing" constant="15" id="9sc-bp-tFt"/>
@@ -81,6 +81,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="party_history" width="283" height="194"/>
+        <image name="party_history" width="283.5" height="194.5"/>
     </resources>
 </document>

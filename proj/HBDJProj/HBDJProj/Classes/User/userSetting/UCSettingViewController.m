@@ -42,7 +42,8 @@ UCSettingTableViewCellDelegate>
     
     /// 给 检查版本行模型 content 赋值 /// 取倒数第二项
     UCSettingModel *checkVersionModel = self.array[self.array.count - 2];
-    checkVersionModel.content;
+    // TODO: Zup_检查bundle中的版本作为显示的当前版本，不用再人为修改UCSettting.plist中的数据
+    checkVersionModel.content = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
     
     CGFloat buttonHeight = 40;
     CGFloat buttonWidth = 313;

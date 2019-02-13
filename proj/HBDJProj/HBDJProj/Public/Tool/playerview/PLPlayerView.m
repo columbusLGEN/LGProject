@@ -90,9 +90,9 @@ UIGestureRecognizerDelegate
         } else {
             self.edgeSpace = 5;
         }
-        
-        [self initTopBar];
+        // TODO: Zup_更换了initBottomBar与initTopBar的位置，先初始化topbar的话 循环播放列表按键会被压在bottombar的底部，导致无法点击到循环按键
         [self initBottomBar];
+        [self initTopBar];
         [self initOtherUI];
         [self doStableConstraint];
         

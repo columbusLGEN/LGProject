@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, DJUserAddScoreType) {
     DJUserAddScoreTypeReadThemeDay = 23,
     /** 查看思想汇报 */
     DJUserAddScoreTypeReadMindReport = 24,
-    /** 查看述职述廉 */
+    /** 查看党建述职 */
     DJUserAddScoreTypeReadSpeech = 25,
 };
 
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSUInteger, DJUserAddScoreType) {
 /** 请求 帮助与反馈数据 */
 - (void)frontFeedback_selectIndexWithOffset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
-/** 我的上传 ugctype: 1党员舞台,2思想汇报,3述职述廉 */
+/** 我的上传 ugctype: 1党员舞台,2思想汇报,3党建述职 */
 - (void)frontUgc_selectWithUgctype:(DJOnlineUGCType)ugctype offset:(NSInteger)offset success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 
 /** 我的收藏
@@ -156,6 +156,16 @@ typedef NS_ENUM(NSUInteger, DJUserAddScoreType) {
  @param failure 失败
  */
 - (void)userLoginWithTel:(NSString *)tel pwd_md5:(NSString *)pwd_md5 success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
+
+/**
+ token登陆
+
+ @param token token
+ @param userId userid
+ @param success 请求成功回调
+ @param failure 请求失败回调
+ */
+- (void)userLoginWithToken:(NSString *)token userId:(NSString *)userId success:(DJNetworkSuccess)success failure:(DJNetworkFailure)failure;
 /**
  激活账号
  

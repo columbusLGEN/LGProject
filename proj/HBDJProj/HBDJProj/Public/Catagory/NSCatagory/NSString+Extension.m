@@ -136,7 +136,7 @@
     NSTimeInterval temp = [self doubleValue];
     NSDate *date = [[NSDate date] initWithTimeIntervalSince1970:temp];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd hh:mm";
+    df.dateFormat = @"yyyy-MM-dd HH:mm";
     
     return [df stringFromDate:date];
 }

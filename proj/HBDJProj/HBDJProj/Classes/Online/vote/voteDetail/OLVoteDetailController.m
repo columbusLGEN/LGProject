@@ -39,6 +39,8 @@ OLVoteDetailHeaderViewDelegate>
 
 /** 多选下 用户选择的选项 */
 @property (strong,nonatomic) NSArray *userSelectOptions;
+// TODO: Zup_当前多选的数量
+@property (assign,nonatomic) NSInteger selectedNumber;
 
 @end
 
@@ -169,6 +171,11 @@ OLVoteDetailHeaderViewDelegate>
                     currentClickModel.localStatus = VoteModelStatusNormal;
                     
                 }else if (currentClickModel.localStatus == VoteModelStatusNormal) {
+                    // TODO: Zup_添加选项上限
+                    if (_model.maxnum > 0 && _selectedNumber >= _model.maxnum) {
+                        [self presentFailureTips:[NSString stringWithFormat:@"最多只能选择%ld个选项", _model.maxnum]];
+                        return;
+                    }
                     /// 如果该选项还未被选中
                     currentClickModel.localStatus = VoteModelStatusSelected;
                     
@@ -189,6 +196,7 @@ OLVoteDetailHeaderViewDelegate>
                         [arrmu_selectOptions addObject:model];
                     }
                 }
+                _selectedNumber = arrmu_selectOptions.count;
                 _userSelectOptions = arrmu_selectOptions.copy;
                 
             }else{

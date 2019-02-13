@@ -261,7 +261,9 @@ static NSInteger requestLength = 10;
 /// MARK: lazy load
 - (UIView *)header{
     if (!_header) {
-        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.imgLoopHeight_forAnyScreen + homeSegmentHeight + 10)];
+        // TODO: Zup_宽高比 16：9
+        // self.imgLoopHeight_forAnyScreen --> kHeigh_ScreedWidth9_16
+        _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kHeigh_ScreedWidth9_16 + homeSegmentHeight + 10)];
         _header.backgroundColor = UIColor.EDJGrayscale_F3;
         [_header addSubview:self.imgLoop];
         [_header addSubview:self.segment];
@@ -270,8 +272,9 @@ static NSInteger requestLength = 10;
 }
 - (SDCycleScrollView *)imgLoop{
     if (_imgLoop == nil) {
-        /// homeImageLoopHeight --> self.imgLoopHeight_forAnyScreen
-        _imgLoop = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.imgLoopHeight_forAnyScreen) delegate:self placeholderImage:DJImgloopPImage];
+        // TODO: Zup
+        /// homeImageLoopHeight --> self.imgLoopHeight_forAnyScreen --> kHeigh_ScreedWidth9_16
+        _imgLoop = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, kHeigh_ScreedWidth9_16) delegate:self placeholderImage:DJImgloopPImage];
         _imgLoop.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         
     }
@@ -285,7 +288,8 @@ static NSInteger requestLength = 10;
             model.imageName = [NSString stringWithFormat:@"home_segment_icon%d",i];
             [arr addObject:model];
         }
-        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectMake(0, self.imgLoopHeight_forAnyScreen + 10, kScreenWidth, homeSegmentHeight) models:arr.copy];
+        // TODO: Zup_self.imgLoopHeight_forAnyScreen --> kHeigh_ScreedWidth9_16
+        _segment = [[LGSegmentControl alloc] initWithFrame:CGRectMake(0, kHeigh_ScreedWidth9_16 + 10, kScreenWidth, homeSegmentHeight) models:arr.copy];
         _segment.delegate = self;
     }
     return _segment;

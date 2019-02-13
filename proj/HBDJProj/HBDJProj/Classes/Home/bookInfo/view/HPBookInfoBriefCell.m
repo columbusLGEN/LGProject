@@ -30,6 +30,14 @@
     _contentLabel.text = model.content;
     
     _button.selected = model.showAll;
+    
+    // TODO: Zup_文本行数不超过三行则隐藏折叠按键
+    CGFloat textHeight = [model.content sizeOfTextWithMaxSize:CGSizeMake(kScreenWidth - 36, MAXFLOAT) font:[UIFont systemFontOfSize:15]].height;
+    if (textHeight < 56) {
+        _button.hidden = YES;
+        _arrow.hidden = YES;
+    }
+    
     if (model.showAll) {
         _arrow.transform = CGAffineTransformMakeRotation(M_PI);
         _contentLabel.numberOfLines = 0;

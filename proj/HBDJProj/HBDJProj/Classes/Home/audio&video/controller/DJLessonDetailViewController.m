@@ -33,6 +33,8 @@
 #import "DJListPlayNoticeView.h"
 #import "LGAlertControllerManager.h"
 
+#import "DJWebDetailViewController.h"
+
 @interface DJLessonDetailViewController ()<
 UITableViewDelegate,
 UITableViewDataSource,
@@ -70,9 +72,12 @@ DJMediaPlayDelegate>
 /// MARK: 进入微党课详情页面
 + (void)lessonvcPushWithLesson:(DJDataBaseModel *)lesson baseVc:(UIViewController *)baseVc dataSyncer:(DJDataSyncer *)dataSyncer sort:(NSInteger)sort{
     /// 在经过 DJMediaDetailTransAssist 实例分发数据之后，这里只有 音视频模板类型的数据,if条件可以省略
+    // TODO: Zup_没有要求按照类型区分，暂时注释
+    /*
     if (lesson.modaltype == ModelMediaTypeCustom || lesson.modaltype == ModelMediaTypeRichText) {
         [baseVc presentFailureTips:@"数据异常"];
     }else{
+     */
         
 //        NSLog(@"basevcclass: %@",[baseVc class]);
         
@@ -88,12 +93,15 @@ DJMediaPlayDelegate>
         }
         avc.lessonMediaType = lesson.modaltype;
         [baseVc.navigationController pushViewController:avc animated:YES];
+    /*
     }
+     */
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configUI];
+    // TODO: Zup_获取详情内容
+    [self getDetailInfo];
 }
 - (void)configUI{
     
@@ -217,6 +225,18 @@ DJMediaPlayDelegate>
         }];
     }
 }
+// TODO: Zup_添加获取详情接口
+- (void)getDetailInfo
+{
+    [DJHomeNetworkManager homePointNewsDetailWithId:_model.seqid type:DJDataPraisetypeMicrolesson success:^(id responseObj) {
+        self.model = [DJDataBaseModel mj_objectWithKeyValues:responseObj];
+        // TODO: Zup_如果有 width=100% 则不显示图片 原因未知
+        self.model.content = [self.model.content stringByReplacingOccurrencesOfString:@" width=\"100%\"" withString:@" "];
+        [self configUI];
+    } failure:^(id failureObj) {
+        
+    }];
+}
 
 - (void)setBottomBarData{
     /// 设置数据
@@ -296,14 +316,15 @@ DJMediaPlayDelegate>
             }
         }
         
-        if (currentPlayIndex == (allLessonIds.count - 1)) {
+        // TODO: Zup_顺序播放变成逆序播放
+        if (currentPlayIndex == 0) { // currentPlayIndex == (allLessonIds.count - 1)
             
             UIAlertController *alertvc = [LGAlertControllerManager alertvcWithTitle:@"提示" message:@"该专辑已全部播放完毕" doneText:@"确定" doneBlock:^(UIAlertAction * _Nonnull action) {
             }];
             [self presentViewController:alertvc animated:YES completion:nil];
             
         }else{
-            NSInteger nextIndex = currentPlayIndex + 1;
+            NSInteger nextIndex = currentPlayIndex - 1; //  currentPlayIndex + 1
             LGBaseModel *nextModel = allLessonIds[nextIndex];
             
             /// MARK: 请求下一条数据，自动播放
@@ -455,7 +476,7 @@ DJMediaPlayDelegate>
         
         /// 添加cell的头部信息
         UILabel *titleLabel = UILabel.new;
-        titleLabel.font = [UIFont systemFontOfSize:17];
+        titleLabel.font = [UIFont systemFontOfSize:20];
         titleLabel.textColor = UIColor.EDJGrayscale_11;
         titleLabel.text = @"课程文稿";
         
@@ -502,6 +523,26 @@ DJMediaPlayDelegate>
         return imageView;
     }
     return nil;
+}
+
+// TODO: Zup_添加超链接跳转
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForLink:(NSURL *)url identifier:(NSString *)identifier frame:(CGRect)frame
+{
+    NSLog(@"\n==============\nurl:%@\nidentify:%@\nframe:%@\n---------------", url, identifier, NSStringFromCGRect(frame));
+    DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:frame];
+    button.URL = url;
+    button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
+    button.GUID = identifier;
+    
+    [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
+- (void)linkPushed:(DTLinkButton *)button
+{
+    DJWebDetailViewController *webDetail = [[DJWebDetailViewController alloc] init];
+    webDetail.url = button.URL;
+    [self.navigationController pushViewController:webDetail animated:YES];
 }
 
 #pragma mark - DTLazyImageViewDelegate

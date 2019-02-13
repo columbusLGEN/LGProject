@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,14 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="party_history" translatesAutoresizingMaskIntoConstraints="NO" id="QzV-KW-7WR">
-                        <rect key="frame" x="346" y="10" width="120" height="67"/>
+                        <rect key="frame" x="348" y="10" width="118" height="66.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="120" id="2cA-Ix-9yD"/>
-                            <constraint firstAttribute="height" constant="67" id="ar1-hk-4hc"/>
+                            <constraint firstAttribute="width" secondItem="QzV-KW-7WR" secondAttribute="height" multiplier="16:9" id="mZe-Eb-PFq"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第31课:孙继海巴拉巴拉第31课:孙继第31课:孙继海巴拉巴拉第31课:孙继海巴拉巴拉" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7i-HG-zjV">
-                        <rect key="frame" x="15" y="10" width="316" height="38.5"/>
+                        <rect key="frame" x="15" y="10" width="318" height="38.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -38,13 +37,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_micro_sub_cell_people_count" translatesAutoresizingMaskIntoConstraints="NO" id="qHT-th-fU4">
-                        <rect key="frame" x="15" y="65" width="10" height="10"/>
+                        <rect key="frame" x="15" y="65.5" width="10" height="10"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_micro_sub_cell_time" translatesAutoresizingMaskIntoConstraints="NO" id="ecr-Uk-1pe">
-                        <rect key="frame" x="94" y="65" width="10" height="10"/>
+                        <rect key="frame" x="94" y="65.5" width="10" height="10"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vq2-eB-4Z9">
-                        <rect key="frame" x="10" y="85" width="461" height="1"/>
+                        <rect key="frame" x="10" y="85.5" width="461" height="1"/>
                         <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Fei-2q-70D"/>
@@ -71,6 +70,7 @@
                     <constraint firstItem="QzV-KW-7WR" firstAttribute="centerY" secondItem="XTl-yb-QNU" secondAttribute="centerY" id="KTC-FJ-lig"/>
                     <constraint firstItem="Cfb-iN-JYC" firstAttribute="centerY" secondItem="qHT-th-fU4" secondAttribute="centerY" id="dJa-hE-gW9"/>
                     <constraint firstItem="Vq2-eB-4Z9" firstAttribute="top" secondItem="qHT-th-fU4" secondAttribute="bottom" constant="10" id="fqv-1y-rW3"/>
+                    <constraint firstItem="QzV-KW-7WR" firstAttribute="top" secondItem="XTl-yb-QNU" secondAttribute="top" constant="10" id="l9h-wc-e1c"/>
                     <constraint firstItem="z7i-HG-zjV" firstAttribute="top" secondItem="XTl-yb-QNU" secondAttribute="top" constant="10" id="mMn-ms-0VZ"/>
                     <constraint firstItem="QzV-KW-7WR" firstAttribute="leading" secondItem="z7i-HG-zjV" secondAttribute="trailing" constant="15" id="p1I-fg-qBs"/>
                     <constraint firstAttribute="bottom" secondItem="Vq2-eB-4Z9" secondAttribute="bottom" id="qCV-Jy-3Xh"/>
@@ -78,18 +78,16 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="img" destination="QzV-KW-7WR" id="MDT-wY-qzz"/>
-                <outlet property="imgHeightConstraint" destination="ar1-hk-4hc" id="21k-8L-vNi"/>
-                <outlet property="imgWidthConstraint" destination="2cA-Ix-9yD" id="DAl-WU-01X"/>
                 <outlet property="peopleCount" destination="Cfb-iN-JYC" id="llM-2C-vfw"/>
                 <outlet property="time" destination="hop-Ot-xw8" id="pIM-mz-0pv"/>
                 <outlet property="title" destination="z7i-HG-zjV" id="Ruh-cw-HkC"/>
             </connections>
-            <point key="canvasLocation" x="-164.5" y="20.5"/>
+            <point key="canvasLocation" x="-165.59999999999999" y="20.239880059970016"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="home_micro_sub_cell_people_count" width="10" height="10"/>
         <image name="home_micro_sub_cell_time" width="10" height="10"/>
-        <image name="party_history" width="283" height="194"/>
+        <image name="party_history" width="283.5" height="194.5"/>
     </resources>
 </document>

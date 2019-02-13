@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dj_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="eXZ-cr-e7d">
-                        <rect key="frame" x="0.0" y="0.0" width="592" height="233"/>
+                        <rect key="frame" x="0.0" y="0.0" width="592" height="333"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="233" id="sNk-6l-vcI"/>
+                            <constraint firstAttribute="width" secondItem="eXZ-cr-e7d" secondAttribute="height" multiplier="16:9" id="WuF-KJ-NGo"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部省部级主要领导干部" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMH-2q-O0v">
-                        <rect key="frame" x="15" y="252" width="562" height="61"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMH-2q-O0v">
+                        <rect key="frame" x="15" y="352" width="562" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                         <rect key="frame" x="75" y="374.5" width="17" height="12"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-6h-jUo">
-                        <rect key="frame" x="533" y="326" width="44" height="15"/>
+                        <rect key="frame" x="533" y="325.5" width="44" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="U4F-my-L0w"/>
                         </constraints>
@@ -68,7 +68,7 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_digital_book_info_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="Pn4-P3-K1F">
-                        <rect key="frame" x="567" y="331" width="10" height="5"/>
+                        <rect key="frame" x="567" y="330.5" width="10" height="5"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -94,7 +94,6 @@
             <connections>
                 <outlet property="arrow" destination="Pn4-P3-K1F" id="Qdd-Bm-kFD"/>
                 <outlet property="img" destination="eXZ-cr-e7d" id="e2l-tR-9U0"/>
-                <outlet property="imgHeightConstraint" destination="sNk-6l-vcI" id="7jV-eL-4iP"/>
                 <outlet property="more" destination="ceU-6h-jUo" id="0pS-hJ-rCU"/>
                 <outlet property="sotrAcce" destination="tKc-CQ-ULS" id="QyP-23-hLf"/>
                 <outlet property="text" destination="gMH-2q-O0v" id="TtY-eI-fHM"/>
@@ -103,8 +102,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="dj_placeholder" width="183" height="103"/>
-        <image name="home_album_list_time_sort" width="17" height="12"/>
-        <image name="home_digital_book_info_arrow_down" width="10" height="5"/>
+        <image name="dj_placeholder" width="183.5" height="103"/>
+        <image name="home_album_list_time_sort" width="17.5" height="12"/>
+        <image name="home_digital_book_info_arrow_down" width="10" height="5.5"/>
     </resources>
 </document>

@@ -79,6 +79,8 @@ typedef NS_ENUM(NSUInteger, BaseClassesId) {
 @property (assign,nonatomic) ModelMediaType modaltype;
 /** contentvalidity */
 @property (strong,nonatomic) NSString *contentvalidity;
+/** 分享内容 */
+@property (strong,nonatomic) NSString *sharecontent;
 
 /** 是否评论 */
 @property (assign,nonatomic) BOOL iscomment;

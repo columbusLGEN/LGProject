@@ -48,7 +48,8 @@
         [_source removeFromSuperview];
         [_counts removeFromSuperview];
     }
-    
+    // TODO: Zup_显示查看次数
+    [self reloadPlayCount:_model.playcount];
 
 }
 

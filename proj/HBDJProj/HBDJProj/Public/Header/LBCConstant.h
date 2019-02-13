@@ -17,7 +17,7 @@ static const CGFloat widthFifty = 50;
 static const CGFloat homeImageLoopHeight = 211;
 static const CGFloat homeSegmentHeight = 50;
 static const CGFloat homeSegmentContentWidth = 38;
-static const CGFloat homeMicroLessonHeaderHeight = 148;
+static const CGFloat homeMicroLessonHeaderHeight = 130; // TODO: Zup_原数据138
 static const CGFloat homeMicroLessonSubCellBaseHeight = 90;
 static const CGFloat homeMicroLessonHeaderFooterHeight = 55;
 static const CGFloat tabBarHeight = 49;
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, DJOnlineUGCType) {
     DJOnlineUGCTypeStage = 1,
     /** 思想汇报 */
     DJOnlineUGCTypeMindReport,
-    /** 述职述廉 */
+    /**党建述职 */
     DJOnlineUGCTypeComponce,
 };
 

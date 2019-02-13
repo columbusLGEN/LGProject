@@ -18,7 +18,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *torayScoreLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *todayScoreArrow;
+@property (weak, nonatomic) IBOutlet UILabel *addScore; // TODO: Zup_添加今日获取积分，删除箭头
 
 @property (weak, nonatomic) IBOutlet UIImageView *levelInfoArrow;
 @property (weak, nonatomic) IBOutlet UILabel *levelInfoLabel;
@@ -33,6 +33,8 @@
     _levelNum.text = [NSString stringWithFormat:@"LV%ld",model.grade];
     _curScore.text = [NSString stringWithFormat:@"%ld积分",model.allintegral];
     _needScore.text = [NSString stringWithFormat:@"%ld积分",model.leaveupneed];
+    // TODO: Zup_添加今日获取积分
+    _addScore.text = [NSString stringWithFormat:@"+%ld",model.todaygetintegral];
 }
 
 - (IBAction)todayScore:(UIButton *)sender {
@@ -61,7 +63,6 @@
 
 - (void)customConfig{
     _levelInfoArrow.transform = CGAffineTransformMakeRotation(M_PI);
-    _todayScoreArrow.transform = CGAffineTransformMakeRotation(M_PI);
 }
 
 @end
