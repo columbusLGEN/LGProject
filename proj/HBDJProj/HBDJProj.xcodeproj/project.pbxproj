@@ -1428,9 +1428,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				9B76181321A50008006C4446 /* LTScrollView.framework in Frameworks */,
-=======
 				88B929B9220053E900E0E8BA /* libresolv.tbd in Frameworks */,
 				88B929B7220053CF00E0E8BA /* UserNotifications.framework in Frameworks */,
 				88B929B5220053B200E0E8BA /* Security.framework in Frameworks */,
@@ -1439,7 +1437,6 @@
 				88BCED5920C289B400B5C1DB /* CoreTelephony.framework in Frameworks */,
 				88B929B12200537800E0E8BA /* CoreFoundation.framework in Frameworks */,
 				88B929AF2200536500E0E8BA /* CFNetwork.framework in Frameworks */,
->>>>>>> e3793c4a313e8823fbd505d98cc7c411a1a1f882
 				888223C1212BD8D90094D3EF /* libopencore-amrnb.a in Frameworks */,
 				888223C2212BD8D90094D3EF /* libopencore-amrwb.a in Frameworks */,
 				88C5F14920B7F1900075D5F2 /* QuartzCore.framework in Frameworks */,
@@ -1489,16 +1486,13 @@
 		43C6D71BB68173153DFCB4B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				9B76181221A50008006C4446 /* LTScrollView.framework */,
-=======
 				88B929B8220053E900E0E8BA /* libresolv.tbd */,
 				88B929B6220053CF00E0E8BA /* UserNotifications.framework */,
 				88B929B4220053B200E0E8BA /* Security.framework */,
 				88B929B2220053A000E0E8BA /* Foundation.framework */,
 				88B929B02200537800E0E8BA /* CoreFoundation.framework */,
 				88B929AE2200536500E0E8BA /* CFNetwork.framework */,
->>>>>>> e3793c4a313e8823fbd505d98cc7c411a1a1f882
 				88BCED5E20C289DC00B5C1DB /* SystemConfiguration.framework */,
 				88BCED5C20C289CE00B5C1DB /* Contacts.framework */,
 				88BCED5A20C289C100B5C1DB /* AddressBook.framework */,
