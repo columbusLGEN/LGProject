@@ -499,6 +499,8 @@
 		88FE68BF209B0628008C28A0 /* OLVoteListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68BE209B0628008C28A0 /* OLVoteListModel.m */; };
 		88FE68C2209B0690008C28A0 /* OLVoteListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FE68C1209B0690008C28A0 /* OLVoteListTableViewCell.m */; };
 		88FE68C4209B0696008C28A0 /* OLVoteListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FE68C3209B0696008C28A0 /* OLVoteListTableViewCell.xib */; };
+		9B76181321A50008006C4446 /* LTScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B76181221A50008006C4446 /* LTScrollView.framework */; };
+		9BC5128B21B9044F00CD909F /* DJDNewsBrowserByWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5128A21B9044F00CD909F /* DJDNewsBrowserByWebController.m */; };
 		C0720625B915A7E18499AE5F /* Pods_HBDJProjTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF050835017E753BB5C873ED /* Pods_HBDJProjTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1414,6 +1416,9 @@
 		88FE68C0209B0690008C28A0 /* OLVoteListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLVoteListTableViewCell.h; sourceTree = "<group>"; };
 		88FE68C1209B0690008C28A0 /* OLVoteListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLVoteListTableViewCell.m; sourceTree = "<group>"; };
 		88FE68C3209B0696008C28A0 /* OLVoteListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLVoteListTableViewCell.xib; sourceTree = "<group>"; };
+		9B76181221A50008006C4446 /* LTScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LTScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BC5128921B9044F00CD909F /* DJDNewsBrowserByWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDNewsBrowserByWebController.h; sourceTree = "<group>"; };
+		9BC5128A21B9044F00CD909F /* DJDNewsBrowserByWebController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDNewsBrowserByWebController.m; sourceTree = "<group>"; };
 		A115F1196D08C530AC251368 /* Pods_HBDJProjUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HBDJProjUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF050835017E753BB5C873ED /* Pods_HBDJProjTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HBDJProjTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1423,6 +1428,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
+				9B76181321A50008006C4446 /* LTScrollView.framework in Frameworks */,
+=======
 				88B929B9220053E900E0E8BA /* libresolv.tbd in Frameworks */,
 				88B929B7220053CF00E0E8BA /* UserNotifications.framework in Frameworks */,
 				88B929B5220053B200E0E8BA /* Security.framework in Frameworks */,
@@ -1431,6 +1439,7 @@
 				88BCED5920C289B400B5C1DB /* CoreTelephony.framework in Frameworks */,
 				88B929B12200537800E0E8BA /* CoreFoundation.framework in Frameworks */,
 				88B929AF2200536500E0E8BA /* CFNetwork.framework in Frameworks */,
+>>>>>>> e3793c4a313e8823fbd505d98cc7c411a1a1f882
 				888223C1212BD8D90094D3EF /* libopencore-amrnb.a in Frameworks */,
 				888223C2212BD8D90094D3EF /* libopencore-amrwb.a in Frameworks */,
 				88C5F14920B7F1900075D5F2 /* QuartzCore.framework in Frameworks */,
@@ -1480,12 +1489,16 @@
 		43C6D71BB68173153DFCB4B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+				9B76181221A50008006C4446 /* LTScrollView.framework */,
+=======
 				88B929B8220053E900E0E8BA /* libresolv.tbd */,
 				88B929B6220053CF00E0E8BA /* UserNotifications.framework */,
 				88B929B4220053B200E0E8BA /* Security.framework */,
 				88B929B2220053A000E0E8BA /* Foundation.framework */,
 				88B929B02200537800E0E8BA /* CoreFoundation.framework */,
 				88B929AE2200536500E0E8BA /* CFNetwork.framework */,
+>>>>>>> e3793c4a313e8823fbd505d98cc7c411a1a1f882
 				88BCED5E20C289DC00B5C1DB /* SystemConfiguration.framework */,
 				88BCED5C20C289CE00B5C1DB /* Contacts.framework */,
 				88BCED5A20C289C100B5C1DB /* AddressBook.framework */,
@@ -1852,6 +1865,7 @@
 				88CD7391209958D500E80058 /* bookInfo */,
 				88435EB0208F158100188CE9 /* search */,
 				8831E19D20946F6E001D038E /* pointNews */,
+				9BC5128821B903A200CD909F /* newsByWebvc */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -3792,6 +3806,15 @@
 			path = list;
 			sourceTree = "<group>";
 		};
+		9BC5128821B903A200CD909F /* newsByWebvc */ = {
+			isa = PBXGroup;
+			children = (
+				9BC5128921B9044F00CD909F /* DJDNewsBrowserByWebController.h */,
+				9BC5128A21B9044F00CD909F /* DJDNewsBrowserByWebController.m */,
+			);
+			path = newsByWebvc;
+			sourceTree = "<group>";
+		};
 		DE454A27ADB38385BB3B899B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -4387,6 +4410,7 @@
 				8876E3EB20EC57FD001C6A1A /* DJOnlineUploadAddCoverCell.m in Sources */,
 				88C5F13B20B7DC280075D5F2 /* EDJHomeModel.m in Sources */,
 				889FCD4B20B532750045746D /* LGPhotoManager.m in Sources */,
+				9BC5128B21B9044F00CD909F /* DJDNewsBrowserByWebController.m in Sources */,
 				8831E196209450B7001D038E /* UITextView+Extension.m in Sources */,
 				889FCC6920B255080045746D /* DCStateCommentsModel.m in Sources */,
 				88A955CA20F5A4E1009AB70F /* DJShowThmemeMeetingMoreTextCell.m in Sources */,
@@ -4690,7 +4714,7 @@
 				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2DANKBZTCS;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4773,7 +4797,7 @@
 					"-framework",
 					"\"YYText\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0712;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0721;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4792,7 +4816,7 @@
 				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2DANKBZTCS;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4875,7 +4899,7 @@
 					"-framework",
 					"\"YYText\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0712;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0721;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -53,7 +53,7 @@
     NSLog(@"requesturl: %@",url);
     
     return [[LGNetworkManager sharedInstance] taskForPOSTRequestWithUrl:url param:argum completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
-//        NSLog(@"POST_task_res_obj: %@",responseObject);
+        NSLog(@"POST_task_res_obj: %@",responseObject);
         /// 如果请求失败，执行失败回调
         if (error) {
             if (failure) failure(error);
@@ -223,8 +223,13 @@
 - (NSString *)baseUrl{
     if (!_baseUrl) {
 //        _baseUrl = @"http://123.59.199.170:8081/";
+<<<<<<< HEAD
+//        _baseUrl = @"http://47.96.165.218:8081/";
+        _baseUrl = @"http://dy.cjszyun.cn/";// @"http://47.96.165.218:8081/";// 长江传媒
+=======
         _baseUrl = @"http://dy.cjszyun.cn/";
 //        _baseUrl = @"http://47.96.165.218:8081/";// 长江传媒
+>>>>>>> e3793c4a313e8823fbd505d98cc7c411a1a1f882
     }
     return _baseUrl;
 }

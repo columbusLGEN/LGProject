@@ -269,7 +269,7 @@ extension LTPageView {
                 }
             }
             
-            let textW = text.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 8), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : layout.titleFont ?? UIFont.systemFont(ofSize: 16)], context: nil).size.width
+            let textW = text.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 8), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : layout.titleFont ?? UIFont.systemFont(ofSize: 16)], context: nil).size.width
             
             if !layout.isAverage {
                 glt_textWidths.append(textW)
@@ -406,14 +406,14 @@ extension LTPageView {
     private func createViewController(_ index: Int)  {
         let VC = viewControllers[index]
         guard let currentViewController = currentViewController else { return }
-        if currentViewController.childViewControllers.contains(VC) {
+        if currentViewController.children.contains(VC) {
             return
         }
         var viewControllerY: CGFloat = 0.0
         layout.isSinglePageView ? viewControllerY = 0.0 : (viewControllerY = layout.sliderHeight)
         VC.view.frame = CGRect(x: scrollView.bounds.width * CGFloat(index), y: viewControllerY, width: scrollView.bounds.width, height: scrollView.bounds.height)
         scrollView.addSubview(VC.view)
-        currentViewController.addChildViewController(VC)
+        currentViewController.addChild(VC)
         VC.automaticallyAdjustsScrollViewInsets = false
         addChildVcBlock?(index, VC)
         if let glt_scrollView = VC.glt_scrollView {
