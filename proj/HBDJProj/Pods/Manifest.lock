@@ -36,51 +36,51 @@ PODS:
   - FMDB/standard (2.7.5)
   - HXWeiboPhotoPicker (2.1.5):
     - SDWebImage (~> 4.0)
-  - JCore (1.2.2)
+  - JCore (1.2.6)
   - JGProgressHUD (2.0.3)
-  - JPush (3.1.0):
-    - JCore (~> 1.2.0)
+  - JPush (3.1.2):
+    - JCore (~> 1.2.6)
   - LTScrollView (0.1.9)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.7)
   - MMMaterialDesignSpinner (0.2.5)
-  - PLPlayerKit (3.3.3):
-    - PLPlayerKit/iphoneos (= 3.3.3)
-  - PLPlayerKit/iphoneos (3.3.3)
+  - PLPlayerKit (3.4.0):
+    - PLPlayerKit/iphoneos (= 3.4.0)
+  - PLPlayerKit/iphoneos (3.4.0)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
-  - UMCAnalytics (5.5.1):
+  - SDWebImage (4.4.4):
+    - SDWebImage/Core (= 4.4.4)
+  - SDWebImage/Core (4.4.4)
+  - UMCAnalytics (6.0.1):
     - UMCCommon
-  - UMCCommon (1.5.2)
-  - UMCShare/Core (6.9.4):
+  - UMCCommon (2.0.0)
+  - UMCShare/Core (6.9.5):
     - UMCCommon
-  - UMCShare/Social/QQ (6.9.4):
+  - UMCShare/Social/QQ (6.9.5):
     - UMCCommon
     - UMCShare/Core
     - UMCShare/Social/ReducedQQ
-  - UMCShare/Social/ReducedQQ (6.9.4):
+  - UMCShare/Social/ReducedQQ (6.9.5):
     - UMCCommon
     - UMCShare/Core
-  - UMCShare/Social/ReducedSina (6.9.4):
+  - UMCShare/Social/ReducedSina (6.9.5):
     - UMCCommon
     - UMCShare/Core
-  - UMCShare/Social/ReducedWeChat (6.9.4):
+  - UMCShare/Social/ReducedWeChat (6.9.5):
     - UMCCommon
     - UMCShare/Core
-  - UMCShare/Social/Sina (6.9.4):
+  - UMCShare/Social/Sina (6.9.5):
     - UMCCommon
     - UMCShare/Core
     - UMCShare/Social/ReducedSina
-  - UMCShare/Social/WeChat (6.9.4):
+  - UMCShare/Social/WeChat (6.9.5):
     - UMCCommon
     - UMCShare/Core
     - UMCShare/Social/ReducedWeChat
-  - UMCShare/UI (6.9.4):
+  - UMCShare/UI (6.9.5):
     - UMCCommon
     - UMCShare/Core
   - WMPlayer (5.0.0):
@@ -146,21 +146,21 @@ SPEC CHECKSUMS:
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HXWeiboPhotoPicker: b389ed6a2f854270aa391c55591d0616a519c881
-  JCore: f14c0549968a63c22e246a4875aa9d428446f373
+  JCore: cae516dd2bf1a73b578ce6e1065abd49e709e0f7
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
-  JPush: 5921e25ad13e0386351079217b009f2039084eac
+  JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
   LTScrollView: f2e17b5bc4b89f3aa59562a81fa10add77a8b8bf
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   MMMaterialDesignSpinner: a548042720c2e5f04212048483085d7942ac3e81
-  PLPlayerKit: 8089fa9ae8e2169cd5b3f1deb60041c676dc55e5
+  PLPlayerKit: e6ad0e14a1c49db4befab201c2701d26489314e8
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  UMCAnalytics: 0aff87e39008e2a650e5917430db0da2de2f8495
-  UMCCommon: 4392868ac47ff1b101663106bb114ba616fabbad
-  UMCShare: aa233aecad67979930fe43f3a2f676023b669439
+  SDWebImage: c00ec18ab25d10e5ffac109b0f78d1b4341c9691
+  UMCAnalytics: c267acd9bb4a87e5f01735c158b63a617908f92e
+  UMCCommon: 79b5a614c958db367113eed5740109d9a98e1223
+  UMCShare: 552b29753f1b4da87b51d96545ed19e6263df397
   WMPlayer: a914f80ed5dca7cd9e3a94ec07a2b02eec8c15c0
   XHNetworkCache: 6050436268cb44be215ff5cbbe17b87901de649c
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849

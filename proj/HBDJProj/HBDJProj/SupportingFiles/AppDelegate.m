@@ -58,6 +58,12 @@
     [JPUSHService registerDeviceToken:deviceToken];
 }
 
+// 通知注册失败
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+
 #pragma mark - 私有方法
 - (void)baseConfigWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions{
     
@@ -65,11 +71,20 @@
     //Required
     //notice: 3.0.0及以后版本注册可以这样写，也可以继续用之前的注册方式
     JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
-    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if (@available(iOS 12.0, *)) {
+        entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound|JPAuthorizationOptionProvidesAppNotificationSettings;
+    } else {
+        entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    }
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-        // 可以添加自定义categories
-        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
-        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+    //    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+    //      NSSet<UNNotificationCategory *> *categories;
+    //      entity.categories = categories;
+    //    }
+    //    else {
+    //      NSSet<UIUserNotificationCategory *> *categories;
+    //      entity.categories = categories;
+    //    }
     }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
     
@@ -96,8 +111,8 @@
                  apsForProduction:isProduction
             advertisingIdentifier:nil];
     
-    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+//    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+//    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:kScreenBounds];
     
@@ -256,7 +271,6 @@
 //    NSString *messageID = [userInfo valueForKey:@"_j_msgid"];
 //    NSDictionary *extras = [userInfo valueForKey:@"extras"];
 //    NSLog(@"messageID: %@,content: %@,extras: %@",messageID,content,extras);
-//
 //}
 
 /**
