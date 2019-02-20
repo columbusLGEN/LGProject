@@ -33,9 +33,12 @@
     /// 正式代码
     BOOL resourceExist = [LGLocalFileManager fileIsExist:model.localUrl];
     NSString *bookId = [NSString stringWithFormat:@"%ld",model.seqid];
+    
+    NSString *bookInfoKey = @"bookName";
+    NSDictionary *bookInfo = @{@"key":bookInfoKey,bookInfoKey:model.ebookname};
     if (resourceExist) {
         /// 直接打开
-        [LGBookReaderManager openBookWithLocalUrl:model.localUrl bookId:bookId vc:vc];
+        [LGBookReaderManager openBookWithLocalUrl:model.localUrl bookId:bookId vc:vc bookInfo:bookInfo];
     }else{
         /// TODO: 将进度条绘制 封装至 LGLoadingAssit
         MBProgressHUD *progressBar = [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
@@ -51,7 +54,7 @@
         } success:^(NSString *destiPath) {
             [_progressBar hideAnimated:YES];
             model.localUrl = destiPath;
-            [LGBookReaderManager openBookWithLocalUrl:destiPath bookId:bookId vc:vc];
+            [LGBookReaderManager openBookWithLocalUrl:destiPath bookId:bookId vc:vc bookInfo:bookInfo];
         } failure:^(NSError *error) {
             [_progressBar hideAnimated:YES];
             if (error) {

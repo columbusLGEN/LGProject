@@ -28,4 +28,7 @@
 @property (strong,nonatomic) NSString *timestamp;
 @property (strong,nonatomic) NSString *createdtime;
 
+/** 多选投票数据的最大选项数值 */
+@property (assign,nonatomic) NSInteger maxnum;
+
 @end

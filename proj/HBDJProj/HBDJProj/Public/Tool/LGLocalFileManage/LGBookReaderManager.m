@@ -29,13 +29,21 @@ YMEpubReaderManagerDelegate>
 
 @implementation LGBookReaderManager
 
-+ (void)openBookWithLocalUrl:(NSString *)localUrl bookId:(NSString *)bookId vc:(UIViewController *)vc{
-    [[self sharedInstance] openBookWithLocalUrl:localUrl bookId:(NSString *)bookId vc:vc];
++ (void)openBookWithLocalUrl:(NSString *)localUrl bookId:(NSString *)bookId vc:(UIViewController *)vc bookInfo:(id)bookInfo{
+    [[self sharedInstance] openBookWithLocalUrl:localUrl bookId:(NSString *)bookId vc:vc bookInfo:bookInfo];
 }
-- (void)openBookWithLocalUrl:(NSString *)localUrl bookId:(NSString *)bookId vc:(UIViewController *)vc{
+- (void)openBookWithLocalUrl:(NSString *)localUrl bookId:(NSString *)bookId vc:(UIViewController *)vc bookInfo:(id)bookInfo{
     _currentBookid = bookId;
+    NSString *bookName = @"";
+    NSString *bookInfoKey = @"";
+    if ([bookInfo isKindOfClass:[NSDictionary class]]) {
+        bookInfoKey = bookInfo[@"key"];
+        bookName = bookInfo[bookInfoKey];
+    }
     /// TODO: 获取userid
     MyBook *book = [self.ymepubReader loadBookWithPath:localUrl userId:@"1" bookId:bookId];
+    /// 获取书名
+    book.bookName = bookName;
     
     [self.ymepubReader readBook:book fromController:vc];
 }

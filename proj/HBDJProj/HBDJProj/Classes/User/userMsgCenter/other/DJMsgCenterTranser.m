@@ -91,6 +91,8 @@
             
             voteModel.ismultiselect = model.ismultiselect;
             
+            voteModel.maxnum = model.maxnum;
+            
             OLVoteDetailController *votevc = OLVoteDetailController.new;
             votevc.model = voteModel;
             [nav pushViewController:votevc animated:YES];

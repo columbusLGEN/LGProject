@@ -4708,7 +4708,7 @@
 				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				DEVELOPMENT_TEAM = 2DANKBZTCS;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4791,7 +4791,7 @@
 					"-framework",
 					"\"YYText\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0721;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0712;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4810,7 +4810,7 @@
 				CODE_SIGN_ENTITLEMENTS = HBDJProj/HBDJProj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				DEVELOPMENT_TEAM = 2DANKBZTCS;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4893,7 +4893,7 @@
 					"-framework",
 					"\"YYText\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0721;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retech.HBDJProject0712;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
