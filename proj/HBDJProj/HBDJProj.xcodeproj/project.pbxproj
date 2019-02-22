@@ -466,7 +466,6 @@
 		88EA131E20AD2096007AB886 /* UCAccountHitSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA131D20AD2096007AB886 /* UCAccountHitSuccessView.m */; };
 		88EA132020AD2FC7007AB886 /* DCWriteQuestionTagHead.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88EA131F20AD2FC7007AB886 /* DCWriteQuestionTagHead.plist */; };
 		88EA132F20AD5314007AB886 /* LGHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA132E20AD5314007AB886 /* LGHTMLParser.m */; };
-		88EA133220AD533D007AB886 /* detaiTtest.html in Resources */ = {isa = PBXBuildFile; fileRef = 88EA133120AD533C007AB886 /* detaiTtest.html */; };
 		88EA133C20AD5E31007AB886 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */; };
 		88EB405B213D36C900F12211 /* LGNoticer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB405A213D36C900F12211 /* LGNoticer.m */; };
 		88EB405E213E1EB300F12211 /* UIAlertController+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB405D213E1EB300F12211 /* UIAlertController+LGExtension.m */; };
@@ -1303,7 +1302,6 @@
 		88D4C0C42143A40D00CADB42 /* DJResourceTypeBranchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJResourceTypeBranchViewController.h; sourceTree = "<group>"; };
 		88D4C0C52143A40D00CADB42 /* DJResourceTypeBranchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJResourceTypeBranchViewController.m; sourceTree = "<group>"; };
 		88D5C61A20BE768500E353DB /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
-		88D5C61F20BE781C00E353DB /* huamulan.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = huamulan.epub; sourceTree = "<group>"; };
 		88D6E2A92146071800A67F1E /* OLTestBackLookDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OLTestBackLookDetailModel.h; sourceTree = "<group>"; };
 		88D6E2AA2146071800A67F1E /* OLTestBackLookDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OLTestBackLookDetailModel.m; sourceTree = "<group>"; };
 		88D6E2AC21461C6500A67F1E /* LGAlertControllerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGAlertControllerManager.h; sourceTree = "<group>"; };
@@ -1358,7 +1356,6 @@
 		88EA131F20AD2FC7007AB886 /* DCWriteQuestionTagHead.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DCWriteQuestionTagHead.plist; sourceTree = "<group>"; };
 		88EA132D20AD5314007AB886 /* LGHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGHTMLParser.h; sourceTree = "<group>"; };
 		88EA132E20AD5314007AB886 /* LGHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGHTMLParser.m; sourceTree = "<group>"; };
-		88EA133120AD533C007AB886 /* detaiTtest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = detaiTtest.html; sourceTree = "<group>"; };
 		88EA133A20AD5E31007AB886 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
 		88EA133B20AD5E31007AB886 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
 		88EB4059213D36C900F12211 /* LGNoticer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGNoticer.h; sourceTree = "<group>"; };
@@ -1626,7 +1623,6 @@
 		881C94BD2068EA6E009D6A52 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				88EA133020AD5332007AB886 /* test */,
 				881C948B2068EA5A009D6A52 /* AppDelegate.h */,
 				881C948C2068EA5A009D6A52 /* AppDelegate.m */,
 				881C94942068EA5A009D6A52 /* Assets.xcassets */,
@@ -3669,15 +3665,6 @@
 			path = "accountHit view & model";
 			sourceTree = "<group>";
 		};
-		88EA133020AD5332007AB886 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				88D5C61F20BE781C00E353DB /* huamulan.epub */,
-				88EA133120AD533C007AB886 /* detaiTtest.html */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
 		88EB4062213E80E200F12211 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -4000,7 +3987,6 @@
 				88D13C612090586900A32236 /* OLHomeCollectionCell.xib in Resources */,
 				884349312150D0B900A3CD69 /* DJHomeSearchAlbumCell.xib in Resources */,
 				88D13C352090145100A32236 /* EDJSearchTagHistoryCell.xib in Resources */,
-				88EA133220AD533D007AB886 /* detaiTtest.html in Resources */,
 				88ECF065209FF7D00071A98A /* OLExamSingleStemCell.xib in Resources */,
 				88EA131B20AD18F1007AB886 /* UCAccountHit.plist in Resources */,
 				886A1BEC20D0CB330007AD63 /* ReaderPlatformConfig.plist in Resources */,
