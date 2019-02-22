@@ -18,6 +18,7 @@
 		889F4CF0221FE9E400546CE2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4CEF221FE9E400546CE2 /* TableViewController.m */; };
 		889F4CF2221FEA1700546CE2 /* home.plist in Resources */ = {isa = PBXBuildFile; fileRef = 889F4CF1221FEA1700546CE2 /* home.plist */; };
 		889F4CF5221FEA4C00546CE2 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4CF4221FEA4C00546CE2 /* Model.m */; };
+		889F4CFA221FF47400546CE2 /* LGCameraOperateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4CF9221FF47400546CE2 /* LGCameraOperateViewController.m */; };
 		CBF536F01F54F843F605FD70 /* libPods-YBTestprojTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB01559F2966B7BBD93BDB3 /* libPods-YBTestprojTests.a */; };
 		EB579F32B4D1607929D39075 /* libPods-YBTestprojUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C3C6D7ABC700AD70BC2B52 /* libPods-YBTestprojUITests.a */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,8 @@
 		889F4CF3221FEA4C00546CE2 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		889F4CF4221FEA4C00546CE2 /* Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		889F4CF6221FEB5A00546CE2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		889F4CF8221FF47400546CE2 /* LGCameraOperateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGCameraOperateViewController.h; sourceTree = "<group>"; };
+		889F4CF9221FF47400546CE2 /* LGCameraOperateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGCameraOperateViewController.m; sourceTree = "<group>"; };
 		8F49296B5BBB0AE9DF5BA9EE /* Pods-YBTestprojTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBTestprojTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YBTestprojTests/Pods-YBTestprojTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B36F5C12563520FF17F1F023 /* Pods-YBTestprojTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBTestprojTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YBTestprojTests/Pods-YBTestprojTests.release.xcconfig"; sourceTree = "<group>"; };
 		CAEC75F5BD9BFA49B2C2C67C /* Pods-YBTestprojUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBTestprojUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YBTestprojUITests/Pods-YBTestprojUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 		889F4CF7221FEBDC00546CE2 /* camera */ = {
 			isa = PBXGroup;
 			children = (
+				889F4CF8221FF47400546CE2 /* LGCameraOperateViewController.h */,
+				889F4CF9221FF47400546CE2 /* LGCameraOperateViewController.m */,
 			);
 			path = camera;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 			files = (
 				889F4CCC221FE53D00546CE2 /* main.m in Sources */,
 				889F4CF0221FE9E400546CE2 /* TableViewController.m in Sources */,
+				889F4CFA221FF47400546CE2 /* LGCameraOperateViewController.m in Sources */,
 				889F4CBE221FE53C00546CE2 /* AppDelegate.m in Sources */,
 				889F4CF5221FEA4C00546CE2 /* Model.m in Sources */,
 			);
@@ -579,7 +585,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EFWLEBR9Q6;
-				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/YB/YBTestproj/YBTestproj/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/gitHub/LGProject/proj/YBTestproj/YBTestproj/PrefixHeader.pch;
 				INFOPLIST_FILE = YBTestproj/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -598,7 +604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EFWLEBR9Q6;
-				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/YB/YBTestproj/YBTestproj/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/gitHub/LGProject/proj/YBTestproj/YBTestproj/PrefixHeader.pch;
 				INFOPLIST_FILE = YBTestproj/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
