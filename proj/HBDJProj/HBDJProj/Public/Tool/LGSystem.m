@@ -34,8 +34,11 @@ static NSString * const djAppId = @"1406214648";
         NSString *AppStoreVersion = nil;
         id results = responseObject[@"results"];
         if ([results isKindOfClass:[NSArray class]]) {
-            NSDictionary *dict = results[0];
-            AppStoreVersion = dict[@"version"];
+            NSArray *arr = (NSArray *)results;
+            if (arr.count) {
+                NSDictionary *dict = results[0];
+                AppStoreVersion = dict[@"version"];                
+            }
         }
         
         if (AppStoreVersion) {

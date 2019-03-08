@@ -8,6 +8,7 @@
 
 #import "TableViewController.h"
 #import "Model.h"
+#import "LGCameraOperateViewController.h"
 
 static NSString * const homeCell = @"homeCell";
 
@@ -48,7 +49,13 @@ static NSString * const homeCell = @"homeCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Model *model = array[indexPath.row];
-    model.id;
+    id vc = [[NSClassFromString(model.vcClassName) alloc] init];
+    
+    if ([vc isKindOfClass:[UIViewController class]]) {
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        NSLog(@"%@ 不是一个控制器类",model.vcClassName);
+    }
     
 }
 

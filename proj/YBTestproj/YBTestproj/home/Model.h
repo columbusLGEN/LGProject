@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign,nonatomic) NSInteger id;
 @property (copy,nonatomic) NSString *name;
+@property (copy,nonatomic) NSString *vcClassName;
 + (NSArray *)loadLocalPlistWithPlistName:(NSString *)plistName;
 
 @end

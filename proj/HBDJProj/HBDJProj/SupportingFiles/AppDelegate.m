@@ -131,7 +131,7 @@
     
     /// 获取商定中应用信息
     [LGSystem.new getAppStoreVersion];
-    
+//    if (0) {
     if (![DJUser sharedInstance].userid) {
         /// 表明用户还未登录，进入登录控制器
         self.window.rootViewController = [UCLoginViewController navWithLoginvc];
