@@ -23,6 +23,9 @@
 		88044F6D22769F5B00F18E66 /* TCInputDiscussView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88044F6C22769F5B00F18E66 /* TCInputDiscussView.xib */; };
 		88044F702276A60800F18E66 /* TCBookDiscussTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F6F2276A60800F18E66 /* TCBookDiscussTableViewCell.m */; };
 		88044F722276A61100F18E66 /* TCBookDiscussTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88044F712276A61100F18E66 /* TCBookDiscussTableViewCell.xib */; };
+		88044F782276E2A100F18E66 /* TCBookDetaileBookBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F772276E2A100F18E66 /* TCBookDetaileBookBottomView.m */; };
+		88044F7F2276E3EB00F18E66 /* TCBookDetaileBookBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88044F7E2276E3EB00F18E66 /* TCBookDetaileBookBottomView.xib */; };
+		88044F822276EDBB00F18E66 /* TCBookDetailManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F812276EDBB00F18E66 /* TCBookDetailManagerController.m */; };
 		880833262265B52100C462D4 /* cyan_fade_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880833252265B52100C462D4 /* cyan_fade_down@3x.png */; };
 		8808332A2265BF4500C462D4 /* TCMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880833292265BF4500C462D4 /* TCMyCollectionViewController.m */; };
 		8808332D2265BF6B00C462D4 /* TCMyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808332C2265BF6B00C462D4 /* TCMyCollectionViewCell.m */; };
@@ -112,6 +115,11 @@
 		88044F6E2276A60800F18E66 /* TCBookDiscussTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookDiscussTableViewCell.h; sourceTree = "<group>"; };
 		88044F6F2276A60800F18E66 /* TCBookDiscussTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookDiscussTableViewCell.m; sourceTree = "<group>"; };
 		88044F712276A61100F18E66 /* TCBookDiscussTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCBookDiscussTableViewCell.xib; sourceTree = "<group>"; };
+		88044F762276E2A100F18E66 /* TCBookDetaileBookBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookDetaileBookBottomView.h; sourceTree = "<group>"; };
+		88044F772276E2A100F18E66 /* TCBookDetaileBookBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookDetaileBookBottomView.m; sourceTree = "<group>"; };
+		88044F7E2276E3EB00F18E66 /* TCBookDetaileBookBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCBookDetaileBookBottomView.xib; sourceTree = "<group>"; };
+		88044F802276EDBB00F18E66 /* TCBookDetailManagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookDetailManagerController.h; sourceTree = "<group>"; };
+		88044F812276EDBB00F18E66 /* TCBookDetailManagerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookDetailManagerController.m; sourceTree = "<group>"; };
 		880833252265B52100C462D4 /* cyan_fade_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cyan_fade_down@3x.png"; sourceTree = "<group>"; };
 		880833282265BF4500C462D4 /* TCMyCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMyCollectionViewController.h; sourceTree = "<group>"; };
 		880833292265BF4500C462D4 /* TCMyCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMyCollectionViewController.m; sourceTree = "<group>"; };
@@ -249,11 +257,14 @@
 				88044F582275758500F18E66 /* TCBookInfoHeaderView.h */,
 				88044F592275758500F18E66 /* TCBookInfoHeaderView.m */,
 				88044F5B2275758F00F18E66 /* TCBookInfoHeaderView.xib */,
+				88044F762276E2A100F18E66 /* TCBookDetaileBookBottomView.h */,
+				88044F772276E2A100F18E66 /* TCBookDetaileBookBottomView.m */,
+				88044F7E2276E3EB00F18E66 /* TCBookDetaileBookBottomView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
 		};
-		88044F5F227596EA00F18E66 /* reco */ = {
+		88044F5F227596EA00F18E66 /* Reco */ = {
 			isa = PBXGroup;
 			children = (
 				88044F602275971A00F18E66 /* TCBookInfoRecoCollectionViewController.h */,
@@ -262,7 +273,7 @@
 				88044F642275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m */,
 				88044F662275975500F18E66 /* TCBookInfoRecoCollectionViewCell.xib */,
 			);
-			path = reco;
+			path = Reco;
 			sourceTree = "<group>";
 		};
 		88044F6822769F1000F18E66 /* view */ = {
@@ -360,34 +371,36 @@
 		880833582267238600C462D4 /* BookDetail */ = {
 			isa = PBXGroup;
 			children = (
+				88044F802276EDBB00F18E66 /* TCBookDetailManagerController.h */,
+				88044F812276EDBB00F18E66 /* TCBookDetailManagerController.m */,
 				88044F512271879900F18E66 /* TCBookDetailViewController.h */,
 				88044F522271879900F18E66 /* TCBookDetailViewController.m */,
-				88044F5F227596EA00F18E66 /* reco */,
 				88044F572275756B00F18E66 /* view */,
-				8808336B2268646000C462D4 /* discuss */,
-				8808336A2268645500C462D4 /* info */,
+				88044F5F227596EA00F18E66 /* Reco */,
+				8808336B2268646000C462D4 /* Discuss */,
+				8808336A2268645500C462D4 /* Info */,
 			);
 			path = BookDetail;
 			sourceTree = "<group>";
 		};
-		8808336A2268645500C462D4 /* info */ = {
+		8808336A2268645500C462D4 /* Info */ = {
 			isa = PBXGroup;
 			children = (
 				8808337522699CA900C462D4 /* cell */,
 				8808337F2269B09500C462D4 /* TCBookInfoTableViewController.h */,
 				880833802269B09500C462D4 /* TCBookInfoTableViewController.m */,
 			);
-			path = info;
+			path = Info;
 			sourceTree = "<group>";
 		};
-		8808336B2268646000C462D4 /* discuss */ = {
+		8808336B2268646000C462D4 /* Discuss */ = {
 			isa = PBXGroup;
 			children = (
 				88044F6822769F1000F18E66 /* view */,
 				88044F54227189AA00F18E66 /* TCBookDiscussViewController.h */,
 				88044F55227189AA00F18E66 /* TCBookDiscussViewController.m */,
 			);
-			path = discuss;
+			path = Discuss;
 			sourceTree = "<group>";
 		};
 		8808337522699CA900C462D4 /* cell */ = {
@@ -709,6 +722,7 @@
 			files = (
 				889295D72264548E0015C7DB /* icon_tb_unselected_school@3x.png in Resources */,
 				88044F5E227591EF00F18E66 /* icon_arrow_down_gray@3x.png in Resources */,
+				88044F7F2276E3EB00F18E66 /* TCBookDetaileBookBottomView.xib in Resources */,
 				8808337122687AC700C462D4 /* icon_arrow_left_white@3x.png in Resources */,
 				889295D82264548E0015C7DB /* icon_tb_selected_my@3x.png in Resources */,
 				88044F722276A61100F18E66 /* TCBookDiscussTableViewCell.xib in Resources */,
@@ -839,6 +853,8 @@
 				88044F652275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m in Sources */,
 				889295CD22644AD60015C7DB /* TCScoolBookrackViewController.m in Sources */,
 				880833812269B09500C462D4 /* TCBookInfoTableViewController.m in Sources */,
+				88044F782276E2A100F18E66 /* TCBookDetaileBookBottomView.m in Sources */,
+				88044F822276EDBB00F18E66 /* TCBookDetailManagerController.m in Sources */,
 				88044F5A2275758500F18E66 /* TCBookInfoHeaderView.m in Sources */,
 				889295C62264340F0015C7DB /* LGBaseCollectionViewController.m in Sources */,
 				889295C32264340F0015C7DB /* LGBaseModel.m in Sources */,
@@ -1025,7 +1041,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GL9GCTA7BP;
-				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/TimeCollege/TimeCollege/Support/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/gitHub/LGProject/proj/TimeCollege/TimeCollege/Support/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/TimeCollege/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1044,7 +1060,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GL9GCTA7BP;
-				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/TimeCollege/TimeCollege/Support/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/gitHub/LGProject/proj/TimeCollege/TimeCollege/Support/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/TimeCollege/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

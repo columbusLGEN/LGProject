@@ -8,7 +8,7 @@
 
 #import "TCSchoolBookTableViewController.h"
 #import "TCSchoolBookTableViewCell.h"
-#import "TCBookDetailViewController.h"
+#import "TCBookDetailManagerController.h"
 
 static NSString * const sbTableViewCell = @"TCSchoolBookTableViewCell";
 
@@ -52,7 +52,8 @@ static NSString * const sbTableViewCell = @"TCSchoolBookTableViewCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TCBookDetailViewController *bdvc = [TCBookDetailViewController bookinfovc];
+    TCBookDetailManagerController *bdvc = [TCBookDetailManagerController new];
+//    bdvc.detailType = 2;
     [self.navigationController pushViewController:bdvc animated:YES];
 }
 

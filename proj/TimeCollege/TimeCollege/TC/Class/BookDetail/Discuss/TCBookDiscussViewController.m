@@ -25,6 +25,11 @@ static NSString *disCell = @"TCBookDiscussTableViewCell";
 }
 
 - (void)configUI{
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
     self.tableView.estimatedRowHeight = 100.0f;
     [self.tableView registerNib:[UINib nibWithNibName:disCell bundle:nil] forCellReuseIdentifier:disCell];
     

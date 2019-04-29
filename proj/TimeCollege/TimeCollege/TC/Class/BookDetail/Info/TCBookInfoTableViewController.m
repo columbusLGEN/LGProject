@@ -46,7 +46,9 @@ static NSString *testcell = @"testcell";
     
     self.recovc = TCBookInfoRecoCollectionViewController.new;
     [self addChildViewController:self.recovc];
-
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
