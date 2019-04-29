@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="lPT-9H-K5X">
+            <rect key="frame" x="0.0" y="0.0" width="212" height="269"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="212" height="269"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AtestBookCover.png" translatesAutoresizingMaskIntoConstraints="NO" id="95L-4H-BMT">
+                        <rect key="frame" x="10" y="5" width="192" height="214"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黄梅戏" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fN-HS-X1F">
+                        <rect key="frame" x="10" y="227" width="192" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="1fN-HS-X1F" firstAttribute="top" secondItem="95L-4H-BMT" secondAttribute="bottom" constant="8" id="1qk-8d-Lo2"/>
+                <constraint firstItem="95L-4H-BMT" firstAttribute="top" secondItem="lPT-9H-K5X" secondAttribute="top" constant="5" id="8CC-Wf-eH3"/>
+                <constraint firstAttribute="bottom" secondItem="95L-4H-BMT" secondAttribute="bottom" constant="50" id="CmT-Wz-tR6"/>
+                <constraint firstItem="1fN-HS-X1F" firstAttribute="leading" secondItem="95L-4H-BMT" secondAttribute="leading" id="FdX-XN-gwE"/>
+                <constraint firstAttribute="trailing" secondItem="95L-4H-BMT" secondAttribute="trailing" constant="10" id="MVI-du-EZk"/>
+                <constraint firstItem="1fN-HS-X1F" firstAttribute="trailing" secondItem="95L-4H-BMT" secondAttribute="trailing" id="nyf-a9-EE4"/>
+                <constraint firstItem="95L-4H-BMT" firstAttribute="leading" secondItem="lPT-9H-K5X" secondAttribute="leading" constant="10" id="q4g-PW-hEv"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="q8f-yk-Dln"/>
+            <size key="customSize" width="212" height="269"/>
+            <point key="canvasLocation" x="140.57971014492756" y="112.83482142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="AtestBookCover.png" width="37.666667938232422" height="54"/>
+    </resources>
+</document>

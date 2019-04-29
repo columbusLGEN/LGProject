@@ -1,0 +1,1179 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D1261873DFFB6BED50AADD8 /* Pods_TimeCollegeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DDD1FE840A784C40A1F38F /* Pods_TimeCollegeTests.framework */; };
+		56D522EE5E7DFD2AD8B77805 /* Pods_TimeCollege.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0645C4278D9D9E6224B341C5 /* Pods_TimeCollege.framework */; };
+		88044F472271628000F18E66 /* LGParallelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F462271628000F18E66 /* LGParallelButton.m */; };
+		88044F4D227182BC00F18E66 /* LGPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F4C227182BC00F18E66 /* LGPageViewController.m */; };
+		88044F532271879900F18E66 /* TCBookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F522271879900F18E66 /* TCBookDetailViewController.m */; };
+		88044F56227189AA00F18E66 /* TCBookDiscussViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F55227189AA00F18E66 /* TCBookDiscussViewController.m */; };
+		88044F5A2275758500F18E66 /* TCBookInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F592275758500F18E66 /* TCBookInfoHeaderView.m */; };
+		88044F5C2275758F00F18E66 /* TCBookInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88044F5B2275758F00F18E66 /* TCBookInfoHeaderView.xib */; };
+		88044F5E227591EF00F18E66 /* icon_arrow_down_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88044F5D227591EF00F18E66 /* icon_arrow_down_gray@3x.png */; };
+		88044F622275971A00F18E66 /* TCBookInfoRecoCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F612275971A00F18E66 /* TCBookInfoRecoCollectionViewController.m */; };
+		88044F652275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F642275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m */; };
+		88044F672275975500F18E66 /* TCBookInfoRecoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88044F662275975500F18E66 /* TCBookInfoRecoCollectionViewCell.xib */; };
+		88044F6B22769F4A00F18E66 /* TCInputDiscussView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F6A22769F4A00F18E66 /* TCInputDiscussView.m */; };
+		88044F6D22769F5B00F18E66 /* TCInputDiscussView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88044F6C22769F5B00F18E66 /* TCInputDiscussView.xib */; };
+		88044F702276A60800F18E66 /* TCBookDiscussTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88044F6F2276A60800F18E66 /* TCBookDiscussTableViewCell.m */; };
+		88044F722276A61100F18E66 /* TCBookDiscussTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88044F712276A61100F18E66 /* TCBookDiscussTableViewCell.xib */; };
+		880833262265B52100C462D4 /* cyan_fade_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880833252265B52100C462D4 /* cyan_fade_down@3x.png */; };
+		8808332A2265BF4500C462D4 /* TCMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880833292265BF4500C462D4 /* TCMyCollectionViewController.m */; };
+		8808332D2265BF6B00C462D4 /* TCMyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808332C2265BF6B00C462D4 /* TCMyCollectionViewCell.m */; };
+		880833302265CD7600C462D4 /* TCMyBookrackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808332F2265CD7600C462D4 /* TCMyBookrackModel.m */; };
+		880833332265D30600C462D4 /* TCBookDownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 880833322265D30600C462D4 /* TCBookDownloadModel.m */; };
+		880833362266C59500C462D4 /* TCMyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880833352266C59500C462D4 /* TCMyCollectionViewCell.xib */; };
+		880833382266C7D900C462D4 /* AtestBookCover@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 880833372266C7D900C462D4 /* AtestBookCover@3x.png */; };
+		8808333D2266C98900C462D4 /* TCMyBookSortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808333C2266C98900C462D4 /* TCMyBookSortView.m */; };
+		880833402266CD0C00C462D4 /* TCMyBookSwitchSortWayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808333F2266CD0C00C462D4 /* TCMyBookSwitchSortWayView.m */; };
+		880833422266CF2700C462D4 /* TCMyBookSwitchSortWayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880833412266CF2700C462D4 /* TCMyBookSwitchSortWayView.xib */; };
+		880833492266F82600C462D4 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 880833482266F82600C462D4 /* UIView+Extension.m */; };
+		8808334D2267000C00C462D4 /* TCSchoolBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808334C2267000C00C462D4 /* TCSchoolBookTableViewController.m */; };
+		880833522267011400C462D4 /* TCSchoolBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 880833512267011400C462D4 /* TCSchoolBookTableViewCell.m */; };
+		880833542267018900C462D4 /* TCSchoolBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880833532267018900C462D4 /* TCSchoolBookTableViewCell.xib */; };
+		8808335722670E5200C462D4 /* LGSegmentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808335622670E5200C462D4 /* LGSegmentScrollView.m */; };
+		8808337122687AC700C462D4 /* icon_arrow_left_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8808337022687AC700C462D4 /* icon_arrow_left_white@3x.png */; };
+		8808337422699C3F00C462D4 /* TCBookInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808337322699C3F00C462D4 /* TCBookInfoCell.m */; };
+		8808337822699D3C00C462D4 /* TCBIMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808337722699D3C00C462D4 /* TCBIMessageCell.m */; };
+		8808337B22699D7600C462D4 /* TCBIContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808337A22699D7600C462D4 /* TCBIContentCell.m */; };
+		8808337E22699DA900C462D4 /* TCBIRecoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808337D22699DA900C462D4 /* TCBIRecoCell.m */; };
+		880833812269B09500C462D4 /* TCBookInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880833802269B09500C462D4 /* TCBookInfoTableViewController.m */; };
+		8892956E22605EAD0015C7DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892956D22605EAD0015C7DB /* AppDelegate.m */; };
+		8892957622605EBE0015C7DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8892957522605EBE0015C7DB /* Assets.xcassets */; };
+		8892957C22605EBE0015C7DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892957B22605EBE0015C7DB /* main.m */; };
+		8892958622605EBE0015C7DB /* TimeCollegeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892958522605EBE0015C7DB /* TimeCollegeTests.m */; };
+		8892959122605EBE0015C7DB /* TimeCollegeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892959022605EBE0015C7DB /* TimeCollegeUITests.m */; };
+		889295A4226062890015C7DB /* TCMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295A3226062890015C7DB /* TCMainTabBarController.m */; };
+		889295C22264340F0015C7DB /* LGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295B82264340F0015C7DB /* LGBaseViewController.m */; };
+		889295C32264340F0015C7DB /* LGBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295B92264340F0015C7DB /* LGBaseModel.m */; };
+		889295C42264340F0015C7DB /* LGBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295BA2264340F0015C7DB /* LGBaseNavigationController.m */; };
+		889295C52264340F0015C7DB /* LGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295BC2264340F0015C7DB /* LGTableViewController.m */; };
+		889295C62264340F0015C7DB /* LGBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295BF2264340F0015C7DB /* LGBaseCollectionViewController.m */; };
+		889295CA22644A650015C7DB /* TCMyBookrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295C922644A650015C7DB /* TCMyBookrackViewController.m */; };
+		889295CD22644AD60015C7DB /* TCScoolBookrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295CC22644AD60015C7DB /* TCScoolBookrackViewController.m */; };
+		889295D52264548E0015C7DB /* icon_tb_selected_school@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889295D12264548E0015C7DB /* icon_tb_selected_school@3x.png */; };
+		889295D62264548E0015C7DB /* icon_tb_unselected_my@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889295D22264548E0015C7DB /* icon_tb_unselected_my@3x.png */; };
+		889295D72264548E0015C7DB /* icon_tb_unselected_school@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889295D32264548E0015C7DB /* icon_tb_unselected_school@3x.png */; };
+		889295D82264548E0015C7DB /* icon_tb_selected_my@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889295D42264548E0015C7DB /* icon_tb_selected_my@3x.png */; };
+		889295DA226457D80015C7DB /* icon_search_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889295D9226457D80015C7DB /* icon_search_white@3x.png */; };
+		889295DE226458A80015C7DB /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295DC226458A80015C7DB /* UIColor+Extension.m */; };
+		889295E1226458E90015C7DB /* UIColor+TCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295E0226458E90015C7DB /* UIColor+TCColor.m */; };
+		CCDC663A4888A1E848F63AEB /* Pods_TimeCollegeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D386EC81F33EEDD5DF1642 /* Pods_TimeCollegeUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8892958222605EBE0015C7DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8892956122605EAD0015C7DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8892956822605EAD0015C7DB;
+			remoteInfo = TimeCollege;
+		};
+		8892958D22605EBE0015C7DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8892956122605EAD0015C7DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8892956822605EAD0015C7DB;
+			remoteInfo = TimeCollege;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0645C4278D9D9E6224B341C5 /* Pods_TimeCollege.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeCollege.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		252579B6E189FF24D3BDDF2C /* Pods-TimeCollege.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollege.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollege/Pods-TimeCollege.release.xcconfig"; sourceTree = "<group>"; };
+		27E1DA082683339D133B6AD5 /* Pods-TimeCollegeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollegeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollegeTests/Pods-TimeCollegeTests.release.xcconfig"; sourceTree = "<group>"; };
+		80D386EC81F33EEDD5DF1642 /* Pods_TimeCollegeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeCollegeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88044F452271628000F18E66 /* LGParallelButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGParallelButton.h; sourceTree = "<group>"; };
+		88044F462271628000F18E66 /* LGParallelButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGParallelButton.m; sourceTree = "<group>"; };
+		88044F4B227182BC00F18E66 /* LGPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGPageViewController.h; sourceTree = "<group>"; };
+		88044F4C227182BC00F18E66 /* LGPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGPageViewController.m; sourceTree = "<group>"; };
+		88044F512271879900F18E66 /* TCBookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBookDetailViewController.h; sourceTree = "<group>"; };
+		88044F522271879900F18E66 /* TCBookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBookDetailViewController.m; sourceTree = "<group>"; };
+		88044F54227189AA00F18E66 /* TCBookDiscussViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookDiscussViewController.h; sourceTree = "<group>"; };
+		88044F55227189AA00F18E66 /* TCBookDiscussViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookDiscussViewController.m; sourceTree = "<group>"; };
+		88044F582275758500F18E66 /* TCBookInfoHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookInfoHeaderView.h; sourceTree = "<group>"; };
+		88044F592275758500F18E66 /* TCBookInfoHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookInfoHeaderView.m; sourceTree = "<group>"; };
+		88044F5B2275758F00F18E66 /* TCBookInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCBookInfoHeaderView.xib; sourceTree = "<group>"; };
+		88044F5D227591EF00F18E66 /* icon_arrow_down_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_arrow_down_gray@3x.png"; sourceTree = "<group>"; };
+		88044F602275971A00F18E66 /* TCBookInfoRecoCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookInfoRecoCollectionViewController.h; sourceTree = "<group>"; };
+		88044F612275971A00F18E66 /* TCBookInfoRecoCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookInfoRecoCollectionViewController.m; sourceTree = "<group>"; };
+		88044F632275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookInfoRecoCollectionViewCell.h; sourceTree = "<group>"; };
+		88044F642275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookInfoRecoCollectionViewCell.m; sourceTree = "<group>"; };
+		88044F662275975500F18E66 /* TCBookInfoRecoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCBookInfoRecoCollectionViewCell.xib; sourceTree = "<group>"; };
+		88044F6922769F4A00F18E66 /* TCInputDiscussView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCInputDiscussView.h; sourceTree = "<group>"; };
+		88044F6A22769F4A00F18E66 /* TCInputDiscussView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCInputDiscussView.m; sourceTree = "<group>"; };
+		88044F6C22769F5B00F18E66 /* TCInputDiscussView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCInputDiscussView.xib; sourceTree = "<group>"; };
+		88044F6E2276A60800F18E66 /* TCBookDiscussTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookDiscussTableViewCell.h; sourceTree = "<group>"; };
+		88044F6F2276A60800F18E66 /* TCBookDiscussTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookDiscussTableViewCell.m; sourceTree = "<group>"; };
+		88044F712276A61100F18E66 /* TCBookDiscussTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCBookDiscussTableViewCell.xib; sourceTree = "<group>"; };
+		880833252265B52100C462D4 /* cyan_fade_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cyan_fade_down@3x.png"; sourceTree = "<group>"; };
+		880833282265BF4500C462D4 /* TCMyCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMyCollectionViewController.h; sourceTree = "<group>"; };
+		880833292265BF4500C462D4 /* TCMyCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMyCollectionViewController.m; sourceTree = "<group>"; };
+		8808332B2265BF6B00C462D4 /* TCMyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMyCollectionViewCell.h; sourceTree = "<group>"; };
+		8808332C2265BF6B00C462D4 /* TCMyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMyCollectionViewCell.m; sourceTree = "<group>"; };
+		8808332E2265CD7600C462D4 /* TCMyBookrackModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMyBookrackModel.h; sourceTree = "<group>"; };
+		8808332F2265CD7600C462D4 /* TCMyBookrackModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMyBookrackModel.m; sourceTree = "<group>"; };
+		880833312265D30600C462D4 /* TCBookDownloadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookDownloadModel.h; sourceTree = "<group>"; };
+		880833322265D30600C462D4 /* TCBookDownloadModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookDownloadModel.m; sourceTree = "<group>"; };
+		880833352266C59500C462D4 /* TCMyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCMyCollectionViewCell.xib; sourceTree = "<group>"; };
+		880833372266C7D900C462D4 /* AtestBookCover@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AtestBookCover@3x.png"; sourceTree = "<group>"; };
+		8808333B2266C98900C462D4 /* TCMyBookSortView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMyBookSortView.h; sourceTree = "<group>"; };
+		8808333C2266C98900C462D4 /* TCMyBookSortView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMyBookSortView.m; sourceTree = "<group>"; };
+		8808333E2266CD0C00C462D4 /* TCMyBookSwitchSortWayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMyBookSwitchSortWayView.h; sourceTree = "<group>"; };
+		8808333F2266CD0C00C462D4 /* TCMyBookSwitchSortWayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMyBookSwitchSortWayView.m; sourceTree = "<group>"; };
+		880833412266CF2700C462D4 /* TCMyBookSwitchSortWayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCMyBookSwitchSortWayView.xib; sourceTree = "<group>"; };
+		880833472266F82600C462D4 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		880833482266F82600C462D4 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		8808334B2267000C00C462D4 /* TCSchoolBookTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSchoolBookTableViewController.h; sourceTree = "<group>"; };
+		8808334C2267000C00C462D4 /* TCSchoolBookTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCSchoolBookTableViewController.m; sourceTree = "<group>"; };
+		880833502267011400C462D4 /* TCSchoolBookTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSchoolBookTableViewCell.h; sourceTree = "<group>"; };
+		880833512267011400C462D4 /* TCSchoolBookTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCSchoolBookTableViewCell.m; sourceTree = "<group>"; };
+		880833532267018900C462D4 /* TCSchoolBookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCSchoolBookTableViewCell.xib; sourceTree = "<group>"; };
+		8808335522670E5200C462D4 /* LGSegmentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSegmentScrollView.h; sourceTree = "<group>"; };
+		8808335622670E5200C462D4 /* LGSegmentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSegmentScrollView.m; sourceTree = "<group>"; };
+		8808336F2268697600C462D4 /* LGDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGDefines.h; sourceTree = "<group>"; };
+		8808337022687AC700C462D4 /* icon_arrow_left_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_arrow_left_white@3x.png"; sourceTree = "<group>"; };
+		8808337222699C3F00C462D4 /* TCBookInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookInfoCell.h; sourceTree = "<group>"; };
+		8808337322699C3F00C462D4 /* TCBookInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookInfoCell.m; sourceTree = "<group>"; };
+		8808337622699D3C00C462D4 /* TCBIMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBIMessageCell.h; sourceTree = "<group>"; };
+		8808337722699D3C00C462D4 /* TCBIMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBIMessageCell.m; sourceTree = "<group>"; };
+		8808337922699D7600C462D4 /* TCBIContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBIContentCell.h; sourceTree = "<group>"; };
+		8808337A22699D7600C462D4 /* TCBIContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBIContentCell.m; sourceTree = "<group>"; };
+		8808337C22699DA900C462D4 /* TCBIRecoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBIRecoCell.h; sourceTree = "<group>"; };
+		8808337D22699DA900C462D4 /* TCBIRecoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBIRecoCell.m; sourceTree = "<group>"; };
+		8808337F2269B09500C462D4 /* TCBookInfoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookInfoTableViewController.h; sourceTree = "<group>"; };
+		880833802269B09500C462D4 /* TCBookInfoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookInfoTableViewController.m; sourceTree = "<group>"; };
+		8892956922605EAD0015C7DB /* TimeCollege.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCollege.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8892956C22605EAD0015C7DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8892956D22605EAD0015C7DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8892957522605EBE0015C7DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8892957A22605EBE0015C7DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8892957B22605EBE0015C7DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8892958122605EBE0015C7DB /* TimeCollegeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeCollegeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8892958522605EBE0015C7DB /* TimeCollegeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeCollegeTests.m; sourceTree = "<group>"; };
+		8892958722605EBE0015C7DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8892958C22605EBE0015C7DB /* TimeCollegeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeCollegeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8892959022605EBE0015C7DB /* TimeCollegeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeCollegeUITests.m; sourceTree = "<group>"; };
+		8892959222605EBE0015C7DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		889295A2226062890015C7DB /* TCMainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMainTabBarController.h; sourceTree = "<group>"; };
+		889295A3226062890015C7DB /* TCMainTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMainTabBarController.m; sourceTree = "<group>"; };
+		889295B82264340F0015C7DB /* LGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseViewController.m; sourceTree = "<group>"; };
+		889295B92264340F0015C7DB /* LGBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseModel.m; sourceTree = "<group>"; };
+		889295BA2264340F0015C7DB /* LGBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseNavigationController.m; sourceTree = "<group>"; };
+		889295BB2264340F0015C7DB /* LGBaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseCollectionViewController.h; sourceTree = "<group>"; };
+		889295BC2264340F0015C7DB /* LGTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTableViewController.m; sourceTree = "<group>"; };
+		889295BD2264340F0015C7DB /* LGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseViewController.h; sourceTree = "<group>"; };
+		889295BE2264340F0015C7DB /* LGBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseModel.h; sourceTree = "<group>"; };
+		889295BF2264340F0015C7DB /* LGBaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGBaseCollectionViewController.m; sourceTree = "<group>"; };
+		889295C02264340F0015C7DB /* LGBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGBaseNavigationController.h; sourceTree = "<group>"; };
+		889295C12264340F0015C7DB /* LGTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTableViewController.h; sourceTree = "<group>"; };
+		889295C72264369C0015C7DB /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		889295C822644A650015C7DB /* TCMyBookrackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMyBookrackViewController.h; sourceTree = "<group>"; };
+		889295C922644A650015C7DB /* TCMyBookrackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMyBookrackViewController.m; sourceTree = "<group>"; };
+		889295CB22644AD60015C7DB /* TCScoolBookrackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCScoolBookrackViewController.h; sourceTree = "<group>"; };
+		889295CC22644AD60015C7DB /* TCScoolBookrackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCScoolBookrackViewController.m; sourceTree = "<group>"; };
+		889295D12264548E0015C7DB /* icon_tb_selected_school@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tb_selected_school@3x.png"; sourceTree = "<group>"; };
+		889295D22264548E0015C7DB /* icon_tb_unselected_my@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tb_unselected_my@3x.png"; sourceTree = "<group>"; };
+		889295D32264548E0015C7DB /* icon_tb_unselected_school@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tb_unselected_school@3x.png"; sourceTree = "<group>"; };
+		889295D42264548E0015C7DB /* icon_tb_selected_my@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tb_selected_my@3x.png"; sourceTree = "<group>"; };
+		889295D9226457D80015C7DB /* icon_search_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_search_white@3x.png"; sourceTree = "<group>"; };
+		889295DC226458A80015C7DB /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		889295DD226458A80015C7DB /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		889295DF226458E90015C7DB /* UIColor+TCColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+TCColor.h"; sourceTree = "<group>"; };
+		889295E0226458E90015C7DB /* UIColor+TCColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TCColor.m"; sourceTree = "<group>"; };
+		94892B219431448B99177D53 /* Pods-TimeCollegeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollegeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollegeTests/Pods-TimeCollegeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9A6203267234F303F092C705 /* Pods-TimeCollege.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollege.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollege/Pods-TimeCollege.debug.xcconfig"; sourceTree = "<group>"; };
+		B6DDD1FE840A784C40A1F38F /* Pods_TimeCollegeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeCollegeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BCA56962880788059636D7 /* Pods-TimeCollegeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollegeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollegeUITests/Pods-TimeCollegeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E85DA46AA84675C8203A6AEA /* Pods-TimeCollegeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollegeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollegeUITests/Pods-TimeCollegeUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8892956622605EAD0015C7DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D522EE5E7DFD2AD8B77805 /* Pods_TimeCollege.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8892957E22605EBE0015C7DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1261873DFFB6BED50AADD8 /* Pods_TimeCollegeTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8892958922605EBE0015C7DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCDC663A4888A1E848F63AEB /* Pods_TimeCollegeUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		58FA788D9DAD4D82329A3199 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0645C4278D9D9E6224B341C5 /* Pods_TimeCollege.framework */,
+				B6DDD1FE840A784C40A1F38F /* Pods_TimeCollegeTests.framework */,
+				80D386EC81F33EEDD5DF1642 /* Pods_TimeCollegeUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88044F442271620C00F18E66 /* classLib(自定义类库) */ = {
+			isa = PBXGroup;
+			children = (
+				88044F452271628000F18E66 /* LGParallelButton.h */,
+				88044F462271628000F18E66 /* LGParallelButton.m */,
+				88044F4B227182BC00F18E66 /* LGPageViewController.h */,
+				88044F4C227182BC00F18E66 /* LGPageViewController.m */,
+			);
+			path = "classLib(自定义类库)";
+			sourceTree = "<group>";
+		};
+		88044F572275756B00F18E66 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88044F582275758500F18E66 /* TCBookInfoHeaderView.h */,
+				88044F592275758500F18E66 /* TCBookInfoHeaderView.m */,
+				88044F5B2275758F00F18E66 /* TCBookInfoHeaderView.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		88044F5F227596EA00F18E66 /* reco */ = {
+			isa = PBXGroup;
+			children = (
+				88044F602275971A00F18E66 /* TCBookInfoRecoCollectionViewController.h */,
+				88044F612275971A00F18E66 /* TCBookInfoRecoCollectionViewController.m */,
+				88044F632275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.h */,
+				88044F642275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m */,
+				88044F662275975500F18E66 /* TCBookInfoRecoCollectionViewCell.xib */,
+			);
+			path = reco;
+			sourceTree = "<group>";
+		};
+		88044F6822769F1000F18E66 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				88044F6922769F4A00F18E66 /* TCInputDiscussView.h */,
+				88044F6A22769F4A00F18E66 /* TCInputDiscussView.m */,
+				88044F6C22769F5B00F18E66 /* TCInputDiscussView.xib */,
+				88044F6E2276A60800F18E66 /* TCBookDiscussTableViewCell.h */,
+				88044F6F2276A60800F18E66 /* TCBookDiscussTableViewCell.m */,
+				88044F712276A61100F18E66 /* TCBookDiscussTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		880833272265BE6900C462D4 /* collection */ = {
+			isa = PBXGroup;
+			children = (
+				880833392266C95100C462D4 /* view */,
+				880833342265D33300C462D4 /* model */,
+				880833282265BF4500C462D4 /* TCMyCollectionViewController.h */,
+				880833292265BF4500C462D4 /* TCMyCollectionViewController.m */,
+			);
+			path = collection;
+			sourceTree = "<group>";
+		};
+		880833342265D33300C462D4 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8808332E2265CD7600C462D4 /* TCMyBookrackModel.h */,
+				8808332F2265CD7600C462D4 /* TCMyBookrackModel.m */,
+				880833312265D30600C462D4 /* TCBookDownloadModel.h */,
+				880833322265D30600C462D4 /* TCBookDownloadModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		880833392266C95100C462D4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8808332B2265BF6B00C462D4 /* TCMyCollectionViewCell.h */,
+				8808332C2265BF6B00C462D4 /* TCMyCollectionViewCell.m */,
+				880833352266C59500C462D4 /* TCMyCollectionViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8808333A2266C96900C462D4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8808333B2266C98900C462D4 /* TCMyBookSortView.h */,
+				8808333C2266C98900C462D4 /* TCMyBookSortView.m */,
+				8808333E2266CD0C00C462D4 /* TCMyBookSwitchSortWayView.h */,
+				8808333F2266CD0C00C462D4 /* TCMyBookSwitchSortWayView.m */,
+				880833412266CF2700C462D4 /* TCMyBookSwitchSortWayView.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		880833432266D75000C462D4 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		8808334A2266FFA000C462D4 /* table */ = {
+			isa = PBXGroup;
+			children = (
+				8808334F226700C500C462D4 /* model */,
+				8808334E226700BE00C462D4 /* view */,
+				8808334B2267000C00C462D4 /* TCSchoolBookTableViewController.h */,
+				8808334C2267000C00C462D4 /* TCSchoolBookTableViewController.m */,
+			);
+			path = table;
+			sourceTree = "<group>";
+		};
+		8808334E226700BE00C462D4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				880833502267011400C462D4 /* TCSchoolBookTableViewCell.h */,
+				880833512267011400C462D4 /* TCSchoolBookTableViewCell.m */,
+				880833532267018900C462D4 /* TCSchoolBookTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8808334F226700C500C462D4 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		880833582267238600C462D4 /* BookDetail */ = {
+			isa = PBXGroup;
+			children = (
+				88044F512271879900F18E66 /* TCBookDetailViewController.h */,
+				88044F522271879900F18E66 /* TCBookDetailViewController.m */,
+				88044F5F227596EA00F18E66 /* reco */,
+				88044F572275756B00F18E66 /* view */,
+				8808336B2268646000C462D4 /* discuss */,
+				8808336A2268645500C462D4 /* info */,
+			);
+			path = BookDetail;
+			sourceTree = "<group>";
+		};
+		8808336A2268645500C462D4 /* info */ = {
+			isa = PBXGroup;
+			children = (
+				8808337522699CA900C462D4 /* cell */,
+				8808337F2269B09500C462D4 /* TCBookInfoTableViewController.h */,
+				880833802269B09500C462D4 /* TCBookInfoTableViewController.m */,
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		8808336B2268646000C462D4 /* discuss */ = {
+			isa = PBXGroup;
+			children = (
+				88044F6822769F1000F18E66 /* view */,
+				88044F54227189AA00F18E66 /* TCBookDiscussViewController.h */,
+				88044F55227189AA00F18E66 /* TCBookDiscussViewController.m */,
+			);
+			path = discuss;
+			sourceTree = "<group>";
+		};
+		8808337522699CA900C462D4 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				8808337222699C3F00C462D4 /* TCBookInfoCell.h */,
+				8808337322699C3F00C462D4 /* TCBookInfoCell.m */,
+				8808337622699D3C00C462D4 /* TCBIMessageCell.h */,
+				8808337722699D3C00C462D4 /* TCBIMessageCell.m */,
+				8808337922699D7600C462D4 /* TCBIContentCell.h */,
+				8808337A22699D7600C462D4 /* TCBIContentCell.m */,
+				8808337C22699DA900C462D4 /* TCBIRecoCell.h */,
+				8808337D22699DA900C462D4 /* TCBIRecoCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		8892956022605EAD0015C7DB = {
+			isa = PBXGroup;
+			children = (
+				8892956B22605EAD0015C7DB /* TimeCollege */,
+				8892958422605EBE0015C7DB /* TimeCollegeTests */,
+				8892958F22605EBE0015C7DB /* TimeCollegeUITests */,
+				8892956A22605EAD0015C7DB /* Products */,
+				A6F678F302E1E850BA2835C7 /* Pods */,
+				58FA788D9DAD4D82329A3199 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8892956A22605EAD0015C7DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8892956922605EAD0015C7DB /* TimeCollege.app */,
+				8892958122605EBE0015C7DB /* TimeCollegeTests.xctest */,
+				8892958C22605EBE0015C7DB /* TimeCollegeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8892956B22605EAD0015C7DB /* TimeCollege */ = {
+			isa = PBXGroup;
+			children = (
+				8892959E226061430015C7DB /* Support */,
+				889295CF2264541A0015C7DB /* TC */,
+			);
+			path = TimeCollege;
+			sourceTree = "<group>";
+		};
+		8892958422605EBE0015C7DB /* TimeCollegeTests */ = {
+			isa = PBXGroup;
+			children = (
+				8892958522605EBE0015C7DB /* TimeCollegeTests.m */,
+				8892958722605EBE0015C7DB /* Info.plist */,
+			);
+			path = TimeCollegeTests;
+			sourceTree = "<group>";
+		};
+		8892958F22605EBE0015C7DB /* TimeCollegeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8892959022605EBE0015C7DB /* TimeCollegeUITests.m */,
+				8892959222605EBE0015C7DB /* Info.plist */,
+			);
+			path = TimeCollegeUITests;
+			sourceTree = "<group>";
+		};
+		8892959E226061430015C7DB /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				8892956C22605EAD0015C7DB /* AppDelegate.h */,
+				8892956D22605EAD0015C7DB /* AppDelegate.m */,
+				8892957522605EBE0015C7DB /* Assets.xcassets */,
+				8892957A22605EBE0015C7DB /* Info.plist */,
+				8892957B22605EBE0015C7DB /* main.m */,
+				8808336F2268697600C462D4 /* LGDefines.h */,
+				889295C72264369C0015C7DB /* PrefixHeader.pch */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		8892959F226061520015C7DB /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				880833582267238600C462D4 /* BookDetail */,
+				889295A1226061BF0015C7DB /* Main */,
+				889295A522607FF50015C7DB /* My */,
+				889295A62260800C0015C7DB /* School */,
+				889295AB226425680015C7DB /* Search */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		889295A0226061590015C7DB /* Box */ = {
+			isa = PBXGroup;
+			children = (
+				88044F442271620C00F18E66 /* classLib(自定义类库) */,
+				880833432266D75000C462D4 /* Tool */,
+				889295DB226458980015C7DB /* Catagory */,
+				889295B72264340F0015C7DB /* Base */,
+			);
+			path = Box;
+			sourceTree = "<group>";
+		};
+		889295A1226061BF0015C7DB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				889295A2226062890015C7DB /* TCMainTabBarController.h */,
+				889295A3226062890015C7DB /* TCMainTabBarController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		889295A522607FF50015C7DB /* My */ = {
+			isa = PBXGroup;
+			children = (
+				8808333A2266C96900C462D4 /* view */,
+				880833272265BE6900C462D4 /* collection */,
+				889295C822644A650015C7DB /* TCMyBookrackViewController.h */,
+				889295C922644A650015C7DB /* TCMyBookrackViewController.m */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		889295A62260800C0015C7DB /* School */ = {
+			isa = PBXGroup;
+			children = (
+				8808334A2266FFA000C462D4 /* table */,
+				889295CB22644AD60015C7DB /* TCScoolBookrackViewController.h */,
+				889295CC22644AD60015C7DB /* TCScoolBookrackViewController.m */,
+			);
+			path = School;
+			sourceTree = "<group>";
+		};
+		889295AB226425680015C7DB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		889295B72264340F0015C7DB /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8808335522670E5200C462D4 /* LGSegmentScrollView.h */,
+				8808335622670E5200C462D4 /* LGSegmentScrollView.m */,
+				889295BE2264340F0015C7DB /* LGBaseModel.h */,
+				889295B92264340F0015C7DB /* LGBaseModel.m */,
+				889295BD2264340F0015C7DB /* LGBaseViewController.h */,
+				889295B82264340F0015C7DB /* LGBaseViewController.m */,
+				889295C02264340F0015C7DB /* LGBaseNavigationController.h */,
+				889295BA2264340F0015C7DB /* LGBaseNavigationController.m */,
+				889295BB2264340F0015C7DB /* LGBaseCollectionViewController.h */,
+				889295BF2264340F0015C7DB /* LGBaseCollectionViewController.m */,
+				889295C12264340F0015C7DB /* LGTableViewController.h */,
+				889295BC2264340F0015C7DB /* LGTableViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		889295CF2264541A0015C7DB /* TC */ = {
+			isa = PBXGroup;
+			children = (
+				889295D02264543A0015C7DB /* Resource */,
+				8892959F226061520015C7DB /* Class */,
+				889295A0226061590015C7DB /* Box */,
+			);
+			path = TC;
+			sourceTree = "<group>";
+		};
+		889295D02264543A0015C7DB /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				880833372266C7D900C462D4 /* AtestBookCover@3x.png */,
+				8808337022687AC700C462D4 /* icon_arrow_left_white@3x.png */,
+				88044F5D227591EF00F18E66 /* icon_arrow_down_gray@3x.png */,
+				889295D42264548E0015C7DB /* icon_tb_selected_my@3x.png */,
+				889295D12264548E0015C7DB /* icon_tb_selected_school@3x.png */,
+				889295D22264548E0015C7DB /* icon_tb_unselected_my@3x.png */,
+				889295D32264548E0015C7DB /* icon_tb_unselected_school@3x.png */,
+				889295D9226457D80015C7DB /* icon_search_white@3x.png */,
+				880833252265B52100C462D4 /* cyan_fade_down@3x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		889295DB226458980015C7DB /* Catagory */ = {
+			isa = PBXGroup;
+			children = (
+				880833472266F82600C462D4 /* UIView+Extension.h */,
+				880833482266F82600C462D4 /* UIView+Extension.m */,
+				889295DF226458E90015C7DB /* UIColor+TCColor.h */,
+				889295E0226458E90015C7DB /* UIColor+TCColor.m */,
+				889295DD226458A80015C7DB /* UIColor+Extension.h */,
+				889295DC226458A80015C7DB /* UIColor+Extension.m */,
+			);
+			path = Catagory;
+			sourceTree = "<group>";
+		};
+		A6F678F302E1E850BA2835C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A6203267234F303F092C705 /* Pods-TimeCollege.debug.xcconfig */,
+				252579B6E189FF24D3BDDF2C /* Pods-TimeCollege.release.xcconfig */,
+				94892B219431448B99177D53 /* Pods-TimeCollegeTests.debug.xcconfig */,
+				27E1DA082683339D133B6AD5 /* Pods-TimeCollegeTests.release.xcconfig */,
+				C3BCA56962880788059636D7 /* Pods-TimeCollegeUITests.debug.xcconfig */,
+				E85DA46AA84675C8203A6AEA /* Pods-TimeCollegeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8892956822605EAD0015C7DB /* TimeCollege */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8892959522605EBE0015C7DB /* Build configuration list for PBXNativeTarget "TimeCollege" */;
+			buildPhases = (
+				B2A6B27EB66866700DF2E9EF /* [CP] Check Pods Manifest.lock */,
+				8892956522605EAD0015C7DB /* Sources */,
+				8892956622605EAD0015C7DB /* Frameworks */,
+				8892956722605EAD0015C7DB /* Resources */,
+				48A6DC1E5950EB3996F0A09E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimeCollege;
+			productName = TimeCollege;
+			productReference = 8892956922605EAD0015C7DB /* TimeCollege.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8892958022605EBE0015C7DB /* TimeCollegeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8892959822605EBE0015C7DB /* Build configuration list for PBXNativeTarget "TimeCollegeTests" */;
+			buildPhases = (
+				859CFC72536B6439151DDF60 /* [CP] Check Pods Manifest.lock */,
+				8892957D22605EBE0015C7DB /* Sources */,
+				8892957E22605EBE0015C7DB /* Frameworks */,
+				8892957F22605EBE0015C7DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8892958322605EBE0015C7DB /* PBXTargetDependency */,
+			);
+			name = TimeCollegeTests;
+			productName = TimeCollegeTests;
+			productReference = 8892958122605EBE0015C7DB /* TimeCollegeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8892958B22605EBE0015C7DB /* TimeCollegeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8892959B22605EBE0015C7DB /* Build configuration list for PBXNativeTarget "TimeCollegeUITests" */;
+			buildPhases = (
+				A31B65B84B322C95F47118A7 /* [CP] Check Pods Manifest.lock */,
+				8892958822605EBE0015C7DB /* Sources */,
+				8892958922605EBE0015C7DB /* Frameworks */,
+				8892958A22605EBE0015C7DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8892958E22605EBE0015C7DB /* PBXTargetDependency */,
+			);
+			name = TimeCollegeUITests;
+			productName = TimeCollegeUITests;
+			productReference = 8892958C22605EBE0015C7DB /* TimeCollegeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8892956122605EAD0015C7DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TC;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = lee;
+				TargetAttributes = {
+					8892956822605EAD0015C7DB = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					8892958022605EBE0015C7DB = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 8892956822605EAD0015C7DB;
+					};
+					8892958B22605EBE0015C7DB = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 8892956822605EAD0015C7DB;
+					};
+				};
+			};
+			buildConfigurationList = 8892956422605EAD0015C7DB /* Build configuration list for PBXProject "TimeCollege" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8892956022605EAD0015C7DB;
+			productRefGroup = 8892956A22605EAD0015C7DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8892956822605EAD0015C7DB /* TimeCollege */,
+				8892958022605EBE0015C7DB /* TimeCollegeTests */,
+				8892958B22605EBE0015C7DB /* TimeCollegeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8892956722605EAD0015C7DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				889295D72264548E0015C7DB /* icon_tb_unselected_school@3x.png in Resources */,
+				88044F5E227591EF00F18E66 /* icon_arrow_down_gray@3x.png in Resources */,
+				8808337122687AC700C462D4 /* icon_arrow_left_white@3x.png in Resources */,
+				889295D82264548E0015C7DB /* icon_tb_selected_my@3x.png in Resources */,
+				88044F722276A61100F18E66 /* TCBookDiscussTableViewCell.xib in Resources */,
+				880833422266CF2700C462D4 /* TCMyBookSwitchSortWayView.xib in Resources */,
+				889295DA226457D80015C7DB /* icon_search_white@3x.png in Resources */,
+				880833542267018900C462D4 /* TCSchoolBookTableViewCell.xib in Resources */,
+				88044F6D22769F5B00F18E66 /* TCInputDiscussView.xib in Resources */,
+				88044F672275975500F18E66 /* TCBookInfoRecoCollectionViewCell.xib in Resources */,
+				880833262265B52100C462D4 /* cyan_fade_down@3x.png in Resources */,
+				88044F5C2275758F00F18E66 /* TCBookInfoHeaderView.xib in Resources */,
+				889295D62264548E0015C7DB /* icon_tb_unselected_my@3x.png in Resources */,
+				8892957622605EBE0015C7DB /* Assets.xcassets in Resources */,
+				889295D52264548E0015C7DB /* icon_tb_selected_school@3x.png in Resources */,
+				880833382266C7D900C462D4 /* AtestBookCover@3x.png in Resources */,
+				880833362266C59500C462D4 /* TCMyCollectionViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8892957F22605EBE0015C7DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8892958A22605EBE0015C7DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		48A6DC1E5950EB3996F0A09E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TimeCollege/Pods-TimeCollege-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YNPageViewController/YNPageViewController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YNPageViewController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TimeCollege/Pods-TimeCollege-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		859CFC72536B6439151DDF60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimeCollegeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A31B65B84B322C95F47118A7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimeCollegeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2A6B27EB66866700DF2E9EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimeCollege-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8892956522605EAD0015C7DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88044F4D227182BC00F18E66 /* LGPageViewController.m in Sources */,
+				88044F652275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m in Sources */,
+				889295CD22644AD60015C7DB /* TCScoolBookrackViewController.m in Sources */,
+				880833812269B09500C462D4 /* TCBookInfoTableViewController.m in Sources */,
+				88044F5A2275758500F18E66 /* TCBookInfoHeaderView.m in Sources */,
+				889295C62264340F0015C7DB /* LGBaseCollectionViewController.m in Sources */,
+				889295C32264340F0015C7DB /* LGBaseModel.m in Sources */,
+				8808332A2265BF4500C462D4 /* TCMyCollectionViewController.m in Sources */,
+				880833402266CD0C00C462D4 /* TCMyBookSwitchSortWayView.m in Sources */,
+				889295C42264340F0015C7DB /* LGBaseNavigationController.m in Sources */,
+				88044F702276A60800F18E66 /* TCBookDiscussTableViewCell.m in Sources */,
+				88044F622275971A00F18E66 /* TCBookInfoRecoCollectionViewController.m in Sources */,
+				88044F472271628000F18E66 /* LGParallelButton.m in Sources */,
+				880833492266F82600C462D4 /* UIView+Extension.m in Sources */,
+				88044F6B22769F4A00F18E66 /* TCInputDiscussView.m in Sources */,
+				8808337E22699DA900C462D4 /* TCBIRecoCell.m in Sources */,
+				880833302265CD7600C462D4 /* TCMyBookrackModel.m in Sources */,
+				88044F56227189AA00F18E66 /* TCBookDiscussViewController.m in Sources */,
+				8808333D2266C98900C462D4 /* TCMyBookSortView.m in Sources */,
+				880833522267011400C462D4 /* TCSchoolBookTableViewCell.m in Sources */,
+				889295DE226458A80015C7DB /* UIColor+Extension.m in Sources */,
+				8892957C22605EBE0015C7DB /* main.m in Sources */,
+				8808334D2267000C00C462D4 /* TCSchoolBookTableViewController.m in Sources */,
+				889295CA22644A650015C7DB /* TCMyBookrackViewController.m in Sources */,
+				8808335722670E5200C462D4 /* LGSegmentScrollView.m in Sources */,
+				8808337B22699D7600C462D4 /* TCBIContentCell.m in Sources */,
+				889295C52264340F0015C7DB /* LGTableViewController.m in Sources */,
+				889295A4226062890015C7DB /* TCMainTabBarController.m in Sources */,
+				8808337422699C3F00C462D4 /* TCBookInfoCell.m in Sources */,
+				880833332265D30600C462D4 /* TCBookDownloadModel.m in Sources */,
+				88044F532271879900F18E66 /* TCBookDetailViewController.m in Sources */,
+				889295C22264340F0015C7DB /* LGBaseViewController.m in Sources */,
+				8808337822699D3C00C462D4 /* TCBIMessageCell.m in Sources */,
+				8808332D2265BF6B00C462D4 /* TCMyCollectionViewCell.m in Sources */,
+				889295E1226458E90015C7DB /* UIColor+TCColor.m in Sources */,
+				8892956E22605EAD0015C7DB /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8892957D22605EBE0015C7DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8892958622605EBE0015C7DB /* TimeCollegeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8892958822605EBE0015C7DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8892959122605EBE0015C7DB /* TimeCollegeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8892958322605EBE0015C7DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8892956822605EAD0015C7DB /* TimeCollege */;
+			targetProxy = 8892958222605EBE0015C7DB /* PBXContainerItemProxy */;
+		};
+		8892958E22605EBE0015C7DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8892956822605EAD0015C7DB /* TimeCollege */;
+			targetProxy = 8892958D22605EBE0015C7DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8892959322605EBE0015C7DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8892959422605EBE0015C7DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8892959622605EBE0015C7DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A6203267234F303F092C705 /* Pods-TimeCollege.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/TimeCollege/TimeCollege/Support/PrefixHeader.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/TimeCollege/Support/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = libc.TimeCollege;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8892959722605EBE0015C7DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 252579B6E189FF24D3BDDF2C /* Pods-TimeCollege.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/TimeCollege/TimeCollege/Support/PrefixHeader.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/TimeCollege/Support/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = libc.TimeCollege;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8892959922605EBE0015C7DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94892B219431448B99177D53 /* Pods-TimeCollegeTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				INFOPLIST_FILE = TimeCollegeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = libc.TimeCollegeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeCollege.app/TimeCollege";
+			};
+			name = Debug;
+		};
+		8892959A22605EBE0015C7DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E1DA082683339D133B6AD5 /* Pods-TimeCollegeTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				INFOPLIST_FILE = TimeCollegeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = libc.TimeCollegeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeCollege.app/TimeCollege";
+			};
+			name = Release;
+		};
+		8892959C22605EBE0015C7DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3BCA56962880788059636D7 /* Pods-TimeCollegeUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				INFOPLIST_FILE = TimeCollegeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = libc.TimeCollegeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TimeCollege;
+			};
+			name = Debug;
+		};
+		8892959D22605EBE0015C7DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E85DA46AA84675C8203A6AEA /* Pods-TimeCollegeUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GL9GCTA7BP;
+				INFOPLIST_FILE = TimeCollegeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = libc.TimeCollegeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TimeCollege;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8892956422605EAD0015C7DB /* Build configuration list for PBXProject "TimeCollege" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8892959322605EBE0015C7DB /* Debug */,
+				8892959422605EBE0015C7DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8892959522605EBE0015C7DB /* Build configuration list for PBXNativeTarget "TimeCollege" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8892959622605EBE0015C7DB /* Debug */,
+				8892959722605EBE0015C7DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8892959822605EBE0015C7DB /* Build configuration list for PBXNativeTarget "TimeCollegeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8892959922605EBE0015C7DB /* Debug */,
+				8892959A22605EBE0015C7DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8892959B22605EBE0015C7DB /* Build configuration list for PBXNativeTarget "TimeCollegeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8892959C22605EBE0015C7DB /* Debug */,
+				8892959D22605EBE0015C7DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8892956122605EAD0015C7DB /* Project object */;
+}

@@ -9,6 +9,7 @@
 #import "TableViewController.h"
 #import "Model.h"
 #import "LGCameraOperateViewController.h"
+#import "HVideoViewController.h"
 
 static NSString * const homeCell = @"homeCell";
 
@@ -51,10 +52,28 @@ static NSString * const homeCell = @"homeCell";
     Model *model = array[indexPath.row];
     id vc = [[NSClassFromString(model.vcClassName) alloc] init];
     
-    if ([vc isKindOfClass:[UIViewController class]]) {
-        [self.navigationController pushViewController:vc animated:YES];
-    }else{
-        NSLog(@"%@ 不是一个控制器类",model.vcClassName);
+    if (model.loadType == 0) {
+        if ([vc isKindOfClass:[UIViewController class]]) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            NSLog(@"%@ 不是一个控制器类",model.vcClassName);
+        }
+    }
+    if (model.loadType == 1) {
+        HVideoViewController *ctrl = [[NSBundle mainBundle] loadNibNamed:@"HVideoViewController" owner:nil options:nil].lastObject;
+        
+        ctrl.HSeconds = 10;//设置可录制最长时间
+        ctrl.takeBlock = ^(id item) {
+            if ([item isKindOfClass:[NSURL class]]) {
+                NSURL *videoURL = item;
+                //视频url
+                NSLog(@"videoURL: %@",videoURL);
+            } else {
+                //图片
+                NSLog(@"item: %@",item);
+            }
+        };
+        [self.navigationController pushViewController:ctrl animated:YES];
     }
     
 }

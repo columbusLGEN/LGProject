@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class AVCaptureVideoPreviewLayer;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LGCameraPreview : UIView
+
+@property (strong,nonatomic) AVCaptureVideoPreviewLayer *cameraPreviewLayer;
+@property (strong,nonatomic) UIImageView *actionButton;
 
 @end
 

@@ -1,9 +1,9 @@
 //
-//  HProgressView.h
+//  LGCameraPreviewProgressView
 //  Join
 //
-//  Created by 黄克瑾 on 2017/2/2.
-//  Copyright © 2017年 huangkejin. All rights reserved.
+//  Created by lee on 2015/7/2.
+//  Copyright © 2015年 bbd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

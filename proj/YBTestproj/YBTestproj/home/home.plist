@@ -3,12 +3,20 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>id</key>
-		<integer>0</integer>
 		<key>name</key>
 		<string>相机</string>
 		<key>vcClassName</key>
 		<string>LGCameraOperateViewController</string>
+		<key>loadType</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>kk相机</string>
+		<key>vcClassName</key>
+		<string>HVideoViewController</string>
+		<key>loadType</key>
+		<integer>1</integer>
 	</dict>
 </array>
 </plist>

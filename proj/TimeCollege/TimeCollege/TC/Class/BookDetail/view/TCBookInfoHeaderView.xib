@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="wI9-Hh-XfA" customClass="TCBookInfoHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="560" height="254"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AtestBookCover.png" translatesAutoresizingMaskIntoConstraints="NO" id="7l8-qi-M3c">
+                    <rect key="frame" x="10" y="54" width="90" height="156"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="Ib7-gB-mMV"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xy-b2-9Gl">
+                    <rect key="frame" x="110" y="54" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYy-pq-NTp">
+                    <rect key="frame" x="110" y="83" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCq-eW-kP9">
+                    <rect key="frame" x="110" y="114" width="200" height="25"/>
+                    <color key="backgroundColor" red="1" green="0.81176470590000005" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="4va-4Q-IEV"/>
+                        <constraint firstAttribute="height" constant="25" id="nKe-8T-TGz"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZU-MV-fxU">
+                    <rect key="frame" x="0.0" y="252" width="560" height="2"/>
+                    <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="ubY-Kh-klI"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgy-ZH-oJr">
+                    <rect key="frame" x="110" y="149" width="62" height="30"/>
+                    <state key="normal" title="立即阅读"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7l8-qi-M3c" firstAttribute="top" secondItem="TgK-Oj-wZH" secondAttribute="top" constant="10" id="2pm-bX-FYO"/>
+                <constraint firstItem="2xy-b2-9Gl" firstAttribute="top" secondItem="7l8-qi-M3c" secondAttribute="top" id="Eyq-Wb-vN6"/>
+                <constraint firstItem="7l8-qi-M3c" firstAttribute="leading" secondItem="TgK-Oj-wZH" secondAttribute="leading" constant="10" id="JlF-gP-Hhj"/>
+                <constraint firstItem="Tgy-ZH-oJr" firstAttribute="top" secondItem="QCq-eW-kP9" secondAttribute="bottom" constant="10" id="Ogf-uw-KsD"/>
+                <constraint firstItem="TZU-MV-fxU" firstAttribute="leading" secondItem="wI9-Hh-XfA" secondAttribute="leading" id="Q7c-Jy-EGe"/>
+                <constraint firstItem="Tgy-ZH-oJr" firstAttribute="leading" secondItem="QCq-eW-kP9" secondAttribute="leading" id="QxL-v3-TVn"/>
+                <constraint firstItem="TgK-Oj-wZH" firstAttribute="bottom" secondItem="7l8-qi-M3c" secondAttribute="bottom" constant="10" id="Set-U8-5hV"/>
+                <constraint firstAttribute="bottom" secondItem="TZU-MV-fxU" secondAttribute="bottom" id="j90-8m-OyG"/>
+                <constraint firstItem="2xy-b2-9Gl" firstAttribute="leading" secondItem="7l8-qi-M3c" secondAttribute="trailing" constant="10" id="paq-7k-aDy"/>
+                <constraint firstItem="FYy-pq-NTp" firstAttribute="leading" secondItem="2xy-b2-9Gl" secondAttribute="leading" id="s0K-64-I8r"/>
+                <constraint firstItem="QCq-eW-kP9" firstAttribute="leading" secondItem="2xy-b2-9Gl" secondAttribute="leading" id="uCk-pf-Ov2"/>
+                <constraint firstAttribute="trailing" secondItem="TZU-MV-fxU" secondAttribute="trailing" id="wxt-zG-uzK"/>
+                <constraint firstItem="QCq-eW-kP9" firstAttribute="top" secondItem="FYy-pq-NTp" secondAttribute="bottom" constant="10" id="zV2-K2-mRE"/>
+                <constraint firstItem="FYy-pq-NTp" firstAttribute="top" secondItem="2xy-b2-9Gl" secondAttribute="bottom" constant="8" id="zXh-D9-l1C"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="TgK-Oj-wZH"/>
+            <connections>
+                <outlet property="bookname" destination="2xy-b2-9Gl" id="U47-Sx-RvH"/>
+                <outlet property="cover" destination="7l8-qi-M3c" id="Ox2-rN-lod"/>
+                <outlet property="line" destination="TZU-MV-fxU" id="h3M-7Q-BFb"/>
+                <outlet property="public" destination="FYy-pq-NTp" id="ZOy-sd-8yl"/>
+                <outlet property="readNow" destination="Tgy-ZH-oJr" id="wta-ZM-5eI"/>
+            </connections>
+            <point key="canvasLocation" x="179.71014492753625" y="-114.50892857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AtestBookCover.png" width="37.666667938232422" height="54"/>
+    </resources>
+</document>

@@ -1,9 +1,9 @@
 //
-//  HProgressView.m
+//  LGCameraPreviewProgressView
 //  Join
 //
-//  Created by 黄克瑾 on 2017/2/2.
-//  Copyright © 2017年 huangkejin. All rights reserved.
+//  Created by lee on 2015/7/2.
+//  Copyright © 2015年 bbd. All rights reserved.
 //
 
 #import "LGCameraPreviewProgressView.h"
@@ -27,7 +27,7 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();//获取上下文
-    Plog(@"width = %f",self.frame.size.width);
+    
     CGPoint center = CGPointMake(self.frame.size.width/2.0, self.frame.size.width/2.0);  //设置圆心位置
     CGFloat radius = self.frame.size.width/2.0-5;  //设置半径
     CGFloat startA = - M_PI_2;  //圆起点位置
@@ -61,7 +61,6 @@
     _currentTime += 0.1;
     if (_timeMax > _currentTime) {
         _progressValue = _currentTime/_timeMax;
-        Plog(@"progress = %f",_progressValue);
         [self setNeedsDisplay];
         [self performSelector:@selector(startProgress) withObject:nil afterDelay:0.1];
     }

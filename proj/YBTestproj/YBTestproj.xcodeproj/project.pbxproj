@@ -19,6 +19,14 @@
 		889F4CF2221FEA1700546CE2 /* home.plist in Resources */ = {isa = PBXBuildFile; fileRef = 889F4CF1221FEA1700546CE2 /* home.plist */; };
 		889F4CF5221FEA4C00546CE2 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4CF4221FEA4C00546CE2 /* Model.m */; };
 		889F4CFA221FF47400546CE2 /* LGCameraOperateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4CF9221FF47400546CE2 /* LGCameraOperateViewController.m */; };
+		889F4CFE2220F8B500546CE2 /* LGCameraPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4CFD2220F8B500546CE2 /* LGCameraPreview.m */; };
+		889F4D012221274900546CE2 /* LGCameraPreviewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4CFF2221274900546CE2 /* LGCameraPreviewProgressView.m */; };
+		889F4D0D222134B000546CE2 /* HVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D06222134B000546CE2 /* HVideoViewController.m */; };
+		889F4D0E222134B000546CE2 /* HAVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D08222134B000546CE2 /* HAVPlayer.m */; };
+		889F4D0F222134B000546CE2 /* HProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D0A222134B000546CE2 /* HProgressView.m */; };
+		889F4D10222134B000546CE2 /* HVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D0B222134B000546CE2 /* HVideoViewController.xib */; };
+		889F4D132221375A00546CE2 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D112221375A00546CE2 /* Utility.m */; };
+		889F4D16222137C300546CE2 /* DLHDActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D14222137C200546CE2 /* DLHDActivityIndicator.m */; };
 		CBF536F01F54F843F605FD70 /* libPods-YBTestprojTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB01559F2966B7BBD93BDB3 /* libPods-YBTestprojTests.a */; };
 		EB579F32B4D1607929D39075 /* libPods-YBTestprojUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C3C6D7ABC700AD70BC2B52 /* libPods-YBTestprojUITests.a */; };
 /* End PBXBuildFile section */
@@ -67,6 +75,22 @@
 		889F4CF6221FEB5A00546CE2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		889F4CF8221FF47400546CE2 /* LGCameraOperateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGCameraOperateViewController.h; sourceTree = "<group>"; };
 		889F4CF9221FF47400546CE2 /* LGCameraOperateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGCameraOperateViewController.m; sourceTree = "<group>"; };
+		889F4CFC2220F8B500546CE2 /* LGCameraPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGCameraPreview.h; sourceTree = "<group>"; };
+		889F4CFD2220F8B500546CE2 /* LGCameraPreview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGCameraPreview.m; sourceTree = "<group>"; };
+		889F4CFF2221274900546CE2 /* LGCameraPreviewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGCameraPreviewProgressView.m; sourceTree = "<group>"; };
+		889F4D002221274900546CE2 /* LGCameraPreviewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGCameraPreviewProgressView.h; sourceTree = "<group>"; };
+		889F4D03222134B000546CE2 /* HAVPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAVPlayer.h; sourceTree = "<group>"; };
+		889F4D06222134B000546CE2 /* HVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HVideoViewController.m; sourceTree = "<group>"; };
+		889F4D07222134B000546CE2 /* HProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HProgressView.h; sourceTree = "<group>"; };
+		889F4D08222134B000546CE2 /* HAVPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAVPlayer.m; sourceTree = "<group>"; };
+		889F4D09222134B000546CE2 /* HVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HVideoViewController.h; sourceTree = "<group>"; };
+		889F4D0A222134B000546CE2 /* HProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HProgressView.m; sourceTree = "<group>"; };
+		889F4D0B222134B000546CE2 /* HVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HVideoViewController.xib; sourceTree = "<group>"; };
+		889F4D112221375A00546CE2 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		889F4D122221375A00546CE2 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		889F4D14222137C200546CE2 /* DLHDActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLHDActivityIndicator.m; sourceTree = "<group>"; };
+		889F4D15222137C200546CE2 /* DLHDActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLHDActivityIndicator.h; sourceTree = "<group>"; };
+		889F4D17222137F700546CE2 /* LGDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGDefines.h; sourceTree = "<group>"; };
 		8F49296B5BBB0AE9DF5BA9EE /* Pods-YBTestprojTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBTestprojTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YBTestprojTests/Pods-YBTestprojTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B36F5C12563520FF17F1F023 /* Pods-YBTestprojTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBTestprojTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YBTestprojTests/Pods-YBTestprojTests.release.xcconfig"; sourceTree = "<group>"; };
 		CAEC75F5BD9BFA49B2C2C67C /* Pods-YBTestprojUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBTestprojUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YBTestprojUITests/Pods-YBTestprojUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,20 +174,18 @@
 		889F4CBB221FE53C00546CE2 /* YBTestproj */ = {
 			isa = PBXGroup;
 			children = (
-				889F4CF7221FEBDC00546CE2 /* camera */,
 				889F4CF6221FEB5A00546CE2 /* PrefixHeader.pch */,
+				889F4D17222137F700546CE2 /* LGDefines.h */,
 				889F4CBC221FE53C00546CE2 /* AppDelegate.h */,
 				889F4CBD221FE53C00546CE2 /* AppDelegate.m */,
-				889F4CF1221FEA1700546CE2 /* home.plist */,
-				889F4CF3221FEA4C00546CE2 /* Model.h */,
-				889F4CF4221FEA4C00546CE2 /* Model.m */,
-				889F4CEE221FE9E400546CE2 /* TableViewController.h */,
-				889F4CEF221FE9E400546CE2 /* TableViewController.m */,
 				889F4CC2221FE53C00546CE2 /* Main.storyboard */,
 				889F4CC5221FE53D00546CE2 /* Assets.xcassets */,
 				889F4CC7221FE53D00546CE2 /* LaunchScreen.storyboard */,
 				889F4CCA221FE53D00546CE2 /* Info.plist */,
 				889F4CCB221FE53D00546CE2 /* main.m */,
+				889F4CFB2220F71800546CE2 /* home */,
+				889F4CF7221FEBDC00546CE2 /* camera */,
+				889F4D02222134B000546CE2 /* LGCamera */,
 			);
 			path = YBTestproj;
 			sourceTree = "<group>";
@@ -189,10 +211,44 @@
 		889F4CF7221FEBDC00546CE2 /* camera */ = {
 			isa = PBXGroup;
 			children = (
+				889F4D002221274900546CE2 /* LGCameraPreviewProgressView.h */,
+				889F4CFF2221274900546CE2 /* LGCameraPreviewProgressView.m */,
+				889F4CFC2220F8B500546CE2 /* LGCameraPreview.h */,
+				889F4CFD2220F8B500546CE2 /* LGCameraPreview.m */,
 				889F4CF8221FF47400546CE2 /* LGCameraOperateViewController.h */,
 				889F4CF9221FF47400546CE2 /* LGCameraOperateViewController.m */,
 			);
 			path = camera;
+			sourceTree = "<group>";
+		};
+		889F4CFB2220F71800546CE2 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				889F4CF1221FEA1700546CE2 /* home.plist */,
+				889F4CF3221FEA4C00546CE2 /* Model.h */,
+				889F4CF4221FEA4C00546CE2 /* Model.m */,
+				889F4CEE221FE9E400546CE2 /* TableViewController.h */,
+				889F4CEF221FE9E400546CE2 /* TableViewController.m */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		889F4D02222134B000546CE2 /* LGCamera */ = {
+			isa = PBXGroup;
+			children = (
+				889F4D09222134B000546CE2 /* HVideoViewController.h */,
+				889F4D06222134B000546CE2 /* HVideoViewController.m */,
+				889F4D03222134B000546CE2 /* HAVPlayer.h */,
+				889F4D08222134B000546CE2 /* HAVPlayer.m */,
+				889F4D07222134B000546CE2 /* HProgressView.h */,
+				889F4D0A222134B000546CE2 /* HProgressView.m */,
+				889F4D0B222134B000546CE2 /* HVideoViewController.xib */,
+				889F4D122221375A00546CE2 /* Utility.h */,
+				889F4D112221375A00546CE2 /* Utility.m */,
+				889F4D15222137C200546CE2 /* DLHDActivityIndicator.h */,
+				889F4D14222137C200546CE2 /* DLHDActivityIndicator.m */,
+			);
+			path = LGCamera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +360,7 @@
 			files = (
 				889F4CC9221FE53D00546CE2 /* LaunchScreen.storyboard in Resources */,
 				889F4CF2221FEA1700546CE2 /* home.plist in Resources */,
+				889F4D10222134B000546CE2 /* HVideoViewController.xib in Resources */,
 				889F4CC6221FE53D00546CE2 /* Assets.xcassets in Resources */,
 				889F4CC4221FE53C00546CE2 /* Main.storyboard in Resources */,
 			);
@@ -408,10 +465,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				889F4CCC221FE53D00546CE2 /* main.m in Sources */,
+				889F4D0E222134B000546CE2 /* HAVPlayer.m in Sources */,
 				889F4CF0221FE9E400546CE2 /* TableViewController.m in Sources */,
+				889F4CFE2220F8B500546CE2 /* LGCameraPreview.m in Sources */,
+				889F4D16222137C300546CE2 /* DLHDActivityIndicator.m in Sources */,
 				889F4CFA221FF47400546CE2 /* LGCameraOperateViewController.m in Sources */,
+				889F4D012221274900546CE2 /* LGCameraPreviewProgressView.m in Sources */,
 				889F4CBE221FE53C00546CE2 /* AppDelegate.m in Sources */,
+				889F4D132221375A00546CE2 /* Utility.m in Sources */,
 				889F4CF5221FEA4C00546CE2 /* Model.m in Sources */,
+				889F4D0F222134B000546CE2 /* HProgressView.m in Sources */,
+				889F4D0D222134B000546CE2 /* HVideoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,9 +648,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EFWLEBR9Q6;
+				DEVELOPMENT_TEAM = 2DANKBZTCS;
 				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/gitHub/LGProject/proj/YBTestproj/YBTestproj/PrefixHeader.pch;
 				INFOPLIST_FILE = YBTestproj/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -603,9 +668,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EFWLEBR9Q6;
+				DEVELOPMENT_TEAM = 2DANKBZTCS;
 				GCC_PREFIX_HEADER = /Users/peanutlee/Desktop/gitHub/LGProject/proj/YBTestproj/YBTestproj/PrefixHeader.pch;
 				INFOPLIST_FILE = YBTestproj/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

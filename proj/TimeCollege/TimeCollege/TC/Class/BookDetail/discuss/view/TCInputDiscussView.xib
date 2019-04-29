@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kh7-wV-VMO" customClass="TCInputDiscussView">
+            <rect key="frame" x="0.0" y="0.0" width="673" height="305"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcZ-6g-yKC">
+                    <rect key="frame" x="10" y="10" width="100" height="25"/>
+                    <color key="backgroundColor" red="1" green="0.81176470590000005" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Ds0-e6-nrn"/>
+                        <constraint firstAttribute="width" constant="100" id="dge-MC-qf2"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="非常好" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-9M-2dz">
+                    <rect key="frame" x="120" y="12" width="52" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUk-zZ-o9o">
+                    <rect key="frame" x="632" y="175" width="31" height="30"/>
+                    <state key="normal" title="提交"/>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mH6-Bi-LHJ">
+                    <rect key="frame" x="10" y="45" width="653" height="120"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="hT5-Yg-vww"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cyan_fade_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="OEm-LA-4JQ">
+                    <rect key="frame" x="0.0" y="297" width="673" height="8"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="f83-Mr-SBV"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="UmS-9M-2dz" firstAttribute="leading" secondItem="xcZ-6g-yKC" secondAttribute="trailing" constant="10" id="2St-Yp-h8I"/>
+                <constraint firstItem="OEm-LA-4JQ" firstAttribute="leading" secondItem="Ka7-AD-daV" secondAttribute="leading" id="3rf-EU-uVQ"/>
+                <constraint firstItem="Ka7-AD-daV" firstAttribute="trailing" secondItem="mH6-Bi-LHJ" secondAttribute="trailing" constant="10" id="4lb-aa-qda"/>
+                <constraint firstItem="jUk-zZ-o9o" firstAttribute="trailing" secondItem="mH6-Bi-LHJ" secondAttribute="trailing" id="5bJ-g2-IUu"/>
+                <constraint firstItem="xcZ-6g-yKC" firstAttribute="leading" secondItem="Ka7-AD-daV" secondAttribute="leading" constant="10" id="AIF-7H-IaT"/>
+                <constraint firstItem="UmS-9M-2dz" firstAttribute="centerY" secondItem="xcZ-6g-yKC" secondAttribute="centerY" id="H8t-wf-mMr"/>
+                <constraint firstItem="xcZ-6g-yKC" firstAttribute="top" secondItem="kh7-wV-VMO" secondAttribute="top" constant="10" id="cQB-wc-6Uw"/>
+                <constraint firstItem="mH6-Bi-LHJ" firstAttribute="top" secondItem="xcZ-6g-yKC" secondAttribute="bottom" constant="10" id="lrd-2e-eWK"/>
+                <constraint firstItem="jUk-zZ-o9o" firstAttribute="top" secondItem="mH6-Bi-LHJ" secondAttribute="bottom" constant="10" id="oLq-4l-1dV"/>
+                <constraint firstItem="mH6-Bi-LHJ" firstAttribute="leading" secondItem="xcZ-6g-yKC" secondAttribute="leading" id="qmF-oY-hep"/>
+                <constraint firstAttribute="bottom" secondItem="OEm-LA-4JQ" secondAttribute="bottom" id="uS8-W5-eGp"/>
+                <constraint firstAttribute="trailing" secondItem="OEm-LA-4JQ" secondAttribute="trailing" id="vW6-av-j6S"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Ka7-AD-daV"/>
+            <connections>
+                <outlet property="commitDis" destination="jUk-zZ-o9o" id="phf-sF-viP"/>
+                <outlet property="disContent" destination="mH6-Bi-LHJ" id="IWg-Tr-UHS"/>
+                <outlet property="fadeImage" destination="OEm-LA-4JQ" id="Ct3-4N-Xj1"/>
+                <outlet property="starIns" destination="UmS-9M-2dz" id="SEw-em-I5y"/>
+                <outlet property="starView" destination="xcZ-6g-yKC" id="R09-rT-xCN"/>
+            </connections>
+            <point key="canvasLocation" x="300.72463768115944" y="-132.25446428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cyan_fade_down.png" width="413.33334350585938" height="7.3333334922790527"/>
+    </resources>
+</document>

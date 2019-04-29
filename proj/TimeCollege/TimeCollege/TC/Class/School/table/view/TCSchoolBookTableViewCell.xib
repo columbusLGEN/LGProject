@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="237" id="Dgn-DI-sHK" customClass="TCSchoolBookTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="237"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dgn-DI-sHK" id="wt7-e1-LKx">
+                <rect key="frame" x="0.0" y="0.0" width="392" height="236.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AtestBookCover.png" translatesAutoresizingMaskIntoConstraints="NO" id="9zh-1l-Ww2">
+                        <rect key="frame" x="15" y="15" width="100" height="54"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="6gy-ES-Y5i"/>
+                            <constraint firstAttribute="height" constant="150" id="wOh-gv-V7s"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="围城" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfZ-DK-G1L">
+                        <rect key="frame" x="125" y="25" width="41" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时代媒体出版社" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fds-wm-KP8">
+                        <rect key="frame" x="125" y="91" width="108" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="《围城》是钱钟书所著的长篇小说，是中国现代文学史上一部风格独特的讽刺小说。被誉为“新儒林外史”。第一版于1947年由上海晨光出版公司出版。故事主要写抗战初期知识分子的群相" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnc-1i-nf2">
+                        <rect key="frame" x="125" y="117" width="257" height="50.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eO-6D-EKJ">
+                        <rect key="frame" x="125" y="57" width="164" height="24"/>
+                        <color key="backgroundColor" red="1" green="0.81176470590000005" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="164" id="Wcw-ek-YoP"/>
+                            <constraint firstAttribute="height" constant="24" id="he5-rS-lQ5"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAN-GX-KOO">
+                        <rect key="frame" x="0.0" y="0.0" width="392" height="1"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Ehe-AK-50A"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="lnc-1i-nf2" secondAttribute="trailing" constant="10" id="8Aq-nH-CJ5"/>
+                    <constraint firstItem="9zh-1l-Ww2" firstAttribute="top" secondItem="wt7-e1-LKx" secondAttribute="top" constant="15" id="Byn-oK-bTV"/>
+                    <constraint firstAttribute="trailing" secondItem="VAN-GX-KOO" secondAttribute="trailing" id="CXP-cX-0j5"/>
+                    <constraint firstItem="LfZ-DK-G1L" firstAttribute="top" secondItem="9zh-1l-Ww2" secondAttribute="top" constant="10" id="UBk-Il-OBe"/>
+                    <constraint firstItem="9zh-1l-Ww2" firstAttribute="leading" secondItem="wt7-e1-LKx" secondAttribute="leading" constant="15" id="W6p-Pf-k5D"/>
+                    <constraint firstItem="lnc-1i-nf2" firstAttribute="top" secondItem="fds-wm-KP8" secondAttribute="bottom" constant="8" id="Xzo-zR-jnX"/>
+                    <constraint firstItem="3eO-6D-EKJ" firstAttribute="leading" secondItem="LfZ-DK-G1L" secondAttribute="leading" id="bpc-Gk-1hl"/>
+                    <constraint firstItem="lnc-1i-nf2" firstAttribute="leading" secondItem="fds-wm-KP8" secondAttribute="leading" id="dkX-B3-SHF"/>
+                    <constraint firstItem="VAN-GX-KOO" firstAttribute="top" secondItem="wt7-e1-LKx" secondAttribute="top" id="emu-yF-Omq"/>
+                    <constraint firstItem="fds-wm-KP8" firstAttribute="top" secondItem="3eO-6D-EKJ" secondAttribute="bottom" constant="10" id="jK9-hn-8z0"/>
+                    <constraint firstItem="fds-wm-KP8" firstAttribute="leading" secondItem="LfZ-DK-G1L" secondAttribute="leading" id="kRj-1X-fSs"/>
+                    <constraint firstItem="VAN-GX-KOO" firstAttribute="leading" secondItem="wt7-e1-LKx" secondAttribute="leading" id="l0V-kw-cX6"/>
+                    <constraint firstItem="3eO-6D-EKJ" firstAttribute="top" secondItem="LfZ-DK-G1L" secondAttribute="bottom" constant="8" id="o53-P7-5Zr"/>
+                    <constraint firstItem="LfZ-DK-G1L" firstAttribute="leading" secondItem="9zh-1l-Ww2" secondAttribute="trailing" constant="10" id="tjE-B1-lgb"/>
+                    <constraint firstAttribute="bottom" secondItem="9zh-1l-Ww2" secondAttribute="bottom" constant="15" id="uA0-6x-1Lu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bookName" destination="LfZ-DK-G1L" id="mFZ-wJ-vPV"/>
+                <outlet property="cover" destination="9zh-1l-Ww2" id="xi1-KW-7of"/>
+                <outlet property="info" destination="lnc-1i-nf2" id="HFV-td-qoH"/>
+                <outlet property="puhlish" destination="fds-wm-KP8" id="pay-uG-Yl0"/>
+                <outlet property="starView" destination="3eO-6D-EKJ" id="vVD-ZD-QGd"/>
+            </connections>
+            <point key="canvasLocation" x="15.942028985507248" y="72.65625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="AtestBookCover.png" width="37.666667938232422" height="54"/>
+    </resources>
+</document>

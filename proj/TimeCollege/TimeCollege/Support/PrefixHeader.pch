@@ -1,0 +1,30 @@
+//
+//  PrefixHeader.pch
+//  TimeCollege
+//
+//  Created by Peanut Lee on 2019/4/15.
+//  Copyright © 2019 lee. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/// 第三方
+#import "MJRefresh.h"
+#import "Masonry.h"
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
+
+/// 分类
+#import "UIColor+TCColor.h"
+#import "UIColor+Extension.h"
+#import "UIView+Extension.h"
+
+#import "LGDefines.h"
+
+#define TCPlaceHolderImage [UIImage imageNamed:@""]
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */
