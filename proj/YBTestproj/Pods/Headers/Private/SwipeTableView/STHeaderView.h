@@ -1,1 +1,0 @@
-../../../SwipeTableView/SwipeTableView/SwipeTableView/STHeaderView.h
