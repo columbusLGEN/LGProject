@@ -14,10 +14,25 @@
 @property (weak, nonatomic) IBOutlet UILabel *puhlish;
 @property (weak, nonatomic) IBOutlet UILabel *info;
 @property (weak, nonatomic) IBOutlet UIView *starView;
+@property (weak, nonatomic) IBOutlet UIView *line;
 
 @end
 
 @implementation TCSchoolBookTableViewCell
+
+- (void)setIndex:(NSIndexPath *)index{
+    _index = index;
+    if (index.row == 0) {
+        _line.hidden = YES;
+    }
+}
+
+- (void)index:(NSIndexPath *)index firstCellHiddenLine:(BOOL)firstCellHiddenLine{
+    if (index.row == 0 && firstCellHiddenLine) {
+        _line.hidden = YES;
+    }
+}
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];

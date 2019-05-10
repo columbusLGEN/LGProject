@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCSchoolBookTableViewController : LGTableViewController
+/** 第一个cell 是否隐藏分割线 */
+@property (assign,nonatomic) BOOL firstCellHiddenLine;
 
 @end
 

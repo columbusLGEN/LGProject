@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCSchoolBookTableViewCell : UITableViewCell
+@property (strong,nonatomic) NSIndexPath *index;
+- (void)index:(NSIndexPath *)index firstCellHiddenLine:(BOOL)firstCellHiddenLine;
 
 @end
 

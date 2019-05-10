@@ -8,7 +8,7 @@
 
 #import "TCMainTabBarController.h"
 #import "TCMyBookrackViewController.h"
-#import "TCScoolBookrackViewController.h"
+#import "TCSchoolBookPageViewController.h"
 #import "LGBaseNavigationController.h"
 
 @interface TCMainTabBarController ()
@@ -22,9 +22,9 @@
     
     [self creatChildViewControllerWith:[TCMyBookrackViewController new] title:@"我的书橱" iconNormal:@"icon_tb_unselected_my" iconSelect:@"icon_tb_selected_my"];
 
-    [self creatChildViewControllerWith:[TCScoolBookrackViewController new] title:@"学校书橱" iconNormal:@"icon_tb_unselected_school" iconSelect:@"icon_tb_selected_school"];
+    [self creatChildViewControllerWith:[TCSchoolBookPageViewController bookpagevc] title:@"学校书橱" iconNormal:@"icon_tb_unselected_school" iconSelect:@"icon_tb_selected_school"];
     
-    self.selectedIndex = 1;
+//    self.selectedIndex = 1;
 }
 
 - (void)creatChildViewControllerWith:(UIViewController *)vc title:(NSString *)title iconNormal:(NSString *)iconNormal iconSelect:(NSString *)iconSelect{

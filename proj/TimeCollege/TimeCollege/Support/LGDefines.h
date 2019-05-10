@@ -15,6 +15,12 @@
 //#define debugMethod()
 //#endif
 
+static CGFloat LGNavBarButtonHeight = 30;
+static CGFloat marginEight = 8;
+static CGFloat marginFifteen = 15;
+static CGFloat marginTen = 10;
+static CGFloat marginFive = 5;
+
 /// MARK: UUID
 #define kLGUUID [[UIDevice currentDevice] identifierForVendor].UUIDString
 
@@ -38,7 +44,7 @@
 ///MARK:通知中心 （单例对象）
 #define kLGNotificationCenter [NSNotificationCenter defaultCenter]
 ///MARK:导航栏高度(包括状态栏)
-#define kLGNavHeight (([[UIScreen mainScreen] bounds].size.height == 812) ? 88 : 64)
+#define kLGNavHeight (([[UIScreen mainScreen] bounds].size.height >= 812) ? 88 : 64)
 ///MARK:导航栏高度(不包括状态栏)
 #define kLGNavSingleBarHeight 44
 ///MARK:状态栏高度
@@ -56,4 +62,5 @@
 
 #define kNoticeWordNoData            @"暂无数据"
 #define kNoticeWordNoMoreData        @"暂无更多数据"
-
+#define kNoticeWordNetLost           @"连接失败，请检查您的网络"
+#define kNoticeWordSearchEmpty       @"哎呦，没有找到你想要的"

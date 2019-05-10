@@ -45,13 +45,14 @@
     configration.showNavigation = YES;
     configration.scrollMenu = NO;
     configration.aligmentModeCenter = NO;
-    configration.lineWidthEqualFontWidth = YES;
     configration.showBottomLine = YES;
     
     configration.lineColor = UIColor.TCColor_mainColor;
     configration.bottomLineBgColor = UIColor.YBColor_F3F3F3;
     configration.selectedItemColor = UIColor.TCColor_mainColor;
     configration.normalItemColor = UIColor.YBColor_6A6A6A;
+    
+    configration.lineWidthEqualFontWidth = YES;
     configration.lineHeight = 1;
     configration.lineBottomMargin = 10;
     

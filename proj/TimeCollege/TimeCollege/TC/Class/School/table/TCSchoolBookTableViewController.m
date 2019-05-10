@@ -29,15 +29,27 @@ static NSString * const sbTableViewCell = @"TCSchoolBookTableViewCell";
         make.edges.equalTo(self.view);
     }];
     [self.tableView registerNib:[UINib nibWithNibName:sbTableViewCell bundle:nil] forCellReuseIdentifier:sbTableViewCell];
+    
+//    self.tableView.mj_header = nil;
+//    self.tableView.mj_footer = nil;
+}
+
+// MARK: 接收数据
+- (void)setArray:(NSArray *)array{
+    [super setArray:array];
+    
 }
 
 - (void)headerRefresh{
     [super headerRefresh];
+    // MARK: 获取数据(下拉刷新)
+    
     
     [self stopRefreshAnimate];
 }
 - (void)footerRefresh{
-    self.currentPage = 1;
+    self.currentPage += 1;
+    // MARK: 上拉获取数据
     [self stopRefreshAnimate];
     
 }
@@ -47,7 +59,8 @@ static NSString * const sbTableViewCell = @"TCSchoolBookTableViewCell";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TCSchoolBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sbTableViewCell forIndexPath:indexPath];
-    
+    cell.index = indexPath;
+    [cell index:indexPath firstCellHiddenLine:self.firstCellHiddenLine];
     return cell;
 }
 

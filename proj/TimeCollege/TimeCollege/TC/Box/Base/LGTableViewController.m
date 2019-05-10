@@ -24,6 +24,10 @@
     
 }
 
+- (void)setArray:(NSArray *)array{
+    _array = array;
+}
+
 - (void)headerRefresh{
     self.currentPage = 0;
     self.array = nil;

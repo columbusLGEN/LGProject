@@ -10,6 +10,8 @@
 #import "TCMyCollectionViewController.h"
 #import "TCMyBookSortView.h"
 #import "TCMyBookSwitchSortWayView.h"
+#import "TCSearchViewController.h"
+#import "UIViewController+LGExtension.h"
 
 @interface TCMyBookrackViewController ()
 @property (weak,nonatomic) UIImageView *shadowTop;
@@ -28,7 +30,9 @@
 
 /** 搜索 */
 - (void)searchMyBookrack{
-    
+    TCSearchViewController *searchvc = TCSearchViewController.new;
+    searchvc.blrType = 0;
+    [self.navigationController pushViewController:searchvc animated:YES];
 }
 /** 切换排序方式 */
 - (void)switchSortWay:(UIButton *)sender{
@@ -75,8 +79,9 @@
     ///
     self.title = @"我的书橱";
     /// 搜索按钮
-    UIBarButtonItem *right = [UIBarButtonItem.alloc initWithImage:[UIImage imageNamed:@"icon_search_white"] style:UIBarButtonItemStyleDone target:self action:@selector(searchMyBookrack)];
-    self.navigationItem.rightBarButtonItem = right;
+    [self addNavSearch];
+    
+    self.navigationItem.leftBarButtonItems = @[];
     
     /// 取 我的书架排序方式
     NSNumber *sortWay = [NSUserDefaults.standardUserDefaults valueForKey:self.kMyBookSortWay];

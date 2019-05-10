@@ -47,6 +47,17 @@
 		8808337B22699D7600C462D4 /* TCBIContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808337A22699D7600C462D4 /* TCBIContentCell.m */; };
 		8808337E22699DA900C462D4 /* TCBIRecoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8808337D22699DA900C462D4 /* TCBIRecoCell.m */; };
 		880833812269B09500C462D4 /* TCBookInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880833802269B09500C462D4 /* TCBookInfoTableViewController.m */; };
+		8851C7EF22827EAF00995AFE /* TCSchoolBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C7EE22827EAF00995AFE /* TCSchoolBookPageViewController.m */; };
+		8851C7F52282A28000995AFE /* TCSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C7F42282A28000995AFE /* TCSearchViewController.m */; };
+		8851C7F82282A7D100995AFE /* LGNavigationSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C7F62282A7D000995AFE /* LGNavigationSearchBar.m */; };
+		8851C7FA2282AAF000995AFE /* icon_search_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8851C7F92282AAEF00995AFE /* icon_search_gray@3x.png */; };
+		8851C7FD2282B95600995AFE /* HPSearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C7FC2282B95600995AFE /* HPSearchHistoryView.m */; };
+		8851C8002282C37800995AFE /* LGLocalSearchRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C7FE2282C37800995AFE /* LGLocalSearchRecord.m */; };
+		8851C8032282C3FA00995AFE /* LGRecordButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C8022282C3FA00995AFE /* LGRecordButtonLoader.m */; };
+		8851C8082283DA6C00995AFE /* TCBookListDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C8072283DA6C00995AFE /* TCBookListDataHandler.m */; };
+		8851C80B2284128300995AFE /* TCErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8851C80A2284128300995AFE /* TCErrorViewController.m */; };
+		8851C80E2284186200995AFE /* img_empty_network@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8851C80C2284186200995AFE /* img_empty_network@3x.png */; };
+		8851C80F2284186200995AFE /* img_empty_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8851C80D2284186200995AFE /* img_empty_search@3x.png */; };
 		8892956E22605EAD0015C7DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892956D22605EAD0015C7DB /* AppDelegate.m */; };
 		8892957622605EBE0015C7DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8892957522605EBE0015C7DB /* Assets.xcassets */; };
 		8892957C22605EBE0015C7DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892957B22605EBE0015C7DB /* main.m */; };
@@ -67,6 +78,8 @@
 		889295DA226457D80015C7DB /* icon_search_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889295D9226457D80015C7DB /* icon_search_white@3x.png */; };
 		889295DE226458A80015C7DB /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295DC226458A80015C7DB /* UIColor+Extension.m */; };
 		889295E1226458E90015C7DB /* UIColor+TCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 889295E0226458E90015C7DB /* UIColor+TCColor.m */; };
+		88B4CCDC2285232E00C7D0FE /* TCSearchListCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B4CCDB2285232E00C7D0FE /* TCSearchListCountView.m */; };
+		88B4CCDF22854AAC00C7D0FE /* UIViewController+LGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B4CCDE22854AAC00C7D0FE /* UIViewController+LGExtension.m */; };
 		CCDC663A4888A1E848F63AEB /* Pods_TimeCollegeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D386EC81F33EEDD5DF1642 /* Pods_TimeCollegeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +170,25 @@
 		8808337D22699DA900C462D4 /* TCBIRecoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBIRecoCell.m; sourceTree = "<group>"; };
 		8808337F2269B09500C462D4 /* TCBookInfoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookInfoTableViewController.h; sourceTree = "<group>"; };
 		880833802269B09500C462D4 /* TCBookInfoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookInfoTableViewController.m; sourceTree = "<group>"; };
+		8851C7ED22827EAF00995AFE /* TCSchoolBookPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSchoolBookPageViewController.h; sourceTree = "<group>"; };
+		8851C7EE22827EAF00995AFE /* TCSchoolBookPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCSchoolBookPageViewController.m; sourceTree = "<group>"; };
+		8851C7F32282A28000995AFE /* TCSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSearchViewController.h; sourceTree = "<group>"; };
+		8851C7F42282A28000995AFE /* TCSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCSearchViewController.m; sourceTree = "<group>"; };
+		8851C7F62282A7D000995AFE /* LGNavigationSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNavigationSearchBar.m; sourceTree = "<group>"; };
+		8851C7F72282A7D100995AFE /* LGNavigationSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNavigationSearchBar.h; sourceTree = "<group>"; };
+		8851C7F92282AAEF00995AFE /* icon_search_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_search_gray@3x.png"; sourceTree = "<group>"; };
+		8851C7FB2282B95600995AFE /* HPSearchHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPSearchHistoryView.h; sourceTree = "<group>"; };
+		8851C7FC2282B95600995AFE /* HPSearchHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPSearchHistoryView.m; sourceTree = "<group>"; };
+		8851C7FE2282C37800995AFE /* LGLocalSearchRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGLocalSearchRecord.m; sourceTree = "<group>"; };
+		8851C7FF2282C37800995AFE /* LGLocalSearchRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGLocalSearchRecord.h; sourceTree = "<group>"; };
+		8851C8012282C3FA00995AFE /* LGRecordButtonLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGRecordButtonLoader.h; sourceTree = "<group>"; };
+		8851C8022282C3FA00995AFE /* LGRecordButtonLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGRecordButtonLoader.m; sourceTree = "<group>"; };
+		8851C8062283DA6C00995AFE /* TCBookListDataHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookListDataHandler.h; sourceTree = "<group>"; };
+		8851C8072283DA6C00995AFE /* TCBookListDataHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookListDataHandler.m; sourceTree = "<group>"; };
+		8851C8092284128300995AFE /* TCErrorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCErrorViewController.h; sourceTree = "<group>"; };
+		8851C80A2284128300995AFE /* TCErrorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCErrorViewController.m; sourceTree = "<group>"; };
+		8851C80C2284186200995AFE /* img_empty_network@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_empty_network@3x.png"; sourceTree = "<group>"; };
+		8851C80D2284186200995AFE /* img_empty_search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_empty_search@3x.png"; sourceTree = "<group>"; };
 		8892956922605EAD0015C7DB /* TimeCollege.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCollege.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892956C22605EAD0015C7DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8892956D22605EAD0015C7DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -195,6 +227,10 @@
 		889295DD226458A80015C7DB /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		889295DF226458E90015C7DB /* UIColor+TCColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+TCColor.h"; sourceTree = "<group>"; };
 		889295E0226458E90015C7DB /* UIColor+TCColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TCColor.m"; sourceTree = "<group>"; };
+		88B4CCDA2285232E00C7D0FE /* TCSearchListCountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSearchListCountView.h; sourceTree = "<group>"; };
+		88B4CCDB2285232E00C7D0FE /* TCSearchListCountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCSearchListCountView.m; sourceTree = "<group>"; };
+		88B4CCDD22854AAC00C7D0FE /* UIViewController+LGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LGExtension.h"; sourceTree = "<group>"; };
+		88B4CCDE22854AAC00C7D0FE /* UIViewController+LGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LGExtension.m"; sourceTree = "<group>"; };
 		94892B219431448B99177D53 /* Pods-TimeCollegeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollegeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollegeTests/Pods-TimeCollegeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6203267234F303F092C705 /* Pods-TimeCollege.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollege.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollege/Pods-TimeCollege.debug.xcconfig"; sourceTree = "<group>"; };
 		B6DDD1FE840A784C40A1F38F /* Pods_TimeCollegeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeCollegeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,6 +372,12 @@
 		880833432266D75000C462D4 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				8851C7FF2282C37800995AFE /* LGLocalSearchRecord.h */,
+				8851C7FE2282C37800995AFE /* LGLocalSearchRecord.m */,
+				8851C8012282C3FA00995AFE /* LGRecordButtonLoader.h */,
+				8851C8022282C3FA00995AFE /* LGRecordButtonLoader.m */,
+				8851C8062283DA6C00995AFE /* TCBookListDataHandler.h */,
+				8851C8072283DA6C00995AFE /* TCBookListDataHandler.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -418,6 +460,35 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		8851C7F02282830000995AFE /* unused */ = {
+			isa = PBXGroup;
+			children = (
+				889295CB22644AD60015C7DB /* TCScoolBookrackViewController.h */,
+				889295CC22644AD60015C7DB /* TCScoolBookrackViewController.m */,
+			);
+			path = unused;
+			sourceTree = "<group>";
+		};
+		8851C7F12282A26300995AFE /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8851C7F72282A7D100995AFE /* LGNavigationSearchBar.h */,
+				8851C7F62282A7D000995AFE /* LGNavigationSearchBar.m */,
+				8851C7FB2282B95600995AFE /* HPSearchHistoryView.h */,
+				8851C7FC2282B95600995AFE /* HPSearchHistoryView.m */,
+				88B4CCDA2285232E00C7D0FE /* TCSearchListCountView.h */,
+				88B4CCDB2285232E00C7D0FE /* TCSearchListCountView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8851C7F22282A26800995AFE /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		8892956022605EAD0015C7DB = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +560,8 @@
 				889295A522607FF50015C7DB /* My */,
 				889295A62260800C0015C7DB /* School */,
 				889295AB226425680015C7DB /* Search */,
+				8851C8092284128300995AFE /* TCErrorViewController.h */,
+				8851C80A2284128300995AFE /* TCErrorViewController.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -527,9 +600,10 @@
 		889295A62260800C0015C7DB /* School */ = {
 			isa = PBXGroup;
 			children = (
+				8851C7F02282830000995AFE /* unused */,
 				8808334A2266FFA000C462D4 /* table */,
-				889295CB22644AD60015C7DB /* TCScoolBookrackViewController.h */,
-				889295CC22644AD60015C7DB /* TCScoolBookrackViewController.m */,
+				8851C7ED22827EAF00995AFE /* TCSchoolBookPageViewController.h */,
+				8851C7EE22827EAF00995AFE /* TCSchoolBookPageViewController.m */,
 			);
 			path = School;
 			sourceTree = "<group>";
@@ -537,6 +611,10 @@
 		889295AB226425680015C7DB /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				8851C7F22282A26800995AFE /* model */,
+				8851C7F12282A26300995AFE /* view */,
+				8851C7F32282A28000995AFE /* TCSearchViewController.h */,
+				8851C7F42282A28000995AFE /* TCSearchViewController.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -581,7 +659,10 @@
 				889295D22264548E0015C7DB /* icon_tb_unselected_my@3x.png */,
 				889295D32264548E0015C7DB /* icon_tb_unselected_school@3x.png */,
 				889295D9226457D80015C7DB /* icon_search_white@3x.png */,
+				8851C7F92282AAEF00995AFE /* icon_search_gray@3x.png */,
 				880833252265B52100C462D4 /* cyan_fade_down@3x.png */,
+				8851C80C2284186200995AFE /* img_empty_network@3x.png */,
+				8851C80D2284186200995AFE /* img_empty_search@3x.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -595,6 +676,8 @@
 				889295E0226458E90015C7DB /* UIColor+TCColor.m */,
 				889295DD226458A80015C7DB /* UIColor+Extension.h */,
 				889295DC226458A80015C7DB /* UIColor+Extension.m */,
+				88B4CCDD22854AAC00C7D0FE /* UIViewController+LGExtension.h */,
+				88B4CCDE22854AAC00C7D0FE /* UIViewController+LGExtension.m */,
 			);
 			path = Catagory;
 			sourceTree = "<group>";
@@ -721,11 +804,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				889295D72264548E0015C7DB /* icon_tb_unselected_school@3x.png in Resources */,
+				8851C80F2284186200995AFE /* img_empty_search@3x.png in Resources */,
 				88044F5E227591EF00F18E66 /* icon_arrow_down_gray@3x.png in Resources */,
 				88044F7F2276E3EB00F18E66 /* TCBookDetaileBookBottomView.xib in Resources */,
 				8808337122687AC700C462D4 /* icon_arrow_left_white@3x.png in Resources */,
 				889295D82264548E0015C7DB /* icon_tb_selected_my@3x.png in Resources */,
 				88044F722276A61100F18E66 /* TCBookDiscussTableViewCell.xib in Resources */,
+				8851C80E2284186200995AFE /* img_empty_network@3x.png in Resources */,
 				880833422266CF2700C462D4 /* TCMyBookSwitchSortWayView.xib in Resources */,
 				889295DA226457D80015C7DB /* icon_search_white@3x.png in Resources */,
 				880833542267018900C462D4 /* TCSchoolBookTableViewCell.xib in Resources */,
@@ -733,6 +818,7 @@
 				88044F672275975500F18E66 /* TCBookInfoRecoCollectionViewCell.xib in Resources */,
 				880833262265B52100C462D4 /* cyan_fade_down@3x.png in Resources */,
 				88044F5C2275758F00F18E66 /* TCBookInfoHeaderView.xib in Resources */,
+				8851C7FA2282AAF000995AFE /* icon_search_gray@3x.png in Resources */,
 				889295D62264548E0015C7DB /* icon_tb_unselected_my@3x.png in Resources */,
 				8892957622605EBE0015C7DB /* Assets.xcassets in Resources */,
 				889295D52264548E0015C7DB /* icon_tb_selected_school@3x.png in Resources */,
@@ -853,25 +939,32 @@
 				88044F652275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m in Sources */,
 				889295CD22644AD60015C7DB /* TCScoolBookrackViewController.m in Sources */,
 				880833812269B09500C462D4 /* TCBookInfoTableViewController.m in Sources */,
+				8851C8002282C37800995AFE /* LGLocalSearchRecord.m in Sources */,
 				88044F782276E2A100F18E66 /* TCBookDetaileBookBottomView.m in Sources */,
 				88044F822276EDBB00F18E66 /* TCBookDetailManagerController.m in Sources */,
 				88044F5A2275758500F18E66 /* TCBookInfoHeaderView.m in Sources */,
+				8851C80B2284128300995AFE /* TCErrorViewController.m in Sources */,
 				889295C62264340F0015C7DB /* LGBaseCollectionViewController.m in Sources */,
 				889295C32264340F0015C7DB /* LGBaseModel.m in Sources */,
 				8808332A2265BF4500C462D4 /* TCMyCollectionViewController.m in Sources */,
 				880833402266CD0C00C462D4 /* TCMyBookSwitchSortWayView.m in Sources */,
+				8851C7F82282A7D100995AFE /* LGNavigationSearchBar.m in Sources */,
+				88B4CCDC2285232E00C7D0FE /* TCSearchListCountView.m in Sources */,
 				889295C42264340F0015C7DB /* LGBaseNavigationController.m in Sources */,
 				88044F702276A60800F18E66 /* TCBookDiscussTableViewCell.m in Sources */,
+				88B4CCDF22854AAC00C7D0FE /* UIViewController+LGExtension.m in Sources */,
 				88044F622275971A00F18E66 /* TCBookInfoRecoCollectionViewController.m in Sources */,
 				88044F472271628000F18E66 /* LGParallelButton.m in Sources */,
 				880833492266F82600C462D4 /* UIView+Extension.m in Sources */,
 				88044F6B22769F4A00F18E66 /* TCInputDiscussView.m in Sources */,
 				8808337E22699DA900C462D4 /* TCBIRecoCell.m in Sources */,
+				8851C7EF22827EAF00995AFE /* TCSchoolBookPageViewController.m in Sources */,
 				880833302265CD7600C462D4 /* TCMyBookrackModel.m in Sources */,
 				88044F56227189AA00F18E66 /* TCBookDiscussViewController.m in Sources */,
 				8808333D2266C98900C462D4 /* TCMyBookSortView.m in Sources */,
 				880833522267011400C462D4 /* TCSchoolBookTableViewCell.m in Sources */,
 				889295DE226458A80015C7DB /* UIColor+Extension.m in Sources */,
+				8851C8032282C3FA00995AFE /* LGRecordButtonLoader.m in Sources */,
 				8892957C22605EBE0015C7DB /* main.m in Sources */,
 				8808334D2267000C00C462D4 /* TCSchoolBookTableViewController.m in Sources */,
 				889295CA22644A650015C7DB /* TCMyBookrackViewController.m in Sources */,
@@ -886,7 +979,10 @@
 				8808337822699D3C00C462D4 /* TCBIMessageCell.m in Sources */,
 				8808332D2265BF6B00C462D4 /* TCMyCollectionViewCell.m in Sources */,
 				889295E1226458E90015C7DB /* UIColor+TCColor.m in Sources */,
+				8851C7FD2282B95600995AFE /* HPSearchHistoryView.m in Sources */,
 				8892956E22605EAD0015C7DB /* AppDelegate.m in Sources */,
+				8851C7F52282A28000995AFE /* TCSearchViewController.m in Sources */,
+				8851C8082283DA6C00995AFE /* TCBookListDataHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
