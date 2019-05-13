@@ -35,10 +35,24 @@
 
 #pragma mark - setter
 
+- (void)setLeftTitle:(NSString *)leftTitle{
+    [self.leftButton setTitle:leftTitle forState:UIControlStateNormal];
+}
 - (void)setLeftImgName:(NSString *)leftImgName{
     [self.leftButton setImage:[UIImage imageNamed:leftImgName]
                      forState:UIControlStateNormal];
 }
+- (void)setRightButton:(UIButton *)rightButton{
+    _rightButton = rightButton;
+    [self addSubview:rightButton];
+    [rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right).offset(-marginFive);
+        make.width.mas_equalTo(50);
+        make.bottom.equalTo(self.fakeSearch.mas_bottom);
+        make.height.mas_equalTo(35);
+    }];
+}
+
 - (void)setIsEditing:(BOOL)isEditing{
     if (isEditing) {
         [self.fakeSearch setTitle:nil forState:UIControlStateNormal];
@@ -58,7 +72,7 @@
         
         [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(marginFive);
-            make.width.mas_equalTo(35);
+            make.width.mas_equalTo(50);
             make.bottom.equalTo(self.fakeSearch.mas_bottom);
             make.height.mas_equalTo(35);
         }];

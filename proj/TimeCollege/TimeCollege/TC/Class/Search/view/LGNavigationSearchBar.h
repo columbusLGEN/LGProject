@@ -35,7 +35,12 @@ typedef NS_ENUM(NSUInteger, NavState) {
 
 @property (weak,nonatomic) id<LGNavigationSearchBarDelelgate> delegate;
 
+/// 左边 icon name
 @property (weak,nonatomic) NSString *leftImgName;
+/// 左边标题
+@property (weak,nonatomic) NSString *leftTitle;
+/// 右边按钮
+@property (strong,nonatomic) UIButton *rightButton;
 
 CGFloat navHeight(void);
 
