@@ -12,10 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LGBaseCollectionViewController : LGBaseViewController<
 UICollectionViewDelegate,
-UICollectionViewDataSource>
+UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout>
 @property (strong,nonatomic) UICollectionView *collectionView;
 @property (strong,nonatomic) UICollectionViewFlowLayout *flowLayout;
 @property (strong,nonatomic) NSArray *array;
+
 
 @end
 

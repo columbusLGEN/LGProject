@@ -95,6 +95,15 @@
 		88B4CCF42285716B00C7D0FE /* icon_bookrack_edit_trash@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B4CCF32285716A00C7D0FE /* icon_bookrack_edit_trash@3x.png */; };
 		88B4CCF72285744700C7D0FE /* TCMyBookrackEditMakesureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B4CCF62285744700C7D0FE /* TCMyBookrackEditMakesureView.m */; };
 		88B4CCF92285747700C7D0FE /* TCMyBookrackEditMakesureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B4CCF82285747700C7D0FE /* TCMyBookrackEditMakesureView.xib */; };
+		88C0010E228A5EC2006C2305 /* TCListHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C0010D228A5EC2006C2305 /* TCListHeaderTableViewController.m */; };
+		88C00113228A6222006C2305 /* TCHeaderCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C00112228A6222006C2305 /* TCHeaderCollectionViewController.m */; };
+		88C00116228A6286006C2305 /* TCHeaderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C00115228A6286006C2305 /* TCHeaderCollectionViewCell.m */; };
+		88C00119228A62A0006C2305 /* TCListHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C00118228A62A0006C2305 /* TCListHeaderTableViewCell.m */; };
+		88C00120228A9636006C2305 /* TCBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C0011F228A9636006C2305 /* TCBaseModel.m */; };
+		88C00123228A9687006C2305 /* TCBookCatagoryLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C00122228A9687006C2305 /* TCBookCatagoryLineModel.m */; };
+		88C00126228A96A6006C2305 /* TCQuadrateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C00125228A96A6006C2305 /* TCQuadrateModel.m */; };
+		88C00128228A9E5C006C2305 /* fenleiTest.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88C00127228A9E5C006C2305 /* fenleiTest.plist */; };
+		88C0012B228BEE8C006C2305 /* TCTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C0012A228BEE8C006C2305 /* TCTriangleView.m */; };
 		CCDC663A4888A1E848F63AEB /* Pods_TimeCollegeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D386EC81F33EEDD5DF1642 /* Pods_TimeCollegeUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -268,6 +277,23 @@
 		88B4CCF52285744700C7D0FE /* TCMyBookrackEditMakesureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMyBookrackEditMakesureView.h; sourceTree = "<group>"; };
 		88B4CCF62285744700C7D0FE /* TCMyBookrackEditMakesureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMyBookrackEditMakesureView.m; sourceTree = "<group>"; };
 		88B4CCF82285747700C7D0FE /* TCMyBookrackEditMakesureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCMyBookrackEditMakesureView.xib; sourceTree = "<group>"; };
+		88C0010C228A5EC2006C2305 /* TCListHeaderTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCListHeaderTableViewController.h; sourceTree = "<group>"; };
+		88C0010D228A5EC2006C2305 /* TCListHeaderTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCListHeaderTableViewController.m; sourceTree = "<group>"; };
+		88C00111228A6222006C2305 /* TCHeaderCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCHeaderCollectionViewController.h; sourceTree = "<group>"; };
+		88C00112228A6222006C2305 /* TCHeaderCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCHeaderCollectionViewController.m; sourceTree = "<group>"; };
+		88C00114228A6286006C2305 /* TCHeaderCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCHeaderCollectionViewCell.h; sourceTree = "<group>"; };
+		88C00115228A6286006C2305 /* TCHeaderCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCHeaderCollectionViewCell.m; sourceTree = "<group>"; };
+		88C00117228A62A0006C2305 /* TCListHeaderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCListHeaderTableViewCell.h; sourceTree = "<group>"; };
+		88C00118228A62A0006C2305 /* TCListHeaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCListHeaderTableViewCell.m; sourceTree = "<group>"; };
+		88C0011E228A9636006C2305 /* TCBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBaseModel.h; sourceTree = "<group>"; };
+		88C0011F228A9636006C2305 /* TCBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBaseModel.m; sourceTree = "<group>"; };
+		88C00121228A9687006C2305 /* TCBookCatagoryLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBookCatagoryLineModel.h; sourceTree = "<group>"; };
+		88C00122228A9687006C2305 /* TCBookCatagoryLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBookCatagoryLineModel.m; sourceTree = "<group>"; };
+		88C00124228A96A6006C2305 /* TCQuadrateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCQuadrateModel.h; sourceTree = "<group>"; };
+		88C00125228A96A6006C2305 /* TCQuadrateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCQuadrateModel.m; sourceTree = "<group>"; };
+		88C00127228A9E5C006C2305 /* fenleiTest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = fenleiTest.plist; sourceTree = "<group>"; };
+		88C00129228BEE8C006C2305 /* TCTriangleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCTriangleView.h; sourceTree = "<group>"; };
+		88C0012A228BEE8C006C2305 /* TCTriangleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCTriangleView.m; sourceTree = "<group>"; };
 		94892B219431448B99177D53 /* Pods-TimeCollegeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollegeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollegeTests/Pods-TimeCollegeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6203267234F303F092C705 /* Pods-TimeCollege.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeCollege.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeCollege/Pods-TimeCollege.debug.xcconfig"; sourceTree = "<group>"; };
 		B6DDD1FE840A784C40A1F38F /* Pods_TimeCollegeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeCollegeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -428,10 +454,11 @@
 		8808334A2266FFA000C462D4 /* table */ = {
 			isa = PBXGroup;
 			children = (
-				8808334F226700C500C462D4 /* model */,
-				8808334E226700BE00C462D4 /* view */,
 				8808334B2267000C00C462D4 /* TCSchoolBookTableViewController.h */,
 				8808334C2267000C00C462D4 /* TCSchoolBookTableViewController.m */,
+				88C0010B228A594C006C2305 /* ListHeader */,
+				8808334F226700C500C462D4 /* model */,
+				8808334E226700BE00C462D4 /* view */,
 			);
 			path = table;
 			sourceTree = "<group>";
@@ -598,6 +625,7 @@
 		8892959F226061520015C7DB /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				88C0011D228A961C006C2305 /* ProBaseObject */,
 				880833582267238600C462D4 /* BookDetail */,
 				889295A1226061BF0015C7DB /* Main */,
 				889295A522607FF50015C7DB /* My */,
@@ -643,10 +671,10 @@
 		889295A62260800C0015C7DB /* School */ = {
 			isa = PBXGroup;
 			children = (
-				8851C7F02282830000995AFE /* unused */,
-				8808334A2266FFA000C462D4 /* table */,
 				8851C7ED22827EAF00995AFE /* TCSchoolBookPageViewController.h */,
 				8851C7EE22827EAF00995AFE /* TCSchoolBookPageViewController.m */,
+				8808334A2266FFA000C462D4 /* table */,
+				8851C7F02282830000995AFE /* unused */,
 			);
 			path = School;
 			sourceTree = "<group>";
@@ -747,6 +775,53 @@
 				88B4CCF82285747700C7D0FE /* TCMyBookrackEditMakesureView.xib */,
 			);
 			path = Edit;
+			sourceTree = "<group>";
+		};
+		88C0010B228A594C006C2305 /* ListHeader */ = {
+			isa = PBXGroup;
+			children = (
+				88C0010C228A5EC2006C2305 /* TCListHeaderTableViewController.h */,
+				88C0010D228A5EC2006C2305 /* TCListHeaderTableViewController.m */,
+				88C00111228A6222006C2305 /* TCHeaderCollectionViewController.h */,
+				88C00112228A6222006C2305 /* TCHeaderCollectionViewController.m */,
+				88C00110228A60C7006C2305 /* View */,
+				88C0010F228A5FAF006C2305 /* Model */,
+			);
+			path = ListHeader;
+			sourceTree = "<group>";
+		};
+		88C0010F228A5FAF006C2305 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88C00121228A9687006C2305 /* TCBookCatagoryLineModel.h */,
+				88C00122228A9687006C2305 /* TCBookCatagoryLineModel.m */,
+				88C00124228A96A6006C2305 /* TCQuadrateModel.h */,
+				88C00125228A96A6006C2305 /* TCQuadrateModel.m */,
+				88C00127228A9E5C006C2305 /* fenleiTest.plist */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		88C00110228A60C7006C2305 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				88C00117228A62A0006C2305 /* TCListHeaderTableViewCell.h */,
+				88C00118228A62A0006C2305 /* TCListHeaderTableViewCell.m */,
+				88C00114228A6286006C2305 /* TCHeaderCollectionViewCell.h */,
+				88C00115228A6286006C2305 /* TCHeaderCollectionViewCell.m */,
+				88C00129228BEE8C006C2305 /* TCTriangleView.h */,
+				88C0012A228BEE8C006C2305 /* TCTriangleView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		88C0011D228A961C006C2305 /* ProBaseObject */ = {
+			isa = PBXGroup;
+			children = (
+				88C0011E228A9636006C2305 /* TCBaseModel.h */,
+				88C0011F228A9636006C2305 /* TCBaseModel.m */,
+			);
+			path = ProBaseObject;
 			sourceTree = "<group>";
 		};
 		A6F678F302E1E850BA2835C7 /* Pods */ = {
@@ -887,6 +962,7 @@
 				889295DA226457D80015C7DB /* icon_search_white@3x.png in Resources */,
 				88B4CCED22856C0300C7D0FE /* icon_bookrack_edit_no@3x.png in Resources */,
 				884ED6CF228903D900B5E1AE /* img_download_start@3x.png in Resources */,
+				88C00128228A9E5C006C2305 /* fenleiTest.plist in Resources */,
 				880833542267018900C462D4 /* TCSchoolBookTableViewCell.xib in Resources */,
 				88044F6D22769F5B00F18E66 /* TCInputDiscussView.xib in Resources */,
 				88B4CCF42285716B00C7D0FE /* icon_bookrack_edit_trash@3x.png in Resources */,
@@ -1013,6 +1089,8 @@
 				88B4CCE6228557A900C7D0FE /* TCMyBookrackFlowLayout.m in Sources */,
 				88044F4D227182BC00F18E66 /* LGPageViewController.m in Sources */,
 				88044F652275973B00F18E66 /* TCBookInfoRecoCollectionViewCell.m in Sources */,
+				88C00126228A96A6006C2305 /* TCQuadrateModel.m in Sources */,
+				88C00123228A9687006C2305 /* TCBookCatagoryLineModel.m in Sources */,
 				889295CD22644AD60015C7DB /* TCScoolBookrackViewController.m in Sources */,
 				880833812269B09500C462D4 /* TCBookInfoTableViewController.m in Sources */,
 				884ED6DA22893D7500B5E1AE /* LGLocalPathManager.m in Sources */,
@@ -1025,12 +1103,15 @@
 				889295C32264340F0015C7DB /* LGBaseModel.m in Sources */,
 				8808332A2265BF4500C462D4 /* TCMyCollectionViewController.m in Sources */,
 				880833402266CD0C00C462D4 /* TCMyBookSwitchSortWayView.m in Sources */,
+				88C00120228A9636006C2305 /* TCBaseModel.m in Sources */,
+				88C0012B228BEE8C006C2305 /* TCTriangleView.m in Sources */,
 				884ED6D72289085600B5E1AE /* CircleProgressBar.m in Sources */,
 				8851C7F82282A7D100995AFE /* LGNavigationSearchBar.m in Sources */,
 				88B4CCDC2285232E00C7D0FE /* TCSearchListCountView.m in Sources */,
 				889295C42264340F0015C7DB /* LGBaseNavigationController.m in Sources */,
 				88044F702276A60800F18E66 /* TCBookDiscussTableViewCell.m in Sources */,
 				88B4CCDF22854AAC00C7D0FE /* UIViewController+LGExtension.m in Sources */,
+				88C0010E228A5EC2006C2305 /* TCListHeaderTableViewController.m in Sources */,
 				88044F622275971A00F18E66 /* TCBookInfoRecoCollectionViewController.m in Sources */,
 				88044F472271628000F18E66 /* LGParallelButton.m in Sources */,
 				880833492266F82600C462D4 /* UIView+Extension.m in Sources */,
@@ -1041,12 +1122,15 @@
 				880833302265CD7600C462D4 /* TCMyBookrackModel.m in Sources */,
 				88044F56227189AA00F18E66 /* TCBookDiscussViewController.m in Sources */,
 				8808333D2266C98900C462D4 /* TCMyBookSortView.m in Sources */,
+				88C00119228A62A0006C2305 /* TCListHeaderTableViewCell.m in Sources */,
+				88C00116228A6286006C2305 /* TCHeaderCollectionViewCell.m in Sources */,
 				88B4CCE922855EA000C7D0FE /* TCMyBookrackEditCell.m in Sources */,
 				88B4CCF72285744700C7D0FE /* TCMyBookrackEditMakesureView.m in Sources */,
 				880833522267011400C462D4 /* TCSchoolBookTableViewCell.m in Sources */,
 				889295DE226458A80015C7DB /* UIColor+Extension.m in Sources */,
 				8851C8032282C3FA00995AFE /* LGRecordButtonLoader.m in Sources */,
 				8892957C22605EBE0015C7DB /* main.m in Sources */,
+				88C00113228A6222006C2305 /* TCHeaderCollectionViewController.m in Sources */,
 				8808334D2267000C00C462D4 /* TCSchoolBookTableViewController.m in Sources */,
 				889295CA22644A650015C7DB /* TCMyBookrackViewController.m in Sources */,
 				8808335722670E5200C462D4 /* LGSegmentScrollView.m in Sources */,

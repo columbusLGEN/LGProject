@@ -64,3 +64,13 @@ static CGFloat marginFive = 5;
 #define kNoticeWordNoMoreData        @"暂无更多数据"
 #define kNoticeWordNetLost           @"连接失败，请检查您的网络"
 #define kNoticeWordSearchEmpty       @"哎呦，没有找到你想要的"
+
+// MARK: 通知名
+/** 分类点击事件 */
+static NSString *kNotificationListFenleiClick = @"fenleiClick";
+/** 所点击的分类 */
+static NSString *kNotificationListFenleiClickInfoOrigin = @"fenleiClickInfoOrigin";
+/** 所点击的分类 当前行 */
+static NSString *kNotificationListFenleiClickInfoCurrenLine = @"fenleiClickInfoCurrentLine";
+/** 所点击分类的 二级分类 */
+static NSString *kNotificationListFenleiClickInfoSecondery = @"fenleiClickInfoSecondery";

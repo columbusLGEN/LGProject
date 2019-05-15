@@ -24,7 +24,7 @@
 
     [self creatChildViewControllerWith:[TCSchoolBookPageViewController bookpagevc] title:@"学校书橱" iconNormal:@"icon_tb_unselected_school" iconSelect:@"icon_tb_selected_school"];
     
-//    self.selectedIndex = 1;
+    self.selectedIndex = 1;
 }
 
 - (void)creatChildViewControllerWith:(UIViewController *)vc title:(NSString *)title iconNormal:(NSString *)iconNormal iconSelect:(NSString *)iconSelect{

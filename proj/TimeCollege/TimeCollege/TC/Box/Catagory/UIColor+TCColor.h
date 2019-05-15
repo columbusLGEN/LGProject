@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)YBColor_F3F3F3;
 /** 浅蓝色，提交评论输入框背景色 */
 + (UIColor *)YBColor_F2F8FF;
+/** 浅浅蓝色 */
++ (UIColor *)YBColor_E8F3FE;
 
 @end
 

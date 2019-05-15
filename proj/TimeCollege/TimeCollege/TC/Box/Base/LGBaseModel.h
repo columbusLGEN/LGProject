@@ -11,9 +11,9 @@
 
 @interface LGBaseModel : NSObject
 
-+ (NSArray *)arrayWithResponseObject:(id)object;
-+ (instancetype)modelWithResponseObject:(id)object;
-+ (NSArray *)loadLocalPlist;
+//+ (NSArray *)lg_arrayWithKeyValue:(id)object;
+//+ (instancetype)lg_modelWithKeyValue:(id)object;
+//+ (NSArray *)loadLocalPlist;
 + (NSArray *)loadLocalPlistWithPlistName:(NSString *)plistName;
 
 @end
