@@ -122,7 +122,7 @@ static NSString *cs_79CCF1 = @"79CCF1";
         _progressView = [[CircleProgressBar alloc] init];
         _progressView.progressBarWidth = 2;
         _progressView.progressBarTrackColor = [UIColor clearColor];
-        _progressView.progressBarProgressColor = [UIColor colorWithHexString:cs_79CCF1];
+        _progressView.progressBarProgressColor = [UIColor YBColor_278BF9];
         _progressView.startAngle = -90;
         _progressView.hintHidden = 1;
         _progressView.backgroundColor = [UIColor clearColor];
@@ -147,7 +147,7 @@ static NSString *cs_79CCF1 = @"79CCF1";
     if (_aleadyCount == nil) {
         _aleadyCount = [[UILabel alloc] init];
         _aleadyCount.font = [UIFont systemFontOfSize:font];
-        _aleadyCount.textColor = [UIColor colorWithHexString:cs_79CCF1];
+        _aleadyCount.textColor = [UIColor YBColor_278BF9];
     }
     return _aleadyCount;
 }

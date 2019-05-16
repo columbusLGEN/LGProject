@@ -32,23 +32,23 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时代媒体出版社" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fds-wm-KP8">
-                        <rect key="frame" x="125" y="91" width="108" height="18"/>
+                        <rect key="frame" x="125" y="85" width="108" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="《围城》是钱钟书所著的长篇小说，是中国现代文学史上一部风格独特的讽刺小说。被誉为“新儒林外史”。第一版于1947年由上海晨光出版公司出版。故事主要写抗战初期知识分子的群相" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnc-1i-nf2">
-                        <rect key="frame" x="125" y="117" width="257" height="50.5"/>
+                        <rect key="frame" x="125" y="111" width="257" height="50.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eO-6D-EKJ">
-                        <rect key="frame" x="125" y="57" width="164" height="24"/>
-                        <color key="backgroundColor" red="1" green="0.81176470590000005" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eO-6D-EKJ" customClass="ZStarView">
+                        <rect key="frame" x="125" y="57" width="90" height="18"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="164" id="Wcw-ek-YoP"/>
-                            <constraint firstAttribute="height" constant="24" id="he5-rS-lQ5"/>
+                            <constraint firstAttribute="width" constant="90" id="Wcw-ek-YoP"/>
+                            <constraint firstAttribute="height" constant="18" id="he5-rS-lQ5"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAN-GX-KOO">

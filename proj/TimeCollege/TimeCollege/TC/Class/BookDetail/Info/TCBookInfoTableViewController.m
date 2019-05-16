@@ -12,6 +12,7 @@
 #import "TCBIContentCell.h"
 #import "TCBIMessageCell.h"
 #import "TCBookInfoRecoCollectionViewController.h"
+#import "YNPageTableView.h"
 
 static NSString *testcell = @"testcell";
 
@@ -21,6 +22,8 @@ static NSString *testcell = @"testcell";
 @end
 
 @implementation TCBookInfoTableViewController
+
+@synthesize tableView = _tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,5 +76,20 @@ static NSString *testcell = @"testcell";
 //    return cell;
 }
 
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [YNPageTableView.alloc initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRefresh)];
+        
+        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+        
+        
+    }
+    return _tableView;
+}
 
 @end

@@ -25,5 +25,8 @@
 + (UIColor *)YBColor_E8F3FE{
     return [self colorWithHexString:@"E8F3FE"];
 }
++ (UIColor *)YBColor_278BF9{
+    return [self colorWithHexString:@"278BF9"];
+}
 
 @end

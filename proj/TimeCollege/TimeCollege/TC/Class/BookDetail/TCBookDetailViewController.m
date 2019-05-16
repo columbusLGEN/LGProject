@@ -13,7 +13,7 @@
 #import "TCBookInfoHeaderView.h"
 #import "TCBookDetaileBookBottomView.h"
 
-#define kOpenRefreshHeaderViewHeight 0
+//#define kOpenRefreshHeaderViewHeight 0
 
 @interface TCBookDetailViewController ()<YNPageViewControllerDataSource, YNPageViewControllerDelegate>
 

@@ -7,7 +7,7 @@
 //
 
 #import "LGTableViewController.h"
-#import "YNPageTableView.h"
+//#import "YNPageTableView.h"
 
 @interface LGTableViewController ()
 
@@ -54,7 +54,12 @@
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [YNPageTableView.alloc initWithFrame:CGRectZero style:UITableViewStylePlain];
+//        _tableView = [YNPageTableView.alloc initWithFrame:CGRectZero style:UITableViewStylePlain];
+        
+        /// 之前这里为什么要用 YNPageTableView.alloc 初始化 tableView???
+        /// 因为书籍详情页面无法滚动
+        
+        _tableView = [UITableView.alloc initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

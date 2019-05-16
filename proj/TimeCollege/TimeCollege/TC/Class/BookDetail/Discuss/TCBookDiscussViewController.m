@@ -9,6 +9,7 @@
 #import "TCBookDiscussViewController.h"
 #import "TCInputDiscussView.h"
 #import "TCBookDiscussTableViewCell.h"
+#import "YNPageTableView.h"
 
 static NSString *disCell = @"TCBookDiscussTableViewCell";
 
@@ -17,6 +18,8 @@ static NSString *disCell = @"TCBookDiscussTableViewCell";
 @end
 
 @implementation TCBookDiscussViewController
+
+@synthesize tableView = _tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,6 +50,22 @@ static NSString *disCell = @"TCBookDiscussTableViewCell";
     TCBookDiscussTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:disCell forIndexPath:indexPath];
     cell.model = [NSObject new];
     return cell;
+}
+
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [YNPageTableView.alloc initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRefresh)];
+        
+        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+        
+        
+    }
+    return _tableView;
 }
 
 @end

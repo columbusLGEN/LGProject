@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)YBColor_F2F8FF;
 /** 浅浅蓝色 */
 + (UIColor *)YBColor_E8F3FE;
-
+/** 蓝色,下载进度 */
++ (UIColor *)YBColor_278BF9;
 @end
 
 NS_ASSUME_NONNULL_END
