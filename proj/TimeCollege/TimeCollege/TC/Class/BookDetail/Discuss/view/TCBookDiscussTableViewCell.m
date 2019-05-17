@@ -7,12 +7,13 @@
 //
 
 #import "TCBookDiscussTableViewCell.h"
+#import "ZStarView.h"
 
 @interface TCBookDiscussTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIView *iconCon;
 @property (weak, nonatomic) IBOutlet UIImageView *iconAva;
 @property (weak, nonatomic) IBOutlet UILabel *nick;
-@property (weak, nonatomic) IBOutlet UIView *starView;
+@property (weak, nonatomic) IBOutlet ZStarView *starView;
 @property (weak, nonatomic) IBOutlet UILabel *disContent;
 @property (weak, nonatomic) IBOutlet UILabel *disTime;
 @property (weak, nonatomic) IBOutlet UIView *line;
@@ -28,6 +29,7 @@
     self.nick.text = @"奇遇";
     self.disContent.text = @"考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我考试网我我我我";
 //    self.disTime;
+    [self.starView setScore:4 withAnimation:NO];
     
 }
 

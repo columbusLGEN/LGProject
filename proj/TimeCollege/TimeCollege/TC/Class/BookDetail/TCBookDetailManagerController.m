@@ -34,7 +34,7 @@
         [self.view addSubview:self.bottomv];
         [self.bottomv mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
-            make.height.mas_equalTo(60);
+            make.height.mas_equalTo(70);
         }];
         
         [devc.view mas_makeConstraints:^(MASConstraintMaker *make) {

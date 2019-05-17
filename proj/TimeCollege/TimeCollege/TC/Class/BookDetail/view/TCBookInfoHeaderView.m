@@ -7,9 +7,11 @@
 //
 
 #import "TCBookInfoHeaderView.h"
+#import "ZStarView.h"
 
 @interface TCBookInfoHeaderView ()
 @property (weak, nonatomic) IBOutlet UIView *line;
+@property (weak, nonatomic) IBOutlet ZStarView *starView;
 
 @end
 
@@ -18,6 +20,7 @@
 - (void)setModel:(id)model{
     self.bookname.text = @"黄梅戏";
     self.public.text = @"时代出版社";
+    [self.starView setScore:4 withAnimation:NO];
 }
 
 + (instancetype)biHeader{

@@ -68,9 +68,10 @@
 + (NSArray *)getArrayVCs {
     /// 数字教材 vc
     TCSchoolBookTableViewController *digvc = TCSchoolBookTableViewController.new;
+    digvc.listType = TCListTypeDigitalTextbook;
     /// 电子图书 vc
     TCSchoolBookTableViewController *ebookvc = TCSchoolBookTableViewController.new;
-    
+    ebookvc.listType = TCListTypeEBook;
     return @[digvc,ebookvc];
 }
 

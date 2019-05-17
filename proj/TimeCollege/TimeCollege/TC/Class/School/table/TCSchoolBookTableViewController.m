@@ -145,7 +145,7 @@ static NSString * const sbTableViewCell = @"TCSchoolBookTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TCBookDetailManagerController *bdvc = [TCBookDetailManagerController new];
-//    bdvc.detailType = 2;
+    bdvc.detailType = self.listType;
     [self.navigationController pushViewController:bdvc animated:YES];
 }
 

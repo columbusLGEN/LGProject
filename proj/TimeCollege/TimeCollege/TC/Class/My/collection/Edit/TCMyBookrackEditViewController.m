@@ -17,11 +17,15 @@
 @interface TCMyBookrackEditViewController ()<
 LGNavigationSearchBarDelelgate>
 @property (strong,nonatomic) TCMyBookrackEditMakesureView *makesurev;
+/** 保存选中数据,向服务器提交 */
+@property (strong,nonatomic) NSMutableArray *selectedArray;
+
 @end
 
 @implementation TCMyBookrackEditViewController
 
 @synthesize flowLayout = _flowLayout;
+@synthesize array = _array;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,23 +39,55 @@ LGNavigationSearchBarDelelgate>
     self.makesurev.hidden = NO;
 }
 /// makesurev target
+- (void)deleteSure{
+    /// 确定删除
+    NSLog(@"确定删除%ld本书吗?",self.selectedArray.count);
+}
 - (void)deleteCancel{
     /// 取消删除
     self.makesurev.hidden = YES;
+    
 }
 
 #pragma mark - delegate
 /** 全选 */
 - (void)leftButtonClick:(LGNavigationSearchBar *)navigationSearchBar;{
     NSLog(@"全选");
-    [self lg_dismissViewController];
+    /// 如果所有模型都是 选中状态,则全部取消选中,否则全部设为 选中状态
+    BOOL allSelect = YES;
+    for (TCMyBookrackModel *model in self.array) {
+        if (!model.editSelect) {
+            allSelect = NO;
+            break;
+        }
+    }
+    
+    BOOL select;
+    if (allSelect) {
+        select = NO;
+        /// 删除所有选中数据
+        [self.selectedArray removeAllObjects];
+    }else{
+        select = YES;
+        self.selectedArray = [NSMutableArray arrayWithArray:self.array];
+    }
+    
+    for (TCMyBookrackModel *model in self.array) {
+        model.editSelect = select;
+    }
+    
+    [self.collectionView reloadData];
+    
 }
 /** 完成 */
 - (void)navDoneClick{
     NSLog(@"完成");
+    [self lg_dismissViewController];
 }
 
 - (void)configUI{
+    
+    _selectedArray = NSMutableArray.new;
     
     UIButton *navRightButton = UIButton.new;
     [navRightButton setTitle:@"完成" forState:UIControlStateNormal];
@@ -91,6 +127,7 @@ LGNavigationSearchBarDelelgate>
     
     /// 确定删除视图
     self.makesurev = [TCMyBookrackEditMakesureView mbemsView];
+    [self.makesurev.done addTarget:self action:@selector(deleteSure) forControlEvents:UIControlEventTouchUpInside];
     [self.makesurev.cancel addTarget:self action:@selector(deleteCancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.makesurev];
     [self.makesurev mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -98,17 +135,24 @@ LGNavigationSearchBarDelelgate>
     }];
     self.makesurev.hidden = YES;
     
-    /// testcode
-    NSMutableArray *arrmu = NSMutableArray.new;
-    for (NSInteger i = 0; i < 20; i++) {
-        TCMyBookrackModel *model = TCMyBookrackModel.new;
-        model.ds = arc4random_uniform(4);
-        model.editSelect = NO;
-        [arrmu addObject:model];
-        
+    /// 数据
+    for (NSInteger i = 0; i < _array.count; i++) {
+        TCMyBookrackModel *model = _array[i];
+        if (self.longPressIndex.item == i) {
+            [self.selectedArray addObject:model];
+            model.editSelect = YES;
+        }
     }
-    self.array = arrmu.copy;
+    [self.collectionView reloadData];
+}
+
+- (void)setArray:(NSArray *)array{
+    _array = array;
     
+    
+    /// 代码执行顺序是 先 setArray 在viewDidload
+    /// 所以不能在此处 reloadData,因为此时collectionview还没有载入
+//    [self.collectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -122,8 +166,17 @@ LGNavigationSearchBarDelelgate>
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     TCMyBookrackModel *model = self.array[indexPath.item];
+    
     model.editSelect = !model.editSelect;
+    
+    if (model.editSelect) {
+        [self.selectedArray addObject:model];
+    }else{
+        [self.selectedArray removeObject:model];
+    }
+    
     [collectionView reloadItemsAtIndexPaths:@[indexPath]];
 
 }

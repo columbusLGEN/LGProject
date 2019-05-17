@@ -7,8 +7,15 @@
 //
 
 #import "TCInputDiscussView.h"
+#import "ZStarView.h"
 
 @implementation TCInputDiscussView
+
+- (void)setModel:(id)model{
+    _model = model;
+    
+    [self.starView setScore:4 withAnimation:NO];
+}
 
 - (void)awakeFromNib{
     [super awakeFromNib];

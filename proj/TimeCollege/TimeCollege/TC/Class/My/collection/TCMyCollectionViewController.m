@@ -42,10 +42,12 @@ BookDownloadProgressvDelegate>
     if (indexPath == nil){
         NSLog(@"couldn't find index path");
     } else {
-        /// TODO: 跳转至 TCMyBookrackEditViewController 编辑页面
+        
         /// 并选中 当前 index 的 cell
         TCMyBookrackEditViewController *editvc = TCMyBookrackEditViewController.new;
         editvc.pushWay = LGBaseViewControllerPushWayModal;
+        editvc.longPressIndex = indexPath;
+        editvc.array = self.array;
         [self presentViewController:editvc animated:YES completion:nil];
     }
 }
@@ -67,18 +69,20 @@ BookDownloadProgressvDelegate>
     
     /// testcode
     NSMutableArray *arrmu = NSMutableArray.new;
-    for (NSInteger i = 0; i < 20; i++) {
+    for (NSInteger i = 0; i < 10; i++) {
         TCMyBookrackModel *model = TCMyBookrackModel.new;
         [arrmu addObject:model];
     }
     self.array = arrmu.copy;
     [self.collectionView reloadData];
 
+    
 }
 
 #pragma mark - delegate
 - (void)bdsView:(BookDownloadProgressv *)view beginDownloadWithModel:(TCMyBookrackModel *)model{
     NSLog(@"点击下载_%ld,下载路径:%@",model.ds,model.localFilePath);
+    
     /// MARK: 改变下载状态
     [model changeDownloadStateWithCurrentState:model.ds progress:^(CGFloat progress) {
         /// 2.设置view 的显示 进度

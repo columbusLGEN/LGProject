@@ -38,6 +38,7 @@ static NSString *disCell = @"TCBookDiscussTableViewCell";
     
     TCInputDiscussView *commitv = [TCInputDiscussView inputDiscussv];
     commitv.frame = CGRectMake(0, 0, Screen_Width, 220);
+    commitv.model = NSObject.new;
     self.tableView.tableHeaderView = commitv;
     
 }

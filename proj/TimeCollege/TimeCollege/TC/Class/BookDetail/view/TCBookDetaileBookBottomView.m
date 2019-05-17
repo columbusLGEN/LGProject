@@ -22,6 +22,14 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     
+    [self.borrowRead cutBorderWithBorderWidth:1 borderColor:UIColor.TCColor_mainColor cornerRadius:18];
+    
+    UIColor *textColor = UIColor.YBColor_6A6A6A;
+    [self.borrowAgain setTitleColor:textColor forState:UIControlStateNormal];
+    [self.back setTitleColor:textColor forState:UIControlStateNormal];
+    [self.tipRead setTitleColor:textColor forState:UIControlStateNormal];
+    
+    
 }
 
 @end

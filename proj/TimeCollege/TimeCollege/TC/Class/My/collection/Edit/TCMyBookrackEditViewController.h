@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCMyBookrackEditViewController : LGBaseCollectionViewController
+@property (strong,nonatomic) NSIndexPath *longPressIndex;
 
 @end
 

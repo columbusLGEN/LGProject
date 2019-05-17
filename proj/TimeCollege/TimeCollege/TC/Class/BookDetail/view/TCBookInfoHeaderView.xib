@@ -34,12 +34,12 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCq-eW-kP9">
-                    <rect key="frame" x="110" y="114" width="200" height="25"/>
-                    <color key="backgroundColor" red="1" green="0.81176470590000005" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCq-eW-kP9" customClass="ZStarView">
+                    <rect key="frame" x="110" y="114" width="90" height="18"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="200" id="4va-4Q-IEV"/>
-                        <constraint firstAttribute="height" constant="25" id="nKe-8T-TGz"/>
+                        <constraint firstAttribute="width" constant="90" id="4va-4Q-IEV"/>
+                        <constraint firstAttribute="height" constant="18" id="nKe-8T-TGz"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZU-MV-fxU">
@@ -50,7 +50,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgy-ZH-oJr">
-                    <rect key="frame" x="110" y="149" width="62" height="30"/>
+                    <rect key="frame" x="110" y="142" width="62" height="30"/>
                     <state key="normal" title="立即阅读"/>
                 </button>
             </subviews>
@@ -79,6 +79,7 @@
                 <outlet property="line" destination="TZU-MV-fxU" id="h3M-7Q-BFb"/>
                 <outlet property="public" destination="FYy-pq-NTp" id="ZOy-sd-8yl"/>
                 <outlet property="readNow" destination="Tgy-ZH-oJr" id="wta-ZM-5eI"/>
+                <outlet property="starView" destination="QCq-eW-kP9" id="sdy-6u-rjP"/>
             </connections>
             <point key="canvasLocation" x="179.71014492753625" y="-114.50892857142857"/>
         </view>

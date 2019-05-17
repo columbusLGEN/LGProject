@@ -10,12 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ZStarView;
+
 @interface TCInputDiscussView : UIView
-@property (weak, nonatomic) IBOutlet UIView *starView;
+@property (weak, nonatomic) IBOutlet ZStarView *starView;
 @property (weak, nonatomic) IBOutlet UILabel *starIns;
 @property (weak, nonatomic) IBOutlet UIButton *commitDis;
 @property (weak, nonatomic) IBOutlet UITextView *disContent;
 @property (weak, nonatomic) IBOutlet UIImageView *fadeImage;
+
+@property (strong,nonatomic) id model;
 
 + (instancetype)inputDiscussv;
 

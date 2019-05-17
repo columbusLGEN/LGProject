@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TCBookDetailManagerController : LGBaseViewController
 /**
+ 数字教材 - digTextBook == 0
  电子图书 - eBook == 1
- 数字教材 - digTextBook == 2
  */
 @property (assign,nonatomic) NSInteger detailType;
 
