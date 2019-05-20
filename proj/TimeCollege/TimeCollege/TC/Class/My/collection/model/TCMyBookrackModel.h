@@ -43,8 +43,12 @@ typedef NS_ENUM(NSUInteger, TCMyBookType) {
 @property (strong,nonatomic) UIImage *downloadIcon;
 /** 下载链接 */
 @property (strong,nonatomic) NSString *downloadURL;
-/** 资源路径 */
+/** 资源本地路径 */
 @property (strong,nonatomic) NSString *localFilePath;
+/** 删除本地资源 */
+- (void)rm_localFile;
+/** 取消下载 */
+- (void)cancelDownload;
 
 /** 改变下载状态 */
 - (void)changeDownloadStateWithCurrentState:(TCMyBookDownloadState)currentState progress:(TCDownloadProgress)progress failure:(TCDownloadFailure)failure;

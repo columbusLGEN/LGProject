@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCMyBookrackEditMakesureView : UIView
+
+/** 要删除的书籍 数量 */
+@property (assign,nonatomic) NSInteger bookCount;
+
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 @property (weak, nonatomic) IBOutlet UIButton *done;
 + (instancetype)mbemsView;

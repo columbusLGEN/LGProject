@@ -8,6 +8,7 @@
 
 #import "TCMyBookrackModel.h"
 #import "LGLocalPathManager.h"
+#import "LGFileManager.h"
 
 @interface TCMyBookrackModel ()
 /** AFNetworking断点下载（支持离线）需用到的属性 **********/
@@ -33,6 +34,17 @@
 @end
 
 @implementation TCMyBookrackModel
+
+/** 删除本地资源 */
+- (void)rm_localFile;{
+    [LGFileManager removeFile:self.localFilePath];
+}
+/** 取消下载 */
+- (void)cancelDownload;{
+    if (_downloadTask.state == NSURLSessionTaskStateRunning) {
+        [_downloadTask cancel];
+    }
+}
 
 /**
  * downloadTask的懒加载

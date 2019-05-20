@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LGLocalPathManager : NSObject
 
-/** ~library/fileName */
+/** 返回: ~library/fileName */
 - (NSString *)fileOfLibrary:(NSString *)fileName;
+/** 返回 library */
 - (NSString *)libraryDirectory;
 
 @end

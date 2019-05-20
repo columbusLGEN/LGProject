@@ -30,7 +30,6 @@ BookDownloadProgressvDelegate>
     [self configUI];
 }
 
-
 - (void)longPressToDo:(UILongPressGestureRecognizer *)gestureRecognizer {
 //    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
 //        return;
@@ -48,7 +47,12 @@ BookDownloadProgressvDelegate>
         editvc.pushWay = LGBaseViewControllerPushWayModal;
         editvc.longPressIndex = indexPath;
         editvc.array = self.array;
-        [self presentViewController:editvc animated:YES completion:nil];
+        [self presentViewController:editvc animated:YES completion:^{
+            /// 取消当前正在进行的下载请求
+            for (TCMyBookrackModel *model in self.array) {
+                [model cancelDownload];
+            }
+        }];
     }
 }
 

@@ -36,12 +36,19 @@ LGNavigationSearchBarDelelgate>
 #pragma mark - target
 /// TCMyBookrackEditBottom target
 - (void)showMakesurev{
+    self.makesurev.bookCount = self.selectedArray.count;
     self.makesurev.hidden = NO;
 }
 /// makesurev target
 - (void)deleteSure{
     /// 确定删除
-    NSLog(@"确定删除%ld本书吗?",self.selectedArray.count);
+    /// TODO:
+    /// 1.请求删除接口
+    
+    /// 2.删除本地资源文件(在请求接口的回调里)
+    for (TCMyBookrackModel *model in self.selectedArray) {
+        [model rm_localFile];
+    }
 }
 - (void)deleteCancel{
     /// 取消删除
@@ -148,7 +155,6 @@ LGNavigationSearchBarDelelgate>
 
 - (void)setArray:(NSArray *)array{
     _array = array;
-    
     
     /// 代码执行顺序是 先 setArray 在viewDidload
     /// 所以不能在此处 reloadData,因为此时collectionview还没有载入

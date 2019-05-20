@@ -16,6 +16,12 @@
 
 @implementation TCMyBookrackEditMakesureView
 
+- (void)setBookCount:(NSInteger)bookCount{
+    _bookCount = bookCount;
+    
+    _notice.text = [NSString stringWithFormat:@"已选中%ld本书是否要移出书橱？",bookCount];
+}
+
 + (instancetype)mbemsView{
     return [NSBundle.mainBundle loadNibNamed:@"TCMyBookrackEditMakesureView" owner:nil options:nil].firstObject;
 }
