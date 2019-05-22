@@ -33,6 +33,12 @@
     TCSearchViewController *searchvc = TCSearchViewController.new;
     searchvc.blrType = 0;
     [self.navigationController pushViewController:searchvc animated:YES];
+    
+//    [LGNetworkManager.sharedNetworkManager GETWithUrl:@"https://www.apiopen.top/satinApi" parameters:@{@"type":@(1),@"page":@(1)} success:^(LGRequestModel * _Nonnull requestModel) {
+//
+//    } failure:^(NSError * _Nonnull error, NSInteger code, NSURLSessionTask * _Nonnull task) {
+//
+//    }];
 }
 /** 切换排序方式 */
 - (void)switchSortWay:(UIButton *)sender{

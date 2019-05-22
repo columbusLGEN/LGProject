@@ -10,6 +10,10 @@
 
 @implementation LGFileManager
 
++ (BOOL)fileExists:(NSString *)path{
+    return [self.defaultManager fileExistsAtPath:path];
+}
+
 + (void)removeFile:(NSString *)path{
     NSError *error;
     

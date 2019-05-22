@@ -6,7 +6,7 @@
 //  Copyright © 2019 lee. All rights reserved.
 //
 
-#import "LGBaseModel.h"
+#import "LGBookModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,16 +25,9 @@ typedef NS_ENUM(NSUInteger, TCMyBookDownloadState) {
     TCMyBookDownloadStateEd,
 };
 
-typedef NS_ENUM(NSUInteger, TCMyBookType) {
-    /// epub
-    TCMyBookTypeEpub,
-    /// pdf
-    TCMyBookTypePDF,
-};
+@interface TCMyBookrackModel : LGBookModel
 
-@interface TCMyBookrackModel : LGBaseModel
-
-@property (assign,nonatomic) TCMyBookType bookType;
+@property (strong,nonatomic) NSString *bookName;
 /** 下载状态: 3 已下载 */
 @property (assign,nonatomic) TCMyBookDownloadState ds;
 /** 编辑状态下是否选中 1:选中 */
@@ -45,6 +38,10 @@ typedef NS_ENUM(NSUInteger, TCMyBookType) {
 @property (strong,nonatomic) NSString *downloadURL;
 /** 资源本地路径 */
 @property (strong,nonatomic) NSString *localFilePath;
+
+/** 超媒体文件 解压缩路径 */
+@property (strong,nonatomic) NSString *hyperUnzipPath;
+
 /** 删除本地资源 */
 - (void)rm_localFile;
 /** 取消下载 */

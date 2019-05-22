@@ -215,12 +215,15 @@
 }
 
 - (NSString *)nameSuffix{
-    switch (self.bookType) {
-        case TCMyBookTypePDF:
+    switch (self.resourceType) {
+        case LGBookResourceTypePDF:
             return @"pdf";
             break;
-        case TCMyBookTypeEpub:
+        case LGBookResourceTypeEpub:
             return @"epub";
+            break;
+        case LGBookResourceTypeHyperMedia:
+            return @"hyperMedia";
             break;
     }
 }

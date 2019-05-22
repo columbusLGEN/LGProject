@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LGFileManager : NSFileManager
+
+/** 文件是否存在 */
++ (BOOL)fileExists:(NSString *)path;
+
 /** 删除本地文件 */
 + (void)removeFile:(NSString *)path;
 

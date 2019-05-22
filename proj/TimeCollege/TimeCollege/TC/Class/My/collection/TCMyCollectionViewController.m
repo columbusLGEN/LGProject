@@ -12,10 +12,12 @@
 #import "TCMyBookrackEditViewController.h"
 #import "TCMyBookrackModel.h"
 #import "BookDownloadProgressv.h"
+#import "LGReadManager.h"
 
 @interface TCMyCollectionViewController ()<
 UIGestureRecognizerDelegate,
 BookDownloadProgressvDelegate>
+@property (strong,nonatomic) LGReadManager *readManager;
 
 @end
 
@@ -58,6 +60,8 @@ BookDownloadProgressvDelegate>
 
 - (void)configUI{
     
+    _readManager = [LGReadManager.alloc init];
+    
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
@@ -75,6 +79,20 @@ BookDownloadProgressvDelegate>
     NSMutableArray *arrmu = NSMutableArray.new;
     for (NSInteger i = 0; i < 10; i++) {
         TCMyBookrackModel *model = TCMyBookrackModel.new;
+        if (i % 2 == 1) {
+            model.resourceType = LGBookResourceTypeEpub;
+            /// 测试书籍路径: epub
+            NSString *epubPath = [NSBundle.mainBundle pathForResource:@"测试书籍01" ofType:@"epub"];
+            model.localFilePath = epubPath;
+            
+        }else{
+            model.resourceType = LGBookResourceTypePDF;
+            /// 测试书籍路径 pdf
+            NSString *pdfPath = [NSBundle.mainBundle pathForResource:@"测试书籍02" ofType:@"pdf"];
+            model.localFilePath = pdfPath;
+            
+        }
+        model.ds = TCMyBookDownloadStateEd;
         [arrmu addObject:model];
     }
     self.array = arrmu.copy;
@@ -123,6 +141,12 @@ BookDownloadProgressvDelegate>
     cell.progressv.delegate = self;
 
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    TCMyBookrackModel *model = self.array[indexPath.item];
+    
+    [_readManager openBookWithModel:model vc:self];
 }
 
 - (UICollectionViewFlowLayout *)flowLayout{
